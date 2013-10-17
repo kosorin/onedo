@@ -7,11 +7,151 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Resources;
+using SimpleTasks.ViewModels;
+using Microsoft.Phone.Scheduler;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks
 {
     public partial class App : Application
     {
+        public static MainViewModel ViewModel { get; private set; }
+
+        public static SettingsViewModel Settings { get; private set; }
+
+        #region Periodic Task
+        private static string PeriodicTaskName { get { return "SimpleTask PeriodicTask"; } }
+
+        public static void StartPeriodicTask()
+        {
+            PeriodicTask periodicTask = new PeriodicTask(PeriodicTaskName)
+            {
+                Description = AppResources.PeriodicTaskDescription
+            };
+
+            // Odstraním starou úlohu
+            StopPeriodicTask();
+
+            // Přidání úlohy.
+            try
+            {
+                ScheduledActionService.Add(periodicTask);
+                Debug.WriteLine("> Přidal jsem ScheduledActionService.");
+            }
+            catch (InvalidOperationException e)
+            {
+                if (e.Message.Contains("BNS Error: The action is disabled"))
+                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException: Úloha byla zakázána uživatelem.");
+                else if (e.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
+                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException: Dosažen maximální limit úloh.");
+                else
+                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException");
+            }
+            catch (SchedulerServiceException)
+            {
+                Debug.WriteLine("StartPeriodicAgent SchedulerServiceException");
+            }
+        }
+
+        public static void StopPeriodicTask()
+        {
+            if (ScheduledActionService.Find(PeriodicTaskName) != null)
+            {
+                try
+                {
+                    ScheduledActionService.Remove(PeriodicTaskName);
+                    Debug.WriteLine("> Odstranil jsem ScheduledActionService.");
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("RemovePeriodicAgent Exception");
+                }
+            }
+        }
+        #endregion
+
+        #region Live Tile
+        public static void AddSecondaryTile()
+        {
+            RemoveSecondaryTile();
+
+            try
+            {
+                ShellTile.Create(LiveTile.TileUri, LiveTile.CreateSecondaryTileData(ViewModel.Tasks.SortTasks()), true);
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Chyba při přidání sekundární dlaždice.");
+            }
+        }
+
+        public static void RemoveSecondaryTile()
+        {
+            try
+            {
+                ShellTile tile = LiveTile.FindSecondaryTile();
+                if (tile != null)
+                    tile.Delete();
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Chyba při mazání sekundární dlaždice.");
+            }
+        }
+        #endregion
+
+        static App()
+        {
+            ViewModel = new MainViewModel();
+            Settings = new SettingsViewModel();
+        }
+
+        // Code to execute when the application is launching (eg, from Start)
+        // This code will not execute when the application is reactivated
+        private void Application_Launching(object sender, LaunchingEventArgs e)
+        {
+            Debug.WriteLine("===== Application Launching =====");
+            if (LiveTile.HasSecondaryTile)
+                StartPeriodicTask();
+            else
+                StopPeriodicTask();
+            ViewModel.LoadData();
+            Debug.WriteLine("===== ========== =====");
+        }
+
+        // Code to execute when the application is activated (brought to foreground)
+        // This code will not execute when the application is first launched
+        private void Application_Activated(object sender, ActivatedEventArgs e)
+        {
+            Debug.WriteLine("===== Application Activated =====");
+            if (!e.IsApplicationInstancePreserved)
+            {
+                ViewModel.LoadData();
+            }
+            Debug.WriteLine("===== ========== =====");
+        }
+
+        // Code to execute when the application is deactivated (sent to background)
+        // This code will not execute when the application is closing
+        private void Application_Deactivated(object sender, DeactivatedEventArgs e)
+        {
+            Debug.WriteLine("===== Application Deactivated =====");
+            ViewModel.SaveData();
+            Debug.WriteLine("===== ========== =====");
+        }
+
+        // Code to execute when the application is closing (eg, user hit Back)
+        // This code will not execute when the application is deactivated
+        private void Application_Closing(object sender, ClosingEventArgs e)
+        {
+            Debug.WriteLine("===== Application Closing =====");
+            ViewModel.SaveData();
+            Debug.WriteLine("===== ========== =====");
+        }
+
+
+        #region Phone application initialization
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -57,30 +197,6 @@ namespace SimpleTasks
 
         }
 
-        // Code to execute when the application is launching (eg, from Start)
-        // This code will not execute when the application is reactivated
-        private void Application_Launching(object sender, LaunchingEventArgs e)
-        {
-        }
-
-        // Code to execute when the application is activated (brought to foreground)
-        // This code will not execute when the application is first launched
-        private void Application_Activated(object sender, ActivatedEventArgs e)
-        {
-        }
-
-        // Code to execute when the application is deactivated (sent to background)
-        // This code will not execute when the application is closing
-        private void Application_Deactivated(object sender, DeactivatedEventArgs e)
-        {
-        }
-
-        // Code to execute when the application is closing (eg, user hit Back)
-        // This code will not execute when the application is deactivated
-        private void Application_Closing(object sender, ClosingEventArgs e)
-        {
-        }
-
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
@@ -114,7 +230,7 @@ namespace SimpleTasks
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+            RootFrame = new TransitionFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures
@@ -219,5 +335,7 @@ namespace SimpleTasks
                 throw;
             }
         }
+
+        #endregion
     }
 }

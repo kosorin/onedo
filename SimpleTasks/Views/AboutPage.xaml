@@ -1,0 +1,111 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="SimpleTasks.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideDownFadeIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideUpFadeIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideDownFadeOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideUpFadeOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <phone:PhoneApplicationPage.Resources>
+        <ControlTemplate x:Key="RateButtonTemplate">
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:Icon Style="{StaticResource StarIconStyle}"
+                                   Color="{StaticResource ButtonForegroundBrush}"/>
+                    <TextBlock Text="{Binding LocalizedResources.AboutRateReview, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource ButtonTextBlockStyle}"/>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ContactButtonTemplate">
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:Icon Style="{StaticResource MailIconStyle}"
+                                   Color="{StaticResource ButtonForegroundBrush}"/>
+                    <TextBlock Text="{Binding LocalizedResources.AboutContactUs, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource ButtonTextBlockStyle}"/>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource ApplicationBackgroundBrush}">
+
+        <ScrollViewer>
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Margin="12,100,12,0">
+                <StackPanel>
+                    <Grid HorizontalAlignment="Center" >
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{StaticResource PhoneAccentBrush}" 
+                                       Width="51"
+                                       Height="110">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="/Assets/AboutIcon.png" 
+                                                Stretch="Fill" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <!--<Image Source="/Assets/Tiles/SmallIconicTile.png"/>-->
+                            <TextBlock Text="{Binding ApplicationNameString}" 
+                                       Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="4,0,12,13"
+                                       FontSize="52" 
+                                       FontWeight="Bold" 
+                                       FontFamily="Segoe WP Black"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding AuthorString}"
+                                   Foreground="{StaticResource PhoneSubtleBrush}" 
+                                   VerticalAlignment="Bottom" 
+                                   Margin="187,0,0,2"/>
+                    </Grid>
+
+                    <!--Rate and review-->
+                    <Button Margin="50,100,50,0"
+                            Template="{StaticResource RateButtonTemplate}"
+                            Click="Rate_Click"/>
+                    <!--Contact us-->
+                    <Button Margin="50,20,50,0" 
+                            Template="{StaticResource ContactButtonTemplate}" 
+                            Click="Contact_Click"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

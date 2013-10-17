@@ -1,0 +1,88 @@
+﻿using SimpleTasks.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+namespace SimpleTasks.Tiles
+{
+    public class SimpleListTile : TileTemplate
+    {
+        public int TaskCount { get; set; }
+
+        public SimpleListTile(int taskCount, int width, int height)
+        {
+            TaskCount = taskCount;
+
+            Width = width;
+            Height = height;
+        }
+
+        public override WriteableBitmap Render(List<TaskModel> tasks)
+        {
+            WriteableBitmap wb = new WriteableBitmap(Width, Height);
+
+            Grid grid = new Grid()
+            {
+                Background = BackgroundBrush
+            };
+
+            StackPanel stackPanel = new StackPanel()
+            {
+                Orientation = Orientation.Vertical
+            };
+
+            foreach (TaskModel task in tasks.Take(TaskCount))
+            {
+                Border border = GetTaskItemBorder(task);
+                stackPanel.Children.Add(border);
+            }
+
+            grid.Children.Add(stackPanel);
+            grid.UpdateLayout();
+            grid.Measure(new Size(Width, Height));
+            grid.Arrange(new Rect(0, 0, Width, Height));
+
+            wb.Render(grid, null);
+            wb.Invalidate();
+            return wb;
+        }
+
+        protected virtual Border GetTaskItemBorder(TaskModel task)
+        {
+            Border border = new Border()
+            {
+                Height = (double)Height / (double)TaskCount,
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = BorderBrush,
+            };
+            Border innerBorder = new Border();
+            if (task.Date.HasValue && task.Date.Value > DateTime.Today)
+            {
+                innerBorder.Opacity = 0.7;
+            }
+            if (task.IsImportant)
+            {
+                innerBorder.Background = ImportantBrush;
+            }
+
+            TextBlock textBlock = new TextBlock()
+            {
+                Text = task.Title,
+                Margin = new Thickness(5, 0, 2, 0),
+                Foreground = ForegroundBrush,
+                FontSize = ((double)Height / (double)TaskCount) * 0.7,
+                VerticalAlignment = VerticalAlignment.Bottom
+            };
+            innerBorder.Child = textBlock;
+
+            border.Child = innerBorder;
+            return border;
+        }
+    }
+}

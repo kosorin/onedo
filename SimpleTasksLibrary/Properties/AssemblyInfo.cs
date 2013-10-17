@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SimpleTasks")]
+[assembly: AssemblyTitle("SimpleTasksLibrary")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SimpleTasks")]
-[assembly: AssemblyCopyright("Copyright © David Kosorin 2013")]
+[assembly: AssemblyProduct("SimpleTasksLibrary")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3eb67e4a-6e5f-490c-9fb8-3a07f1f2b794")]
+[assembly: Guid("cddd6310-8f42-4fa3-ab1b-8a1eeed20c81")]
 
 // Version information for an assembly consists of the following four values:
 //
