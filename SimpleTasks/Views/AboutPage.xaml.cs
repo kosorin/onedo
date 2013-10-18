@@ -22,25 +22,29 @@ namespace SimpleTasks.Views
             DataContext = this;
         }
 
-        public const string ApplicationName = "Simple Tasks";
+        public static string Version
+        {
+            get
+            {
+                AssemblyName nameHelper = new AssemblyName(Assembly.GetExecutingAssembly().FullName);
+                return nameHelper.Version.ToString();
+            }
+        }
 
-        public const string AuthorName = "David Kosorin";
+        public static string ApplicationName { get { return "Simple Tasks"; } }
 
-        public const string AuthorEmail = "kosorin@outlook.com";
+        public static string AuthorName  { get { return "David Kosorin"; } }
 
-        public const string EmailSubject = "Feedback for Simple Task";
+        public static string AuthorEmail { get { return"kosorin@outlook.com"; } }
+
+        public static string EmailSubject { get { return string.Format("Feedback for {0} {1}", ApplicationName, Version); } }
+
 
         public string ApplicationNameString { get { return ApplicationName.TrimStart(ApplicationName[0]); } }
 
         public string AuthorString { get { return string.Format(AppResources.AboutByAuthor, AuthorName); } }
 
-        public string VersionString { get { return string.Format(AppResources.AboutVersion, GetVersion()); } }
-
-        private string GetVersion()
-        {
-            AssemblyName nameHelper = new AssemblyName(Assembly.GetExecutingAssembly().FullName);
-            return nameHelper.Version.ToString();
-        }
+        public string VersionString { get { return string.Format(AppResources.AboutVersion, Version); } }
 
         private void Rate_Click(object sender, RoutedEventArgs e)
         {
