@@ -32,18 +32,25 @@ namespace SimpleTasks.Tiles
                 Background = BackgroundBrush
             };
 
-            StackPanel stackPanel = new StackPanel()
+            if (tasks.Count > 0)
             {
-                Orientation = Orientation.Vertical
-            };
-
-            foreach (TaskModel task in tasks.Take(TaskCount))
+                StackPanel stackPanel = new StackPanel()
+                {
+                    Orientation = Orientation.Vertical
+                };
+                foreach (TaskModel task in tasks.Take(TaskCount))
+                {
+                    Border border = GetTaskItemBorder(task);
+                    stackPanel.Children.Add(border);
+                }
+                grid.Children.Add(stackPanel);
+            }
+            else
             {
-                Border border = GetTaskItemBorder(task);
-                stackPanel.Children.Add(border);
+                Grid emptyListGrid = GetEmptyListGrid();
+                grid.Children.Add(emptyListGrid);
             }
 
-            grid.Children.Add(stackPanel);
             grid.UpdateLayout();
             grid.Measure(new Size(Width, Height));
             grid.Arrange(new Rect(0, 0, Width, Height));
@@ -83,6 +90,28 @@ namespace SimpleTasks.Tiles
 
             border.Child = innerBorder;
             return border;
+        }
+
+        protected virtual Grid GetEmptyListGrid()
+        {
+            Grid grid = new Grid()
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+
+            TextBlock textBlock = new TextBlock()
+            {
+                Text = "Žádné úkoly",
+                TextWrapping = TextWrapping.Wrap,
+                TextAlignment = TextAlignment.Center,
+                Foreground = ForegroundBrush,
+                FontSize = ((double)Height / 6d),
+            };
+            textBlock.MaxWidth = Width * 0.9;
+            grid.Children.Add(textBlock);
+
+            return grid;
         }
     }
 }
