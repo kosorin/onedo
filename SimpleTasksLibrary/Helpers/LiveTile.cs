@@ -19,7 +19,7 @@ namespace SimpleTasks.Helpers
         {
             Debug.WriteLine("> Aktualizuji živé dlaždice...");
 
-            List<TaskModel> tasks = tasksSource.SortTasks();
+            List<TaskModel> tasks = tasksSource.SortedActiveTasks;
 
             UpdateApplicationTile(tasks);
             UpdateSecondaryTile(tasks);

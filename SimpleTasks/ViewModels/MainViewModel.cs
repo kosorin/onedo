@@ -59,7 +59,7 @@ namespace SimpleTasks.ViewModels
             if (Tasks == null)
             {
                 Tasks = new TaskModelCollection();
-            } 
+            }
             IsDataLoaded = true;
 
             if (App.Settings.DeleteCompletedTasksSetting)
@@ -82,7 +82,7 @@ namespace SimpleTasks.ViewModels
                 {
                     if (t.IsComplete)
                     {
-                        if (t.CompletedDate.HasValue)
+                        if (t.CompletedDate != null)
                         {
                             //return (DateTime.Now - t.CompletedDate.Value < TimeSpan.FromSeconds(30));
                             return (DateTime.Today.Date - t.CompletedDate.Value.Date < TimeSpan.FromDays(days));

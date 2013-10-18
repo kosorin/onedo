@@ -30,7 +30,7 @@ namespace SimpleTasks.Tiles
                 BorderThickness = new Thickness(10, 0, 0, 0),
                 BorderBrush = BorderBrush,
             };
-            if (task.Date.HasValue && task.Date.Value > DateTime.Today)
+            if (task.Date == null || task.Date.Value > DateTime.Today)
             {
                 innerBorder.Opacity = 0.7;
             }

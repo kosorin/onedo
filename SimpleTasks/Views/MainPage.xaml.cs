@@ -21,10 +21,10 @@ namespace SimpleTasks.Views
         public MainPage()
         {
             InitializeComponent();
-            BuildLocalizedApplicationBar();
             DataContext = ViewModel = App.ViewModel;
 
             LiveTile.UpdateTiles(ViewModel.Tasks);
+            BuildLocalizedApplicationBar();
         }
 
         private void BuildLocalizedApplicationBar()
@@ -43,15 +43,16 @@ namespace SimpleTasks.Views
 
             #region Menu
 
+            // Smazat dokončené úkoly
+            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompletedText);
+            appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
+            //appBarDeleteCompletedItem.IsEnabled = ViewModel.Tasks.ActiveTaskCount > 0;
+            ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
+
             // Živá dlaždice
             ApplicationBarMenuItem appBarLiveTileItem = new ApplicationBarMenuItem();
             SetAppBarLiveTileItem(appBarLiveTileItem);
             ApplicationBar.MenuItems.Add(appBarLiveTileItem);
-
-            // Smazat dokončené úkoly
-            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompletedText);
-            appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
-            ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
 
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettingsText);

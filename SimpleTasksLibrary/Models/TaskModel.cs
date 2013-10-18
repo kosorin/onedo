@@ -108,20 +108,31 @@ namespace SimpleTasks.Models
 
         private const string TasksDataFileName = "TasksData.xml";
 
-        public List<TaskModel> SortTasks()
+        public int ActiveTaskCount
         {
-            // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
-            // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
-            List<TaskModel> tasks = this
-                .Where((t) => { return t.IsComplete == false && t.Date.HasValue; })
-                .OrderBy(t => t.Date.Value)
-                .ThenByDescending(t => t.IsImportant)
-                .ToList();
+            get
+            {
+                return this.Where(t => { return !t.IsComplete; }).Count();
+            }
+        }
 
-            // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
-            tasks.AddRange(this.Where((t) => { return t.IsComplete == false && !t.Date.HasValue; }).OrderByDescending(t => t.IsImportant));
+        public List<TaskModel> SortedActiveTasks
+        {
+            get
+            {
+                // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
+                // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
+                List<TaskModel> tasks = this
+                    .Where((t) => { return !t.IsComplete && t.Date != null; })
+                    .OrderBy(t => t.Date.Value)
+                    .ThenByDescending(t => t.IsImportant)
+                    .ToList();
 
-            return tasks;
+                // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
+                tasks.AddRange(this.Where((t) => { return t.IsComplete == false && t.Date == null; }).OrderByDescending(t => t.IsImportant));
+
+                return tasks;
+            }
         }
 
         static public TaskModelCollection LoadTasksFromXmlFile()

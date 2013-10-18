@@ -74,7 +74,7 @@ namespace SimpleTasks
 
             try
             {
-                ShellTile.Create(LiveTile.TileUri, LiveTile.CreateSecondaryTileData(ViewModel.Tasks.SortTasks()), true);
+                ShellTile.Create(LiveTile.TileUri, LiveTile.CreateSecondaryTileData(ViewModel.Tasks.SortedActiveTasks), true);
             }
             catch (Exception)
             {
