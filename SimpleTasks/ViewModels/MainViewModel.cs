@@ -75,16 +75,13 @@ namespace SimpleTasks.ViewModels
         {
             if (IsDataLoaded)
             {
-                int before = Tasks.Count;
-
-                // Odstranění dokončených úkolů starých 3 a více dnů
+                // Odstranění dokončených úkolů starších více jak days dnů
                 var updatedTasks = Tasks.Where((t) =>
                 {
                     if (t.IsComplete)
                     {
                         if (t.CompletedDate != null)
                         {
-                            //return (DateTime.Now - t.CompletedDate.Value < TimeSpan.FromSeconds(30));
                             return (DateTime.Today.Date - t.CompletedDate.Value.Date < TimeSpan.FromDays(days));
                         }
                     }
@@ -98,8 +95,6 @@ namespace SimpleTasks.ViewModels
         {
             if (IsDataLoaded)
             {
-                int before = Tasks.Count;
-
                 // Odstranění dokončených úkolů
                 Tasks = new TaskModelCollection(Tasks.Where((t) => { return !t.IsComplete; }));
             }

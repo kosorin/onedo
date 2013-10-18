@@ -7,9 +7,6 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Views\MainPage.xaml" />
-      <ExtendedTask Name="SimpleTasksPeriodicTask">
-        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="TaskAgent" Source="TaskAgent" Type="TaskAgent.ScheduledAgent" />
-      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="SimpleTasksToken" TaskName="_default">

@@ -59,7 +59,7 @@ namespace SimpleTasks
             {
                 try
                 {
-                    ScheduledActionService.Remove(PeriodicTaskName);
+                    ScheduledActionService.Remove(task.Name);
                     Debug.WriteLine("> Odstranil jsem PeriodicTask: {0}", task.Name);
                 }
                 catch (Exception e)

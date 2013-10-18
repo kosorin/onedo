@@ -43,6 +43,12 @@ namespace TaskAgent
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
+            if (!LiveTile.HasSecondaryTile)
+            {
+                NotifyComplete();
+                return;
+            }
+
             // Dlaždici budeme aktualizovat každý den jen jednou
             if (DateTimeExtensions.Today.Date - task.LastScheduledTime.Date < TimeSpan.FromDays(1))
             {
