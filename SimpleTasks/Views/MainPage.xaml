@@ -13,6 +13,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
+    d:DataContext="{d:DesignData ../SampleData/MainSampleData.xaml}"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
@@ -74,7 +75,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
-            <Border MinHeight="67"
+            <Border MinHeight="75"
                     BorderThickness="0,0,0,1"
                     BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}">
                 <Grid>
@@ -84,13 +85,15 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource ButtonTextBlockStyle}"
-                               Opacity="0.8"
+                               Opacity="0.85"
                                Grid.Column="0"
                                Padding="15,0,0,0"
                                TextWrapping="Wrap">
                     </TextBlock>
                     <StackPanel Orientation="Horizontal"
-                                Grid.Column="1">
+                                Grid.Column="1" 
+                                VerticalAlignment="Top" 
+                                Margin="0,7,0,0">
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding IsComplete, Converter={StaticResource BooleanNegationToVisibilityConverter}}">
                             <ToggleButton IsChecked="{Binding IsOverdue}"
@@ -124,14 +127,16 @@
                                     </ControlTemplate>
                                 </ToggleButton.Template>
                             </ToggleButton>
-                            <controls:Icon Style="{StaticResource AlertIconStyle}"
-                                           Color="{StaticResource PhoneAccentBrush}"
-                                           Visibility="{Binding IsImportant, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <Border Visibility="{Binding IsImportant, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <controls:Icon Style="{StaticResource AlertIconStyle}"
+                                               Color="{StaticResource PhoneAccentBrush}"/>
+                            </Border>
                         </StackPanel>
-                        <controls:Icon Style="{StaticResource CheckIconStyle}"
-                                       Color="{StaticResource PhoneForegroundBrush}"
-                                       Opacity="0.2"
-                                       Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" />
+                        <Border Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <controls:Icon Style="{StaticResource CheckIconStyle}"
+                                           Color="{StaticResource PhoneForegroundBrush}"
+                                           Opacity="0.2"/>
+                        </Border>
                     </StackPanel>
                 </Grid>
             </Border>

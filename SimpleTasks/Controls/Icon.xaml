@@ -8,10 +8,7 @@
     Width="60"
     Height="60">
 
-    <Canvas Width="60"
-            Height="60"
-            Opacity="{Binding Opacity}"
-            Visibility="{Binding Visibility}">
+    <Canvas>
         <Path Stretch="Fill"
               Width="{Binding Size.Width}"
               Height="{Binding Size.Height}"

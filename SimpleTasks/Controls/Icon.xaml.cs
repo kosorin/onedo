@@ -64,19 +64,5 @@ namespace SimpleTasks.Controls
             get { return (Size)GetValue(SizeProperty); }
             set { SetValue(SizeProperty, value); }
         }
-
-        public double Opacity
-        {
-            get { return (double)GetValue(OpacityProperty); }
-            set { SetValue(OpacityProperty, value); }
-        }
-
-        public Visibility Visibility
-        {
-            get { return (Visibility)GetValue(VisibilityProperty); }
-            set { SetValue(VisibilityProperty, value); }
-        }
-
-
     }
 }

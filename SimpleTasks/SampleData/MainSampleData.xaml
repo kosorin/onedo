@@ -1,0 +1,20 @@
+﻿<vm:MainViewModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:SimpleTasks.ViewModels"
+    xmlns:m="clr-namespace:SimpleTasks.Models"
+    xmlns:md="clr-namespace:SimpleTasks.Models;assembly=SimpleTasksLibrary">
+    
+    <vm:MainViewModel.Tasks>
+        <md:TaskModel Title="Vynést odpadky               " Date="2013-10-15" IsImportant="True"/>
+        <md:TaskModel Title="Zavolat Honzovi              " Date="2013-10-18" IsComplete="True"/>
+        <md:TaskModel Title="Jít k zubaři                 " Date="2013-10-01" />
+        <md:TaskModel Title="Koupit nové CD               " Date="2013-11-30" IsComplete="True" IsImportant="True" />
+        <md:TaskModel Title="Projekt do Matiky            " Date="2013-10-19" />
+        <md:TaskModel Title="Zaplatit nájem               " Date="2013-11-21" />
+        <md:TaskModel Title="Zasadit strom                " Date="2013-11-22" IsImportant="True" />
+        <md:TaskModel Title="Vyvenčit psy                 " Date="2013-10-23" />
+        <md:TaskModel Title="Vyzvednout děti ze školy     " Date="2013-10-29" />
+    </vm:MainViewModel.Tasks>
+
+</vm:MainViewModel>
