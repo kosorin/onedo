@@ -4,6 +4,7 @@ using Microsoft.Phone.Scheduler;
 using SimpleTasks.Models;
 using System;
 using SimpleTasks.Helpers;
+using Microsoft.Phone.Shell;
 
 namespace TaskAgent
 {

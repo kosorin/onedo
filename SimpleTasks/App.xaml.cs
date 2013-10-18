@@ -20,7 +20,7 @@ namespace SimpleTasks
         public static SettingsViewModel Settings { get; private set; }
 
         #region Periodic Task
-        private static string PeriodicTaskName { get { return "SimpleTask PeriodicTask"; } }
+        private static string PeriodicTaskName { get { return "SimpleTasksPeriodicTask"; } }
 
         public static void StartPeriodicTask()
         {
@@ -45,27 +45,24 @@ namespace SimpleTasks
                 else if (e.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
                     Debug.WriteLine("StartPeriodicAgent InvalidOperationException: Dosažen maximální limit úloh.");
                 else
-                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException");
+                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException: " + e.Message);
             }
-            catch (SchedulerServiceException)
+            catch (SchedulerServiceException e)
             {
-                Debug.WriteLine("StartPeriodicAgent SchedulerServiceException");
+                Debug.WriteLine("StartPeriodicAgent SchedulerServiceException: " + e.Message);
             }
         }
 
         public static void StopPeriodicTask()
         {
-            if (ScheduledActionService.Find(PeriodicTaskName) != null)
+            try
             {
-                try
-                {
-                    ScheduledActionService.Remove(PeriodicTaskName);
-                    Debug.WriteLine("> Odstranil jsem ScheduledActionService.");
-                }
-                catch (Exception)
-                {
-                    Debug.WriteLine("RemovePeriodicAgent Exception");
-                }
+                ScheduledActionService.Remove(PeriodicTaskName);
+                Debug.WriteLine("> Odstranil jsem ScheduledActionService.");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("RemovePeriodicAgent Exception: " + e.Message);
             }
         }
         #endregion
