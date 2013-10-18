@@ -1,4 +1,5 @@
-﻿using SimpleTasks.Models;
+﻿using SimpleTasks.Helpers;
+using SimpleTasks.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace SimpleTasks.Tiles
 {
-    public class NormalListTile : SimpleListTile
+    class WideListTile : SimpleListTile
     {
-        public NormalListTile(int taskCount, int width, int height)
+        public WideListTile(int taskCount, int width, int height)
             : base(taskCount, width, height)
         {
         }
@@ -39,15 +39,33 @@ namespace SimpleTasks.Tiles
                 innerBorder.Background = ImportantBrush;
             }
 
-            TextBlock textBlock = new TextBlock()
+            Grid contentGrid = new Grid();
+            contentGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            contentGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Auto) });
+            innerBorder.Child = contentGrid;
+
+            TextBlock titleTextBlock = new TextBlock()
             {
                 Text = task.Title,
-                Margin = new Thickness(5, 0, 5, 0),
+                Margin = new Thickness(5, 0, 0, 0),
                 Foreground = ForegroundBrush,
                 FontSize = ((double)Height / (double)TaskCount) * 0.7,
-                VerticalAlignment = VerticalAlignment.Bottom
+                VerticalAlignment = VerticalAlignment.Bottom,
             };
-            innerBorder.Child = textBlock;
+            Grid.SetColumn(titleTextBlock, 0);
+            contentGrid.Children.Add(titleTextBlock);
+
+            TextBlock dueTextBlock = new TextBlock()
+            {
+                Text = DateTimeExtensions.ToRelativeString(task.Date, false),
+                Margin = new Thickness(20, 0, 5, 0),
+                Foreground = ForegroundBrush,
+                FontSize = ((double)Height / (double)TaskCount) * 0.7,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Right
+            };
+            Grid.SetColumn(dueTextBlock, 1);
+            contentGrid.Children.Add(dueTextBlock);
 
             border.Child = innerBorder;
             return border;

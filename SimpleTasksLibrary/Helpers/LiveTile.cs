@@ -117,7 +117,7 @@ namespace SimpleTasks.Helpers
             }
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + WideTileFileName, System.IO.FileMode.Create))
             {
-                TileTemplate tile = new NormalListTile(7, 691, 336);
+                TileTemplate tile = new WideListTile(7, 691, 336);
                 WriteableBitmap wb = tile.Render(sortedTasks);
                 wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
             }
