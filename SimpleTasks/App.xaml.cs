@@ -36,33 +36,36 @@ namespace SimpleTasks
             try
             {
                 ScheduledActionService.Add(periodicTask);
-                Debug.WriteLine("> Přidal jsem ScheduledActionService.");
+                Debug.WriteLine("> Přidal jsem PeriodicTask: {0}", periodicTask.Name);
             }
             catch (InvalidOperationException e)
             {
                 if (e.Message.Contains("BNS Error: The action is disabled"))
-                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException: Úloha byla zakázána uživatelem.");
+                    Debug.WriteLine("ScheduledActionService Start InvalidOperationException: Úloha byla zakázána uživatelem.");
                 else if (e.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
-                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException: Dosažen maximální limit úloh.");
+                    Debug.WriteLine("ScheduledActionService Start InvalidOperationException: Dosažen maximální limit úloh.");
                 else
-                    Debug.WriteLine("StartPeriodicAgent InvalidOperationException: " + e.Message);
+                    Debug.WriteLine("ScheduledActionService Start InvalidOperationException: " + e.Message);
             }
             catch (SchedulerServiceException e)
             {
-                Debug.WriteLine("StartPeriodicAgent SchedulerServiceException: " + e.Message);
+                Debug.WriteLine("ScheduledActionService Start SchedulerServiceException: " + e.Message);
             }
         }
 
         public static void StopPeriodicTask()
         {
-            try
+            foreach (PeriodicTask task in ScheduledActionService.GetActions<PeriodicTask>())
             {
-                ScheduledActionService.Remove(PeriodicTaskName);
-                Debug.WriteLine("> Odstranil jsem ScheduledActionService.");
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("RemovePeriodicAgent Exception: " + e.Message);
+                try
+                {
+                    ScheduledActionService.Remove(PeriodicTaskName);
+                    Debug.WriteLine("> Odstranil jsem PeriodicTask: {0}", task.Name);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("ScheduledActionService Remove Exception: " + e.Message);
+                }
             }
         }
         #endregion
