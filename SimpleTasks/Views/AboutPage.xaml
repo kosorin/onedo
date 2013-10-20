@@ -72,19 +72,18 @@
                 <StackPanel>
                     <Grid HorizontalAlignment="Center" >
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Fill="{StaticResource PhoneAccentBrush}" 
-                                       Width="51"
-                                       Height="110">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="/Assets/AboutIcon.png" 
-                                                Stretch="Fill" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <!--<Image Source="/Assets/Tiles/SmallIconicTile.png"/>-->
+                            <Path Width="60"
+                                  Height="100"
+                                  Fill="{StaticResource PhoneAccentBrush}"
+                                  Data="{StaticResource LogoPathData}" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <CompositeTransform ScaleX="1.35" ScaleY="1.35"/>
+                                </Path.RenderTransform>
+                            </Path>
                             <TextBlock Text="{Binding ApplicationNameString}" 
                                        Style="{StaticResource PhoneTextExtraLargeStyle}"
                                        VerticalAlignment="Bottom"
-                                       Margin="4,0,12,13"
+                                       Margin="0,0,12,10"
                                        FontSize="52" 
                                        FontWeight="Bold" 
                                        FontFamily="Segoe WP Black"/>
@@ -92,7 +91,7 @@
                         <TextBlock Text="{Binding AuthorString}"
                                    Foreground="{StaticResource PhoneSubtleBrush}" 
                                    VerticalAlignment="Bottom" 
-                                   Margin="187,0,0,2"/>
+                                   Margin="190,0,0,0"/>
                     </Grid>
 
                     <!--Rate and review-->

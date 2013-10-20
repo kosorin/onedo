@@ -67,6 +67,22 @@
                          Color="{StaticResource PhoneChromeColor}" 
                          Opacity="0.6"/>
 
+        <sys:String x:Key="LogoPathData">M 10,30
+                                         L 50,10
+                                         L 50,30
+                                         L 10,50
+                                         Z 
+                                         M 10,50
+                                         L 50,70
+                                         L 50,50
+                                         L 36,43
+                                         Z 
+                                         M 10,70
+                                         L 10,90
+                                         L 50,70
+                                         L 24,63
+                                         Z</sys:String>
+        
         <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource PhoneSubtleColor}" />
         
         <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource PhoneForegroundColor}" />

@@ -39,7 +39,6 @@ namespace SimpleTasks.Views
 
         public static string EmailSubject { get { return string.Format("Feedback for {0} {1}", ApplicationName, Version); } }
 
-
         public string ApplicationNameString { get { return ApplicationName.TrimStart(ApplicationName[0]); } }
 
         public string AuthorString { get { return string.Format(AppResources.AboutByAuthor, AuthorName); } }
