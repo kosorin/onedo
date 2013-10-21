@@ -4,8 +4,8 @@ using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Shell;
 using System;
 using System.Linq;
-using SimpleTasks.Helpers;
-using SimpleTasks.Models;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 using System.IO.IsolatedStorage;
 
 namespace SimpleTasks.Scheduler

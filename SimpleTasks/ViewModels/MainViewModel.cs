@@ -1,4 +1,5 @@
-﻿using SimpleTasks.Helpers;
+﻿using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 using SimpleTasks.Models;
 using System;
 using System.Linq;

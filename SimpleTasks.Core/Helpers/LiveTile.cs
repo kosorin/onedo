@@ -1,6 +1,6 @@
 ﻿using Microsoft.Phone.Shell;
-using SimpleTasks.Models;
-using SimpleTasks.Tiles;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Core.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace SimpleTasks.Helpers
+namespace SimpleTasks.Core.Helpers
 {
     public class LiveTile
     {

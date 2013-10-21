@@ -1,4 +1,4 @@
-﻿using SimpleTasks.Helpers;
+﻿using SimpleTasks.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 
 
-namespace SimpleTasks.Models
+namespace SimpleTasks.Core.Models
 {
     [DataContract(Name = "Task", Namespace = "")]
     public class TaskModel : BindableBase

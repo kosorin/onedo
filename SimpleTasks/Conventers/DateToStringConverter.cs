@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using SimpleTasks.Helpers;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Conventers
 {

@@ -6,11 +6,12 @@ using SimpleTasks.ViewModels;
 using SimpleTasks.Resources;
 using System.Windows;
 using SimpleTasks.Models;
-using SimpleTasks.Helpers;
+using SimpleTasks.Core.Helpers;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Diagnostics;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Views
 {

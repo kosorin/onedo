@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-namespace SimpleTasks.Helpers
+namespace SimpleTasks.Core.Helpers
 {
     [DataContract]
     public class BindableBase : INotifyPropertyChanged

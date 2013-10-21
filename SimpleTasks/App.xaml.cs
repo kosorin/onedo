@@ -9,7 +9,7 @@ using Microsoft.Phone.Shell;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using Microsoft.Phone.Scheduler;
-using SimpleTasks.Helpers;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks
 {

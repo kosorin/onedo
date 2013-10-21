@@ -1,5 +1,5 @@
-﻿using SimpleTasks.Helpers;
-using SimpleTasks.Models;
+﻿using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SimpleTasks.Tiles
+namespace SimpleTasks.Core.Tiles
 {
     class WideListTile : SimpleListTile
     {

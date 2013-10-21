@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace SimpleTasks.Helpers
+namespace SimpleTasks.Core.Helpers
 {
     public class DateTimeExtensions
     {

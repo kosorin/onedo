@@ -1,4 +1,4 @@
-﻿using SimpleTasks.Models;
+﻿using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace SimpleTasks.Tiles
+namespace SimpleTasks.Core.Tiles
 {
     public abstract class TileTemplate
     {

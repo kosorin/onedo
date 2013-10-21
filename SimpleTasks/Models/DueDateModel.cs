@@ -1,4 +1,4 @@
-﻿using SimpleTasks.Helpers;
+﻿using SimpleTasks.Core.Helpers;
 using System;
 
 namespace SimpleTasks.Models

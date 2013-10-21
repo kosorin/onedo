@@ -1,4 +1,4 @@
-﻿using SimpleTasks.Models;
+﻿using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace SimpleTasks.Tiles
+namespace SimpleTasks.Core.Tiles
 {
     public class NormalListTile : SimpleListTile
     {

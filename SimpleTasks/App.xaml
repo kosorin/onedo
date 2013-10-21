@@ -7,13 +7,13 @@
     xmlns:local="clr-namespace:SimpleTasks"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:conv="clr-namespace:SimpleTasks.Conventers"
-    xmlns:helplib="clr-namespace:SimpleTasks.Helpers;assembly=SimpleTasks.Core"
+    xmlns:helpcore="clr-namespace:SimpleTasks.Core.Helpers;assembly=SimpleTasks.Core"
     xmlns:controls="clr-namespace:SimpleTasks.Controls">
 
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings x:Key="LocalizedStrings"/>
-        <helplib:DateTimeExtensions x:Key="DateTimeExtensions"/>
+        <helpcore:DateTimeExtensions x:Key="DateTimeExtensions"/>
 
         <!--Region Konvertory-->
         <conv:DateToStringConverter x:Key="DateToStringConverter" />

@@ -8,7 +8,7 @@ using SimpleTasks.ViewModels;
 using SimpleTasks.Resources;
 using SimpleTasks.Models;
 using System.Windows.Input;
-using SimpleTasks.Helpers;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Views
 {
