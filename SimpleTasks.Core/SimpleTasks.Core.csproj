@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CDDD6310-8F42-4FA3-AB1B-8A1EEED20C81}</ProjectGuid>
+    <ProjectGuid>{B40DF63D-03CC-4078-A3C7-E18422DA4005}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleTasks</RootNamespace>
-    <AssemblyName>SimpleTasksLibrary</AssemblyName>
+    <RootNamespace>SimpleTasks.Core</RootNamespace>
+    <AssemblyName>SimpleTasks.Core</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>

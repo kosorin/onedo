@@ -78,6 +78,8 @@ namespace SimpleTasks
             try
             {
                 ShellTile.Create(LiveTile.TileUri, LiveTile.CreateSecondaryTileData(ViewModel.Tasks.SortedActiveTasks), true);
+
+                ScheduledActionService.LaunchForTest(PeriodicTaskName, TimeSpan.FromSeconds(25));
             }
             catch (Exception)
             {

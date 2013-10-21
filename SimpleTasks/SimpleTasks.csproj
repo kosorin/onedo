@@ -203,9 +203,13 @@
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleTasksLibrary\SimpleTasksLibrary.csproj">
-      <Project>{CDDD6310-8F42-4FA3-AB1B-8A1EEED20C81}</Project>
-      <Name>SimpleTasksLibrary</Name>
+    <ProjectReference Include="..\SimpleTasks.Core\SimpleTasks.Core.csproj">
+      <Project>{B40DF63D-03CC-4078-A3C7-E18422DA4005}</Project>
+      <Name>SimpleTasks.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleTasks.Scheduler\SimpleTasks.Scheduler.csproj">
+      <Project>{8D20FAB3-BF21-4FB4-9B07-D94995DE0220}</Project>
+      <Name>SimpleTasks.Scheduler</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

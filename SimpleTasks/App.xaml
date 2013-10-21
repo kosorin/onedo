@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:SimpleTasks"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:conv="clr-namespace:SimpleTasks.Conventers"
-    xmlns:helplib="clr-namespace:SimpleTasks.Helpers;assembly=SimpleTasksLibrary"
+    xmlns:helplib="clr-namespace:SimpleTasks.Helpers;assembly=SimpleTasks.Core"
     xmlns:controls="clr-namespace:SimpleTasks.Controls">
 
     <!--Application Resources-->

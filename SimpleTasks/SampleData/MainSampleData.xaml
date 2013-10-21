@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="clr-namespace:SimpleTasks.ViewModels"
     xmlns:m="clr-namespace:SimpleTasks.Models"
-    xmlns:md="clr-namespace:SimpleTasks.Models;assembly=SimpleTasksLibrary">
+    xmlns:md="clr-namespace:SimpleTasks.Models;assembly=SimpleTasks.Core">
     
     <vm:MainViewModel.Tasks>
         <md:TaskModel Title="Vynést odpadky               " Date="2013-10-15" IsImportant="True"/>
