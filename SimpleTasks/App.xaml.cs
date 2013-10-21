@@ -37,6 +37,10 @@ namespace SimpleTasks
             {
                 ScheduledActionService.Add(periodicTask);
                 Debug.WriteLine("> Přidal jsem PeriodicTask: {0}", periodicTask.Name);
+                //if (Debugger.IsAttached)
+                //{
+                //    ScheduledActionService.LaunchForTest(periodicTask.Name, TimeSpan.FromSeconds(10));
+                //}
             }
             catch (InvalidOperationException e)
             {
@@ -78,8 +82,6 @@ namespace SimpleTasks
             try
             {
                 ShellTile.Create(LiveTile.TileUri, LiveTile.CreateSecondaryTileData(ViewModel.Tasks.SortedActiveTasks), true);
-
-                ScheduledActionService.LaunchForTest(PeriodicTaskName, TimeSpan.FromSeconds(25));
             }
             catch (Exception)
             {

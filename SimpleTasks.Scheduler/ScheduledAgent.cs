@@ -32,13 +32,26 @@ namespace SimpleTasks.Scheduler
         protected override void OnInvoke(ScheduledTask task)
         {
             // Dlaždici budeme aktualizovat každý den jen jednou
-            //if (DateTime.Today.Date - task.LastScheduledTime.Date < TimeSpan.FromDays(1))
-            //{
-            //    NotifyComplete();
-            //    return;
-            //}
+            if (DateTime.Today.Date - task.LastScheduledTime.Date < TimeSpan.FromDays(1))
+            {
+                NotifyComplete();
+                return;
+            }
 
-            ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(25));
+            //{
+            //    if (Debugger.IsAttached)
+            //    {
+            //        ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromMinutes(1));
+            //    }
+
+            //    ShellToast toast = new ShellToast
+            //    {
+            //        Content = task.LastScheduledTime.ToLongTimeString() + " " + DateTime.Now.ToLongTimeString(),
+            //        Title = "Live Tile",
+            //    };
+
+            //    toast.Show();
+            //}
 
             // Získání dat ze souboru
             TaskModelCollection tasks = TaskModelCollection.LoadTasksFromXmlFile();

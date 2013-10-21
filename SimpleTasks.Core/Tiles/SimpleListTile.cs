@@ -45,7 +45,7 @@ namespace SimpleTasks.Tiles
                 }
                 stackPanel.Children.Add(GetTaskItemBorder(new TaskModel()
                 {
-                    Title = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(),
+                    Title = DateTime.Now.ToLongTimeString(),
                     Date = DateTime.Today,
                     IsImportant = false,
                     IsComplete = false,
