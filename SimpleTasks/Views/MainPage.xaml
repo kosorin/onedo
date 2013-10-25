@@ -163,7 +163,9 @@
                        Foreground="{StaticResource PhoneSubtleBrush}"
                        Visibility="{Binding Tasks.Count, 
                                             Converter={StaticResource IntegerToVisibilityConverter}, 
-                                            ConverterParameter=0}"/>
+                                            ConverterParameter=0}"
+                       TextWrapping="Wrap" 
+                       TextAlignment="Center"/>
         </Grid>
     </Grid>
 

@@ -448,7 +448,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically delete completed tasks.
+        ///   Looks up a localized string similar to Delete completed tasks.
         /// </summary>
         public static string SettingsDeleteCompletedTasks {
             get {

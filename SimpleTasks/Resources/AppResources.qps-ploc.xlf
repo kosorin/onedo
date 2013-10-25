@@ -182,8 +182,8 @@
           <target state="signed-off" state-qualifier="mt-suggestion">[931EA][!!_2 ẅêéĸś_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
-          <source>Automatically delete completed tasks</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">[6E90D][!!_ÁûţõмáţìĉáļľУ ðęľêţê ćómρłèτèď ťãśĸś_!!!!!!!!!!]</target>
+          <source>Delete completed tasks</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[6E90D][!!_Đèľêтé ćómрłęτęð тãśкŝ_!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksDays" xml:space="preserve">
           <source>Delete in</source>

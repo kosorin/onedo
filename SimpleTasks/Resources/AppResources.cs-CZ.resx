@@ -242,9 +242,6 @@
   <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
     <value>2 týdny</value>
   </data>
-  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
-    <value>Automaticky odstranit dokončené úkoly</value>
-  </data>
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
     <value>První den v týdnu</value>
   </data>

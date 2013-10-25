@@ -36,7 +36,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateCustomDueText" xml:space="preserve">
           <source>custom due date</source>
-          <target state="translated">vlastní termín</target>
+          <target state="signed-off">vlastní termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
           <source>later</source>
@@ -52,7 +52,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNoDueText" xml:space="preserve">
           <source>no due date</source>
-          <target state="translated">žádný termín</target>
+          <target state="signed-off">žádný termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
           <source>overdue</source>
@@ -111,7 +111,7 @@
         <note from="MultilingualBuild" annotates="source" priority="2">activate task</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDeleteCompletedText" xml:space="preserve">
           <source>delete completed tasks</source>
-          <target state="signed-off">odstranit hotové úkoly</target>
+          <target state="signed-off">odstranit dokončené úkoly</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDeleteText" xml:space="preserve">
           <source>delete</source>
@@ -178,8 +178,8 @@
           <target state="signed-off" state-qualifier="tm-suggestion">2 týdny</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
-          <source>Automatically delete completed tasks</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">Automaticky odstranit dokončené úkoly</target>
+          <source>Delete completed tasks</source>
+          <target state="signed-off">Odstranit dokončené úkoly</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksDays" xml:space="preserve">
           <source>Delete in</source>

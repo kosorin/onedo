@@ -249,7 +249,7 @@
     <value>2 weeks</value>
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
-    <value>Automatically delete completed tasks</value>
+    <value>Delete completed tasks</value>
   </data>
   <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
     <value>Delete in</value>

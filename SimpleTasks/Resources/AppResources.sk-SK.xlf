@@ -178,8 +178,8 @@
           <target state="new">2 weeks</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteCompletedTasks" translate="yes" xml:space="preserve">
-          <source>Automatically delete completed tasks</source>
-          <target state="new">Automatically delete completed tasks</target>
+          <source>Delete completed tasks</source>
+          <target state="new">Delete completed tasks</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteCompletedTasksDays" translate="yes" xml:space="preserve">
           <source>Delete in</source>
