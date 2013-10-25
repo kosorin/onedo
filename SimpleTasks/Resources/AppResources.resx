@@ -215,17 +215,11 @@
   <data name="DeleteTaskNoText" xml:space="preserve">
     <value>cancel</value>
   </data>
-  <data name="AboutByAuthor" xml:space="preserve">
-    <value>by {0}</value>
-  </data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>contact us</value>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
     <value>rate application</value>
-  </data>
-  <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
     <value>Simple Task</value>
@@ -274,5 +268,12 @@
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>Tasks are always automatically deleted when the application starts.</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Feedback for {0} {1}</value>
+    <comment>Feedback for {AppliactionName} {Version}</comment>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
   </data>
 </root>

@@ -215,9 +215,6 @@
   <data name="DeleteTaskNoText" xml:space="preserve">
     <value>[B72E8][!!_ċáиćéļ_!!]</value>
   </data>
-  <data name="AboutByAuthor" xml:space="preserve">
-    <value>[DBA3E][!!_вў {0}_!!]</value>
-  </data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>[72AFA][!!_ċôйťáĉт úš_!!]</value>
   </data>
@@ -274,5 +271,9 @@
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>[21550][!!_₣èęðБáćќ ƒôŕ {0} {1}_!!!!!!]</value>
+    <comment>Feedback for {AppliactionName} {Version}</comment>
   </data>
 </root>

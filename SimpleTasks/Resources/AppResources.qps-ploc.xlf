@@ -136,10 +136,6 @@
           <source>cancel</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[B72E8][!!_ċáиćéļ_!!]</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AboutByAuthor" xml:space="preserve">
-          <source>by {0}</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[DBA3E][!!_вў {0}_!!]</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[72AFA][!!_ċôйťáĉт úš_!!]</target>
@@ -216,6 +212,11 @@
           <source>Tasks are always automatically deleted when the application starts.</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AboutEmailSubject" xml:space="preserve">
+          <source>Feedback for {0} {1}</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[21550][!!_₣èęðБáćќ ƒôŕ {0} {1}_!!!!!!]</target>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note></trans-unit>
       </group>
     </body>
   </file>
