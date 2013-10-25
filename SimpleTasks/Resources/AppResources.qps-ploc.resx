@@ -127,13 +127,13 @@
   </data>
   <data name="AppBarNewText" xml:space="preserve">
     <value>[B915D][!!_ήêẃ_!!]</value>
-  </data>
+  <comment>new task</comment></data>
   <data name="AppBarAboutText" xml:space="preserve">
     <value>[412AF][!!_áвõûţ_!!]</value>
   </data>
   <data name="AppBarSaveText" xml:space="preserve">
     <value>[E3546][!!_šáνę_!!]</value>
-  </data>
+  <comment>save task</comment></data>
   <data name="ChooseDueDateText" xml:space="preserve">
     <value>[D1419][!!_ċĥõòšé ðµê ðàťê_!!!!]</value>
   </data>
@@ -184,25 +184,25 @@
   </data>
   <data name="AppBarCompleteText" xml:space="preserve">
     <value>[D5A4E][!!_ĉõmρĺêţê_!!]</value>
-  </data>
+  <comment>complete task</comment></data>
   <data name="PeriodicTaskDescription" xml:space="preserve">
     <value>[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</value>
-  </data>
+  <comment>Info about background task agent</comment></data>
   <data name="AppBarActivateText" xml:space="preserve">
     <value>[1920B][!!_ãċţîνãτé_!!]</value>
-  </data>
+  <comment>activate task</comment></data>
   <data name="AppBarDeleteCompletedText" xml:space="preserve">
     <value>[7658E][!!_ďęľèťê ċóмрľèтęð тáśќŝ_!!!!!!]</value>
   </data>
   <data name="AppBarDeleteText" xml:space="preserve">
     <value>[B9C84][!!_ďêļéţę_!!]</value>
-  </data>
+  <comment>delete task</comment></data>
   <data name="AppBarSettingsText" xml:space="preserve">
     <value>[9E01F][!!_šęτтîйğš_!!]</value>
   </data>
   <data name="DateCompletedText" xml:space="preserve">
     <value>[2666A][!!_ċômрļęτéð_!!]</value>
-  </data>
+  <comment>completed tasks</comment></data>
   <data name="DeleteTaskCaptionText" xml:space="preserve">
     <value>[58904][!!_Đéľêťé ťáśķ_!!]</value>
   </data>
@@ -211,10 +211,10 @@
   </data>
   <data name="DeleteTaskYesText" xml:space="preserve">
     <value>[737FD][!!_ďęłéţè_!!]</value>
-  </data>
+  <comment>delete confirmation</comment></data>
   <data name="DeleteTaskNoText" xml:space="preserve">
     <value>[B72E8][!!_ċáиćéļ_!!]</value>
-  </data>
+  <comment>cancel delete confirmation</comment></data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>[72AFA][!!_ċôйťáĉт úš_!!]</value>
   </data>
@@ -223,9 +223,6 @@
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>[46A41][!!_Vêŗšįòη {0}_!!]</value>
-  </data>
-  <data name="ApplicationName" xml:space="preserve">
-    <value>[1FA42][!!_Ŝįмþľè Ťàşķ_!!]</value>
   </data>
   <data name="SettingsDefaultDueDate" xml:space="preserve">
     <value>[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</value>
@@ -248,9 +245,6 @@
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
     <value>[6E90D][!!_ÁûţõмáţìĉáļľУ ðęľêţê ćómρłèτèď ťãśĸś_!!!!!!!!!!]</value>
   </data>
-  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
-    <value>[7FEE2][!!_Ðêļèťê ãƒтéѓ_!!]</value>
-  </data>
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
     <value>[924BC][!!_₣ìŗşť đàŷ óƒ ŵèèк_!!!!!!]</value>
   </data>
@@ -259,7 +253,7 @@
   </data>
   <data name="SettingsGeneral" xml:space="preserve">
     <value>[2559E][!!_ģéиęŗáł_!!]</value>
-  </data>
+  <comment>general pivot in settings</comment></data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>[D78A2][!!_ŠÊΤŤÍÑĞŞ_!!]</value>
   </data>

@@ -187,15 +187,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Simple Task.
-        /// </summary>
-        public static string ApplicationName {
-            get {
-                return ResourceManager.GetString("ApplicationName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to choose due date.
         /// </summary>
         public static string ChooseDueDateText {
@@ -466,7 +457,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete after.
+        ///   Looks up a localized string similar to Delete in.
         /// </summary>
         public static string SettingsDeleteCompletedTasksDays {
             get {

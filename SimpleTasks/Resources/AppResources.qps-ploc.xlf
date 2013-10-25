@@ -8,213 +8,219 @@
       <group id="Resx">
         <trans-unit translate="yes" id="Resx/ResourceFlowDirection" xml:space="preserve">
           <source>LeftToRight</source>
-          <target state="translated">LeftToRight</target>
+          <target state="signed-off">LeftToRight</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note></trans-unit>
         <trans-unit translate="yes" id="Resx/ResourceLanguage" xml:space="preserve">
           <source>en-US</source>
-          <target state="translated">qps-ploc</target>
+          <target state="signed-off">qps-ploc</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarNewText" xml:space="preserve">
           <source>new</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B915D][!!_ήêẃ_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[B915D][!!_ήêẃ_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">new task</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarAboutText" xml:space="preserve">
           <source>about</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[412AF][!!_áвõûţ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[412AF][!!_áвõûţ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSaveText" xml:space="preserve">
           <source>save</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[E3546][!!_šáνę_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[E3546][!!_šáνę_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">save task</note></trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseDueDateText" xml:space="preserve">
           <source>choose due date</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D1419][!!_ċĥõòšé ðµê ðàťê_!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[D1419][!!_ċĥõòšé ðµê ðàťê_!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateCustomDueText" xml:space="preserve">
           <source>custom due date</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[CBCEA][!!_ċúŝţôм ðùê đâтę_!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[CBCEA][!!_ċúŝţôм ðùê đâтę_!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
           <source>later</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[4A003][!!_łãťêŕ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[4A003][!!_łãťêŕ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNextMonthText" xml:space="preserve">
           <source>next month</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[2D7BA][!!_йęхτ мóитħ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[2D7BA][!!_йęхτ мóитħ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNextWeekText" xml:space="preserve">
           <source>next week</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B699F][!!_ηęхţ ẁééк_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[B699F][!!_ηęхţ ẁééк_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNoDueText" xml:space="preserve">
           <source>no due date</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[EAD4D][!!_иò đùę đáтè_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[EAD4D][!!_иò đùę đáтè_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
           <source>overdue</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[5D695][!!_ôνêŕďùę_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[5D695][!!_ôνêŕďùę_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateThisMonthText" xml:space="preserve">
           <source>this month</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[F0D56][!!_ťћìş мôиτђ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[F0D56][!!_ťћìş мôиτђ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateThisWeekText" xml:space="preserve">
           <source>this week</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[2EE39][!!_ťĥįś ŵèęк_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[2EE39][!!_ťĥįś ŵèęк_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateTodayText" xml:space="preserve">
           <source>today</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D9FB1][!!_ţõðàŷ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[D9FB1][!!_ţõðàŷ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateTomorrowText" xml:space="preserve">
           <source>tomorrow</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[05FC6][!!_тòмôřѓôŵ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[05FC6][!!_тòмôřѓôŵ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/MissingTitleText" xml:space="preserve">
           <source>Enter task title.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D0D9D][!!_Ęηťęř τàšќ ţįţĺè._!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[D0D9D][!!_Ęηťęř τàšќ ţįţĺè._!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/NoTasksText" xml:space="preserve">
           <source>All tasks are completed.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[5817E][!!_Ãļļ ťášќş ãŗè čòmþĺêτéď._!!!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[5817E][!!_Ãļļ ťášќş ãŗè čòmþĺêτéď._!!!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityHigh" xml:space="preserve">
           <source>high priority</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[3A9AE][!!_ĥìģĥ þŗîóřìτŷ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[3A9AE][!!_ĥìģĥ þŗîóřìτŷ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityNormal" xml:space="preserve">
           <source>normal priority</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[054B3][!!_ηóřмáľ ρѓîõřîťУ_!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[054B3][!!_ηóřмáľ ρѓîõřîťУ_!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/TitleHintText" xml:space="preserve">
           <source>Task title</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[650DE][!!_Ţâşĸ ťîτłę_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[650DE][!!_Ţâşĸ ťîτłę_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarCompleteText" xml:space="preserve">
           <source>complete</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D5A4E][!!_ĉõmρĺêţê_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[D5A4E][!!_ĉõmρĺêţê_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">complete task</note></trans-unit>
         <trans-unit translate="yes" id="Resx/PeriodicTaskDescription" xml:space="preserve">
           <source>Updates live tile.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">Info about background task agent</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarActivateText" xml:space="preserve">
           <source>activate</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[1920B][!!_ãċţîνãτé_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[1920B][!!_ãċţîνãτé_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">activate task</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDeleteCompletedText" xml:space="preserve">
           <source>delete completed tasks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[7658E][!!_ďęľèťê ċóмрľèтęð тáśќŝ_!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[7658E][!!_ďęľèťê ċóмрľèтęð тáśќŝ_!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDeleteText" xml:space="preserve">
           <source>delete</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B9C84][!!_ďêļéţę_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[B9C84][!!_ďêļéţę_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">delete task</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSettingsText" xml:space="preserve">
           <source>settings</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[9E01F][!!_šęτтîйğš_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[9E01F][!!_šęτтîйğš_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateCompletedText" xml:space="preserve">
           <source>completed</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[2666A][!!_ċômрļęτéð_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[2666A][!!_ċômрļęτéð_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">completed tasks</note></trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTaskCaptionText" xml:space="preserve">
           <source>Delete task</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[58904][!!_Đéľêťé ťáśķ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[58904][!!_Đéľêťé ťáśķ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTaskText" xml:space="preserve">
           <source>Are you sure you want to delete this task?</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[5DEB7][!!_Âŕę ÿõù šúŕę ŷõµ ŵãиť ţô ðęľèţé ţнîŝ тâśķ?_!!!!!!!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[5DEB7][!!_Âŕę ÿõù šúŕę ŷõµ ŵãиť ţô ðęľèţé ţнîŝ тâśķ?_!!!!!!!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTaskYesText" xml:space="preserve">
           <source>delete</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[737FD][!!_ďęłéţè_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[737FD][!!_ďęłéţè_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">delete confirmation</note></trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTaskNoText" xml:space="preserve">
           <source>cancel</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B72E8][!!_ċáиćéļ_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[B72E8][!!_ċáиćéļ_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">cancel delete confirmation</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[72AFA][!!_ċôйťáĉт úš_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[72AFA][!!_ċôйťáĉт úš_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutRateReview" xml:space="preserve">
           <source>rate application</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[B20FE][!!_ŕàτę áρþĺíċáтîóή_!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[B20FE][!!_ŕàτę áρþĺíċáтîóή_!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version {0}</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[46A41][!!_Vêŗšįòη {0}_!!]</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/ApplicationName" xml:space="preserve">
-          <source>Simple Task</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[1FA42][!!_Ŝįмþľè Ťàşķ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[46A41][!!_Vêŗšįòη {0}_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDefaultDueDate" xml:space="preserve">
           <source>Default due date</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
           <source>1 day</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[71F15][!!_1 ðãý_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[71F15][!!_1 ðãý_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneWeek" xml:space="preserve">
           <source>1 week</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[9EB39][!!_1 ŵêęк_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[9EB39][!!_1 ŵêęк_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterThreeDays" xml:space="preserve">
           <source>3 days</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D16AE][!!_3 ďàýš_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[D16AE][!!_3 ďàýš_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoDays" xml:space="preserve">
           <source>2 days</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[FD01D][!!_2 ďáÿş_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[FD01D][!!_2 ďáÿş_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoWeeks" xml:space="preserve">
           <source>2 weeks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[931EA][!!_2 ẅêéĸś_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[931EA][!!_2 ẅêéĸś_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
           <source>Automatically delete completed tasks</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[6E90D][!!_ÁûţõмáţìĉáļľУ ðęľêţê ćómρłèτèď ťãśĸś_!!!!!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[6E90D][!!_ÁûţõмáţìĉáļľУ ðęľêţê ćómρłèτèď ťãśĸś_!!!!!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksDays" xml:space="preserve">
-          <source>Delete after</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[7FEE2][!!_Ðêļèťê ãƒтéѓ_!!]</target>
+          <source>Delete in</source>
+          <target state="signed-off" state-qualifier="mt-suggestion">[31763][!!_Đêłęτé íη_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsFirstDayOfWeek" xml:space="preserve">
           <source>First day of week</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[924BC][!!_₣ìŗşť đàŷ óƒ ŵèèк_!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[924BC][!!_₣ìŗşť đàŷ óƒ ŵèèк_!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
           <source>choose first day of week</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[69D9D][!!_ćнôòŝè ƒíŗŝť đàŷ õƒ ẃééќ_!!!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[69D9D][!!_ćнôòŝè ƒíŗŝť đàŷ õƒ ẃééќ_!!!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsGeneral" xml:space="preserve">
           <source>general</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[2559E][!!_ģéиęŗáł_!!]</target>
-        </trans-unit>
+          <target state="signed-off" state-qualifier="mt-suggestion">[2559E][!!_ģéиęŗáł_!!]</target>
+        
+        <note from="MultilingualBuild" annotates="source" priority="2">general pivot in settings</note></trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsTitle" xml:space="preserve">
           <source>SETTINGS</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D78A2][!!_ŠÊΤŤÍÑĞŞ_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[D78A2][!!_ŠÊΤŤÍÑĞŞ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPinTileText" xml:space="preserve">
           <source>pin tile</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[686DC][!!_ρîη ťìļè_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[686DC][!!_ρîη ťìļè_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarUnpinTileText" xml:space="preserve">
           <source>unpin tile</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[0D10C][!!_ûηρįи ţíľé_!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[0D10C][!!_ûηρįи ţíľé_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksInfo" xml:space="preserve">
           <source>Tasks are always automatically deleted when the application starts.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutEmailSubject" xml:space="preserve">
           <source>Feedback for {0} {1}</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">[21550][!!_₣èęðБáćќ ƒôŕ {0} {1}_!!!!!!]</target>
+          <target state="signed-off" state-qualifier="mt-suggestion">[21550][!!_₣èęðБáćќ ƒôŕ {0} {1}_!!!!!!]</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note></trans-unit>
       </group>

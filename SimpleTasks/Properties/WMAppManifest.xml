@@ -2,7 +2,9 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
   <Languages xmlns="">
+    <Language code="cs-CZ" />
     <Language code="qps-ploc" />
+    <Language code="sk-SK" />
   </Languages>
   <App xmlns="" ProductID="{b6fc44e1-bbd2-48d3-b564-bac3c06d408e}" Title="Simple Tasks" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="David Kosorin" Description="Sample description" Publisher="Simple Tasks" PublisherID="{d4ad868c-9b87-4972-ab52-6aed9646acc1}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
