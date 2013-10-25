@@ -270,4 +270,7 @@
     <value>[21550][!!_₣èęðБáćќ ƒôŕ {0} {1}_!!!!!!]</value>
     <comment>Feedback for {AppliactionName} {Version}</comment>
   </data>
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
+    <value>[31763][!!_Đêłęτé íη_!!]</value>
+  </data>
 </root>

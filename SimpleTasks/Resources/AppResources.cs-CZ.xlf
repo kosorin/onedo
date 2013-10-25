@@ -8,12 +8,12 @@
       <group id="Resx">
         <trans-unit translate="no" id="Resx/ResourceFlowDirection" xml:space="preserve">
           <source>LeftToRight</source>
-          <target state="signed-off">LeftToRight</target>
+          <target state="translated">LeftToRight</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note></trans-unit>
         <trans-unit translate="no" id="Resx/ResourceLanguage" xml:space="preserve">
           <source>en-US</source>
-          <target state="signed-off">cs-CZ</target>
+          <target state="translated">cs-CZ</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarNewText" xml:space="preserve">
@@ -36,7 +36,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateCustomDueText" xml:space="preserve">
           <source>custom due date</source>
-          <target state="signed-off">vlastní termín splnění</target>
+          <target state="translated">vlastní termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
           <source>later</source>
@@ -52,7 +52,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNoDueText" xml:space="preserve">
           <source>no due date</source>
-          <target state="signed-off">žádný termín splnění</target>
+          <target state="translated">žádný termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
           <source>overdue</source>
@@ -84,12 +84,12 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityHigh" xml:space="preserve">
           <source>high priority</source>
-          <target state="translated">vysoká priorita</target>
-        <note from="MultilingualEditor" annotates="source" priority="4">správná délka?</note></trans-unit>
+          <target state="signed-off">vysoká priorita</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityNormal" xml:space="preserve">
           <source>normal priority</source>
-          <target state="translated">normální priorita</target>
-        <note from="MultilingualEditor" annotates="source" priority="4">správná délka?</note></trans-unit>
+          <target state="signed-off">normální priorita</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/TitleHintText" xml:space="preserve">
           <source>Task title</source>
           <target state="signed-off">Název úkolu</target>
@@ -147,35 +147,35 @@
         <note from="MultilingualBuild" annotates="source" priority="2">cancel delete confirmation</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
-          <target state="translated">kontaktuje nás</target>
-        <note from="MultilingualEditor" annotates="source" priority="4">správná délka?</note></trans-unit>
+          <target state="signed-off">kontaktujte nás</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutRateReview" xml:space="preserve">
           <source>rate application</source>
-          <target state="translated">ohodnotit aplikaci</target>
-        <note from="MultilingualEditor" annotates="source" priority="4">správná délka?</note></trans-unit>
+          <target state="signed-off">ohodnotit aplikaci</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDefaultDueDate" xml:space="preserve">
           <source>Default due date</source>
           <target state="signed-off">Výchozí termín splnění</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
           <source>1 day</source>
-          <target state="final" state-qualifier="tm-suggestion">1 den</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">1 den</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneWeek" xml:space="preserve">
           <source>1 week</source>
-          <target state="final" state-qualifier="tm-suggestion">1 týden</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">1 týden</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterThreeDays" xml:space="preserve">
           <source>3 days</source>
-          <target state="final">3 dny</target>
+          <target state="signed-off">3 dny</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoDays" xml:space="preserve">
           <source>2 days</source>
-          <target state="final">2 dny</target>
+          <target state="signed-off">2 dny</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoWeeks" xml:space="preserve">
           <source>2 weeks</source>
-          <target state="final" state-qualifier="tm-suggestion">2 týdny</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">2 týdny</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
           <source>Automatically delete completed tasks</source>
@@ -183,7 +183,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksDays" xml:space="preserve">
           <source>Delete in</source>
-          <target state="final">Smazat za</target>
+          <target state="signed-off">Smazat za</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsFirstDayOfWeek" xml:space="preserve">
           <source>First day of week</source>

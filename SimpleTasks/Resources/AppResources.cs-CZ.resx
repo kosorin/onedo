@@ -132,7 +132,7 @@
     <value>zvolte termín splnění</value>
   </data>
   <data name="DateCustomDueText" xml:space="preserve">
-    <value>vlastní termín splnění</value>
+    <value>vlastní termín</value>
   </data>
   <data name="DateLaterText" xml:space="preserve">
     <value>později</value>
@@ -144,7 +144,7 @@
     <value>příští týden</value>
   </data>
   <data name="DateNoDueText" xml:space="preserve">
-    <value>žádný termín splnění</value>
+    <value>žádný termín</value>
   </data>
   <data name="DateOverdueText" xml:space="preserve">
     <value>zpožděno</value>
@@ -169,10 +169,10 @@
   </data>
   <data name="PriorityHigh" xml:space="preserve">
     <value>vysoká priorita</value>
-  </data>
+  <comment></comment></data>
   <data name="PriorityNormal" xml:space="preserve">
-    <value>normální důležitost</value>
-  </data>
+    <value>normální priorita</value>
+  <comment></comment></data>
   <data name="TitleHintText" xml:space="preserve">
     <value>Název úkolu</value>
   </data>
@@ -217,7 +217,7 @@
     <comment>cancel delete confirmation</comment>
   </data>
   <data name="AboutContactUs" xml:space="preserve">
-    <value>kontaktuje nás</value>
+    <value>kontaktujte nás</value>
     <comment></comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
@@ -273,5 +273,8 @@
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Verze {0}</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
+    <value>Smazat za</value>
   </data>
 </root>

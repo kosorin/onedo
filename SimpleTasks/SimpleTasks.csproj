@@ -166,6 +166,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.cs-CZ.xlf</DependentUpon>
       <culture>cs-CZ</culture>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
       <AutoGen>True</AutoGen>
