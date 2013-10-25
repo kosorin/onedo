@@ -38,20 +38,11 @@ namespace SimpleTasks.Core.Tiles
                 {
                     Orientation = Orientation.Vertical
                 };
-                foreach (TaskModel task in tasks.Take(TaskCount - 1))
+                foreach (TaskModel task in tasks.Take(TaskCount))
                 {
                     Border border = GetTaskItemBorder(task);
                     stackPanel.Children.Add(border);
                 }
-                stackPanel.Children.Add(GetTaskItemBorder(new TaskModel()
-                {
-                    Title = DateTime.Now.ToLongTimeString(),
-                    Date = DateTime.Today,
-                    IsImportant = false,
-                    IsComplete = false,
-                    CompletedDate = null
-                }));
-
                 grid.Children.Add(stackPanel);
             }
             else
