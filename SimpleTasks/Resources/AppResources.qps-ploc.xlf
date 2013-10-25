@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="qps-ploc" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.1100.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit translate="yes" id="Resx/ResourceFlowDirection" xml:space="preserve">
+          <source>LeftToRight</source>
+          <target state="translated">LeftToRight</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ResourceLanguage" xml:space="preserve">
+          <source>en-US</source>
+          <target state="translated">qps-ploc</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarNewText" xml:space="preserve">
+          <source>new</source>
+          <target state="new">new</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarAboutText" xml:space="preserve">
+          <source>about</source>
+          <target state="new">about</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSaveText" xml:space="preserve">
+          <source>save</source>
+          <target state="new">save</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ChooseDueDateText" xml:space="preserve">
+          <source>choose due date</source>
+          <target state="new">choose due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateCustomDueText" xml:space="preserve">
+          <source>custom due date</source>
+          <target state="new">custom due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
+          <source>later</source>
+          <target state="new">later</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextMonthText" xml:space="preserve">
+          <source>next month</source>
+          <target state="new">next month</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextWeekText" xml:space="preserve">
+          <source>next week</source>
+          <target state="new">next week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNoDueText" xml:space="preserve">
+          <source>no due date</source>
+          <target state="new">no due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
+          <source>overdue</source>
+          <target state="new">overdue</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisMonthText" xml:space="preserve">
+          <source>this month</source>
+          <target state="new">this month</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisWeekText" xml:space="preserve">
+          <source>this week</source>
+          <target state="new">this week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTodayText" xml:space="preserve">
+          <source>today</source>
+          <target state="new">today</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTomorrowText" xml:space="preserve">
+          <source>tomorrow</source>
+          <target state="new">tomorrow</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MissingTitleText" xml:space="preserve">
+          <source>Enter task title.</source>
+          <target state="new">Enter task title.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/NoTasksText" xml:space="preserve">
+          <source>All tasks are completed.</source>
+          <target state="new">All tasks are completed.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PriorityHigh" xml:space="preserve">
+          <source>high priority</source>
+          <target state="new">high priority</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PriorityNormal" xml:space="preserve">
+          <source>normal priority</source>
+          <target state="new">normal priority</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/TitleHintText" xml:space="preserve">
+          <source>Task title</source>
+          <target state="new">Task title</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCompleteText" xml:space="preserve">
+          <source>complete</source>
+          <target state="new">complete</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PeriodicTaskDescription" xml:space="preserve">
+          <source>Updates live tile.</source>
+          <target state="new">Updates live tile.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarActivateText" xml:space="preserve">
+          <source>activate</source>
+          <target state="new">activate</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDeleteCompletedText" xml:space="preserve">
+          <source>delete completed tasks</source>
+          <target state="new">delete completed tasks</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDeleteText" xml:space="preserve">
+          <source>delete</source>
+          <target state="new">delete</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSettingsText" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateCompletedText" xml:space="preserve">
+          <source>completed</source>
+          <target state="new">completed</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTaskCaptionText" xml:space="preserve">
+          <source>Delete task</source>
+          <target state="new">Delete task</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTaskText" xml:space="preserve">
+          <source>Are you sure you want to delete this task?</source>
+          <target state="new">Are you sure you want to delete this task?</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTaskYesText" xml:space="preserve">
+          <source>delete</source>
+          <target state="new">delete</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTaskNoText" xml:space="preserve">
+          <source>cancel</source>
+          <target state="new">cancel</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AboutByAuthor" xml:space="preserve">
+          <source>by {0}</source>
+          <target state="new">by {0}</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
+          <source>contact us</source>
+          <target state="new">contact us</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AboutRateReview" xml:space="preserve">
+          <source>rate application</source>
+          <target state="new">rate application</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
+          <source>Version {0}</source>
+          <target state="new">Version {0}</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ApplicationName" xml:space="preserve">
+          <source>Simple Task</source>
+          <target state="new">Simple Task</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDefaultDueDate" xml:space="preserve">
+          <source>Default due date</source>
+          <target state="new">Default due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
+          <source>1 day</source>
+          <target state="new">1 day</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneWeek" xml:space="preserve">
+          <source>1 week</source>
+          <target state="new">1 week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteAfterThreeDays" xml:space="preserve">
+          <source>3 days</source>
+          <target state="new">3 days</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoDays" xml:space="preserve">
+          <source>2 days</source>
+          <target state="new">2 days</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoWeeks" xml:space="preserve">
+          <source>2 weeks</source>
+          <target state="new">2 weeks</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
+          <source>Automatically delete completed tasks</source>
+          <target state="new">Automatically delete completed tasks</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksDays" xml:space="preserve">
+          <source>Delete after</source>
+          <target state="new">Delete after</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsFirstDayOfWeek" xml:space="preserve">
+          <source>First day of week</source>
+          <target state="new">First day of week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
+          <source>choose first day of week</source>
+          <target state="new">choose first day of week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsGeneral" xml:space="preserve">
+          <source>general</source>
+          <target state="new">general</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsTitle" xml:space="preserve">
+          <source>SETTINGS</source>
+          <target state="new">SETTINGS</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarPinTileText" xml:space="preserve">
+          <source>pin tile</source>
+          <target state="new">pin tile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarUnpinTileText" xml:space="preserve">
+          <source>unpin tile</source>
+          <target state="new">unpin tile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksInfo" xml:space="preserve">
+          <source>Tasks are always automatically deleted when the application starts.</source>
+          <target state="new">Tasks are always automatically deleted when the application starts.</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
