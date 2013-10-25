@@ -94,8 +94,13 @@
                                    Margin="190,0,0,0"/>
                     </Grid>
 
+
+                    <TextBlock Text="{Binding VersionString}"
+                               Foreground="{StaticResource PhoneSubtleBrush}" 
+                               HorizontalAlignment="Center" Margin="0,40,0,10"/>
+
                     <!--Rate and review-->
-                    <Button Margin="50,100,50,0"
+                    <Button Margin="50,20,50,0"
                             Template="{StaticResource RateButtonTemplate}"
                             Click="Rate_Click"/>
                     <!--Contact us-->
