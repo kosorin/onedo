@@ -125,4 +125,154 @@
     <value>qps-ploc</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
+  <data name="AppBarNewText" xml:space="preserve">
+    <value>[B915D][!!_ήêẃ_!!]</value>
+  </data>
+  <data name="AppBarAboutText" xml:space="preserve">
+    <value>[412AF][!!_áвõûţ_!!]</value>
+  </data>
+  <data name="AppBarSaveText" xml:space="preserve">
+    <value>[E3546][!!_šáνę_!!]</value>
+  </data>
+  <data name="ChooseDueDateText" xml:space="preserve">
+    <value>[D1419][!!_ċĥõòšé ðµê ðàťê_!!!!]</value>
+  </data>
+  <data name="DateCustomDueText" xml:space="preserve">
+    <value>[CBCEA][!!_ċúŝţôм ðùê đâтę_!!!!]</value>
+  </data>
+  <data name="DateLaterText" xml:space="preserve">
+    <value>[4A003][!!_łãťêŕ_!!]</value>
+  </data>
+  <data name="DateNextMonthText" xml:space="preserve">
+    <value>[2D7BA][!!_йęхτ мóитħ_!!]</value>
+  </data>
+  <data name="DateNextWeekText" xml:space="preserve">
+    <value>[B699F][!!_ηęхţ ẁééк_!!]</value>
+  </data>
+  <data name="DateNoDueText" xml:space="preserve">
+    <value>[EAD4D][!!_иò đùę đáтè_!!]</value>
+  </data>
+  <data name="DateOverdueText" xml:space="preserve">
+    <value>[5D695][!!_ôνêŕďùę_!!]</value>
+  </data>
+  <data name="DateThisMonthText" xml:space="preserve">
+    <value>[F0D56][!!_ťћìş мôиτђ_!!]</value>
+  </data>
+  <data name="DateThisWeekText" xml:space="preserve">
+    <value>[2EE39][!!_ťĥįś ŵèęк_!!]</value>
+  </data>
+  <data name="DateTodayText" xml:space="preserve">
+    <value>[D9FB1][!!_ţõðàŷ_!!]</value>
+  </data>
+  <data name="DateTomorrowText" xml:space="preserve">
+    <value>[05FC6][!!_тòмôřѓôŵ_!!]</value>
+  </data>
+  <data name="MissingTitleText" xml:space="preserve">
+    <value>[D0D9D][!!_Ęηťęř τàšќ ţįţĺè._!!!!!!]</value>
+  </data>
+  <data name="NoTasksText" xml:space="preserve">
+    <value>[5817E][!!_Ãļļ ťášќş ãŗè čòmþĺêτéď._!!!!!!!!]</value>
+  </data>
+  <data name="PriorityHigh" xml:space="preserve">
+    <value>[3A9AE][!!_ĥìģĥ þŗîóřìτŷ_!!]</value>
+  </data>
+  <data name="PriorityNormal" xml:space="preserve">
+    <value>[054B3][!!_ηóřмáľ ρѓîõřîťУ_!!!!]</value>
+  </data>
+  <data name="TitleHintText" xml:space="preserve">
+    <value>[650DE][!!_Ţâşĸ ťîτłę_!!]</value>
+  </data>
+  <data name="AppBarCompleteText" xml:space="preserve">
+    <value>[D5A4E][!!_ĉõmρĺêţê_!!]</value>
+  </data>
+  <data name="PeriodicTaskDescription" xml:space="preserve">
+    <value>[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</value>
+  </data>
+  <data name="AppBarActivateText" xml:space="preserve">
+    <value>[1920B][!!_ãċţîνãτé_!!]</value>
+  </data>
+  <data name="AppBarDeleteCompletedText" xml:space="preserve">
+    <value>[7658E][!!_ďęľèťê ċóмрľèтęð тáśќŝ_!!!!!!]</value>
+  </data>
+  <data name="AppBarDeleteText" xml:space="preserve">
+    <value>[B9C84][!!_ďêļéţę_!!]</value>
+  </data>
+  <data name="AppBarSettingsText" xml:space="preserve">
+    <value>[9E01F][!!_šęτтîйğš_!!]</value>
+  </data>
+  <data name="DateCompletedText" xml:space="preserve">
+    <value>[2666A][!!_ċômрļęτéð_!!]</value>
+  </data>
+  <data name="DeleteTaskCaptionText" xml:space="preserve">
+    <value>[58904][!!_Đéľêťé ťáśķ_!!]</value>
+  </data>
+  <data name="DeleteTaskText" xml:space="preserve">
+    <value>[5DEB7][!!_Âŕę ÿõù šúŕę ŷõµ ŵãиť ţô ðęľèţé ţнîŝ тâśķ?_!!!!!!!!!!!!]</value>
+  </data>
+  <data name="DeleteTaskYesText" xml:space="preserve">
+    <value>[737FD][!!_ďęłéţè_!!]</value>
+  </data>
+  <data name="DeleteTaskNoText" xml:space="preserve">
+    <value>[B72E8][!!_ċáиćéļ_!!]</value>
+  </data>
+  <data name="AboutByAuthor" xml:space="preserve">
+    <value>[DBA3E][!!_вў {0}_!!]</value>
+  </data>
+  <data name="AboutContactUs" xml:space="preserve">
+    <value>[72AFA][!!_ċôйťáĉт úš_!!]</value>
+  </data>
+  <data name="AboutRateReview" xml:space="preserve">
+    <value>[B20FE][!!_ŕàτę áρþĺíċáтîóή_!!!!]</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>[46A41][!!_Vêŗšįòη {0}_!!]</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>[1FA42][!!_Ŝįмþľè Ťàşķ_!!]</value>
+  </data>
+  <data name="SettingsDefaultDueDate" xml:space="preserve">
+    <value>[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
+    <value>[71F15][!!_1 ðãý_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
+    <value>[9EB39][!!_1 ŵêęк_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
+    <value>[D16AE][!!_3 ďàýš_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
+    <value>[FD01D][!!_2 ďáÿş_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
+    <value>[931EA][!!_2 ẅêéĸś_!!]</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
+    <value>[6E90D][!!_ÁûţõмáţìĉáļľУ ðęľêţê ćómρłèτèď ťãśĸś_!!!!!!!!!!]</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
+    <value>[7FEE2][!!_Ðêļèťê ãƒтéѓ_!!]</value>
+  </data>
+  <data name="SettingsFirstDayOfWeek" xml:space="preserve">
+    <value>[924BC][!!_₣ìŗşť đàŷ óƒ ŵèèк_!!!!!!]</value>
+  </data>
+  <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
+    <value>[69D9D][!!_ćнôòŝè ƒíŗŝť đàŷ õƒ ẃééќ_!!!!!!!!]</value>
+  </data>
+  <data name="SettingsGeneral" xml:space="preserve">
+    <value>[2559E][!!_ģéиęŗáł_!!]</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>[D78A2][!!_ŠÊΤŤÍÑĞŞ_!!]</value>
+  </data>
+  <data name="AppBarPinTileText" xml:space="preserve">
+    <value>[686DC][!!_ρîη ťìļè_!!]</value>
+  </data>
+  <data name="AppBarUnpinTileText" xml:space="preserve">
+    <value>[0D10C][!!_ûηρįи ţíľé_!!]</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
+    <value>[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</value>
+  </data>
 </root>
