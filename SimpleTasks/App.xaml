@@ -68,7 +68,7 @@
                          Opacity="0.6"/>
 
         <sys:String x:Key="LogoPathData">M 10,30
-                                         L 50,10
+                                         L 48,11
                                          L 50,30
                                          L 10,50
                                          Z 
@@ -78,7 +78,7 @@
                                          L 36,43
                                          Z 
                                          M 10,70
-                                         L 10,90
+                                         L 12,89
                                          L 50,70
                                          L 24,63
                                          Z</sys:String>
