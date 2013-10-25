@@ -189,7 +189,7 @@
     <comment>activate task</comment>
   </data>
   <data name="AppBarDeleteCompletedText" xml:space="preserve">
-    <value>odstranit hotové úkoly</value>
+    <value>odstranit dokončené úkoly</value>
   </data>
   <data name="AppBarDeleteText" xml:space="preserve">
     <value>odstranit</value>
@@ -272,6 +272,9 @@
     <value>Verze {0}</value>
   </data>
   <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
-    <value>Smazat za</value>
+    <value>Odstranit za</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
+    <value>Odstranit dokončené úkoly</value>
   </data>
 </root>

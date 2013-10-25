@@ -183,7 +183,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksDays" xml:space="preserve">
           <source>Delete in</source>
-          <target state="signed-off">Smazat za</target>
+          <target state="signed-off">Odstranit za</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsFirstDayOfWeek" xml:space="preserve">
           <source>First day of week</source>
