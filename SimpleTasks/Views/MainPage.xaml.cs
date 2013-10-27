@@ -66,14 +66,14 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
 
             // Reset
-            ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
-            appBarResetMenuItem.Click += appBarResetMenuItem_Click;
-            ApplicationBar.MenuItems.Add(appBarResetMenuItem);
+            //ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
+            //appBarResetMenuItem.Click += appBarResetMenuItem_Click;
+            //ApplicationBar.MenuItems.Add(appBarResetMenuItem);
 
-            // Clear
-            ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateTilesUI(ViewModel.Tasks); };
-            ApplicationBar.MenuItems.Add(appBarClearMenuItem);
+            //// Clear
+            //ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
+            //appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateTilesUI(ViewModel.Tasks); };
+            //ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 
             #endregion
         }
