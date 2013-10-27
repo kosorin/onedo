@@ -117,31 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ResourceFlowDirection" xml:space="preserve">
-    <value>LeftToRight</value>
-    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
-  </data>
-  <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
-    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
-  </data>
-  <data name="AppBarNewText" xml:space="preserve">
-    <value>new</value>
-    <comment>new task</comment>
-  </data>
-  <data name="AppBarAboutText" xml:space="preserve">
-    <value>about</value>
-  </data>
-  <data name="AppBarSaveText" xml:space="preserve">
-    <value>save</value>
-    <comment>save task</comment>
-  </data>
-  <data name="ChooseDueDateText" xml:space="preserve">
-    <value>choose due date</value>
-  </data>
-  <data name="DateCustomDueText" xml:space="preserve">
-    <value>custom due date</value>
-  </data>
   <data name="DateLaterText" xml:space="preserve">
     <value>later</value>
   </data>
@@ -150,9 +125,6 @@
   </data>
   <data name="DateNextWeekText" xml:space="preserve">
     <value>next week</value>
-  </data>
-  <data name="DateNoDueText" xml:space="preserve">
-    <value>no due date</value>
   </data>
   <data name="DateOverdueText" xml:space="preserve">
     <value>overdue</value>
@@ -169,118 +141,8 @@
   <data name="DateTomorrowText" xml:space="preserve">
     <value>tomorrow</value>
   </data>
-  <data name="MissingTitleText" xml:space="preserve">
-    <value>Enter task title.</value>
-  </data>
-  <data name="NoTasksText" xml:space="preserve">
-    <value>All tasks are completed.</value>
-  </data>
-  <data name="PriorityHigh" xml:space="preserve">
-    <value>high priority</value>
-  </data>
-  <data name="PriorityNormal" xml:space="preserve">
-    <value>normal priority</value>
-  </data>
-  <data name="TitleHintText" xml:space="preserve">
-    <value>Task title</value>
-  </data>
-  <data name="AppBarCompleteText" xml:space="preserve">
-    <value>complete</value>
-    <comment>complete task</comment>
-  </data>
-  <data name="PeriodicTaskDescription" xml:space="preserve">
-    <value>Updates live tile.</value>
-    <comment>Info about background task agent</comment>
-  </data>
-  <data name="AppBarActivateText" xml:space="preserve">
-    <value>activate</value>
-    <comment>activate task</comment>
-  </data>
-  <data name="AppBarDeleteCompletedText" xml:space="preserve">
-    <value>delete completed tasks</value>
-  </data>
-  <data name="AppBarDeleteText" xml:space="preserve">
-    <value>delete</value>
-    <comment>delete task</comment>
-  </data>
-  <data name="AppBarSettingsText" xml:space="preserve">
-    <value>settings</value>
-  </data>
-  <data name="DateCompletedText" xml:space="preserve">
-    <value>completed</value>
-    <comment>completed tasks</comment>
-  </data>
-  <data name="DeleteTaskCaptionText" xml:space="preserve">
-    <value>Delete task</value>
-  </data>
-  <data name="DeleteTaskText" xml:space="preserve">
-    <value>Are you sure you want to delete this task?</value>
-  </data>
-  <data name="DeleteTaskYesText" xml:space="preserve">
-    <value>delete</value>
-    <comment>delete confirmation</comment>
-  </data>
-  <data name="DeleteTaskNoText" xml:space="preserve">
-    <value>cancel</value>
-    <comment>cancel delete confirmation</comment>
-  </data>
-  <data name="AboutContactUs" xml:space="preserve">
-    <value>contact us</value>
-  </data>
-  <data name="AboutRateReview" xml:space="preserve">
-    <value>rate application</value>
-  </data>
-  <data name="SettingsDefaultDueDate" xml:space="preserve">
-    <value>Default due date</value>
-  </data>
-  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
-    <value>1 day</value>
-  </data>
-  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
-    <value>1 week</value>
-  </data>
-  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
-    <value>3 days</value>
-  </data>
-  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
-    <value>2 days</value>
-  </data>
-  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-    <value>2 weeks</value>
-  </data>
-  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
-    <value>Delete completed tasks</value>
-  </data>
-  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
-    <value>Delete in</value>
-  </data>
-  <data name="SettingsFirstDayOfWeek" xml:space="preserve">
-    <value>First day of week</value>
-  </data>
-  <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
-    <value>choose first day of week</value>
-  </data>
-  <data name="SettingsGeneral" xml:space="preserve">
-    <value>general</value>
-    <comment>general pivot in settings</comment>
-  </data>
-  <data name="SettingsTitle" xml:space="preserve">
-    <value>SETTINGS</value>
-  </data>
-  <data name="AppBarPinTileText" xml:space="preserve">
-    <value>pin tile</value>
-  </data>
-  <data name="AppBarUnpinTileText" xml:space="preserve">
-    <value>unpin tile</value>
-  </data>
-  <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
-    <value>Tasks are always automatically deleted when the application starts.</value>
-  </data>
-  <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback for {0} {1}</value>
-    <comment>Feedback for {AppliactionName} {Version}</comment>
-  </data>
-  <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
+  <data name="TileNoTasks" xml:space="preserve">
+    <value>No tasks</value>
+    <comment>text on live tile</comment>
   </data>
 </root>

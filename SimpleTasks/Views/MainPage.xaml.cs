@@ -66,14 +66,14 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
 
             // Reset
-            ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
-            appBarResetMenuItem.Click += appBarResetMenuItem_Click;
-            ApplicationBar.MenuItems.Add(appBarResetMenuItem);
+            //ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
+            //appBarResetMenuItem.Click += appBarResetMenuItem_Click;
+            //ApplicationBar.MenuItems.Add(appBarResetMenuItem);
 
-            // Clear
-            ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateTilesUI(ViewModel.Tasks); };
-            ApplicationBar.MenuItems.Add(appBarClearMenuItem);
+            //// Clear
+            //ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
+            //appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateTilesUI(ViewModel.Tasks); };
+            //ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 
             #endregion
         }
@@ -110,7 +110,6 @@ namespace SimpleTasks.Views
             ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", Date = DateTimeExtensions.Today.AddDays(2), IsImportant = true });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", Date = DateTimeExtensions.Today.AddDays(4) });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", Date = DateTimeExtensions.Today.AddDays(6) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Break bank", Date = DateTimeExtensions.Today.AddDays(7) });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", Date = DateTimeExtensions.Today.AddDays(10), IsImportant = true });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", Date = DateTimeExtensions.Today.AddDays(35) });
 

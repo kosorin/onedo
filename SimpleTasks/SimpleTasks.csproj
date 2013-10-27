@@ -15,8 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>
-    </SupportedCultures>
+    <SupportedCultures>cs-CZ;qps-ploc;sk-SK</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SimpleTasks_$(Configuration)_$(Platform).xap</XapFilename>
@@ -89,6 +88,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <ToolkitRevision>2</ToolkitRevision>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -142,7 +144,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\AboutIcon.png" />
     <Content Include="Assets\AppBar\appbar.add.png" />
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
     <Content Include="Assets\AppBar\appbar.save.png" />
@@ -150,7 +151,6 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\StoreTile.png" />
     <Content Include="Assets\Tiles\IconicTileMediumLarge.png" />
     <Content Include="Assets\Tiles\IconicTileSmall.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
@@ -160,13 +160,45 @@
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.cs-CZ.xlf</DependentUpon>
+      <culture>cs-CZ</culture>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
+      <culture>qps-ploc</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.sk-SK.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.sk-SK.xlf</DependentUpon>
+      <culture>sk-SK</culture>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <XliffResource Include="Resources\AppResources.cs-CZ.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.cs-CZ.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Resources\AppResources.qps-ploc.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Resources\AppResources.sk-SK.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.sk-SK.resx</LastGenOutput>
+    </XliffResource>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\Icon.xaml">
       <SubType>Designer</SubType>
@@ -210,6 +242,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.WindowsPhone.targets" Label="MultilingualAppToolkitForWindowsPhone" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

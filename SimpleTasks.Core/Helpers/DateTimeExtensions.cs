@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleTasks.Core.Resources;
+using System;
 using System.Globalization;
 
 namespace SimpleTasks.Core.Helpers
@@ -25,7 +26,7 @@ namespace SimpleTasks.Core.Helpers
         {
             if (!date.HasValue)
             {
-                return "later";
+                return AppResources.DateLaterText;
             }
 
             int days = (int)(date.Value - Today).TotalDays;
@@ -38,41 +39,41 @@ namespace SimpleTasks.Core.Helpers
 
             if (days < 0)
             {
-                return "overdue";
+                return AppResources.DateOverdueText;
             }
             else if (days == 0)
             {
-                return "today";
+                return AppResources.DateTodayText;
             }
             else if (days == 1)
             {
-                return "tomorrow";
+                return AppResources.DateTomorrowText;
             }
             else if (days > 1 && daysToEndOfWeek - (daysAfterTomorrow + 1) > 0)
             {
-                return "this week";
+                return AppResources.DateThisWeekText;
             }
             else if (days > daysToEndOfWeek && days <= daysToEndOfNextWeek)
             {
-                return "next week";
+                return AppResources.DateNextWeekText;
             }
             else if (!includeMonth && days > daysToEndOfNextWeek)
             {
-                return "later";
+                return AppResources.DateLaterText;
             }
             else if (includeMonth)
             {
                 if (days > daysToEndOfNextWeek && days <= daysToEndOfMonth)
                 {
-                    return "this month";
+                    return AppResources.DateThisMonthText;
                 }
                 else if (days > daysToEndOfMonth && days <= daysToEndOfNextMonth)
                 {
-                    return "next month";
+                    return AppResources.DateNextMonthText;
                 }
                 else if (days > daysToEndOfNextMonth)
                 {
-                    return "later";
+                    return AppResources.DateLaterText;
                 }
             }
 

@@ -1,20 +1,11 @@
-﻿using Microsoft.Phone.Shell;
-using Microsoft.Phone.Scheduler;
-using SimpleTasks.Core.Helpers;
-using SimpleTasks.Models;
+﻿using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace SimpleTasks.ViewModels
 {
@@ -27,7 +18,7 @@ namespace SimpleTasks.ViewModels
         {
             settings = IsolatedStorageSettings.ApplicationSettings;
             Debug.WriteLine("> Nastavení:");
-            foreach (object o in System.IO.IsolatedStorage.IsolatedStorageSettings.ApplicationSettings)
+            foreach (object o in IsolatedStorageSettings.ApplicationSettings)
             {
                 Debug.WriteLine("  {0}", o.ToString());
             }

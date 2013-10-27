@@ -122,165 +122,165 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
+    <value>sk-SK</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AppBarNewText" xml:space="preserve">
-    <value>new</value>
+    <value>nový</value>
     <comment>new task</comment>
   </data>
   <data name="AppBarAboutText" xml:space="preserve">
-    <value>about</value>
+    <value>o aplikaci</value>
   </data>
   <data name="AppBarSaveText" xml:space="preserve">
-    <value>save</value>
+    <value>uložit</value>
     <comment>save task</comment>
   </data>
   <data name="ChooseDueDateText" xml:space="preserve">
-    <value>choose due date</value>
+    <value>zvolte termín splnění</value>
   </data>
   <data name="DateCustomDueText" xml:space="preserve">
-    <value>custom due date</value>
+    <value>vlastní termín</value>
   </data>
   <data name="DateLaterText" xml:space="preserve">
-    <value>later</value>
+    <value>později</value>
   </data>
   <data name="DateNextMonthText" xml:space="preserve">
-    <value>next month</value>
+    <value>příští měsíc</value>
   </data>
   <data name="DateNextWeekText" xml:space="preserve">
-    <value>next week</value>
+    <value>příští týden</value>
   </data>
   <data name="DateNoDueText" xml:space="preserve">
-    <value>no due date</value>
+    <value>žádný termín</value>
   </data>
   <data name="DateOverdueText" xml:space="preserve">
-    <value>overdue</value>
+    <value>zpožděno</value>
   </data>
   <data name="DateThisMonthText" xml:space="preserve">
-    <value>this month</value>
+    <value>tento měsíc</value>
   </data>
   <data name="DateThisWeekText" xml:space="preserve">
-    <value>this week</value>
+    <value>tento týden</value>
   </data>
   <data name="DateTodayText" xml:space="preserve">
-    <value>today</value>
+    <value>dnes</value>
   </data>
   <data name="DateTomorrowText" xml:space="preserve">
-    <value>tomorrow</value>
+    <value>zítra</value>
   </data>
   <data name="MissingTitleText" xml:space="preserve">
-    <value>Enter task title.</value>
+    <value>Zadejte název úkolu.</value>
   </data>
   <data name="NoTasksText" xml:space="preserve">
-    <value>All tasks are completed.</value>
+    <value>Všechny úkoly byly dokončeny.</value>
   </data>
   <data name="PriorityHigh" xml:space="preserve">
-    <value>high priority</value>
+    <value>vysoká priorita</value>
   </data>
   <data name="PriorityNormal" xml:space="preserve">
-    <value>normal priority</value>
+    <value>normální priorita</value>
   </data>
   <data name="TitleHintText" xml:space="preserve">
-    <value>Task title</value>
+    <value>Název úkolu</value>
   </data>
   <data name="AppBarCompleteText" xml:space="preserve">
-    <value>complete</value>
+    <value>dokončit</value>
     <comment>complete task</comment>
   </data>
   <data name="PeriodicTaskDescription" xml:space="preserve">
-    <value>Updates live tile.</value>
+    <value>Aktualizace živé dlaždice.</value>
     <comment>Info about background task agent</comment>
   </data>
   <data name="AppBarActivateText" xml:space="preserve">
-    <value>activate</value>
+    <value>aktivovat</value>
     <comment>activate task</comment>
   </data>
   <data name="AppBarDeleteCompletedText" xml:space="preserve">
-    <value>delete completed tasks</value>
+    <value>odstranit dokončené úkoly</value>
   </data>
   <data name="AppBarDeleteText" xml:space="preserve">
-    <value>delete</value>
+    <value>odstranit</value>
     <comment>delete task</comment>
   </data>
   <data name="AppBarSettingsText" xml:space="preserve">
-    <value>settings</value>
+    <value>nastavení</value>
   </data>
   <data name="DateCompletedText" xml:space="preserve">
-    <value>completed</value>
+    <value>dokončeno</value>
     <comment>completed tasks</comment>
   </data>
   <data name="DeleteTaskCaptionText" xml:space="preserve">
-    <value>Delete task</value>
+    <value>Odstranit úkol</value>
   </data>
   <data name="DeleteTaskText" xml:space="preserve">
-    <value>Are you sure you want to delete this task?</value>
+    <value>Opravdu chcete tento úkol odstranit?</value>
   </data>
   <data name="DeleteTaskYesText" xml:space="preserve">
-    <value>delete</value>
+    <value>odstranit</value>
     <comment>delete confirmation</comment>
   </data>
   <data name="DeleteTaskNoText" xml:space="preserve">
-    <value>cancel</value>
+    <value>storno</value>
     <comment>cancel delete confirmation</comment>
   </data>
   <data name="AboutContactUs" xml:space="preserve">
-    <value>contact us</value>
+    <value>kontaktujte nás</value>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
-    <value>rate application</value>
+    <value>ohodnotit aplikaci</value>
   </data>
   <data name="SettingsDefaultDueDate" xml:space="preserve">
-    <value>Default due date</value>
+    <value>Výchozí termín splnění</value>
   </data>
   <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
-    <value>1 day</value>
+    <value>1 den</value>
   </data>
   <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
-    <value>1 week</value>
+    <value>1 týden</value>
   </data>
   <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
-    <value>3 days</value>
+    <value>3 dny</value>
   </data>
   <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
-    <value>2 days</value>
+    <value>2 dny</value>
   </data>
   <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-    <value>2 weeks</value>
+    <value>2 týdny</value>
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
-    <value>Delete completed tasks</value>
+    <value>Odstranit dokončené úkoly</value>
   </data>
   <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
-    <value>Delete in</value>
+    <value>Odstranit za</value>
   </data>
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
-    <value>First day of week</value>
+    <value>První den v týdnu</value>
   </data>
   <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
-    <value>choose first day of week</value>
+    <value>Vyberte první den v týdnu</value>
   </data>
   <data name="SettingsGeneral" xml:space="preserve">
-    <value>general</value>
+    <value>obecné</value>
     <comment>general pivot in settings</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>NASTAVENÍ</value>
   </data>
   <data name="AppBarPinTileText" xml:space="preserve">
-    <value>pin tile</value>
+    <value>připnout dlaždici</value>
   </data>
   <data name="AppBarUnpinTileText" xml:space="preserve">
-    <value>unpin tile</value>
+    <value>odepnout dlaždici</value>
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
-    <value>Tasks are always automatically deleted when the application starts.</value>
+    <value>Úkoly jsou vždy automaticky odstraněny při spuštění aplikace.</value>
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback for {0} {1}</value>
+    <value>Zpětná vazba pro {0} {1}</value>
     <comment>Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Verze {0}</value>
   </data>
 </root>

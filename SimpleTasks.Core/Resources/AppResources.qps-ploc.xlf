@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="qps-ploc" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks.Core" product-version="1.0.0.0" build-num="0">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="2.1.1100.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="Resx">
+        <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
+          <source>later</source>
+          <target state="translated">později</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/TileNoTasks" xml:space="preserve">
+          <source>No tasks</source>
+          <target state="translated">Žádné úkoly</target>
+          
+        <note from="MultilingualBuild" annotates="source" priority="2">text on live tile</note></trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTomorrowText" xml:space="preserve">
+          <source>tomorrow</source>
+          <target state="translated">zítra</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTodayText" xml:space="preserve">
+          <source>today</source>
+          <target state="translated">dnes</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisWeekText" xml:space="preserve">
+          <source>this week</source>
+          <target state="translated">tento týden</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisMonthText" xml:space="preserve">
+          <source>this month</source>
+          <target state="translated">tento měsíc</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
+          <source>overdue</source>
+          <target state="translated">zpožděno</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextWeekText" xml:space="preserve">
+          <source>next week</source>
+          <target state="translated">příští týden</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextMonthText" xml:space="preserve">
+          <source>next month</source>
+          <target state="translated">příští měsíc</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

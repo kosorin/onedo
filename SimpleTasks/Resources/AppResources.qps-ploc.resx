@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>qps-ploc</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="AppBarNewText" xml:space="preserve">
+    <value>[B915D][!!_ήêẃ_!!]</value>
+  <comment>new task</comment></data>
+  <data name="AppBarAboutText" xml:space="preserve">
+    <value>[412AF][!!_áвõûţ_!!]</value>
+  </data>
+  <data name="AppBarSaveText" xml:space="preserve">
+    <value>[E3546][!!_šáνę_!!]</value>
+  <comment>save task</comment></data>
+  <data name="ChooseDueDateText" xml:space="preserve">
+    <value>[D1419][!!_ċĥõòšé ðµê ðàťê_!!!!]</value>
+  </data>
+  <data name="DateCustomDueText" xml:space="preserve">
+    <value>[CBCEA][!!_ċúŝţôм ðùê đâтę_!!!!]</value>
+  </data>
+  <data name="DateLaterText" xml:space="preserve">
+    <value>[4A003][!!_łãťêŕ_!!]</value>
+  </data>
+  <data name="DateNextMonthText" xml:space="preserve">
+    <value>[2D7BA][!!_йęхτ мóитħ_!!]</value>
+  </data>
+  <data name="DateNextWeekText" xml:space="preserve">
+    <value>[B699F][!!_ηęхţ ẁééк_!!]</value>
+  </data>
+  <data name="DateNoDueText" xml:space="preserve">
+    <value>[EAD4D][!!_иò đùę đáтè_!!]</value>
+  </data>
+  <data name="DateOverdueText" xml:space="preserve">
+    <value>[5D695][!!_ôνêŕďùę_!!]</value>
+  </data>
+  <data name="DateThisMonthText" xml:space="preserve">
+    <value>[F0D56][!!_ťћìş мôиτђ_!!]</value>
+  </data>
+  <data name="DateThisWeekText" xml:space="preserve">
+    <value>[2EE39][!!_ťĥįś ŵèęк_!!]</value>
+  </data>
+  <data name="DateTodayText" xml:space="preserve">
+    <value>[D9FB1][!!_ţõðàŷ_!!]</value>
+  </data>
+  <data name="DateTomorrowText" xml:space="preserve">
+    <value>[05FC6][!!_тòмôřѓôŵ_!!]</value>
+  </data>
+  <data name="MissingTitleText" xml:space="preserve">
+    <value>[D0D9D][!!_Ęηťęř τàšќ ţįţĺè._!!!!!!]</value>
+  </data>
+  <data name="NoTasksText" xml:space="preserve">
+    <value>[5817E][!!_Ãļļ ťášќş ãŗè čòmþĺêτéď._!!!!!!!!]</value>
+  </data>
+  <data name="PriorityHigh" xml:space="preserve">
+    <value>[3A9AE][!!_ĥìģĥ þŗîóřìτŷ_!!]</value>
+  </data>
+  <data name="PriorityNormal" xml:space="preserve">
+    <value>[054B3][!!_ηóřмáľ ρѓîõřîťУ_!!!!]</value>
+  </data>
+  <data name="TitleHintText" xml:space="preserve">
+    <value>[650DE][!!_Ţâşĸ ťîτłę_!!]</value>
+  </data>
+  <data name="AppBarCompleteText" xml:space="preserve">
+    <value>[D5A4E][!!_ĉõmρĺêţê_!!]</value>
+  <comment>complete task</comment></data>
+  <data name="PeriodicTaskDescription" xml:space="preserve">
+    <value>[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</value>
+  <comment>Info about background task agent</comment></data>
+  <data name="AppBarActivateText" xml:space="preserve">
+    <value>[1920B][!!_ãċţîνãτé_!!]</value>
+  <comment>activate task</comment></data>
+  <data name="AppBarDeleteCompletedText" xml:space="preserve">
+    <value>[7658E][!!_ďęľèťê ċóмрľèтęð тáśќŝ_!!!!!!]</value>
+  </data>
+  <data name="AppBarDeleteText" xml:space="preserve">
+    <value>[B9C84][!!_ďêļéţę_!!]</value>
+  <comment>delete task</comment></data>
+  <data name="AppBarSettingsText" xml:space="preserve">
+    <value>[9E01F][!!_šęτтîйğš_!!]</value>
+  </data>
+  <data name="DateCompletedText" xml:space="preserve">
+    <value>[2666A][!!_ċômрļęτéð_!!]</value>
+  <comment>completed tasks</comment></data>
+  <data name="DeleteTaskCaptionText" xml:space="preserve">
+    <value>[58904][!!_Đéľêťé ťáśķ_!!]</value>
+  </data>
+  <data name="DeleteTaskText" xml:space="preserve">
+    <value>[5DEB7][!!_Âŕę ÿõù šúŕę ŷõµ ŵãиť ţô ðęľèţé ţнîŝ тâśķ?_!!!!!!!!!!!!]</value>
+  </data>
+  <data name="DeleteTaskYesText" xml:space="preserve">
+    <value>[737FD][!!_ďęłéţè_!!]</value>
+  <comment>delete confirmation</comment></data>
+  <data name="DeleteTaskNoText" xml:space="preserve">
+    <value>[B72E8][!!_ċáиćéļ_!!]</value>
+  <comment>cancel delete confirmation</comment></data>
+  <data name="AboutContactUs" xml:space="preserve">
+    <value>[72AFA][!!_ċôйťáĉт úš_!!]</value>
+  </data>
+  <data name="AboutRateReview" xml:space="preserve">
+    <value>[B20FE][!!_ŕàτę áρþĺíċáтîóή_!!!!]</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>[46A41][!!_Vêŗšįòη {0}_!!]</value>
+  </data>
+  <data name="SettingsDefaultDueDate" xml:space="preserve">
+    <value>[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
+    <value>[71F15][!!_1 ðãý_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
+    <value>[9EB39][!!_1 ŵêęк_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
+    <value>[D16AE][!!_3 ďàýš_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
+    <value>[FD01D][!!_2 ďáÿş_!!]</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
+    <value>[931EA][!!_2 ẅêéĸś_!!]</value>
+  </data>
+  <data name="SettingsFirstDayOfWeek" xml:space="preserve">
+    <value>[924BC][!!_₣ìŗşť đàŷ óƒ ŵèèк_!!!!!!]</value>
+  </data>
+  <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
+    <value>[69D9D][!!_ćнôòŝè ƒíŗŝť đàŷ õƒ ẃééќ_!!!!!!!!]</value>
+  </data>
+  <data name="SettingsGeneral" xml:space="preserve">
+    <value>[2559E][!!_ģéиęŗáł_!!]</value>
+  <comment>general pivot in settings</comment></data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>[D78A2][!!_ŠÊΤŤÍÑĞŞ_!!]</value>
+  </data>
+  <data name="AppBarPinTileText" xml:space="preserve">
+    <value>[686DC][!!_ρîη ťìļè_!!]</value>
+  </data>
+  <data name="AppBarUnpinTileText" xml:space="preserve">
+    <value>[0D10C][!!_ûηρįи ţíľé_!!]</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
+    <value>[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>[21550][!!_₣èęðБáćќ ƒôŕ {0} {1}_!!!!!!]</value>
+    <comment>Feedback for {AppliactionName} {Version}</comment>
+  </data>
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
+    <value>[31763][!!_Đêłęτé íη_!!]</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
+    <value>[6E90D][!!_Đèľêтé ćómрłęτęð тãśкŝ_!!!!!!]</value>
+  </data>
+</root>

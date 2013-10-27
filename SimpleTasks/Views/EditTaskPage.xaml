@@ -378,6 +378,10 @@
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="0"
                                                  Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
+                                                 Duration="0:0:0.4" />
                                 <DoubleAnimation Storyboard.TargetName="HighPriorityTextBlock" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="1"
@@ -394,6 +398,10 @@
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="1"
                                                  Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0.45"
+                                                 Duration="0:0:0.4" />
                                 <DoubleAnimation Storyboard.TargetName="HighPriorityTextBlock" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="0"
@@ -407,7 +415,8 @@
                                      Color="{StaticResource PhoneSubtleColor}" />
                 </Border.Background>
                 <StackPanel Orientation="Horizontal">
-                    <controls:Icon Style="{StaticResource AlertIconStyle}"
+                    <controls:Icon x:Name="HighPriorityIcon"
+                                   Style="{StaticResource AlertIconStyle}"
                                    Color="{StaticResource ButtonForegroundBrush}"/>
                     <Grid>
                         <TextBlock Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"

@@ -10,11 +10,15 @@ using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Helpers;
+using System.Threading;
+using System.Globalization;
 
 namespace SimpleTasks
 {
     public partial class App : Application
     {
+        private string appForceCulture = "qps-PLOC";
+
         public static MainViewModel ViewModel { get; private set; }
 
         public static SettingsViewModel Settings { get; private set; }
@@ -305,6 +309,18 @@ namespace SimpleTasks
         {
             try
             {
+                // Force CurrentUICulture to locale defined by appForceCulture.
+                // An empty string allows the user's Phone Language setting to
+                // determine the locale.
+                if (Debugger.IsAttached &&
+                    String.IsNullOrWhiteSpace(appForceCulture) == false)
+                {
+                    Thread.CurrentThread.CurrentCulture =
+                        new CultureInfo(appForceCulture);
+                    Thread.CurrentThread.CurrentUICulture =
+                        new CultureInfo(appForceCulture);
+                }
+
                 // Set the font to match the display language defined by the
                 // ResourceLanguage resource string for each supported language.
                 //

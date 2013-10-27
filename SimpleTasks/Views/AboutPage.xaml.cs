@@ -33,15 +33,15 @@ namespace SimpleTasks.Views
 
         public static string ApplicationName { get { return "Simple Tasks"; } }
 
-        public static string AuthorName  { get { return "David Kosorin"; } }
+        public static string AuthorName { get { return "David Kosorin"; } }
 
-        public static string AuthorEmail { get { return"kosorin@outlook.com"; } }
+        public static string AuthorEmail { get { return "kosorin@outlook.com"; } }
 
-        public static string EmailSubject { get { return string.Format("Feedback for {0} {1}", ApplicationName, Version); } }
+        public static string EmailSubject { get { return string.Format(AppResources.AboutEmailSubject, ApplicationName, Version); } }
 
         public string ApplicationNameString { get { return ApplicationName.TrimStart(ApplicationName[0]); } }
 
-        public string AuthorString { get { return string.Format(AppResources.AboutByAuthor, AuthorName); } }
+        public string AuthorString { get { return string.Format("by {0}", AuthorName); } }
 
         public string VersionString { get { return string.Format(AppResources.AboutVersion, Version); } }
 

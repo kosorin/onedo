@@ -1,4 +1,5 @@
 ﻿using SimpleTasks.Core.Models;
+using SimpleTasks.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,20 +39,11 @@ namespace SimpleTasks.Core.Tiles
                 {
                     Orientation = Orientation.Vertical
                 };
-                foreach (TaskModel task in tasks.Take(TaskCount - 1))
+                foreach (TaskModel task in tasks.Take(TaskCount))
                 {
                     Border border = GetTaskItemBorder(task);
                     stackPanel.Children.Add(border);
                 }
-                stackPanel.Children.Add(GetTaskItemBorder(new TaskModel()
-                {
-                    Title = DateTime.Now.ToLongTimeString(),
-                    Date = DateTime.Today,
-                    IsImportant = false,
-                    IsComplete = false,
-                    CompletedDate = null
-                }));
-
                 grid.Children.Add(stackPanel);
             }
             else
@@ -111,7 +103,7 @@ namespace SimpleTasks.Core.Tiles
 
             TextBlock textBlock = new TextBlock()
             {
-                Text = "Žádné úkoly",
+                Text = AppResources.TileNoTasks,
                 TextWrapping = TextWrapping.Wrap,
                 TextAlignment = TextAlignment.Center,
                 Foreground = ForegroundBrush,
