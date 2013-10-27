@@ -110,7 +110,6 @@ namespace SimpleTasks.Views
             ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", Date = DateTimeExtensions.Today.AddDays(2), IsImportant = true });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", Date = DateTimeExtensions.Today.AddDays(4) });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", Date = DateTimeExtensions.Today.AddDays(6) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Break bank", Date = DateTimeExtensions.Today.AddDays(7) });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", Date = DateTimeExtensions.Today.AddDays(10), IsImportant = true });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", Date = DateTimeExtensions.Today.AddDays(35) });
 
