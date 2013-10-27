@@ -1,4 +1,5 @@
 ﻿using SimpleTasks.Core.Models;
+using SimpleTasks.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,7 +103,7 @@ namespace SimpleTasks.Core.Tiles
 
             TextBlock textBlock = new TextBlock()
             {
-                Text = "Žádné úkoly",
+                Text = AppResources.TileNoTasks,
                 TextWrapping = TextWrapping.Wrap,
                 TextAlignment = TextAlignment.Center,
                 Foreground = ForegroundBrush,
