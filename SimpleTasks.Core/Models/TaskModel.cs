@@ -16,7 +16,7 @@ namespace SimpleTasks.Core.Models
     public class TaskModel : BindableBase
     {
         private string _title = string.Empty;
-        [DataMember]
+        [DataMember(Order = 0)]
         public string Title
         {
             get
@@ -30,7 +30,7 @@ namespace SimpleTasks.Core.Models
         }
 
         private DateTime? _date = null;
-        [DataMember]
+        [DataMember(Order = 1)]
         public DateTime? Date
         {
             get
@@ -55,7 +55,7 @@ namespace SimpleTasks.Core.Models
         }
 
         private bool _isImportant = false;
-        [DataMember]
+        [DataMember(Order = 2)]
         public bool IsImportant
         {
             get
@@ -66,24 +66,14 @@ namespace SimpleTasks.Core.Models
             {
                 SetProperty(ref _isImportant, value);
             }
-        }        
-        
-        private bool _isComplete = false;
-        [DataMember]
-        public bool IsComplete
-        {
-            get
-            {
-                return _isComplete;
-            }
-            set
-            {
-                SetProperty(ref _isComplete, value);
-            }
         }
 
+        public bool IsComplete { get { return CompletedDate != null; } }
+
+        public bool IsActive { get { return CompletedDate == null; } }
+
         private DateTime? _completedDate = null;
-        [DataMember]
+        [DataMember(Order = 3)]
         public DateTime? CompletedDate
         {
             get
@@ -94,6 +84,16 @@ namespace SimpleTasks.Core.Models
             {
                 SetProperty(ref _completedDate, value);
             }
+        }
+
+        public TaskModel Clone()
+        {
+            TaskModel task = new TaskModel();
+            task.Title = Title;
+            task.Date = Date;
+            task.IsImportant = IsImportant;
+            task.CompletedDate = CompletedDate;
+            return task;
         }
     }
 
@@ -112,7 +112,7 @@ namespace SimpleTasks.Core.Models
         {
             get
             {
-                return this.Where(t => { return !t.IsComplete; }).Count();
+                return this.Where(t => { return t.IsActive; }).Count();
             }
         }
 
@@ -123,13 +123,13 @@ namespace SimpleTasks.Core.Models
                 // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
                 // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
                 List<TaskModel> tasks = this
-                    .Where((t) => { return !t.IsComplete && t.Date != null; })
+                    .Where((t) => { return t.IsActive; })
                     .OrderBy(t => t.Date.Value)
                     .ThenByDescending(t => t.IsImportant)
                     .ToList();
 
                 // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
-                tasks.AddRange(this.Where((t) => { return t.IsComplete == false && t.Date == null; }).OrderByDescending(t => t.IsImportant));
+                tasks.AddRange(this.Where((t) => { return t.IsActive; }).OrderByDescending(t => t.IsImportant));
 
                 return tasks;
             }
@@ -168,7 +168,7 @@ namespace SimpleTasks.Core.Models
                     }
                 }
                 catch (Exception)
-                { 
+                {
                 }
             }
 

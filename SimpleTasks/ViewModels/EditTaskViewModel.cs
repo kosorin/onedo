@@ -93,10 +93,7 @@ namespace SimpleTasks.ViewModels
 
             if (OldTask != null)
             {
-                CurrentTask.Title = OldTask.Title;
-                CurrentTask.Date = OldTask.Date;
-                CurrentTask.IsImportant = OldTask.IsImportant;
-                CurrentTask.IsComplete = OldTask.IsComplete;
+                CurrentTask = OldTask.Clone();
             }
 
             DueDateList = BuildDueDateList();
@@ -236,14 +233,12 @@ namespace SimpleTasks.ViewModels
 
         public void ActivateTask()
         {
-            CurrentTask.IsComplete = false;
             CurrentTask.CompletedDate = null;
             SaveTask();
         }
 
         public void CompleteTask()
         {
-            CurrentTask.IsComplete = true;
             CurrentTask.CompletedDate = DateTime.Now;
             SaveTask();
         }

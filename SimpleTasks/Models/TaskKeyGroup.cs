@@ -95,10 +95,10 @@ namespace SimpleTasks.Models
             });
 
             // Seřazení úkolů ve skupině podle stavu dokončení
-            group.Sort((t0, t1) =>
-            {
-                return t0.IsComplete.CompareTo(t1.IsComplete);
-            });
+            //group.Sort((t0, t1) =>
+            //{
+            //    return t0.IsComplete.CompareTo(t1.IsComplete);
+            //});
         }
 
         public void UpdateTask(TaskModel task)

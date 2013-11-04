@@ -97,7 +97,7 @@ namespace SimpleTasks.ViewModels
             if (IsDataLoaded)
             {
                 // Odstranění dokončených úkolů
-                Tasks = new TaskModelCollection(Tasks.Where((t) => { return !t.IsComplete; }));
+                Tasks = new TaskModelCollection(Tasks.Where((t) => { return t.IsActive; }));
             }
         }
     }
