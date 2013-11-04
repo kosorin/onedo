@@ -86,6 +86,22 @@ namespace SimpleTasks.Core.Models
             }
         }
 
+        private DateTime? _reminderDate = null;
+        [DataMember(Order = 4)]
+        public DateTime? ReminderDate
+        {
+            get
+            {
+                return _reminderDate;
+            }
+            set
+            {
+                SetProperty(ref _reminderDate, value);
+            }
+        }
+
+        public bool HasReminder { get { return ReminderDate != null; } }
+        
         public TaskModel Clone()
         {
             TaskModel task = new TaskModel();
@@ -93,6 +109,7 @@ namespace SimpleTasks.Core.Models
             task.Date = Date;
             task.IsImportant = IsImportant;
             task.CompletedDate = CompletedDate;
+            task.ReminderDate = ReminderDate;
             return task;
         }
     }
@@ -123,7 +140,7 @@ namespace SimpleTasks.Core.Models
                 // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
                 // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
                 List<TaskModel> tasks = this
-                    .Where((t) => { return t.IsActive; })
+                    .Where((t) => { return t.IsActive && t.Date != null; })
                     .OrderBy(t => t.Date.Value)
                     .ThenByDescending(t => t.IsImportant)
                     .ToList();

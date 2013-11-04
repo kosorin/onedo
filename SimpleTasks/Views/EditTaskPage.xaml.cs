@@ -19,6 +19,7 @@ namespace SimpleTasks.Views
             InitializeComponent(); 
             
             FirstTimeLoaded = true;
+            WasReminderSet = false;
             EditingOldTask = (App.ViewModel.TaskToEdit != null);
 
             DataContext = ViewModel = new EditTaskViewModel(App.ViewModel.TaskToEdit);
@@ -30,6 +31,8 @@ namespace SimpleTasks.Views
         public EditTaskViewModel ViewModel { get; private set; }
 
         private bool FirstTimeLoaded { get; set; }
+
+        private bool WasReminderSet { get; set; }
 
         private bool EditingOldTask { get; set; }
 
@@ -142,7 +145,7 @@ namespace SimpleTasks.Views
 
             if (dueDate.Type == DueDateModel.DueDatePickerType.CustomDate)
             {
-                CustomDueDatePicker.Visibility = System.Windows.Visibility.Visible;
+                CustomDueDatePicker.Visibility = Visibility.Visible;
                 CustomDueDatePicker.Height = 0;
 
                 DatePickerShow.Begin();
@@ -153,7 +156,7 @@ namespace SimpleTasks.Views
                 CustomDueDatePicker.IsEnabled = false;
 
                 DatePickerHide.Begin();
-                DatePickerHide.Completed += (s2, e2) => { CustomDueDatePicker.Visibility = System.Windows.Visibility.Collapsed; };
+                DatePickerHide.Completed += (s2, e2) => { CustomDueDatePicker.Visibility = Visibility.Collapsed; };
             }
         }
 
@@ -173,6 +176,39 @@ namespace SimpleTasks.Views
                 FirstTimeLoaded = false;
                 TitleTextBox.Focus();
             }
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!WasReminderSet)
+            {
+                ReminderDatePicker.Value = ViewModel.CurrentDueDate.Date;
+                if (ReminderDatePicker.Value == null)
+                {
+                    ReminderDatePicker.Value = DateTimeExtensions.Today;
+                }
+                WasReminderSet = true;
+            }
+
+            ReminderGrid.Visibility = Visibility.Visible;
+            ReminderGrid.Height = 0;
+
+            ReminderPickerShow.Begin();
+            ReminderPickerShow.Completed += (s2, e2) =>
+            {
+                ReminderDatePicker.IsEnabled = true;
+                ReminderTimePicker.IsEnabled = true;
+            };
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ReminderDatePicker.IsEnabled = false;
+            ReminderTimePicker.IsEnabled = false;
+
+            ReminderPickerHide.Begin();
+            ReminderPickerHide.Completed += (s2, e2) => { ReminderGrid.Visibility = Visibility.Collapsed; };
+           
         }
     }
 }
