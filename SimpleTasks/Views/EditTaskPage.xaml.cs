@@ -14,10 +14,12 @@ namespace SimpleTasks.Views
 {
     public partial class EditTaskPage : PhoneApplicationPage
     {
+        public EditTaskViewModel ViewModel { get; private set; }
+
         public EditTaskPage()
         {
-            InitializeComponent(); 
-            
+            InitializeComponent();
+
             FirstTimeLoaded = true;
             WasReminderSet = false;
             EditingOldTask = (App.ViewModel.TaskToEdit != null);
@@ -28,13 +30,21 @@ namespace SimpleTasks.Views
             BuildLocalizedApplicationBar();
         }
 
-        public EditTaskViewModel ViewModel { get; private set; }
+        private bool EditingOldTask { get; set; }
 
         private bool FirstTimeLoaded { get; set; }
 
-        private bool WasReminderSet { get; set; }
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Při první načtení stránky nastavíme focus na název úkolu.
+            if (FirstTimeLoaded && !EditingOldTask)
+            {
+                FirstTimeLoaded = false;
+                TitleTextBox.Focus();
+            }
+        }
 
-        private bool EditingOldTask { get; set; }
+        #region AppBar
 
         private void BuildLocalizedApplicationBar()
         {
@@ -78,14 +88,12 @@ namespace SimpleTasks.Views
         private void appBarActivateButton_Click(object sender, EventArgs e)
         {
             ViewModel.ActivateTask();
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
             NavigationService.GoBack();
         }
 
         private void appBarCompleteButton_Click(object sender, EventArgs e)
         {
             ViewModel.CompleteTask();
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
             NavigationService.GoBack();
         }
 
@@ -94,12 +102,12 @@ namespace SimpleTasks.Views
             if (TitleTextBox.Text == "")
             {
                 MessageBox.Show(AppResources.MissingTitleText);
-                return;
             }
-
-            ViewModel.SaveTask();
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
-            NavigationService.GoBack();
+            else
+            {
+                ViewModel.SaveTask();
+                NavigationService.GoBack();
+            }
         }
 
         private void appBarDeleteItem_Click(object sender, EventArgs e)
@@ -120,7 +128,6 @@ namespace SimpleTasks.Views
                 {
                 case CustomMessageBoxResult.LeftButton:
                     ViewModel.DeleteTask();
-                    LiveTile.UpdateTiles(App.ViewModel.Tasks);
                     NavigationService.GoBack();
                     break;
                 case CustomMessageBoxResult.RightButton:
@@ -133,13 +140,25 @@ namespace SimpleTasks.Views
             messageBox.Show();
         }
 
+        #endregion
+
+        #region Task Title
+        
+        private void PhoneTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Focus();
+            }
+        }
+        
+        #endregion
+
+        #region Due Date
+
         private void DueDatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListPicker listPicker = sender as ListPicker;
-            if (listPicker == null)
-                return;
-
-            DueDateModel dueDate = listPicker.SelectedItem as DueDateModel;
+            DueDateModel dueDate = DueDatePicker.SelectedItem as DueDateModel;
             if (dueDate == null)
                 return;
 
@@ -160,23 +179,11 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void PhoneTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                this.Focus();
-            }
-        }
+        #endregion
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Při první načtení stránky nastavíme focus na název úkolu.
-            if (FirstTimeLoaded && !EditingOldTask)
-            {
-                FirstTimeLoaded = false;
-                TitleTextBox.Focus();
-            }
-        }
+        #region Reminder
+
+        private bool WasReminderSet { get; set; }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -208,7 +215,9 @@ namespace SimpleTasks.Views
 
             ReminderPickerHide.Begin();
             ReminderPickerHide.Completed += (s2, e2) => { ReminderGrid.Visibility = Visibility.Collapsed; };
-           
+
         }
+
+        #endregion
     }
 }

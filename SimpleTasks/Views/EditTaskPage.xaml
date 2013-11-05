@@ -547,7 +547,7 @@
             <Grid x:Name="ContentPanel" Margin="12,40,12,0">
                 <StackPanel>
                     <!--Nadpis-->
-                    <toolkit:PhoneTextBox Name="TitleTextBox"
+                    <toolkit:PhoneTextBox x:Name="TitleTextBox"
                                           Text="{Binding CurrentTask.Title, Mode=TwoWay}"
                                           Hint="{Binding LocalizedResources.TitleHintText, Source={StaticResource LocalizedStrings}}"
                                           Margin="20,0"
@@ -557,7 +557,7 @@
                     <!--Výběr termínu-->
                     <StackPanel Orientation="Vertical"
                                 Margin="0,20,0,0">
-                        <toolkit:ListPicker Name="DueDatePicker"       
+                        <toolkit:ListPicker x:Name="DueDatePicker"       
                                             Margin="50,0,50,0"
                                             ItemsSource="{Binding DueDateList}"
                                             SelectedItem="{Binding CurrentDueDate, Mode=TwoWay}"
@@ -568,7 +568,7 @@
                                             Template="{StaticResource DueDatePickerTemplate}"/>
 
                         <!--Vlastní termín-->
-                        <toolkit:DatePicker Name="CustomDueDatePicker"
+                        <toolkit:DatePicker x:Name="CustomDueDatePicker"
                                             Margin="50,0,50,0"
                                             IsEnabled="False"
                                             Visibility="Collapsed"

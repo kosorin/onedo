@@ -249,11 +249,15 @@ namespace SimpleTasks.ViewModels
 
             App.ViewModel.Tasks.Remove(OldTask);
             App.ViewModel.Tasks.Add(CurrentTask);
+
+            LiveTile.UpdateTiles(App.ViewModel.Tasks);
         }
 
         public void DeleteTask()
         {
             App.ViewModel.Tasks.Remove(OldTask);
+
+            LiveTile.UpdateTiles(App.ViewModel.Tasks);
         }
     }
 }
