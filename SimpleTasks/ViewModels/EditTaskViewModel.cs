@@ -14,6 +14,8 @@ namespace SimpleTasks.ViewModels
 {
     public class EditTaskViewModel : BindableBase
     {
+        public bool EditingOldTask { get; set; }
+
         private TaskModel _oldTask = null;
         public TaskModel OldTask
         {
@@ -89,12 +91,17 @@ namespace SimpleTasks.ViewModels
 
         public EditTaskViewModel(TaskModel oldTask)
         {
-            OldTask = oldTask;
             CurrentTask = new TaskModel();
-
-            if (OldTask != null)
+            if (oldTask != null)
             {
-                CurrentTask = OldTask.Clone();
+                OldTask = oldTask;
+                CurrentTask = oldTask.Clone();
+
+                EditingOldTask = true;
+            }
+            else
+            {
+                EditingOldTask = false;
             }
 
             DueDateList = BuildDueDateList();
@@ -187,21 +194,21 @@ namespace SimpleTasks.ViewModels
             // Nastaví aktuální termín
             if (OldTask != null)
             {
-                if (CurrentTask.Date == null)
+                if (CurrentTask.DueDate == null)
                 {
                     CurrentDueDate = noDueDate;
                 }
-                else if (CurrentTask.Date == DateTimeExtensions.Today)
+                else if (CurrentTask.DueDate == DateTimeExtensions.Today)
                 {
                     CurrentDueDate = todayDueDate;
                 }
-                else if (CurrentTask.Date == DateTimeExtensions.Tomorrow)
+                else if (CurrentTask.DueDate == DateTimeExtensions.Tomorrow)
                 {
                     CurrentDueDate = tomorrowDueDate;
                 }
                 else
                 {
-                    CustomDueDate.Date = CurrentTask.Date;
+                    CustomDueDate.Date = CurrentTask.DueDate;
                     CurrentDueDate = CustomDueDate;
                 }
             }
@@ -246,46 +253,21 @@ namespace SimpleTasks.ViewModels
 
         public void SaveTask()
         {
-            CurrentTask.Date = CurrentDueDate.Date;
+            CurrentTask.DueDate = CurrentDueDate.Date;
 
-            App.ViewModel.Tasks.Remove(OldTask);
-            SetReminder(CurrentTask.Uid, CurrentTask.Title, CurrentTask.ReminderDate);
-            App.ViewModel.Tasks.Add(CurrentTask);
-
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
-        }
-
-        private void SetReminder(string name, string content, DateTime? reminderDateTime)
-        {
-            RemoveReminder(name);
-
-            if (reminderDateTime != null)
+            if (EditingOldTask)
             {
-                Reminder reminder = new Reminder(name)
-                {
-                    BeginTime = reminderDateTime.Value,
-                    Title = "Připomenutí úkolu",
-                    Content = content
-                };
-                ScheduledActionService.Add(reminder);
+                App.ViewModel.UpdateTask(OldTask, CurrentTask);
             }
-        }
-
-        private void RemoveReminder(string name)
-        {
-            ScheduledAction reminder = ScheduledActionService.Find(name);
-            if (reminder != null)
+            else
             {
-                ScheduledActionService.Remove(reminder.Name);
+                App.ViewModel.AddTask(CurrentTask);
             }
         }
 
         public void DeleteTask()
         {
-            RemoveReminder(OldTask.Uid);
-            App.ViewModel.Tasks.Remove(OldTask);
-
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
+            App.ViewModel.RemoveTask(OldTask);
         }
     }
 }

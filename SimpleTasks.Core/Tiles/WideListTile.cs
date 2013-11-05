@@ -30,7 +30,7 @@ namespace SimpleTasks.Core.Tiles
                 BorderThickness = new Thickness(10, 0, 0, 0),
                 BorderBrush = BorderBrush,
             };
-            if (task.Date == null || task.Date.Value > DateTime.Today)
+            if (task.DueDate == null || task.DueDate.Value > DateTime.Today)
             {
                 innerBorder.Opacity = 0.7;
             }
@@ -57,7 +57,7 @@ namespace SimpleTasks.Core.Tiles
 
             TextBlock dueTextBlock = new TextBlock()
             {
-                Text = DateTimeExtensions.ToRelativeString(task.Date, false),
+                Text = DateTimeExtensions.ToRelativeString(task.DueDate, false),
                 Margin = new Thickness(20, 0, 5, 0),
                 Foreground = ForegroundBrush,
                 FontSize = ((double)Height / (double)TaskCount) * 0.7,

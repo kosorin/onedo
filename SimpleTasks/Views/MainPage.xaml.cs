@@ -103,16 +103,16 @@ namespace SimpleTasks.Views
         void appBarResetMenuItem_Click(object sender, EventArgs e)
         {
             ViewModel.Tasks.Clear();
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Buy milk", Date = DateTimeExtensions.Today.AddDays(-7) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Book flight to London", Date = DateTimeExtensions.Today.AddDays(-2), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Call mom", Date = DateTimeExtensions.Today.AddDays(0), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to the dentist", Date = DateTimeExtensions.Today.AddDays(1) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version", Date = DateTimeExtensions.Today.AddDays(1) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", Date = DateTimeExtensions.Today.AddDays(2), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", Date = DateTimeExtensions.Today.AddDays(4) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", Date = DateTimeExtensions.Today.AddDays(6) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", Date = DateTimeExtensions.Today.AddDays(10), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", Date = DateTimeExtensions.Today.AddDays(35) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Buy milk", DueDate = DateTimeExtensions.Today.AddDays(-7) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Book flight to London", DueDate = DateTimeExtensions.Today.AddDays(-2), IsImportant = true });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Call mom", DueDate = DateTimeExtensions.Today.AddDays(0), IsImportant = true });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to the dentist", DueDate = DateTimeExtensions.Today.AddDays(1) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version", DueDate = DateTimeExtensions.Today.AddDays(1) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", DueDate = DateTimeExtensions.Today.AddDays(2), IsImportant = true });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", DueDate = DateTimeExtensions.Today.AddDays(4) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", DueDate = DateTimeExtensions.Today.AddDays(6) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", DueDate = DateTimeExtensions.Today.AddDays(10), IsImportant = true });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", DueDate = DateTimeExtensions.Today.AddDays(35) });
 
             LiveTile.UpdateTilesUI(ViewModel.Tasks);
         }

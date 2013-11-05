@@ -42,7 +42,7 @@ namespace SimpleTasks.Core.Helpers
                 {
                     IconicTileData iconicTileData = new IconicTileData
                     {
-                        Count = Math.Min(sortedTasks.Count((t) => { return t.Date <= DateTimeExtensions.Today; }), 99),
+                        Count = Math.Min(sortedTasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99),
 
                         WideContent1 = sortedTasks.Count > 0 ? sortedTasks[0].Title : "",
                         WideContent2 = sortedTasks.Count > 1 ? sortedTasks[1].Title : "",
@@ -100,7 +100,7 @@ namespace SimpleTasks.Core.Helpers
         static public ShellTileData CreateSecondaryTileData(List<TaskModel> sortedTasks)
         {
             // Počet dnešních úkolů (včetně zmeškaných)
-            int todayTaskCount = Math.Min(sortedTasks.Count((t) => { return t.Date <= DateTimeExtensions.Today; }), 99);
+            int todayTaskCount = Math.Min(sortedTasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99);
 
             // Vytvoření obrázků dlaždic
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + SmallTileFileName, System.IO.FileMode.Create))

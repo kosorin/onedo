@@ -69,16 +69,16 @@ namespace SimpleTasks.Models
             if (task.IsComplete)
                 group = this[(int)TaskKeyGroup.Types.Completed];
 
-            else if (task.Date <= DateTimeExtensions.Today)
+            else if (task.DueDate <= DateTimeExtensions.Today)
                 group = this[(int)TaskKeyGroup.Types.Today];
 
-            else if (task.Date == DateTimeExtensions.Tomorrow)
+            else if (task.DueDate == DateTimeExtensions.Tomorrow)
                 group = this[(int)TaskKeyGroup.Types.Tomorrow];
 
-            else if (task.Date > DateTimeExtensions.Tomorrow && task.Date <= DateTimeExtensions.LastDayOfWeek)
+            else if (task.DueDate > DateTimeExtensions.Tomorrow && task.DueDate <= DateTimeExtensions.LastDayOfWeek)
                 group = this[(int)TaskKeyGroup.Types.ThisWeek];
 
-            else if (task.Date > DateTimeExtensions.LastDayOfWeek && task.Date <= DateTimeExtensions.LastDayOfNextWeek)
+            else if (task.DueDate > DateTimeExtensions.LastDayOfWeek && task.DueDate <= DateTimeExtensions.LastDayOfNextWeek)
                 group = this[(int)TaskKeyGroup.Types.NextWeek];
 
             else
@@ -90,8 +90,8 @@ namespace SimpleTasks.Models
             // Seřazení úkolů ve skupině podle data
             group.Sort((t0, t1) =>
             {
-                return DateTime.Compare(t0.Date.HasValue ? t0.Date.Value : DateTimeExtensions.Today,
-                                        t1.Date.HasValue ? t1.Date.Value : DateTimeExtensions.Today);
+                return DateTime.Compare(t0.DueDate.HasValue ? t0.DueDate.Value : DateTimeExtensions.Today,
+                                        t1.DueDate.HasValue ? t1.DueDate.Value : DateTimeExtensions.Today);
             });
 
             // Seřazení úkolů ve skupině podle stavu dokončení

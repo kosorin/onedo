@@ -28,7 +28,6 @@ namespace SimpleTasks.Views
                 taskToEdit = (TaskModel)PhoneApplicationService.Current.State["TaskToEdit"];
                 PhoneApplicationService.Current.State["TaskToEdit"] = null;
             }
-            EditingOldTask = taskToEdit != null;
 
             ViewModel = new EditTaskViewModel(taskToEdit);
             DataContext = ViewModel;
@@ -39,18 +38,36 @@ namespace SimpleTasks.Views
             RoutedEventHandler firstTimeLoadHandler = null;
             firstTimeLoadHandler = (s, e) =>
             {
-                if (!EditingOldTask)
+                if (!ViewModel.EditingOldTask)
                 {
                     TitleTextBox.Focus();
                 }
                 this.Loaded -= firstTimeLoadHandler;
             };
             this.Loaded += firstTimeLoadHandler;
-
-            WasReminderSet = false;
         }
 
-        private bool EditingOldTask { get; set; }
+        private bool CanSave()
+        {
+            if (TitleTextBox.Text == "")
+            {
+                MessageBox.Show(AppResources.MissingTitleText);
+                return false;
+            }
+            else if (ReminderToggleButton.IsChecked.Value && ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
+            {
+                MessageBox.Show("Datum a čas připomenutí musí být v budoucnosti.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void PrepareSave()
+        { 
+        }
 
         #region AppBar
 
@@ -59,7 +76,7 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            if (EditingOldTask)
+            if (ViewModel.EditingOldTask)
             {
                 if (ViewModel.CurrentTask.IsComplete)
                 {
@@ -84,7 +101,7 @@ namespace SimpleTasks.Views
 
 
             // Menu
-            if (EditingOldTask)
+            if (ViewModel.EditingOldTask)
             {
                 ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
                 appBarDeleteItem.Text = AppResources.AppBarDeleteText;
@@ -95,28 +112,29 @@ namespace SimpleTasks.Views
 
         private void appBarActivateButton_Click(object sender, EventArgs e)
         {
-            ViewModel.ActivateTask();
-            NavigationService.GoBack();
+            if (CanSave())
+            {
+                PrepareSave();
+                ViewModel.ActivateTask();
+                NavigationService.GoBack();
+            }
         }
 
         private void appBarCompleteButton_Click(object sender, EventArgs e)
         {
-            ViewModel.CompleteTask();
-            NavigationService.GoBack();
+            if (CanSave())
+            {
+                PrepareSave();
+                ViewModel.CompleteTask();
+                NavigationService.GoBack();
+            }
         }
 
         private void appBarSaveButton_Click(object sender, EventArgs e)
         {
-            if (TitleTextBox.Text == "")
+            if (CanSave())
             {
-                MessageBox.Show(AppResources.MissingTitleText);
-            }
-            else if (ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
-            {
-                MessageBox.Show("Datum a čas připomenutí musí být v budoucnosti.");
-            }
-            else
-            {
+                PrepareSave();
                 ViewModel.SaveTask();
                 NavigationService.GoBack();
             }
@@ -148,7 +166,6 @@ namespace SimpleTasks.Views
                     break;
                 }
             };
-
             messageBox.Show();
         }
 
@@ -195,25 +212,32 @@ namespace SimpleTasks.Views
 
         #region Reminder
 
-        private bool WasReminderSet { get; set; }
-
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            if (!WasReminderSet)
+            if (ViewModel.CurrentTask.ReminderDate == null)
             {
-                ReminderDatePicker.Value = ViewModel.CurrentDueDate.Date;
-                if (ReminderDatePicker.Value == null)
+                if (ViewModel.CurrentDueDate.Date == null)
                 {
-                    ReminderDatePicker.Value = DateTimeExtensions.Today;
+                    ReminderDatePicker.Value = DateTime.Now;
+                    ReminderTimePicker.Value = DateTime.Now.AddHours(1);
                 }
-                WasReminderSet = true;
+                else
+                {
+                    ReminderDatePicker.Value = ViewModel.CurrentDueDate.Date;
+                    ReminderTimePicker.Value = ViewModel.CurrentDueDate.Date;
+                }
+            }
+            else
+            {
+                ReminderDatePicker.Value = ViewModel.CurrentTask.ReminderDate;
+                ReminderTimePicker.Value = ViewModel.CurrentTask.ReminderDate;
             }
 
+            // Animace zobrazení
             ReminderGrid.Visibility = Visibility.Visible;
             ReminderGrid.Height = 0;
-
-            ReminderPickerShow.Begin();
-            ReminderPickerShow.Completed += (s2, e2) =>
+            ReminderGridShow.Begin();
+            ReminderGridShow.Completed += (s2, e2) =>
             {
                 ReminderDatePicker.IsEnabled = true;
                 ReminderTimePicker.IsEnabled = true;
@@ -222,12 +246,23 @@ namespace SimpleTasks.Views
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
+            // Animace skrytí
             ReminderDatePicker.IsEnabled = false;
             ReminderTimePicker.IsEnabled = false;
+            ReminderGridHide.Begin();
+            ReminderGridHide.Completed += (s2, e2) =>
+            {
+                ReminderGrid.Visibility = Visibility.Collapsed;
+            };
+        }
 
-            ReminderPickerHide.Begin();
-            ReminderPickerHide.Completed += (s2, e2) => { ReminderGrid.Visibility = Visibility.Collapsed; };
-
+        private DateTime? GetReminderDate()
+        {
+            return DateTime.Now;
+            //if (ReminderToggleButton.IsChecked.Value)
+            //{
+            //    return 
+            //}
         }
 
         #endregion

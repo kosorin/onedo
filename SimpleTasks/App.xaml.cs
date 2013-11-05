@@ -123,7 +123,7 @@ namespace SimpleTasks
                 StartPeriodicTask();
             else
                 StopPeriodicTask();
-            ViewModel.LoadData();
+            ViewModel.LoadTasks();
             Debug.WriteLine("===== ========== =====");
         }
 
@@ -134,7 +134,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
-                ViewModel.LoadData();
+                ViewModel.LoadTasks();
             }
             Debug.WriteLine("===== ========== =====");
         }
@@ -144,7 +144,7 @@ namespace SimpleTasks
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
-            ViewModel.SaveData();
+            ViewModel.SaveTasks();
             Debug.WriteLine("===== ========== =====");
         }
 
@@ -153,7 +153,7 @@ namespace SimpleTasks
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
-            ViewModel.SaveData();
+            ViewModel.SaveTasks();
             Debug.WriteLine("===== ========== =====");
         }
 

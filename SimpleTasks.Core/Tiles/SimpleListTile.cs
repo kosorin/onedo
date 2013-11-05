@@ -70,7 +70,7 @@ namespace SimpleTasks.Core.Tiles
                 BorderBrush = BorderBrush,
             };
             Border innerBorder = new Border();
-            if (task.Date == null || task.Date.Value > DateTime.Today)
+            if (task.DueDate == null || task.DueDate.Value > DateTime.Today)
             {
                 innerBorder.Opacity = 0.7;
             }

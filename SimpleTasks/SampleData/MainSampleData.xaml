@@ -6,15 +6,15 @@
     xmlns:md="clr-namespace:SimpleTasks.Core.Models;assembly=SimpleTasks.Core">
     
     <vm:MainViewModel.Tasks>
-        <md:TaskModel Title="Vynést odpadky               " Date="2013-10-15" IsImportant="True"/>
-        <md:TaskModel Title="Zavolat Honzovi              " Date="2013-10-18" IsComplete="True"/>
-        <md:TaskModel Title="Jít k zubaři                 " Date="2013-10-01" />
-        <md:TaskModel Title="Koupit nové CD               " Date="2013-11-30" IsComplete="True" IsImportant="True" />
-        <md:TaskModel Title="Projekt do Matiky            " Date="2013-10-19" />
-        <md:TaskModel Title="Zaplatit nájem               " Date="2013-11-21" />
-        <md:TaskModel Title="Zasadit strom                " Date="2013-11-22" IsImportant="True" />
-        <md:TaskModel Title="Vyvenčit psy                 " Date="2013-10-23" />
-        <md:TaskModel Title="Vyzvednout děti ze školy     " Date="2013-10-29" />
+        <md:TaskModel Title="Vynést odpadky               " DueDate="2013-10-15" IsImportant="True"/>
+        <md:TaskModel Title="Zavolat Honzovi              " DueDate="2013-10-18" />
+        <md:TaskModel Title="Jít k zubaři                 " DueDate="2013-10-01" />
+        <md:TaskModel Title="Koupit nové CD               " DueDate="2013-11-30" IsImportant="True" />
+        <md:TaskModel Title="Projekt do Matiky            " DueDate="2013-10-19" />
+        <md:TaskModel Title="Zaplatit nájem               " DueDate="2013-11-21" />
+        <md:TaskModel Title="Zasadit strom                " DueDate="2013-11-22" IsImportant="True" />
+        <md:TaskModel Title="Vyvenčit psy                 " DueDate="2013-10-23" />
+        <md:TaskModel Title="Vyzvednout děti ze školy     " DueDate="2013-10-29" />
     </vm:MainViewModel.Tasks>
 
 </vm:MainViewModel>

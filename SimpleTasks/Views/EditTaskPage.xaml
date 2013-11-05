@@ -615,7 +615,8 @@
                     <!--Připomenutí-->
                     <StackPanel Orientation="Vertical"
                                 Margin="0,20,0,0">
-                        <ToggleButton Margin="50,0,50,0"
+                        <ToggleButton x:Name="ReminderToggleButton"
+                                      Margin="50,0,50,0"
                                       Template="{StaticResource ReminderButtonTemplate}"
                                       IsChecked="{Binding CurrentTask.HasReminder, Mode=TwoWay}"
                                       Checked="ToggleButton_Checked" 
@@ -629,17 +630,17 @@
                                 <RowDefinition Height="1*"/> 
                             </Grid.RowDefinitions>
                             <Grid.Resources>
-                                <Storyboard x:Name="ReminderPickerShow">
+                                <Storyboard x:Name="ReminderGridShow">
                                     <DoubleAnimation Storyboard.TargetName="ReminderGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="100"
-                                                     Duration="0:0:0.4">
+                                                     Duration="0:0:0.6">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseOut"/>
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
-                                <Storyboard x:Name="ReminderPickerHide">
+                                <Storyboard x:Name="ReminderGridHide">
                                     <DoubleAnimation Storyboard.TargetName="ReminderGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="0"

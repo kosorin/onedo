@@ -54,7 +54,7 @@ namespace SimpleTasks.Scheduler
             //}
 
             // Získání dat ze souboru
-            TaskModelCollection tasks = TaskModelCollection.LoadTasksFromXmlFile();
+            TaskModelCollection tasks = TaskModelCollection.LoadFromXmlFile();
 
             // Aktualizace dlaždice
             Deployment.Current.Dispatcher.BeginInvoke(delegate

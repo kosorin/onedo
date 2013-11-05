@@ -43,9 +43,9 @@ namespace SimpleTasks.ViewModels
 
         public bool IsDataLoaded { get; private set; }
 
-        public void LoadData()
+        public void LoadTasks()
         {
-            Tasks = TaskModelCollection.LoadTasksFromXmlFile();
+            Tasks = TaskModelCollection.LoadFromXmlFile();
             if (Tasks == null)
             {
                 Tasks = new TaskModelCollection();
@@ -76,9 +76,19 @@ namespace SimpleTasks.ViewModels
 #endif
         }
 
-        public void SaveData()
+        public void SaveTasks()
         {
-            TaskModelCollection.SaveTasksToXmlFile(Tasks);
+            TaskModelCollection.SaveToXmlFile(Tasks);
+        }
+
+        public void AddTask(TaskModel task)
+        {
+            if (task == null)
+                throw new ArgumentNullException();
+
+            Tasks.Add(task);
+            TaskReminder.Add(task.Uid, task.Title, task.ReminderDate);
+            LiveTile.UpdateTiles(Tasks);
         }
 
         public void UpdateTask(TaskModel task, TaskModel newTask)
@@ -86,18 +96,20 @@ namespace SimpleTasks.ViewModels
             if (task == null || newTask == null)
                 throw new ArgumentNullException();
 
-            if (task != newTask)
-            {
-                task.Update(newTask);
-            }
+            task.Update(newTask);
+            TaskReminder.Add(task.Uid, task.Title, task.ReminderDate);
+
+            LiveTile.UpdateTiles(Tasks);
         }
 
-        public void DeleteTask(TaskModel task)
+        public void RemoveTask(TaskModel task)
         {
             if (task == null)
                 throw new ArgumentNullException();
 
             Tasks.Remove(task);
+            TaskReminder.Remove(task.Uid);
+            LiveTile.UpdateTiles(Tasks);
         }
 
         public void DeleteOldCompletedTasks(int days)
