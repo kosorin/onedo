@@ -121,6 +121,15 @@ namespace SimpleTasks.Core.Models
             Uid = Guid.NewGuid().ToString();
         }
 
+        public void Update(TaskModel newTask)
+        {
+            Title = newTask.Title;
+            Date = newTask.Date;
+            IsImportant = newTask.IsImportant;
+            CompletedDate = newTask.CompletedDate;
+            ReminderDate = newTask.ReminderDate;
+        }
+
         public TaskModel Clone()
         {
             TaskModel task = new TaskModel();

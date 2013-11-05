@@ -53,9 +53,11 @@ namespace SimpleTasks.ViewModels
             IsDataLoaded = true;
 
             if (App.Settings.DeleteCompletedTasksSetting)
+            {
                 DeleteOldCompletedTasks(App.Settings.DeleteCompletedTasksDaysSetting);
+            }
 
-
+#if DEBUG
             Debug.WriteLine("> Úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
@@ -71,11 +73,31 @@ namespace SimpleTasks.ViewModels
                     Debug.WriteLine("  [{0}] {1}", reminder.Name, task.Title);
                 }
             }
+#endif
         }
 
         public void SaveData()
         {
             TaskModelCollection.SaveTasksToXmlFile(Tasks);
+        }
+
+        public void UpdateTask(TaskModel task, TaskModel newTask)
+        {
+            if (task == null || newTask == null)
+                throw new ArgumentNullException();
+
+            if (task != newTask)
+            {
+                task.Update(newTask);
+            }
+        }
+
+        public void DeleteTask(TaskModel task)
+        {
+            if (task == null)
+                throw new ArgumentNullException();
+
+            Tasks.Remove(task);
         }
 
         public void DeleteOldCompletedTasks(int days)

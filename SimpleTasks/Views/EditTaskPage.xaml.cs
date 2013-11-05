@@ -111,6 +111,10 @@ namespace SimpleTasks.Views
             {
                 MessageBox.Show(AppResources.MissingTitleText);
             }
+            else if (ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
+            {
+                MessageBox.Show("Datum a čas připomenutí musí být v budoucnosti.");
+            }
             else
             {
                 ViewModel.SaveTask();
