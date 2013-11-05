@@ -9,6 +9,7 @@ using SimpleTasks.Resources;
 using SimpleTasks.Models;
 using System.Windows.Input;
 using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Views
 {
@@ -22,10 +23,16 @@ namespace SimpleTasks.Views
 
             FirstTimeLoaded = true;
             WasReminderSet = false;
-            EditingOldTask = (App.ViewModel.TaskToEdit != null);
 
-            DataContext = ViewModel = new EditTaskViewModel(App.ViewModel.TaskToEdit);
-            App.ViewModel.TaskToEdit = null;
+            TaskModel taskToEdit = null;
+            if (PhoneApplicationService.Current.State.ContainsKey("TaskToEdit"))
+            {
+                taskToEdit = (TaskModel)PhoneApplicationService.Current.State["TaskToEdit"];
+                PhoneApplicationService.Current.State["TaskToEdit"] = null;
+            }
+            EditingOldTask = taskToEdit != null;
+
+            DataContext = ViewModel = new EditTaskViewModel(taskToEdit);
 
             BuildLocalizedApplicationBar();
         }
@@ -143,7 +150,7 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Task Title
-        
+
         private void PhoneTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -151,7 +158,7 @@ namespace SimpleTasks.Views
                 this.Focus();
             }
         }
-        
+
         #endregion
 
         #region Due Date

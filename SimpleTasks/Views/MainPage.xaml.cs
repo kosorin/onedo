@@ -126,9 +126,9 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            ViewModel.TaskToEdit = task;
             selector.SelectedItem = null;
 
+            PhoneApplicationService.Current.State["TaskToEdit"] = task;
             NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative));
         }
 

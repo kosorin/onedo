@@ -34,19 +34,6 @@ namespace SimpleTasks.ViewModels
             }
         }
 
-        private TaskModel _taskToEdit = null;
-        public TaskModel TaskToEdit
-        {
-            get
-            {
-                return _taskToEdit;
-            }
-            set
-            {
-                SetProperty(ref _taskToEdit, value);
-            }
-        }
-
         public MainViewModel()
         {
             IsDataLoaded = false;
