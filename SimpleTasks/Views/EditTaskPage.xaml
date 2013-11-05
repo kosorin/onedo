@@ -15,8 +15,7 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
-    toolkit:TiltEffect.IsTiltEnabled="True"
-    Loaded="PhoneApplicationPage_Loaded">
+    toolkit:TiltEffect.IsTiltEnabled="True">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>

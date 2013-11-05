@@ -21,9 +21,7 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            FirstTimeLoaded = true;
-            WasReminderSet = false;
-
+            // Zjistíme, jaký úkol se bude upravovat (pokud se nepřidává nový úkol)
             TaskModel taskToEdit = null;
             if (PhoneApplicationService.Current.State.ContainsKey("TaskToEdit"))
             {
@@ -32,24 +30,27 @@ namespace SimpleTasks.Views
             }
             EditingOldTask = taskToEdit != null;
 
-            DataContext = ViewModel = new EditTaskViewModel(taskToEdit);
+            ViewModel = new EditTaskViewModel(taskToEdit);
+            DataContext = ViewModel;
 
             BuildLocalizedApplicationBar();
+
+            // Při přidání nového úkolu se zobrází klávesnice
+            RoutedEventHandler firstTimeLoadHandler = null;
+            firstTimeLoadHandler = (s, e) =>
+            {
+                if (!EditingOldTask)
+                {
+                    TitleTextBox.Focus();
+                }
+                this.Loaded -= firstTimeLoadHandler;
+            };
+            this.Loaded += firstTimeLoadHandler;
+
+            WasReminderSet = false;
         }
 
         private bool EditingOldTask { get; set; }
-
-        private bool FirstTimeLoaded { get; set; }
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Při první načtení stránky nastavíme focus na název úkolu.
-            if (FirstTimeLoaded && !EditingOldTask)
-            {
-                FirstTimeLoaded = false;
-                TitleTextBox.Focus();
-            }
-        }
 
         #region AppBar
 
