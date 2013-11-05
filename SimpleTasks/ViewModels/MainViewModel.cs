@@ -1,7 +1,9 @@
-﻿using SimpleTasks.Core.Helpers;
+﻿using Microsoft.Phone.Scheduler;
+using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Models;
 using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SimpleTasks.ViewModels
@@ -52,6 +54,23 @@ namespace SimpleTasks.ViewModels
 
             if (App.Settings.DeleteCompletedTasksSetting)
                 DeleteOldCompletedTasks(App.Settings.DeleteCompletedTasksDaysSetting);
+
+
+            Debug.WriteLine("> Úkoly ({0}):", Tasks.Count);
+            foreach (TaskModel task in Tasks)
+            {
+                Debug.WriteLine("  {0}", task.Title);
+            }
+
+            Debug.WriteLine("> Připomenutí:");
+            foreach (TaskModel task in Tasks)
+            {
+                ScheduledAction reminder = ScheduledActionService.Find(task.Uid);
+                if (reminder != null)
+                {
+                    Debug.WriteLine("  [{0}] {1}", reminder.Name, task.Title);
+                }
+            }
         }
 
         public void SaveData()

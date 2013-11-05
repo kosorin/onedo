@@ -12,6 +12,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Diagnostics;
 using SimpleTasks.Core.Models;
+using Microsoft.Phone.Scheduler;
 
 namespace SimpleTasks.Views
 {

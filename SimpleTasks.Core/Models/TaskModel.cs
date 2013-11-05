@@ -15,8 +15,22 @@ namespace SimpleTasks.Core.Models
     [DataContract(Name = "Task", Namespace = "")]
     public class TaskModel : BindableBase
     {
-        private string _title = string.Empty;
+        private string _uid = string.Empty;
         [DataMember(Order = 0)]
+        public string Uid
+        {
+            get
+            {
+                return _uid;
+            }
+            set
+            {
+                SetProperty(ref _uid, value);
+            }
+        }
+
+        private string _title = string.Empty;
+        [DataMember(Order = 1)]
         public string Title
         {
             get
@@ -30,7 +44,7 @@ namespace SimpleTasks.Core.Models
         }
 
         private DateTime? _date = null;
-        [DataMember(Order = 1)]
+        [DataMember(Order = 2)]
         public DateTime? Date
         {
             get
@@ -55,7 +69,7 @@ namespace SimpleTasks.Core.Models
         }
 
         private bool _isImportant = false;
-        [DataMember(Order = 2)]
+        [DataMember(Order = 3)]
         public bool IsImportant
         {
             get
@@ -73,7 +87,7 @@ namespace SimpleTasks.Core.Models
         public bool IsActive { get { return CompletedDate == null; } }
 
         private DateTime? _completedDate = null;
-        [DataMember(Order = 3)]
+        [DataMember(Order = 4)]
         public DateTime? CompletedDate
         {
             get
@@ -87,7 +101,7 @@ namespace SimpleTasks.Core.Models
         }
 
         private DateTime? _reminderDate = null;
-        [DataMember(Order = 4)]
+        [DataMember(Order = 5)]
         public DateTime? ReminderDate
         {
             get
@@ -101,10 +115,16 @@ namespace SimpleTasks.Core.Models
         }
 
         public bool HasReminder { get { return ReminderDate != null; } }
-        
+
+        public TaskModel()
+        {
+            Uid = Guid.NewGuid().ToString();
+        }
+
         public TaskModel Clone()
         {
             TaskModel task = new TaskModel();
+            task.Uid = Uid;
             task.Title = Title;
             task.Date = Date;
             task.IsImportant = IsImportant;

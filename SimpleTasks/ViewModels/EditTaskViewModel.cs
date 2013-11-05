@@ -1,4 +1,5 @@
-﻿using SimpleTasks.Core.Helpers;
+﻿using Microsoft.Phone.Scheduler;
+using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Models;
 using SimpleTasks.Resources;
@@ -248,13 +249,40 @@ namespace SimpleTasks.ViewModels
             CurrentTask.Date = CurrentDueDate.Date;
 
             App.ViewModel.Tasks.Remove(OldTask);
+            SetReminder(CurrentTask.Uid, CurrentTask.Title, CurrentTask.ReminderDate);
             App.ViewModel.Tasks.Add(CurrentTask);
 
             LiveTile.UpdateTiles(App.ViewModel.Tasks);
         }
 
+        private void SetReminder(string name, string content, DateTime? reminderDateTime)
+        {
+            RemoveReminder(name);
+
+            if (reminderDateTime != null)
+            {
+                Reminder reminder = new Reminder(name)
+                {
+                    BeginTime = reminderDateTime.Value,
+                    Title = "Připomenutí úkolu",
+                    Content = content
+                };
+                ScheduledActionService.Add(reminder);
+            }
+        }
+
+        private void RemoveReminder(string name)
+        {
+            ScheduledAction reminder = ScheduledActionService.Find(name);
+            if (reminder != null)
+            {
+                ScheduledActionService.Remove(reminder.Name);
+            }
+        }
+
         public void DeleteTask()
         {
+            RemoveReminder(OldTask.Uid);
             App.ViewModel.Tasks.Remove(OldTask);
 
             LiveTile.UpdateTiles(App.ViewModel.Tasks);
