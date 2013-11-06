@@ -10,8 +10,8 @@ namespace SimpleTasks.ViewModels
 {
     public class MainViewModel : BindableBase
     {
-        private TaskModelCollection _tasks = new TaskModelCollection();
-        public TaskModelCollection Tasks
+        private TaskCollection _tasks = new TaskCollection();
+        public TaskCollection Tasks
         {
             get
             {
@@ -23,7 +23,9 @@ namespace SimpleTasks.ViewModels
                 OnPropertyChanged(GroupedTasksPropertyString);
 
                 if (_tasks != null)
+                {
                     _tasks.CollectionChanged += (s, e) => { OnPropertyChanged(GroupedTasksPropertyString); };
+                }
             }
         }
 
@@ -45,10 +47,10 @@ namespace SimpleTasks.ViewModels
 
         public void LoadTasks()
         {
-            Tasks = TaskModelCollection.LoadFromXmlFile();
+            Tasks = TaskCollection.LoadFromXmlFile(TaskCollection.DefaultDataFileName);
             if (Tasks == null)
             {
-                Tasks = new TaskModelCollection();
+                Tasks = new TaskCollection();
             }
             IsDataLoaded = true;
 
@@ -78,7 +80,7 @@ namespace SimpleTasks.ViewModels
 
         public void SaveTasks()
         {
-            TaskModelCollection.SaveToXmlFile(Tasks);
+            Tasks.SaveToXmlFile(TaskCollection.DefaultDataFileName);
         }
 
         public void AddTask(TaskModel task)
@@ -87,18 +89,19 @@ namespace SimpleTasks.ViewModels
                 throw new ArgumentNullException();
 
             Tasks.Add(task);
-            TaskReminder.Add(task.Uid, task.Title, task.ReminderDate);
-            LiveTile.UpdateTiles(Tasks);
+            TaskReminder.Add(task);
+            LiveTile.Update(Tasks);
         }
 
-        public void UpdateTask(TaskModel task, TaskModel newTask)
+        public void UpdateTask(TaskModel oldTask, TaskModel newTask)
         {
-            if (task == null || newTask == null)
+            if (oldTask == null || newTask == null)
                 throw new ArgumentNullException();
 
-            task.Update(newTask);
-            TaskReminder.Add(task.Uid, task.Title, task.ReminderDate);
-            LiveTile.UpdateTiles(Tasks);
+            Tasks.Remove(oldTask);
+            Tasks.Add(newTask);
+            TaskReminder.Add(newTask);
+            LiveTile.Update(Tasks);
         }
 
         public void RemoveTask(TaskModel task)
@@ -107,8 +110,8 @@ namespace SimpleTasks.ViewModels
                 throw new ArgumentNullException();
 
             Tasks.Remove(task);
-            TaskReminder.Remove(task.Uid);
-            LiveTile.UpdateTiles(Tasks);
+            TaskReminder.Remove(task);
+            LiveTile.Update(Tasks);
         }
 
         public void DeleteOldCompletedTasks(int days)
@@ -127,7 +130,7 @@ namespace SimpleTasks.ViewModels
                     }
                     return true;
                 });
-                Tasks = new TaskModelCollection(updatedTasks);
+                Tasks = new TaskCollection(updatedTasks);
             }
         }
 
@@ -136,7 +139,7 @@ namespace SimpleTasks.ViewModels
             if (IsDataLoaded)
             {
                 // Odstranění dokončených úkolů
-                Tasks = new TaskModelCollection(Tasks.Where((t) => { return t.IsActive; }));
+                Tasks = new TaskCollection(Tasks.Where((t) => { return t.IsActive; }));
             }
         }
     }

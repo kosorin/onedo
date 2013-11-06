@@ -15,7 +15,7 @@ namespace SimpleTasks.Core.Helpers
 {
     public class LiveTile
     {
-        static public void UpdateTiles(TaskModelCollection tasksSource)
+        public static void Update(TaskCollection tasksSource)
         {
             Debug.WriteLine("> Aktualizuji živé dlaždice...");
 
@@ -25,15 +25,17 @@ namespace SimpleTasks.Core.Helpers
             UpdateSecondaryTile(tasks);
         }
 
-        static public void UpdateTilesUI(TaskModelCollection tasksSource)
+        public static void UpdateUI(TaskCollection tasksSource)
         {
             Deployment.Current.Dispatcher.BeginInvoke(delegate
             {
-                UpdateTiles(tasksSource);
+                Update(tasksSource);
             });
         }
+        
+        #region Application Tile
 
-        static private void UpdateApplicationTile(List<TaskModel> sortedTasks)
+        private static void UpdateApplicationTile(List<TaskModel> sortedTasks)
         {
             try
             {
@@ -58,8 +60,12 @@ namespace SimpleTasks.Core.Helpers
                 Debug.WriteLine("Chyba při aktualizaci primární dlaždice.");
             }
         }
+        
+        #endregion
 
-        static public bool HasSecondaryTile
+        #region Secondary Tile
+
+        public static bool HasSecondaryTile
         {
             get
             {
@@ -76,7 +82,7 @@ namespace SimpleTasks.Core.Helpers
         private static string TileUriString = "/Views/MainPage.xaml" + TileUriPartString;
         public static Uri TileUri = new Uri(TileUriString, UriKind.Relative);
 
-        static private void UpdateSecondaryTile(List<TaskModel> sortedTasks)
+        private static void UpdateSecondaryTile(List<TaskModel> sortedTasks)
         {
             // Pokud neexistuje sekundární dlaždice, tak neděláme nic
             if (!HasSecondaryTile)
@@ -97,7 +103,7 @@ namespace SimpleTasks.Core.Helpers
             }
         }
 
-        static public ShellTileData CreateSecondaryTileData(List<TaskModel> sortedTasks)
+        public static ShellTileData CreateSecondaryTileData(List<TaskModel> sortedTasks)
         {
             // Počet dnešních úkolů (včetně zmeškaných)
             int todayTaskCount = Math.Min(sortedTasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99);
@@ -132,9 +138,11 @@ namespace SimpleTasks.Core.Helpers
             return flipTileData;
         }
 
-        static public ShellTile FindSecondaryTile()
+        public static ShellTile FindSecondaryTile()
         {
             return ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains(TileUriPartString));
         }
+
+        #endregion
     }
 }

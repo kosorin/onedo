@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Diagnostics;
 using SimpleTasks.Core.Models;
 using Microsoft.Phone.Scheduler;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Views
 {
@@ -25,7 +26,7 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = ViewModel = App.ViewModel;
 
-            LiveTile.UpdateTiles(ViewModel.Tasks);
+            LiveTile.Update(ViewModel.Tasks);
             BuildLocalizedApplicationBar();
         }
 
@@ -73,7 +74,7 @@ namespace SimpleTasks.Views
 
             //// Clear
             ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateTilesUI(ViewModel.Tasks); };
+            appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateUI(ViewModel.Tasks); };
             ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 
             #endregion
@@ -85,13 +86,13 @@ namespace SimpleTasks.Views
             {
                 // Je připnuta i sekundární dlaždice
                 appBarItem.Text = AppResources.AppBarUnpinTileText;
-                appBarItem.Click += (s, e) => { App.RemoveSecondaryTile(); App.StopPeriodicTask(); SetAppBarLiveTileItem(appBarItem); };
+                appBarItem.Click += (s, e) => { LiveTileExtensions.RemoveSecondaryTile(); PeriodicTaskExtensions.Stop(); SetAppBarLiveTileItem(appBarItem); };
             }
             else
             {
                 // Pouze primární dlaždice
                 appBarItem.Text = AppResources.AppBarPinTileText;
-                appBarItem.Click += (s, e) => { App.AddSecondaryTile(); App.StartPeriodicTask(); SetAppBarLiveTileItem(appBarItem); };
+                appBarItem.Click += (s, e) => { LiveTileExtensions.AddSecondaryTile(ViewModel.Tasks); PeriodicTaskExtensions.Start(); SetAppBarLiveTileItem(appBarItem); };
             }
         }
 
@@ -114,7 +115,7 @@ namespace SimpleTasks.Views
             ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", DueDate = DateTimeExtensions.Today.AddDays(10), IsImportant = true });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", DueDate = DateTimeExtensions.Today.AddDays(35) });
 
-            LiveTile.UpdateTilesUI(ViewModel.Tasks);
+            LiveTile.UpdateUI(ViewModel.Tasks);
         }
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)

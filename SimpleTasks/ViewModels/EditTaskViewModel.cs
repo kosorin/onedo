@@ -50,6 +50,7 @@ namespace SimpleTasks.ViewModels
         public void CompleteTask()
         {
             CurrentTask.CompletedDate = DateTime.Now;
+            CurrentTask.ReminderDate = null;
             SaveTask();
         }
 

@@ -54,13 +54,13 @@ namespace SimpleTasks.Scheduler
             //}
 
             // Získání dat ze souboru
-            TaskModelCollection tasks = TaskModelCollection.LoadFromXmlFile();
+            TaskCollection tasks = TaskCollection.LoadFromXmlFile(TaskCollection.DefaultDataFileName);
 
             // Aktualizace dlaždice
             Deployment.Current.Dispatcher.BeginInvoke(delegate
             {
                 // Tohle se musí provést v UI vklákně!
-                LiveTile.UpdateTiles(tasks);
+                LiveTile.Update(tasks);
 
                 NotifyComplete();
             });

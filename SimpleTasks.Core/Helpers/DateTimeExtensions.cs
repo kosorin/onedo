@@ -79,6 +79,5 @@ namespace SimpleTasks.Core.Helpers
 
             return date.Value.ToString("dddd", CultureInfo.CurrentCulture).ToLower();
         }
-    
     }
 }

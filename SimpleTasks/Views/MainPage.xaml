@@ -128,7 +128,7 @@
                                 </ToggleButton.Template>
                             </ToggleButton>
                             <Border Visibility="{Binding IsImportant, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <controls:Icon Style="{StaticResource AlertIconStyle}"
+                                <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
                                                Color="{StaticResource PhoneAccentBrush}"/>
                             </Border>
                         </StackPanel>

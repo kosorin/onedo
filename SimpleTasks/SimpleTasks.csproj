@@ -105,6 +105,8 @@
     <Compile Include="Conventers\DateToStringConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
+    <Compile Include="Helpers\LiveTileExtensions.cs" />
+    <Compile Include="Helpers\PeriodicTaskExtensions.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\TaskKeyGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

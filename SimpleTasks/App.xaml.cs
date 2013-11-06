@@ -12,101 +12,17 @@ using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Helpers;
 using System.Threading;
 using System.Globalization;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks
 {
     public partial class App : Application
     {
-        private string appForceCulture = "en-US";
+        private string AppForceCulture = "qps-ploc";
 
         public static MainViewModel ViewModel { get; private set; }
 
         public static SettingsViewModel Settings { get; private set; }
-
-        #region Periodic Task
-        private static string PeriodicTaskName { get { return "SimpleTasksPeriodicTask"; } }
-
-        public static void StartPeriodicTask()
-        {
-            PeriodicTask periodicTask = new PeriodicTask(PeriodicTaskName)
-            {
-                Description = AppResources.PeriodicTaskDescription
-            };
-
-            // Odstraním starou úlohu
-            StopPeriodicTask();
-
-            // Přidání úlohy.
-            try
-            {
-                ScheduledActionService.Add(periodicTask);
-                Debug.WriteLine("> Přidal jsem PeriodicTask: {0}", periodicTask.Name);
-                //if (Debugger.IsAttached)
-                //{
-                //    ScheduledActionService.LaunchForTest(periodicTask.Name, TimeSpan.FromSeconds(10));
-                //}
-            }
-            catch (InvalidOperationException e)
-            {
-                if (e.Message.Contains("BNS Error: The action is disabled"))
-                    Debug.WriteLine("ScheduledActionService Start InvalidOperationException: Úloha byla zakázána uživatelem.");
-                else if (e.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
-                    Debug.WriteLine("ScheduledActionService Start InvalidOperationException: Dosažen maximální limit úloh.");
-                else
-                    Debug.WriteLine("ScheduledActionService Start InvalidOperationException: " + e.Message);
-            }
-            catch (SchedulerServiceException e)
-            {
-                Debug.WriteLine("ScheduledActionService Start SchedulerServiceException: " + e.Message);
-            }
-        }
-
-        public static void StopPeriodicTask()
-        {
-            foreach (PeriodicTask task in ScheduledActionService.GetActions<PeriodicTask>())
-            {
-                try
-                {
-                    ScheduledActionService.Remove(task.Name);
-                    Debug.WriteLine("> Odstranil jsem PeriodicTask: {0}", task.Name);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine("ScheduledActionService Remove Exception: " + e.Message);
-                }
-            }
-        }
-        #endregion
-
-        #region Live Tile
-        public static void AddSecondaryTile()
-        {
-            RemoveSecondaryTile();
-
-            try
-            {
-                ShellTile.Create(LiveTile.TileUri, LiveTile.CreateSecondaryTileData(ViewModel.Tasks.SortedActiveTasks), true);
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Chyba při přidání sekundární dlaždice.");
-            }
-        }
-
-        public static void RemoveSecondaryTile()
-        {
-            try
-            {
-                ShellTile tile = LiveTile.FindSecondaryTile();
-                if (tile != null)
-                    tile.Delete();
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Chyba při mazání sekundární dlaždice.");
-            }
-        }
-        #endregion
 
         static App()
         {
@@ -120,9 +36,9 @@ namespace SimpleTasks
         {
             Debug.WriteLine("===== Application Launching =====");
             if (LiveTile.HasSecondaryTile)
-                StartPeriodicTask();
+                PeriodicTaskExtensions.Start();
             else
-                StopPeriodicTask();
+                PeriodicTaskExtensions.Stop();
             ViewModel.LoadTasks();
             Debug.WriteLine("===== ========== =====");
         }
@@ -313,12 +229,12 @@ namespace SimpleTasks
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
                 if (Debugger.IsAttached &&
-                    String.IsNullOrWhiteSpace(appForceCulture) == false)
+                    String.IsNullOrWhiteSpace(AppForceCulture) == false)
                 {
                     Thread.CurrentThread.CurrentCulture =
-                        new CultureInfo(appForceCulture);
+                        new CultureInfo(AppForceCulture);
                     Thread.CurrentThread.CurrentUICulture =
-                        new CultureInfo(appForceCulture);
+                        new CultureInfo(AppForceCulture);
                 }
 
                 // Set the font to match the display language defined by the

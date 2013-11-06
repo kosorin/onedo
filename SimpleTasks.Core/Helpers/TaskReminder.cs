@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Scheduler;
+using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +10,26 @@ namespace SimpleTasks.Core.Helpers
 {
     public class TaskReminder
     {
-        public static void Add(string name, string content, DateTime? reminderDateTime)
+        public static void Add(TaskModel task)
         {
-            Remove(name);
+            Remove(task);
 
-            if (reminderDateTime != null)
+            if (task.ReminderDate != null)
             {
-                Reminder reminder = new Reminder(name)
+                Reminder reminder = new Reminder(task.Uid)
                 {
-                    BeginTime = reminderDateTime.Value,
+                    BeginTime = task.ReminderDate.Value,
                     Title = "Připomenutí úkolu",
-                    Content = content
+                    Content = task.Title,
+                    
                 };
                 ScheduledActionService.Add(reminder);
             }
         }
 
-        public static void Remove(string name)
+        public static void Remove(TaskModel task)
         {
-            ScheduledAction reminder = ScheduledActionService.Find(name);
+            ScheduledAction reminder = ScheduledActionService.Find(task.Uid);
             if (reminder != null)
             {
                 ScheduledActionService.Remove(reminder.Name);
