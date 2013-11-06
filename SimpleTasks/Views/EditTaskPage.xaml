@@ -285,17 +285,37 @@
                                                 Storyboard.TargetProperty="Color"
                                                 To="{StaticResource PhoneAccentColor}"
                                                 Duration="0:0:0.4"/>
-                                <DoubleAnimation Storyboard.TargetName="NormalPriorityTextBlock" 
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="0"
                                                  Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Indeterminate">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="PriorityBorderBackgroundBrush" 
+                                                Storyboard.TargetProperty="Color"
+                                                To="{StaticResource PhoneSubtleColor}"
+                                                Duration="0:0:0.4"/>
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="1"
                                                  Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityTextBlock" 
+                                <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
-                                                 To="1"
+                                                 To="0"
                                                  Duration="0:0:0.4" />
                             </Storyboard>
                         </VisualState>
@@ -305,17 +325,17 @@
                                                 Storyboard.TargetProperty="Color"
                                                 To="{StaticResource PhoneSubtleColor}"
                                                 Duration="0:0:0.4"/>
-                                <DoubleAnimation Storyboard.TargetName="NormalPriorityTextBlock" 
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="1"
-                                                 Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0"
-                                                 Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityTextBlock" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0"
                                                  Duration="0:0:0.4" />
                             </Storyboard>
                         </VisualState>
@@ -326,17 +346,38 @@
                                      Color="{StaticResource PhoneSubtleColor}" />
                 </Border.Background>
                 <StackPanel Orientation="Horizontal">
-                    <controls:Icon x:Name="HighPriorityIcon"
-                                   Style="{StaticResource HighPriorityIconStyle}"
-                                   Color="{StaticResource ButtonForegroundBrush}"/>
                     <Grid>
-                        <TextBlock Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"
-                                   Name="NormalPriorityTextBlock"
-                                   Style="{StaticResource ButtonTextBlockStyle}"/>
-                        <TextBlock Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
-                                   Name="HighPriorityTextBlock"
-                                   Opacity="0"
-                                   Style="{StaticResource ButtonTextBlockStyle}"/>
+                        <Grid x:Name="HighPriorityGrid" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
+                                           Color="{StaticResource ButtonForegroundBrush}"/>
+                            <TextBlock Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Grid.Column="1"/>
+                        </Grid>
+                        <Grid x:Name="NormalPriorityGrid" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Grid.Column="1"/>
+                        </Grid>
+                        <Grid x:Name="LowPriorityGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
+                                           Color="{StaticResource ButtonForegroundBrush}"/>
+                            <TextBlock Text="nízká priorita"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Grid.Column="1"/>
+                        </Grid>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -537,7 +578,9 @@
 
                     <!--Priorita-->
                     <ToggleButton Margin="50,20,50,0"
-                                  IsChecked="{Binding CurrentTask.IsImportant, Mode=TwoWay}"
+                                  IsThreeState="True"
+                                  IsChecked="{Binding CurrentTask.Priority, Mode=TwoWay,
+                                              Converter={StaticResource TaskPriorityToBooleanConverter}}"
                                   Template="{StaticResource PriorityButtonTemplate}"/>
 
                     <!--Připomenutí-->
@@ -550,7 +593,7 @@
                                       Unchecked="ReminderToggleButton_Unchecked"/>
 
                         <Grid x:Name="ReminderGrid"
-                              Height="100"
+                              Height="0"
                               Visibility="{Binding CurrentTask.HasReminder, Mode=OneTime, 
                                            Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid.RowDefinitions>

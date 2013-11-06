@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleTasks.Core.Models
 {
-    public enum Priority
+    public enum TaskPriority
     {
         Low,
         Normal,

@@ -30,13 +30,13 @@ namespace SimpleTasks.Core.Models
                 List<TaskModel> tasks = this
                     .Where((t) => { return t.IsActive && t.DueDate != null; })
                     .OrderBy(t => t.DueDate.Value)
-                    .ThenByDescending(t => t.IsImportant)
+                    .ThenByDescending(t => t.Priority)
                     .ToList();
 
                 // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
                 tasks.AddRange(this
                     .Where((t) => { return t.IsActive && t.DueDate == null; })
-                    .OrderByDescending(t => t.IsImportant));
+                    .OrderByDescending(t => t.Priority));
 
                 return tasks;
             }

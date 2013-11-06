@@ -76,18 +76,18 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Important
-        private bool _isImportant = false;
+        #region Priority
+        private TaskPriority _priority = TaskPriority.Normal;
         [DataMember(Order = 3)]
-        public bool IsImportant
+        public TaskPriority Priority
         {
             get
             {
-                return _isImportant;
+                return _priority;
             }
             set
             {
-                SetProperty(ref _isImportant, value);
+                SetProperty(ref _priority, value);
             }
         }
         #endregion
@@ -139,7 +139,7 @@ namespace SimpleTasks.Core.Models
         {
             Title = newTask.Title;
             DueDate = newTask.DueDate;
-            IsImportant = newTask.IsImportant;
+            Priority = newTask.Priority;
             CompletedDate = newTask.CompletedDate;
             ReminderDate = newTask.ReminderDate;
         }
@@ -151,7 +151,7 @@ namespace SimpleTasks.Core.Models
                 Uid = this.Uid,
                 Title = this.Title,
                 DueDate = this.DueDate,
-                IsImportant = this.IsImportant,
+                Priority = this.Priority,
                 CompletedDate = this.CompletedDate,
                 ReminderDate = this.ReminderDate,
             };

@@ -34,7 +34,7 @@ namespace SimpleTasks.Core.Tiles
             {
                 innerBorder.Opacity = 0.7;
             }
-            if (task.IsImportant)
+            if (task.Priority == TaskPriority.High)
             {
                 innerBorder.Background = ImportantBrush;
             }

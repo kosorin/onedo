@@ -127,10 +127,54 @@
                                     </ControlTemplate>
                                 </ToggleButton.Template>
                             </ToggleButton>
-                            <Border Visibility="{Binding IsImportant, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
-                                               Color="{StaticResource PhoneAccentBrush}"/>
-                            </Border>
+
+                            <ToggleButton Visibility="{Binding Priority, Mode=OneTime,
+                                                       Converter={StaticResource TaskPriorityToVisibilityConverter}}"
+                                          IsChecked="{Binding Priority, Mode=OneTime,
+                                                      Converter={StaticResource TaskPriorityToBooleanConverter}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CheckStates">
+                                                    <VisualState x:Name="Checked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="1" />
+                                                            <DoubleAnimation Storyboard.TargetName="LowPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="0"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unchecked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="0" />
+                                                            <DoubleAnimation Storyboard.TargetName="LowPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="0.2"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <controls:Icon x:Name="HighPriorityIcon"
+                                                           Opacity="0"
+                                                           Style="{StaticResource HighPriorityIconStyle}"
+                                                           Color="{StaticResource PhoneAccentBrush}"/>
+                                            <controls:Icon x:Name="LowPriorityIcon"
+                                                           Opacity="0"
+                                                           Style="{StaticResource LowPriorityIconStyle}"
+                                                           Color="{StaticResource PhoneForegroundBrush}"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
                         </StackPanel>
                         <Border Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <controls:Icon Style="{StaticResource CheckIconStyle}"

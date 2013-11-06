@@ -102,6 +102,8 @@
     <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />
+    <Compile Include="Conventers\TaskPriorityToBooleanConverter.cs" />
     <Compile Include="Conventers\DateToStringConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
