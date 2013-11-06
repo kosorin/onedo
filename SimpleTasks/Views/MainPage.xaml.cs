@@ -96,11 +96,6 @@ namespace SimpleTasks.Views
             }
         }
 
-        void appBarHelpMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Zatím bez nápovědy");
-        }
-
         void appBarResetMenuItem_Click(object sender, EventArgs e)
         {
             ViewModel.Tasks.Clear();

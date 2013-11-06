@@ -56,8 +56,13 @@ namespace SimpleTasks.ViewModels
 
             if (App.Settings.DeleteCompletedTasksSetting)
             {
-                DeleteOldCompletedTasks(App.Settings.DeleteCompletedTasksDaysSetting);
+                DeleteCompletedTasks(App.Settings.DeleteCompletedTasksDaysSetting);
             }
+
+            //foreach (TaskModel task in Tasks)
+            //{
+            //    UpdateTaskReminder(task);
+            //}
 
 #if DEBUG
             Debug.WriteLine("> Úkoly ({0}):", Tasks.Count);
@@ -104,6 +109,15 @@ namespace SimpleTasks.ViewModels
             LiveTile.Update(Tasks);
         }
 
+        //public void UpdateTaskReminder(TaskModel task)
+        //{
+        //    if (task.HasReminder && task.ReminderDate <= DateTime.Now)
+        //    {
+        //        TaskReminder.Remove(task);
+        //        task.ReminderDate = null;
+        //    }
+        //}
+
         public void RemoveTask(TaskModel task)
         {
             if (task == null)
@@ -114,23 +128,19 @@ namespace SimpleTasks.ViewModels
             LiveTile.Update(Tasks);
         }
 
-        public void DeleteOldCompletedTasks(int days)
+        public void DeleteCompletedTasks(int days)
         {
             if (IsDataLoaded)
             {
-                // Odstranění dokončených úkolů starších více jak days dnů
-                var updatedTasks = Tasks.Where((t) =>
+                // Odstranění úkolů, které byly odstarněny před více jak 'days' dny.
+                var completedTasks = Tasks.Where((t) =>
                 {
-                    if (t.IsComplete)
-                    {
-                        if (t.CompletedDate != null)
-                        {
-                            return (DateTime.Today.Date - t.CompletedDate.Value.Date < TimeSpan.FromDays(days));
-                        }
-                    }
-                    return true;
-                });
-                Tasks = new TaskCollection(updatedTasks);
+                    return t.IsComplete && (DateTime.Today.Date - t.CompletedDate.Value.Date < TimeSpan.FromDays(days));
+                }).ToList();
+                foreach (TaskModel task in completedTasks)
+                {
+                    RemoveTask(task);
+                }
             }
         }
 
@@ -139,7 +149,11 @@ namespace SimpleTasks.ViewModels
             if (IsDataLoaded)
             {
                 // Odstranění dokončených úkolů
-                Tasks = new TaskCollection(Tasks.Where((t) => { return t.IsActive; }));
+                var completedTasks = Tasks.Where((t) => { return t.IsComplete; }).ToList();
+                foreach (TaskModel task in completedTasks)
+                {
+                    RemoveTask(task);
+                }
             }
         }
     }

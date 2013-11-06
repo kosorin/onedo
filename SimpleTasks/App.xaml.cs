@@ -18,7 +18,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        private string AppForceCulture = "qps-ploc";
+        private string AppForceCulture = "en-US";
 
         public static MainViewModel ViewModel { get; private set; }
 

@@ -11,7 +11,7 @@ namespace SimpleTasks.Helpers
 {
     public class PeriodicTaskExtensions
     {
-        private const string PeriodicTaskName = "SimpleTasksPeriodicTask";
+        private const string PeriodicTaskName = "PeriodicTask";
 
         public static void Start()
         {

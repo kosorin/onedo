@@ -64,13 +64,10 @@ namespace SimpleTasks.Views
             }
             else if (ReminderToggleButton.IsChecked.Value && ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
             {
-                MessageBox.Show("Datum a čas připomenutí musí být v budoucnosti.");
-                return false;
+                ViewModel.CurrentTask.ReminderDate = DateTime.Now.AddHours(1);
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         private void PrepareSave()
@@ -207,16 +204,12 @@ namespace SimpleTasks.Views
             {
                 if (App.Settings.DefaultDueDateSettingToDateTime != null)
                 {
-                    DueDatePicker.Value = App.Settings.DefaultDueDateSettingToDateTime;
+                    ViewModel.CurrentTask.DueDate = App.Settings.DefaultDueDateSettingToDateTime;
                 }
                 else
                 {
-                    DueDatePicker.Value = DateTimeExtensions.Today;
+                    ViewModel.CurrentTask.DueDate = DateTimeExtensions.Today;
                 }
-            }
-            else
-            {
-                DueDatePicker.Value = ViewModel.CurrentTask.DueDate;
             }
 
             // Animace zobrazení
@@ -248,22 +241,24 @@ namespace SimpleTasks.Views
         {
             if (ViewModel.CurrentTask.ReminderDate == null)
             {
+                DateTime defaultReminderTime = App.Settings.DefaultReminderTimeSetting;
                 if (ViewModel.CurrentTask.DueDate == null)
                 {
-                    ReminderDatePicker.Value = DateTime.Now;
-                    ReminderTimePicker.Value = DateTime.Now.AddHours(1);
+                    ViewModel.CurrentTask.ReminderDate = DateTime.Today.Date.AddHours(defaultReminderTime.Hour)
+                                                                            .AddMinutes(defaultReminderTime.Minute);
                 }
                 else
                 {
-                    ReminderDatePicker.Value = ViewModel.CurrentTask.DueDate;
-                    ReminderTimePicker.Value = ViewModel.CurrentTask.DueDate;
+                    ViewModel.CurrentTask.ReminderDate = ViewModel.CurrentTask.DueDate.Value.Date.AddHours(defaultReminderTime.Hour)
+                                                                                                 .AddMinutes(defaultReminderTime.Minute);
+                }
+
+                if (ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
+                {
+                    ViewModel.CurrentTask.ReminderDate = DateTime.Now.AddHours(1);
                 }
             }
-            else
-            {
-                ReminderDatePicker.Value = ViewModel.CurrentTask.ReminderDate;
-                ReminderTimePicker.Value = ViewModel.CurrentTask.ReminderDate;
-            }
+
 
             // Animace zobrazení
             ReminderGrid.Visibility = Visibility.Visible;
@@ -287,16 +282,6 @@ namespace SimpleTasks.Views
             };
         }
 
-        private DateTime? GetReminderDate()
-        {
-            return DateTime.Now;
-            //if (ReminderToggleButton.IsChecked.Value)
-            //{
-            //    return 
-            //}
-        }
-
         #endregion
-
     }
 }

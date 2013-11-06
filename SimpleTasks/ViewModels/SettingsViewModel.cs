@@ -17,12 +17,13 @@ namespace SimpleTasks.ViewModels
         public SettingsViewModel()
         {
             settings = IsolatedStorageSettings.ApplicationSettings;
+#if DEBUG
             Debug.WriteLine("> Nastavení:");
             foreach (object o in IsolatedStorageSettings.ApplicationSettings)
             {
                 Debug.WriteLine("  {0}", o.ToString());
             }
-
+#endif
             SetDueDatePicker();
             SetFirstDayOfWeekPicker();
             ApplyFirstDayOfWeekSetting();
@@ -177,6 +178,27 @@ namespace SimpleTasks.ViewModels
         }
 
         #endregion DefaultDueDate
+
+        #region DefaultReminderTime
+
+        private const string DefaultReminderTimeKeyName = "DefaultReminderTime";
+        private readonly DateTime DefaultReminderTimeDefault = new DateTime(1, 1, 1, 8, 0, 0);
+        public DateTime DefaultReminderTimeSetting
+        {
+            get
+            {
+                return GetValueOrDefault<DateTime>(DefaultReminderTimeKeyName, DefaultReminderTimeDefault);
+            }
+            set
+            {
+                if (AddOrUpdateValue(DefaultReminderTimeKeyName, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        #endregion
 
         #region FirstDayOfWeek
 

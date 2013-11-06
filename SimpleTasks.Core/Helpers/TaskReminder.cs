@@ -21,9 +21,16 @@ namespace SimpleTasks.Core.Helpers
                     BeginTime = task.ReminderDate.Value,
                     Title = "Připomenutí úkolu",
                     Content = task.Title,
-                    
                 };
-                ScheduledActionService.Add(reminder);
+
+                try
+                {
+                    ScheduledActionService.Add(reminder);
+                }
+                catch (Exception)
+                {
+                    task.ReminderDate = null;
+                }
             }
         }
 
