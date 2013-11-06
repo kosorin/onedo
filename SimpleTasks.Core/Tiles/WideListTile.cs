@@ -57,7 +57,7 @@ namespace SimpleTasks.Core.Tiles
 
             TextBlock dueTextBlock = new TextBlock()
             {
-                Text = DateTimeExtensions.ToRelativeString(task.DueDate, false),
+                Text = DateTimeExtensions.ToRelativeString(task.DueDate, "později", false),
                 Margin = new Thickness(20, 0, 5, 0),
                 Foreground = ForegroundBrush,
                 FontSize = ((double)Height / (double)TaskCount) * 0.7,

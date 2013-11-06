@@ -34,17 +34,25 @@ namespace SimpleTasks.Views
 
             BuildLocalizedApplicationBar();
 
-            // Při přidání nového úkolu se zobrází klávesnice
-            RoutedEventHandler firstTimeLoadHandler = null;
-            firstTimeLoadHandler = (s, e) =>
+            // Při přidání nového úkolu se zobrází klávesnice a nastaví defaultní termín
+            if (!ViewModel.IsOldTask)
             {
-                if (!ViewModel.EditingOldTask)
+                RoutedEventHandler firstTimeLoadHandler = null;
+                firstTimeLoadHandler = (s, e) =>
                 {
+                    // Zobrazení klávesnice
                     TitleTextBox.Focus();
-                }
-                this.Loaded -= firstTimeLoadHandler;
-            };
-            this.Loaded += firstTimeLoadHandler;
+
+                    // Nastavení defaultního termínu
+                    if (App.Settings.DefaultDueDateSettingToDateTime != null)
+                    {
+                        DueDateToggleButton.IsChecked = true;
+                    }
+
+                    this.Loaded -= firstTimeLoadHandler;
+                };
+                this.Loaded += firstTimeLoadHandler;
+            }
         }
 
         private bool CanSave()
@@ -66,7 +74,15 @@ namespace SimpleTasks.Views
         }
 
         private void PrepareSave()
-        { 
+        {
+            if (!DueDateToggleButton.IsChecked.Value)
+            {
+                DueDatePicker.Value = null;
+            }
+            if (!ReminderToggleButton.IsChecked.Value)
+            {
+                ReminderDatePicker.Value = null;
+            }
         }
 
         #region AppBar
@@ -76,7 +92,7 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            if (ViewModel.EditingOldTask)
+            if (ViewModel.IsOldTask)
             {
                 if (ViewModel.CurrentTask.IsComplete)
                 {
@@ -101,7 +117,7 @@ namespace SimpleTasks.Views
 
 
             // Menu
-            if (ViewModel.EditingOldTask)
+            if (ViewModel.IsOldTask)
             {
                 ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
                 appBarDeleteItem.Text = AppResources.AppBarDeleteText;
@@ -185,46 +201,62 @@ namespace SimpleTasks.Views
 
         #region Due Date
 
-        private void DueDatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            DueDateModel dueDate = DueDatePicker.SelectedItem as DueDateModel;
-            if (dueDate == null)
-                return;
-
-            if (dueDate.Type == DueDateModel.DueDatePickerType.CustomDate)
+            if (ViewModel.CurrentTask.DueDate == null)
             {
-                CustomDueDatePicker.Visibility = Visibility.Visible;
-                CustomDueDatePicker.Height = 0;
-
-                DatePickerShow.Begin();
-                DatePickerShow.Completed += (s2, e2) => { CustomDueDatePicker.IsEnabled = true; };
+                if (App.Settings.DefaultDueDateSettingToDateTime != null)
+                {
+                    DueDatePicker.Value = App.Settings.DefaultDueDateSettingToDateTime;
+                }
+                else
+                {
+                    DueDatePicker.Value = DateTimeExtensions.Today;
+                }
             }
             else
             {
-                CustomDueDatePicker.IsEnabled = false;
-
-                DatePickerHide.Begin();
-                DatePickerHide.Completed += (s2, e2) => { CustomDueDatePicker.Visibility = Visibility.Collapsed; };
+                DueDatePicker.Value = ViewModel.CurrentTask.DueDate;
             }
+
+            // Animace zobrazení
+            DueDatePicker.Visibility = Visibility.Visible;
+            DueDatePickerShow.Begin();
+            DueDatePickerShow.Completed += (s2, e2) =>
+            {
+                DueDatePicker.Visibility = Visibility.Visible;
+                DueDatePicker.IsEnabled = true;
+            };
+        }
+
+        private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Animace skrytí
+            DueDatePicker.IsEnabled = false;
+            DueDatePickerHide.Begin();
+            DueDatePickerHide.Completed += (s2, e2) =>
+            {
+                DueDatePicker.Visibility = Visibility.Collapsed;
+            };
         }
 
         #endregion
 
         #region Reminder
 
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void ReminderToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             if (ViewModel.CurrentTask.ReminderDate == null)
             {
-                if (ViewModel.CurrentDueDate.Date == null)
+                if (ViewModel.CurrentTask.DueDate == null)
                 {
                     ReminderDatePicker.Value = DateTime.Now;
                     ReminderTimePicker.Value = DateTime.Now.AddHours(1);
                 }
                 else
                 {
-                    ReminderDatePicker.Value = ViewModel.CurrentDueDate.Date;
-                    ReminderTimePicker.Value = ViewModel.CurrentDueDate.Date;
+                    ReminderDatePicker.Value = ViewModel.CurrentTask.DueDate;
+                    ReminderTimePicker.Value = ViewModel.CurrentTask.DueDate;
                 }
             }
             else
@@ -235,7 +267,6 @@ namespace SimpleTasks.Views
 
             // Animace zobrazení
             ReminderGrid.Visibility = Visibility.Visible;
-            ReminderGrid.Height = 0;
             ReminderGridShow.Begin();
             ReminderGridShow.Completed += (s2, e2) =>
             {
@@ -244,7 +275,7 @@ namespace SimpleTasks.Views
             };
         }
 
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             // Animace skrytí
             ReminderDatePicker.IsEnabled = false;
@@ -266,5 +297,6 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
     }
 }

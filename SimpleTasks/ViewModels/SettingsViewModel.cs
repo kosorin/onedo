@@ -127,6 +127,23 @@ namespace SimpleTasks.ViewModels
             NextWeek
         }
 
+        public DateTime? DefaultDueDateSettingToDateTime
+        {
+            get
+            {
+                switch (DefaultDueDateSetting)
+                {
+                case DefaultDueDate.Today: return DateTimeExtensions.Today;
+                case DefaultDueDate.Tomorrow: return DateTimeExtensions.Tomorrow;
+                case DefaultDueDate.ThisWeek: return DateTimeExtensions.LastDayOfWeek;
+                case DefaultDueDate.NextWeek: return DateTimeExtensions.LastDayOfNextWeek;
+
+                case DefaultDueDate.NoDueDate:
+                default: return null;
+                }
+            }
+        }
+
         public List<KeyValuePair<DefaultDueDate, string>> DueDatePickerItems { get; private set; }
 
         private KeyValuePair<DefaultDueDate, string> _dueDatePickerSelectedItem;

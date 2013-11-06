@@ -98,7 +98,6 @@ namespace SimpleTasks.ViewModels
 
             task.Update(newTask);
             TaskReminder.Add(task.Uid, task.Title, task.ReminderDate);
-
             LiveTile.UpdateTiles(Tasks);
         }
 

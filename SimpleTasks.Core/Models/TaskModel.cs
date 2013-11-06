@@ -47,7 +47,7 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Due
+        #region Due Date
         private DateTime? _dueDate = null;
         [DataMember(Order = 2)]
         public DateTime? DueDate
@@ -61,6 +61,8 @@ namespace SimpleTasks.Core.Models
                 SetProperty(ref _dueDate, value);
             }
         }
+
+        public bool HasDueDate { get { return DueDate != null; } }
 
         public bool IsOverdue
         {

@@ -22,11 +22,11 @@ namespace SimpleTasks.Core.Helpers
 
         public static DateTime LastDayOfNextMonth { get { DateTime nextMonth = LastDayOfMonth.AddDays(1); return new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)); } }
 
-        public static string ToRelativeString(DateTime? date, bool includeMonth = false)
+        public static string ToRelativeString(DateTime? date, string noDateText, bool includeMonth = false)
         {
-            if (!date.HasValue)
+            if (date == null)
             {
-                return AppResources.DateLaterText;
+                return noDateText;
             }
 
             int days = (int)(date.Value - Today).TotalDays;
