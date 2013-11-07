@@ -200,6 +200,8 @@ namespace SimpleTasks.Views
 
         private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
+            DueDatePickerHide.Pause();
+
             if (ViewModel.CurrentTask.DueDate == null)
             {
                 if (App.Settings.DefaultDueDateSettingToDateTime != null)
@@ -224,6 +226,8 @@ namespace SimpleTasks.Views
 
         private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
+            DueDatePickerShow.Pause();
+
             // Animace skrytí
             DueDatePicker.IsEnabled = false;
             DueDatePickerHide.Begin();
@@ -239,6 +243,8 @@ namespace SimpleTasks.Views
 
         private void ReminderToggleButton_Checked(object sender, RoutedEventArgs e)
         {
+            ReminderGridHide.Pause();
+
             if (ViewModel.CurrentTask.ReminderDate == null)
             {
                 DateTime defaultReminderTime = App.Settings.DefaultReminderTimeSetting;
@@ -272,6 +278,8 @@ namespace SimpleTasks.Views
 
         private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
+            ReminderGridShow.Pause();
+
             // Animace skrytí
             ReminderDatePicker.IsEnabled = false;
             ReminderTimePicker.IsEnabled = false;

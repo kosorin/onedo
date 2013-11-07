@@ -94,7 +94,10 @@ namespace SimpleTasks.ViewModels
                 throw new ArgumentNullException();
 
             Tasks.Add(task);
-            TaskReminder.Add(task);
+            if (task.ReminderDate != null)
+            {
+                ReminderHelper.Add(task.Uid, "Připomínka úkolu", task.Title, task.ReminderDate.Value);
+            }
             LiveTile.Update(Tasks);
         }
 
@@ -105,7 +108,10 @@ namespace SimpleTasks.ViewModels
 
             Tasks.Remove(oldTask);
             Tasks.Add(newTask);
-            TaskReminder.Add(newTask);
+            if (newTask.ReminderDate != null)
+            {
+                ReminderHelper.Add(newTask.Uid, "Připomínka úkolu", newTask.Title, newTask.ReminderDate.Value);
+            }
             LiveTile.Update(Tasks);
         }
 
@@ -124,7 +130,7 @@ namespace SimpleTasks.ViewModels
                 throw new ArgumentNullException();
 
             Tasks.Remove(task);
-            TaskReminder.Remove(task);
+            ReminderHelper.Remove(task.Uid);
             LiveTile.Update(Tasks);
         }
 

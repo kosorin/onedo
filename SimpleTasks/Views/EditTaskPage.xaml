@@ -547,7 +547,11 @@
                                       Unchecked="DueToggleButton_Unchecked"/>
 
                         <toolkit:DatePicker x:Name="DueDatePicker"
-                                            Height="0"
+                                            Height="{Binding CurrentTask.HasDueDate, 
+                                                     Converter={StaticResource BooleanToNumberConverter},
+                                                     ConverterParameter=50,
+                                                     FallbackValue=50,
+                                                     Mode=OneTime}"
                                             Value="{Binding CurrentTask.DueDate, Mode=TwoWay}"
                                             ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
                                             Template="{StaticResource DueDatePickerTemplate}">
@@ -593,7 +597,11 @@
                                       Unchecked="ReminderToggleButton_Unchecked"/>
 
                         <Grid x:Name="ReminderGrid"
-                              Height="0"
+                              Height="{Binding CurrentTask.HasReminder, 
+                                               Converter={StaticResource BooleanToNumberConverter},
+                                               ConverterParameter=100,
+                                               FallbackValue=100,
+                                               Mode=OneTime}"
                               Visibility="{Binding CurrentTask.HasReminder, Mode=OneTime, 
                                            Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid.RowDefinitions>

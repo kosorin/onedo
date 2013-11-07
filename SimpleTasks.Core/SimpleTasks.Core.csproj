@@ -90,7 +90,7 @@
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\LiveTile.cs" />
-    <Compile Include="Helpers\TaskReminder.cs" />
+    <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="Models\TaskPriority.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\TaskCollection.cs" />

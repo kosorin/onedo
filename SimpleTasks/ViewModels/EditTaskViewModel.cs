@@ -34,8 +34,6 @@ namespace SimpleTasks.ViewModels
             {
                 CurrentTask = OldTask.Clone();
                 IsOldTask = true;
-
-                App.ViewModel.UpdateTaskReminder(CurrentTask);
             }
             else
             {
