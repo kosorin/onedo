@@ -215,7 +215,7 @@
         <!--EndRegion-->
 
         <!--Region DueDate-->
-        
+
         <ControlTemplate x:Key="DueDateButtonTemplate">
             <Border x:Name="DueDateButtonBorder"
                     Style="{StaticResource ButtonBorderStyle}"
@@ -270,11 +270,33 @@
                 </Button.Template>
             </Button>
         </ControlTemplate>
-      
+
+        <ControlTemplate x:Key="DueDatePresetPickerTemplate">
+            <Border x:Name="Border"
+                    Background="{StaticResource PhoneAccentBrush}"
+                    Height="{TemplateBinding Height}">
+                <Border Background="#7A000000">
+                    <controls:Icon Style="{StaticResource DownArrowIconStyle}"
+                                   Color="{StaticResource PhoneSubtleBrush}" 
+                                   Width="50"
+                                   Height="50"/>
+                </Border>
+            </Border>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="DueDatePresetFullModeTemplate">
+            <StackPanel Margin="0,0,0,5">
+                <TextBlock Text="{Binding Key}"
+                           Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                <TextBlock Text="{Binding Value, Converter={StaticResource DateToStringConverter}}"
+                           Style="{StaticResource PhoneTextSmallStyle}"/>
+            </StackPanel>
+        </DataTemplate>
+
         <!--EndRegion-->
 
         <!--Region Priority-->
-        
+
         <ControlTemplate x:Key="PriorityButtonTemplate">
             <Border Style="{StaticResource ButtonBorderStyle}">
                 <VisualStateManager.VisualStateGroups>
@@ -382,11 +404,11 @@
                 </StackPanel>
             </Border>
         </ControlTemplate>
-       
+
         <!--EndRegion-->
 
         <!--Region Reminder-->
-        
+
         <ControlTemplate x:Key="ReminderButtonTemplate">
             <Border Style="{StaticResource ButtonBorderStyle}">
                 <VisualStateManager.VisualStateGroups>
@@ -517,7 +539,7 @@
                 </Button.Template>
             </Button>
         </ControlTemplate>
-        
+
         <!--EndRegion-->
     </phone:PhoneApplicationPage.Resources>
 
@@ -545,19 +567,19 @@
                                       IsChecked="{Binding CurrentTask.HasDueDate}"
                                       Checked="DueToggleButton_Checked" 
                                       Unchecked="DueToggleButton_Unchecked"/>
-
-                        <toolkit:DatePicker x:Name="DueDatePicker"
-                                            Height="{Binding CurrentTask.HasDueDate, 
-                                                     Converter={StaticResource BooleanToNumberConverter},
-                                                     ConverterParameter=50,
-                                                     FallbackValue=50,
-                                                     Mode=OneTime}"
-                                            Value="{Binding CurrentTask.DueDate, Mode=TwoWay}"
-                                            ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
-                                            Template="{StaticResource DueDatePickerTemplate}">
-                            <toolkit:DatePicker.Resources>
-                                <Storyboard x:Name="DueDatePickerShow">
-                                    <DoubleAnimation Storyboard.TargetName="DueDatePicker"
+                        <Grid x:Name="DueDateGrid"
+                              Height="{Binding CurrentTask.HasDueDate, 
+                                       Converter={StaticResource BooleanToNumberConverter},
+                                       ConverterParameter=50,
+                                       FallbackValue=50,
+                                       Mode=OneTime}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <Storyboard x:Name="DueDateGridShow">
+                                    <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="50"
                                                      Duration="0:0:0.4">
@@ -566,8 +588,8 @@
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
-                                <Storyboard x:Name="DueDatePickerHide">
-                                    <DoubleAnimation Storyboard.TargetName="DueDatePicker"
+                                <Storyboard x:Name="DueDateGridHide">
+                                    <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="0"
                                                      Duration="0:0:0.3">
@@ -576,8 +598,24 @@
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
-                            </toolkit:DatePicker.Resources>
-                        </toolkit:DatePicker>
+                            </Grid.Resources>
+                            
+                            <toolkit:DatePicker x:Name="DueDatePicker"
+                                                Grid.Column="0"
+                                                Value="{Binding CurrentTask.DueDate, Mode=TwoWay}"
+                                                ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
+                                                Template="{StaticResource DueDatePickerTemplate}"/>
+
+                            <toolkit:ListPicker x:Name="DueDatePresetPicker"
+                                                Grid.Column="1"
+                                                Template="{StaticResource DueDatePresetPickerTemplate}"
+                                                Margin="0"
+                                                ItemsSource="{Binding PresetDueDateList}"
+                                                ExpansionMode="FullScreenOnly"
+                                                FullModeHeader="{Binding LocalizedResources.ChooseDueDateText, Source={StaticResource LocalizedStrings}}"
+                                                FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"
+                                                SelectionChanged="DueDatePresetPicker_SelectionChanged"/>
+                        </Grid>
                     </StackPanel>
 
                     <!--Priorita-->
@@ -606,7 +644,7 @@
                                            Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/> 
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Grid.Resources>
                                 <Storyboard x:Name="ReminderGridShow">
@@ -630,23 +668,23 @@
                                     </DoubleAnimation>
                                 </Storyboard>
                             </Grid.Resources>
-                            
+
                             <!--Datum-->
                             <toolkit:DatePicker Name="ReminderDatePicker"
                                                 Grid.Row="0"
                                                 Value="{Binding CurrentTask.ReminderDate, Mode=TwoWay}"
                                                 ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
                                                 Template="{StaticResource ReminderDatePickerTemplate}"/>
-                            
+
                             <!--Čas-->
                             <toolkit:TimePicker Name="ReminderTimePicker"
                                                 Grid.Row="1"
                                                 Value="{Binding CurrentTask.ReminderDate, Mode=TwoWay}"
                                                 Template="{StaticResource ReminderTimePickerTemplate}" />
                         </Grid>
-                        
+
                     </StackPanel>
-                    
+
                 </StackPanel>
             </Grid>
         </ScrollViewer>

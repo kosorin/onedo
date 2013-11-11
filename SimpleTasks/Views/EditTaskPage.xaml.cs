@@ -10,6 +10,7 @@ using SimpleTasks.Models;
 using System.Windows.Input;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
+using System.Collections.Generic;
 
 namespace SimpleTasks.Views
 {
@@ -200,7 +201,7 @@ namespace SimpleTasks.Views
 
         private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            DueDatePickerHide.Pause();
+            DueDateGridHide.Pause();
 
             if (ViewModel.CurrentTask.DueDate == null)
             {
@@ -216,25 +217,39 @@ namespace SimpleTasks.Views
 
             // Animace zobrazení
             DueDatePicker.Visibility = Visibility.Visible;
-            DueDatePickerShow.Begin();
-            DueDatePickerShow.Completed += (s2, e2) =>
+            DueDatePresetPicker.Visibility = Visibility.Visible;
+            DueDateGridShow.Begin();
+            DueDateGridShow.Completed += (s2, e2) =>
             {
                 DueDatePicker.Visibility = Visibility.Visible;
+                DueDatePresetPicker.Visibility = Visibility.Visible;
                 DueDatePicker.IsEnabled = true;
+                DueDatePresetPicker.IsEnabled = true;
             };
         }
 
         private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            DueDatePickerShow.Pause();
+            DueDateGridShow.Pause();
 
             // Animace skrytí
             DueDatePicker.IsEnabled = false;
-            DueDatePickerHide.Begin();
-            DueDatePickerHide.Completed += (s2, e2) =>
+            DueDatePresetPicker.IsEnabled = false;
+            DueDateGridHide.Begin();
+            DueDateGridHide.Completed += (s2, e2) =>
             {
                 DueDatePicker.Visibility = Visibility.Collapsed;
+                DueDatePresetPicker.Visibility = Visibility.Collapsed;
             };
+        }
+
+        private void DueDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DueDatePresetPicker.SelectedItem != null)
+            {
+                KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)DueDatePresetPicker.SelectedItem;
+                ViewModel.CurrentTask.DueDate = pair.Value;
+            }
         }
 
         #endregion

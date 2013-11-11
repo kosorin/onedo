@@ -17,6 +17,7 @@
 
         <!--Region Konvertory-->
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
+        <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -92,13 +93,19 @@
             <Setter Property="Size" Value="38,38" />
             <Setter Property="Offset" Value="10,12" />
         </Style>
-        
+
         <Style x:Key="ClockIconStyle" TargetType="controls:Icon">
             <Setter Property="Data" Value="F1 M367,295.5H227.5V142h45v108.5H367V295.5z M256,95c-88.992,0-161,72.022-161,161
 	                                       c0,88.992,72.023,161,161,161c88.992,0,161-72.023,161-161C417,167.007,344.977,95,256,95 M256,50c113.771,0,206,92.229,206,206
 	                                       s-92.229,206-206,206S50,369.771,50,256S142.229,50,256,50z" />
             <Setter Property="Size" Value="38,38" />
             <Setter Property="Offset" Value="10,12" />
+        </Style>
+        
+        <Style x:Key="DownArrowIconStyle" TargetType="controls:Icon">
+            <Setter Property="Data" Value="F1 M 50,229.312 50,79.668 256,284.688 462,79.668 462,229.312 256,434.332" />
+            <Setter Property="Size" Value="30,30" />
+            <Setter Property="Offset" Value="11,11" />
         </Style>
 
         <!--EndRegion-->
