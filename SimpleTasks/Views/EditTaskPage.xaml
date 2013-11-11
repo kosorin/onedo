@@ -612,7 +612,7 @@
                                                 Margin="0"
                                                 ItemsSource="{Binding PresetDueDateList}"
                                                 ExpansionMode="FullScreenOnly"
-                                                FullModeHeader="{Binding LocalizedResources.ChooseDueDateText, Source={StaticResource LocalizedStrings}}"
+                                                FullModeHeader="{Binding LocalizedResources.ChooseDueDate, Source={StaticResource LocalizedStrings}}"
                                                 FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"/>
                         </Grid>
                     </StackPanel>
