@@ -83,10 +83,6 @@ namespace SimpleTasks.Views
                 MessageBox.Show(AppResources.MissingTitleText);
                 return false;
             }
-            else if (ReminderToggleButton.IsChecked.Value && ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
-            {
-                ViewModel.CurrentTask.ReminderDate = DateTime.Now.AddHours(1);
-            }
 
             return true;
         }
@@ -97,7 +93,15 @@ namespace SimpleTasks.Views
             {
                 DueDatePicker.Value = null;
             }
-            if (!ReminderToggleButton.IsChecked.Value)
+
+            if (ReminderToggleButton.IsChecked.Value)
+            {
+                if (ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
+                {
+                    ViewModel.CurrentTask.ReminderDate = DateTime.Now.AddMinutes(5);
+                }
+            }
+            else
             {
                 ReminderDatePicker.Value = null;
             }
