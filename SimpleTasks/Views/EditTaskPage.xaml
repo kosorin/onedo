@@ -651,7 +651,7 @@
                                     <DoubleAnimation Storyboard.TargetName="ReminderGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="100"
-                                                     Duration="0:0:0.5">
+                                                     Duration="0:0:0.45">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseOut"/>
                                         </DoubleAnimation.EasingFunction>
@@ -661,7 +661,7 @@
                                     <DoubleAnimation Storyboard.TargetName="ReminderGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="0"
-                                                     Duration="0:0:0.4">
+                                                     Duration="0:0:0.35">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseIn"/>
                                         </DoubleAnimation.EasingFunction>
