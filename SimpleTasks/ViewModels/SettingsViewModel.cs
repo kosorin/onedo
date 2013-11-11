@@ -17,12 +17,13 @@ namespace SimpleTasks.ViewModels
         public SettingsViewModel()
         {
             settings = IsolatedStorageSettings.ApplicationSettings;
+#if DEBUG
             Debug.WriteLine("> Nastavení:");
             foreach (object o in IsolatedStorageSettings.ApplicationSettings)
             {
                 Debug.WriteLine("  {0}", o.ToString());
             }
-
+#endif
             SetDueDatePicker();
             SetFirstDayOfWeekPicker();
             ApplyFirstDayOfWeekSetting();
@@ -127,6 +128,23 @@ namespace SimpleTasks.ViewModels
             NextWeek
         }
 
+        public DateTime? DefaultDueDateSettingToDateTime
+        {
+            get
+            {
+                switch (DefaultDueDateSetting)
+                {
+                case DefaultDueDate.Today: return DateTimeExtensions.Today;
+                case DefaultDueDate.Tomorrow: return DateTimeExtensions.Tomorrow;
+                case DefaultDueDate.ThisWeek: return DateTimeExtensions.LastDayOfWeek;
+                case DefaultDueDate.NextWeek: return DateTimeExtensions.LastDayOfNextWeek;
+
+                case DefaultDueDate.NoDueDate:
+                default: return null;
+                }
+            }
+        }
+
         public List<KeyValuePair<DefaultDueDate, string>> DueDatePickerItems { get; private set; }
 
         private KeyValuePair<DefaultDueDate, string> _dueDatePickerSelectedItem;
@@ -146,11 +164,11 @@ namespace SimpleTasks.ViewModels
         private void SetDueDatePicker()
         {
             DueDatePickerItems = new List<KeyValuePair<DefaultDueDate, string>>();
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.NoDueDate, AppResources.DateNoDueText));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.Today, AppResources.DateTodayText));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.Tomorrow, AppResources.DateTomorrowText));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.ThisWeek, AppResources.DateThisWeekText));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.NextWeek, AppResources.DateNextWeekText));
+            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.NoDueDate, AppResources.DateNoDue));
+            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.Today, AppResources.DateToday));
+            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.Tomorrow, AppResources.DateTomorrow));
+            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.ThisWeek, AppResources.DateThisWeek));
+            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.NextWeek, AppResources.DateNextWeek));
 
             var selectedItems = DueDatePickerItems.Where((i) => { return i.Key == DefaultDueDateSetting; });
             if (selectedItems.Count() > 0)
@@ -160,6 +178,27 @@ namespace SimpleTasks.ViewModels
         }
 
         #endregion DefaultDueDate
+
+        #region DefaultReminderTime
+
+        private const string DefaultReminderTimeKeyName = "DefaultReminderTime";
+        private readonly DateTime DefaultReminderTimeDefault = new DateTime(1, 1, 1, 8, 0, 0);
+        public DateTime DefaultReminderTimeSetting
+        {
+            get
+            {
+                return GetValueOrDefault<DateTime>(DefaultReminderTimeKeyName, DefaultReminderTimeDefault);
+            }
+            set
+            {
+                if (AddOrUpdateValue(DefaultReminderTimeKeyName, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        #endregion
 
         #region FirstDayOfWeek
 

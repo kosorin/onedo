@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DateLaterText" xml:space="preserve">
+  <data name="DateLater" xml:space="preserve">
     <value>later</value>
   </data>
-  <data name="DateNextMonthText" xml:space="preserve">
+  <data name="DateNextMonth" xml:space="preserve">
     <value>next month</value>
   </data>
-  <data name="DateNextWeekText" xml:space="preserve">
+  <data name="DateNextWeek" xml:space="preserve">
     <value>next week</value>
   </data>
-  <data name="DateOverdueText" xml:space="preserve">
+  <data name="DateOverdue" xml:space="preserve">
     <value>overdue</value>
   </data>
-  <data name="DateThisMonthText" xml:space="preserve">
+  <data name="DateThisMonth" xml:space="preserve">
     <value>this month</value>
   </data>
-  <data name="DateThisWeekText" xml:space="preserve">
+  <data name="DateThisWeek" xml:space="preserve">
     <value>this week</value>
   </data>
-  <data name="DateTodayText" xml:space="preserve">
+  <data name="DateToday" xml:space="preserve">
     <value>today</value>
   </data>
-  <data name="DateTomorrowText" xml:space="preserve">
+  <data name="DateTomorrow" xml:space="preserve">
     <value>tomorrow</value>
   </data>
   <data name="TileNoTasks" xml:space="preserve">

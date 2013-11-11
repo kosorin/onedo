@@ -22,11 +22,11 @@ namespace SimpleTasks.Core.Helpers
 
         public static DateTime LastDayOfNextMonth { get { DateTime nextMonth = LastDayOfMonth.AddDays(1); return new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)); } }
 
-        public static string ToRelativeString(DateTime? date, bool includeMonth = false)
+        public static string ToRelativeString(DateTime? date, string noDateText, bool includeMonth = false)
         {
-            if (!date.HasValue)
+            if (date == null)
             {
-                return AppResources.DateLaterText;
+                return noDateText;
             }
 
             int days = (int)(date.Value - Today).TotalDays;
@@ -39,46 +39,45 @@ namespace SimpleTasks.Core.Helpers
 
             if (days < 0)
             {
-                return AppResources.DateOverdueText;
+                return AppResources.DateOverdue;
             }
             else if (days == 0)
             {
-                return AppResources.DateTodayText;
+                return AppResources.DateToday;
             }
             else if (days == 1)
             {
-                return AppResources.DateTomorrowText;
+                return AppResources.DateTomorrow;
             }
             else if (days > 1 && daysToEndOfWeek - (daysAfterTomorrow + 1) > 0)
             {
-                return AppResources.DateThisWeekText;
+                return AppResources.DateThisWeek;
             }
             else if (days > daysToEndOfWeek && days <= daysToEndOfNextWeek)
             {
-                return AppResources.DateNextWeekText;
+                return AppResources.DateNextWeek;
             }
             else if (!includeMonth && days > daysToEndOfNextWeek)
             {
-                return AppResources.DateLaterText;
+                return AppResources.DateLater;
             }
             else if (includeMonth)
             {
                 if (days > daysToEndOfNextWeek && days <= daysToEndOfMonth)
                 {
-                    return AppResources.DateThisMonthText;
+                    return AppResources.DateThisMonth;
                 }
                 else if (days > daysToEndOfMonth && days <= daysToEndOfNextMonth)
                 {
-                    return AppResources.DateNextMonthText;
+                    return AppResources.DateNextMonth;
                 }
                 else if (days > daysToEndOfNextMonth)
                 {
-                    return AppResources.DateLaterText;
+                    return AppResources.DateLater;
                 }
             }
 
             return date.Value.ToString("dddd", CultureInfo.CurrentCulture).ToLower();
         }
-    
     }
 }

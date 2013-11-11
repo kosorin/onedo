@@ -102,11 +102,15 @@
     <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Conventers\DateToRelativeStringConverter.cs" />
+    <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />
+    <Compile Include="Conventers\TaskPriorityToBooleanConverter.cs" />
     <Compile Include="Conventers\DateToStringConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
+    <Compile Include="Helpers\LiveTileExtensions.cs" />
+    <Compile Include="Helpers\PeriodicTaskExtensions.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Models\DueDateModel.cs" />
     <Compile Include="Models\TaskKeyGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">

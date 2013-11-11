@@ -12,6 +12,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Diagnostics;
 using SimpleTasks.Core.Models;
+using Microsoft.Phone.Scheduler;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Views
 {
@@ -24,8 +26,15 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = ViewModel = App.ViewModel;
 
-            LiveTile.UpdateTiles(ViewModel.Tasks);
+            LiveTile.Update(ViewModel.Tasks);
             BuildLocalizedApplicationBar();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            NavigationService.RemoveBackEntry();
         }
 
         private void BuildLocalizedApplicationBar()
@@ -36,7 +45,7 @@ namespace SimpleTasks.Views
 
             // Přidat úkol
             ApplicationBarIconButton appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
-            appBarNewTaskButton.Text = AppResources.AppBarNewText;
+            appBarNewTaskButton.Text = AppResources.AppBarNew;
             appBarNewTaskButton.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
 
@@ -45,7 +54,7 @@ namespace SimpleTasks.Views
             #region Menu
 
             // Smazat dokončené úkoly
-            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompletedText);
+            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
             appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
             //appBarDeleteCompletedItem.IsEnabled = ViewModel.Tasks.ActiveTaskCount > 0;
             ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
@@ -56,23 +65,23 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(appBarLiveTileItem);
 
             // Nastavení
-            ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettingsText);
+            ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
             appBarSettingsMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(appBarSettingsMenuItem);
 
             // O aplikaci
-            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAboutText);
+            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
             appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
 
-            // Reset
+            //// Reset
             //ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
             //appBarResetMenuItem.Click += appBarResetMenuItem_Click;
             //ApplicationBar.MenuItems.Add(appBarResetMenuItem);
 
-            //// Clear
+            ////// Clear
             //ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            //appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateTilesUI(ViewModel.Tasks); };
+            //appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateUI(ViewModel.Tasks); };
             //ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 
             #endregion
@@ -83,37 +92,31 @@ namespace SimpleTasks.Views
             if (LiveTile.HasSecondaryTile)
             {
                 // Je připnuta i sekundární dlaždice
-                appBarItem.Text = AppResources.AppBarUnpinTileText;
-                appBarItem.Click += (s, e) => { App.RemoveSecondaryTile(); App.StopPeriodicTask(); SetAppBarLiveTileItem(appBarItem); };
+                appBarItem.Text = AppResources.AppBarUnpinTile;
+                appBarItem.Click += (s, e) => { LiveTileExtensions.RemoveSecondaryTile(); PeriodicTaskExtensions.Stop(); SetAppBarLiveTileItem(appBarItem); };
             }
             else
             {
                 // Pouze primární dlaždice
-                appBarItem.Text = AppResources.AppBarPinTileText;
-                appBarItem.Click += (s, e) => { App.AddSecondaryTile(); App.StartPeriodicTask(); SetAppBarLiveTileItem(appBarItem); };
+                appBarItem.Text = AppResources.AppBarPinTile;
+                appBarItem.Click += (s, e) => { LiveTileExtensions.AddSecondaryTile(ViewModel.Tasks); PeriodicTaskExtensions.Start(); SetAppBarLiveTileItem(appBarItem); };
             }
-        }
-
-        void appBarHelpMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Zatím bez nápovědy");
         }
 
         void appBarResetMenuItem_Click(object sender, EventArgs e)
         {
             ViewModel.Tasks.Clear();
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Buy milk", Date = DateTimeExtensions.Today.AddDays(-7) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Book flight to London", Date = DateTimeExtensions.Today.AddDays(-2), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Call mom", Date = DateTimeExtensions.Today.AddDays(0), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to the dentist", Date = DateTimeExtensions.Today.AddDays(1) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version", Date = DateTimeExtensions.Today.AddDays(1) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", Date = DateTimeExtensions.Today.AddDays(2), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", Date = DateTimeExtensions.Today.AddDays(4) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", Date = DateTimeExtensions.Today.AddDays(6) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", Date = DateTimeExtensions.Today.AddDays(10), IsImportant = true });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", Date = DateTimeExtensions.Today.AddDays(35) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Buy milk", DueDate = DateTimeExtensions.Today.AddDays(-7), Priority = TaskPriority.Low });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Book flight to London", DueDate = DateTimeExtensions.Today.AddDays(-2), Priority = TaskPriority.High, ReminderDate = DateTime.Now });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to the dentist", DueDate = DateTimeExtensions.Today.AddDays(1) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version", DueDate = DateTimeExtensions.Today.AddDays(1), ReminderDate = DateTime.Now });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", DueDate = DateTimeExtensions.Today.AddDays(2), Priority = TaskPriority.High });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", DueDate = DateTimeExtensions.Today.AddDays(4) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", DueDate = DateTimeExtensions.Today.AddDays(6) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", DueDate = DateTimeExtensions.Today.AddDays(10), Priority = TaskPriority.High });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", DueDate = DateTimeExtensions.Today.AddDays(35), Priority = TaskPriority.Low });
 
-            LiveTile.UpdateTilesUI(ViewModel.Tasks);
+            LiveTile.UpdateUI(ViewModel.Tasks);
         }
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -126,10 +129,9 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            ViewModel.TaskToEdit = task;
             selector.SelectedItem = null;
 
-            NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
 
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)

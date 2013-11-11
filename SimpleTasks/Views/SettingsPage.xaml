@@ -45,7 +45,7 @@
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsGeneral, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
                     <StackPanel>
-                        
+
                         <!--Default due date-->
                         <StackPanel Margin="0,0,0,12">
                             <TextBlock Text="{Binding LocalizedResources.SettingsDefaultDueDate, Source={StaticResource LocalizedStrings}}" 
@@ -61,7 +61,7 @@
                                 </toolkit:ListPicker.ItemTemplate>
                             </toolkit:ListPicker>
                         </StackPanel>
-                        
+
                         <!--First day of week-->
                         <StackPanel Margin="0,0,0,12">
                             <TextBlock Text="{Binding LocalizedResources.SettingsFirstDayOfWeek, Source={StaticResource LocalizedStrings}}" 
@@ -85,6 +85,10 @@
                                 </toolkit:ListPicker.ItemTemplate>
                             </toolkit:ListPicker>
                         </StackPanel>
+
+                        <toolkit:TimePicker x:Name="ReminderTimePicker"
+                                            Header="{Binding LocalizedResources.SettingsDefaultReminderTime, Source={StaticResource LocalizedStrings}}"
+                                            Value="{Binding DefaultReminderTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
 
                         <!--Automatically delete completed tasks-->
                         <StackPanel Margin="0,0,0,12">

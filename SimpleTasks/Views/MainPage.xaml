@@ -59,7 +59,7 @@
                             Padding="12,2,12,2"
                             HorizontalAlignment="Right"
                             Grid.Column="1">
-                        <TextBlock Text="{Binding Key}" 
+                        <TextBlock Text="{Binding Title}" 
                                    Foreground="{StaticResource PhoneForegroundBrush}" 
                                    FontSize="24"
                                    Padding="6"
@@ -86,7 +86,6 @@
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource ButtonTextBlockStyle}"
                                Opacity="0.85"
-                               Grid.Column="0"
                                Padding="15,0,0,0"
                                TextWrapping="Wrap">
                     </TextBlock>
@@ -96,41 +95,57 @@
                                 Margin="0,7,0,0">
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding IsComplete, Converter={StaticResource BooleanNegationToVisibilityConverter}}">
-                            <ToggleButton IsChecked="{Binding IsOverdue}"
-                                          IsEnabled="False"
-                                          Visibility="{Binding IsOverdue, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Border Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <controls:Icon Style="{StaticResource ReminderIconStyle}"
+                                               Color="{StaticResource PhoneAccentBrush}"/>
+                            </Border>
+                            <ToggleButton Visibility="{Binding Priority, Mode=OneTime,
+                                                       Converter={StaticResource TaskPriorityToVisibilityConverter}}"
+                                          IsChecked="{Binding Priority, Mode=OneTime,
+                                                      Converter={StaticResource TaskPriorityToBooleanConverter}}">
                                 <ToggleButton.Template>
-                                    <ControlTemplate TargetType="ToggleButton">
-                                        <Border Name="OverdueInfoBorder">
+                                    <ControlTemplate>
+                                        <Grid>
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CheckStates">
                                                     <VisualState x:Name="Checked">
                                                         <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="OverdueInfoBorder" 
+                                                            <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
                                                                              Storyboard.TargetProperty="Opacity"
-                                                                             From="0.5"
-                                                                             To="1"
-                                                                             Duration="0:0:0.45"
-                                                                             AutoReverse="True"
-                                                                             RepeatBehavior="Forever">
-                                                                <DoubleAnimation.EasingFunction>
-                                                                    <QuadraticEase EasingMode="EaseInOut"/>
-                                                                </DoubleAnimation.EasingFunction>
-                                                            </DoubleAnimation>
+                                                                             Duration="0"
+                                                                             To="1" />
+                                                            <DoubleAnimation Storyboard.TargetName="LowPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="0"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unchecked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="0" />
+                                                            <DoubleAnimation Storyboard.TargetName="LowPriorityIcon" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             Duration="0"
+                                                                             To="0.2"/>
                                                         </Storyboard>
                                                     </VisualState>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-                                            <controls:Icon Style="{StaticResource OverdueIconStyle}"
+                                            <controls:Icon x:Name="HighPriorityIcon"
+                                                           Opacity="0"
+                                                           Style="{StaticResource HighPriorityIconStyle}"
                                                            Color="{StaticResource PhoneAccentBrush}"/>
-                                        </Border>
+                                            <controls:Icon x:Name="LowPriorityIcon"
+                                                           Opacity="0"
+                                                           Style="{StaticResource LowPriorityIconStyle}"
+                                                           Color="{StaticResource PhoneForegroundBrush}"/>
+                                        </Grid>
                                     </ControlTemplate>
                                 </ToggleButton.Template>
                             </ToggleButton>
-                            <Border Visibility="{Binding IsImportant, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <controls:Icon Style="{StaticResource AlertIconStyle}"
-                                               Color="{StaticResource PhoneAccentBrush}"/>
-                            </Border>
                         </StackPanel>
                         <Border Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <controls:Icon Style="{StaticResource CheckIconStyle}"
@@ -156,7 +171,7 @@
                                     SelectionChanged="TasksLongListSelector_SelectionChanged"
                                     Loaded="TasksLongListSelector_Loaded" />
 
-            <TextBlock Text="{Binding LocalizedResources.NoTasksText, Source={StaticResource LocalizedStrings}}"
+            <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center" 
                        Style="{StaticResource PhoneTextLargeStyle}"

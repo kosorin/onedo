@@ -125,54 +125,54 @@
     <value>en-US</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  <data name="AppBarNewText" xml:space="preserve">
+  <data name="AppBarNew" xml:space="preserve">
     <value>new</value>
     <comment>new task</comment>
   </data>
-  <data name="AppBarAboutText" xml:space="preserve">
+  <data name="AppBarAbout" xml:space="preserve">
     <value>about</value>
   </data>
-  <data name="AppBarSaveText" xml:space="preserve">
+  <data name="AppBarSave" xml:space="preserve">
     <value>save</value>
     <comment>save task</comment>
   </data>
-  <data name="ChooseDueDateText" xml:space="preserve">
+  <data name="ChooseDueDate" xml:space="preserve">
     <value>choose due date</value>
   </data>
-  <data name="DateCustomDueText" xml:space="preserve">
+  <data name="DateCustomDue" xml:space="preserve">
     <value>custom due date</value>
   </data>
-  <data name="DateLaterText" xml:space="preserve">
+  <data name="DateLater" xml:space="preserve">
     <value>later</value>
   </data>
-  <data name="DateNextMonthText" xml:space="preserve">
+  <data name="DateNextMonth" xml:space="preserve">
     <value>next month</value>
   </data>
-  <data name="DateNextWeekText" xml:space="preserve">
+  <data name="DateNextWeek" xml:space="preserve">
     <value>next week</value>
   </data>
-  <data name="DateNoDueText" xml:space="preserve">
+  <data name="DateNoDue" xml:space="preserve">
     <value>no due date</value>
   </data>
-  <data name="DateOverdueText" xml:space="preserve">
+  <data name="DateOverdue" xml:space="preserve">
     <value>overdue</value>
   </data>
-  <data name="DateThisMonthText" xml:space="preserve">
+  <data name="DateThisMonth" xml:space="preserve">
     <value>this month</value>
   </data>
-  <data name="DateThisWeekText" xml:space="preserve">
+  <data name="DateThisWeek" xml:space="preserve">
     <value>this week</value>
   </data>
-  <data name="DateTodayText" xml:space="preserve">
+  <data name="DateToday" xml:space="preserve">
     <value>today</value>
   </data>
-  <data name="DateTomorrowText" xml:space="preserve">
+  <data name="DateTomorrow" xml:space="preserve">
     <value>tomorrow</value>
   </data>
-  <data name="MissingTitleText" xml:space="preserve">
+  <data name="MissingTitle" xml:space="preserve">
     <value>Enter task title.</value>
   </data>
-  <data name="NoTasksText" xml:space="preserve">
+  <data name="NoTasks" xml:space="preserve">
     <value>All tasks are completed.</value>
   </data>
   <data name="PriorityHigh" xml:space="preserve">
@@ -184,7 +184,7 @@
   <data name="TitleHintText" xml:space="preserve">
     <value>Task title</value>
   </data>
-  <data name="AppBarCompleteText" xml:space="preserve">
+  <data name="AppBarComplete" xml:space="preserve">
     <value>complete</value>
     <comment>complete task</comment>
   </data>
@@ -192,35 +192,35 @@
     <value>Updates live tile.</value>
     <comment>Info about background task agent</comment>
   </data>
-  <data name="AppBarActivateText" xml:space="preserve">
+  <data name="AppBarActivate" xml:space="preserve">
     <value>activate</value>
     <comment>activate task</comment>
   </data>
-  <data name="AppBarDeleteCompletedText" xml:space="preserve">
+  <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>delete completed tasks</value>
   </data>
-  <data name="AppBarDeleteText" xml:space="preserve">
+  <data name="AppBarDelete" xml:space="preserve">
     <value>delete</value>
     <comment>delete task</comment>
   </data>
-  <data name="AppBarSettingsText" xml:space="preserve">
+  <data name="AppBarSettings" xml:space="preserve">
     <value>settings</value>
   </data>
-  <data name="DateCompletedText" xml:space="preserve">
+  <data name="DateCompleted" xml:space="preserve">
     <value>completed</value>
     <comment>completed tasks</comment>
   </data>
-  <data name="DeleteTaskCaptionText" xml:space="preserve">
+  <data name="DeleteTaskCaption" xml:space="preserve">
     <value>Delete task</value>
   </data>
-  <data name="DeleteTaskText" xml:space="preserve">
+  <data name="DeleteTask" xml:space="preserve">
     <value>Are you sure you want to delete this task?</value>
   </data>
-  <data name="DeleteTaskYesText" xml:space="preserve">
+  <data name="DeleteTaskYes" xml:space="preserve">
     <value>delete</value>
     <comment>delete confirmation</comment>
   </data>
-  <data name="DeleteTaskNoText" xml:space="preserve">
+  <data name="DeleteTaskNo" xml:space="preserve">
     <value>cancel</value>
     <comment>cancel delete confirmation</comment>
   </data>
@@ -267,10 +267,10 @@
   <data name="SettingsTitle" xml:space="preserve">
     <value>SETTINGS</value>
   </data>
-  <data name="AppBarPinTileText" xml:space="preserve">
+  <data name="AppBarPinTile" xml:space="preserve">
     <value>pin tile</value>
   </data>
-  <data name="AppBarUnpinTileText" xml:space="preserve">
+  <data name="AppBarUnpinTile" xml:space="preserve">
     <value>unpin tile</value>
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
@@ -282,5 +282,20 @@
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Version {0}</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>due date</value>
+  </data>
+  <data name="PriorityLow" xml:space="preserve">
+    <value>low priority</value>
+  </data>
+  <data name="Reminder" xml:space="preserve">
+    <value>reminder</value>
+  </data>
+  <data name="ReminderTitle" xml:space="preserve">
+    <value>Task reminder</value>
+  </data>
+  <data name="SettingsDefaultReminderTime" xml:space="preserve">
+    <value>Default reminder time</value>
   </data>
 </root>

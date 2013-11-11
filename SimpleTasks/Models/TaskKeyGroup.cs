@@ -9,108 +9,93 @@ namespace SimpleTasks.Models
 {
     public class TaskKeyGroup : List<TaskModel>
     {
-        public enum Types
+        public string Title { get; private set; }
+
+        public TaskKeyGroup(string title)
         {
-            Today,
-            Tomorrow,
-            ThisWeek,
-            NextWeek,
-            Later,
-            Completed
+            Title = title;
         }
 
-        public Types Type { get; private set; }
-
-        public DateTime? Date { get; private set; }
-
-        public string Key { get; private set; }
-
-        public TaskKeyGroup(Types type, DateTime? date, string key)
+        public static List<TaskKeyGroup> CreateGroups(IEnumerable<TaskModel> items)
         {
-            Type = type;
-            Date = date;
-            Key = key;
-        }
+            List<TaskKeyGroup> groups = new List<TaskKeyGroup>();
+            TaskKeyGroup overdueGroup = new TaskKeyGroup(AppResources.DateOverdue);
+            TaskKeyGroup todayGroup = new TaskKeyGroup(AppResources.DateToday);
+            TaskKeyGroup tomorrowGroup = new TaskKeyGroup(AppResources.DateTomorrow);
+            TaskKeyGroup thisWeekGroup = new TaskKeyGroup(AppResources.DateThisWeek);
+            TaskKeyGroup nextWeekGroup = new TaskKeyGroup(AppResources.DateNextWeek);
+            TaskKeyGroup laterGroup = new TaskKeyGroup(AppResources.DateLater);
+            TaskKeyGroup completedGroup = new TaskKeyGroup(AppResources.DateCompleted);
 
-        public static TaskKeyGroupCollection CreateGroups(IEnumerable<TaskModel> items)
-        {
-            TaskKeyGroupCollection list = new TaskKeyGroupCollection();
+            groups.Add(overdueGroup);
+            groups.Add(todayGroup);
+            groups.Add(tomorrowGroup);
+            groups.Add(thisWeekGroup);
+            groups.Add(nextWeekGroup);
+            groups.Add(laterGroup);
+            groups.Add(completedGroup);
 
             // Přidání úkolů do jednotlivých skupin
             if (items != null)
             {
-                foreach (TaskModel item in items)
+                foreach (TaskModel task in items)
                 {
-                    list.NewTask(item);
+                    if (task.IsComplete)
+                        completedGroup.Add(task);
+                    else if (task.DueDate < DateTimeExtensions.Today)
+                        overdueGroup.Add(task);
+                    else if (task.DueDate == DateTimeExtensions.Today)
+                        todayGroup.Add(task);
+                    else if (task.DueDate == DateTimeExtensions.Tomorrow)
+                        tomorrowGroup.Add(task);
+                    else if (task.DueDate > DateTimeExtensions.Tomorrow && task.DueDate <= DateTimeExtensions.LastDayOfWeek)
+                        thisWeekGroup.Add(task);
+                    else if (task.DueDate > DateTimeExtensions.LastDayOfWeek && task.DueDate <= DateTimeExtensions.LastDayOfNextWeek)
+                        nextWeekGroup.Add(task);
+                    else
+                        laterGroup.Add(task);
                 }
             }
 
-            return list;
-        }
-    }
-
-    public class TaskKeyGroupCollection : ObservableCollection<TaskKeyGroup>
-    {
-        public TaskKeyGroupCollection()
-        {
-            Add(new TaskKeyGroup(TaskKeyGroup.Types.Today, DateTimeExtensions.Today, AppResources.DateTodayText));
-            Add(new TaskKeyGroup(TaskKeyGroup.Types.Tomorrow, DateTimeExtensions.Tomorrow, AppResources.DateTomorrowText));
-            Add(new TaskKeyGroup(TaskKeyGroup.Types.ThisWeek, DateTimeExtensions.LastDayOfWeek, AppResources.DateThisWeekText));
-            Add(new TaskKeyGroup(TaskKeyGroup.Types.NextWeek, DateTimeExtensions.LastDayOfNextWeek, AppResources.DateNextWeekText));
-            Add(new TaskKeyGroup(TaskKeyGroup.Types.Later, null, AppResources.DateLaterText));
-            Add(new TaskKeyGroup(TaskKeyGroup.Types.Completed, null, AppResources.DateCompletedText));
-        }
-
-        public void NewTask(TaskModel task)
-        {
-            TaskKeyGroup group = null;
-
-            // Vyhledání příslušné skupiny, kde úkol patří
-            if (task.IsComplete)
-                group = this[(int)TaskKeyGroup.Types.Completed];
-
-            else if (task.Date <= DateTimeExtensions.Today)
-                group = this[(int)TaskKeyGroup.Types.Today];
-
-            else if (task.Date == DateTimeExtensions.Tomorrow)
-                group = this[(int)TaskKeyGroup.Types.Tomorrow];
-
-            else if (task.Date > DateTimeExtensions.Tomorrow && task.Date <= DateTimeExtensions.LastDayOfWeek)
-                group = this[(int)TaskKeyGroup.Types.ThisWeek];
-
-            else if (task.Date > DateTimeExtensions.LastDayOfWeek && task.Date <= DateTimeExtensions.LastDayOfNextWeek)
-                group = this[(int)TaskKeyGroup.Types.NextWeek];
-
-            else
-                group = this[(int)TaskKeyGroup.Types.Later];
-
-            // Přidání úkolu
-            group.Add(task);
-
-            // Seřazení úkolů ve skupině podle data
-            group.Sort((t0, t1) =>
+            // Seřazení úkolů ve skupinách
+            Comparison<TaskModel> comparison = (t1, t2) =>
             {
-                return DateTime.Compare(t0.Date.HasValue ? t0.Date.Value : DateTimeExtensions.Today,
-                                        t1.Date.HasValue ? t1.Date.Value : DateTimeExtensions.Today);
+                if (t1 == null && t2 != null)
+                    return 1;
+                else if (t1 != null && t2 == null)
+                    return -1;
+                else if (t1 == null && t2 == null)
+                    return 0;
+                else
+                {
+                    int dateCompare = DateTime.Compare(t1.ReminderDate ?? DateTime.Now, t2.ReminderDate ?? DateTime.Now);
+                    if (dateCompare == 0)
+                    {
+                        // Nižší priorita bude vždy první, proto pro výsledek obrátíme znaménko.
+                        return -(t1.Priority.CompareTo(t2.Priority));
+                    }
+                    else
+                    {
+                        return dateCompare;
+                    }
+                }
+            };
+
+            overdueGroup.Sort(comparison);
+            todayGroup.Sort(comparison);
+            tomorrowGroup.Sort(comparison);
+            thisWeekGroup.Sort(comparison);
+            nextWeekGroup.Sort(comparison);
+            laterGroup.Sort(comparison);
+            completedGroup.Sort(comparison);
+            completedGroup.Sort((t1, t2) =>
+            {
+                // Dokončené úkoly mají vždy nastavený datum dokončení,
+                // proto můžeme přistupovat přímo k hodnotě
+                return DateTime.Compare(t1.ReminderDate ?? DateTime.Now, t2.ReminderDate ?? DateTime.Now);
             });
 
-            // Seřazení úkolů ve skupině podle stavu dokončení
-            group.Sort((t0, t1) =>
-            {
-                return t0.IsComplete.CompareTo(t1.IsComplete);
-            });
-        }
-
-        public void UpdateTask(TaskModel task)
-        {
-            // Odstranění úkolu ze skupin
-            foreach (TaskKeyGroup group in this)
-            {
-                group.Remove(task);
-            }
-
-            // Nové vložení
-            NewTask(task);
+            return groups;
         }
     }
 }

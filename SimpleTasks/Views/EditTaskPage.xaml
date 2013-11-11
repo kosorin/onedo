@@ -15,8 +15,7 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
-    toolkit:TiltEffect.IsTiltEnabled="True"
-    Loaded="PhoneApplicationPage_Loaded">
+    toolkit:TiltEffect.IsTiltEnabled="True">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -216,30 +215,42 @@
         <!--EndRegion-->
 
         <!--Region DueDate-->
-        <!--Due Date Picker-->
-        <ControlTemplate x:Key="DueDatePickerTemplate">
-            <Border x:Name="Border"
-                    Style="{StaticResource ButtonBorderStyle}">
+
+        <ControlTemplate x:Key="DueDateButtonTemplate">
+            <Border x:Name="DueDateButtonBorder"
+                    Style="{StaticResource ButtonBorderStyle}"
+                    Background="{StaticResource PhoneSubtleBrush}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="DueDateButtonBorder" 
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="{StaticResource PhoneAccentColor}"
+                                                Duration="0:0:0.4"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="DueDateButtonBorder" 
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="{StaticResource PhoneSubtleColor}"
+                                                Duration="0:0:0.4"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
                 <StackPanel Orientation="Horizontal">
-                    <controls:Icon Style="{StaticResource CalendarIconStyle}"
+                    <controls:Icon x:Name="CalendarIcon"
+                                   Style="{StaticResource CalendarIconStyle}"
                                    Color="{StaticResource ButtonForegroundBrush}"/>
-                    <TextBlock Text="{Binding CurrentDueDate.Title}"
+                    <TextBlock Text="{Binding LocalizedResources.DueDate, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource ButtonTextBlockStyle}"/>
                 </StackPanel>
             </Border>
         </ControlTemplate>
-        <DataTemplate x:Key="DueDateFullModeTemplate">
-            <StackPanel Margin="0,0,0,5">
-                <TextBlock Text="{Binding Title}"
-                           Style="{StaticResource PhoneTextExtraLargeStyle}" />
-                <TextBlock Text="{Binding Date, Converter={StaticResource DateToStringConverter}}"
-                           Style="{StaticResource PhoneTextSmallStyle}"
-                           Visibility="{Binding Date, Converter={StaticResource NullToVisibilityConverter}}"/>
-            </StackPanel>
-        </DataTemplate>
 
-        <!--Custom Due Date Picker-->
-        <ControlTemplate x:Key="CustomDueDatePickerTemplate">
+        <ControlTemplate x:Key="DueDatePickerTemplate">
             <Button x:Name="DateTimeButton"
                     Content="{TemplateBinding toolkit:DatePicker.ValueString}"
                     Height="{TemplateBinding Height}">
@@ -247,123 +258,45 @@
                     <ControlTemplate>
                         <Border x:Name="Border"
                                 Background="{StaticResource PhoneAccentBrush}"
-                                Height="{TemplateBinding Height}"
-                                Padding="60,0,0,0">
-                            <TextBlock Text="{TemplateBinding Button.Content}"
-                                       FontSize="{StaticResource PhoneFontSizeMedium}"
-                                       Style="{StaticResource ButtonTextBlockStyle}"/>
+                                Height="{TemplateBinding Height}">
+                            <Border Background="#33000000"
+                                    Padding="60,0,0,0">
+                                <TextBlock Text="{TemplateBinding Button.Content}"
+                                           FontSize="{StaticResource PhoneFontSizeMedium}"
+                                           Style="{StaticResource ButtonTextBlockStyle}"/>
+                            </Border>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
         </ControlTemplate>
 
-        <!--Overdue Info-->
-        <ControlTemplate x:Key="OverdueInfoTemplate" TargetType="ToggleButton">
-            <Border Name="OverdueInfoBorder"
-                    Height="0"
-                    Opacity="0">
-                <Border.Projection>
-                    <PlaneProjection x:Name="OverdueInfoProjection"
-                                     RotationX="90"
-                                     CenterOfRotationX="0"
-                                     CenterOfRotationY="0"/>
-                </Border.Projection>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CheckStates">
-                        <VisualState x:Name="Checked">
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetName="OverdueInfoBackgroundBrush" 
-                                                Storyboard.TargetProperty="Color"
-                                                From="{StaticResource PhoneChromeColor}"
-                                                To="{StaticResource PhoneAccentColor}"
-                                                Duration="0:0:1"
-                                                AutoReverse="True"
-                                                RepeatBehavior="Forever">
-                                    <ColorAnimation.EasingFunction>
-                                        <SineEase EasingMode="EaseInOut"/>
-                                    </ColorAnimation.EasingFunction>
-                                </ColorAnimation>
-                                <DoubleAnimation Storyboard.TargetName="OverdueInfoProjection"
-                                                 Storyboard.TargetProperty="RotationX"
-                                                 To="0"
-                                                 Duration="0:0:2"
-                                                 BeginTime="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <ElasticEase EasingMode="EaseOut"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetName="OverdueInfoBorder"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0.85"
-                                                 Duration="0:0:0.35"
-                                                 BeginTime="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <ExponentialEase EasingMode="EaseOut"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetName="OverdueInfoBorder"
-                                                 Storyboard.TargetProperty="Height"
-                                                 To="50"
-                                                 Duration="0:0:0.35"
-                                                 BeginTime="0:0:0.3">
-                                    <DoubleAnimation.EasingFunction>
-                                        <ExponentialEase EasingMode="EaseOut"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Unchecked">
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetName="OverdueInfoProjection"
-                                                 Storyboard.TargetProperty="RotationX"
-                                                 To="90"
-                                                 Duration="0:0:0.6">
-                                    <DoubleAnimation.EasingFunction>
-                                        <BackEase EasingMode="EaseIn"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetName="OverdueInfoBorder"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0"
-                                                 Duration="0:0:0.75">
-                                    <DoubleAnimation.EasingFunction>
-                                        <ExponentialEase EasingMode="EaseIn"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetName="OverdueInfoBorder"
-                                                 Storyboard.TargetProperty="Height"
-                                                 To="0"
-                                                 Duration="0:0:0.6">
-                                    <DoubleAnimation.EasingFunction>
-                                        <BackEase EasingMode="EaseIn"/>
-                                    </DoubleAnimation.EasingFunction>
-                                </DoubleAnimation>
-                            </Storyboard>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-                <Border.Background>
-                    <SolidColorBrush x:Name="OverdueInfoBackgroundBrush"
-                                     Color="{StaticResource PhoneSubtleColor}" />
-                </Border.Background>
-                <StackPanel Orientation="Horizontal">
-                    <controls:Icon Style="{StaticResource OverdueIconStyle}"
-                                   Color="{StaticResource ButtonForegroundBrush}"
-                                   RenderTransformOrigin="0.5,0" >
-                        <controls:Icon.RenderTransform>
-                            <CompositeTransform ScaleX="0.8" ScaleY="0.8" />
-                        </controls:Icon.RenderTransform>
-                    </controls:Icon>
-                    <TextBlock Text="{Binding LocalizedResources.DateOverdueText, Source={StaticResource LocalizedStrings}}"
-                               FontSize="{StaticResource PhoneFontSizeMedium}"
-                               Style="{StaticResource ButtonTextBlockStyle}"/>
-                </StackPanel>
+        <ControlTemplate x:Key="DueDatePresetPickerTemplate">
+            <Border x:Name="Border"
+                    Background="{StaticResource PhoneAccentBrush}"
+                    Height="{TemplateBinding Height}">
+                <Border Background="#7A000000">
+                    <controls:Icon Style="{StaticResource DownArrowIconStyle}"
+                                   Color="{StaticResource PhoneSubtleBrush}" 
+                                   Width="50"
+                                   Height="50"/>
+                </Border>
             </Border>
         </ControlTemplate>
+
+        <DataTemplate x:Key="DueDatePresetFullModeTemplate">
+            <StackPanel Margin="0,0,0,5">
+                <TextBlock Text="{Binding Key}"
+                           Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                <TextBlock Text="{Binding Value, Converter={StaticResource DateToStringConverter}}"
+                           Style="{StaticResource PhoneTextSmallStyle}"/>
+            </StackPanel>
+        </DataTemplate>
+
         <!--EndRegion-->
 
         <!--Region Priority-->
+
         <ControlTemplate x:Key="PriorityButtonTemplate">
             <Border Style="{StaticResource ButtonBorderStyle}">
                 <VisualStateManager.VisualStateGroups>
@@ -374,17 +307,37 @@
                                                 Storyboard.TargetProperty="Color"
                                                 To="{StaticResource PhoneAccentColor}"
                                                 Duration="0:0:0.4"/>
-                                <DoubleAnimation Storyboard.TargetName="NormalPriorityTextBlock" 
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="0"
                                                  Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
+                                <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Indeterminate">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="PriorityBorderBackgroundBrush" 
+                                                Storyboard.TargetProperty="Color"
+                                                To="{StaticResource PhoneSubtleColor}"
+                                                Duration="0:0:0.4"/>
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="1"
                                                  Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityTextBlock" 
+                                <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
-                                                 To="1"
+                                                 To="0"
                                                  Duration="0:0:0.4" />
                             </Storyboard>
                         </VisualState>
@@ -394,17 +347,17 @@
                                                 Storyboard.TargetProperty="Color"
                                                 To="{StaticResource PhoneSubtleColor}"
                                                 Duration="0:0:0.4"/>
-                                <DoubleAnimation Storyboard.TargetName="NormalPriorityTextBlock" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="1"
-                                                 Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0.45"
-                                                 Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="HighPriorityTextBlock" 
+                                <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
                                                  To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
                                                  Duration="0:0:0.4" />
                             </Storyboard>
                         </VisualState>
@@ -415,21 +368,178 @@
                                      Color="{StaticResource PhoneSubtleColor}" />
                 </Border.Background>
                 <StackPanel Orientation="Horizontal">
-                    <controls:Icon x:Name="HighPriorityIcon"
-                                   Style="{StaticResource AlertIconStyle}"
-                                   Color="{StaticResource ButtonForegroundBrush}"/>
                     <Grid>
-                        <TextBlock Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"
-                                   Name="NormalPriorityTextBlock"
-                                   Style="{StaticResource ButtonTextBlockStyle}"/>
-                        <TextBlock Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
-                                   Name="HighPriorityTextBlock"
-                                   Opacity="0"
-                                   Style="{StaticResource ButtonTextBlockStyle}"/>
+                        <Grid x:Name="HighPriorityGrid" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
+                                           Color="{StaticResource ButtonForegroundBrush}"/>
+                            <TextBlock Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Grid.Column="1"/>
+                        </Grid>
+                        <Grid x:Name="NormalPriorityGrid" Opacity="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Grid.Column="1"/>
+                        </Grid>
+                        <Grid x:Name="LowPriorityGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
+                                           Color="{StaticResource ButtonForegroundBrush}"/>
+                            <TextBlock Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Grid.Column="1"/>
+                        </Grid>
                     </Grid>
                 </StackPanel>
             </Border>
         </ControlTemplate>
+
+        <!--EndRegion-->
+
+        <!--Region Reminder-->
+
+        <ControlTemplate x:Key="ReminderButtonTemplate">
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="ReminderBorderBackgroundBrush" 
+                                                Storyboard.TargetProperty="Color"
+                                                To="{StaticResource PhoneAccentColor}"
+                                                Duration="0:0:0.4"/>
+                                <DoubleAnimation Storyboard.TargetName="DisabledReminderIcon" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="ReminderIcon" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetName="ReminderBorderBackgroundBrush" 
+                                                Storyboard.TargetProperty="Color"
+                                                To="{StaticResource PhoneSubtleColor}"
+                                                Duration="0:0:0.4"/>
+                                <DoubleAnimation Storyboard.TargetName="DisabledReminderIcon" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1"
+                                                 Duration="0:0:0.4" />
+                                <DoubleAnimation Storyboard.TargetName="ReminderIcon" 
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.4" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Border.Background>
+                    <SolidColorBrush x:Name="ReminderBorderBackgroundBrush"
+                                     Color="{StaticResource PhoneSubtleColor}" />
+                </Border.Background>
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <controls:Icon x:Name="ReminderIcon"
+                                       Style="{StaticResource ReminderIconStyle}"
+                                       Color="{StaticResource ButtonForegroundBrush}"/>
+                        <controls:Icon x:Name="DisabledReminderIcon"
+                                       Style="{StaticResource DisabledReminderIconStyle}"
+                                       Color="{StaticResource ButtonForegroundBrush}"/>
+                    </Grid>
+                    <TextBlock Text="{Binding LocalizedResources.Reminder, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource ButtonTextBlockStyle}"/>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ReminderDatePickerTemplate">
+            <Button x:Name="DateTimeButton"
+                    Content="{TemplateBinding toolkit:DatePicker.ValueString}"
+                    Height="{TemplateBinding Height}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="Border"
+                                Background="{StaticResource PhoneAccentBrush}"
+                                Height="{TemplateBinding Height}">
+                            <Grid Background="#33000000">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <controls:Icon x:Name="ReminderIcon"
+                                               Grid.Column="0"
+                                               Offset="7,11"
+                                               Opacity="0.35"
+                                               Style="{StaticResource CalendarIconStyle}"
+                                               Color="{StaticResource ButtonForegroundBrush}" 
+                                               RenderTransformOrigin="0.5,0.5" 
+                                               VerticalAlignment="Center">
+                                    <controls:Icon.RenderTransform>
+                                        <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                                    </controls:Icon.RenderTransform>
+                                </controls:Icon>
+                                <TextBlock Text="{TemplateBinding Button.Content}"
+                                           Grid.Column="1"
+                                           FontSize="{StaticResource PhoneFontSizeMedium}"
+                                           Style="{StaticResource ButtonTextBlockStyle}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ReminderTimePickerTemplate">
+            <Button x:Name="DateTimeButton"
+                    Content="{TemplateBinding toolkit:TimePicker.ValueString}"
+                    Height="{TemplateBinding Height}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border x:Name="Border"
+                                Background="{StaticResource PhoneAccentBrush}"
+                                Height="{TemplateBinding Height}">
+                            <Grid Background="#47000000">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <controls:Icon x:Name="ReminderIcon"
+                                               Grid.Column="0"
+                                               Offset="7,12"
+                                               Opacity="0.35"
+                                               Style="{StaticResource ClockIconStyle}"
+                                               Color="{StaticResource ButtonForegroundBrush}" 
+                                               RenderTransformOrigin="0.5,0.5"
+                                               VerticalAlignment="Center">
+                                    <controls:Icon.RenderTransform>
+                                        <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                                    </controls:Icon.RenderTransform>
+                                </controls:Icon>
+                                <TextBlock Text="{TemplateBinding Button.Content}"
+                                           Grid.Column="1"
+                                           FontSize="{StaticResource PhoneFontSizeMedium}"
+                                           Style="{StaticResource ButtonTextBlockStyle}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </ControlTemplate>
+
         <!--EndRegion-->
     </phone:PhoneApplicationPage.Resources>
 
@@ -442,7 +552,7 @@
             <Grid x:Name="ContentPanel" Margin="12,40,12,0">
                 <StackPanel>
                     <!--Nadpis-->
-                    <toolkit:PhoneTextBox Name="TitleTextBox"
+                    <toolkit:PhoneTextBox x:Name="TitleTextBox"
                                           Text="{Binding CurrentTask.Title, Mode=TwoWay}"
                                           Hint="{Binding LocalizedResources.TitleHintText, Source={StaticResource LocalizedStrings}}"
                                           Margin="20,0"
@@ -451,62 +561,129 @@
 
                     <!--Výběr termínu-->
                     <StackPanel Orientation="Vertical"
-                                Margin="0,20,0,0">
-                        <toolkit:ListPicker Name="DueDatePicker"       
-                                            Margin="50,0,50,0"
-                                            ItemsSource="{Binding DueDateList}"
-                                            SelectedItem="{Binding CurrentDueDate, Mode=TwoWay}"
-                                            ExpansionMode="FullScreenOnly"
-                                            FullModeHeader="{Binding LocalizedResources.ChooseDueDateText, Source={StaticResource LocalizedStrings}}"
-                                            FullModeItemTemplate="{StaticResource DueDateFullModeTemplate}" 
-                                            SelectionChanged="DueDatePicker_SelectionChanged"
-                                            Template="{StaticResource DueDatePickerTemplate}"/>
-
-                        <!--Vlastní termín-->
-                        <toolkit:DatePicker Name="CustomDueDatePicker"
-                                            Margin="50,0,50,0"
-                                            IsEnabled="False"
-                                            Visibility="Collapsed"
-                                            Value="{Binding CustomDueDate.Date, Mode=TwoWay}"
-                                            ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
-                                            Template="{StaticResource CustomDueDatePickerTemplate}">
-                            <toolkit:DatePicker.Resources>
-                                <Storyboard x:Name="DatePickerShow">
-                                    <DoubleAnimation Storyboard.TargetName="CustomDueDatePicker"
+                                Margin="50,20,50,0">
+                        <ToggleButton x:Name="DueDateToggleButton"
+                                      Template="{StaticResource DueDateButtonTemplate}"
+                                      IsChecked="{Binding CurrentTask.HasDueDate}"
+                                      Checked="DueToggleButton_Checked" 
+                                      Unchecked="DueToggleButton_Unchecked"/>
+                        <Grid x:Name="DueDateGrid"
+                              Height="{Binding CurrentTask.HasDueDate, 
+                                       Converter={StaticResource BooleanToNumberConverter},
+                                       ConverterParameter=50,
+                                       FallbackValue=50,
+                                       Mode=OneTime}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.Resources>
+                                <Storyboard x:Name="DueDateGridShow">
+                                    <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
-                                                     To="45"
-                                                     Duration="0:0:0.35"
-                                                     BeginTime="0:0:0.15">
+                                                     To="50"
+                                                     Duration="0:0:0.4">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseOut"/>
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
-                                <Storyboard x:Name="DatePickerHide">
-                                    <DoubleAnimation Storyboard.TargetName="CustomDueDatePicker"
+                                <Storyboard x:Name="DueDateGridHide">
+                                    <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="0"
-                                                     Duration="0:0:0.35"
-                                                     BeginTime="0:0:0.1">
+                                                     Duration="0:0:0.3">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseIn"/>
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
-                            </toolkit:DatePicker.Resources>
-                        </toolkit:DatePicker>
+                            </Grid.Resources>
+                            
+                            <toolkit:DatePicker x:Name="DueDatePicker"
+                                                Grid.Column="0"
+                                                Value="{Binding CurrentTask.DueDate, Mode=TwoWay}"
+                                                ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
+                                                Template="{StaticResource DueDatePickerTemplate}"/>
 
-                        <!--Overdue-->
-                        <ToggleButton Margin="50,0,50,20"
-                                      IsChecked="{Binding IsOverdue}"
-                                      Template="{StaticResource OverdueInfoTemplate}"
-                                      IsEnabled="False" />
+                            <toolkit:ListPicker x:Name="DueDatePresetPicker"
+                                                Grid.Column="1"
+                                                Template="{StaticResource DueDatePresetPickerTemplate}"
+                                                Margin="0"
+                                                ItemsSource="{Binding PresetDueDateList}"
+                                                ExpansionMode="FullScreenOnly"
+                                                FullModeHeader="{Binding LocalizedResources.ChooseDueDate, Source={StaticResource LocalizedStrings}}"
+                                                FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"/>
+                        </Grid>
                     </StackPanel>
 
                     <!--Priorita-->
-                    <ToggleButton Margin="50,0,50,0"
-                                  IsChecked="{Binding CurrentTask.IsImportant, Mode=TwoWay}"
+                    <ToggleButton Margin="50,20,50,0"
+                                  IsThreeState="True"
+                                  IsChecked="{Binding CurrentTask.Priority, Mode=TwoWay,
+                                              Converter={StaticResource TaskPriorityToBooleanConverter}}"
                                   Template="{StaticResource PriorityButtonTemplate}"/>
+
+                    <!--Připomenutí-->
+                    <StackPanel Orientation="Vertical"
+                                Margin="50,20,50,0">
+                        <ToggleButton x:Name="ReminderToggleButton"
+                                      Template="{StaticResource ReminderButtonTemplate}"
+                                      IsChecked="{Binding CurrentTask.HasReminder}"
+                                      Checked="ReminderToggleButton_Checked" 
+                                      Unchecked="ReminderToggleButton_Unchecked"/>
+
+                        <Grid x:Name="ReminderGrid"
+                              Height="{Binding CurrentTask.HasReminder, 
+                                               Converter={StaticResource BooleanToNumberConverter},
+                                               ConverterParameter=100,
+                                               FallbackValue=100,
+                                               Mode=OneTime}"
+                              Visibility="{Binding CurrentTask.HasReminder, Mode=OneTime, 
+                                           Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.Resources>
+                                <Storyboard x:Name="ReminderGridShow">
+                                    <DoubleAnimation Storyboard.TargetName="ReminderGrid"
+                                                     Storyboard.TargetProperty="Height"
+                                                     To="100"
+                                                     Duration="0:0:0.45">
+                                        <DoubleAnimation.EasingFunction>
+                                            <BackEase EasingMode="EaseOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                                <Storyboard x:Name="ReminderGridHide">
+                                    <DoubleAnimation Storyboard.TargetName="ReminderGrid"
+                                                     Storyboard.TargetProperty="Height"
+                                                     To="0"
+                                                     Duration="0:0:0.35">
+                                        <DoubleAnimation.EasingFunction>
+                                            <BackEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </Grid.Resources>
+
+                            <!--Datum-->
+                            <toolkit:DatePicker Name="ReminderDatePicker"
+                                                Grid.Row="0"
+                                                Value="{Binding CurrentTask.ReminderDate, Mode=TwoWay}"
+                                                ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
+                                                Template="{StaticResource ReminderDatePickerTemplate}"/>
+
+                            <!--Čas-->
+                            <toolkit:TimePicker Name="ReminderTimePicker"
+                                                Grid.Row="1"
+                                                Value="{Binding CurrentTask.ReminderDate, Mode=TwoWay}"
+                                                Template="{StaticResource ReminderTimePickerTemplate}" />
+                        </Grid>
+
+                    </StackPanel>
+
                 </StackPanel>
             </Grid>
         </ScrollViewer>

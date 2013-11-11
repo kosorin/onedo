@@ -6,43 +6,43 @@
     </header>
     <body>
       <group id="Resx">
-        <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
+        <trans-unit translate="yes" id="Resx/DateLater" xml:space="preserve">
           <source>later</source>
-          <target state="translated">později</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[8E61C][!!_ĺãτèř_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
+          <source>tomorrow</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[A738E][!!_ťômôŗřõẁ_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateToday" xml:space="preserve">
+          <source>today</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[AD6A5][!!_τòďáУ_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisWeek" xml:space="preserve">
+          <source>this week</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[C88E3][!!_ţћíś ẃèéќ_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisMonth" xml:space="preserve">
+          <source>this month</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[DE10A][!!_ťћîŝ móиτђ_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateOverdue" xml:space="preserve">
+          <source>overdue</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[FC4C6][!!_òνéѓðûè_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextWeek" xml:space="preserve">
+          <source>next week</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[CB20E][!!_ηé×τ ẅèêĸ_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextMonth" xml:space="preserve">
+          <source>next month</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[9CA87][!!_иê×ţ мôήţн_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/TileNoTasks" xml:space="preserve">
           <source>No tasks</source>
           <target state="translated">Žádné úkoly</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">text on live tile</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/DateTomorrowText" xml:space="preserve">
-          <source>tomorrow</source>
-          <target state="translated">zítra</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateTodayText" xml:space="preserve">
-          <source>today</source>
-          <target state="translated">dnes</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateThisWeekText" xml:space="preserve">
-          <source>this week</source>
-          <target state="translated">tento týden</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateThisMonthText" xml:space="preserve">
-          <source>this month</source>
-          <target state="translated">tento měsíc</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
-          <source>overdue</source>
-          <target state="translated">zpožděno</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNextWeekText" xml:space="preserve">
-          <source>next week</source>
-          <target state="translated">příští týden</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNextMonthText" xml:space="preserve">
-          <source>next month</source>
-          <target state="translated">příští měsíc</target>
-        </trans-unit>
       </group>
     </body>
   </file>

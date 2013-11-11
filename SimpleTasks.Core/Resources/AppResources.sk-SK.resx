@@ -117,32 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DateLaterText" xml:space="preserve">
-    <value>později</value>
-  </data>
   <data name="TileNoTasks" xml:space="preserve">
-    <value>Žádné úkoly</value>
+    <value>žiadne úlohy</value>
     <comment>text on live tile</comment>
   </data>
-  <data name="DateTomorrowText" xml:space="preserve">
-    <value>zítra</value>
+  <data name="DateLater" xml:space="preserve">
+    <value>neskôr</value>
   </data>
-  <data name="DateTodayText" xml:space="preserve">
+  <data name="DateTomorrow" xml:space="preserve">
+    <value>zajtra</value>
+  </data>
+  <data name="DateToday" xml:space="preserve">
     <value>dnes</value>
   </data>
-  <data name="DateThisWeekText" xml:space="preserve">
-    <value>tento týden</value>
+  <data name="DateThisWeek" xml:space="preserve">
+    <value>tento týždeň</value>
   </data>
-  <data name="DateThisMonthText" xml:space="preserve">
-    <value>tento měsíc</value>
+  <data name="DateThisMonth" xml:space="preserve">
+    <value>tento mesiac</value>
   </data>
-  <data name="DateOverdueText" xml:space="preserve">
-    <value>zpožděno</value>
+  <data name="DateOverdue" xml:space="preserve">
+    <value>po termíne</value>
   </data>
-  <data name="DateNextWeekText" xml:space="preserve">
-    <value>příští týden</value>
+  <data name="DateNextWeek" xml:space="preserve">
+    <value>budúci týždeň</value>
   </data>
-  <data name="DateNextMonthText" xml:space="preserve">
-    <value>příští měsíc</value>
+  <data name="DateNextMonth" xml:space="preserve">
+    <value>budúci mesiac</value>
   </data>
 </root>

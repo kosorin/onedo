@@ -15,8 +15,25 @@ namespace SimpleTasks.Core.Models
     [DataContract(Name = "Task", Namespace = "")]
     public class TaskModel : BindableBase
     {
+        #region Uid
+        private string _uid = string.Empty;
+        [DataMember(Order = 0)]
+        public string Uid
+        {
+            get
+            {
+                return _uid;
+            }
+            set
+            {
+                SetProperty(ref _uid, value);
+            }
+        }
+        #endregion
+
+        #region Title
         private string _title = string.Empty;
-        [DataMember]
+        [DataMember(Order = 1)]
         public string Title
         {
             get
@@ -28,62 +45,60 @@ namespace SimpleTasks.Core.Models
                 SetProperty(ref _title, value);
             }
         }
+        #endregion
 
-        private DateTime? _date = null;
-        [DataMember]
-        public DateTime? Date
+        #region Due Date
+        private DateTime? _dueDate = null;
+        [DataMember(Order = 2)]
+        public DateTime? DueDate
         {
             get
             {
-                return _date;
+                return _dueDate;
             }
             set
             {
-                SetProperty(ref _date, value);
+                SetProperty(ref _dueDate, value);
             }
         }
+
+        public bool HasDueDate { get { return DueDate != null; } }
 
         public bool IsOverdue
         {
             get
             {
-                if (Date == null)
+                if (DueDate == null)
                     return false;
                 else
-                    return (Date < DateTimeExtensions.Today);
+                    return (DueDate < DateTimeExtensions.Today);
             }
         }
+        #endregion
 
-        private bool _isImportant = false;
-        [DataMember]
-        public bool IsImportant
+        #region Priority
+        private TaskPriority _priority = TaskPriority.Normal;
+        [DataMember(Order = 3)]
+        public TaskPriority Priority
         {
             get
             {
-                return _isImportant;
+                return _priority;
             }
             set
             {
-                SetProperty(ref _isImportant, value);
-            }
-        }        
-        
-        private bool _isComplete = false;
-        [DataMember]
-        public bool IsComplete
-        {
-            get
-            {
-                return _isComplete;
-            }
-            set
-            {
-                SetProperty(ref _isComplete, value);
+                SetProperty(ref _priority, value);
             }
         }
+        #endregion
+
+        #region Complete
+        public bool IsComplete { get { return CompletedDate != null; } }
+
+        public bool IsActive { get { return CompletedDate == null; } }
 
         private DateTime? _completedDate = null;
-        [DataMember]
+        [DataMember(Order = 4)]
         public DateTime? CompletedDate
         {
             get
@@ -95,107 +110,52 @@ namespace SimpleTasks.Core.Models
                 SetProperty(ref _completedDate, value);
             }
         }
-    }
+        #endregion
 
-    [CollectionDataContract(Name = "Tasks", Namespace = "")]
-    public class TaskModelCollection : ObservableCollection<TaskModel>
-    {
-        public TaskModelCollection() { }
-
-        public TaskModelCollection(IEnumerable<TaskModel> tasks)
-            : base(tasks)
-        { }
-
-        private const string TasksDataFileName = "TasksData.xml";
-
-        public int ActiveTaskCount
+        #region Reminder
+        private DateTime? _reminderDate = null;
+        [DataMember(Order = 5)]
+        public DateTime? ReminderDate
         {
             get
             {
-                return this.Where(t => { return !t.IsComplete; }).Count();
+                return _reminderDate;
             }
-        }
-
-        public List<TaskModel> SortedActiveTasks
-        {
-            get
+            set
             {
-                // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
-                // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
-                List<TaskModel> tasks = this
-                    .Where((t) => { return !t.IsComplete && t.Date != null; })
-                    .OrderBy(t => t.Date.Value)
-                    .ThenByDescending(t => t.IsImportant)
-                    .ToList();
-
-                // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
-                tasks.AddRange(this.Where((t) => { return t.IsComplete == false && t.Date == null; }).OrderByDescending(t => t.IsImportant));
-
-                return tasks;
+                SetProperty(ref _reminderDate, value);
             }
         }
 
-        static public TaskModelCollection LoadTasksFromXmlFile()
+        public bool HasReminder { get { return ReminderDate != null; } }
+        #endregion
+
+        public TaskModel()
         {
-            return LoadTasksFromXmlFile(TasksDataFileName);
+            Uid = Guid.NewGuid().ToString();
         }
 
-        static public TaskModelCollection LoadTasksFromXmlFile(string fileName)
+        public void Update(TaskModel newTask)
         {
-            TaskModelCollection tasks = new TaskModelCollection();
+            Title = newTask.Title;
+            DueDate = newTask.DueDate;
+            Priority = newTask.Priority;
+            CompletedDate = newTask.CompletedDate;
+            ReminderDate = newTask.ReminderDate;
+        }
 
-            Debug.WriteLine(string.Format("> Nahrávám data ze souboru {0}...", fileName));
-
-            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
+        public TaskModel Clone()
+        {
+            TaskModel task = new TaskModel()
             {
-                try
-                {
-                    using (IsolatedStorageFileStream rawStream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
-                    {
-                        DataContractSerializer serializer = new DataContractSerializer(typeof(TaskModelCollection));
-                        XmlReader xmlReader = XmlReader.Create(rawStream);
-
-                        try
-                        {
-                            tasks = serializer.ReadObject(xmlReader) as TaskModelCollection;
-                            Debug.WriteLine("> Nahrávání dat dokončeno.");
-                        }
-                        catch (Exception)
-                        {
-                            Debug.WriteLine("Chyba při nahrávání dat.");
-                        }
-                        xmlReader.Close();
-                    }
-                }
-                catch (Exception)
-                { 
-                }
-            }
-
-            return tasks;
-        }
-
-        static public void SaveTasksToXmlFile(TaskModelCollection tasks)
-        {
-            SaveTasksToXmlFile(tasks, TasksDataFileName);
-        }
-
-        static public void SaveTasksToXmlFile(TaskModelCollection tasks, string fileName)
-        {
-            Debug.WriteLine(string.Format("> Ukládám data do souboru {0}...", fileName));
-
-            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (IsolatedStorageFileStream rawStream = isf.OpenFile(fileName, FileMode.Create, FileAccess.Write))
-                {
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(TaskModelCollection));
-                    XmlWriter xmlWriter = XmlWriter.Create(rawStream, new XmlWriterSettings() { Indent = true });
-                    serializer.WriteObject(xmlWriter, tasks);
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
-                    Debug.WriteLine("> Ukládání dat dokončeno.");
-                }
-            }
+                Uid = this.Uid,
+                Title = this.Title,
+                DueDate = this.DueDate,
+                Priority = this.Priority,
+                CompletedDate = this.CompletedDate,
+                ReminderDate = this.ReminderDate,
+            };
+            return task;
         }
     }
 }

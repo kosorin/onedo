@@ -30,11 +30,11 @@ namespace SimpleTasks.Core.Tiles
                 BorderThickness = new Thickness(10, 0, 0, 0),
                 BorderBrush = BorderBrush,
             };
-            if (task.Date == null || task.Date.Value > DateTime.Today)
+            if (task.DueDate == null || task.DueDate.Value > DateTime.Today)
             {
                 innerBorder.Opacity = 0.7;
             }
-            if (task.IsImportant)
+            if (task.Priority == TaskPriority.High)
             {
                 innerBorder.Background = ImportantBrush;
             }

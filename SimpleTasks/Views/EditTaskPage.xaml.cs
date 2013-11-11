@@ -9,64 +9,152 @@ using SimpleTasks.Resources;
 using SimpleTasks.Models;
 using System.Windows.Input;
 using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
+using System.Collections.Generic;
+using SimpleTasks.Core.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace SimpleTasks.Views
 {
     public partial class EditTaskPage : PhoneApplicationPage
     {
-        public EditTaskPage()
-        {
-            InitializeComponent(); 
-            
-            FirstTimeLoaded = true;
-            EditingOldTask = (App.ViewModel.TaskToEdit != null);
-
-            DataContext = ViewModel = new EditTaskViewModel(App.ViewModel.TaskToEdit);
-            App.ViewModel.TaskToEdit = null;
-
-            BuildLocalizedApplicationBar();
-        }
-
         public EditTaskViewModel ViewModel { get; private set; }
 
-        private bool FirstTimeLoaded { get; set; }
+        private bool FirstTimeNavigatedTo = true;
 
-        private bool EditingOldTask { get; set; }
+        public EditTaskPage()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (!FirstTimeNavigatedTo)
+                return;
+            FirstTimeNavigatedTo = false;
+
+            // Zjistíme, jaký úkol se bude upravovat (pokud se nepřidává nový úkol)
+            TaskModel task = null;
+            if (this.NavigationContext.QueryString.ContainsKey("Task"))
+            {
+                task = App.ViewModel.Tasks.First((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
+            }
+
+            ViewModel = new EditTaskViewModel(task);
+            DataContext = ViewModel;
+
+            BuildLocalizedApplicationBar();
+
+            // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
+            RoutedEventHandler firstTimeLoadHandler = null;
+            firstTimeLoadHandler = (s, e2) =>
+            {
+                if (!ViewModel.IsOldTask)
+                {
+                    // Zobrazení klávesnice
+                    TitleTextBox.Focus();
+
+                    // Nastavení defaultního termínu
+                    if (App.Settings.DefaultDueDateSettingToDateTime != null)
+                    {
+                        DueDateToggleButton.IsChecked = true;
+                    }
+                }
+                DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
+                this.Loaded -= firstTimeLoadHandler;
+            };
+            this.Loaded += firstTimeLoadHandler;
+        }
+
+        private bool CanSave()
+        {
+            if (TitleTextBox.Text == "")
+            {
+                MessageBox.Show(AppResources.MissingTitle);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void PrepareSave()
+        {
+            if (!DueDateToggleButton.IsChecked.Value)
+            {
+                DueDatePicker.Value = null;
+            }
+
+            if (ReminderToggleButton.IsChecked.Value)
+            {
+                if (ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
+                {
+                    ViewModel.CurrentTask.ReminderDate = DateTime.Now.AddMinutes(5);
+                }
+            }
+            else
+            {
+                ReminderDatePicker.Value = null;
+            }
+        }
+
+        private void GoBack()
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+            else
+            { 
+                NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
+            }
+        }
+
+        #region AppBar
 
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            if (EditingOldTask)
+            if (ViewModel.IsOldTask)
             {
                 if (ViewModel.CurrentTask.IsComplete)
                 {
                     ApplicationBarIconButton appBarActivateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.undo.curve.png", UriKind.Relative));
-                    appBarActivateButton.Text = AppResources.AppBarActivateText;
+                    appBarActivateButton.Text = AppResources.AppBarActivate;
                     appBarActivateButton.Click += appBarActivateButton_Click;
                     ApplicationBar.Buttons.Add(appBarActivateButton);
                 }
                 else
                 {
                     ApplicationBarIconButton appBarCompleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.checkmark.pencil.top.png", UriKind.Relative));
-                    appBarCompleteButton.Text = AppResources.AppBarCompleteText;
+                    appBarCompleteButton.Text = AppResources.AppBarComplete;
                     appBarCompleteButton.Click += appBarCompleteButton_Click;
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
             }
 
             ApplicationBarIconButton appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
-            appBarSaveButton.Text = AppResources.AppBarSaveText;
+            appBarSaveButton.Text = AppResources.AppBarSave;
             appBarSaveButton.Click += appBarSaveButton_Click;
             ApplicationBar.Buttons.Add(appBarSaveButton);
 
 
             // Menu
-            if (EditingOldTask)
+            if (ViewModel.IsOldTask)
             {
                 ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
-                appBarDeleteItem.Text = AppResources.AppBarDeleteText;
+                appBarDeleteItem.Text = AppResources.AppBarDelete;
                 appBarDeleteItem.Click += appBarDeleteItem_Click;
                 ApplicationBar.MenuItems.Add(appBarDeleteItem);
             }
@@ -74,41 +162,44 @@ namespace SimpleTasks.Views
 
         private void appBarActivateButton_Click(object sender, EventArgs e)
         {
-            ViewModel.ActivateTask();
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
-            NavigationService.GoBack();
+            if (CanSave())
+            {
+                PrepareSave();
+                ViewModel.ActivateTask();
+                GoBack();
+            }
         }
 
         private void appBarCompleteButton_Click(object sender, EventArgs e)
         {
-            ViewModel.CompleteTask();
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
-            NavigationService.GoBack();
+            if (CanSave())
+            {
+                PrepareSave();
+                ViewModel.CompleteTask();
+                GoBack();
+            }
         }
 
         private void appBarSaveButton_Click(object sender, EventArgs e)
         {
-            if (TitleTextBox.Text == "")
+            if (CanSave())
             {
-                MessageBox.Show(AppResources.MissingTitleText);
-                return;
+                PrepareSave();
+                ViewModel.SaveTask();
+                GoBack();
             }
-
-            ViewModel.SaveTask();
-            LiveTile.UpdateTiles(App.ViewModel.Tasks);
-            NavigationService.GoBack();
         }
 
         private void appBarDeleteItem_Click(object sender, EventArgs e)
         {
             CustomMessageBox messageBox = new CustomMessageBox()
             {
-                Caption = AppResources.DeleteTaskCaptionText,
-                Message = AppResources.DeleteTaskText
+                Caption = AppResources.DeleteTaskCaption,
+                Message = AppResources.DeleteTask
                             + Environment.NewLine + Environment.NewLine
                             + ViewModel.CurrentTask.Title,
-                LeftButtonContent = AppResources.DeleteTaskYesText,
-                RightButtonContent = AppResources.DeleteTaskNoText
+                LeftButtonContent = AppResources.DeleteTaskYes,
+                RightButtonContent = AppResources.DeleteTaskNo
             };
 
             messageBox.Dismissed += (s1, e1) =>
@@ -117,8 +208,7 @@ namespace SimpleTasks.Views
                 {
                 case CustomMessageBoxResult.LeftButton:
                     ViewModel.DeleteTask();
-                    LiveTile.UpdateTiles(App.ViewModel.Tasks);
-                    NavigationService.GoBack();
+                    GoBack();
                     break;
                 case CustomMessageBoxResult.RightButton:
                 case CustomMessageBoxResult.None:
@@ -126,36 +216,12 @@ namespace SimpleTasks.Views
                     break;
                 }
             };
-
             messageBox.Show();
         }
 
-        private void DueDatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListPicker listPicker = sender as ListPicker;
-            if (listPicker == null)
-                return;
+        #endregion
 
-            DueDateModel dueDate = listPicker.SelectedItem as DueDateModel;
-            if (dueDate == null)
-                return;
-
-            if (dueDate.Type == DueDateModel.DueDatePickerType.CustomDate)
-            {
-                CustomDueDatePicker.Visibility = System.Windows.Visibility.Visible;
-                CustomDueDatePicker.Height = 0;
-
-                DatePickerShow.Begin();
-                DatePickerShow.Completed += (s2, e2) => { CustomDueDatePicker.IsEnabled = true; };
-            }
-            else
-            {
-                CustomDueDatePicker.IsEnabled = false;
-
-                DatePickerHide.Begin();
-                DatePickerHide.Completed += (s2, e2) => { CustomDueDatePicker.Visibility = System.Windows.Visibility.Collapsed; };
-            }
-        }
+        #region Task Title
 
         private void PhoneTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -165,14 +231,111 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        #endregion
+
+        #region Due Date
+
+        private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            // Při první načtení stránky nastavíme focus na název úkolu.
-            if (FirstTimeLoaded && !EditingOldTask)
+            DueDateGridHide.Pause();
+
+            if (ViewModel.CurrentTask.DueDate == null)
             {
-                FirstTimeLoaded = false;
-                TitleTextBox.Focus();
+                if (App.Settings.DefaultDueDateSettingToDateTime != null)
+                {
+                    ViewModel.CurrentTask.DueDate = App.Settings.DefaultDueDateSettingToDateTime;
+                }
+                else
+                {
+                    ViewModel.CurrentTask.DueDate = DateTimeExtensions.Today;
+                }
+            }
+
+            // Animace zobrazení
+            DueDatePicker.Visibility = Visibility.Visible;
+            DueDatePresetPicker.Visibility = Visibility.Visible;
+            DueDateGridShow.Begin();
+            DueDateGridShow.Completed += (s2, e2) =>
+            {
+                DueDatePicker.Visibility = Visibility.Visible;
+                DueDatePresetPicker.Visibility = Visibility.Visible;
+                DueDatePicker.IsEnabled = true;
+                DueDatePresetPicker.IsEnabled = true;
+            };
+        }
+
+        private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            DueDateGridShow.Pause();
+
+            // Animace skrytí
+            DueDatePicker.IsEnabled = false;
+            DueDatePresetPicker.IsEnabled = false;
+            DueDateGridHide.Begin();
+            DueDateGridHide.Completed += (s2, e2) =>
+            {
+                DueDatePicker.Visibility = Visibility.Collapsed;
+                DueDatePresetPicker.Visibility = Visibility.Collapsed;
+            };
+        }
+
+        private void DueDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DueDatePresetPicker.SelectedItem != null)
+            {
+                KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)DueDatePresetPicker.SelectedItem;
+                ViewModel.CurrentTask.DueDate = pair.Value;
             }
         }
+
+        #endregion
+
+        #region Reminder
+
+        private void ReminderToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ReminderGridHide.Pause();
+
+            if (ViewModel.CurrentTask.ReminderDate == null)
+            {
+                DateTime defaultReminderTime = App.Settings.DefaultReminderTimeSetting;
+                if (ViewModel.CurrentTask.DueDate == null)
+                {
+                    ViewModel.CurrentTask.ReminderDate = DateTime.Today.Date.AddHours(defaultReminderTime.Hour)
+                                                                            .AddMinutes(defaultReminderTime.Minute);
+                }
+                else
+                {
+                    ViewModel.CurrentTask.ReminderDate = ViewModel.CurrentTask.DueDate.Value.Date.AddHours(defaultReminderTime.Hour)
+                                                                                                 .AddMinutes(defaultReminderTime.Minute);
+                }
+            }
+
+
+            // Animace zobrazení
+            ReminderGrid.Visibility = Visibility.Visible;
+            ReminderGridShow.Begin();
+            ReminderGridShow.Completed += (s2, e2) =>
+            {
+                ReminderDatePicker.IsEnabled = true;
+                ReminderTimePicker.IsEnabled = true;
+            };
+        }
+
+        private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ReminderGridShow.Pause();
+
+            // Animace skrytí
+            ReminderDatePicker.IsEnabled = false;
+            ReminderTimePicker.IsEnabled = false;
+            ReminderGridHide.Begin();
+            ReminderGridHide.Completed += (s2, e2) =>
+            {
+                ReminderGrid.Visibility = Visibility.Collapsed;
+            };
+        }
+
+        #endregion
     }
 }
