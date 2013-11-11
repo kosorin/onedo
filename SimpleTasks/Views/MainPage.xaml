@@ -59,7 +59,7 @@
                             Padding="12,2,12,2"
                             HorizontalAlignment="Right"
                             Grid.Column="1">
-                        <TextBlock Text="{Binding Key}" 
+                        <TextBlock Text="{Binding Title}" 
                                    Foreground="{StaticResource PhoneForegroundBrush}" 
                                    FontSize="24"
                                    Padding="6"
@@ -86,7 +86,6 @@
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource ButtonTextBlockStyle}"
                                Opacity="0.85"
-                               Grid.Column="0"
                                Padding="15,0,0,0"
                                TextWrapping="Wrap">
                     </TextBlock>
@@ -96,38 +95,10 @@
                                 Margin="0,7,0,0">
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding IsComplete, Converter={StaticResource BooleanNegationToVisibilityConverter}}">
-                            <ToggleButton IsChecked="{Binding IsOverdue}"
-                                          IsEnabled="False"
-                                          Visibility="{Binding IsOverdue, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <ToggleButton.Template>
-                                    <ControlTemplate TargetType="ToggleButton">
-                                        <Border Name="OverdueInfoBorder">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CheckStates">
-                                                    <VisualState x:Name="Checked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="OverdueInfoBorder" 
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             From="0.5"
-                                                                             To="1"
-                                                                             Duration="0:0:0.45"
-                                                                             AutoReverse="True"
-                                                                             RepeatBehavior="Forever">
-                                                                <DoubleAnimation.EasingFunction>
-                                                                    <QuadraticEase EasingMode="EaseInOut"/>
-                                                                </DoubleAnimation.EasingFunction>
-                                                            </DoubleAnimation>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <controls:Icon Style="{StaticResource OverdueIconStyle}"
-                                                           Color="{StaticResource PhoneAccentBrush}"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </ToggleButton.Template>
-                            </ToggleButton>
-
+                            <Border Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <controls:Icon Style="{StaticResource ReminderIconStyle}"
+                                               Color="{StaticResource PhoneAccentBrush}"/>
+                            </Border>
                             <ToggleButton Visibility="{Binding Priority, Mode=OneTime,
                                                        Converter={StaticResource TaskPriorityToVisibilityConverter}}"
                                           IsChecked="{Binding Priority, Mode=OneTime,

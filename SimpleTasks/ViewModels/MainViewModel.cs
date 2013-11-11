@@ -3,6 +3,7 @@ using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Models;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -30,7 +31,7 @@ namespace SimpleTasks.ViewModels
         }
 
         private const string GroupedTasksPropertyString = "GroupedTasks";
-        public TaskKeyGroupCollection GroupedTasks
+        public List<TaskKeyGroup> GroupedTasks
         {
             get
             {
