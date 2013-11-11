@@ -141,7 +141,14 @@ namespace SimpleTasks.ViewModels
                 // Odstranění úkolů, které byly odstarněny před více jak 'days' dny.
                 var completedTasks = Tasks.Where((t) =>
                 {
-                    return t.IsComplete && (DateTime.Today.Date - t.CompletedDate.Value.Date < TimeSpan.FromDays(days));
+                    if (t.IsComplete)
+                    {
+                        return (DateTime.Now - t.CompletedDate.Value) >= TimeSpan.FromDays(days);
+                    }
+                    else
+                    {
+                        return false; 
+                    }
                 }).ToList();
                 foreach (TaskModel task in completedTasks)
                 {
