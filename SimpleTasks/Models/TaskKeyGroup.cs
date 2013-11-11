@@ -19,6 +19,7 @@ namespace SimpleTasks.Models
         public static List<TaskKeyGroup> CreateGroups(IEnumerable<TaskModel> items)
         {
             List<TaskKeyGroup> groups = new List<TaskKeyGroup>();
+            TaskKeyGroup overdueGroup = new TaskKeyGroup(AppResources.DateOverdueText);
             TaskKeyGroup todayGroup = new TaskKeyGroup(AppResources.DateTodayText);
             TaskKeyGroup tomorrowGroup = new TaskKeyGroup(AppResources.DateTomorrowText);
             TaskKeyGroup thisWeekGroup = new TaskKeyGroup(AppResources.DateThisWeekText);
@@ -26,6 +27,7 @@ namespace SimpleTasks.Models
             TaskKeyGroup laterGroup = new TaskKeyGroup(AppResources.DateLaterText);
             TaskKeyGroup completedGroup = new TaskKeyGroup(AppResources.DateCompletedText);
 
+            groups.Add(overdueGroup);
             groups.Add(todayGroup);
             groups.Add(tomorrowGroup);
             groups.Add(thisWeekGroup);
@@ -40,7 +42,9 @@ namespace SimpleTasks.Models
                 {
                     if (task.IsComplete)
                         completedGroup.Add(task);
-                    else if (task.DueDate <= DateTimeExtensions.Today)
+                    else if (task.DueDate < DateTimeExtensions.Today)
+                        overdueGroup.Add(task);
+                    else if (task.DueDate == DateTimeExtensions.Today)
                         todayGroup.Add(task);
                     else if (task.DueDate == DateTimeExtensions.Tomorrow)
                         tomorrowGroup.Add(task);
@@ -77,6 +81,7 @@ namespace SimpleTasks.Models
                 }
             };
 
+            overdueGroup.Sort(comparison);
             todayGroup.Sort(comparison);
             tomorrowGroup.Sort(comparison);
             thisWeekGroup.Sort(comparison);
