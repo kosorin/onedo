@@ -11,7 +11,7 @@ namespace SimpleTasks.Core.Helpers
 {
     public class ReminderHelper
     {
-        public static void Add(string name, string title, string content, DateTime beginTime)
+        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
         {
             Remove(name);
 
@@ -20,6 +20,7 @@ namespace SimpleTasks.Core.Helpers
                 BeginTime = beginTime,
                 Title = title,
                 Content = content,
+                NavigationUri = navigationUri,
             };
 
             try
@@ -31,7 +32,7 @@ namespace SimpleTasks.Core.Helpers
                 Debug.WriteLine("Chyba při přidání připomínky.");
             }
         }
-        
+
         public static bool Exists(string name)
         {
             return ScheduledActionService.Find(name) != null;

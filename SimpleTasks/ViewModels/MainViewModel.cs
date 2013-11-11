@@ -97,7 +97,11 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(task);
             if (task.ReminderDate != null)
             {
-                ReminderHelper.Add(task.Uid, "Připomínka úkolu", task.Title, task.ReminderDate.Value);
+                ReminderHelper.Add(task.Uid, 
+                                   "Připomínka úkolu", 
+                                   task.Title, 
+                                   task.ReminderDate.Value,
+                                   new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
             }
             LiveTile.Update(Tasks);
         }
@@ -111,7 +115,11 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(newTask);
             if (newTask.ReminderDate != null)
             {
-                ReminderHelper.Add(newTask.Uid, "Připomínka úkolu", newTask.Title, newTask.ReminderDate.Value);
+                ReminderHelper.Add(newTask.Uid, 
+                                   "Připomínka úkolu", 
+                                   newTask.Title, 
+                                   newTask.ReminderDate.Value, 
+                                   new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));
             }
             LiveTile.Update(Tasks);
         }

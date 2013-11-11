@@ -103,6 +103,18 @@ namespace SimpleTasks.Views
             }
         }
 
+        private void GoBack()
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+            else
+            { 
+                NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
+            }
+        }
+
         #region AppBar
 
         private void BuildLocalizedApplicationBar()
@@ -150,7 +162,7 @@ namespace SimpleTasks.Views
             {
                 PrepareSave();
                 ViewModel.ActivateTask();
-                NavigationService.GoBack();
+                GoBack();
             }
         }
 
@@ -160,7 +172,7 @@ namespace SimpleTasks.Views
             {
                 PrepareSave();
                 ViewModel.CompleteTask();
-                NavigationService.GoBack();
+                GoBack();
             }
         }
 
@@ -170,7 +182,7 @@ namespace SimpleTasks.Views
             {
                 PrepareSave();
                 ViewModel.SaveTask();
-                NavigationService.GoBack();
+                GoBack();
             }
         }
 
@@ -192,7 +204,7 @@ namespace SimpleTasks.Views
                 {
                 case CustomMessageBoxResult.LeftButton:
                     ViewModel.DeleteTask();
-                    NavigationService.GoBack();
+                    GoBack();
                     break;
                 case CustomMessageBoxResult.RightButton:
                 case CustomMessageBoxResult.None:
