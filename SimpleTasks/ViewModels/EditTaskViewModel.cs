@@ -27,9 +27,9 @@ namespace SimpleTasks.ViewModels
         {
         }
 
-        public EditTaskViewModel(TaskModel oldTask)
+        public EditTaskViewModel(TaskModel task)
         {
-            OldTask = oldTask;
+            OldTask = task;
             CurrentTask = new TaskModel();
 
             if (OldTask != null)

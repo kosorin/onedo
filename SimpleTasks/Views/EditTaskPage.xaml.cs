@@ -11,6 +11,16 @@ using System.Windows.Input;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using System.Collections.Generic;
+using SimpleTasks.Core.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace SimpleTasks.Views
 {
@@ -18,26 +28,36 @@ namespace SimpleTasks.Views
     {
         public EditTaskViewModel ViewModel { get; private set; }
 
+        private bool FirstTimeNavigatedTo = true;
+
         public EditTaskPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (!FirstTimeNavigatedTo)
+                return;
+            FirstTimeNavigatedTo = false;
 
             // Zjistíme, jaký úkol se bude upravovat (pokud se nepřidává nový úkol)
-            TaskModel taskToEdit = null;
-            if (PhoneApplicationService.Current.State.ContainsKey("TaskToEdit"))
+            TaskModel task = null;
+            if (this.NavigationContext.QueryString.ContainsKey("Task"))
             {
-                taskToEdit = (TaskModel)PhoneApplicationService.Current.State["TaskToEdit"];
-                PhoneApplicationService.Current.State["TaskToEdit"] = null;
+                task = App.ViewModel.Tasks.First((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
             }
 
-            ViewModel = new EditTaskViewModel(taskToEdit);
+            ViewModel = new EditTaskViewModel(task);
             DataContext = ViewModel;
 
             BuildLocalizedApplicationBar();
 
             // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
             RoutedEventHandler firstTimeLoadHandler = null;
-            firstTimeLoadHandler = (s, e) =>
+            firstTimeLoadHandler = (s, e2) =>
             {
                 if (!ViewModel.IsOldTask)
                 {

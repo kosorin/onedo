@@ -103,7 +103,7 @@ namespace SimpleTasks.Views
             ViewModel.Tasks.Add(new TaskModel() { Title = "Book flight to London", DueDate = DateTimeExtensions.Today.AddDays(-2), Priority = TaskPriority.High });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Very very long task for demonstration, lorem ipsum", DueDate = DateTimeExtensions.Today.AddDays(0) });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Go to the dentist", DueDate = DateTimeExtensions.Today.AddDays(1) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version", DueDate = DateTimeExtensions.Today.AddDays(1) });
+            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version", DueDate = DateTimeExtensions.Today.AddDays(1), Priority = TaskPriority.Low });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", DueDate = DateTimeExtensions.Today.AddDays(2), Priority = TaskPriority.High });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent", DueDate = DateTimeExtensions.Today.AddDays(4) });
             ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck", DueDate = DateTimeExtensions.Today.AddDays(6) });
@@ -125,8 +125,7 @@ namespace SimpleTasks.Views
 
             selector.SelectedItem = null;
 
-            PhoneApplicationService.Current.State["TaskToEdit"] = task;
-            NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
 
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
