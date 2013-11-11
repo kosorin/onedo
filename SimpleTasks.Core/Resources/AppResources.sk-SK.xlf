@@ -8,39 +8,39 @@
       <group id="Resx">
         <trans-unit translate="yes" id="Resx/DateLater" xml:space="preserve">
           <source>later</source>
-          <target state="new">later</target>
+          <target state="final">neskôr</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
           <source>tomorrow</source>
-          <target state="new">tomorrow</target>
+          <target state="final" state-qualifier="tm-suggestion">zajtra</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateToday" xml:space="preserve">
           <source>today</source>
-          <target state="new">today</target>
+          <target state="final">dnes</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateThisWeek" xml:space="preserve">
           <source>this week</source>
-          <target state="new">this week</target>
+          <target state="final">tento týždeň</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateThisMonth" xml:space="preserve">
           <source>this month</source>
-          <target state="new">this month</target>
+          <target state="final">tento mesiac</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateOverdue" xml:space="preserve">
           <source>overdue</source>
-          <target state="new">overdue</target>
+          <target state="final">po termíne</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNextWeek" xml:space="preserve">
           <source>next week</source>
-          <target state="new">next week</target>
+          <target state="final">budúci týždeň</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNextMonth" xml:space="preserve">
           <source>next month</source>
-          <target state="new">next month</target>
+          <target state="final">budúci mesiac</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/TileNoTasks" xml:space="preserve">
           <source>No tasks</source>
-          <target state="translated">Žádné úkoly</target>
+          <target state="final">žiadne úlohy</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">text on live tile</note></trans-unit>
       </group>

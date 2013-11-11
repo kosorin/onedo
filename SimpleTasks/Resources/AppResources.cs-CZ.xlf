@@ -42,7 +42,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateOverdue" xml:space="preserve">
           <source>overdue</source>
-          <target state="signed-off">zpožděno</target>
+          <target state="translated">po termínu</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNoDue" xml:space="preserve">
           <source>no due date</source>

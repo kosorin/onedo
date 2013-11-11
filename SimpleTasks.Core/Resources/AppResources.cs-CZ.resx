@@ -137,7 +137,7 @@
     <value>tento měsíc</value>
   </data>
   <data name="DateOverdue" xml:space="preserve">
-    <value>zpožděno</value>
+    <value>po termínu</value>
   </data>
   <data name="DateNextWeek" xml:space="preserve">
     <value>příští týden</value>
