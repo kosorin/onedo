@@ -16,71 +16,71 @@
           <target state="translated">sk-SK</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarNewText" xml:space="preserve">
-          <source>new</source>
-          <target state="signed-off">nový</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">new task</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarAboutText" xml:space="preserve">
-          <source>about</source>
-          <target state="signed-off">o aplikaci</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarSaveText" xml:space="preserve">
-          <source>save</source>
-          <target state="signed-off">uložit</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">save task</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/ChooseDueDateText" xml:space="preserve">
-          <source>choose due date</source>
-          <target state="signed-off">zvolte termín splnění</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateCustomDueText" xml:space="preserve">
-          <source>custom due date</source>
-          <target state="signed-off">vlastní termín</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
-          <source>later</source>
-          <target state="signed-off">později</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNextMonthText" xml:space="preserve">
-          <source>next month</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">příští měsíc</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNextWeekText" xml:space="preserve">
-          <source>next week</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">příští týden</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNoDueText" xml:space="preserve">
-          <source>no due date</source>
-          <target state="signed-off">žádný termín</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
-          <source>overdue</source>
-          <target state="signed-off">zpožděno</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateThisMonthText" xml:space="preserve">
-          <source>this month</source>
-          <target state="signed-off">tento měsíc</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateThisWeekText" xml:space="preserve">
-          <source>this week</source>
-          <target state="signed-off">tento týden</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateTodayText" xml:space="preserve">
-          <source>today</source>
-          <target state="signed-off">dnes</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateTomorrowText" xml:space="preserve">
-          <source>tomorrow</source>
-          <target state="signed-off">zítra</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/MissingTitleText" xml:space="preserve">
-          <source>Enter task title.</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">Zadejte název úkolu.</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/NoTasksText" xml:space="preserve">
+        <trans-unit translate="yes" id="Resx/NoTasks" xml:space="preserve">
           <source>All tasks are completed.</source>
-          <target state="signed-off">Všechny úkoly byly dokončeny.</target>
+          <target state="new">All tasks are completed.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/MissingTitle" xml:space="preserve">
+          <source>Enter task title.</source>
+          <target state="new">Enter task title.</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
+          <source>tomorrow</source>
+          <target state="new">tomorrow</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateToday" xml:space="preserve">
+          <source>today</source>
+          <target state="new">today</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisWeek" xml:space="preserve">
+          <source>this week</source>
+          <target state="new">this week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisMonth" xml:space="preserve">
+          <source>this month</source>
+          <target state="new">this month</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateOverdue" xml:space="preserve">
+          <source>overdue</source>
+          <target state="new">overdue</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNoDue" xml:space="preserve">
+          <source>no due date</source>
+          <target state="new">no due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextWeek" xml:space="preserve">
+          <source>next week</source>
+          <target state="new">next week</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextMonth" xml:space="preserve">
+          <source>next month</source>
+          <target state="new">next month</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateLater" xml:space="preserve">
+          <source>later</source>
+          <target state="new">later</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateCustomDue" xml:space="preserve">
+          <source>custom due date</source>
+          <target state="new">custom due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ChooseDueDate" xml:space="preserve">
+          <source>choose due date</source>
+          <target state="new">choose due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
+          <source>save</source>
+          <target state="new">save</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">save task</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarAbout" xml:space="preserve">
+          <source>about</source>
+          <target state="new">about</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarNew" xml:space="preserve">
+          <source>new</source>
+          <target state="new">new</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">new task</note>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityHigh" xml:space="preserve">
           <source>high priority</source>
@@ -94,57 +94,57 @@
           <source>Task title</source>
           <target state="signed-off">Název úkolu</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarCompleteText" xml:space="preserve">
+        <trans-unit translate="yes" id="Resx/AppBarComplete" xml:space="preserve">
           <source>complete</source>
-          <target state="signed-off">dokončit</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">complete task</note></trans-unit>
+          <target state="new">complete</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">complete task</note>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/PeriodicTaskDescription" xml:space="preserve">
           <source>Updates live tile.</source>
           <target state="signed-off">Aktualizace živé dlaždice.</target>
         
         <note from="MultilingualBuild" annotates="source" priority="2">Info about background task agent</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarActivateText" xml:space="preserve">
-          <source>activate</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">aktivovat</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">activate task</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarDeleteCompletedText" xml:space="preserve">
-          <source>delete completed tasks</source>
-          <target state="signed-off">odstranit dokončené úkoly</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarDeleteText" xml:space="preserve">
-          <source>delete</source>
-          <target state="signed-off">odstranit</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">delete task</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarSettingsText" xml:space="preserve">
-          <source>settings</source>
-          <target state="signed-off">nastavení</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateCompletedText" xml:space="preserve">
-          <source>completed</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">dokončeno</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">completed tasks</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/DeleteTaskCaptionText" xml:space="preserve">
-          <source>Delete task</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">Odstranit úkol</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DeleteTaskText" xml:space="preserve">
-          <source>Are you sure you want to delete this task?</source>
-          <target state="signed-off">Opravdu chcete tento úkol odstranit?</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DeleteTaskYesText" xml:space="preserve">
-          <source>delete</source>
-          <target state="signed-off">odstranit</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">delete confirmation</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/DeleteTaskNoText" xml:space="preserve">
+        <trans-unit translate="yes" id="Resx/DeleteTaskNo" xml:space="preserve">
           <source>cancel</source>
-          <target state="signed-off">storno</target>
-        
-        <note from="MultilingualBuild" annotates="source" priority="2">cancel delete confirmation</note></trans-unit>
+          <target state="new">cancel</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">cancel delete confirmation</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTaskYes" xml:space="preserve">
+          <source>delete</source>
+          <target state="new">delete</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">delete confirmation</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTask" xml:space="preserve">
+          <source>Are you sure you want to delete this task?</source>
+          <target state="new">Are you sure you want to delete this task?</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteTaskCaption" xml:space="preserve">
+          <source>Delete task</source>
+          <target state="new">Delete task</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateCompleted" xml:space="preserve">
+          <source>completed</source>
+          <target state="new">completed</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">completed tasks</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarSettings" xml:space="preserve">
+          <source>settings</source>
+          <target state="new">settings</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDelete" xml:space="preserve">
+          <source>delete</source>
+          <target state="new">delete</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">delete task</note>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDeleteCompleted" xml:space="preserve">
+          <source>delete completed tasks</source>
+          <target state="new">delete completed tasks</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarActivate" xml:space="preserve">
+          <source>activate</source>
+          <target state="new">activate</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">activate task</note>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
           <target state="signed-off">kontaktujte nás</target>
@@ -202,13 +202,13 @@
           <source>SETTINGS</source>
           <target state="signed-off">NASTAVENÍ</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarPinTileText" xml:space="preserve">
-          <source>pin tile</source>
-          <target state="signed-off">připnout dlaždici</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/AppBarUnpinTileText" xml:space="preserve">
+        <trans-unit translate="yes" id="Resx/AppBarUnpinTile" xml:space="preserve">
           <source>unpin tile</source>
-          <target state="signed-off">odepnout dlaždici</target>
+          <target state="new">unpin tile</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarPinTile" xml:space="preserve">
+          <source>pin tile</source>
+          <target state="new">pin tile</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasksInfo" xml:space="preserve">
           <source>Tasks are always automatically deleted when the application starts.</source>
@@ -222,6 +222,26 @@
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version {0}</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Verze {0}</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ReminderTitle" xml:space="preserve">
+          <source>Task reminder</source>
+          <target state="new">Task reminder</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/Reminder" xml:space="preserve">
+          <source>reminder</source>
+          <target state="new">reminder</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/PriorityLow" xml:space="preserve">
+          <source>low priority</source>
+          <target state="new">low priority</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DueDate" xml:space="preserve">
+          <source>due date</source>
+          <target state="new">due date</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDefaultReminderTime" xml:space="preserve">
+          <source>Default reminder time</source>
+          <target state="new">Default reminder time</target>
         </trans-unit>
       </group>
     </body>

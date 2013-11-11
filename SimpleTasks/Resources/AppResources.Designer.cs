@@ -99,252 +99,261 @@ namespace SimpleTasks.Resources {
         /// <summary>
         ///   Looks up a localized string similar to about.
         /// </summary>
-        public static string AppBarAboutText {
+        public static string AppBarAbout {
             get {
-                return ResourceManager.GetString("AppBarAboutText", resourceCulture);
+                return ResourceManager.GetString("AppBarAbout", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to activate.
         /// </summary>
-        public static string AppBarActivateText {
+        public static string AppBarActivate {
             get {
-                return ResourceManager.GetString("AppBarActivateText", resourceCulture);
+                return ResourceManager.GetString("AppBarActivate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to complete.
         /// </summary>
-        public static string AppBarCompleteText {
+        public static string AppBarComplete {
             get {
-                return ResourceManager.GetString("AppBarCompleteText", resourceCulture);
+                return ResourceManager.GetString("AppBarComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete.
+        /// </summary>
+        public static string AppBarDelete {
+            get {
+                return ResourceManager.GetString("AppBarDelete", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to delete completed tasks.
         /// </summary>
-        public static string AppBarDeleteCompletedText {
+        public static string AppBarDeleteCompleted {
             get {
-                return ResourceManager.GetString("AppBarDeleteCompletedText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to delete.
-        /// </summary>
-        public static string AppBarDeleteText {
-            get {
-                return ResourceManager.GetString("AppBarDeleteText", resourceCulture);
+                return ResourceManager.GetString("AppBarDeleteCompleted", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to new.
         /// </summary>
-        public static string AppBarNewText {
+        public static string AppBarNew {
             get {
-                return ResourceManager.GetString("AppBarNewText", resourceCulture);
+                return ResourceManager.GetString("AppBarNew", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to pin tile.
         /// </summary>
-        public static string AppBarPinTileText {
+        public static string AppBarPinTile {
             get {
-                return ResourceManager.GetString("AppBarPinTileText", resourceCulture);
+                return ResourceManager.GetString("AppBarPinTile", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to save.
         /// </summary>
-        public static string AppBarSaveText {
+        public static string AppBarSave {
             get {
-                return ResourceManager.GetString("AppBarSaveText", resourceCulture);
+                return ResourceManager.GetString("AppBarSave", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to settings.
         /// </summary>
-        public static string AppBarSettingsText {
+        public static string AppBarSettings {
             get {
-                return ResourceManager.GetString("AppBarSettingsText", resourceCulture);
+                return ResourceManager.GetString("AppBarSettings", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to unpin tile.
         /// </summary>
-        public static string AppBarUnpinTileText {
+        public static string AppBarUnpinTile {
             get {
-                return ResourceManager.GetString("AppBarUnpinTileText", resourceCulture);
+                return ResourceManager.GetString("AppBarUnpinTile", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to choose due date.
         /// </summary>
-        public static string ChooseDueDateText {
+        public static string ChooseDueDate {
             get {
-                return ResourceManager.GetString("ChooseDueDateText", resourceCulture);
+                return ResourceManager.GetString("ChooseDueDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to completed.
         /// </summary>
-        public static string DateCompletedText {
+        public static string DateCompleted {
             get {
-                return ResourceManager.GetString("DateCompletedText", resourceCulture);
+                return ResourceManager.GetString("DateCompleted", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to custom due date.
         /// </summary>
-        public static string DateCustomDueText {
+        public static string DateCustomDue {
             get {
-                return ResourceManager.GetString("DateCustomDueText", resourceCulture);
+                return ResourceManager.GetString("DateCustomDue", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to later.
         /// </summary>
-        public static string DateLaterText {
+        public static string DateLater {
             get {
-                return ResourceManager.GetString("DateLaterText", resourceCulture);
+                return ResourceManager.GetString("DateLater", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to next month.
         /// </summary>
-        public static string DateNextMonthText {
+        public static string DateNextMonth {
             get {
-                return ResourceManager.GetString("DateNextMonthText", resourceCulture);
+                return ResourceManager.GetString("DateNextMonth", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to next week.
         /// </summary>
-        public static string DateNextWeekText {
+        public static string DateNextWeek {
             get {
-                return ResourceManager.GetString("DateNextWeekText", resourceCulture);
+                return ResourceManager.GetString("DateNextWeek", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to no due date.
         /// </summary>
-        public static string DateNoDueText {
+        public static string DateNoDue {
             get {
-                return ResourceManager.GetString("DateNoDueText", resourceCulture);
+                return ResourceManager.GetString("DateNoDue", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to overdue.
         /// </summary>
-        public static string DateOverdueText {
+        public static string DateOverdue {
             get {
-                return ResourceManager.GetString("DateOverdueText", resourceCulture);
+                return ResourceManager.GetString("DateOverdue", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to this month.
         /// </summary>
-        public static string DateThisMonthText {
+        public static string DateThisMonth {
             get {
-                return ResourceManager.GetString("DateThisMonthText", resourceCulture);
+                return ResourceManager.GetString("DateThisMonth", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to this week.
         /// </summary>
-        public static string DateThisWeekText {
+        public static string DateThisWeek {
             get {
-                return ResourceManager.GetString("DateThisWeekText", resourceCulture);
+                return ResourceManager.GetString("DateThisWeek", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to today.
         /// </summary>
-        public static string DateTodayText {
+        public static string DateToday {
             get {
-                return ResourceManager.GetString("DateTodayText", resourceCulture);
+                return ResourceManager.GetString("DateToday", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to tomorrow.
         /// </summary>
-        public static string DateTomorrowText {
+        public static string DateTomorrow {
             get {
-                return ResourceManager.GetString("DateTomorrowText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete task.
-        /// </summary>
-        public static string DeleteTaskCaptionText {
-            get {
-                return ResourceManager.GetString("DeleteTaskCaptionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to cancel.
-        /// </summary>
-        public static string DeleteTaskNoText {
-            get {
-                return ResourceManager.GetString("DeleteTaskNoText", resourceCulture);
+                return ResourceManager.GetString("DateTomorrow", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this task?.
         /// </summary>
-        public static string DeleteTaskText {
+        public static string DeleteTask {
             get {
-                return ResourceManager.GetString("DeleteTaskText", resourceCulture);
+                return ResourceManager.GetString("DeleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete task.
+        /// </summary>
+        public static string DeleteTaskCaption {
+            get {
+                return ResourceManager.GetString("DeleteTaskCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string DeleteTaskNo {
+            get {
+                return ResourceManager.GetString("DeleteTaskNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to delete.
         /// </summary>
-        public static string DeleteTaskYesText {
+        public static string DeleteTaskYes {
             get {
-                return ResourceManager.GetString("DeleteTaskYesText", resourceCulture);
+                return ResourceManager.GetString("DeleteTaskYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to due date.
+        /// </summary>
+        public static string DueDate {
+            get {
+                return ResourceManager.GetString("DueDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enter task title..
         /// </summary>
-        public static string MissingTitleText {
+        public static string MissingTitle {
             get {
-                return ResourceManager.GetString("MissingTitleText", resourceCulture);
+                return ResourceManager.GetString("MissingTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to All tasks are completed..
         /// </summary>
-        public static string NoTasksText {
+        public static string NoTasks {
             get {
-                return ResourceManager.GetString("NoTasksText", resourceCulture);
+                return ResourceManager.GetString("NoTasks", resourceCulture);
             }
         }
         
@@ -367,11 +376,38 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to low priority.
+        /// </summary>
+        public static string PriorityLow {
+            get {
+                return ResourceManager.GetString("PriorityLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to normal priority.
         /// </summary>
         public static string PriorityNormal {
             get {
                 return ResourceManager.GetString("PriorityNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to reminder.
+        /// </summary>
+        public static string Reminder {
+            get {
+                return ResourceManager.GetString("Reminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task reminder.
+        /// </summary>
+        public static string ReminderTitle {
+            get {
+                return ResourceManager.GetString("ReminderTitle", resourceCulture);
             }
         }
         
@@ -399,6 +435,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsDefaultDueDate {
             get {
                 return ResourceManager.GetString("SettingsDefaultDueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default reminder time.
+        /// </summary>
+        public static string SettingsDefaultReminderTime {
+            get {
+                return ResourceManager.GetString("SettingsDefaultReminderTime", resourceCulture);
             }
         }
         

@@ -125,54 +125,6 @@
     <value>qps-ploc</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  <data name="AppBarNewText" xml:space="preserve">
-    <value>[B915D][!!_ήêẃ_!!]</value>
-  <comment>new task</comment></data>
-  <data name="AppBarAboutText" xml:space="preserve">
-    <value>[412AF][!!_áвõûţ_!!]</value>
-  </data>
-  <data name="AppBarSaveText" xml:space="preserve">
-    <value>[E3546][!!_šáνę_!!]</value>
-  <comment>save task</comment></data>
-  <data name="ChooseDueDateText" xml:space="preserve">
-    <value>[D1419][!!_ċĥõòšé ðµê ðàťê_!!!!]</value>
-  </data>
-  <data name="DateCustomDueText" xml:space="preserve">
-    <value>[CBCEA][!!_ċúŝţôм ðùê đâтę_!!!!]</value>
-  </data>
-  <data name="DateLaterText" xml:space="preserve">
-    <value>[4A003][!!_łãťêŕ_!!]</value>
-  </data>
-  <data name="DateNextMonthText" xml:space="preserve">
-    <value>[2D7BA][!!_йęхτ мóитħ_!!]</value>
-  </data>
-  <data name="DateNextWeekText" xml:space="preserve">
-    <value>[B699F][!!_ηęхţ ẁééк_!!]</value>
-  </data>
-  <data name="DateNoDueText" xml:space="preserve">
-    <value>[EAD4D][!!_иò đùę đáтè_!!]</value>
-  </data>
-  <data name="DateOverdueText" xml:space="preserve">
-    <value>[5D695][!!_ôνêŕďùę_!!]</value>
-  </data>
-  <data name="DateThisMonthText" xml:space="preserve">
-    <value>[F0D56][!!_ťћìş мôиτђ_!!]</value>
-  </data>
-  <data name="DateThisWeekText" xml:space="preserve">
-    <value>[2EE39][!!_ťĥįś ŵèęк_!!]</value>
-  </data>
-  <data name="DateTodayText" xml:space="preserve">
-    <value>[D9FB1][!!_ţõðàŷ_!!]</value>
-  </data>
-  <data name="DateTomorrowText" xml:space="preserve">
-    <value>[05FC6][!!_тòмôřѓôŵ_!!]</value>
-  </data>
-  <data name="MissingTitleText" xml:space="preserve">
-    <value>[D0D9D][!!_Ęηťęř τàšќ ţįţĺè._!!!!!!]</value>
-  </data>
-  <data name="NoTasksText" xml:space="preserve">
-    <value>[5817E][!!_Ãļļ ťášќş ãŗè čòmþĺêτéď._!!!!!!!!]</value>
-  </data>
   <data name="PriorityHigh" xml:space="preserve">
     <value>[3A9AE][!!_ĥìģĥ þŗîóřìτŷ_!!]</value>
   </data>
@@ -182,39 +134,9 @@
   <data name="TitleHintText" xml:space="preserve">
     <value>[650DE][!!_Ţâşĸ ťîτłę_!!]</value>
   </data>
-  <data name="AppBarCompleteText" xml:space="preserve">
-    <value>[D5A4E][!!_ĉõmρĺêţê_!!]</value>
-  <comment>complete task</comment></data>
   <data name="PeriodicTaskDescription" xml:space="preserve">
     <value>[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</value>
   <comment>Info about background task agent</comment></data>
-  <data name="AppBarActivateText" xml:space="preserve">
-    <value>[1920B][!!_ãċţîνãτé_!!]</value>
-  <comment>activate task</comment></data>
-  <data name="AppBarDeleteCompletedText" xml:space="preserve">
-    <value>[7658E][!!_ďęľèťê ċóмрľèтęð тáśќŝ_!!!!!!]</value>
-  </data>
-  <data name="AppBarDeleteText" xml:space="preserve">
-    <value>[B9C84][!!_ďêļéţę_!!]</value>
-  <comment>delete task</comment></data>
-  <data name="AppBarSettingsText" xml:space="preserve">
-    <value>[9E01F][!!_šęτтîйğš_!!]</value>
-  </data>
-  <data name="DateCompletedText" xml:space="preserve">
-    <value>[2666A][!!_ċômрļęτéð_!!]</value>
-  <comment>completed tasks</comment></data>
-  <data name="DeleteTaskCaptionText" xml:space="preserve">
-    <value>[58904][!!_Đéľêťé ťáśķ_!!]</value>
-  </data>
-  <data name="DeleteTaskText" xml:space="preserve">
-    <value>[5DEB7][!!_Âŕę ÿõù šúŕę ŷõµ ŵãиť ţô ðęľèţé ţнîŝ тâśķ?_!!!!!!!!!!!!]</value>
-  </data>
-  <data name="DeleteTaskYesText" xml:space="preserve">
-    <value>[737FD][!!_ďęłéţè_!!]</value>
-  <comment>delete confirmation</comment></data>
-  <data name="DeleteTaskNoText" xml:space="preserve">
-    <value>[B72E8][!!_ċáиćéļ_!!]</value>
-  <comment>cancel delete confirmation</comment></data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>[72AFA][!!_ċôйťáĉт úš_!!]</value>
   </data>
@@ -254,12 +176,6 @@
   <data name="SettingsTitle" xml:space="preserve">
     <value>[D78A2][!!_ŠÊΤŤÍÑĞŞ_!!]</value>
   </data>
-  <data name="AppBarPinTileText" xml:space="preserve">
-    <value>[686DC][!!_ρîη ťìļè_!!]</value>
-  </data>
-  <data name="AppBarUnpinTileText" xml:space="preserve">
-    <value>[0D10C][!!_ûηρįи ţíľé_!!]</value>
-  </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>[81CDB][!!_Ťàšķš âřè áĺẃáўś ãúţòmàţįčãľļÿ ðèļêτéð ŵĥèй ťĥê áþρĺìĉàťįòй šţàѓтş._!!!!!!!!!!!!!!!!!!!!]</value>
   </data>
@@ -272,5 +188,97 @@
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
     <value>[6E90D][!!_Đèľêтé ćómрłęτęð тãśкŝ_!!!!!!]</value>
+  </data>
+  <data name="NoTasks" xml:space="preserve">
+    <value>[F5D53][!!_Âłĺ тãşќš âŗè čômþłéτèď._!!!!!!!!]</value>
+  </data>
+  <data name="MissingTitle" xml:space="preserve">
+    <value>[D8CE1][!!_Èήţęŕ ţâšк ţíτľè._!!!!!!]</value>
+  </data>
+  <data name="DateTomorrow" xml:space="preserve">
+    <value>[918B8][!!_ťòmóѓѓóẁ_!!]</value>
+  </data>
+  <data name="DateToday" xml:space="preserve">
+    <value>[B515B][!!_ťôđàÿ_!!]</value>
+  </data>
+  <data name="DateThisWeek" xml:space="preserve">
+    <value>[DEB56][!!_τђìŝ ẅęêк_!!]</value>
+  </data>
+  <data name="DateThisMonth" xml:space="preserve">
+    <value>[1A33C][!!_тĥîş мóηţћ_!!]</value>
+  </data>
+  <data name="DateOverdue" xml:space="preserve">
+    <value>[EDAB8][!!_ôνèŗđµê_!!]</value>
+  </data>
+  <data name="DateNoDue" xml:space="preserve">
+    <value>[1348A][!!_ηó đµé đáťé_!!]</value>
+  </data>
+  <data name="DateNextWeek" xml:space="preserve">
+    <value>[A4D4D][!!_ηéхť ẅêèĸ_!!]</value>
+  </data>
+  <data name="DateNextMonth" xml:space="preserve">
+    <value>[8AB32][!!_ήę×τ мòητĥ_!!]</value>
+  </data>
+  <data name="DateLater" xml:space="preserve">
+    <value>[C1006][!!_ľãтèř_!!]</value>
+  </data>
+  <data name="DateCustomDue" xml:space="preserve">
+    <value>[1A996][!!_ĉùśťóm đùę đâţé_!!!!]</value>
+  </data>
+  <data name="ChooseDueDate" xml:space="preserve">
+    <value>[AC906][!!_ċћóóŝé ďúé ðâťę_!!!!]</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>[7C1CF][!!_šáνê_!!]</value>
+    <comment>save task</comment>
+  </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>[76BCA][!!_àБóµτ_!!]</value>
+  </data>
+  <data name="AppBarNew" xml:space="preserve">
+    <value>[8A532][!!_ήêŵ_!!]</value>
+    <comment>new task</comment>
+  </data>
+  <data name="AppBarComplete" xml:space="preserve">
+    <value>[C3C9B][!!_ĉóмρļéťé_!!]</value>
+    <comment>complete task</comment>
+  </data>
+  <data name="DeleteTaskNo" xml:space="preserve">
+    <value>[020AF][!!_čãήćęł_!!]</value>
+    <comment>cancel delete confirmation</comment>
+  </data>
+  <data name="DeleteTaskYes" xml:space="preserve">
+    <value>[7AD67][!!_ďęĺèτé_!!]</value>
+    <comment>delete confirmation</comment>
+  </data>
+  <data name="DeleteTask" xml:space="preserve">
+    <value>[1D716][!!_Àŗê ўõú śùŗé ŷõú ẃáиτ ťó ďèłêτę ţћíš ţáśќ?_!!!!!!!!!!!!]</value>
+  </data>
+  <data name="DeleteTaskCaption" xml:space="preserve">
+    <value>[516E8][!!_Đèļéтę τàśќ_!!]</value>
+  </data>
+  <data name="DateCompleted" xml:space="preserve">
+    <value>[F4AC5][!!_ćôмþľèтęď_!!]</value>
+    <comment>completed tasks</comment>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>[8DCF2][!!_şęтťįиģş_!!]</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>[85AA5][!!_ďêĺèτè_!!]</value>
+    <comment>delete task</comment>
+  </data>
+  <data name="AppBarDeleteCompleted" xml:space="preserve">
+    <value>[A30D2][!!_ðéľêтé čóмρļęťèđ τáŝќš_!!!!!!]</value>
+  </data>
+  <data name="AppBarActivate" xml:space="preserve">
+    <value>[7DD58][!!_àĉтíνâтê_!!]</value>
+    <comment>activate task</comment>
+  </data>
+  <data name="AppBarUnpinTile" xml:space="preserve">
+    <value>[95A93][!!_ùирîη тįļè_!!]</value>
+  </data>
+  <data name="AppBarPinTile" xml:space="preserve">
+    <value>[2E3A9][!!_рìη тįļê_!!]</value>
   </data>
 </root>

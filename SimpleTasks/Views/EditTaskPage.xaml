@@ -244,7 +244,7 @@
                     <controls:Icon x:Name="CalendarIcon"
                                    Style="{StaticResource CalendarIconStyle}"
                                    Color="{StaticResource ButtonForegroundBrush}"/>
-                    <TextBlock Text="termín splnění"
+                    <TextBlock Text="{Binding LocalizedResources.DueDate, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource ButtonTextBlockStyle}"/>
                 </StackPanel>
             </Border>
@@ -396,7 +396,7 @@
                             </Grid.ColumnDefinitions>
                             <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
                                            Color="{StaticResource ButtonForegroundBrush}"/>
-                            <TextBlock Text="nízká priorita"
+                            <TextBlock Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"
                                        Style="{StaticResource ButtonTextBlockStyle}"
                                        Grid.Column="1"/>
                         </Grid>
@@ -460,7 +460,7 @@
                                        Style="{StaticResource DisabledReminderIconStyle}"
                                        Color="{StaticResource ButtonForegroundBrush}"/>
                     </Grid>
-                    <TextBlock Text="připomenutí"
+                    <TextBlock Text="{Binding LocalizedResources.Reminder, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource ButtonTextBlockStyle}"/>
                 </StackPanel>
             </Border>

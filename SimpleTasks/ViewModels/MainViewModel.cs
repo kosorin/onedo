@@ -2,6 +2,7 @@
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Models;
+using SimpleTasks.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -98,7 +99,7 @@ namespace SimpleTasks.ViewModels
             if (task.ReminderDate != null)
             {
                 ReminderHelper.Add(task.Uid, 
-                                   "Připomínka úkolu", 
+                                   AppResources.ReminderTitle, 
                                    task.Title, 
                                    task.ReminderDate.Value,
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
@@ -116,7 +117,7 @@ namespace SimpleTasks.ViewModels
             if (newTask.ReminderDate != null)
             {
                 ReminderHelper.Add(newTask.Uid, 
-                                   "Připomínka úkolu", 
+                                   AppResources.ReminderTitle,
                                    newTask.Title, 
                                    newTask.ReminderDate.Value, 
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));

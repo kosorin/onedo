@@ -49,8 +49,8 @@ namespace SimpleTasks.ViewModels
         {
             List<KeyValuePair<string, DateTime>> items = new List<KeyValuePair<string, DateTime>>();
 
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateTodayText, DateTimeExtensions.Today));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateTomorrowText, DateTimeExtensions.Tomorrow));
+            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateToday, DateTimeExtensions.Today));
+            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateTomorrow, DateTimeExtensions.Tomorrow));
 
             int daysAfterTomorrow = 4;
             for (int i = 1; i <= daysAfterTomorrow; i++)
@@ -59,10 +59,10 @@ namespace SimpleTasks.ViewModels
                 items.Add(new KeyValuePair<string, DateTime>(date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date));
             }
 
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisWeekText, DateTimeExtensions.LastDayOfWeek));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextWeekText, DateTimeExtensions.LastDayOfNextWeek));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonthText, DateTimeExtensions.LastDayOfMonth));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonthText, DateTimeExtensions.LastDayOfNextMonth));
+            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisWeek, DateTimeExtensions.LastDayOfWeek));
+            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextWeek, DateTimeExtensions.LastDayOfNextWeek));
+            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonth, DateTimeExtensions.LastDayOfMonth));
+            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonth, DateTimeExtensions.LastDayOfNextMonth));
 
             return items;
         }

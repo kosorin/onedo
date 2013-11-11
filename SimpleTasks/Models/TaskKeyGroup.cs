@@ -19,13 +19,13 @@ namespace SimpleTasks.Models
         public static List<TaskKeyGroup> CreateGroups(IEnumerable<TaskModel> items)
         {
             List<TaskKeyGroup> groups = new List<TaskKeyGroup>();
-            TaskKeyGroup overdueGroup = new TaskKeyGroup(AppResources.DateOverdueText);
-            TaskKeyGroup todayGroup = new TaskKeyGroup(AppResources.DateTodayText);
-            TaskKeyGroup tomorrowGroup = new TaskKeyGroup(AppResources.DateTomorrowText);
-            TaskKeyGroup thisWeekGroup = new TaskKeyGroup(AppResources.DateThisWeekText);
-            TaskKeyGroup nextWeekGroup = new TaskKeyGroup(AppResources.DateNextWeekText);
-            TaskKeyGroup laterGroup = new TaskKeyGroup(AppResources.DateLaterText);
-            TaskKeyGroup completedGroup = new TaskKeyGroup(AppResources.DateCompletedText);
+            TaskKeyGroup overdueGroup = new TaskKeyGroup(AppResources.DateOverdue);
+            TaskKeyGroup todayGroup = new TaskKeyGroup(AppResources.DateToday);
+            TaskKeyGroup tomorrowGroup = new TaskKeyGroup(AppResources.DateTomorrow);
+            TaskKeyGroup thisWeekGroup = new TaskKeyGroup(AppResources.DateThisWeek);
+            TaskKeyGroup nextWeekGroup = new TaskKeyGroup(AppResources.DateNextWeek);
+            TaskKeyGroup laterGroup = new TaskKeyGroup(AppResources.DateLater);
+            TaskKeyGroup completedGroup = new TaskKeyGroup(AppResources.DateCompleted);
 
             groups.Add(overdueGroup);
             groups.Add(todayGroup);

@@ -18,7 +18,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        private string AppForceCulture = "en-US";
+        private string AppForceCulture = "cs-CZ";
 
         public static MainViewModel ViewModel { get; private set; }
 

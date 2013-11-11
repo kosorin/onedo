@@ -45,7 +45,7 @@ namespace SimpleTasks.Views
 
             // Přidat úkol
             ApplicationBarIconButton appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
-            appBarNewTaskButton.Text = AppResources.AppBarNewText;
+            appBarNewTaskButton.Text = AppResources.AppBarNew;
             appBarNewTaskButton.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
 
@@ -54,7 +54,7 @@ namespace SimpleTasks.Views
             #region Menu
 
             // Smazat dokončené úkoly
-            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompletedText);
+            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
             appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
             //appBarDeleteCompletedItem.IsEnabled = ViewModel.Tasks.ActiveTaskCount > 0;
             ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
@@ -65,12 +65,12 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(appBarLiveTileItem);
 
             // Nastavení
-            ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettingsText);
+            ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
             appBarSettingsMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(appBarSettingsMenuItem);
 
             // O aplikaci
-            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAboutText);
+            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
             appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
 
@@ -92,13 +92,13 @@ namespace SimpleTasks.Views
             if (LiveTile.HasSecondaryTile)
             {
                 // Je připnuta i sekundární dlaždice
-                appBarItem.Text = AppResources.AppBarUnpinTileText;
+                appBarItem.Text = AppResources.AppBarUnpinTile;
                 appBarItem.Click += (s, e) => { LiveTileExtensions.RemoveSecondaryTile(); PeriodicTaskExtensions.Stop(); SetAppBarLiveTileItem(appBarItem); };
             }
             else
             {
                 // Pouze primární dlaždice
-                appBarItem.Text = AppResources.AppBarPinTileText;
+                appBarItem.Text = AppResources.AppBarPinTile;
                 appBarItem.Click += (s, e) => { LiveTileExtensions.AddSecondaryTile(ViewModel.Tasks); PeriodicTaskExtensions.Start(); SetAppBarLiveTileItem(appBarItem); };
             }
         }

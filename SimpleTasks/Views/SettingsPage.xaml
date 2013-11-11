@@ -87,7 +87,7 @@
                         </StackPanel>
 
                         <toolkit:TimePicker x:Name="ReminderTimePicker"
-                                            Header="Výchozí čas připomenutí"
+                                            Header="{Binding LocalizedResources.SettingsDefaultReminderTime, Source={StaticResource LocalizedStrings}}"
                                             Value="{Binding DefaultReminderTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
 
                         <!--Automatically delete completed tasks-->

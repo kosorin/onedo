@@ -80,7 +80,7 @@ namespace SimpleTasks.Views
         {
             if (TitleTextBox.Text == "")
             {
-                MessageBox.Show(AppResources.MissingTitleText);
+                MessageBox.Show(AppResources.MissingTitle);
                 return false;
             }
 
@@ -131,21 +131,21 @@ namespace SimpleTasks.Views
                 if (ViewModel.CurrentTask.IsComplete)
                 {
                     ApplicationBarIconButton appBarActivateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.undo.curve.png", UriKind.Relative));
-                    appBarActivateButton.Text = AppResources.AppBarActivateText;
+                    appBarActivateButton.Text = AppResources.AppBarActivate;
                     appBarActivateButton.Click += appBarActivateButton_Click;
                     ApplicationBar.Buttons.Add(appBarActivateButton);
                 }
                 else
                 {
                     ApplicationBarIconButton appBarCompleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.checkmark.pencil.top.png", UriKind.Relative));
-                    appBarCompleteButton.Text = AppResources.AppBarCompleteText;
+                    appBarCompleteButton.Text = AppResources.AppBarComplete;
                     appBarCompleteButton.Click += appBarCompleteButton_Click;
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
             }
 
             ApplicationBarIconButton appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
-            appBarSaveButton.Text = AppResources.AppBarSaveText;
+            appBarSaveButton.Text = AppResources.AppBarSave;
             appBarSaveButton.Click += appBarSaveButton_Click;
             ApplicationBar.Buttons.Add(appBarSaveButton);
 
@@ -154,7 +154,7 @@ namespace SimpleTasks.Views
             if (ViewModel.IsOldTask)
             {
                 ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
-                appBarDeleteItem.Text = AppResources.AppBarDeleteText;
+                appBarDeleteItem.Text = AppResources.AppBarDelete;
                 appBarDeleteItem.Click += appBarDeleteItem_Click;
                 ApplicationBar.MenuItems.Add(appBarDeleteItem);
             }
@@ -194,12 +194,12 @@ namespace SimpleTasks.Views
         {
             CustomMessageBox messageBox = new CustomMessageBox()
             {
-                Caption = AppResources.DeleteTaskCaptionText,
-                Message = AppResources.DeleteTaskText
+                Caption = AppResources.DeleteTaskCaption,
+                Message = AppResources.DeleteTask
                             + Environment.NewLine + Environment.NewLine
                             + ViewModel.CurrentTask.Title,
-                LeftButtonContent = AppResources.DeleteTaskYesText,
-                RightButtonContent = AppResources.DeleteTaskNoText
+                LeftButtonContent = AppResources.DeleteTaskYes,
+                RightButtonContent = AppResources.DeleteTaskNo
             };
 
             messageBox.Dismissed += (s1, e1) =>

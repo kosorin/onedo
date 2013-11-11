@@ -63,72 +63,72 @@ namespace SimpleTasks.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to later.
         /// </summary>
-        internal static string DateLaterText {
+        internal static string DateLater {
             get {
-                return ResourceManager.GetString("DateLaterText", resourceCulture);
+                return ResourceManager.GetString("DateLater", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to next month.
         /// </summary>
-        internal static string DateNextMonthText {
+        internal static string DateNextMonth {
             get {
-                return ResourceManager.GetString("DateNextMonthText", resourceCulture);
+                return ResourceManager.GetString("DateNextMonth", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to next week.
         /// </summary>
-        internal static string DateNextWeekText {
+        internal static string DateNextWeek {
             get {
-                return ResourceManager.GetString("DateNextWeekText", resourceCulture);
+                return ResourceManager.GetString("DateNextWeek", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to overdue.
         /// </summary>
-        internal static string DateOverdueText {
+        internal static string DateOverdue {
             get {
-                return ResourceManager.GetString("DateOverdueText", resourceCulture);
+                return ResourceManager.GetString("DateOverdue", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to this month.
         /// </summary>
-        internal static string DateThisMonthText {
+        internal static string DateThisMonth {
             get {
-                return ResourceManager.GetString("DateThisMonthText", resourceCulture);
+                return ResourceManager.GetString("DateThisMonth", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to this week.
         /// </summary>
-        internal static string DateThisWeekText {
+        internal static string DateThisWeek {
             get {
-                return ResourceManager.GetString("DateThisWeekText", resourceCulture);
+                return ResourceManager.GetString("DateThisWeek", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to today.
         /// </summary>
-        internal static string DateTodayText {
+        internal static string DateToday {
             get {
-                return ResourceManager.GetString("DateTodayText", resourceCulture);
+                return ResourceManager.GetString("DateToday", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to tomorrow.
         /// </summary>
-        internal static string DateTomorrowText {
+        internal static string DateTomorrow {
             get {
-                return ResourceManager.GetString("DateTomorrowText", resourceCulture);
+                return ResourceManager.GetString("DateTomorrow", resourceCulture);
             }
         }
         

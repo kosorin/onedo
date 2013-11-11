@@ -6,43 +6,43 @@
     </header>
     <body>
       <group id="Resx">
-        <trans-unit translate="yes" id="Resx/DateLaterText" xml:space="preserve">
+        <trans-unit translate="yes" id="Resx/DateLater" xml:space="preserve">
           <source>later</source>
           <target state="translated">později</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
+          <source>tomorrow</source>
+          <target state="translated">zítra</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateToday" xml:space="preserve">
+          <source>today</source>
+          <target state="translated">dnes</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisWeek" xml:space="preserve">
+          <source>this week</source>
+          <target state="translated">tento týden</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateThisMonth" xml:space="preserve">
+          <source>this month</source>
+          <target state="translated">tento měsíc</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateOverdue" xml:space="preserve">
+          <source>overdue</source>
+          <target state="translated">zpožděno</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextWeek" xml:space="preserve">
+          <source>next week</source>
+          <target state="translated">příští týden</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateNextMonth" xml:space="preserve">
+          <source>next month</source>
+          <target state="translated">příští měsíc</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/TileNoTasks" xml:space="preserve">
           <source>No tasks</source>
           <target state="translated">Žádné úkoly</target>
           
         <note from="MultilingualBuild" annotates="source" priority="2">text on live tile</note></trans-unit>
-        <trans-unit translate="yes" id="Resx/DateTomorrowText" xml:space="preserve">
-          <source>tomorrow</source>
-          <target state="translated">zítra</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateTodayText" xml:space="preserve">
-          <source>today</source>
-          <target state="translated">dnes</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateThisWeekText" xml:space="preserve">
-          <source>this week</source>
-          <target state="translated">tento týden</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateThisMonthText" xml:space="preserve">
-          <source>this month</source>
-          <target state="translated">tento měsíc</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateOverdueText" xml:space="preserve">
-          <source>overdue</source>
-          <target state="translated">zpožděno</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNextWeekText" xml:space="preserve">
-          <source>next week</source>
-          <target state="translated">příští týden</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/DateNextMonthText" xml:space="preserve">
-          <source>next month</source>
-          <target state="translated">příští měsíc</target>
-        </trans-unit>
       </group>
     </body>
   </file>
