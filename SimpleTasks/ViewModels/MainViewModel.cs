@@ -112,6 +112,7 @@ namespace SimpleTasks.ViewModels
             if (oldTask == null || newTask == null)
                 throw new ArgumentNullException();
 
+            ReminderHelper.Remove(oldTask.Uid);
             Tasks.Remove(oldTask);
             Tasks.Add(newTask);
             if (newTask.ReminderDate != null)
