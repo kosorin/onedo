@@ -309,11 +309,6 @@ namespace SimpleTasks.Views
                     ViewModel.CurrentTask.ReminderDate = ViewModel.CurrentTask.DueDate.Value.Date.AddHours(defaultReminderTime.Hour)
                                                                                                  .AddMinutes(defaultReminderTime.Minute);
                 }
-
-                if (ViewModel.CurrentTask.ReminderDate <= DateTime.Now)
-                {
-                    ViewModel.CurrentTask.ReminderDate = DateTime.Now.AddHours(1);
-                }
             }
 
 
