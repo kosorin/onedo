@@ -35,11 +35,11 @@ namespace SimpleTasks.Views
 
             BuildLocalizedApplicationBar();
 
-            // Při přidání nového úkolu se zobrází klávesnice a nastaví defaultní termín
-            if (!ViewModel.IsOldTask)
+            // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
+            RoutedEventHandler firstTimeLoadHandler = null;
+            firstTimeLoadHandler = (s, e) =>
             {
-                RoutedEventHandler firstTimeLoadHandler = null;
-                firstTimeLoadHandler = (s, e) =>
+                if (!ViewModel.IsOldTask)
                 {
                     // Zobrazení klávesnice
                     TitleTextBox.Focus();
@@ -49,11 +49,11 @@ namespace SimpleTasks.Views
                     {
                         DueDateToggleButton.IsChecked = true;
                     }
-
-                    this.Loaded -= firstTimeLoadHandler;
-                };
-                this.Loaded += firstTimeLoadHandler;
-            }
+                }
+                DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
+                this.Loaded -= firstTimeLoadHandler;
+            };
+            this.Loaded += firstTimeLoadHandler;
         }
 
         private bool CanSave()

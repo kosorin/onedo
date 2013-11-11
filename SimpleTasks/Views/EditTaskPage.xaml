@@ -613,8 +613,7 @@
                                                 ItemsSource="{Binding PresetDueDateList}"
                                                 ExpansionMode="FullScreenOnly"
                                                 FullModeHeader="{Binding LocalizedResources.ChooseDueDateText, Source={StaticResource LocalizedStrings}}"
-                                                FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"
-                                                SelectionChanged="DueDatePresetPicker_SelectionChanged"/>
+                                                FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"/>
                         </Grid>
                     </StackPanel>
 
