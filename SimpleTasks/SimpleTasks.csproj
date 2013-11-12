@@ -110,6 +110,7 @@
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
     <Compile Include="Helpers\LiveTileExtensions.cs" />
     <Compile Include="Helpers\PeriodicTaskExtensions.cs" />
+    <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\TaskKeyGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
