@@ -18,16 +18,16 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        private string AppForceCulture = "sk-SK";
-
-        public static MainViewModel ViewModel { get; private set; }
+        private string AppForceCulture = "en-US";
 
         public static SettingsViewModel Settings { get; private set; }
 
+        public static MainViewModel ViewModel { get; private set; }
+
         static App()
         {
-            ViewModel = new MainViewModel();
             Settings = new SettingsViewModel();
+            ViewModel = new MainViewModel();
         }
 
         // Code to execute when the application is launching (eg, from Start)

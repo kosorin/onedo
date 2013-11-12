@@ -49,7 +49,16 @@ namespace SimpleTasks.ViewModels
 
         public void LoadTasks()
         {
-            Tasks = TaskCollection.LoadFromXmlFile(TaskCollection.DefaultDataFileName);
+            if (App.Settings.CurrentDataFileVersion != App.Settings.DataFileVersionSetting)
+            {
+                Tasks = TaskCollection.ConvertOldDataFile(TaskCollection.DefaultDataFileName);
+                App.Settings.DataFileVersionSetting = App.Settings.CurrentDataFileVersion;
+            }
+            else
+            {
+                Tasks = TaskCollection.LoadFromXmlFile(TaskCollection.DefaultDataFileName);
+            }
+
             if (Tasks == null)
             {
                 Tasks = new TaskCollection();
@@ -60,11 +69,6 @@ namespace SimpleTasks.ViewModels
             {
                 DeleteCompletedTasks(App.Settings.DeleteCompletedTasksDaysSetting);
             }
-
-            //foreach (TaskModel task in Tasks)
-            //{
-            //    UpdateTaskReminder(task);
-            //}
 
 #if DEBUG
             Debug.WriteLine("> Úkoly ({0}):", Tasks.Count);
@@ -125,15 +129,6 @@ namespace SimpleTasks.ViewModels
             }
             LiveTile.Update(Tasks);
         }
-
-        //public void UpdateTaskReminder(TaskModel task)
-        //{
-        //    if (task.HasReminder && task.ReminderDate <= DateTime.Now)
-        //    {
-        //        TaskReminder.Remove(task);
-        //        task.ReminderDate = null;
-        //    }
-        //}
 
         public void RemoveTask(TaskModel task)
         {

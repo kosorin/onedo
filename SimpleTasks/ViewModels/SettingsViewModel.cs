@@ -100,6 +100,29 @@ namespace SimpleTasks.ViewModels
 
         #endregion Settings
 
+        #region DataFileVersion
+
+        public readonly int CurrentDataFileVersion = 2;
+
+        private const string DataFileVersionKeyName = "DataFileVersion";
+        private readonly int DataFileVersionDefault = 1;
+        public int DataFileVersionSetting
+        {
+            get
+            {
+                return GetValueOrDefault<int>(DataFileVersionKeyName, DataFileVersionDefault);
+            }
+            set
+            {
+                if (AddOrUpdateValue(DataFileVersionKeyName, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        #endregion
+
         #region DefaultDueDate
 
         private const string DefaultDueDateKeyName = "DefaultDueDate";

@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace SimpleTasks.Core.Models
 {
@@ -41,7 +42,7 @@ namespace SimpleTasks.Core.Models
                 return tasks;
             }
         }
-        
+
         public const string DefaultDataFileName = "TasksData.xml";
 
         public static TaskCollection LoadFromXmlFile(string fileName)
@@ -95,6 +96,31 @@ namespace SimpleTasks.Core.Models
                     Debug.WriteLine("> Ukládání dat dokončeno.");
                 }
             }
+        }
+
+        public static TaskCollection ConvertOldDataFile(string fileName)
+        {
+            Debug.WriteLine(string.Format("> Konvertuji staré data ze souboru {0}...", fileName));
+            TaskCollection tasks = new TaskCollection();
+
+            var oldTasks = Old.Core.Models.TaskModelCollection.LoadTasksFromXmlFile(fileName);
+            foreach (var oldTask in oldTasks)
+            {
+                TaskModel task = new TaskModel()
+                {
+                    Uid = Guid.NewGuid().ToString(),
+                    Title = oldTask.Title,
+                    DueDate = oldTask.Date,
+                    Priority = oldTask.IsImportant ? TaskPriority.High : TaskPriority.Normal,
+                    CompletedDate = oldTask.CompletedDate,
+                    ReminderDate = null
+                };
+
+                tasks.Add(task);
+            }
+
+            tasks.SaveToXmlFile(fileName);
+            return tasks;
         }
     }
 }
