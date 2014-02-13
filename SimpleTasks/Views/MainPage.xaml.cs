@@ -26,7 +26,9 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = ViewModel = App.ViewModel;
 
-            LiveTile.Update(ViewModel.Tasks);
+            if (App.Settings.EnableLiveTileSetting)
+                LiveTile.Update(ViewModel.Tasks);
+
             BuildLocalizedApplicationBar();
         }
 
@@ -56,13 +58,7 @@ namespace SimpleTasks.Views
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
             appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
-            //appBarDeleteCompletedItem.IsEnabled = ViewModel.Tasks.ActiveTaskCount > 0;
             ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
-
-            // Živá dlaždice
-            ApplicationBarMenuItem appBarLiveTileItem = new ApplicationBarMenuItem();
-            SetAppBarLiveTileItem(appBarLiveTileItem);
-            ApplicationBar.MenuItems.Add(appBarLiveTileItem);
 
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
@@ -74,33 +70,22 @@ namespace SimpleTasks.Views
             appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
 
-            //// Reset
-            //ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
-            //appBarResetMenuItem.Click += appBarResetMenuItem_Click;
-            //ApplicationBar.MenuItems.Add(appBarResetMenuItem);
+            // Reset
+            ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
+            appBarResetMenuItem.Click += appBarResetMenuItem_Click;
+            ApplicationBar.MenuItems.Add(appBarResetMenuItem);
 
-            ////// Clear
-            //ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            //appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateUI(ViewModel.Tasks); };
-            //ApplicationBar.MenuItems.Add(appBarClearMenuItem);
+            // Clear
+            ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
+            appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateUI(ViewModel.Tasks); };
+            ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 
             #endregion
         }
 
         private void SetAppBarLiveTileItem(ApplicationBarMenuItem appBarItem)
         {
-            if (LiveTile.HasSecondaryTile)
-            {
-                // Je připnuta i sekundární dlaždice
-                appBarItem.Text = AppResources.AppBarUnpinTile;
-                appBarItem.Click += (s, e) => { LiveTileExtensions.RemoveSecondaryTile(); PeriodicTaskExtensions.Stop(); SetAppBarLiveTileItem(appBarItem); };
-            }
-            else
-            {
-                // Pouze primární dlaždice
-                appBarItem.Text = AppResources.AppBarPinTile;
-                appBarItem.Click += (s, e) => { LiveTileExtensions.AddSecondaryTile(ViewModel.Tasks); PeriodicTaskExtensions.Start(); SetAppBarLiveTileItem(appBarItem); };
-            }
+
         }
 
         void appBarResetMenuItem_Click(object sender, EventArgs e)

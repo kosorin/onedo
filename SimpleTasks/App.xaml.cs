@@ -35,11 +35,8 @@ namespace SimpleTasks
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             Debug.WriteLine("===== Application Launching =====");
-            if (LiveTile.HasSecondaryTile)
-                PeriodicTaskExtensions.Start();
-            else
-                PeriodicTaskExtensions.Stop();
             ViewModel.LoadTasks();
+            RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ========== =====");
         }
 
@@ -51,6 +48,7 @@ namespace SimpleTasks
             if (!e.IsApplicationInstancePreserved)
             {
                 ViewModel.LoadTasks();
+                RootFrame.UriMapper = new MyUriMapper();
             }
             Debug.WriteLine("===== ========== =====");
         }

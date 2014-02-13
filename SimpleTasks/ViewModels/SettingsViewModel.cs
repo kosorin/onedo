@@ -1,4 +1,5 @@
 ﻿using SimpleTasks.Core.Helpers;
+using SimpleTasks.Helpers;
 using SimpleTasks.Resources;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,27 @@ namespace SimpleTasks.ViewModels
 
         #endregion
 
+        #region FirstStart
+
+        private const string FirstStartKeyName = "FirstStart";
+        private readonly bool FirstStartDefault = true;
+        public bool FirstStartSetting
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(FirstStartKeyName, FirstStartDefault);
+            }
+            set
+            {
+                if (AddOrUpdateValue(FirstStartKeyName, value))
+                {
+                    Save();
+                }
+            }
+        }
+
+        #endregion
+
         #region DefaultDueDate
 
         private const string DefaultDueDateKeyName = "DefaultDueDate";
@@ -216,6 +238,38 @@ namespace SimpleTasks.ViewModels
             {
                 if (AddOrUpdateValue(DefaultReminderTimeKeyName, value))
                 {
+                    Save();
+                }
+            }
+        }
+
+        #endregion
+
+        #region EnableLiveTile
+
+        private const string EnableLiveTileKeyName = "EnableLiveTile";
+        private readonly bool EnableLiveTileDefault = true;
+        public bool EnableLiveTileSetting
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(EnableLiveTileKeyName, EnableLiveTileDefault);
+            }
+            set
+            {
+                if (AddOrUpdateValue(EnableLiveTileKeyName, value))
+                {
+                    if (value)
+                    {
+                        PeriodicTaskExtensions.Start();
+                        LiveTile.UpdateUI(App.ViewModel.Tasks);
+                    }
+                    else
+                    {
+                        PeriodicTaskExtensions.Stop();
+                        LiveTile.Reset();
+                    }
+
                     Save();
                 }
             }
@@ -334,11 +388,12 @@ namespace SimpleTasks.ViewModels
         private void SetDaysPicker()
         {
             DaysPickerItems = new List<KeyValuePair<int, string>>();
+            DaysPickerItems.Add(new KeyValuePair<int, string>(0, "ihned"));
             DaysPickerItems.Add(new KeyValuePair<int, string>(1, AppResources.SettingsDeleteAfterOneDay));
             DaysPickerItems.Add(new KeyValuePair<int, string>(2, AppResources.SettingsDeleteAfterTwoDays));
             DaysPickerItems.Add(new KeyValuePair<int, string>(3, AppResources.SettingsDeleteAfterThreeDays));
             DaysPickerItems.Add(new KeyValuePair<int, string>(7, AppResources.SettingsDeleteAfterOneWeek));
-            DaysPickerItems.Add(new KeyValuePair<int, string>(14, AppResources.SettingsDeleteAfterTwoWeeks));
+            //DaysPickerItems.Add(new KeyValuePair<int, string>(14, AppResources.SettingsDeleteAfterTwoWeeks));
 
             var selectedItems = DaysPickerItems.Where((i) => { return i.Key == DeleteCompletedTasksDaysSetting; });
             if (selectedItems.Count() > 0)

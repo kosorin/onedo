@@ -43,6 +43,14 @@ namespace SimpleTasks.Core.Models
             }
         }
 
+        public int CompletedTasksCount
+        {
+            get
+            {
+                return this.Where((t) => { return t.IsComplete; }).Count();
+            }
+        }
+
         public const string DefaultDataFileName = "TasksData.xml";
 
         public static TaskCollection LoadFromXmlFile(string fileName)

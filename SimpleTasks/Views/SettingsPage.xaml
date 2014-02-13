@@ -139,6 +139,20 @@
                 </ScrollViewer>
             </phone:PivotItem>
 
+            <!--Live Tile-->
+            <phone:PivotItem Header="živá dlaždice">
+                <StackPanel Margin="0,0,0,12">
+                    <toolkit:ToggleSwitch Header="Povolit živou dlaždici"
+							              IsChecked="{Binding EnableLiveTileSetting, Mode=TwoWay, FallbackValue=True}"
+                                          x:Name="EnableLiveTileToggleSwitch" 
+                                          Margin="0,0,0,-20" 
+                                          Checked="DeleteCompletedToggleSwitch_Checked" 
+                                          Unchecked="DeleteCompletedToggleSwitch_Unchecked" />
+                    <TextBlock Text="Pokud se dlaždice neobnovuje, tak se ujistěte, že jsou v nastavení telefonu povoleny úlohy na pozadí pro tuto aplikaci." 
+                               Style="{StaticResource PhoneTextSubtleStyle}"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </phone:PivotItem>
         </phone:Pivot>
     </Grid>
 

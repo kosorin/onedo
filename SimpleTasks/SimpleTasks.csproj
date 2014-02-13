@@ -108,11 +108,11 @@
     <Compile Include="Conventers\DateToStringConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
-    <Compile Include="Helpers\LiveTileExtensions.cs" />
     <Compile Include="Helpers\PeriodicTaskExtensions.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\TaskKeyGroup.cs" />
+    <Compile Include="MyUriMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -127,6 +127,9 @@
     </Compile>
     <Compile Include="Views\EditTaskPage.xaml.cs">
       <DependentUpon>EditTaskPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntryPage.xaml.cs">
+      <DependentUpon>EntryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -156,6 +159,9 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Tiles\FlipTileMedium.png" />
+    <Content Include="Assets\Tiles\FlipTileSmall.png" />
+    <Content Include="Assets\Tiles\FlipTileWide.png" />
     <Content Include="Assets\Tiles\IconicTileMediumLarge.png" />
     <Content Include="Assets\Tiles\IconicTileSmall.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
@@ -218,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditTaskPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EntryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

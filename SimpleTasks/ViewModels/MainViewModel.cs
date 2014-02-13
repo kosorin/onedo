@@ -108,7 +108,8 @@ namespace SimpleTasks.ViewModels
                                    task.ReminderDate.Value,
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
             }
-            LiveTile.Update(Tasks);
+            if (App.Settings.EnableLiveTileSetting)
+                LiveTile.Update(Tasks);
         }
 
         public void UpdateTask(TaskModel oldTask, TaskModel newTask)
@@ -127,7 +128,8 @@ namespace SimpleTasks.ViewModels
                                    newTask.ReminderDate.Value, 
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));
             }
-            LiveTile.Update(Tasks);
+            if (App.Settings.EnableLiveTileSetting)
+                LiveTile.Update(Tasks);
         }
 
         public void RemoveTask(TaskModel task)
@@ -137,7 +139,8 @@ namespace SimpleTasks.ViewModels
 
             Tasks.Remove(task);
             ReminderHelper.Remove(task.Uid);
-            LiveTile.Update(Tasks);
+            if (App.Settings.EnableLiveTileSetting)
+                LiveTile.Update(Tasks);
         }
 
         public void DeleteCompletedTasks(int days)

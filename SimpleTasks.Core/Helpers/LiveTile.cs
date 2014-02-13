@@ -15,14 +15,91 @@ namespace SimpleTasks.Core.Helpers
 {
     public class LiveTile
     {
+        private static string SmallTileFileName { get { return "SmallTile.jpg"; } }
+
+        private static string MediumTileFileName { get { return "MediumTile.jpg"; } }
+
+        private static string WideTileFileName { get { return "WideTile.jpg"; } }
+
+        private static string TileImageDirectory { get { return "/Shared/ShellContent/"; } }
+
+        public static void Reset()
+        {
+            FlipTileData flipTileData = new FlipTileData
+            {
+                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipTileSmall.png", UriKind.Relative),
+                BackgroundImage = new Uri("/Assets/Tiles/FlipTileMedium.png", UriKind.Relative),
+                WideBackgroundImage = new Uri("/Assets/Tiles/FlipTileWide.png", UriKind.Relative),
+                Title = "Simple Tasks",
+                Count = 0,
+            };
+
+            try
+            {
+                ShellTile tile = ShellTile.ActiveTiles.FirstOrDefault();
+                if (tile != null)
+                {
+                    tile.Update(flipTileData);
+                    Debug.WriteLine("> Reset primární dlaždice dokončena.");
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Chyba při resetu primární dlaždice.");
+            }
+        }
+
         public static void Update(TaskCollection tasksSource)
         {
             Debug.WriteLine("> Aktualizuji živé dlaždice...");
 
             List<TaskModel> tasks = tasksSource.SortedActiveTasks;
 
-            UpdateApplicationTile(tasks);
-            UpdateSecondaryTile(tasks);
+            // Počet dnešních úkolů (včetně zmeškaných)
+            int todayTaskCount = Math.Min(tasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99);
+
+            // Vytvoření obrázků dlaždic
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + SmallTileFileName, System.IO.FileMode.Create))
+            {
+                TileTemplate tile = new SimpleListTile(4, 159, 159);
+                WriteableBitmap wb = tile.Render(tasks);
+                wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
+            }
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + MediumTileFileName, System.IO.FileMode.Create))
+            {
+                TileTemplate tile = new NormalListTile(7, 336, 336);
+                WriteableBitmap wb = tile.Render(tasks);
+                wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
+            }
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + WideTileFileName, System.IO.FileMode.Create))
+            {
+                TileTemplate tile = new WideListTile(7, 691, 336);
+                WriteableBitmap wb = tile.Render(tasks);
+                wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
+            }
+
+            FlipTileData flipTileData = new FlipTileData
+            {
+                SmallBackgroundImage = new Uri("isostore:" + TileImageDirectory + SmallTileFileName, UriKind.Absolute),
+                BackgroundImage = new Uri("isostore:" + TileImageDirectory + MediumTileFileName, UriKind.Absolute),
+                WideBackgroundImage = new Uri("isostore:" + TileImageDirectory + WideTileFileName, UriKind.Absolute),
+                Title = "",
+                Count = 0,
+            };
+
+            try
+            {
+                ShellTile tile = ShellTile.ActiveTiles.FirstOrDefault();
+                if (tile != null)
+                {
+                    tile.Update(flipTileData);
+                    Debug.WriteLine("> Aktualizace primární dlaždice dokončena.");
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Chyba při aktualizaci primární dlaždice.");
+            }
         }
 
         public static void UpdateUI(TaskCollection tasksSource)
@@ -32,117 +109,5 @@ namespace SimpleTasks.Core.Helpers
                 Update(tasksSource);
             });
         }
-        
-        #region Application Tile
-
-        private static void UpdateApplicationTile(List<TaskModel> sortedTasks)
-        {
-            try
-            {
-                ShellTile tile = ShellTile.ActiveTiles.FirstOrDefault();
-                if (tile != null)
-                {
-                    IconicTileData iconicTileData = new IconicTileData
-                    {
-                        Count = Math.Min(sortedTasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99),
-
-                        WideContent1 = sortedTasks.Count > 0 ? sortedTasks[0].Title : "",
-                        WideContent2 = sortedTasks.Count > 1 ? sortedTasks[1].Title : "",
-                        WideContent3 = sortedTasks.Count > 2 ? sortedTasks[2].Title : "",
-                    };
-
-                    tile.Update(iconicTileData);
-                    Debug.WriteLine("> Aktualizace primární dlaždice dokončena.");
-                }
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Chyba při aktualizaci primární dlaždice.");
-            }
-        }
-        
-        #endregion
-
-        #region Secondary Tile
-
-        public static bool HasSecondaryTile
-        {
-            get
-            {
-                return ShellTile.ActiveTiles.Count() > 1;
-            }
-        }
-
-        private const string SmallTileFileName = "SmallTile.jpg";
-        private const string MediumTileFileName = "MediumTile.jpg";
-        private const string WideTileFileName = "WideTile.jpg";
-        private const string TileImageDirectory = "/Shared/ShellContent/";
-
-        private static string TileUriPartString = "?LiveTileId=1";
-        private static string TileUriString = "/Views/MainPage.xaml" + TileUriPartString;
-        public static Uri TileUri = new Uri(TileUriString, UriKind.Relative);
-
-        private static void UpdateSecondaryTile(List<TaskModel> sortedTasks)
-        {
-            // Pokud neexistuje sekundární dlaždice, tak neděláme nic
-            if (!HasSecondaryTile)
-                return;
-
-            try
-            {
-                ShellTile tile = FindSecondaryTile();
-                if (tile != null)
-                {
-                    tile.Update(CreateSecondaryTileData(sortedTasks));
-                    Debug.WriteLine("> Aktualizace sekundární dlaždice dokončena.");
-                }
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Chyba při aktualizaci sekundární dlaždice.");
-            }
-        }
-
-        public static ShellTileData CreateSecondaryTileData(List<TaskModel> sortedTasks)
-        {
-            // Počet dnešních úkolů (včetně zmeškaných)
-            int todayTaskCount = Math.Min(sortedTasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99);
-
-            // Vytvoření obrázků dlaždic
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + SmallTileFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new SimpleListTile(4, 159,159);
-                WriteableBitmap wb = tile.Render(sortedTasks);
-                wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
-            }
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + MediumTileFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new NormalListTile(7, 336, 336);
-                WriteableBitmap wb = tile.Render(sortedTasks);
-                wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
-            }
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + WideTileFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new WideListTile(7, 691, 336);
-                WriteableBitmap wb = tile.Render(sortedTasks);
-                wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
-            }
-
-            FlipTileData flipTileData = new FlipTileData
-            {
-                SmallBackgroundImage = new Uri("isostore:" + TileImageDirectory + SmallTileFileName, UriKind.Absolute),
-                BackgroundImage = new Uri("isostore:" + TileImageDirectory + MediumTileFileName, UriKind.Absolute),
-                WideBackgroundImage = new Uri("isostore:" + TileImageDirectory + WideTileFileName, UriKind.Absolute),
-            };
-
-            return flipTileData;
-        }
-
-        public static ShellTile FindSecondaryTile()
-        {
-            return ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains(TileUriPartString));
-        }
-
-        #endregion
     }
 }
