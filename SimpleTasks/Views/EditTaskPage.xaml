@@ -560,7 +560,24 @@
                                           Style="{StaticResource TitleTextBoxStyle}" 
                                           FontFamily="Segoe UI Symbol" 
                                           GotFocus="TitleTextBox_GotFocus" 
-                                          LostFocus="TitleTextBox_LostFocus" />
+                                          LostFocus="TitleTextBox_LostFocus">
+                        <toolkit:PhoneTextBox.Resources>
+                            <Storyboard x:Name="TitleTextBoxStoryboard">
+                                <DoubleAnimation Storyboard.TargetName="TitleTextBox"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 From="1.0"
+                                                 To="0.2"
+                                                 AutoReverse="True"
+                                                 RepeatBehavior="Forever"
+                                                 BeginTime="0:0:0.5"
+                                                 Duration="0:0:0.75" >
+                                    <DoubleAnimation.EasingFunction>
+                                        <PowerEase EasingMode="EaseInOut"/>
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </toolkit:PhoneTextBox.Resources>
+                    </toolkit:PhoneTextBox>
 
                     <!--Výběr termínu-->
                     <StackPanel Orientation="Vertical"

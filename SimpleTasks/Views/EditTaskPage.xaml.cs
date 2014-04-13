@@ -1,27 +1,17 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using SimpleTasks.ViewModels;
-using SimpleTasks.Resources;
-using SimpleTasks.Models;
-using System.Windows.Input;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
-using System.Collections.Generic;
-using SimpleTasks.Core.Helpers;
+using SimpleTasks.Resources;
+using SimpleTasks.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Xml;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace SimpleTasks.Views
 {
@@ -342,6 +332,8 @@ namespace SimpleTasks.Views
         private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TitleTextBox.FontFamily = new FontFamily("Segoe WP");
+            TitleTextBoxStoryboard.Stop();
+            TitleTextBox.Opacity = 1;
         }
 
         private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -349,6 +341,7 @@ namespace SimpleTasks.Views
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
             {
                 TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");
+                TitleTextBoxStoryboard.Begin();
             }
         }
     }
