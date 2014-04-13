@@ -554,10 +554,13 @@
                     <!--Nadpis-->
                     <toolkit:PhoneTextBox x:Name="TitleTextBox"
                                           Text="{Binding CurrentTask.Title, Mode=TwoWay}"
-                                          Hint="{Binding LocalizedResources.TitleHintText, Source={StaticResource LocalizedStrings}}"
+                                          Hint="&#8230;&#xe104;"
                                           Margin="20,0"
                                           KeyDown="PhoneTextBox_KeyDown" 
-                                          Style="{StaticResource TitleTextBoxStyle}" />
+                                          Style="{StaticResource TitleTextBoxStyle}" 
+                                          FontFamily="Segoe UI Symbol" 
+                                          GotFocus="TitleTextBox_GotFocus" 
+                                          LostFocus="TitleTextBox_LostFocus" />
 
                     <!--Výběr termínu-->
                     <StackPanel Orientation="Vertical"

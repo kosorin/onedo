@@ -131,9 +131,7 @@
   <data name="PriorityNormal" xml:space="preserve">
     <value>[054B3][!!_ηóřмáľ ρѓîõřîťУ_!!!!]</value>
   </data>
-  <data name="TitleHintText" xml:space="preserve">
-    <value>[650DE][!!_Ţâşĸ ťîτłę_!!]</value>
-  </data>
+  
   <data name="PeriodicTaskDescription" xml:space="preserve">
     <value>[2B126][!!_Ùþđáţęş ľíνę ťíĺê._!!!!!!]</value>
   <comment>Info about background task agent</comment></data>

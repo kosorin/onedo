@@ -91,8 +91,8 @@
           <target state="signed-off">normální priorita</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/TitleHintText" xml:space="preserve">
-          <source>Task title</source>
-          <target state="signed-off">Název úkolu</target>
+          <source>Task title%%amp;#8230;%%amp;#xe104;</source>
+          <target state="new">Task title%%amp;#8230;%%amp;#xe104;</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarComplete" xml:space="preserve">
           <source>complete</source>

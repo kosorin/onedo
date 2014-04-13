@@ -21,6 +21,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml;
+using System.Windows.Media;
 
 namespace SimpleTasks.Views
 {
@@ -114,7 +115,7 @@ namespace SimpleTasks.Views
                 NavigationService.GoBack();
             }
             else
-            { 
+            {
                 NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
             }
         }
@@ -337,5 +338,18 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
+        private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TitleTextBox.FontFamily = new FontFamily("Segoe WP");
+        }
+
+        private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
+            {
+                TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");
+            }
+        }
     }
 }

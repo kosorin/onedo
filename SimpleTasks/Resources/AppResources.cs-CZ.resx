@@ -123,9 +123,7 @@
   <data name="PriorityNormal" xml:space="preserve">
     <value>normální priorita</value>
   <comment></comment></data>
-  <data name="TitleHintText" xml:space="preserve">
-    <value>Název úkolu</value>
-  </data>
+  
   <data name="PeriodicTaskDescription" xml:space="preserve">
     <value>Aktualizace živé dlaždice.</value>
     <comment>Info about background task agent</comment>

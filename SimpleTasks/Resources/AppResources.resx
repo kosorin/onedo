@@ -182,7 +182,7 @@
     <value>normal priority</value>
   </data>
   <data name="TitleHintText" xml:space="preserve">
-    <value>Task title</value>
+    <value>Task title&amp;#8230;&amp;#xe104;</value>
   </data>
   <data name="AppBarComplete" xml:space="preserve">
     <value>complete</value>
