@@ -556,7 +556,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Task title.
+        ///   Looks up a localized string similar to Task title&amp;#8230;&amp;#xe104;.
         /// </summary>
         public static string TitleHintText {
             get {

@@ -12,9 +12,6 @@ namespace SimpleTasks.ViewModels
 {
     public class SettingsViewModel : BindableBase
     {
-        /// <summary>
-        /// Constructor that gets the application settings.
-        /// </summary>
         public SettingsViewModel()
         {
             settings = IsolatedStorageSettings.ApplicationSettings;

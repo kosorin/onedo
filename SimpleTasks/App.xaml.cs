@@ -30,8 +30,6 @@ namespace SimpleTasks
             ViewModel = new MainViewModel();
         }
 
-        // Code to execute when the application is launching (eg, from Start)
-        // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             Debug.WriteLine("===== Application Launching =====");
@@ -40,8 +38,6 @@ namespace SimpleTasks
             Debug.WriteLine("===== ========== =====");
         }
 
-        // Code to execute when the application is activated (brought to foreground)
-        // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Activated =====");
@@ -53,8 +49,6 @@ namespace SimpleTasks
             Debug.WriteLine("===== ========== =====");
         }
 
-        // Code to execute when the application is deactivated (sent to background)
-        // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
@@ -62,8 +56,6 @@ namespace SimpleTasks
             Debug.WriteLine("===== ========== =====");
         }
 
-        // Code to execute when the application is closing (eg, user hit Back)
-        // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
