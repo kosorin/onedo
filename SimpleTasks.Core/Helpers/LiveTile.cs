@@ -52,6 +52,10 @@ namespace SimpleTasks.Core.Helpers
         public static void Update(TaskCollection tasksSource)
         {
             Debug.WriteLine("> Aktualizuji živé dlaždice...");
+            foreach (TaskModel task in tasksSource)
+            {
+                Debug.WriteLine(": '" + task.Title + "'");
+            }
 
             List<TaskModel> tasks = tasksSource.SortedActiveTasks;
 
@@ -93,12 +97,12 @@ namespace SimpleTasks.Core.Helpers
                 if (tile != null)
                 {
                     tile.Update(flipTileData);
-                    Debug.WriteLine("> Aktualizace primární dlaždice dokončena.");
+                    Debug.WriteLine("> Aktualizace živé dlaždice dokončena.");
                 }
             }
             catch (Exception)
             {
-                Debug.WriteLine("Chyba při aktualizaci primární dlaždice.");
+                Debug.WriteLine("Chyba při aktualizaci živé dlaždice.");
             }
         }
 

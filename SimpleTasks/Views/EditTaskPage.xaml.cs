@@ -222,6 +222,22 @@ namespace SimpleTasks.Views
             }
         }
 
+        private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TitleTextBox.FontFamily = new FontFamily("Segoe WP");
+            TitleTextBoxStoryboard.Stop();
+            TitleTextBox.Opacity = 1;
+        }
+
+        private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
+            {
+                TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");
+                TitleTextBoxStoryboard.Begin();
+            }
+        }
+
         #endregion
 
         #region Due Date
@@ -328,21 +344,5 @@ namespace SimpleTasks.Views
         }
 
         #endregion
-
-        private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TitleTextBox.FontFamily = new FontFamily("Segoe WP");
-            TitleTextBoxStoryboard.Stop();
-            TitleTextBox.Opacity = 1;
-        }
-
-        private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
-            {
-                TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");
-                TitleTextBoxStoryboard.Begin();
-            }
-        }
     }
 }

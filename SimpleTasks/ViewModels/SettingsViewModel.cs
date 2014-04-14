@@ -387,10 +387,10 @@ namespace SimpleTasks.ViewModels
             DaysPickerItems = new List<KeyValuePair<int, string>>();
             DaysPickerItems.Add(new KeyValuePair<int, string>(0, "ihned"));
             DaysPickerItems.Add(new KeyValuePair<int, string>(1, AppResources.SettingsDeleteAfterOneDay));
-            DaysPickerItems.Add(new KeyValuePair<int, string>(2, AppResources.SettingsDeleteAfterTwoDays));
+            //DaysPickerItems.Add(new KeyValuePair<int, string>(2, AppResources.SettingsDeleteAfterTwoDays));
             DaysPickerItems.Add(new KeyValuePair<int, string>(3, AppResources.SettingsDeleteAfterThreeDays));
             DaysPickerItems.Add(new KeyValuePair<int, string>(7, AppResources.SettingsDeleteAfterOneWeek));
-            //DaysPickerItems.Add(new KeyValuePair<int, string>(14, AppResources.SettingsDeleteAfterTwoWeeks));
+            DaysPickerItems.Add(new KeyValuePair<int, string>(14, AppResources.SettingsDeleteAfterTwoWeeks));
 
             var selectedItems = DaysPickerItems.Where((i) => { return i.Key == DeleteCompletedTasksDaysSetting; });
             if (selectedItems.Count() > 0)
