@@ -96,6 +96,15 @@ namespace SimpleTasks.Views
             {
                 ReminderDatePicker.Value = null;
             }
+
+            // Při stisku tlačítka na AppBaru nezmizí focus z elementu, 
+            // takže např. u TextBoxu se neaktivuje změna textu pro binding
+            object focusedObject = FocusManager.GetFocusedElement();
+            if (focusedObject != null && focusedObject is TextBox)
+            {
+                var binding = (focusedObject as TextBox).GetBindingExpression(TextBox.TextProperty);
+                binding.UpdateSource();
+            }
         }
 
         private void GoBack()
