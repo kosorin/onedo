@@ -115,6 +115,11 @@ namespace SimpleTasks.Views
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
+            
+            ApplicationBarIconButton appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
+            appBarSaveButton.Text = AppResources.AppBarSave;
+            appBarSaveButton.Click += appBarSaveButton_Click;
+            ApplicationBar.Buttons.Add(appBarSaveButton);
 
             // Ikony
             if (ViewModel.IsOldTask)
@@ -135,19 +140,17 @@ namespace SimpleTasks.Views
                 }
             }
 
-            ApplicationBarIconButton appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
-            appBarSaveButton.Text = AppResources.AppBarSave;
-            appBarSaveButton.Click += appBarSaveButton_Click;
-            ApplicationBar.Buttons.Add(appBarSaveButton);
-
-
             // Menu
             if (ViewModel.IsOldTask)
             {
-                ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
-                appBarDeleteItem.Text = AppResources.AppBarDelete;
-                appBarDeleteItem.Click += appBarDeleteItem_Click;
-                ApplicationBar.MenuItems.Add(appBarDeleteItem);
+                ApplicationBarIconButton appBarDeleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.delete.png", UriKind.Relative));
+                appBarDeleteButton.Text = AppResources.AppBarDelete;
+                appBarDeleteButton.Click += appBarDeleteButton_Click;
+                ApplicationBar.Buttons.Add(appBarDeleteButton);
+                //ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
+                //appBarDeleteItem.Text = AppResources.AppBarDelete;
+                //appBarDeleteItem.Click += appBarDeleteItem_Click;
+                //ApplicationBar.MenuItems.Add(appBarDeleteItem);
             }
         }
 
@@ -181,7 +184,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void appBarDeleteItem_Click(object sender, EventArgs e)
+        private void appBarDeleteButton_Click(object sender, EventArgs e)
         {
             CustomMessageBox messageBox = new CustomMessageBox()
             {
