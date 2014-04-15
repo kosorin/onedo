@@ -12,7 +12,7 @@ namespace SimpleTasks.Core.Tiles
 {
     public abstract class TileTemplate
     {
-        public SolidColorBrush BackgroundBrush = (SolidColorBrush)Application.Current.Resources["PhoneAccentBrush"];
+        public SolidColorBrush BackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.28 }; // (SolidColorBrush)Application.Current.Resources["PhoneAccentBrush"];
 
         public SolidColorBrush ForegroundBrush = new SolidColorBrush(Colors.White);
 
