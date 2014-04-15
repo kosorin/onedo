@@ -230,7 +230,7 @@ namespace SimpleTasks.Views
         {
             if (e.Key == Key.Enter)
             {
-                this.Focus();
+                //this.Focus();
             }
         }
 
