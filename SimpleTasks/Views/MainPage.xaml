@@ -82,6 +82,11 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
+                    <!--<Path Width="60"
+                          Height="60"
+                          Fill="{StaticResource PhoneAccentBrush}"
+                          Data="M 0,0 L 32,0 L 0,32 Z" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    </Path>-->
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource ButtonTextBlockStyle}"
                                Opacity="0.85"
