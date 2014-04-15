@@ -90,6 +90,9 @@
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\LiveTile.cs" />
+    <Compile Include="PngWriter\ToolStackCRCLib.cs" />
+    <Compile Include="PngWriter\ToolStackPNGWriterLib.cs" />
+    <Compile Include="PngWriter\ToolStackPNGWriterWBext.cs" />
     <Compile Include="Models\TaskModel.old.cs" />
     <Compile Include="Models\TaskPriority.cs" />
     <Compile Include="Models\TaskModel.cs" />

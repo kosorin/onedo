@@ -30,7 +30,7 @@ namespace SimpleTasks.Core.Tiles
 
             Grid grid = new Grid()
             {
-                Background = BackgroundBrush
+                //Background = BackgroundBrush
             };
 
             if (tasks.Count > 0)
