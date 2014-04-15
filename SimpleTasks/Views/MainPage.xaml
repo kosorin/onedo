@@ -87,8 +87,8 @@
                                Style="{StaticResource ButtonTextBlockStyle}"
                                Opacity="0.85"
                                Padding="15,0,0,0"
-                               TextWrapping="Wrap">
-                    </TextBlock>
+                               TextWrapping="Wrap"
+                               FontWeight="Light"/>
                     <StackPanel Orientation="Horizontal"
                                 Grid.Column="1" 
                                 VerticalAlignment="Top" 
