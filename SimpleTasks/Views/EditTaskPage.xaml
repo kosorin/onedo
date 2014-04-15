@@ -579,7 +579,7 @@
                                                  AutoReverse="True"
                                                  RepeatBehavior="Forever"
                                                  BeginTime="0:0:0.5"
-                                                 Duration="0:0:0.75" >
+                                                 Duration="0:0:0.5" >
                                     <DoubleAnimation.EasingFunction>
                                         <PowerEase EasingMode="EaseInOut"/>
                                     </DoubleAnimation.EasingFunction>

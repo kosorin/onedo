@@ -91,16 +91,12 @@
                         <TextBlock Text="{Binding TitleFirstLine}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
                                    Opacity="0.85"
-                                   Padding="20,10,0,0"
-                                   TextWrapping="Wrap"
-                                   FontWeight="Light"/>
+                                   Padding="20,10,0,0"/>
                         <TextBlock Text="{Binding TitleDescription}"
                                    Style="{StaticResource ButtonDescriptionTextBlockStyle}"
-                                   Opacity="0.5"
+                                   Opacity="0.65"
                                    Margin="0,-28,0,0"
                                    Padding="20,0,0,0"
-                                   TextWrapping="Wrap"
-                                   FontWeight="Light"
                                    Visibility="{Binding TitleDescription, Converter={StaticResource NullToVisibilityConverter}}"/>
                         <Border Margin="0,0,0,12"/>
                     </StackPanel>
