@@ -120,7 +120,7 @@
                                                              Duration="0:0:0.2"/>
                                             <DoubleAnimation Storyboard.TargetName="HintBorderBackground" 
                                                              Storyboard.TargetProperty="Opacity"
-                                                             To="0.1"
+                                                             To="0.25"
                                                              Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </VisualState>
@@ -140,7 +140,7 @@
                                                              Duration="0:0:0.2"/>
                                             <DoubleAnimation Storyboard.TargetName="HintBorderBackground" 
                                                              Storyboard.TargetProperty="Opacity"
-                                                             To="0.04"
+                                                             To="0.175"
                                                              Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </VisualState>
@@ -577,7 +577,7 @@
                                 <DoubleAnimation Storyboard.TargetName="TitleTextBox"
                                                  Storyboard.TargetProperty="Opacity"
                                                  From="1.0"
-                                                 To="0.2"
+                                                 To="0.35"
                                                  AutoReverse="True"
                                                  RepeatBehavior="Forever"
                                                  BeginTime="0:0:0.5"
