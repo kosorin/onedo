@@ -145,11 +145,12 @@
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}" />
             <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
             <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
         </Style>
 
         <Style x:Key="ButtonDescriptionTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ButtonTextBlockStyle}">
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
 
         <!--EndRegion-->

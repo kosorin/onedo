@@ -103,17 +103,24 @@
                     <StackPanel Orientation="Horizontal"
                                 Grid.Column="1" 
                                 VerticalAlignment="Top" 
-                                Margin="0,2,0,0">
+                                Margin="0,2,0,0"
+                                HorizontalAlignment="Right"
+                                RenderTransformOrigin="1,0">
+                        <StackPanel.RenderTransform>
+                            <CompositeTransform ScaleX="0.8" ScaleY="0.8" TranslateY="7"/>
+                        </StackPanel.RenderTransform>
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding IsComplete, Converter={StaticResource BooleanNegationToVisibilityConverter}}">
-                            <Border Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Border Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Margin="-10,0,0,0">
                                 <controls:Icon Style="{StaticResource ReminderIconStyle}"
                                                Color="{StaticResource PhoneAccentBrush}"/>
                             </Border>
                             <ToggleButton Visibility="{Binding Priority, Mode=OneTime,
                                                        Converter={StaticResource TaskPriorityToVisibilityConverter}}"
                                           IsChecked="{Binding Priority, Mode=OneTime,
-                                                      Converter={StaticResource TaskPriorityToBooleanConverter}}">
+                                                      Converter={StaticResource TaskPriorityToBooleanConverter}}"
+                                          Margin="-10,0,0,0">
                                 <ToggleButton.Template>
                                     <ControlTemplate>
                                         <Grid>
