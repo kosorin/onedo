@@ -48,7 +48,7 @@
         <Style x:Key="TitleTextBoxStyle" TargetType="toolkit:PhoneTextBox">
             <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource PhoneSubtleBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
             <Setter Property="CaretBrush" Value="{StaticResource TitleCaretBrush}"/>
             <Setter Property="BorderThickness" Value="0,0,0,5" />
@@ -118,9 +118,9 @@
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="0"
                                                              Duration="0:0:0.2"/>
-                                            <DoubleAnimation Storyboard.TargetName="HintBorderBackground" 
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0.25"
+                                            <DoubleAnimation Storyboard.TargetName="HintBorder" 
+                                                             Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Opacity)"
+                                                             To="0.265"
                                                              Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </VisualState>
@@ -138,8 +138,8 @@
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="0.8"
                                                              Duration="0:0:0.2"/>
-                                            <DoubleAnimation Storyboard.TargetName="HintBorderBackground" 
-                                                             Storyboard.TargetProperty="Opacity"
+                                            <DoubleAnimation Storyboard.TargetName="HintBorder" 
+                                                             Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Opacity)"
                                                              To="0.175"
                                                              Duration="0:0:0.2"/>
                                         </Storyboard>
@@ -199,13 +199,10 @@
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
                             </Border>
-                            <Border x:Name="HintBorder" BorderThickness="{TemplateBinding BorderThickness}" Margin="{StaticResource PhoneTouchTargetOverhang}">
+                            <Border x:Name="HintBorder" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="{StaticResource PhoneTouchTargetOverhang}">
                                 <Border.BorderBrush>
                                     <SolidColorBrush x:Name="HintBorderBrush" Color="{StaticResource PhoneChromeColor}" />
                                 </Border.BorderBrush>
-                                <Border.Background>
-                                    <SolidColorBrush x:Name="HintBorderBackground" Color="{StaticResource PhoneSubtleColor}" Opacity="0.04" />
-                                </Border.Background>
                                 <Grid>
                                     <ContentControl x:Name="HintContent" Opacity="0.8" Background="Transparent" Content="{TemplateBinding Hint}" HorizontalAlignment="Left" Margin="3,0,3,0" Style="{TemplateBinding HintStyle}" Visibility="{TemplateBinding ActualHintVisibility}" VerticalAlignment="Center"/>
                                     <ContentControl x:Name="ContentElement" Opacity="0.75" BorderThickness="0" HorizontalContentAlignment="Stretch" Margin="{StaticResource PhoneTextBoxInnerMargin}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Stretch"/>
@@ -574,7 +571,7 @@
                                           LostFocus="TitleTextBox_LostFocus"
                                           AcceptsReturn="True">
                         <toolkit:PhoneTextBox.Resources>
-                            <Storyboard x:Name="TitleTextBoxStoryboard">
+                            <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
                                 <DoubleAnimation Storyboard.TargetName="TitleTextBox"
                                                  Storyboard.TargetProperty="Opacity"
                                                  From="1.0"
@@ -631,7 +628,7 @@
                                     </DoubleAnimation>
                                 </Storyboard>
                             </Grid.Resources>
-                            
+
                             <toolkit:DatePicker x:Name="DueDatePicker"
                                                 Grid.Column="0"
                                                 Value="{Binding CurrentTask.DueDate, Mode=TwoWay}"
@@ -715,7 +712,6 @@
                         </Grid>
 
                     </StackPanel>
-
                 </StackPanel>
             </Grid>
         </ScrollViewer>

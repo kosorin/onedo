@@ -71,7 +71,7 @@ namespace SimpleTasks.Views
         {
             if (TitleTextBox.Text == "")
             {
-                MessageBox.Show(AppResources.MissingTitle);
+                TitleTextBox.Focus();
                 return false;
             }
 
@@ -237,7 +237,7 @@ namespace SimpleTasks.Views
         private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TitleTextBox.FontFamily = new FontFamily("Segoe WP");
-            TitleTextBoxStoryboard.Stop();
+            TitleTextBoxNoTextStoryboard.Stop();
             TitleTextBox.Opacity = 1;
         }
 
@@ -246,7 +246,7 @@ namespace SimpleTasks.Views
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
             {
                 TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");
-                TitleTextBoxStoryboard.Begin();
+                TitleTextBoxNoTextStoryboard.Begin();
             }
         }
 
