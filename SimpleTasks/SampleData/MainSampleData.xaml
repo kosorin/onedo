@@ -6,15 +6,15 @@
     xmlns:md="clr-namespace:SimpleTasks.Core.Models;assembly=SimpleTasks.Core">
     
     <vm:MainViewModel.Tasks>
-        <md:TaskModel Title="Vynést odpadky               " DueDate="2013-10-15" Priority="High"/>
-        <md:TaskModel Title="Zavolat Honzovi              " DueDate="2013-10-18" Priority="Low" ReminderDate="2013-10-19"/>
-        <md:TaskModel Title="Jít k zubaři                 " DueDate="2013-10-01" Priority="Low" ReminderDate="2013-10-19" />
-        <md:TaskModel Title="Koupit nové CD Koupit nové CD Koupit nové CD" DueDate="2013-10-30" Priority="High" />
-        <md:TaskModel Title="Projekt do Matiky            " DueDate="2013-10-19" />
-        <md:TaskModel Title="Zaplatit nájem               " DueDate="2013-11-21" ReminderDate="2013-10-19" />
-        <md:TaskModel Title="Zasadit strom                " DueDate="2013-11-22" Priority="High" />
-        <md:TaskModel Title="Vyvenčit psy                 " DueDate="2013-10-23" />
-        <md:TaskModel Title="Vyzvednout děti ze školy     " DueDate="2013-10-29" Priority="Low"/>
+        <md:TaskModel Title="Vynést odpadky               " DueDate="2014-04-15" Priority="High"/>
+        <md:TaskModel Title="Zavolat Honzovi              " DueDate="2014-04-18" Priority="Low" ReminderDate="2014-04-19"/>
+        <md:TaskModel Title="Jít k zubaři                 " DueDate="2014-04-01" Priority="Low" ReminderDate="2014-04-19" />
+        <md:TaskModel Title="Koupit nové CD Koupit nové CD Koupit nové CD Zavolat Honzovi Zavolat Honzovi" DueDate="2014-04-20" Priority="High" />
+        <md:TaskModel Title="Projekt do Matiky            " DueDate="2014-04-19" />
+        <md:TaskModel Title="Zaplatit nájem               " DueDate="2014-05-21" ReminderDate="2014-04-19" />
+        <md:TaskModel Title="Zasadit strom                " DueDate="2014-05-22" Priority="High" />
+        <md:TaskModel Title="Vyvenčit psy                 " DueDate="2014-04-23" />
+        <md:TaskModel Title="Vyzvednout děti ze školy     " DueDate="2014-04-29" Priority="Low"/>
     </vm:MainViewModel.Tasks>
 
 </vm:MainViewModel>
