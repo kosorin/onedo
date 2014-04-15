@@ -181,9 +181,6 @@
   <data name="PriorityNormal" xml:space="preserve">
     <value>normal priority</value>
   </data>
-  <data name="TitleHintText" xml:space="preserve">
-    <value>Task title&amp;#8230;&amp;#xe104;</value>
-  </data>
   <data name="AppBarComplete" xml:space="preserve">
     <value>complete</value>
     <comment>complete task</comment>
@@ -297,5 +294,8 @@
   </data>
   <data name="SettingsDefaultReminderTime" xml:space="preserve">
     <value>Default reminder time</value>
+  </data>
+  <data name="AppBarOk" xml:space="preserve">
+    <value>ok</value>
   </data>
 </root>

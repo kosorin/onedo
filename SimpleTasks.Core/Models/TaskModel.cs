@@ -1,14 +1,6 @@
 ﻿using SimpleTasks.Core.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Xml;
-
 
 namespace SimpleTasks.Core.Models
 {
@@ -42,9 +34,34 @@ namespace SimpleTasks.Core.Models
             }
             set
             {
-                SetProperty(ref _title, value);
+                SetProperty(ref _title, value.NormalizeNewLines());
+                OnPropertyChanged("TitleFirstLine");
+                OnPropertyChanged("TitleDescription");
             }
         }
+
+        public string TitleFirstLine
+        {
+            get
+            {
+                int position = _title.IndexOf(Environment.NewLine);
+                if (position == -1)
+                    return _title;
+                return _title.Substring(0, position);
+            }
+        }
+
+        public string TitleDescription
+        {
+            get
+            {
+                int position = _title.IndexOf(Environment.NewLine);
+                if (position == -1)
+                    return null;
+                return _title.Substring(position + 1);
+            }
+        }
+
         #endregion
 
         #region Due Date

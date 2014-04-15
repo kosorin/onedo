@@ -145,7 +145,13 @@
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}" />
             <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
         </Style>
-        
+
+        <Style x:Key="ButtonDescriptionTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+        </Style>
+
         <!--EndRegion-->
         
     </Application.Resources>

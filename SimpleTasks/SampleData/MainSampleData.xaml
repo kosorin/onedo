@@ -9,7 +9,7 @@
         <md:TaskModel Title="Vynést odpadky               " DueDate="2014-04-15" Priority="High"/>
         <md:TaskModel Title="Zavolat Honzovi              " DueDate="2014-04-18" Priority="Low" ReminderDate="2014-04-19"/>
         <md:TaskModel Title="Jít k zubaři                 " DueDate="2014-04-01" Priority="Low" ReminderDate="2014-04-19" />
-        <md:TaskModel Title="Koupit nové CD Koupit nové CD Koupit nové CD Zavolat Honzovi Zavolat Honzovi" DueDate="2014-04-20" Priority="High" />
+        <md:TaskModel Title="Koupit nové CD&#13;Koupit nové CD Koupit nové CD Zavolat Honzovi Zavolat Honzovi" DueDate="2014-04-20" Priority="High" />
         <md:TaskModel Title="Projekt do Matiky            " DueDate="2014-04-19" />
         <md:TaskModel Title="Zaplatit nájem               " DueDate="2014-05-21" ReminderDate="2014-04-19" />
         <md:TaskModel Title="Zasadit strom                " DueDate="2014-05-22" Priority="High" />

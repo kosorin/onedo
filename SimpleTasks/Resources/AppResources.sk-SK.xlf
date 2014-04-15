@@ -90,10 +90,6 @@
           <source>normal priority</source>
           <target state="translated">normálna priorita</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/TitleHintText" xml:space="preserve">
-          <source>Task title%%amp;#8230;%%amp;#xe104;</source>
-          <target state="new" state-qualifier="tm-suggestion">Task title%%amp;#8230;%%amp;#xe104;</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarComplete" xml:space="preserve">
           <source>complete</source>
           <target state="translated">dokončiť</target>
@@ -242,6 +238,10 @@
         <trans-unit translate="yes" id="Resx/SettingsDefaultReminderTime" xml:space="preserve">
           <source>Default reminder time</source>
           <target state="translated">Predvolený čas pripomenutia</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarOk" xml:space="preserve">
+          <source>ok</source>
+          <target state="new">ok</target>
         </trans-unit>
       </group>
     </body>

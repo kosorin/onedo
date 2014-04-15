@@ -90,10 +90,6 @@
           <source>normal priority</source>
           <target state="signed-off" state-qualifier="mt-suggestion">[054B3][!!_ηóřмáľ ρѓîõřîťУ_!!!!]</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/TitleHintText" xml:space="preserve">
-          <source>Task title%%amp;#8230;%%amp;#xe104;</source>
-          <target state="new" state-qualifier="mt-suggestion">Task title%%amp;#8230;%%amp;#xe104;</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarComplete" xml:space="preserve">
           <source>complete</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[C3C9B][!!_ĉóмρļéťé_!!]</target>
@@ -159,23 +155,27 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ReminderTitle" xml:space="preserve">
           <source>Task reminder</source>
-          <target state="new">Task reminder</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[18D2A][!!_Ťàśĸ ŗémìйđéř_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/Reminder" xml:space="preserve">
           <source>reminder</source>
-          <target state="new">reminder</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[DD6CB][!!_řêmíиđèř_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityLow" xml:space="preserve">
           <source>low priority</source>
-          <target state="new">low priority</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[78095][!!_ľòẅ ρŕìôѓîţУ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DueDate" xml:space="preserve">
           <source>due date</source>
-          <target state="new">due date</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[10497][!!_đûę đáтê_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDefaultReminderTime" xml:space="preserve">
           <source>Default reminder time</source>
-          <target state="new">Default reminder time</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[0BBE5][!!_Đéƒáùľт řęмîηðęѓ ťįмé_!!!!!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarOk" xml:space="preserve">
+          <source>ok</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[7347E][!!_õĸ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDefaultDueDate" xml:space="preserve">
           <source>Default due date</source>

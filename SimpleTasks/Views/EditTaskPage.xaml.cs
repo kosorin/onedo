@@ -44,7 +44,7 @@ namespace SimpleTasks.Views
             ViewModel = new EditTaskViewModel(task);
             DataContext = ViewModel;
 
-            BuildLocalizedApplicationBar();
+            BuildAppBar();
 
             // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
             RoutedEventHandler firstTimeLoadHandler = null;
@@ -96,15 +96,6 @@ namespace SimpleTasks.Views
             {
                 ReminderDatePicker.Value = null;
             }
-
-            // Při stisku tlačítka na AppBaru nezmizí focus z elementu, 
-            // takže např. u TextBoxu se neaktivuje změna textu pro binding
-            object focusedObject = FocusManager.GetFocusedElement();
-            if (focusedObject != null && focusedObject is TextBox)
-            {
-                var binding = (focusedObject as TextBox).GetBindingExpression(TextBox.TextProperty);
-                binding.UpdateSource();
-            }
         }
 
         private void GoBack()
@@ -121,16 +112,15 @@ namespace SimpleTasks.Views
 
         #region AppBar
 
-        private void BuildLocalizedApplicationBar()
+        private void BuildAppBar()
         {
             ApplicationBar = new ApplicationBar();
-            
+
+            // Ikony
             ApplicationBarIconButton appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
             appBarSaveButton.Text = AppResources.AppBarSave;
             appBarSaveButton.Click += appBarSaveButton_Click;
             ApplicationBar.Buttons.Add(appBarSaveButton);
-
-            // Ikony
             if (ViewModel.IsOldTask)
             {
                 if (ViewModel.CurrentTask.IsComplete)
@@ -147,19 +137,11 @@ namespace SimpleTasks.Views
                     appBarCompleteButton.Click += appBarCompleteButton_Click;
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
-            }
 
-            // Menu
-            if (ViewModel.IsOldTask)
-            {
                 ApplicationBarIconButton appBarDeleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.delete.png", UriKind.Relative));
                 appBarDeleteButton.Text = AppResources.AppBarDelete;
                 appBarDeleteButton.Click += appBarDeleteButton_Click;
                 ApplicationBar.Buttons.Add(appBarDeleteButton);
-                //ApplicationBarMenuItem appBarDeleteItem = new ApplicationBarMenuItem();
-                //appBarDeleteItem.Text = AppResources.AppBarDelete;
-                //appBarDeleteItem.Click += appBarDeleteItem_Click;
-                //ApplicationBar.MenuItems.Add(appBarDeleteItem);
             }
         }
 
@@ -222,6 +204,31 @@ namespace SimpleTasks.Views
             messageBox.Show();
         }
 
+        private void BuildTitleTextAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            // Ikony
+            ApplicationBarIconButton appBarOkButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
+            appBarOkButton.Text = AppResources.AppBarOk;
+            appBarOkButton.Click += appBarOkButton_Click;
+            ApplicationBar.Buttons.Add(appBarOkButton);
+        }
+
+        private void appBarOkButton_Click(object sender, EventArgs e)
+        {
+            // Při stisku tlačítka na AppBaru nezmizí focus z elementu, 
+            // takže např. u TextBoxu se neaktivuje změna textu pro binding
+            object focusedObject = FocusManager.GetFocusedElement();
+            if (focusedObject != null && focusedObject is TextBox)
+            {
+                var binding = (focusedObject as TextBox).GetBindingExpression(TextBox.TextProperty);
+                binding.UpdateSource();
+            }
+
+            this.Focus();
+        }
+
         #endregion
 
         #region Task Title
@@ -236,6 +243,7 @@ namespace SimpleTasks.Views
 
         private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            BuildTitleTextAppBar();
             TitleTextBox.FontFamily = new FontFamily("Segoe WP");
             TitleTextBoxNoTextStoryboard.Stop();
             TitleTextBox.Opacity = 1;
@@ -243,6 +251,7 @@ namespace SimpleTasks.Views
 
         private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            BuildAppBar();
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
             {
                 TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");

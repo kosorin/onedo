@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AppBar\appbar.add.png" />
+    <Content Include="Assets\AppBar\appbar.check.png" />
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />
     <Content Include="Assets\AppBar\appbar.save.png" />
