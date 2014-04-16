@@ -19,6 +19,8 @@
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
         <conv:ReminderDateToStringConverter x:Key="ReminderDateToStringConverter" />
         <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
+        <conv:DueDateToVisibilityConverter x:Key="DueDateToVisibilityConverter" />
+        <conv:DueDateToOpacityConverter x:Key="DueDateToOpacityConverter" />
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

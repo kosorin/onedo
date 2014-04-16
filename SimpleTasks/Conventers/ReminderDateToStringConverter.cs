@@ -32,7 +32,7 @@ namespace SimpleTasks.Conventers
                     {
                         return string.Format("{0}, {1}", AppResources.DateTomorrow, date.ToShortTimeString());
                     }
-                    else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= date.Date.AddDays(4))
+                    else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= DateTimeExtensions.Tomorrow.Date.AddDays(3))
                     {
                         return date.ToString("dddd, ", CultureInfo.CurrentCulture) + date.ToShortTimeString();
                     }
