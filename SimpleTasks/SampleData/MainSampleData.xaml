@@ -6,8 +6,8 @@
     xmlns:md="clr-namespace:SimpleTasks.Core.Models;assembly=SimpleTasks.Core">
     
     <vm:MainViewModel.Tasks>
-        <md:TaskModel Title="Vynést odpadky               " DueDate="2014-04-15" Priority="High"/>
-        <md:TaskModel Title="Zavolat Honzovi              " DueDate="2014-04-18" Priority="Low" ReminderDate="2014-04-19"/>
+        <md:TaskModel Title="Vynést odpadky&#13;Popis."     DueDate="2014-04-15" Priority="High"/>
+        <md:TaskModel Title="Zavolat Honzovi"               DueDate="2014-04-18" Priority="Low" ReminderDate="2014-04-19"/>
         <md:TaskModel Title="Jít k zubaři&#13;Popis úkolu." DueDate="2014-04-01" Priority="Low" ReminderDate="2014-04-19" />
         <md:TaskModel Title="Koupit nové CD&#13;Koupit nové CD Koupit nové CD Zavolat Honzovi Zavolat Honzovi" DueDate="2014-04-20" Priority="High" />
         <md:TaskModel Title="Projekt do Matiky            " DueDate="2014-04-19" />

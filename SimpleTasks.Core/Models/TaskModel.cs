@@ -46,8 +46,8 @@ namespace SimpleTasks.Core.Models
             {
                 int position = _title.IndexOf(Environment.NewLine);
                 if (position == -1)
-                    return _title;
-                return _title.Substring(0, position);
+                    return _title.Trim();
+                return _title.Substring(0, position).Trim();
             }
         }
 
@@ -58,7 +58,7 @@ namespace SimpleTasks.Core.Models
                 int position = _title.IndexOf(Environment.NewLine);
                 if (position == -1)
                     return null;
-                return _title.Substring(position + 1);
+                return _title.Substring(position + 1).Trim();
             }
         }
 
@@ -106,6 +106,21 @@ namespace SimpleTasks.Core.Models
             {
                 SetProperty(ref _priority, value);
             }
+        }
+
+        public bool IsLowPriority
+        {
+            get { return Priority == TaskPriority.Low; }
+        }
+
+        public bool IsNormalPriority
+        {
+            get { return Priority == TaskPriority.Normal; }
+        }
+
+        public bool IsHighPriority
+        {
+            get { return Priority == TaskPriority.High; }
         }
         #endregion
 

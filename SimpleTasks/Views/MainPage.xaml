@@ -45,6 +45,13 @@
                          Color="{StaticResource PhoneSubtleColor}" 
                          Opacity="0.2"/>
 
+        <Style x:Key="TextBlockInfo" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Margin" Value="0,1,8,0" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
+        </Style>
+
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Border Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
                     Margin="0,-1,0,0"
@@ -91,85 +98,76 @@
                         <TextBlock Text="{Binding TitleFirstLine}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
                                    Opacity="0.85"
-                                   Padding="20,10,0,0"/>
+                                   Margin="20,10,20,0"/>
+                        <Grid MaxHeight="32"
+                              Margin="12,-2,0,8">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <controls:Icon Style="{StaticResource CalendarIconStyle}"
+                                                   Color="{StaticResource PhoneAccentBrush}"
+                                                   Margin="4,0,-26,0"
+                                                   MaxHeight="0"
+                                                   RenderTransformOrigin="0,0">
+                                        <controls:Icon.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
+                                        </controls:Icon.RenderTransform>
+                                    </controls:Icon>
+                                    <TextBlock Style="{StaticResource TextBlockInfo}"
+                                               Text="{Binding DueDate, Converter={StaticResource DateToRelativeStringConverter}}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <controls:Icon Style="{StaticResource ReminderIconStyle}"
+                                                   Color="{StaticResource PhoneAccentBrush}"
+                                                   Margin="0,0,-26,0"
+                                                   MaxHeight="0"
+                                                   RenderTransformOrigin="0,0">
+                                        <controls:Icon.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
+                                        </controls:Icon.RenderTransform>
+                                    </controls:Icon>
+                                    <TextBlock Style="{StaticResource TextBlockInfo}"
+                                               Text="{Binding ReminderDate, Converter={StaticResource ReminderDateToStringConverter}}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
+                                                   Color="{StaticResource PhoneAccentBrush}"
+                                                   Opacity="1"
+                                                   Margin="0,0,-32,0"
+                                                   MaxHeight="0"
+                                                   RenderTransformOrigin="0,0">
+                                        <controls:Icon.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
+                                        </controls:Icon.RenderTransform>
+                                    </controls:Icon>
+                                    <TextBlock Style="{StaticResource TextBlockInfo}"
+                                               Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
+                                                   Color="{StaticResource PhoneForegroundBrush}"
+                                                   Opacity="0.6"
+                                                   Margin="0,0,-31,0"
+                                                   MaxHeight="0"
+                                                   RenderTransformOrigin="0,0">
+                                        <controls:Icon.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
+                                        </controls:Icon.RenderTransform>
+                                    </controls:Icon>
+                                    <TextBlock Style="{StaticResource TextBlockInfo}"
+                                               Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
                         <TextBlock Text="{Binding TitleDescription}"
                                    Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                    Opacity="0.65"
-                                   Margin="0,-28,0,0"
-                                   Padding="20,0,0,0"
+                                   Margin="20,0,20,0"
                                    Visibility="{Binding TitleDescription, Converter={StaticResource NullToVisibilityConverter}}"/>
                         <Border Margin="0,0,0,12"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Column="1" 
-                                VerticalAlignment="Top" 
-                                Margin="0,2,0,0"
-                                HorizontalAlignment="Right"
-                                RenderTransformOrigin="1,0">
-                        <StackPanel.RenderTransform>
-                            <CompositeTransform ScaleX="0.8" ScaleY="0.8" TranslateY="7"/>
-                        </StackPanel.RenderTransform>
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding IsComplete, Converter={StaticResource BooleanNegationToVisibilityConverter}}">
-                            <Border Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Margin="-10,0,0,0">
-                                <controls:Icon Style="{StaticResource ReminderIconStyle}"
-                                               Color="{StaticResource PhoneAccentBrush}"/>
-                            </Border>
-                            <ToggleButton Visibility="{Binding Priority, Mode=OneTime,
-                                                       Converter={StaticResource TaskPriorityToVisibilityConverter}}"
-                                          IsChecked="{Binding Priority, Mode=OneTime,
-                                                      Converter={StaticResource TaskPriorityToBooleanConverter}}"
-                                          Margin="-10,0,0,0">
-                                <ToggleButton.Template>
-                                    <ControlTemplate>
-                                        <Grid>
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CheckStates">
-                                                    <VisualState x:Name="Checked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             Duration="0"
-                                                                             To="1" />
-                                                            <DoubleAnimation Storyboard.TargetName="LowPriorityIcon" 
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             Duration="0"
-                                                                             To="0"/>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                    <VisualState x:Name="Unchecked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="HighPriorityIcon" 
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             Duration="0"
-                                                                             To="0" />
-                                                            <DoubleAnimation Storyboard.TargetName="LowPriorityIcon" 
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             Duration="0"
-                                                                             To="0.2"/>
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <controls:Icon x:Name="HighPriorityIcon"
-                                                           Opacity="0"
-                                                           Style="{StaticResource HighPriorityIconStyle}"
-                                                           Color="{StaticResource PhoneAccentBrush}"/>
-                                            <controls:Icon x:Name="LowPriorityIcon"
-                                                           Opacity="0"
-                                                           Style="{StaticResource LowPriorityIconStyle}"
-                                                           Color="{StaticResource PhoneForegroundBrush}"/>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </ToggleButton.Template>
-                            </ToggleButton>
-                        </StackPanel>
-                        <Border Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <controls:Icon Style="{StaticResource CheckIconStyle}"
-                                           Color="{StaticResource PhoneForegroundBrush}"
-                                           Opacity="0.2"/>
-                        </Border>
                     </StackPanel>
                 </Grid>
             </Border>
