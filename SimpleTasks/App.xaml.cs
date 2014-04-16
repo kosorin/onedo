@@ -33,6 +33,7 @@ namespace SimpleTasks
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             Debug.WriteLine("===== Application Launching =====");
+            PeriodicTaskExtensions.StartOrStop(Settings.EnableLiveTileSetting);
             ViewModel.LoadTasks();
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ========== =====");
@@ -43,6 +44,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
+                PeriodicTaskExtensions.StartOrStop(Settings.EnableLiveTileSetting);
                 ViewModel.LoadTasks();
                 RootFrame.UriMapper = new MyUriMapper();
             }

@@ -71,13 +71,20 @@ namespace SimpleTasks.ViewModels
             }
 
 #if DEBUG
-            Debug.WriteLine("> Úkoly ({0}):", Tasks.Count);
+            Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
-                Debug.WriteLine("  {0}", task.Title);
+                Debug.WriteLine(": {0}", task.TitleFirstLine);
             }
 
-            Debug.WriteLine("> Připomenutí:");
+            Debug.WriteLine("> Nahrané připomenutí ({0}):", Tasks.Count((t) => {
+                ScheduledAction reminder = ScheduledActionService.Find(t.Uid);
+                if (reminder != null)
+                {
+                    return true;
+
+                } return false;
+            }));
             foreach (TaskModel task in Tasks)
             {
                 ScheduledAction reminder = ScheduledActionService.Find(task.Uid);

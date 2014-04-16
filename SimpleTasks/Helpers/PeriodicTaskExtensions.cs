@@ -13,6 +13,14 @@ namespace SimpleTasks.Helpers
     {
         private const string PeriodicTaskName = "PeriodicTask";
 
+        public static void StartOrStop(bool start)
+        {
+            if (start)
+                Start();
+            else
+                Stop();
+        }
+
         public static void Start()
         {
             PeriodicTask periodicTask = new PeriodicTask(PeriodicTaskName)
@@ -28,10 +36,12 @@ namespace SimpleTasks.Helpers
             {
                 ScheduledActionService.Add(periodicTask);
                 Debug.WriteLine("> Přidal jsem PeriodicTask: {0}", periodicTask.Name);
-                //if (Debugger.IsAttached)
-                //{
-                //    ScheduledActionService.LaunchForTest(periodicTask.Name, TimeSpan.FromSeconds(10));
-                //}
+                if (Debugger.IsAttached)
+                {
+                    int seconds = 10;
+                    Debug.WriteLine("> ScheduledActionService.LaunchForTest: Pro test za {0} vteřin", seconds);
+                    ScheduledActionService.LaunchForTest(periodicTask.Name, TimeSpan.FromSeconds(seconds));
+                }
             }
             catch (InvalidOperationException e)
             {

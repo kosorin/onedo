@@ -31,27 +31,27 @@ namespace SimpleTasks.Scheduler
 
         protected override void OnInvoke(ScheduledTask task)
         {
+            if (Debugger.IsAttached)
+            {
+                int seconds = 60;
+                Debug.WriteLine("> ScheduledActionService.LaunchForTest: Pro test za {0} vteřin", seconds);
+                ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(seconds));
+
+                ShellToast toast = new ShellToast
+                {
+                    Content = task.LastScheduledTime.ToLongTimeString() + " " + DateTime.Now.ToLongTimeString(),
+                    Title = string.Format("Live Tile, další za {0} vteřin", seconds),
+                };
+                toast.Show();
+            }
+
+
             // Dlaždici budeme aktualizovat každý den jen jednou
             if (DateTime.Today.Date - task.LastScheduledTime.Date < TimeSpan.FromDays(1))
             {
                 NotifyComplete();
                 return;
             }
-
-            //{
-            //    if (Debugger.IsAttached)
-            //    {
-            //        ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromMinutes(1));
-            //    }
-
-            //    ShellToast toast = new ShellToast
-            //    {
-            //        Content = task.LastScheduledTime.ToLongTimeString() + " " + DateTime.Now.ToLongTimeString(),
-            //        Title = "Live Tile",
-            //    };
-
-            //    toast.Show();
-            //}
 
             // Získání dat ze souboru
             TaskCollection tasks = TaskCollection.LoadFromXmlFile(TaskCollection.DefaultDataFileName);

@@ -2,6 +2,7 @@
 using SimpleTasks.Core.Resources;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +42,19 @@ namespace SimpleTasks.Core.Tiles
                     Border border = GetTaskItemBorder(task);
                     stackPanel.Children.Add(border);
                 }
+
+                if (Debugger.IsAttached)
+                {
+                    if (stackPanel.Children.Contains(stackPanel.Children.Last()))
+                    {
+                        stackPanel.Children.Remove(stackPanel.Children.Last());
+                    }
+                    stackPanel.Children.Add(GetTaskItemBorder(new TaskModel
+                    {
+                        Title = DateTime.Now.ToShortTimeString()
+                    }));
+                }
+
                 grid.Children.Add(stackPanel);
             }
             else
