@@ -18,7 +18,11 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        private string AppForceCulture = "en-US";
+        private static Version Wp81Version = new Version(8, 10, 12359);
+
+        public static bool IsWp81 { get { return Environment.OSVersion.Version >= Wp81Version; } }
+
+        private string ForceDebugCulture = "cs-CZ";
 
         public static SettingsViewModel Settings { get; private set; }
 
@@ -33,6 +37,7 @@ namespace SimpleTasks
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             Debug.WriteLine("===== Application Launching =====");
+            Debug.WriteLine("> VERSION {0}", Environment.OSVersion.Version.ToString());
             PeriodicTaskExtensions.StartOrStop(Settings.EnableLiveTileSetting);
             ViewModel.LoadTasks();
             RootFrame.UriMapper = new MyUriMapper();
@@ -221,12 +226,12 @@ namespace SimpleTasks
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
                 if (Debugger.IsAttached &&
-                    String.IsNullOrWhiteSpace(AppForceCulture) == false)
+                    String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
                 {
                     Thread.CurrentThread.CurrentCulture =
-                        new CultureInfo(AppForceCulture);
+                        new CultureInfo(ForceDebugCulture);
                     Thread.CurrentThread.CurrentUICulture =
-                        new CultureInfo(AppForceCulture);
+                        new CultureInfo(ForceDebugCulture);
                 }
 
                 // Set the font to match the display language defined by the
