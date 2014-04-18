@@ -84,7 +84,7 @@
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border BorderThickness="0,0,0,1"
                     BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}">
-                <Grid Opacity="{Binding DueDate, Converter={StaticResource DueDateToOpacityConverter}}">
+                <Grid Opacity="{Binding Converter={StaticResource TaskToOpacityConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto"/>
@@ -97,40 +97,56 @@
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding TitleFirstLine}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
-                                   Opacity="0.85"
+                                   Opacity="1"
                                    Margin="20,10,20,0"/>
-                        <StackPanel Orientation="Vertical"
-                                    Visibility="{Binding DueDate, Converter={StaticResource DueDateToVisibilityConverter}}">
+                        <StackPanel Orientation="Vertical">
                             <Grid MaxHeight="32"
                                     Margin="12,-2,0,8">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource CalendarIconStyle}"
-                                                        Color="{StaticResource PhoneAccentBrush}"
-                                                        Margin="4,0,-26,0"
-                                                        MaxHeight="0"
-                                                        RenderTransformOrigin="0,0">
+                                                Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <controls:Icon Style="{StaticResource CheckIconStyle}"
+                                                       Color="{StaticResource PhoneSubtleBrush}"
+                                                       Margin="4,0,-26,0"
+                                                       MaxHeight="0"
+                                                       RenderTransformOrigin="0,0">
                                             <controls:Icon.RenderTransform>
                                                 <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
                                             </controls:Icon.RenderTransform>
                                         </controls:Icon>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                    Text="{Binding DueDate, Converter={StaticResource DateToRelativeStringConverter}}"/>
+                                                   Text="{Binding LocalizedResources.DateCompleted, Source={StaticResource LocalizedStrings}}"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource ReminderIconStyle}"
-                                                        Color="{StaticResource PhoneAccentBrush}"
-                                                        Margin="0,0,-26,0"
-                                                        MaxHeight="0"
-                                                        RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                    Text="{Binding ReminderDate, Converter={StaticResource ReminderDateToStringConverter}}"/>
+                                    <StackPanel Orientation="Horizontal" 
+                                                Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <controls:Icon Style="{StaticResource CalendarIconStyle}"
+                                                            Color="{StaticResource PhoneAccentBrush}"
+                                                            Margin="4,0,-26,0"
+                                                            MaxHeight="0"
+                                                            RenderTransformOrigin="0,0">
+                                                <controls:Icon.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
+                                                </controls:Icon.RenderTransform>
+                                            </controls:Icon>
+                                            <TextBlock Style="{StaticResource TextBlockInfo}"
+                                                        Text="{Binding DueDate, Converter={StaticResource DueDateToStringConverter}}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <controls:Icon Style="{StaticResource ReminderIconStyle}"
+                                                           Color="{StaticResource PhoneAccentBrush}"
+                                                           Margin="0,0,-26,0"
+                                                           MaxHeight="0"
+                                                           RenderTransformOrigin="0,0">
+                                                <controls:Icon.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
+                                                </controls:Icon.RenderTransform>
+                                            </controls:Icon>
+                                            <TextBlock Style="{StaticResource TextBlockInfo}"
+                                                       Text="{Binding ReminderDate, Converter={StaticResource ReminderDateToStringConverter}}"/>
+                                        </StackPanel>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -164,11 +180,13 @@
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
-                            <TextBlock Text="{Binding TitleDescription}"
-                                        Style="{StaticResource ButtonDescriptionTextBlockStyle}"
-                                        Opacity="0.65"
-                                        Margin="20,0,20,0"
-                                        Visibility="{Binding TitleDescription, Converter={StaticResource NullToVisibilityConverter}}"/>
+                            <Grid Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Text="{Binding TitleDescription}"
+                                           Style="{StaticResource ButtonDescriptionTextBlockStyle}"
+                                           Opacity="0.8"
+                                           Margin="20,0,20,0"
+                                           Visibility="{Binding TitleDescription, Converter={StaticResource NullToVisibilityConverter}}"/>
+                            </Grid>
                         </StackPanel>
                         <Border Margin="0,0,0,12"/>
                     </StackPanel>

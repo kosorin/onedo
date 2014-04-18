@@ -19,8 +19,8 @@
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
         <conv:ReminderDateToStringConverter x:Key="ReminderDateToStringConverter" />
         <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
-        <conv:DueDateToVisibilityConverter x:Key="DueDateToVisibilityConverter" />
-        <conv:DueDateToOpacityConverter x:Key="DueDateToOpacityConverter" />
+        <conv:DueDateToStringConverter x:Key="DueDateToStringConverter" />
+        <conv:TaskToOpacityConverter x:Key="TaskToOpacityConverter" />
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -116,7 +116,7 @@
         <!--Region Globální styly-->
         <SolidColorBrush x:Key="ApplicationBackgroundBrush" 
                          Color="{StaticResource PhoneChromeColor}" 
-                         Opacity="0.6"/>
+                         Opacity="0.37"/>
 
         <sys:String x:Key="LogoPathData">M 10,30
                                          L 48,11

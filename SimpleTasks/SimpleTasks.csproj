@@ -102,8 +102,8 @@
     <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Conventers\DueDateToVisibilityConverter.cs" />
-    <Compile Include="Conventers\DueDateToOpacityConverter.cs" />
+    <Compile Include="Conventers\DueDateToStringConverter.cs" />
+    <Compile Include="Conventers\TaskToOpacityConverter.cs" />
     <Compile Include="Conventers\ReminderDateToStringConverter.cs" />
     <Compile Include="Conventers\DateToRelativeStringConverter.cs" />
     <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />

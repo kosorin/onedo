@@ -7,40 +7,44 @@ using System.Windows;
 
 namespace SimpleTasks.Conventers
 {
-    public class DueDateToVisibilityConverter : IValueConverter
+    public class DueDateToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            string defaultString = (parameter is string) ? parameter as string : "";
+
             if (value is DateTime?)
             {
                 DateTime? dueDate = value as DateTime?;
                 if (dueDate.HasValue)
                 {
                     DateTime date = dueDate.Value;
+
+                    string defaultDateTime = date.ToShortDateString();
                     if (date.Date < DateTimeExtensions.Today)
                     {
-                        return Visibility.Collapsed;
+                        return defaultDateTime;
                     }
-                    else if (date.Date == DateTimeExtensions.Today || date.Date == DateTimeExtensions.Tomorrow)
+                    else if (date.Date == DateTimeExtensions.Today)
                     {
-                        return Visibility.Visible;
+                        return AppResources.DateToday;
                     }
-                    else if (date.Date <= DateTimeExtensions.LastDayOfWeek)
+                    else if (date.Date == DateTimeExtensions.Tomorrow)
                     {
-                        return Visibility.Visible;
+                        return AppResources.DateTomorrow;
                     }
-                    else if ((DateTimeExtensions.LastDayOfWeek - DateTimeExtensions.Today).TotalDays <= 1 && date.Date <= DateTimeExtensions.LastDayOfNextWeek)
+                    else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= DateTimeExtensions.Today.AddDays(5).Date)
                     {
-                        return Visibility.Visible;
+                        return date.ToString("dddd", CultureInfo.CurrentCulture);
                     }
                     else
                     {
-                        return Visibility.Collapsed;
+                        return defaultDateTime;
                     }
                 }
             }
 
-            return Visibility.Visible;
+            return defaultString;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -19,7 +19,7 @@ namespace SimpleTasks.Conventers
                 {
                     DateTime date = reminderDate.Value;
 
-                    string defaultDateTime = string.Format(CultureInfo.CurrentCulture, DateTimeExtensions.Format, reminderDate.Value);
+                    string defaultDateTime = string.Format("{0} {1}", date.ToShortDateString(), date.ToShortTimeString());
                     if (date.Date < DateTimeExtensions.Today)
                     {
                         return defaultDateTime;
@@ -32,7 +32,7 @@ namespace SimpleTasks.Conventers
                     {
                         return string.Format("{0}, {1}", AppResources.DateTomorrow, date.ToShortTimeString());
                     }
-                    else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= DateTimeExtensions.Tomorrow.Date.AddDays(3))
+                    else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= DateTimeExtensions.Today.AddDays(5).Date)
                     {
                         return date.ToString("dddd, ", CultureInfo.CurrentCulture) + date.ToShortTimeString();
                     }
