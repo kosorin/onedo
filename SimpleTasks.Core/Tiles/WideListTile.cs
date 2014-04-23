@@ -26,13 +26,18 @@ namespace SimpleTasks.Core.Tiles
                 BorderThickness = new Thickness(10, 0, 0, 0),
                 BorderBrush = BorderBrush,
             };
-            if (task.DueDate == null || task.DueDate.Value > DateTime.Today)
+            if (task.DueDate != null && task.DueDate.Value > DateTime.Today.AddDays(1))
             {
-                innerBorder.Opacity = 0.7;
+                innerBorder.Opacity = 0.75;
             }
+
             if (task.Priority == TaskPriority.High)
             {
-                innerBorder.Background = ImportantBrush;
+                innerBorder.Background = ImportantBackgroundBrush;
+            }
+            else
+            {
+                innerBorder.Background = NormalBackgroundBrush;
             }
 
             Grid contentGrid = new Grid();
