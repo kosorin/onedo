@@ -42,7 +42,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateOverdue" xml:space="preserve">
           <source>overdue</source>
-          <target state="translated">po termínu</target>
+          <target state="signed-off">po termínu</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/DateNoDue" xml:space="preserve">
           <source>no due date</source>
@@ -241,7 +241,11 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarOk" xml:space="preserve">
           <source>ok</source>
-          <target state="new">ok</target>
+          <target state="signed-off">ok</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDeleteAll" xml:space="preserve">
+          <source>delete all tasks</source>
+          <target state="signed-off">odstranit všechny úkoly</target>
         </trans-unit>
       </group>
     </body>

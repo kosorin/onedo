@@ -298,4 +298,7 @@
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>
   </data>
+  <data name="AppBarDeleteAll" xml:space="preserve">
+    <value>delete all tasks</value>
+  </data>
 </root>

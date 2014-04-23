@@ -59,6 +59,11 @@ namespace SimpleTasks.Views
             appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
             ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
 
+            // Smazat všechny úkoly
+            ApplicationBarMenuItem appBarDeleteAllItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteAll);
+            appBarDeleteAllItem.Click += (s, e) => { ViewModel.DeleteAllTasks(); };
+            ApplicationBar.MenuItems.Add(appBarDeleteAllItem);
+
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
             appBarSettingsMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.Relative)); };

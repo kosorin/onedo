@@ -133,6 +133,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete all tasks.
+        /// </summary>
+        public static string AppBarDeleteAll {
+            get {
+                return ResourceManager.GetString("AppBarDeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete completed tasks.
         /// </summary>
         public static string AppBarDeleteCompleted {

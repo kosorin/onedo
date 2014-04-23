@@ -177,6 +177,10 @@
           <source>ok</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[7347E][!!_õĸ_!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDeleteAll" xml:space="preserve">
+          <source>delete all tasks</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[12536][!!_ďęļèťę àļľ τãśќŝ_!!!!]</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDefaultDueDate" xml:space="preserve">
           <source>Default due date</source>
           <target state="signed-off" state-qualifier="mt-suggestion">[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</target>

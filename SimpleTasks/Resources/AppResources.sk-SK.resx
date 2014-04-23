@@ -296,4 +296,4 @@
   <data name="SettingsDefaultReminderTime" xml:space="preserve">
     <value>Predvolený čas pripomenutia</value>
   </data>
-</root>
+<data name="AppBarOk" xml:space="preserve"><value>ok</value></data><data name="AppBarDeleteAll" xml:space="preserve"><value>odstrániť všetky úlohy</value></data></root>

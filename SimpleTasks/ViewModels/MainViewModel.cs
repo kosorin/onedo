@@ -187,6 +187,17 @@ namespace SimpleTasks.ViewModels
                     RemoveTask(task, false);
                 }
                 LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+                SaveTasks();
+            }
+        }
+
+        public void DeleteAllTasks()
+        {
+            if (IsDataLoaded)
+            {
+                Tasks.Clear();
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+                SaveTasks();
             }
         }
     }
