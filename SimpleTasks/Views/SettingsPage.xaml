@@ -148,6 +148,10 @@
                                           Margin="0,0,0,-20" 
                                           Checked="DeleteCompletedToggleSwitch_Checked" 
                                           Unchecked="DeleteCompletedToggleSwitch_Unchecked" />
+                    <TextBlock Text="{Binding LocalizedResources.SettingsPinTile, Source={StaticResource LocalizedStrings}}" 
+                               Style="{StaticResource PhoneTextSubtleStyle}"
+                               TextWrapping="Wrap"/>
+
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>

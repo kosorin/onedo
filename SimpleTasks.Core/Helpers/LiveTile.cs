@@ -40,6 +40,19 @@ namespace SimpleTasks.Core.Helpers
             {
                 Reset();
             }
+            try
+            {
+                if (ShellTile.ActiveTiles.Count() > 1)
+                {
+                    foreach (ShellTile tile in ShellTile.ActiveTiles.Skip(1))
+                    {
+                        tile.Delete();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public static void Reset()

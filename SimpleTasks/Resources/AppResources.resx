@@ -313,4 +313,7 @@
   <data name="DateUpcoming" xml:space="preserve">
     <value>upcoming</value>
   </data>
+  <data name="SettingsPinTile" xml:space="preserve">
+    <value>In the App list, tap and hold the Simple Tasks app, and then tap Pin to start.</value>
+  </data>
 </root>
