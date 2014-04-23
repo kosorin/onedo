@@ -58,6 +58,8 @@ namespace SimpleTasks
         {
             Debug.WriteLine("===== Application Deactivated =====");
             ViewModel.SaveTasks();
+
+            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, ViewModel.Tasks);
             Debug.WriteLine("===== ========== =====");
         }
 
@@ -65,6 +67,8 @@ namespace SimpleTasks
         {
             Debug.WriteLine("===== Application Closing =====");
             ViewModel.SaveTasks();
+
+            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, ViewModel.Tasks);
             Debug.WriteLine("===== ========== =====");
         }
 

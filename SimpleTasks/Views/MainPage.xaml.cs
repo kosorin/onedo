@@ -26,7 +26,7 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = ViewModel = App.ViewModel;
 
-            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, ViewModel.Tasks);
+            //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, ViewModel.Tasks);
 
             BuildLocalizedApplicationBar();
         }
@@ -56,7 +56,7 @@ namespace SimpleTasks.Views
 
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
-            appBarDeleteCompletedItem.Click += (s, e) => { ViewModel.DeleteCompletedTasks(); };
+            appBarDeleteCompletedItem.Click += (s, e) => { OverlayAction(ViewModel.DeleteCompletedTasks); };
             ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
 
             // Smazat všechny úkoly
@@ -93,7 +93,7 @@ namespace SimpleTasks.Views
             CustomMessageBox messageBox = new CustomMessageBox()
             {
                 Caption = AppResources.DeleteAllTasksCaption,
-                Message = AppResources.DeleteAllTasks,
+                Message = AppResources.DeleteAllTasks, 
                 LeftButtonContent = AppResources.DeleteTaskYes,
                 RightButtonContent = AppResources.DeleteTaskNo
             };
@@ -103,7 +103,7 @@ namespace SimpleTasks.Views
                 switch (e1.Result)
                 {
                 case CustomMessageBoxResult.LeftButton:
-                    ViewModel.DeleteAllTasks();
+                    OverlayAction(ViewModel.DeleteAllTasks);
                     break;
                 case CustomMessageBoxResult.RightButton:
                 case CustomMessageBoxResult.None:
@@ -111,6 +111,8 @@ namespace SimpleTasks.Views
                     break;
                 }
             };
+
+            
             messageBox.Show();
         }
 
@@ -157,6 +159,22 @@ namespace SimpleTasks.Views
             ScrollBar scrollBar = ((FrameworkElement)VisualTreeHelper.GetChild(TasksLongListSelector, 0)).FindName("VerticalScrollBar") as ScrollBar;
             if (scrollBar != null)
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
+        }
+
+        private void OverlayAction(Action action)
+        {
+            PageOverlay.Visibility = Visibility.Visible;
+            PageOverlayTransitionShow.Completed += (s2, e2) =>
+            {
+                action();
+
+                PageOverlayTransitionHide.Completed += (s3, e3) =>
+                {
+                    PageOverlay.Visibility = Visibility.Collapsed;
+                };
+                PageOverlayTransitionHide.Begin();
+            };
+            PageOverlayTransitionShow.Begin();
         }
     }
 }

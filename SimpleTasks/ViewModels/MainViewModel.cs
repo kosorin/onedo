@@ -116,7 +116,7 @@ namespace SimpleTasks.ViewModels
                                    task.ReminderDate.Value,
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
             }
-            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+            //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
         public void UpdateTask(TaskModel oldTask, TaskModel newTask)
@@ -135,7 +135,7 @@ namespace SimpleTasks.ViewModels
                                    newTask.ReminderDate.Value, 
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));
             }
-            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+            //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
         public void RemoveTask(TaskModel task, bool updateLiveTile = true)
@@ -148,7 +148,7 @@ namespace SimpleTasks.ViewModels
 
             if (updateLiveTile)
             {
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
             }
         }
 
@@ -172,7 +172,7 @@ namespace SimpleTasks.ViewModels
                 {
                     RemoveTask(task, false);
                 }
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
             }
         }
 
@@ -186,7 +186,7 @@ namespace SimpleTasks.ViewModels
                 {
                     RemoveTask(task, false);
                 }
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
                 SaveTasks();
             }
         }
@@ -196,7 +196,7 @@ namespace SimpleTasks.ViewModels
             if (IsDataLoaded)
             {
                 Tasks.Clear();
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
                 SaveTasks();
             }
         }

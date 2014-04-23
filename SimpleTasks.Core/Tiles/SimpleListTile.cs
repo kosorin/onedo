@@ -51,7 +51,7 @@ namespace SimpleTasks.Core.Tiles
                     }
                     stackPanel.Children.Add(GetTaskItemBorder(new TaskModel
                     {
-                        Title = DateTime.Now.ToShortTimeString()
+                        Title = DateTime.Now.ToString("HH:mm:ss")
                     }));
                 }
 
