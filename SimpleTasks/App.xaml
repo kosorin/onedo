@@ -17,9 +17,9 @@
 
         <!--Region Konvertory--> 
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
-        <conv:ReminderDateToStringConverter x:Key="ReminderDateToStringConverter" />
+        <conv:TaskToReminderDateStringConverter x:Key="TaskToReminderDateStringConverter" />
         <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
-        <conv:DueDateToStringConverter x:Key="DueDateToStringConverter" />
+        <conv:TaskToDueDateStringConverter x:Key="TaskToDueDateStringConverter" />
         <conv:TaskToOpacityConverter x:Key="TaskToOpacityConverter" />
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />

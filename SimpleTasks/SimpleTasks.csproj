@@ -45,7 +45,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -103,9 +103,9 @@
     <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Conventers\DueDateToStringConverter.cs" />
+    <Compile Include="Conventers\TaskToDueDateStringConverter.cs" />
     <Compile Include="Conventers\TaskToOpacityConverter.cs" />
-    <Compile Include="Conventers\ReminderDateToStringConverter.cs" />
+    <Compile Include="Conventers\TaskToReminderDateStringConverter.cs" />
     <Compile Include="Conventers\DateToRelativeStringConverter.cs" />
     <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />
     <Compile Include="Conventers\TaskPriorityToBooleanConverter.cs" />

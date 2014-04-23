@@ -131,7 +131,7 @@
                                                 </controls:Icon.RenderTransform>
                                             </controls:Icon>
                                             <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                        Text="{Binding DueDate, Converter={StaticResource DueDateToStringConverter}}"/>
+                                                        Text="{Binding Converter={StaticResource TaskToDueDateStringConverter}}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal"
                                                     Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -145,7 +145,7 @@
                                                 </controls:Icon.RenderTransform>
                                             </controls:Icon>
                                             <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                       Text="{Binding ReminderDate, Converter={StaticResource ReminderDateToStringConverter}}"/>
+                                                       Text="{Binding Converter={StaticResource TaskToReminderDateStringConverter}}"/>
                                         </StackPanel>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
