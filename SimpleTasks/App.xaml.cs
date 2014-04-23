@@ -22,7 +22,7 @@ namespace SimpleTasks
 
         public static bool IsWp81 { get { return Environment.OSVersion.Version >= Wp81Version; } }
 
-        private string ForceDebugCulture = "cs-CZ";
+        public static string ForceDebugCulture = "sk-SK";
 
         public static SettingsViewModel Settings { get; private set; }
 
@@ -224,17 +224,19 @@ namespace SimpleTasks
         {
             try
             {
+#if DEBUG
                 // Force CurrentUICulture to locale defined by appForceCulture.
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
-                if (Debugger.IsAttached &&
-                    String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
+
+                if (String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
                 {
                     Thread.CurrentThread.CurrentCulture =
                         new CultureInfo(ForceDebugCulture);
                     Thread.CurrentThread.CurrentUICulture =
                         new CultureInfo(ForceDebugCulture);
                 }
+#endif
 
                 // Set the font to match the display language defined by the
                 // ResourceLanguage resource string for each supported language.

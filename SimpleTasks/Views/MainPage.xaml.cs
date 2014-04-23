@@ -93,7 +93,7 @@ namespace SimpleTasks.Views
             CustomMessageBox messageBox = new CustomMessageBox()
             {
                 Caption = AppResources.DeleteAllTasksCaption,
-                Message = AppResources.DeleteAllTasks, 
+                Message = AppResources.DeleteAllTasks,
                 LeftButtonContent = AppResources.DeleteTaskYes,
                 RightButtonContent = AppResources.DeleteTaskNo
             };
@@ -112,7 +112,7 @@ namespace SimpleTasks.Views
                 }
             };
 
-            
+
             messageBox.Show();
         }
 
@@ -124,15 +124,84 @@ namespace SimpleTasks.Views
         void appBarResetMenuItem_Click(object sender, EventArgs e)
         {
             ViewModel.Tasks.Clear();
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Buy milk", DueDate = DateTimeExtensions.Today.AddDays(-7), Priority = TaskPriority.Low });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Book flight to London", DueDate = DateTimeExtensions.Today.AddDays(-2), Priority = TaskPriority.High, ReminderDate = DateTime.Now });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to the dentist" + Environment.NewLine + "Room 42", DueDate = DateTimeExtensions.Today.AddDays(1) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Release new version" + Environment.NewLine + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus venenatis consequat libero, in gravida libero fermentum nec. Vivamus sit amet facilisis massa, id tristique augue.", DueDate = DateTimeExtensions.Today.AddDays(1), ReminderDate = DateTime.Now });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Math project", DueDate = DateTimeExtensions.Today.AddDays(2), Priority = TaskPriority.High });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Pay the rent" + Environment.NewLine + "ASAP", DueDate = DateTimeExtensions.Today.AddDays(4) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Call Chuck" + Environment.NewLine + "135-792-468 or 987-654-321", DueDate = DateTimeExtensions.Today.AddDays(6) });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Clone a dinosaur", DueDate = DateTimeExtensions.Today.AddDays(10), Priority = TaskPriority.High });
-            ViewModel.Tasks.Add(new TaskModel() { Title = "Go to cinema", DueDate = DateTimeExtensions.Today.AddDays(35), Priority = TaskPriority.Low });
+
+            if (App.ForceDebugCulture == "en-US")
+            {
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Go to the dentist",
+                    DueDate = DateTimeExtensions.Today.AddDays(2)
+                });
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Call Chuck",
+                    DueDate = DateTimeExtensions.Today.AddDays(0),
+                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
+                    Priority = TaskPriority.Low
+                });
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Go to cinema" + Environment.NewLine + "Amazing Spider-Man 2 or X-Men: Days of Future Past",
+                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
+                });
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Math project",
+                    DueDate = DateTimeExtensions.Today.AddDays(9),
+                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42),
+                    Priority = TaskPriority.High
+                });
+            }
+            else if (App.ForceDebugCulture == "cs-CZ")
+            {
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Jít k zubaři",
+                    DueDate = DateTimeExtensions.Today.AddDays(2)
+                });
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Zavolat Honzovi",
+                    DueDate = DateTimeExtensions.Today.AddDays(0),
+                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
+                    Priority = TaskPriority.Low
+                });
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Jít do kina" + Environment.NewLine + "Amazing Spider-Man 2 nebo X-Men: Days of Future Past",
+                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
+                });
+                ViewModel.Tasks.Add(new TaskModel()
+                {
+                    Title = "Projekt do matematiky",
+                    DueDate = DateTimeExtensions.Today.AddDays(9),
+                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42),
+                    Priority = TaskPriority.High
+                });
+            }
+            else if (App.ForceDebugCulture == "sk-SK")
+            {
+                ViewModel.Tasks.Add(new TaskModel() {
+                    Title = "Ísť k zubárovi",
+                    DueDate = DateTimeExtensions.Today.AddDays(2)
+                });
+                ViewModel.Tasks.Add(new TaskModel() { 
+                    Title = "Kúpiť mlieko",
+                    DueDate = DateTimeExtensions.Today.AddDays(0),
+                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13), 
+                    Priority = TaskPriority.Low
+                });
+                ViewModel.Tasks.Add(new TaskModel() {
+                    Title = "Ísť do kina" + Environment.NewLine + "Amazing Spider-Man 2 alebo X-Men: Days of Future Past",
+                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27), 
+                });
+                ViewModel.Tasks.Add(new TaskModel() {
+                    Title = "Projekt z matematiky",
+                    DueDate = DateTimeExtensions.Today.AddDays(9),
+                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42), 
+                    Priority = TaskPriority.High
+                });
+            }
 
             LiveTile.UpdateUI(ViewModel.Tasks);
         }
