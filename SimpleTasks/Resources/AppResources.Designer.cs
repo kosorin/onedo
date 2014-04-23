@@ -313,6 +313,24 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete all tasks?.
+        /// </summary>
+        public static string DeleteAllTasks {
+            get {
+                return ResourceManager.GetString("DeleteAllTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all tasks.
+        /// </summary>
+        public static string DeleteAllTasksCaption {
+            get {
+                return ResourceManager.GetString("DeleteAllTasksCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this task?.
         /// </summary>
         public static string DeleteTask {

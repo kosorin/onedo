@@ -61,7 +61,7 @@ namespace SimpleTasks.Views
 
             // Smazat všechny úkoly
             ApplicationBarMenuItem appBarDeleteAllItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteAll);
-            appBarDeleteAllItem.Click += (s, e) => { ViewModel.DeleteAllTasks(); };
+            appBarDeleteAllItem.Click += appBarDeleteAllItem_Click;
             ApplicationBar.MenuItems.Add(appBarDeleteAllItem);
 
             // Nastavení
@@ -86,6 +86,32 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 #endif
             #endregion
+        }
+
+        void appBarDeleteAllItem_Click(object sender, EventArgs e)
+        {
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                Caption = AppResources.DeleteAllTasksCaption,
+                Message = AppResources.DeleteAllTasks,
+                LeftButtonContent = AppResources.DeleteTaskYes,
+                RightButtonContent = AppResources.DeleteTaskNo
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                case CustomMessageBoxResult.LeftButton:
+                    ViewModel.DeleteAllTasks();
+                    break;
+                case CustomMessageBoxResult.RightButton:
+                case CustomMessageBoxResult.None:
+                default:
+                    break;
+                }
+            };
+            messageBox.Show();
         }
 
         private void SetAppBarLiveTileItem(ApplicationBarMenuItem appBarItem)

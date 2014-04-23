@@ -247,6 +247,14 @@
           <source>delete all tasks</source>
           <target state="signed-off">odstrániť všetky úlohy</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteAllTasksCaption" xml:space="preserve">
+          <source>Delete all tasks</source>
+          <target state="signed-off">Odstrániť všetky úlohy</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DeleteAllTasks" xml:space="preserve">
+          <source>Are you sure you want to delete all tasks?</source>
+          <target state="signed-off">Naozaj chcete odstrániť všetky úlohy?</target>
+        </trans-unit>
       </group>
     </body>
   </file>

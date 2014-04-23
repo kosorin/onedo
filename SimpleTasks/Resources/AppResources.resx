@@ -301,4 +301,10 @@
   <data name="AppBarDeleteAll" xml:space="preserve">
     <value>delete all tasks</value>
   </data>
+  <data name="DeleteAllTasks" xml:space="preserve">
+    <value>Are you sure you want to delete all tasks?</value>
+  </data>
+  <data name="DeleteAllTasksCaption" xml:space="preserve">
+    <value>Delete all tasks</value>
+  </data>
 </root>
