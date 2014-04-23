@@ -277,6 +277,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to someday.
+        /// </summary>
+        public static string DateSomeday {
+            get {
+                return ResourceManager.GetString("DateSomeday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to this month.
         /// </summary>
         public static string DateThisMonth {
@@ -309,6 +318,15 @@ namespace SimpleTasks.Resources {
         public static string DateTomorrow {
             get {
                 return ResourceManager.GetString("DateTomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upcoming.
+        /// </summary>
+        public static string DateUpcoming {
+            get {
+                return ResourceManager.GetString("DateUpcoming", resourceCulture);
             }
         }
         

@@ -307,4 +307,10 @@
   <data name="DeleteAllTasksCaption" xml:space="preserve">
     <value>Delete all tasks</value>
   </data>
+  <data name="DateSomeday" xml:space="preserve">
+    <value>someday</value>
+  </data>
+  <data name="DateUpcoming" xml:space="preserve">
+    <value>upcoming</value>
+  </data>
 </root>

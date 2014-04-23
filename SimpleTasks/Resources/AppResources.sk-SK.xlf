@@ -251,6 +251,14 @@
           <source>Delete all tasks</source>
           <target state="signed-off">Odstrániť všetky úlohy</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateUpcoming" xml:space="preserve">
+          <source>upcoming</source>
+          <target state="signed-off">nadchádzajúce</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateSomeday" xml:space="preserve">
+          <source>someday</source>
+          <target state="signed-off" state-qualifier="mt-suggestion">jedného dňa</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteAllTasks" xml:space="preserve">
           <source>Are you sure you want to delete all tasks?</source>
           <target state="signed-off">Naozaj chcete odstrániť všetky úlohy?</target>

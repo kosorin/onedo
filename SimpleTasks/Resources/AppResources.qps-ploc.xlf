@@ -185,6 +185,14 @@
           <source>Delete all tasks</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[58174][!!_Đéľêтê àłļ ťâşќš_!!!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateUpcoming" xml:space="preserve">
+          <source>upcoming</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[C6901][!!_ùрċóмìйğ_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/DateSomeday" xml:space="preserve">
+          <source>someday</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[A3059][!!_šõmêďáУ_!!]</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteAllTasks" xml:space="preserve">
           <source>Are you sure you want to delete all tasks?</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[157C8][!!_Ãŗê ÿòú şµřè ўõµ ẁàήţ ťó đęľèтè àłĺ τâšķş?_!!!!!!!!!!!!]</target>
