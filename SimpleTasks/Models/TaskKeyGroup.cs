@@ -22,17 +22,15 @@ namespace SimpleTasks.Models
             TaskKeyGroup overdueGroup = new TaskKeyGroup(AppResources.DateOverdue);
             TaskKeyGroup todayGroup = new TaskKeyGroup(AppResources.DateToday);
             TaskKeyGroup tomorrowGroup = new TaskKeyGroup(AppResources.DateTomorrow);
-            TaskKeyGroup thisWeekGroup = new TaskKeyGroup(AppResources.DateThisWeek);
-            TaskKeyGroup nextWeekGroup = new TaskKeyGroup(AppResources.DateNextWeek);
-            TaskKeyGroup laterGroup = new TaskKeyGroup(AppResources.DateLater);
+            TaskKeyGroup upcomingGroup = new TaskKeyGroup(AppResources.DateUpcoming);
+            TaskKeyGroup somedayGroup = new TaskKeyGroup(AppResources.DateSomeday);
             TaskKeyGroup completedGroup = new TaskKeyGroup(AppResources.DateCompleted);
 
             groups.Add(overdueGroup);
             groups.Add(todayGroup);
             groups.Add(tomorrowGroup);
-            groups.Add(thisWeekGroup);
-            groups.Add(nextWeekGroup);
-            groups.Add(laterGroup);
+            groups.Add(upcomingGroup);
+            groups.Add(somedayGroup);
             groups.Add(completedGroup);
 
             // Přidání úkolů do jednotlivých skupin
@@ -42,57 +40,48 @@ namespace SimpleTasks.Models
                 {
                     if (task.IsComplete)
                         completedGroup.Add(task);
+                    else if (!task.DueDate.HasValue)
+                        somedayGroup.Add(task);
                     else if (task.DueDate < DateTimeExtensions.Today)
                         overdueGroup.Add(task);
                     else if (task.DueDate == DateTimeExtensions.Today)
                         todayGroup.Add(task);
                     else if (task.DueDate == DateTimeExtensions.Tomorrow)
                         tomorrowGroup.Add(task);
-                    else if (task.DueDate > DateTimeExtensions.Tomorrow && task.DueDate <= DateTimeExtensions.LastDayOfWeek)
-                        thisWeekGroup.Add(task);
-                    else if (task.DueDate > DateTimeExtensions.LastDayOfWeek && task.DueDate <= DateTimeExtensions.LastDayOfNextWeek)
-                        nextWeekGroup.Add(task);
                     else
-                        laterGroup.Add(task);
+                        upcomingGroup.Add(task);
                 }
             }
 
             // Seřazení úkolů ve skupinách
-            Comparison<TaskModel> comparison = (t1, t2) =>
+            overdueGroup.Sort((t1, t2) =>
             {
-                if (t1 == null && t2 != null)
-                    return 1;
-                else if (t1 != null && t2 == null)
-                    return -1;
-                else if (t1 == null && t2 == null)
-                    return 0;
-                else
-                {
-                    int dateCompare = DateTime.Compare(t1.ReminderDate ?? DateTime.Now, t2.ReminderDate ?? DateTime.Now);
-                    if (dateCompare == 0)
-                    {
-                        // Nižší priorita bude vždy první, proto pro výsledek obrátíme znaménko.
-                        return -(t1.Priority.CompareTo(t2.Priority));
-                    }
-                    else
-                    {
-                        return dateCompare;
-                    }
-                }
-            };
+                return DateTime.Compare(t1.DueDate.Value, t2.DueDate.Value);
+            });
 
-            overdueGroup.Sort(comparison);
-            todayGroup.Sort(comparison);
-            tomorrowGroup.Sort(comparison);
-            thisWeekGroup.Sort(comparison);
-            nextWeekGroup.Sort(comparison);
-            laterGroup.Sort(comparison);
-            completedGroup.Sort(comparison);
+            todayGroup.Sort((t1, t2) =>
+            {
+                return t2.Priority.CompareTo(t1.Priority);
+            });
+
+            tomorrowGroup.Sort((t1, t2) =>
+            {
+                return t2.Priority.CompareTo(t1.Priority);
+            });
+
+            upcomingGroup.Sort((t1, t2) =>
+            {
+                return DateTime.Compare(t1.DueDate.Value, t2.DueDate.Value);
+            });
+
+            somedayGroup.Sort((t1, t2) =>
+            {
+                return t2.Priority.CompareTo(t1.Priority);
+            });
+
             completedGroup.Sort((t1, t2) =>
             {
-                // Dokončené úkoly mají vždy nastavený datum dokončení,
-                // proto můžeme přistupovat přímo k hodnotě
-                return DateTime.Compare(t1.ReminderDate ?? DateTime.Now, t2.ReminderDate ?? DateTime.Now);
+                return DateTime.Compare(t1.CompletedDate.Value, t2.CompletedDate.Value);
             });
 
             return groups;
