@@ -26,8 +26,7 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = ViewModel = App.ViewModel;
 
-            if (App.Settings.EnableLiveTileSetting)
-                LiveTile.Update(ViewModel.Tasks);
+            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, ViewModel.Tasks);
 
             BuildLocalizedApplicationBar();
         }
@@ -70,6 +69,7 @@ namespace SimpleTasks.Views
             appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
             ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
 
+#if DEBUG
             // Reset
             ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
             appBarResetMenuItem.Click += appBarResetMenuItem_Click;
@@ -79,7 +79,7 @@ namespace SimpleTasks.Views
             ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
             appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateUI(ViewModel.Tasks); };
             ApplicationBar.MenuItems.Add(appBarClearMenuItem);
-
+#endif
             #endregion
         }
 

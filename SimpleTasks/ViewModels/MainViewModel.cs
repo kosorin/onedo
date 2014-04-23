@@ -1,5 +1,6 @@
 ﻿using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Helpers;
+using SimpleTasks.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Models;
 using SimpleTasks.Resources;
@@ -115,8 +116,7 @@ namespace SimpleTasks.ViewModels
                                    task.ReminderDate.Value,
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
             }
-            if (App.Settings.EnableLiveTileSetting)
-                LiveTile.Update(Tasks);
+            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
         public void UpdateTask(TaskModel oldTask, TaskModel newTask)
@@ -135,8 +135,7 @@ namespace SimpleTasks.ViewModels
                                    newTask.ReminderDate.Value, 
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));
             }
-            if (App.Settings.EnableLiveTileSetting)
-                LiveTile.Update(Tasks);
+            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
         public void RemoveTask(TaskModel task)
@@ -146,8 +145,7 @@ namespace SimpleTasks.ViewModels
 
             Tasks.Remove(task);
             ReminderHelper.Remove(task.Uid);
-            if (App.Settings.EnableLiveTileSetting)
-                LiveTile.Update(Tasks);
+            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
         public void DeleteCompletedTasks(int days)

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTasks.Core.Helpers
+namespace SimpleTasks.Helpers
 {
     public class ReminderHelper
     {

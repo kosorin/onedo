@@ -256,17 +256,7 @@ namespace SimpleTasks.ViewModels
             {
                 if (AddOrUpdateValue(EnableLiveTileKeyName, value))
                 {
-                    if (value)
-                    {
-                        PeriodicTaskExtensions.Start();
-                        LiveTile.UpdateUI(App.ViewModel.Tasks);
-                    }
-                    else
-                    {
-                        PeriodicTaskExtensions.Stop();
-                        LiveTile.Reset();
-                    }
-
+                    LiveTile.UpdateOrReset(value, App.ViewModel.Tasks, true);
                     Save();
                 }
             }
