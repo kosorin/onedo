@@ -148,9 +148,6 @@
                                           Margin="0,0,0,-20" 
                                           Checked="DeleteCompletedToggleSwitch_Checked" 
                                           Unchecked="DeleteCompletedToggleSwitch_Unchecked" />
-                    <TextBlock Text="Pokud se dlaždice neobnovuje, tak se ujistěte, že jsou v nastavení telefonu povoleny úlohy na pozadí pro tuto aplikaci." 
-                               Style="{StaticResource PhoneTextSubtleStyle}"
-                               TextWrapping="Wrap"/>
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
