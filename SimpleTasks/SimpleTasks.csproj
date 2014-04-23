@@ -255,10 +255,6 @@
       <Project>{B40DF63D-03CC-4078-A3C7-E18422DA4005}</Project>
       <Name>SimpleTasks.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimpleTasks.Scheduler\SimpleTasks.Scheduler.csproj">
-      <Project>{8D20FAB3-BF21-4FB4-9B07-D94995DE0220}</Project>
-      <Name>SimpleTasks.Scheduler</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

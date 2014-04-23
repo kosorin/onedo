@@ -23,6 +23,25 @@ namespace SimpleTasks.Core.Helpers
 
         private static string TileImageDirectory { get { return "/Shared/ShellContent/"; } }
 
+        public static void UpdateOrReset(bool update, TaskCollection tasksSource = null, bool updateUI = false)
+        {
+            if (update)
+            {
+                if (updateUI)
+                {
+                    UpdateUI(tasksSource);
+                }
+                else
+                {
+                    Update(tasksSource);
+                }
+            }
+            else
+            {
+                Reset();
+            }
+        }
+
         public static void Reset()
         {
             FlipTileData flipTileData = new FlipTileData
