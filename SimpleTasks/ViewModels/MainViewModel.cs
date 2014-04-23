@@ -138,14 +138,18 @@ namespace SimpleTasks.ViewModels
             LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
-        public void RemoveTask(TaskModel task)
+        public void RemoveTask(TaskModel task, bool updateLiveTile = true)
         {
             if (task == null)
                 throw new ArgumentNullException();
 
             Tasks.Remove(task);
             ReminderHelper.Remove(task.Uid);
-            LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+
+            if (updateLiveTile)
+            {
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
+            }
         }
 
         public void DeleteCompletedTasks(int days)
@@ -166,8 +170,9 @@ namespace SimpleTasks.ViewModels
                 }).ToList();
                 foreach (TaskModel task in completedTasks)
                 {
-                    RemoveTask(task);
+                    RemoveTask(task, false);
                 }
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
             }
         }
 
@@ -179,8 +184,9 @@ namespace SimpleTasks.ViewModels
                 var completedTasks = Tasks.Where((t) => { return t.IsComplete; }).ToList();
                 foreach (TaskModel task in completedTasks)
                 {
-                    RemoveTask(task);
+                    RemoveTask(task, false);
                 }
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
             }
         }
     }
