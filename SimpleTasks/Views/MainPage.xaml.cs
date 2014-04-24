@@ -38,6 +38,14 @@ namespace SimpleTasks.Views
             NavigationService.RemoveBackEntry();
         }
 
+        private ApplicationBarIconButton appBarNewTaskButton;
+
+        private ApplicationBarIconButton appBarSaveQuickButton;
+
+        private ApplicationBarIconButton appBarCancelQuickButton;
+
+        #region AppBar
+
         private void BuildLocalizedApplicationBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -45,10 +53,29 @@ namespace SimpleTasks.Views
             #region Ikony
 
             // Přidat úkol
-            ApplicationBarIconButton appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
+            appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
             appBarNewTaskButton.Text = AppResources.AppBarNew;
             appBarNewTaskButton.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative)); };
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
+
+            // Uložit rychlý úkol
+            appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
+            appBarSaveQuickButton.Text = AppResources.AppBarNew;
+            appBarSaveQuickButton.Click += (s, e) =>
+            {
+                string title = QuickAddTextBox.Text;
+                if (!string.IsNullOrWhiteSpace(title))
+                {
+                    ViewModel.AddTask(new TaskModel() { Title = title });
+                    QuickAddTextBox.Text = "";
+                    this.Focus();
+                }
+            };
+
+            // Zrušit rychlý úkol
+            appBarCancelQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.close.png", UriKind.Relative));
+            appBarCancelQuickButton.Text = AppResources.AppBarNew;
+            appBarCancelQuickButton.Click += (s, e) => { QuickAddTextBox.Text = ""; this.Focus(); };
 
             #endregion
 
@@ -181,30 +208,52 @@ namespace SimpleTasks.Views
             }
             else if (App.ForceDebugCulture == "sk-SK")
             {
-                ViewModel.Tasks.Add(new TaskModel() {
+                ViewModel.Tasks.Add(new TaskModel()
+                {
                     Title = "Ísť k zubárovi",
                     DueDate = DateTimeExtensions.Today.AddDays(2)
                 });
-                ViewModel.Tasks.Add(new TaskModel() { 
+                ViewModel.Tasks.Add(new TaskModel()
+                {
                     Title = "Kúpiť mlieko",
                     DueDate = DateTimeExtensions.Today.AddDays(0),
-                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13), 
+                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
                     Priority = TaskPriority.Low
                 });
-                ViewModel.Tasks.Add(new TaskModel() {
+                ViewModel.Tasks.Add(new TaskModel()
+                {
                     Title = "Ísť do kina" + Environment.NewLine + "Amazing Spider-Man 2 alebo X-Men: Days of Future Past",
-                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27), 
+                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
                 });
-                ViewModel.Tasks.Add(new TaskModel() {
+                ViewModel.Tasks.Add(new TaskModel()
+                {
                     Title = "Projekt z matematiky",
                     DueDate = DateTimeExtensions.Today.AddDays(9),
-                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42), 
+                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42),
                     Priority = TaskPriority.High
                 });
             }
 
             LiveTile.UpdateUI(ViewModel.Tasks);
         }
+
+        private void OverlayAction(Action action)
+        {
+            PageOverlay.Visibility = Visibility.Visible;
+            PageOverlayTransitionShow.Completed += (s2, e2) =>
+            {
+                action();
+
+                PageOverlayTransitionHide.Completed += (s3, e3) =>
+                {
+                    PageOverlay.Visibility = Visibility.Collapsed;
+                };
+                PageOverlayTransitionHide.Begin();
+            };
+            PageOverlayTransitionShow.Begin();
+        }
+
+        #endregion
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -230,20 +279,22 @@ namespace SimpleTasks.Views
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
         }
 
-        private void OverlayAction(Action action)
-        {
-            PageOverlay.Visibility = Visibility.Visible;
-            PageOverlayTransitionShow.Completed += (s2, e2) =>
-            {
-                action();
+        #region QuickAddTextBox
 
-                PageOverlayTransitionHide.Completed += (s3, e3) =>
-                {
-                    PageOverlay.Visibility = Visibility.Collapsed;
-                };
-                PageOverlayTransitionHide.Begin();
-            };
-            PageOverlayTransitionShow.Begin();
+        private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ApplicationBar.Buttons.Remove(appBarSaveQuickButton);
+            ApplicationBar.Buttons.Remove(appBarCancelQuickButton);
+            ApplicationBar.Buttons.Add(appBarNewTaskButton);
         }
+
+        private void QuickAddTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ApplicationBar.Buttons.Remove(appBarNewTaskButton);
+            ApplicationBar.Buttons.Add(appBarSaveQuickButton);
+            ApplicationBar.Buttons.Add(appBarCancelQuickButton);
+        }
+
+        #endregion
     }
 }

@@ -194,7 +194,7 @@
             </Border>
         </DataTemplate>
 
-        <Style x:Key="QuickAddTextBoxHint" TargetType="ContentControl">
+        <Style x:Key="QuickAddTextBoxHintStyle" TargetType="ContentControl">
             <Setter Property="FontFamily" Value="Segoe UI Symbol" />
             <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
         </Style>
@@ -261,10 +261,13 @@
                    VerticalAlignment="Bottom"/>
         
         <Grid Grid.Row="1">
-            <toolkit:PhoneTextBox Hint="&#8230;&#xe104;" 
-                                  HintStyle="{StaticResource QuickAddTextBoxHint}">
+            <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
+                                  Hint="&#8230;&#xe104;" 
+                                  HintStyle="{StaticResource QuickAddTextBoxHintStyle}" 
+                                  LostFocus="QuickAddTextBox_LostFocus" 
+                                  GotFocus="QuickAddTextBox_GotFocus">
                 <toolkit:PhoneTextBox.Resources>
-                    <Style x:Key="QuickAddTextBox" TargetType="toolkit:PhoneTextBox">
+                    <Style x:Key="QuickAddTextBoxStyle" TargetType="toolkit:PhoneTextBox">
                         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
                         <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
                         <Setter Property="Background">
@@ -380,7 +383,7 @@
                     </Style>
                 </toolkit:PhoneTextBox.Resources>
                 <toolkit:PhoneTextBox.Style>
-                    <StaticResource ResourceKey="QuickAddTextBox"/>
+                    <StaticResource ResourceKey="QuickAddTextBoxStyle"/>
                 </toolkit:PhoneTextBox.Style>
             </toolkit:PhoneTextBox>
         </Grid>

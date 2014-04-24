@@ -69,8 +69,9 @@ namespace SimpleTasks.Views
 
         private bool CanSave()
         {
-            if (TitleTextBox.Text == "")
+            if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
             {
+                TitleTextBox.Text = "";
                 TitleTextBox.Focus();
                 return false;
             }
