@@ -60,7 +60,7 @@ namespace SimpleTasks.Views
 
             // Uložit rychlý úkol
             appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
-            appBarSaveQuickButton.Text = AppResources.AppBarNew;
+            appBarSaveQuickButton.Text = AppResources.AppBarSave;
             appBarSaveQuickButton.Click += (s, e) =>
             {
                 string title = QuickAddTextBox.Text;
@@ -74,7 +74,7 @@ namespace SimpleTasks.Views
 
             // Zrušit rychlý úkol
             appBarCancelQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.close.png", UriKind.Relative));
-            appBarCancelQuickButton.Text = AppResources.AppBarNew;
+            appBarCancelQuickButton.Text = AppResources.AppBarCancel;
             appBarCancelQuickButton.Click += (s, e) => { QuickAddTextBox.Text = ""; this.Focus(); };
 
             #endregion

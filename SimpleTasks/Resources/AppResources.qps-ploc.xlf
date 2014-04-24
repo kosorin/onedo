@@ -193,6 +193,18 @@
           <source>In the App list, tap and hold the Simple Tasks app, and then tap Pin to start.</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[15650][!!_Įη тђé Âρр ļìšτ, ţàр áиđ ĥõľď ţћè Şîmрłé Ťãšкŝ âρρ, ãηď τĥęή тáþ Ρįη ţó ŝτàřţ._!!!!!!!!!!!!!!!!!!!!!!!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsTile" xml:space="preserve">
+          <source>tile</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[79EAC][!!_тíłê_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsEnableTile" xml:space="preserve">
+          <source>Enable tile</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[DB9BB][!!_Èηãъĺê ţîłę_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCancel" xml:space="preserve">
+          <source>cancel</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[7D6E1][!!_ćâήĉèł_!!]</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/DateSomeday" xml:space="preserve">
           <source>someday</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[A3059][!!_šõmêďáУ_!!]</target>

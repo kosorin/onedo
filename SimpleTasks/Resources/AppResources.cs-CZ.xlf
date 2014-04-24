@@ -259,6 +259,18 @@
           <source>In the App list, tap and hold the Simple Tasks app, and then tap Pin to start.</source>
           <target state="signed-off">V seznamu aplikací klepněte na aplikaci Simple Tasks, podržte ji a potom klepněte na možnost Připnout na úvodní obrazovku.</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsTile" xml:space="preserve">
+          <source>tile</source>
+          <target state="signed-off">dlaždice</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsEnableTile" xml:space="preserve">
+          <source>Enable tile</source>
+          <target state="signed-off">Povolit dlaždici</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarCancel" xml:space="preserve">
+          <source>cancel</source>
+          <target state="signed-off">zrušit</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/DateSomeday" xml:space="preserve">
           <source>someday</source>
           <target state="signed-off">jednoho dne</target>

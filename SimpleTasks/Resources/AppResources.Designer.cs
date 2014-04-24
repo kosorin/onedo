@@ -115,6 +115,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string AppBarCancel {
+            get {
+                return ResourceManager.GetString("AppBarCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to complete.
         /// </summary>
         public static string AppBarComplete {
@@ -574,6 +583,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable tile.
+        /// </summary>
+        public static string SettingsEnableTile {
+            get {
+                return ResourceManager.GetString("SettingsEnableTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First day of week.
         /// </summary>
         public static string SettingsFirstDayOfWeek {
@@ -606,6 +624,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsPinTile {
             get {
                 return ResourceManager.GetString("SettingsPinTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tile.
+        /// </summary>
+        public static string SettingsTile {
+            get {
+                return ResourceManager.GetString("SettingsTile", resourceCulture);
             }
         }
         

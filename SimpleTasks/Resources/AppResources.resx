@@ -316,4 +316,13 @@
   <data name="SettingsPinTile" xml:space="preserve">
     <value>In the App list, tap and hold the Simple Tasks app, and then tap Pin to start.</value>
   </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="SettingsEnableTile" xml:space="preserve">
+    <value>Enable tile</value>
+  </data>
+  <data name="SettingsTile" xml:space="preserve">
+    <value>tile</value>
+  </data>
 </root>
