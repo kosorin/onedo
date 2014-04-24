@@ -256,8 +256,8 @@
             </Rectangle.Resources>
         </Rectangle>
         <Rectangle Fill="{StaticResource PhoneAccentBrush}"
-                   Opacity="0.45"
-                   Height="7" 
+                   Opacity="0.6"
+                   Height="10" 
                    VerticalAlignment="Bottom"/>
         
         <Grid Grid.Row="1">
@@ -307,10 +307,6 @@
                                                                 <PowerEase EasingMode="EaseIn" />
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                                                       Storyboard.TargetName="HintBorder">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="0,0,0,-50" />
-                                                        </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
                                                 </VisualState>
                                                 <VisualState x:Name="Unfocused">
@@ -345,7 +341,7 @@
                                                                 Background="Transparent" 
                                                                 Content="{TemplateBinding Hint}" 
                                                                 HorizontalAlignment="Left"
-                                                                Margin="8,3" 
+                                                                Margin="10" 
                                                                 Style="{TemplateBinding HintStyle}" 
                                                                 Visibility="{TemplateBinding ActualHintVisibility}" 
                                                                 VerticalAlignment="Center"/>
