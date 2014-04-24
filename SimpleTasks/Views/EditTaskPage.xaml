@@ -52,8 +52,8 @@
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
             <Setter Property="CaretBrush" Value="{StaticResource TitleCaretBrush}"/>
             <Setter Property="BorderThickness" Value="0,0,0,5" />
-            <Setter Property="SelectionBackground" Value="{x:Null}"/>
-            <Setter Property="SelectionForeground" Value="{x:Null}"/>
+            <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
             <Setter Property="Padding" Value="{StaticResource PhoneBorderThickness}"/>
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="InputScope" Value="Text" />

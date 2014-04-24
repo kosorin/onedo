@@ -22,7 +22,7 @@ namespace SimpleTasks
 
         public static bool IsWp81 { get { return Environment.OSVersion.Version >= Wp81Version; } }
 
-        public static string ForceDebugCulture = "sk-SK";
+        public static string ForceDebugCulture = "en-US";
 
         public static SettingsViewModel Settings { get; private set; }
 

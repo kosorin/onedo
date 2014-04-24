@@ -193,10 +193,19 @@
                 </Grid>
             </Border>
         </DataTemplate>
+
+        <Style x:Key="QuickAddTextBoxHint" TargetType="ContentControl">
+            <Setter Property="FontFamily" Value="Segoe UI Symbol" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
+        </Style>
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" 
           Background="{StaticResource ApplicationBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"  />
+        </Grid.RowDefinitions>
         <Grid x:Name="ContentPanel">
             <phone:LongListSelector x:Name="TasksLongListSelector"
                                     LayoutMode="List"
@@ -246,6 +255,136 @@
                 </Storyboard>
             </Rectangle.Resources>
         </Rectangle>
+        <Rectangle Fill="{StaticResource PhoneAccentBrush}"
+                   Opacity="0.45"
+                   Height="7" 
+                   VerticalAlignment="Bottom"/>
+        
+        <Grid Grid.Row="1">
+            <toolkit:PhoneTextBox Hint="&#8230;&#xe104;" 
+                                  HintStyle="{StaticResource QuickAddTextBoxHint}">
+                <toolkit:PhoneTextBox.Resources>
+                    <Style x:Key="QuickAddTextBox" TargetType="toolkit:PhoneTextBox">
+                        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" 
+                                                 Opacity="0.45"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="{StaticResource PhoneSubtleColor}"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
+                        <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
+                        <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="InputScope" Value="Text" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="toolkit:PhoneTextBox">
+                                    <Grid x:Name="RootGrid" Background="Transparent">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="FocusStates">
+                                                <VisualState x:Name="Focused">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
+                                                                         Storyboard.TargetName="HintBorder"
+                                                                         Duration="0:0:0.7"
+                                                                         To="0.65">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseIn" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(TextBox.Foreground).(SolidColorBrush.Opacity)"
+                                                                         Storyboard.TargetName="Text"
+                                                                         Duration="0:0:0.7"
+                                                                         To="0.55">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseIn" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
+                                                                                       Storyboard.TargetName="HintBorder">
+                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="0,0,0,-50" />
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Unfocused">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
+                                                                         Storyboard.TargetName="HintBorder"
+                                                                         Duration="0:0:1"
+                                                                         To="0.45">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation Storyboard.TargetProperty="(TextBox.Foreground).(SolidColorBrush.Opacity)"
+                                                                         Storyboard.TargetName="Text"
+                                                                         Duration="0:0:0.7"
+                                                                         To="0.1">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseIn" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="HintBorder" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                Background="{TemplateBinding Background}" 
+                                                Margin="0">
+                                            <Grid>
+                                                <ContentControl x:Name="HintContent" 
+                                                                Background="Transparent" 
+                                                                Content="{TemplateBinding Hint}" 
+                                                                HorizontalAlignment="Left"
+                                                                Margin="8,3" 
+                                                                Style="{TemplateBinding HintStyle}" 
+                                                                Visibility="{TemplateBinding ActualHintVisibility}" 
+                                                                VerticalAlignment="Center"/>
+                                                <ContentControl x:Name="ContentElement"
+                                                                BorderThickness="0" 
+                                                                HorizontalContentAlignment="Stretch" 
+                                                                Margin="{StaticResource PhoneTextBoxInnerMargin}" 
+                                                                Padding="{TemplateBinding Padding}" 
+                                                                VerticalContentAlignment="Stretch"/>
+                                            </Grid>
+                                        </Border>
+                                        <Border x:Name="TextBorder"
+                                                BorderBrush="{StaticResource PhoneDisabledBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                Background="Transparent" 
+                                                Margin="{StaticResource PhoneTouchTargetOverhang}" 
+                                                Visibility="Collapsed">
+                                            <TextBox x:Name="Text" 
+                                                     Foreground="{StaticResource PhoneDisabledBrush}"
+                                                     FontWeight="{TemplateBinding FontWeight}"
+                                                     FontStyle="{TemplateBinding FontStyle}" 
+                                                     FontSize="{TemplateBinding FontSize}" 
+                                                     FontFamily="{TemplateBinding FontFamily}"
+                                                     HorizontalAlignment="Left" 
+                                                     SelectionForeground="{TemplateBinding SelectionForeground}"
+                                                     SelectionBackground="{TemplateBinding SelectionBackground}"
+                                                     TextAlignment="{TemplateBinding TextAlignment}" 
+                                                     TextWrapping="{TemplateBinding TextWrapping}" 
+                                                     Text="{TemplateBinding Text}"/>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </toolkit:PhoneTextBox.Resources>
+                <toolkit:PhoneTextBox.Style>
+                    <StaticResource ResourceKey="QuickAddTextBox"/>
+                </toolkit:PhoneTextBox.Style>
+            </toolkit:PhoneTextBox>
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>
+ 
