@@ -38,6 +38,15 @@ namespace SimpleTasks.Views
             NavigationService.RemoveBackEntry();
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if (!e.IsNavigationInitiator)
+            {
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, ViewModel.Tasks);
+            }
+        }
+
         private ApplicationBarIconButton appBarNewTaskButton;
 
         private ApplicationBarIconButton appBarSaveQuickButton;

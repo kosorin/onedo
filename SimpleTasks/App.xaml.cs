@@ -40,7 +40,7 @@ namespace SimpleTasks
             Debug.WriteLine("> VERSION {0}", Environment.OSVersion.Version.ToString());
             ViewModel.LoadTasks();
             RootFrame.UriMapper = new MyUriMapper();
-            Debug.WriteLine("===== ========== =====");
+            Debug.WriteLine("===== ===== LAUNCHED ===== =====");
         }
 
         private void Application_Activated(object sender, ActivatedEventArgs e)
@@ -51,7 +51,7 @@ namespace SimpleTasks
                 ViewModel.LoadTasks();
                 RootFrame.UriMapper = new MyUriMapper();
             }
-            Debug.WriteLine("===== ========== =====");
+            Debug.WriteLine("===== ===== ACTIVATED ===== =====");
         }
 
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
@@ -59,8 +59,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Deactivated =====");
             ViewModel.SaveTasks();
 
-            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, ViewModel.Tasks);
-            Debug.WriteLine("===== ========== =====");
+            Debug.WriteLine("===== ===== DEACTIVATED ===== =====");
         }
 
         private void Application_Closing(object sender, ClosingEventArgs e)
@@ -68,8 +67,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Closing =====");
             ViewModel.SaveTasks();
 
-            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, ViewModel.Tasks);
-            Debug.WriteLine("===== ========== =====");
+            Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
 
 
