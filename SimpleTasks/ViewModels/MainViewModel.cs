@@ -195,9 +195,11 @@ namespace SimpleTasks.ViewModels
         {
             if (IsDataLoaded)
             {
+                foreach (TaskModel task in Tasks)
+                {
+                    ReminderHelper.Remove(task.Uid);
+                }
                 Tasks.Clear();
-                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
-                SaveTasks();
             }
         }
     }
