@@ -292,6 +292,12 @@ namespace SimpleTasks.Views
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            PageOverlayTransitionQuickHide.Completed += (s2, e2) =>
+            {
+                PageOverlay.Visibility = Visibility.Collapsed;
+            };
+            PageOverlayTransitionQuickHide.Begin();
+
             ApplicationBar.Buttons.Remove(appBarSaveQuickButton);
             ApplicationBar.Buttons.Remove(appBarCancelQuickButton);
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
@@ -299,6 +305,9 @@ namespace SimpleTasks.Views
 
         private void QuickAddTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            PageOverlay.Visibility = Visibility.Visible;
+            PageOverlayTransitionQuickShow.Begin();
+
             ApplicationBar.Buttons.Remove(appBarNewTaskButton);
             ApplicationBar.Buttons.Add(appBarSaveQuickButton);
             ApplicationBar.Buttons.Add(appBarCancelQuickButton);

@@ -238,19 +238,32 @@
                                      Storyboard.TargetProperty="Opacity"
                                      Duration="0:0:0.4"
                                      BeginTime="0:0:0.4"
-                                     From="0"
                                      To="1">
                     </DoubleAnimation>
                 </Storyboard>
                 <Storyboard x:Name="PageOverlayTransitionHide">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.3"
-                                     From="1"
+                                     Duration="0:0:0.4"
                                      To="0">
+                    </DoubleAnimation>
+                </Storyboard>
+                <Storyboard x:Name="PageOverlayTransitionQuickShow">
+                    <DoubleAnimation Storyboard.TargetName="PageOverlay"
+                                     Storyboard.TargetProperty="Opacity"
+                                     Duration="0:0:0.4"
+                                     To="0.65">
                         <DoubleAnimation.EasingFunction>
-                            <CubicEase EasingMode="EaseIn"/>
+                            <CubicEase EasingMode="EaseOut" />
                         </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+                <Storyboard x:Name="PageOverlayTransitionQuickHide">
+                    <DoubleAnimation Storyboard.TargetName="PageOverlay"
+                                     Storyboard.TargetProperty="Opacity"
+                                     Duration="0:0:0.3"
+                                     BeginTime="0:0:0.2"
+                                     To="0">
                     </DoubleAnimation>
                 </Storyboard>
             </Rectangle.Resources>
@@ -262,21 +275,21 @@
         
         <Grid Grid.Row="1">
             <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
-                                  Hint="&#8230;&#xe104;" 
+                                  Hint="&#8230;&#xe104;"
                                   HintStyle="{StaticResource QuickAddTextBoxHintStyle}" 
                                   LostFocus="QuickAddTextBox_LostFocus" 
                                   GotFocus="QuickAddTextBox_GotFocus">
                 <toolkit:PhoneTextBox.Resources>
                     <Style x:Key="QuickAddTextBoxStyle" TargetType="toolkit:PhoneTextBox">
                         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
+                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
                         <Setter Property="Background">
                             <Setter.Value>
                                 <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" 
                                                  Opacity="0.45"/>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Foreground" Value="{StaticResource PhoneSubtleColor}"/>
+                        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
                         <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
                         <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
                         <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
@@ -286,7 +299,9 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="toolkit:PhoneTextBox">
-                                    <Grid x:Name="RootGrid" Background="Transparent">
+                                    <Grid x:Name="RootGrid"
+                                          Background="Transparent"
+                                          Height="65">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="FocusStates">
                                                 <VisualState x:Name="Focused">
@@ -299,10 +314,10 @@
                                                                 <PowerEase EasingMode="EaseIn" />
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(TextBox.Foreground).(SolidColorBrush.Opacity)"
-                                                                         Storyboard.TargetName="Text"
-                                                                         Duration="0:0:0.7"
-                                                                         To="0.55">
+                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                         Storyboard.TargetName="ContentElement"
+                                                                         Duration="0:0:0.45"
+                                                                         To="0.85">
                                                             <DoubleAnimation.EasingFunction>
                                                                 <PowerEase EasingMode="EaseIn" />
                                                             </DoubleAnimation.EasingFunction>
@@ -319,10 +334,10 @@
                                                                 <PowerEase EasingMode="EaseOut" />
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(TextBox.Foreground).(SolidColorBrush.Opacity)"
-                                                                         Storyboard.TargetName="Text"
-                                                                         Duration="0:0:0.7"
-                                                                         To="0.1">
+                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                         Storyboard.TargetName="ContentElement"
+                                                                         Duration="0:0:0.45"
+                                                                         To="0.4">
                                                             <DoubleAnimation.EasingFunction>
                                                                 <PowerEase EasingMode="EaseIn" />
                                                             </DoubleAnimation.EasingFunction>
@@ -336,7 +351,7 @@
                                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                                 Background="{TemplateBinding Background}" 
                                                 Margin="0">
-                                            <Grid>
+                                            <Grid VerticalAlignment="Center">
                                                 <ContentControl x:Name="HintContent" 
                                                                 Background="Transparent" 
                                                                 Content="{TemplateBinding Hint}" 
