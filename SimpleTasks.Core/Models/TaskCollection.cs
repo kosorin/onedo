@@ -21,35 +21,6 @@ namespace SimpleTasks.Core.Models
 
         public TaskCollection(IEnumerable<TaskModel> tasks) : base(tasks) { }
 
-        public List<TaskModel> SortedActiveTasks
-        {
-            get
-            {
-                // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
-                // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
-                List<TaskModel> tasks = this
-                    .Where((t) => { return t.IsActive && t.DueDate != null; })
-                    .OrderBy(t => t.DueDate.Value)
-                    .ThenByDescending(t => t.Priority)
-                    .ToList();
-
-                // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
-                tasks.AddRange(this
-                    .Where((t) => { return t.IsActive && t.DueDate == null; })
-                    .OrderByDescending(t => t.Priority));
-
-                return tasks;
-            }
-        }
-
-        public int CompletedTasksCount
-        {
-            get
-            {
-                return this.Where((t) => { return t.IsComplete; }).Count();
-            }
-        }
-
         public static TaskCollection LoadFromFile(string fileName)
         {
             Debug.WriteLine(string.Format("> Nahrávám data ze souboru {0}...", fileName));
@@ -204,6 +175,10 @@ namespace SimpleTasks.Core.Models
                         }
 
                         isf.DeleteFile(oldFileName);
+                    }
+                    else
+                    {
+                        Debug.WriteLine(": Není co převádět");
                     }
                 }
             }

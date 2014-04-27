@@ -160,16 +160,6 @@ namespace SimpleTasks.Core.Models
             Uid = Guid.NewGuid().ToString();
         }
 
-        public void Update(TaskModel newTask)
-        {
-            Title = newTask.Title;
-            Detail = newTask.Detail;
-            DueDate = newTask.DueDate;
-            Priority = newTask.Priority;
-            CompletedDate = newTask.CompletedDate;
-            ReminderDate = newTask.ReminderDate;
-        }
-
         public TaskModel Clone()
         {
             TaskModel task = new TaskModel()
@@ -177,10 +167,10 @@ namespace SimpleTasks.Core.Models
                 Uid = this.Uid,
                 Title = this.Title,
                 Detail = this.Detail,
-                DueDate = this.DueDate,
                 Priority = this.Priority,
-                CompletedDate = this.CompletedDate,
+                DueDate = this.DueDate,
                 ReminderDate = this.ReminderDate,
+                CompletedDate = this.CompletedDate,
             };
             return task;
         }
