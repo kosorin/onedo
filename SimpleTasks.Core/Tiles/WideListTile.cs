@@ -47,7 +47,7 @@ namespace SimpleTasks.Core.Tiles
 
             TextBlock titleTextBlock = new TextBlock()
             {
-                Text = task.TitleFirstLine,
+                Text = task.Title,
                 Margin = new Thickness(5, 0, 0, 0),
                 Foreground = ForegroundBrush,
                 FontSize = ((double)Height / (double)TaskCount) * 0.7,

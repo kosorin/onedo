@@ -95,7 +95,6 @@
     <Compile Include="PngWriter\ToolStackCRCLib.cs" />
     <Compile Include="PngWriter\ToolStackPNGWriterLib.cs" />
     <Compile Include="PngWriter\ToolStackPNGWriterWBext.cs" />
-    <Compile Include="Models\TaskModel.old.cs" />
     <Compile Include="Models\TaskPriority.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\TaskCollection.cs" />
@@ -147,6 +146,14 @@
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.sk-SK.resx</LastGenOutput>
     </XliffResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

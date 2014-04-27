@@ -26,8 +26,7 @@ namespace SimpleTasks.Views
         {
             get
             {
-                AssemblyName nameHelper = new AssemblyName(Assembly.GetExecutingAssembly().FullName);
-                return nameHelper.Version.ToString();
+                return App.Version.ToString();
             }
         }
 

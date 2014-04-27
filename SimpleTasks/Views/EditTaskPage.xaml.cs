@@ -38,7 +38,7 @@ namespace SimpleTasks.Views
             TaskModel task = null;
             if (this.NavigationContext.QueryString.ContainsKey("Task"))
             {
-                task = App.ViewModel.Tasks.First((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
+                task = App.ViewModel.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
             }
 
             ViewModel = new EditTaskViewModel(task);

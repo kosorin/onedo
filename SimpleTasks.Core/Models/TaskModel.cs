@@ -8,7 +8,7 @@ namespace SimpleTasks.Core.Models
     public class TaskModel : BindableBase
     {
         #region Uid
-        private string _uid = string.Empty;
+        private string _uid = "";
         [DataMember(Order = 0)]
         public string Uid
         {
@@ -24,7 +24,7 @@ namespace SimpleTasks.Core.Models
         #endregion
 
         #region Title
-        private string _title = string.Empty;
+        private string _title = "";
         [DataMember(Order = 1)]
         public string Title
         {
@@ -34,61 +34,25 @@ namespace SimpleTasks.Core.Models
             }
             set
             {
-                SetProperty(ref _title, value.NormalizeNewLines());
+                SetProperty(ref _title, value);
                 OnPropertyChanged("TitleFirstLine");
                 OnPropertyChanged("TitleDescription");
             }
         }
-
-        public string TitleFirstLine
-        {
-            get
-            {
-                int position = _title.IndexOf(Environment.NewLine);
-                if (position == -1)
-                    return _title.Trim();
-                return _title.Substring(0, position).Trim();
-            }
-        }
-
-        public string TitleDescription
-        {
-            get
-            {
-                int position = _title.IndexOf(Environment.NewLine);
-                if (position == -1)
-                    return null;
-                return _title.Substring(position + 1).Trim();
-            }
-        }
-
         #endregion
 
-        #region Due Date
-        private DateTime? _dueDate = null;
+        #region Detail
+        private string _detail = "";
         [DataMember(Order = 2)]
-        public DateTime? DueDate
+        public string Detail
         {
             get
             {
-                return _dueDate;
+                return _detail;
             }
             set
             {
-                SetProperty(ref _dueDate, value);
-            }
-        }
-
-        public bool HasDueDate { get { return DueDate != null; } }
-
-        public bool IsOverdue
-        {
-            get
-            {
-                if (DueDate == null)
-                    return false;
-                else
-                    return (DueDate < DateTimeExtensions.Today);
+                SetProperty(ref _detail, value);
             }
         }
         #endregion
@@ -124,22 +88,31 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Complete
-        public bool IsComplete { get { return CompletedDate != null; } }
-
-        public bool IsActive { get { return CompletedDate == null; } }
-
-        private DateTime? _completedDate = null;
+        #region Due Date
+        private DateTime? _dueDate = null;
         [DataMember(Order = 4)]
-        public DateTime? CompletedDate
+        public DateTime? DueDate
         {
             get
             {
-                return _completedDate;
+                return _dueDate;
             }
             set
             {
-                SetProperty(ref _completedDate, value);
+                SetProperty(ref _dueDate, value);
+            }
+        }
+
+        public bool HasDueDate { get { return DueDate != null; } }
+
+        public bool IsOverdue
+        {
+            get
+            {
+                if (DueDate == null)
+                    return false;
+                else
+                    return (DueDate < DateTime.Today);
             }
         }
         #endregion
@@ -162,6 +135,26 @@ namespace SimpleTasks.Core.Models
         public bool HasReminder { get { return ReminderDate != null; } }
         #endregion
 
+        #region Complete
+        public bool IsComplete { get { return CompletedDate != null; } }
+
+        public bool IsActive { get { return CompletedDate == null; } }
+
+        private DateTime? _completedDate = null;
+        [DataMember(Order = 6)]
+        public DateTime? CompletedDate
+        {
+            get
+            {
+                return _completedDate;
+            }
+            set
+            {
+                SetProperty(ref _completedDate, value);
+            }
+        }
+        #endregion
+
         public TaskModel()
         {
             Uid = Guid.NewGuid().ToString();
@@ -170,6 +163,7 @@ namespace SimpleTasks.Core.Models
         public void Update(TaskModel newTask)
         {
             Title = newTask.Title;
+            Detail = newTask.Detail;
             DueDate = newTask.DueDate;
             Priority = newTask.Priority;
             CompletedDate = newTask.CompletedDate;
@@ -182,6 +176,7 @@ namespace SimpleTasks.Core.Models
             {
                 Uid = this.Uid,
                 Title = this.Title,
+                Detail = this.Detail,
                 DueDate = this.DueDate,
                 Priority = this.Priority,
                 CompletedDate = this.CompletedDate,

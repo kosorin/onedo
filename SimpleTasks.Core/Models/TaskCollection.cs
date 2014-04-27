@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -16,11 +17,9 @@ namespace SimpleTasks.Core.Models
     [CollectionDataContract(Name = "Tasks", Namespace = "")]
     public class TaskCollection : ObservableCollection<TaskModel>
     {
-        public TaskCollection() { }
+        public TaskCollection() : base() { }
 
-        public TaskCollection(IEnumerable<TaskModel> tasks)
-            : base(tasks)
-        { }
+        public TaskCollection(IEnumerable<TaskModel> tasks) : base(tasks) { }
 
         public List<TaskModel> SortedActiveTasks
         {
@@ -51,84 +50,169 @@ namespace SimpleTasks.Core.Models
             }
         }
 
-        public const string DefaultDataFileName = "TasksData.xml";
-
-        public static TaskCollection LoadFromXmlFile(string fileName)
+        public static TaskCollection LoadFromFile(string fileName)
         {
-            TaskCollection tasks = new TaskCollection();
-
             Debug.WriteLine(string.Format("> Nahrávám data ze souboru {0}...", fileName));
 
-            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
+            TaskCollection tasks = new TaskCollection();
+            try
             {
-                try
+                using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    using (IsolatedStorageFileStream rawStream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                    if (isf.FileExists(fileName))
                     {
-                        DataContractSerializer serializer = new DataContractSerializer(typeof(TaskCollection));
-                        XmlReader xmlReader = XmlReader.Create(rawStream);
-
-                        try
+                        using (Stream stream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
                         {
-                            tasks = serializer.ReadObject(xmlReader) as TaskCollection;
-                            Debug.WriteLine("> Nahrávání dat dokončeno.");
+                            StreamReader sr = new StreamReader(stream);
+                            tasks = JsonConvert.DeserializeObject<TaskCollection>(sr.ReadToEnd());
+                            sr.Close();
+                            Debug.WriteLine(": Nahrávání dat dokončeno.");
                         }
-                        catch (Exception)
-                        {
-                            Debug.WriteLine("Chyba při nahrávání dat.");
-                        }
-                        xmlReader.Close();
                     }
                 }
-                catch (Exception)
-                {
-                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při nahrávání dat: {0}", e.Message);
             }
 
             return tasks;
         }
 
-        public void SaveToXmlFile(string fileName)
+        public static void SaveToFile(string fileName, TaskCollection tasks)
         {
             Debug.WriteLine(string.Format("> Ukládám data do souboru {0}...", fileName));
 
+            string data = JsonConvert.SerializeObject(tasks, Newtonsoft.Json.Formatting.Indented);
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (IsolatedStorageFileStream rawStream = isf.OpenFile(fileName, FileMode.Create, FileAccess.Write))
+                using (Stream stream = isf.OpenFile(fileName, FileMode.Create, FileAccess.Write))
                 {
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(TaskCollection));
-                    XmlWriter xmlWriter = XmlWriter.Create(rawStream, new XmlWriterSettings() { Indent = true });
-                    serializer.WriteObject(xmlWriter, this);
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
-                    Debug.WriteLine("> Ukládání dat dokončeno.");
+                    StreamWriter sw = new StreamWriter(stream);
+                    sw.Write(data);
+                    sw.Flush();
+                    sw.Close();
+                    Debug.WriteLine(": Ukládání dat dokončeno.");
                 }
             }
         }
 
-        public static TaskCollection ConvertOldDataFile(string fileName)
+        public static void ConvertOldXmlFile(string oldFileName, string newFileName)
         {
-            Debug.WriteLine(string.Format("> Konvertuji staré data ze souboru {0}...", fileName));
+            Debug.WriteLine(string.Format("> Konvertuji staré data ze souboru {0} do {1}...", oldFileName, newFileName));
+
             TaskCollection tasks = new TaskCollection();
-
-            var oldTasks = Old.Core.Models.TaskModelCollection.LoadTasksFromXmlFile(fileName);
-            foreach (var oldTask in oldTasks)
+            try
             {
-                TaskModel task = new TaskModel()
+                using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    Uid = Guid.NewGuid().ToString(),
-                    Title = oldTask.Title,
-                    DueDate = oldTask.Date,
-                    Priority = oldTask.IsImportant ? TaskPriority.High : TaskPriority.Normal,
-                    CompletedDate = oldTask.CompletedDate,
-                    ReminderDate = null
-                };
+                    if (isf.FileExists(oldFileName))
+                    {
+                        using (Stream stream = isf.OpenFile(oldFileName, FileMode.Open, FileAccess.Read))
+                        {
+                            XDocument xml = XDocument.Load(stream, LoadOptions.SetLineInfo);
 
-                tasks.Add(task);
+                            XElement root = xml.Root;
+                            if (root.Name == "Tasks")
+                            {
+                                foreach (XElement taskNode in root.Elements())
+                                {
+                                    if (taskNode.Name.LocalName == "Task")
+                                    {
+                                        TaskModel task = new TaskModel();
+                                        tasks.Add(task);
+                                        foreach (XElement attributeNode in taskNode.Elements())
+                                        {
+                                            string value = attributeNode.Value;
+                                            try
+                                            {
+                                                switch (attributeNode.Name.LocalName)
+                                                {
+                                                case "Uid":
+                                                    task.Uid = value;
+                                                    break;
+
+                                                case "Title":
+                                                    int position = value.IndexOf('\n');
+                                                    if (position == -1)
+                                                    {
+                                                        task.Title = value.Trim();
+                                                    }
+                                                    else
+                                                    {
+                                                        task.Title = value.Substring(0, position).Trim();
+                                                        task.Detail = value.Substring(position + 1).Trim();
+                                                    }
+                                                    break;
+
+                                                case "Priority":
+                                                    switch (value)
+                                                    {
+                                                    case "Low":
+                                                        task.Priority = TaskPriority.Low;
+                                                        break;
+                                                    case "High":
+                                                        task.Priority = TaskPriority.High;
+                                                        break;
+                                                    case "Normal":
+                                                    default:
+                                                        task.Priority = TaskPriority.Normal;
+                                                        break;
+                                                    }
+                                                    break;
+
+                                                case "IsImportant":
+                                                    if (value == "true")
+                                                        task.Priority = TaskPriority.High;
+                                                    break;
+
+                                                case "DueDate":
+                                                case "Date":
+                                                    if (value != "")
+                                                        task.DueDate = DateTime.Parse(value);
+                                                    break;
+
+                                                case "ReminderDate":
+                                                    if (value != "")
+                                                        task.ReminderDate = DateTime.Parse(value);
+                                                    break;
+
+                                                case "CompletedDate":
+                                                    if (value != "")
+                                                        task.CompletedDate = DateTime.Parse(value);
+                                                    break;
+
+                                                case "IsComplete":
+                                                    if (value == "true")
+                                                        task.CompletedDate = DateTime.Now;
+                                                    break;
+
+                                                default:
+                                                    break;
+                                                }
+                                            }
+                                            catch (FormatException)
+                                            {
+                                            }
+                                        }
+                                        if (task.Uid == "")
+                                            task.Uid = Guid.NewGuid().ToString();
+                                    }
+                                }
+                            }
+                            Debug.WriteLine(": Hotovo");
+                        }
+
+                        isf.DeleteFile(oldFileName);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při převádění souboru: {0}", e.Message);
             }
 
-            tasks.SaveToXmlFile(fileName);
-            return tasks;
+            SaveToFile(newFileName, tasks);
         }
     }
 }

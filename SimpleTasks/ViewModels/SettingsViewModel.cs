@@ -98,42 +98,19 @@ namespace SimpleTasks.ViewModels
 
         #endregion Settings
 
-        #region DataFileVersion
+        #region LastVersion
 
-        public readonly int CurrentDataFileVersion = 2;
-
-        private const string DataFileVersionKeyName = "DataFileVersion";
-        private readonly int DataFileVersionDefault = 1;
-        public int DataFileVersionSetting
+        private const string LastVersionKeyName = "LastVersion";
+        private readonly string LastVersionDefault = null;
+        public string LastVersionSetting
         {
             get
             {
-                return GetValueOrDefault<int>(DataFileVersionKeyName, DataFileVersionDefault);
+                return GetValueOrDefault<string>(LastVersionKeyName, LastVersionDefault);
             }
             set
             {
-                if (AddOrUpdateValue(DataFileVersionKeyName, value))
-                {
-                    Save();
-                }
-            }
-        }
-
-        #endregion
-
-        #region FirstStart
-
-        private const string FirstStartKeyName = "FirstStart";
-        private readonly bool FirstStartDefault = true;
-        public bool FirstStartSetting
-        {
-            get
-            {
-                return GetValueOrDefault<bool>(FirstStartKeyName, FirstStartDefault);
-            }
-            set
-            {
-                if (AddOrUpdateValue(FirstStartKeyName, value))
+                if (AddOrUpdateValue(LastVersionKeyName, value))
                 {
                     Save();
                 }

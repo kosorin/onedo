@@ -13,6 +13,8 @@ namespace SimpleTasks.ViewModels
 {
     public class MainViewModel : BindableBase
     {
+        public readonly string DataFileName = "Tasks.json";
+
         private TaskCollection _tasks = new TaskCollection();
         public TaskCollection Tasks
         {
@@ -50,20 +52,7 @@ namespace SimpleTasks.ViewModels
 
         public void LoadTasks()
         {
-            if (App.Settings.CurrentDataFileVersion != App.Settings.DataFileVersionSetting)
-            {
-                Tasks = TaskCollection.ConvertOldDataFile(TaskCollection.DefaultDataFileName);
-                App.Settings.DataFileVersionSetting = App.Settings.CurrentDataFileVersion;
-            }
-            else
-            {
-                Tasks = TaskCollection.LoadFromXmlFile(TaskCollection.DefaultDataFileName);
-            }
-
-            if (Tasks == null)
-            {
-                Tasks = new TaskCollection();
-            }
+            Tasks = TaskCollection.LoadFromFile(DataFileName);
             IsDataLoaded = true;
 
             if (App.Settings.DeleteCompletedTasksSetting)
@@ -75,10 +64,11 @@ namespace SimpleTasks.ViewModels
             Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
-                Debug.WriteLine(": {0}", task.TitleFirstLine);
+                Debug.WriteLine(": {0}", task.Title);
             }
 
-            Debug.WriteLine("> Nahrané připomenutí ({0}):", Tasks.Count((t) => {
+            Debug.WriteLine("> Nahrané připomenutí ({0}):", Tasks.Count((t) =>
+            {
                 ScheduledAction reminder = ScheduledActionService.Find(t.Uid);
                 if (reminder != null)
                 {
@@ -99,7 +89,7 @@ namespace SimpleTasks.ViewModels
 
         public void SaveTasks()
         {
-            Tasks.SaveToXmlFile(TaskCollection.DefaultDataFileName);
+            TaskCollection.SaveToFile(DataFileName, Tasks);
         }
 
         public void AddTask(TaskModel task)
@@ -110,13 +100,12 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(task);
             if (task.ReminderDate != null)
             {
-                ReminderHelper.Add(task.Uid, 
-                                   AppResources.ReminderTitle, 
-                                   task.Title, 
+                ReminderHelper.Add(task.Uid,
+                                   AppResources.ReminderTitle,
+                                   task.Title,
                                    task.ReminderDate.Value,
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
             }
-            //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
         public void UpdateTask(TaskModel oldTask, TaskModel newTask)
@@ -129,27 +118,21 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(newTask);
             if (newTask.ReminderDate != null)
             {
-                ReminderHelper.Add(newTask.Uid, 
+                ReminderHelper.Add(newTask.Uid,
                                    AppResources.ReminderTitle,
-                                   newTask.Title, 
-                                   newTask.ReminderDate.Value, 
+                                   newTask.Title,
+                                   newTask.ReminderDate.Value,
                                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));
             }
-            //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
         }
 
-        public void RemoveTask(TaskModel task, bool updateLiveTile = true)
+        public void RemoveTask(TaskModel task)
         {
             if (task == null)
                 throw new ArgumentNullException();
 
             Tasks.Remove(task);
             ReminderHelper.Remove(task.Uid);
-
-            if (updateLiveTile)
-            {
-                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
-            }
         }
 
         public void DeleteCompletedTasks(int days)
@@ -165,14 +148,13 @@ namespace SimpleTasks.ViewModels
                     }
                     else
                     {
-                        return false; 
+                        return false;
                     }
                 }).ToList();
                 foreach (TaskModel task in completedTasks)
                 {
-                    RemoveTask(task, false);
+                    RemoveTask(task);
                 }
-                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
             }
         }
 
@@ -184,10 +166,8 @@ namespace SimpleTasks.ViewModels
                 var completedTasks = Tasks.Where((t) => { return t.IsComplete; }).ToList();
                 foreach (TaskModel task in completedTasks)
                 {
-                    RemoveTask(task, false);
+                    RemoveTask(task);
                 }
-                //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, Tasks);
-                SaveTasks();
             }
         }
 

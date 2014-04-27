@@ -100,21 +100,18 @@ namespace SimpleTasks.Core.Helpers
                 TileTemplate tile = new SimpleListTile(4, 159, 159);
                 WriteableBitmap wb = tile.Render(tasks);
                 wb.WritePNG(stream);
-                //wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
             }
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + MediumTileFileName, System.IO.FileMode.Create))
             {
                 TileTemplate tile = new NormalListTile(7, 336, 336);
                 WriteableBitmap wb = tile.Render(tasks);
                 wb.WritePNG(stream);
-                //wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
             }
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + WideTileFileName, System.IO.FileMode.Create))
             {
                 TileTemplate tile = new WideListTile(7, 691, 336);
                 WriteableBitmap wb = tile.Render(tasks);
                 wb.WritePNG(stream);
-                //wb.SaveJpeg(stream, tile.Width, tile.Height, 0, 100);
             }
 
             FlipTileData flipTileData = new FlipTileData
@@ -132,12 +129,12 @@ namespace SimpleTasks.Core.Helpers
                 if (tile != null)
                 {
                     tile.Update(flipTileData);
-                    Debug.WriteLine("> Aktualizace živé dlaždice dokončena.");
+                    Debug.WriteLine(": Aktualizace živé dlaždice dokončena.");
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Debug.WriteLine("Chyba při aktualizaci živé dlaždice.");
+                Debug.WriteLine(": Chyba při aktualizaci živé dlaždice: {0}", e.Message);
             }
         }
 

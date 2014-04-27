@@ -13,11 +13,24 @@ using SimpleTasks.Core.Helpers;
 using System.Threading;
 using System.Globalization;
 using SimpleTasks.Helpers;
+using System.Reflection;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks
 {
     public partial class App : Application
     {
+        public static Version Version
+        {
+            get
+            {
+                AssemblyName nameHelper = new AssemblyName(Assembly.GetExecutingAssembly().FullName);
+                return nameHelper.Version;
+            }
+        }
+
+        public static bool IsFirstStart = false;
+
         private static Version Wp81Version = new Version(8, 10, 12359);
 
         public static bool IsWp81 { get { return Environment.OSVersion.Version >= Wp81Version; } }
@@ -37,7 +50,24 @@ namespace SimpleTasks
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             Debug.WriteLine("===== Application Launching =====");
-            Debug.WriteLine("> VERSION {0}", Environment.OSVersion.Version.ToString());
+            Debug.WriteLine("> OS VERSION {0}", Environment.OSVersion.Version);
+            Debug.WriteLine("> APP VERSION {0}", Version);
+
+            if (Settings.LastVersionSetting == null)
+            {
+                // První spuštění aplikace
+                // nebo spouštění staré verze, kdy se pro úkoly používal xml místo jsonu.
+                Settings.LastVersionSetting = Version.ToString();
+                IsFirstStart = true;
+
+                TaskCollection.ConvertOldXmlFile("TasksData.xml", ViewModel.DataFileName);
+            }
+            if (Settings.LastVersionSetting != Version.ToString())
+            {
+                // Aktualizace aplikace
+                Settings.LastVersionSetting = Version.ToString();
+            }
+
             ViewModel.LoadTasks();
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");
@@ -48,7 +78,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
-                ViewModel.LoadTasks();
+                //ViewModel.LoadTasks();
                 RootFrame.UriMapper = new MyUriMapper();
             }
             Debug.WriteLine("===== ===== ACTIVATED ===== =====");

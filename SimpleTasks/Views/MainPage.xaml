@@ -89,13 +89,8 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <!--<Path Width="60"
-                          Height="60"
-                          Fill="{StaticResource PhoneAccentBrush}"
-                          Data="M 0,0 L 32,0 L 0,32 Z" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    </Path>-->
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding TitleFirstLine}"
+                        <TextBlock Text="{Binding Title}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
                                    Opacity="1"
                                    Margin="20,10,20,0"/>
@@ -181,11 +176,11 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock Text="{Binding TitleDescription}"
+                                <TextBlock Text="{Binding Detail}"
                                            Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                            Opacity="0.8"
                                            Margin="20,0,20,0"
-                                           Visibility="{Binding TitleDescription, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                           Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                             </Grid>
                         </StackPanel>
                         <Border Margin="0,0,0,12"/>

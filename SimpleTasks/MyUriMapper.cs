@@ -16,13 +16,11 @@ namespace SimpleTasks
     {
         public override Uri MapUri(Uri uri)
         {
+            Debug.WriteLine("## URI MAPPER pracuje...");
             if (uri.OriginalString == "/Views/EntryPage.xaml")
             {
-                if (App.Settings.FirstStartSetting)
+                if (App.Settings.LastVersionSetting == null)
                 {
-                    App.Settings.FirstStartSetting = false;
-                    App.Settings.EnableLiveTileSetting = true;
-
                     uri = new Uri("/Views/MainPage.xaml", UriKind.Relative);
                 }
                 else
