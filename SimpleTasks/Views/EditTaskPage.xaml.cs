@@ -267,31 +267,33 @@ namespace SimpleTasks.Views
 
         #endregion
 
-        #region Task Title
+        #region Task Title a Detail TextBox
 
-        private void PhoneTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void TitleTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                //this.Focus();
+                DetailTextBox.Focus();
             }
         }
 
-        private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TitleAndDetailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             BuildTitleTextAppBar();
-            TitleTextBox.FontFamily = new FontFamily("Segoe WP");
             TitleTextBoxNoTextStoryboard.Stop();
             TitleTextBox.Opacity = 1;
         }
 
-        private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void TitleAndDetailTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            BuildAppBar();
-            if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
+            var focusedElement = FocusManager.GetFocusedElement();
+            if (focusedElement != TitleTextBox && focusedElement != DetailTextBox)
             {
-                TitleTextBox.FontFamily = new FontFamily("Segoe UI Symbol");
-                TitleTextBoxNoTextStoryboard.Begin();
+                BuildAppBar();
+                if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
+                {
+                    TitleTextBoxNoTextStoryboard.Begin();
+                }
             }
         }
 

@@ -267,6 +267,14 @@
           <source>when application starts</source>
           <target state="signed-off">při spuštění aplikace</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/Title" xml:space="preserve">
+          <source>Title</source>
+          <target state="signed-off">Název</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/Detail" xml:space="preserve">
+          <source>Detail</source>
+          <target state="signed-off">Detail</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteNever" xml:space="preserve">
           <source>never</source>
           <target state="signed-off">nikdy</target>

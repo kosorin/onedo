@@ -201,6 +201,14 @@
           <source>when application starts</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[09071][!!_ŵђêη àррľìćáтíõη šţàŗтŝ_!!!!!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/Title" xml:space="preserve">
+          <source>Title</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[19CE8][!!_Тíťłè_!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/Detail" xml:space="preserve">
+          <source>Detail</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[790DD][!!_Đęťáìļ_!!]</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteNever" xml:space="preserve">
           <source>never</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[20226][!!_ήéνéř_!!]</target>

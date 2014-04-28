@@ -48,7 +48,7 @@
         <Style x:Key="TitleTextBoxStyle" TargetType="toolkit:PhoneTextBox">
             <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
-            <Setter Property="Background" Value="{StaticResource PhoneSubtleBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
             <Setter Property="CaretBrush" Value="{StaticResource TitleCaretBrush}"/>
             <Setter Property="BorderThickness" Value="0,0,0,5" />
@@ -562,13 +562,12 @@
                     <!--Nadpis-->
                     <toolkit:PhoneTextBox x:Name="TitleTextBox"
                                           Text="{Binding CurrentTask.Title, Mode=TwoWay}"
-                                          Hint="&#8230;&#xe104;"
-                                          Margin="20,0"
-                                          KeyDown="PhoneTextBox_KeyDown" 
+                                          Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}"
+                                          KeyDown="TitleTextBox_KeyDown" 
                                           Style="{StaticResource TitleTextBoxStyle}" 
                                           FontFamily="Segoe UI Symbol" 
-                                          GotFocus="TitleTextBox_GotFocus" 
-                                          LostFocus="TitleTextBox_LostFocus">
+                                          GotFocus="TitleAndDetailTextBox_GotFocus" 
+                                          LostFocus="TitleAndDetailTextBox_LostFocus">
                         <toolkit:PhoneTextBox.Resources>
                             <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
                                 <DoubleAnimation Storyboard.TargetName="TitleTextBox"
@@ -586,6 +585,17 @@
                             </Storyboard>
                         </toolkit:PhoneTextBox.Resources>
                     </toolkit:PhoneTextBox>
+                    
+                    <!--Detail-->
+                    <toolkit:PhoneTextBox x:Name="DetailTextBox"
+                                          Margin="0,-15,0,0"
+                                          Text="{Binding CurrentTask.Detail, Mode=TwoWay}"
+                                          Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}"
+                                          AcceptsReturn="True"
+                                          Style="{StaticResource TitleTextBoxStyle}" 
+                                          FontFamily="Segoe UI Symbol" 
+                                          GotFocus="TitleAndDetailTextBox_GotFocus" 
+                                          LostFocus="TitleAndDetailTextBox_LostFocus" />
 
                     <!--Výběr termínu-->
                     <StackPanel Orientation="Vertical"
@@ -670,8 +680,8 @@
                               Visibility="{Binding CurrentTask.HasReminder, Mode=OneTime, 
                                            Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.Resources>
                                 <Storyboard x:Name="ReminderGridShow">
