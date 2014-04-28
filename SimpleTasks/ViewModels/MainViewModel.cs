@@ -100,11 +100,7 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(task);
             if (task.ReminderDate != null)
             {
-                ReminderHelper.Add(task.Uid,
-                                   AppResources.ReminderTitle,
-                                   task.Title,
-                                   task.ReminderDate.Value,
-                                   new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+                ReminderHelper.Add(task);
             }
         }
 
@@ -118,11 +114,7 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(newTask);
             if (newTask.ReminderDate != null)
             {
-                ReminderHelper.Add(newTask.Uid,
-                                   AppResources.ReminderTitle,
-                                   newTask.Title,
-                                   newTask.ReminderDate.Value,
-                                   new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", newTask.Uid), UriKind.Relative));
+                ReminderHelper.Add(newTask);
             }
         }
 

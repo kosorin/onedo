@@ -15,6 +15,7 @@ using System.Globalization;
 using SimpleTasks.Helpers;
 using System.Reflection;
 using SimpleTasks.Core.Models;
+using System.Collections.Generic;
 
 namespace SimpleTasks
 {
@@ -60,9 +61,14 @@ namespace SimpleTasks
                 Settings.LastVersionSetting = Version.ToString();
                 IsFirstStart = true;
 
-                TaskCollection.ConvertOldXmlFile("TasksData.xml", ViewModel.DataFileName);
+                var tasks = TaskCollection.ConvertOldXmlFile("TasksData.xml", ViewModel.DataFileName);
+                ReminderHelper.RemoveAll();
+                foreach (var task in ViewModel.Tasks)
+                {
+                    ReminderHelper.Add(task);
+                }
             }
-            if (Settings.LastVersionSetting != Version.ToString())
+            else if (Settings.LastVersionSetting != Version.ToString())
             {
                 // Aktualizace aplikace
                 Settings.LastVersionSetting = Version.ToString();

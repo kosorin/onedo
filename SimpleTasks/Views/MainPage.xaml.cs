@@ -26,8 +26,6 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = ViewModel = App.ViewModel;
 
-            //LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, ViewModel.Tasks);
-
             BuildLocalizedApplicationBar();
         }
 

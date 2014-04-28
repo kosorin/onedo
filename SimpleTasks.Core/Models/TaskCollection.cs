@@ -68,7 +68,7 @@ namespace SimpleTasks.Core.Models
             }
         }
 
-        public static void ConvertOldXmlFile(string oldFileName, string newFileName)
+        public static TaskCollection ConvertOldXmlFile(string oldFileName, string newFileName)
         {
             Debug.WriteLine(string.Format("> Konvertuji staré data ze souboru {0} do {1}...", oldFileName, newFileName));
 
@@ -188,6 +188,7 @@ namespace SimpleTasks.Core.Models
             }
 
             SaveToFile(newFileName, tasks);
+            return tasks;
         }
     }
 }
