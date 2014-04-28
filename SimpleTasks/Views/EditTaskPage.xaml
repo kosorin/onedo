@@ -638,7 +638,7 @@
                                                 Grid.Column="1"
                                                 Template="{StaticResource DueDatePresetPickerTemplate}"
                                                 Margin="0"
-                                                ItemsSource="{Binding PresetDueDateList}"
+                                                ItemsSource="{Binding DueDatePresetList}"
                                                 ExpansionMode="FullScreenOnly"
                                                 FullModeHeader="{Binding LocalizedResources.ChooseDueDate, Source={StaticResource LocalizedStrings}}"
                                                 FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"/>
@@ -714,6 +714,20 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
+        <Rectangle x:Name="PageOverlay"
+                   Fill="{StaticResource PhoneBackgroundBrush}"
+                   Opacity="0.65"
+                   Visibility="Collapsed">
+            <Rectangle.Resources>
+                <Storyboard x:Name="PageOverlayTransitionHide">
+                    <DoubleAnimation Storyboard.TargetName="PageOverlay"
+                                     Storyboard.TargetProperty="Opacity"
+                                     Duration="0:0:0.3"
+                                     To="0">
+                    </DoubleAnimation>
+                </Storyboard>
+            </Rectangle.Resources>
+        </Rectangle>
     </Grid>
 
 </phone:PhoneApplicationPage>

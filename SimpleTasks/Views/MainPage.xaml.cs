@@ -19,14 +19,12 @@ namespace SimpleTasks.Views
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        public MainViewModel ViewModel { get; private set; }
-
         public MainPage()
         {
             InitializeComponent();
-            DataContext = ViewModel = App.ViewModel;
+            DataContext = App.Tasks;
 
-            BuildLocalizedApplicationBar();
+            BuildAppBar();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -41,9 +39,11 @@ namespace SimpleTasks.Views
             base.OnNavigatedFrom(e);
             if (!e.IsNavigationInitiator)
             {
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, ViewModel.Tasks);
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
             }
         }
+
+        #region AppBar
 
         private ApplicationBarIconButton appBarNewTaskButton;
 
@@ -51,9 +51,7 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarCancelQuickButton;
 
-        #region AppBar
-
-        private void BuildLocalizedApplicationBar()
+        private void BuildAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
@@ -73,7 +71,7 @@ namespace SimpleTasks.Views
                 string title = QuickAddTextBox.Text;
                 if (!string.IsNullOrWhiteSpace(title))
                 {
-                    ViewModel.AddTask(new TaskModel() { Title = title });
+                    App.Tasks.Add(new TaskModel() { Title = title });
                     QuickAddTextBox.Text = "";
                     this.Focus();
                 }
@@ -90,7 +88,7 @@ namespace SimpleTasks.Views
 
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
-            appBarDeleteCompletedItem.Click += (s, e) => { OverlayAction(ViewModel.DeleteCompletedTasks); };
+            appBarDeleteCompletedItem.Click += (s, e) => { OverlayAction(App.Tasks.DeleteCompleted); };
             ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
 
             // Smazat všechny úkoly
@@ -116,7 +114,7 @@ namespace SimpleTasks.Views
 
             // Clear
             ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            appBarClearMenuItem.Click += (s, e) => { ViewModel.Tasks.Clear(); LiveTile.UpdateUI(ViewModel.Tasks); };
+            appBarClearMenuItem.Click += (s, e) => { App.Tasks.DeleteAll(); };
             ApplicationBar.MenuItems.Add(appBarClearMenuItem);
 #endif
             #endregion
@@ -137,7 +135,7 @@ namespace SimpleTasks.Views
                 switch (e1.Result)
                 {
                 case CustomMessageBoxResult.LeftButton:
-                    OverlayAction(ViewModel.DeleteAllTasks);
+                    OverlayAction(App.Tasks.DeleteAll);
                     break;
                 case CustomMessageBoxResult.RightButton:
                 case CustomMessageBoxResult.None:
@@ -157,28 +155,29 @@ namespace SimpleTasks.Views
 
         void appBarResetMenuItem_Click(object sender, EventArgs e)
         {
-            ViewModel.Tasks.Clear();
+            App.Tasks.DeleteAll();
 
             if (App.ForceDebugCulture == "en-US")
             {
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Go to the dentist",
                     DueDate = DateTimeExtensions.Today.AddDays(2)
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Call Chuck",
                     DueDate = DateTimeExtensions.Today.AddDays(0),
                     ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
                     Priority = TaskPriority.Low
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
-                    Title = "Go to cinema" + Environment.NewLine + "Amazing Spider-Man 2 or X-Men: Days of Future Past",
+                    Title = "Go to cinema",
+                    Detail = "Amazing Spider-Man 2 or X-Men: Days of Future Past",
                     ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Math project",
                     DueDate = DateTimeExtensions.Today.AddDays(9),
@@ -188,24 +187,25 @@ namespace SimpleTasks.Views
             }
             else if (App.ForceDebugCulture == "cs-CZ")
             {
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Jít k zubaři",
                     DueDate = DateTimeExtensions.Today.AddDays(2)
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Zavolat Honzovi",
                     DueDate = DateTimeExtensions.Today.AddDays(0),
                     ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
                     Priority = TaskPriority.Low
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
-                    Title = "Jít do kina" + Environment.NewLine + "Amazing Spider-Man 2 nebo X-Men: Days of Future Past",
+                    Title = "Jít do kina",
+                    Detail = "Amazing Spider-Man 2 nebo X-Men: Days of Future Past",
                     ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Projekt do matematiky",
                     DueDate = DateTimeExtensions.Today.AddDays(9),
@@ -215,24 +215,25 @@ namespace SimpleTasks.Views
             }
             else if (App.ForceDebugCulture == "sk-SK")
             {
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Ísť k zubárovi",
                     DueDate = DateTimeExtensions.Today.AddDays(2)
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Kúpiť mlieko",
                     DueDate = DateTimeExtensions.Today.AddDays(0),
                     ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
                     Priority = TaskPriority.Low
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
-                    Title = "Ísť do kina" + Environment.NewLine + "Amazing Spider-Man 2 alebo X-Men: Days of Future Past",
+                    Title = "Ísť do kina",
+                    Detail = "Amazing Spider-Man 2 alebo X-Men: Days of Future Past",
                     ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
                 });
-                ViewModel.Tasks.Add(new TaskModel()
+                App.Tasks.Add(new TaskModel()
                 {
                     Title = "Projekt z matematiky",
                     DueDate = DateTimeExtensions.Today.AddDays(9),
@@ -240,8 +241,6 @@ namespace SimpleTasks.Views
                     Priority = TaskPriority.High
                 });
             }
-
-            LiveTile.UpdateUI(ViewModel.Tasks);
         }
 
         private void OverlayAction(Action action)
@@ -261,6 +260,8 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
+        #region TasksList
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -285,6 +286,8 @@ namespace SimpleTasks.Views
             if (scrollBar != null)
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
         }
+
+        #endregion
 
         #region QuickAddTextBox
 

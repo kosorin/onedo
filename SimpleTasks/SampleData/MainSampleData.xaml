@@ -1,20 +1,20 @@
-﻿<vm:MainViewModel
+﻿<vm:TasksViewModel
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:vm="clr-namespace:SimpleTasks.ViewModels"
     xmlns:m="clr-namespace:SimpleTasks.Models"
     xmlns:md="clr-namespace:SimpleTasks.Core.Models;assembly=SimpleTasks.Core">
-    
-    <vm:MainViewModel.Tasks>
-        <md:TaskModel Title="Vynést odpadky&#13;Popis."     DueDate="2014-04-15" Priority="High"/>
-        <md:TaskModel Title="Zavolat Honzovi"               DueDate="2014-04-18" Priority="Low" ReminderDate="2014-04-19"/>
-        <md:TaskModel Title="Jít k zubaři&#13;Popis úkolu." DueDate="2014-04-01" Priority="Low" ReminderDate="2014-04-19" />
-        <md:TaskModel Title="Koupit nové CD&#13;Koupit nové CD Koupit nové CD Zavolat Honzovi Zavolat Honzovi" DueDate="2014-04-20" Priority="High" />
-        <md:TaskModel Title="Projekt do Matiky            " DueDate="2014-04-19" />
-        <md:TaskModel Title="Zaplatit nájem               " DueDate="2014-05-21" ReminderDate="2014-04-19" />
-        <md:TaskModel Title="Zasadit strom                " DueDate="2014-05-22" Priority="High" />
-        <md:TaskModel Title="Vyvenčit psy                 " DueDate="2014-04-23" />
-        <md:TaskModel Title="Vyzvednout děti ze školy     " DueDate="2014-04-29" Priority="Low"/>
-    </vm:MainViewModel.Tasks>
 
-</vm:MainViewModel>
+    <vm:TasksViewModel.Tasks>
+        <md:TaskModel Title="Vynést odpadky"    Detail="Popis." DueDate="2014-04-15" Priority="High"/>
+        <md:TaskModel Title="Zavolat Honzovi"   DueDate="2014-04-18" Priority="Low" ReminderDate="2014-04-19"/>
+        <md:TaskModel Title="Jít k zubaři"      Detail="Popis úkolu." DueDate="2014-04-01" Priority="Low" ReminderDate="2014-04-19" />
+        <md:TaskModel Title="Koupit nové CD"    Detail="Koupit nové CD Koupit nové CD Zavolat Honzovi Zavolat Honzovi" DueDate="2014-04-20" Priority="High" />
+        <md:TaskModel Title="Projekt do Matiky" DueDate="2014-04-19" />
+        <md:TaskModel Title="Zaplatit nájem"    DueDate="2014-05-21" ReminderDate="2014-04-19" />
+        <md:TaskModel Title="Zasadit strom"     DueDate="2014-05-22" Priority="High" />
+        <md:TaskModel Title="Vyvenčit psy"      DueDate="2014-04-23" />
+        <md:TaskModel Title="Vyzvednout děti"   DueDate="2014-04-29" Priority="Low"/>
+    </vm:TasksViewModel.Tasks>
+
+</vm:TasksViewModel>

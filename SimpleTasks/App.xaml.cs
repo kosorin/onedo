@@ -32,20 +32,20 @@ namespace SimpleTasks
 
         public static bool IsFirstStart = false;
 
-        private static Version Wp81Version = new Version(8, 10, 12359);
-
-        public static bool IsWp81 { get { return Environment.OSVersion.Version >= Wp81Version; } }
+        public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
 
         public static string ForceDebugCulture = "en-US";
 
         public static SettingsViewModel Settings { get; private set; }
 
-        public static MainViewModel ViewModel { get; private set; }
+        public static TasksViewModel Tasks { get; private set; }
 
         static App()
         {
+            Debug.WriteLine("===== Application Constructor =====");
+
             Settings = new SettingsViewModel();
-            ViewModel = new MainViewModel();
+            Tasks = new TasksViewModel();
         }
 
         private void Application_Launching(object sender, LaunchingEventArgs e)
@@ -61,12 +61,9 @@ namespace SimpleTasks
                 Settings.LastVersionSetting = Version.ToString();
                 IsFirstStart = true;
 
-                var tasks = TaskCollection.ConvertOldXmlFile("TasksData.xml", ViewModel.DataFileName);
-                ReminderHelper.RemoveAll();
-                foreach (var task in ViewModel.Tasks)
-                {
-                    ReminderHelper.Add(task);
-                }
+                #region DEPRECATED asi tak za měsíc nebo až vyjde Wp 8.1 toto smazat
+                TaskCollection.ConvertOldXmlFile("TasksData.xml", Tasks.DataFileName);
+                #endregion
             }
             else if (Settings.LastVersionSetting != Version.ToString())
             {
@@ -74,7 +71,12 @@ namespace SimpleTasks
                 Settings.LastVersionSetting = Version.ToString();
             }
 
-            ViewModel.LoadTasks();
+            Tasks.Load();
+            if (Settings.DeleteCompletedTasksDaysSetting >= 0)
+            {
+                Tasks.DeleteCompleted(Settings.DeleteCompletedTasksDaysSetting);
+            }
+
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");
         }
@@ -84,7 +86,12 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
-                //ViewModel.LoadTasks();
+                Tasks.Load();
+                if (Settings.DeleteCompletedTasksDaysSetting >= 0)
+                {
+                    Tasks.DeleteCompleted(Settings.DeleteCompletedTasksDaysSetting);
+                }
+
                 RootFrame.UriMapper = new MyUriMapper();
             }
             Debug.WriteLine("===== ===== ACTIVATED ===== =====");
@@ -93,19 +100,16 @@ namespace SimpleTasks
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
-            ViewModel.SaveTasks();
-
+            Tasks.Save();
             Debug.WriteLine("===== ===== DEACTIVATED ===== =====");
         }
 
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
-            ViewModel.SaveTasks();
-
+            Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
-
 
         #region Phone application initialization
 

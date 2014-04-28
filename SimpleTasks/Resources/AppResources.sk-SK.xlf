@@ -154,24 +154,24 @@
           <target state="signed-off">Predvolený termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
-          <source>1 day</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">1 deň</target>
+          <source>after 1 day</source>
+          <target state="signed-off">po 1 dni</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneWeek" xml:space="preserve">
-          <source>1 week</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">1 týždeň</target>
+          <source>after 1 week</source>
+          <target state="signed-off">po 1 týždni</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterThreeDays" xml:space="preserve">
-          <source>3 days</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">3 dni</target>
+          <source>after 3 days</source>
+          <target state="signed-off">po 3 dňoch</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoDays" xml:space="preserve">
-          <source>2 days</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">2 dni</target>
+          <source>after 2 days</source>
+          <target state="signed-off">po 2 dňoch</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-          <source>2 weeks</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">2 týždne</target>
+          <source>after 2 weeks</source>
+          <target state="signed-off">po 2 týždňoch</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
           <source>Delete completed tasks</source>
@@ -262,6 +262,14 @@
         <trans-unit translate="yes" id="Resx/SettingsTile" xml:space="preserve">
           <source>tile</source>
           <target state="signed-off" state-qualifier="tm-suggestion">dlaždice</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteWhenStarts" xml:space="preserve">
+          <source>when application starts</source>
+          <target state="signed-off">pri spustení aplikácie</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteNever" xml:space="preserve">
+          <source>never</source>
+          <target state="signed-off">nikdy</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsEnableTile" xml:space="preserve">
           <source>Enable tile</source>

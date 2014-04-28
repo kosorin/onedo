@@ -14,24 +14,11 @@ namespace SimpleTasks.ViewModels
 {
     public class EditTaskViewModel : BindableBase
     {
-        public bool IsOldTask { get; set; }
-
-        public TaskModel OldTask { get; set; }
-
-        public TaskModel CurrentTask { get; set; }
-
-        public List<KeyValuePair<string, DateTime>> PresetDueDateList { get; set; }
-
-        public EditTaskViewModel()
-            : this(null)
-        {
-        }
+        public EditTaskViewModel() : this(null) { }
 
         public EditTaskViewModel(TaskModel task)
         {
             OldTask = task;
-            CurrentTask = new TaskModel();
-
             if (OldTask != null)
             {
                 CurrentTask = OldTask.Clone();
@@ -39,39 +26,20 @@ namespace SimpleTasks.ViewModels
             }
             else
             {
+                CurrentTask = new TaskModel();
                 IsOldTask = false;
             }
 
-            PresetDueDateList = BuildDueDatePresetList();
+            BuildDueDatePresetList();
         }
 
-        private List<KeyValuePair<string, DateTime>> BuildDueDatePresetList()
-        {
-            List<KeyValuePair<string, DateTime>> items = new List<KeyValuePair<string, DateTime>>();
+        #region Tasks
 
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateToday, DateTimeExtensions.Today));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateTomorrow, DateTimeExtensions.Tomorrow));
+        public bool IsOldTask { get; set; }
 
-            int daysAfterTomorrow = 4;
-            for (int i = 1; i <= daysAfterTomorrow; i++)
-            {
-                DateTime date = DateTimeExtensions.Tomorrow.AddDays(i);
-                items.Add(new KeyValuePair<string, DateTime>(date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date));
-            }
+        public TaskModel OldTask { get; set; }
 
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisWeek, DateTimeExtensions.LastDayOfWeek));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextWeek, DateTimeExtensions.LastDayOfNextWeek));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonth, DateTimeExtensions.LastDayOfMonth));
-            items.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonth, DateTimeExtensions.LastDayOfNextMonth));
-
-            return items;
-        }
-
-        public void ActivateTask()
-        {
-            CurrentTask.CompletedDate = null;
-            SaveTask();
-        }
+        public TaskModel CurrentTask { get; set; }
 
         public void CompleteTask()
         {
@@ -84,17 +52,46 @@ namespace SimpleTasks.ViewModels
         {
             if (IsOldTask)
             {
-                App.ViewModel.UpdateTask(OldTask, CurrentTask);
+                App.Tasks.Update(OldTask, CurrentTask);
             }
             else
             {
-                App.ViewModel.AddTask(CurrentTask);
+                App.Tasks.Add(CurrentTask);
             }
         }
 
         public void DeleteTask()
         {
-            App.ViewModel.RemoveTask(OldTask);
+            App.Tasks.Delete(OldTask);
         }
+
+        #endregion
+
+        #region DueDatePresetList
+
+        public List<KeyValuePair<string, DateTime>> DueDatePresetList { get; set; }
+
+        private void BuildDueDatePresetList()
+        {
+            DueDatePresetList = new List<KeyValuePair<string, DateTime>>();
+
+            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateToday, DateTimeExtensions.Today));
+            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateTomorrow, DateTimeExtensions.Tomorrow));
+
+            int daysAfterTomorrow = 4;
+            for (int i = 1; i <= daysAfterTomorrow; i++)
+            {
+                DateTime date = DateTimeExtensions.Tomorrow.AddDays(i);
+                DueDatePresetList.Add(new KeyValuePair<string, DateTime>(date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date));
+            }
+
+            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisWeek, DateTimeExtensions.LastDayOfWeek));
+            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextWeek, DateTimeExtensions.LastDayOfNextWeek));
+            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonth, DateTimeExtensions.LastDayOfMonth));
+            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonth, DateTimeExtensions.LastDayOfNextMonth));
+
+        }
+
+        #endregion
     }
 }

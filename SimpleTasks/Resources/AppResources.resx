@@ -231,19 +231,19 @@
     <value>Default due date</value>
   </data>
   <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
-    <value>1 day</value>
+    <value>after 1 day</value>
   </data>
   <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
-    <value>1 week</value>
+    <value>after 1 week</value>
   </data>
   <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
-    <value>3 days</value>
+    <value>after 3 days</value>
   </data>
   <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
-    <value>2 days</value>
+    <value>after 2 days</value>
   </data>
   <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-    <value>2 weeks</value>
+    <value>after 2 weeks</value>
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
     <value>Delete completed tasks</value>
@@ -324,5 +324,11 @@
   </data>
   <data name="SettingsTile" xml:space="preserve">
     <value>tile</value>
+  </data>
+  <data name="SettingsDeleteNever" xml:space="preserve">
+    <value>never</value>
+  </data>
+  <data name="SettingsDeleteWhenStarts" xml:space="preserve">
+    <value>when application starts</value>
   </data>
 </root>

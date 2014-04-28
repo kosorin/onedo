@@ -38,12 +38,13 @@ namespace SimpleTasks.Views
             TaskModel task = null;
             if (this.NavigationContext.QueryString.ContainsKey("Task"))
             {
-                task = App.ViewModel.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
+                task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
             }
 
             ViewModel = new EditTaskViewModel(task);
             DataContext = ViewModel;
 
+            CreateAppBarItems();
             BuildAppBar();
 
             // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
@@ -65,6 +66,17 @@ namespace SimpleTasks.Views
                 this.Loaded -= firstTimeLoadHandler;
             };
             this.Loaded += firstTimeLoadHandler;
+
+            // Pokud je úkol dokončený, zobrazíme overlay
+            if (task != null && task.IsComplete)
+            {
+                PageOverlay.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            GoBack();
         }
 
         private bool CanSave()
@@ -113,47 +125,81 @@ namespace SimpleTasks.Views
 
         #region AppBar
 
+        private ApplicationBarIconButton appBarSaveButton;
+
+        private ApplicationBarIconButton appBarActivateButton;
+
+        private ApplicationBarIconButton appBarCompleteButton;
+
+        private ApplicationBarIconButton appBarDeleteButton;
+
+        private ApplicationBarIconButton appBarOkButton;
+
+        private void CreateAppBarItems()
+        {
+            appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
+            appBarSaveButton.Text = AppResources.AppBarSave;
+            appBarSaveButton.Click += appBarSaveButton_Click;
+
+            appBarActivateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.undo.curve.png", UriKind.Relative));
+            appBarActivateButton.Text = AppResources.AppBarActivate;
+            appBarActivateButton.Click += appBarActivateButton_Click;
+
+            appBarCompleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.checkmark.pencil.top.png", UriKind.Relative));
+            appBarCompleteButton.Text = AppResources.AppBarComplete;
+            appBarCompleteButton.Click += appBarCompleteButton_Click;
+
+            appBarDeleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.delete.png", UriKind.Relative));
+            appBarDeleteButton.Text = AppResources.AppBarDelete;
+            appBarDeleteButton.Click += appBarDeleteButton_Click;
+
+            appBarOkButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
+            appBarOkButton.Text = AppResources.AppBarOk;
+            appBarOkButton.Click += appBarOkButton_Click;
+        }
+
         private void BuildAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            ApplicationBarIconButton appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
-            appBarSaveButton.Text = AppResources.AppBarSave;
-            appBarSaveButton.Click += appBarSaveButton_Click;
-            ApplicationBar.Buttons.Add(appBarSaveButton);
             if (ViewModel.IsOldTask)
             {
                 if (ViewModel.CurrentTask.IsComplete)
                 {
-                    ApplicationBarIconButton appBarActivateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.undo.curve.png", UriKind.Relative));
-                    appBarActivateButton.Text = AppResources.AppBarActivate;
-                    appBarActivateButton.Click += appBarActivateButton_Click;
                     ApplicationBar.Buttons.Add(appBarActivateButton);
                 }
                 else
                 {
-                    ApplicationBarIconButton appBarCompleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.checkmark.pencil.top.png", UriKind.Relative));
-                    appBarCompleteButton.Text = AppResources.AppBarComplete;
-                    appBarCompleteButton.Click += appBarCompleteButton_Click;
+                    ApplicationBar.Buttons.Add(appBarSaveButton);
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
-
-                ApplicationBarIconButton appBarDeleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.delete.png", UriKind.Relative));
-                appBarDeleteButton.Text = AppResources.AppBarDelete;
-                appBarDeleteButton.Click += appBarDeleteButton_Click;
                 ApplicationBar.Buttons.Add(appBarDeleteButton);
             }
+            else
+            {
+                ApplicationBar.Buttons.Add(appBarSaveButton);
+            }
+        }
+
+        private void BuildTitleTextAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            // Ikony
+            ApplicationBar.Buttons.Add(appBarOkButton);
         }
 
         private void appBarActivateButton_Click(object sender, EventArgs e)
         {
-            if (CanSave())
+            PageOverlayTransitionHide.Completed += (s2, e2) =>
             {
-                PrepareSave();
-                ViewModel.ActivateTask();
-                GoBack();
-            }
+                PageOverlay.Visibility = Visibility.Collapsed;
+            };
+            PageOverlayTransitionHide.Begin();
+
+            ViewModel.CurrentTask.CompletedDate = null;
+            BuildAppBar();
         }
 
         private void appBarCompleteButton_Click(object sender, EventArgs e)
@@ -203,17 +249,6 @@ namespace SimpleTasks.Views
                 }
             };
             messageBox.Show();
-        }
-
-        private void BuildTitleTextAppBar()
-        {
-            ApplicationBar = new ApplicationBar();
-
-            // Ikony
-            ApplicationBarIconButton appBarOkButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
-            appBarOkButton.Text = AppResources.AppBarOk;
-            appBarOkButton.Click += appBarOkButton_Click;
-            ApplicationBar.Buttons.Add(appBarOkButton);
         }
 
         private void appBarOkButton_Click(object sender, EventArgs e)
@@ -366,10 +401,5 @@ namespace SimpleTasks.Views
         }
 
         #endregion
-
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            GoBack();
-        }
     }
 }

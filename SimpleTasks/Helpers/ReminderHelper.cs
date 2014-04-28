@@ -42,9 +42,29 @@ namespace SimpleTasks.Helpers
             }
         }
 
+        public static Reminder Get(TaskModel task)
+        {
+            return Get(task.Uid);
+        }
+
+        public static Reminder Get(string name)
+        {
+            return (Reminder)ScheduledActionService.Find(name);
+        }
+
+        public static bool Exists(TaskModel task)
+        {
+            return Exists(task.Uid);
+        }
+
         public static bool Exists(string name)
         {
             return ScheduledActionService.Find(name) != null;
+        }
+
+        public static void Remove(TaskModel task)
+        {
+            Remove(task.Uid);
         }
 
         public static void Remove(string name)
@@ -60,7 +80,6 @@ namespace SimpleTasks.Helpers
             var remiders = ScheduledActionService.GetActions<Reminder>();
             foreach (Reminder reminder in remiders)
             {
-                Debug.WriteLine("  mažu ---- " + reminder.Name);
                 ScheduledActionService.Remove(reminder.Name);
             }
         }

@@ -197,6 +197,14 @@
           <source>tile</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[79EAC][!!_тíłê_!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteWhenStarts" xml:space="preserve">
+          <source>when application starts</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[09071][!!_ŵђêη àррľìćáтíõη šţàŗтŝ_!!!!!!]</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsDeleteNever" xml:space="preserve">
+          <source>never</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[20226][!!_ήéνéř_!!]</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsEnableTile" xml:space="preserve">
           <source>Enable tile</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[DB9BB][!!_Èηãъĺê ţîłę_!!]</target>
@@ -218,24 +226,24 @@
           <target state="signed-off" state-qualifier="mt-suggestion">[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
-          <source>1 day</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">[71F15][!!_1 ðãý_!!]</target>
+          <source>after 1 day</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[71F15][!!_àƒтêŗ 1 ďàў_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneWeek" xml:space="preserve">
-          <source>1 week</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">[9EB39][!!_1 ŵêęк_!!]</target>
+          <source>after 1 week</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[9EB39][!!_àƒţéŕ 1 ẅèèќ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterThreeDays" xml:space="preserve">
-          <source>3 days</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">[D16AE][!!_3 ďàýš_!!]</target>
+          <source>after 3 days</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[D16AE][!!_âƒтęѓ 3 ðáÿŝ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoDays" xml:space="preserve">
-          <source>2 days</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">[FD01D][!!_2 ďáÿş_!!]</target>
+          <source>after 2 days</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[FD01D][!!_àƒτêř 2 ðàýś_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-          <source>2 weeks</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">[931EA][!!_2 ẅêéĸś_!!]</target>
+          <source>after 2 weeks</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">[931EA][!!_ãƒťéŗ 2 ẅéęќŝ_!!]</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteCompletedTasks" xml:space="preserve">
           <source>Delete completed tasks</source>

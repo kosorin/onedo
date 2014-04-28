@@ -17,15 +17,5 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = App.Settings;
         }
-
-        private void DeleteCompletedToggleSwitch_Checked(object sender, RoutedEventArgs e)
-        {
-            DeleteCompletedDaysShowStoryboard.Begin();
-        }
-
-        private void DeleteCompletedToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
-        {
-            DeleteCompletedDaysHideStoryboard.Begin();
-        }
     }
 }

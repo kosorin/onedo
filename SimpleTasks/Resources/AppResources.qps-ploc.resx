@@ -147,21 +147,11 @@
   <data name="SettingsDefaultDueDate" xml:space="preserve">
     <value>[478BC][!!_Ďêƒàûľť ðúê ðãтé_!!!!]</value>
   </data>
-  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
-    <value>[71F15][!!_1 ðãý_!!]</value>
-  </data>
-  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
-    <value>[9EB39][!!_1 ŵêęк_!!]</value>
-  </data>
-  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
-    <value>[D16AE][!!_3 ďàýš_!!]</value>
-  </data>
-  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
-    <value>[FD01D][!!_2 ďáÿş_!!]</value>
-  </data>
-  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-    <value>[931EA][!!_2 ẅêéĸś_!!]</value>
-  </data>
+  
+  
+  
+  
+  
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
     <value>[924BC][!!_₣ìŗşť đàŷ óƒ ŵèèк_!!!!!!]</value>
   </data>
@@ -279,4 +269,4 @@
   <data name="AppBarPinTile" xml:space="preserve">
     <value>[2E3A9][!!_рìη тįļê_!!]</value>
   </data>
-<data name="ReminderTitle" xml:space="preserve"><value>[18D2A][!!_Ťàśĸ ŗémìйđéř_!!]</value></data><data name="Reminder" xml:space="preserve"><value>[DD6CB][!!_řêmíиđèř_!!]</value></data><data name="PriorityLow" xml:space="preserve"><value>[78095][!!_ľòẅ ρŕìôѓîţУ_!!]</value></data><data name="DueDate" xml:space="preserve"><value>[10497][!!_đûę đáтê_!!]</value></data><data name="SettingsDefaultReminderTime" xml:space="preserve"><value>[0BBE5][!!_Đéƒáùľт řęмîηðęѓ ťįмé_!!!!!!]</value></data><data name="AppBarOk" xml:space="preserve"><value>[7347E][!!_õĸ_!!]</value></data><data name="AppBarDeleteAll" xml:space="preserve"><value>[12536][!!_ďęļèťę àļľ τãśќŝ_!!!!]</value></data><data name="DeleteAllTasksCaption" xml:space="preserve"><value>[58174][!!_Đéľêтê àłļ ťâşќš_!!!!]</value></data><data name="DeleteAllTasks" xml:space="preserve"><value>[157C8][!!_Ãŗê ÿòú şµřè ўõµ ẁàήţ ťó đęľèтè àłĺ τâšķş?_!!!!!!!!!!!!]</value></data><data name="DateUpcoming" xml:space="preserve"><value>[C6901][!!_ùрċóмìйğ_!!]</value></data><data name="DateSomeday" xml:space="preserve"><value>[A3059][!!_šõmêďáУ_!!]</value></data><data name="SettingsPinTile" xml:space="preserve"><value>[15650][!!_Įη тђé Âρр ļìšτ, ţàр áиđ ĥõľď ţћè Şîmрłé Ťãšкŝ âρρ, ãηď τĥęή тáþ Ρįη ţó ŝτàřţ._!!!!!!!!!!!!!!!!!!!!!!!!]</value></data><data name="SettingsTile" xml:space="preserve"><value>[79EAC][!!_тíłê_!!]</value></data><data name="SettingsEnableTile" xml:space="preserve"><value>[DB9BB][!!_Èηãъĺê ţîłę_!!]</value></data><data name="AppBarCancel" xml:space="preserve"><value>[7D6E1][!!_ćâήĉèł_!!]</value></data></root>
+<data name="ReminderTitle" xml:space="preserve"><value>[18D2A][!!_Ťàśĸ ŗémìйđéř_!!]</value></data><data name="Reminder" xml:space="preserve"><value>[DD6CB][!!_řêmíиđèř_!!]</value></data><data name="PriorityLow" xml:space="preserve"><value>[78095][!!_ľòẅ ρŕìôѓîţУ_!!]</value></data><data name="DueDate" xml:space="preserve"><value>[10497][!!_đûę đáтê_!!]</value></data><data name="SettingsDefaultReminderTime" xml:space="preserve"><value>[0BBE5][!!_Đéƒáùľт řęмîηðęѓ ťįмé_!!!!!!]</value></data><data name="AppBarOk" xml:space="preserve"><value>[7347E][!!_õĸ_!!]</value></data><data name="AppBarDeleteAll" xml:space="preserve"><value>[12536][!!_ďęļèťę àļľ τãśќŝ_!!!!]</value></data><data name="DeleteAllTasksCaption" xml:space="preserve"><value>[58174][!!_Đéľêтê àłļ ťâşќš_!!!!]</value></data><data name="DeleteAllTasks" xml:space="preserve"><value>[157C8][!!_Ãŗê ÿòú şµřè ўõµ ẁàήţ ťó đęľèтè àłĺ τâšķş?_!!!!!!!!!!!!]</value></data><data name="DateUpcoming" xml:space="preserve"><value>[C6901][!!_ùрċóмìйğ_!!]</value></data><data name="DateSomeday" xml:space="preserve"><value>[A3059][!!_šõmêďáУ_!!]</value></data><data name="SettingsPinTile" xml:space="preserve"><value>[15650][!!_Įη тђé Âρр ļìšτ, ţàр áиđ ĥõľď ţћè Şîmрłé Ťãšкŝ âρρ, ãηď τĥęή тáþ Ρįη ţó ŝτàřţ._!!!!!!!!!!!!!!!!!!!!!!!!]</value></data><data name="SettingsTile" xml:space="preserve"><value>[79EAC][!!_тíłê_!!]</value></data><data name="SettingsEnableTile" xml:space="preserve"><value>[DB9BB][!!_Èηãъĺê ţîłę_!!]</value></data><data name="AppBarCancel" xml:space="preserve"><value>[7D6E1][!!_ćâήĉèł_!!]</value></data><data name="SettingsDeleteWhenStarts" xml:space="preserve"><value>[09071][!!_ŵђêη àррľìćáтíõη šţàŗтŝ_!!!!!!]</value></data><data name="SettingsDeleteNever" xml:space="preserve"><value>[20226][!!_ήéνéř_!!]</value></data><data name="SettingsDeleteAfterOneDay" xml:space="preserve"><value>[71F15][!!_àƒтêŗ 1 ďàў_!!]</value></data><data name="SettingsDeleteAfterOneWeek" xml:space="preserve"><value>[9EB39][!!_àƒţéŕ 1 ẅèèќ_!!]</value></data><data name="SettingsDeleteAfterThreeDays" xml:space="preserve"><value>[D16AE][!!_âƒтęѓ 3 ðáÿŝ_!!]</value></data><data name="SettingsDeleteAfterTwoDays" xml:space="preserve"><value>[FD01D][!!_àƒτêř 2 ðàýś_!!]</value></data><data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve"><value>[931EA][!!_ãƒťéŗ 2 ẅéęќŝ_!!]</value></data></root>

@@ -511,7 +511,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 day.
+        ///   Looks up a localized string similar to after 1 day.
         /// </summary>
         public static string SettingsDeleteAfterOneDay {
             get {
@@ -520,7 +520,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 week.
+        ///   Looks up a localized string similar to after 1 week.
         /// </summary>
         public static string SettingsDeleteAfterOneWeek {
             get {
@@ -529,7 +529,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3 days.
+        ///   Looks up a localized string similar to after 3 days.
         /// </summary>
         public static string SettingsDeleteAfterThreeDays {
             get {
@@ -538,7 +538,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2 days.
+        ///   Looks up a localized string similar to after 2 days.
         /// </summary>
         public static string SettingsDeleteAfterTwoDays {
             get {
@@ -547,7 +547,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2 weeks.
+        ///   Looks up a localized string similar to after 2 weeks.
         /// </summary>
         public static string SettingsDeleteAfterTwoWeeks {
             get {
@@ -579,6 +579,24 @@ namespace SimpleTasks.Resources {
         public static string SettingsDeleteCompletedTasksInfo {
             get {
                 return ResourceManager.GetString("SettingsDeleteCompletedTasksInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to never.
+        /// </summary>
+        public static string SettingsDeleteNever {
+            get {
+                return ResourceManager.GetString("SettingsDeleteNever", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to when application starts.
+        /// </summary>
+        public static string SettingsDeleteWhenStarts {
+            get {
+                return ResourceManager.GetString("SettingsDeleteWhenStarts", resourceCulture);
             }
         }
         

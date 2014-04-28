@@ -75,7 +75,7 @@
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Value}"
                                                    Style="{StaticResource PhoneTextExtraLargeStyle}"
-                                                   Margin="12,20,12,0"/>
+                                                   Margin="0,15"/>
                                     </DataTemplate>
                                 </toolkit:ListPicker.FullModeItemTemplate>
                                 <toolkit:ListPicker.ItemTemplate>
@@ -91,50 +91,33 @@
                                             Value="{Binding DefaultReminderTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
 
                         <!--Automatically delete completed tasks-->
-                        <StackPanel Margin="0,0,0,12">
-                            <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}"
-							                      IsChecked="{Binding DeleteCompletedTasksSetting, Mode=TwoWay, FallbackValue=True}"
-                                                  x:Name="DeleteCompletedToggleSwitch" 
-                                                  Margin="0,0,0,-20" 
-                                                  Checked="DeleteCompletedToggleSwitch_Checked" 
-                                                  Unchecked="DeleteCompletedToggleSwitch_Unchecked" />
-                            <StackPanel x:Name="DeleteCompletedDaysPanel"
-                                        Opacity="{Binding Path=IsChecked, 
-                                                          ElementName=DeleteCompletedToggleSwitch, 
-                                                          Converter={StaticResource BooleanToNumberConverter},
-                                                          Mode=OneTime}">
-                                <StackPanel.Resources>
-                                    <Storyboard x:Name="DeleteCompletedDaysShowStoryboard">
-                                        <DoubleAnimation Storyboard.TargetName="DeleteCompletedDaysPanel" 
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                    <Storyboard x:Name="DeleteCompletedDaysHideStoryboard">
-                                        <DoubleAnimation Storyboard.TargetName="DeleteCompletedDaysPanel" 
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </StackPanel.Resources>
-                                <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasksDays, Source={StaticResource LocalizedStrings}}" 
-                                           Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                <toolkit:ListPicker x:Name="DaysPicker" 
-                                                    ItemsSource="{Binding DaysPickerItems, Mode=OneTime}"
-                                                    SelectedItem="{Binding DaysPickerSelectedItem, Mode=TwoWay}" 
-                                                    Margin="12,0,12,12">
-                                    <toolkit:ListPicker.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Value}" />
-                                        </DataTemplate>
-                                    </toolkit:ListPicker.ItemTemplate>
-                                </toolkit:ListPicker>
-                                <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasksInfo, Source={StaticResource LocalizedStrings}}" 
-                                           Style="{StaticResource PhoneTextSubtleStyle}"
-                                           TextWrapping="Wrap"/>
-                            </StackPanel>
+                        <StackPanel x:Name="DeleteCompletedDaysPanel"
+                                    Margin="0,0,0,12">
+                            <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}" 
+                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <toolkit:ListPicker x:Name="DaysPicker" 
+                                                ItemsSource="{Binding DaysPickerItems, Mode=OneTime}"
+                                                SelectedItem="{Binding DaysPickerSelectedItem, Mode=TwoWay}" 
+                                                Margin="12,0,12,12"
+                                                FullModeHeader="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}">
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Value}" />
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                                <toolkit:ListPicker.FullModeItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Value}"
+                                                   Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                                   Margin="0,15"/>
+                                    </DataTemplate>
+                                </toolkit:ListPicker.FullModeItemTemplate>
+                            </toolkit:ListPicker>
+                            <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasksInfo, Source={StaticResource LocalizedStrings}}" 
+                                       Style="{StaticResource PhoneTextSubtleStyle}"
+                                       TextWrapping="Wrap"/>
                         </StackPanel>
-
+                        
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
@@ -145,9 +128,7 @@
                     <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
 							              IsChecked="{Binding EnableLiveTileSetting, Mode=TwoWay, FallbackValue=True}"
                                           x:Name="EnableLiveTileToggleSwitch" 
-                                          Margin="0,0,0,-20" 
-                                          Checked="DeleteCompletedToggleSwitch_Checked" 
-                                          Unchecked="DeleteCompletedToggleSwitch_Unchecked" />
+                                          Margin="0,0,0,-20" />
                     <TextBlock Text="{Binding LocalizedResources.SettingsPinTile, Source={StaticResource LocalizedStrings}}" 
                                Style="{StaticResource PhoneTextSubtleStyle}"
                                TextWrapping="Wrap"/>

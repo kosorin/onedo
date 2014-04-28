@@ -233,7 +233,7 @@ namespace SimpleTasks.ViewModels
             {
                 if (AddOrUpdateValue(EnableLiveTileKeyName, value))
                 {
-                    LiveTile.UpdateOrReset(value, App.ViewModel.Tasks, true);
+                    LiveTile.UpdateOrReset(value, App.Tasks.Tasks, true);
                     Save();
                 }
             }
@@ -297,24 +297,7 @@ namespace SimpleTasks.ViewModels
 
         #endregion FirstDayOfWeek
 
-        #region DeleteCompletedTasks
-
-        private const string DeleteCompletedTasksKeyName = "DeleteCompletedTasks";
-        private const bool DeleteCompletedTasksDefault = true;
-        public bool DeleteCompletedTasksSetting
-        {
-            get
-            {
-                return GetValueOrDefault<bool>(DeleteCompletedTasksKeyName, DeleteCompletedTasksDefault);
-            }
-            set
-            {
-                if (AddOrUpdateValue(DeleteCompletedTasksKeyName, value))
-                {
-                    Save();
-                }
-            }
-        }
+        #region DeleteCompleted
 
         private const string DeleteCompletedTasksDaysKeyName = "DeleteCompletedTasksDays";
         private const int DeleteCompletedTasksDaysDefault = 3;
@@ -333,8 +316,6 @@ namespace SimpleTasks.ViewModels
             }
         }
 
-        public List<KeyValuePair<int, string>> DaysPickerItems { get; private set; }
-
         private KeyValuePair<int, string> _daysPickerSelectedItem;
         public KeyValuePair<int, string> DaysPickerSelectedItem
         {
@@ -349,12 +330,15 @@ namespace SimpleTasks.ViewModels
             }
         }
 
+        public List<KeyValuePair<int, string>> DaysPickerItems { get; private set; }
+
         private void SetDaysPicker()
         {
             DaysPickerItems = new List<KeyValuePair<int, string>>();
-            DaysPickerItems.Add(new KeyValuePair<int, string>(0, "ihned"));
+            DaysPickerItems.Add(new KeyValuePair<int, string>(-1, AppResources.SettingsDeleteNever));
+            DaysPickerItems.Add(new KeyValuePair<int, string>(0, AppResources.SettingsDeleteWhenStarts));
             DaysPickerItems.Add(new KeyValuePair<int, string>(1, AppResources.SettingsDeleteAfterOneDay));
-            //DaysPickerItems.Add(new KeyValuePair<int, string>(2, AppResources.SettingsDeleteAfterTwoDays));
+            DaysPickerItems.Add(new KeyValuePair<int, string>(2, AppResources.SettingsDeleteAfterTwoDays));
             DaysPickerItems.Add(new KeyValuePair<int, string>(3, AppResources.SettingsDeleteAfterThreeDays));
             DaysPickerItems.Add(new KeyValuePair<int, string>(7, AppResources.SettingsDeleteAfterOneWeek));
             DaysPickerItems.Add(new KeyValuePair<int, string>(14, AppResources.SettingsDeleteAfterTwoWeeks));
@@ -366,6 +350,6 @@ namespace SimpleTasks.ViewModels
                 DaysPickerSelectedItem = DaysPickerItems.First();
         }
 
-        #endregion DeleteCompletedTasks
+        #endregion DeleteCompleted
     }
 }

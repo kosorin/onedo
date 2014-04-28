@@ -5,11 +5,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace SimpleTasks.Core.Models
@@ -68,7 +64,8 @@ namespace SimpleTasks.Core.Models
             }
         }
 
-        public static TaskCollection ConvertOldXmlFile(string oldFileName, string newFileName)
+        #region DEPRECATED asi tak za měsíc nebo až vyjde Wp 8.1 toto smazat
+        public static void ConvertOldXmlFile(string oldFileName, string newFileName)
         {
             Debug.WriteLine(string.Format("> Konvertuji staré data ze souboru {0} do {1}...", oldFileName, newFileName));
 
@@ -188,7 +185,7 @@ namespace SimpleTasks.Core.Models
             }
 
             SaveToFile(newFileName, tasks);
-            return tasks;
         }
+        #endregion
     }
 }
