@@ -71,9 +71,11 @@ namespace SimpleTasks.Views
                 string title = QuickAddTextBox.Text;
                 if (!string.IsNullOrWhiteSpace(title))
                 {
-                    App.Tasks.Add(new TaskModel() { Title = title });
+                    TaskModel task = new TaskModel() { Title = title };
+                    App.Tasks.Add(task);
                     QuickAddTextBox.Text = "";
                     this.Focus();
+                    TasksLongListSelector.ScrollTo(task);
                 }
             };
 
@@ -146,11 +148,6 @@ namespace SimpleTasks.Views
 
 
             messageBox.Show();
-        }
-
-        private void SetAppBarLiveTileItem(ApplicationBarMenuItem appBarItem)
-        {
-
         }
 
         void appBarResetMenuItem_Click(object sender, EventArgs e)
