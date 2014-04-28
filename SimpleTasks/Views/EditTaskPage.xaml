@@ -568,8 +568,7 @@
                                           Style="{StaticResource TitleTextBoxStyle}" 
                                           FontFamily="Segoe UI Symbol" 
                                           GotFocus="TitleTextBox_GotFocus" 
-                                          LostFocus="TitleTextBox_LostFocus"
-                                          AcceptsReturn="True">
+                                          LostFocus="TitleTextBox_LostFocus">
                         <toolkit:PhoneTextBox.Resources>
                             <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
                                 <DoubleAnimation Storyboard.TargetName="TitleTextBox"
