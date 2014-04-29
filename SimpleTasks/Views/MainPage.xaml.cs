@@ -25,6 +25,7 @@ namespace SimpleTasks.Views
             DataContext = App.Tasks;
 
             BuildAppBar();
+            TasksSlideView.SelectedIndex = _tasksSlideViewIndex;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -40,6 +41,15 @@ namespace SimpleTasks.Views
             if (!e.IsNavigationInitiator)
             {
                 LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
+            }
+        }
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (TasksSlideView.SelectedIndex == _tagsSlideViewIndex)
+            {
+                TasksSlideView.SelectedIndex = _tasksSlideViewIndex;
+                e.Cancel = true;
             }
         }
 
@@ -286,6 +296,15 @@ namespace SimpleTasks.Views
 
         #endregion
 
+        #region TagList
+
+        private void TagListControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region QuickAddTextBox
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -312,5 +331,32 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
+        #region SlideView
+
+        private int _tagsSlideViewIndex = 1;
+
+        private int _tasksSlideViewIndex = 0;
+
+        private void SlideView_SelectionChanged(object sender, EventArgs e)
+        {
+            this.Focus();
+            if (TasksSlideView.SelectedIndex == _tagsSlideViewIndex)
+            {
+                TasksPageOverlay.Visibility = Visibility.Visible;
+                TasksPageOverlayTransitionShow.Begin();
+            }
+            else
+            {
+                TasksPageOverlayTransitionHide.Completed += (s2, e2) =>
+                {
+                    TasksPageOverlay.Visibility = Visibility.Collapsed;
+                };
+                TasksPageOverlayTransitionHide.Begin();
+            }
+        }
+
+        #endregion
+
     }
 }

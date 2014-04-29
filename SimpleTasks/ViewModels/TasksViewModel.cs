@@ -42,6 +42,19 @@ namespace SimpleTasks.ViewModels
             }
         }
 
+        public List<Tag> Tags
+        {
+            get
+            {
+                return new List<Tag>() 
+                { 
+                    new Tag() { Name = "dokončené" },
+                    new Tag() { Name = "škola" },
+                    new Tag() { Name = "všechny" }
+                };
+            }
+        }
+
         public TasksViewModel()
         {
         }
