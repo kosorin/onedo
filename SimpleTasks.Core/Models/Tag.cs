@@ -1,6 +1,7 @@
 ﻿using SimpleTasks.Core.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,20 @@ namespace SimpleTasks.Core.Models
         {
             get { return (new Random()).Next(100); }
             set { SetProperty(ref _count, value); }
+        }
+
+        public Func<TaskModel, bool> Predicate { get; set; }
+
+        private ReadOnlyCollection<TaskModel> _tasks;
+
+        public Tag(ReadOnlyCollection<TaskModel> tasks)
+        {
+            _tasks = tasks;
+
+            Predicate = (task) =>
+            {
+                return task.Tags.Contains(Name);
+            };
         }
     }
 }

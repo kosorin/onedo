@@ -300,9 +300,7 @@
 
     <slide:SlideView x:Name="TasksSlideView" SelectionChanged="SlideView_SelectionChanged">
 
-
-
-        <Grid x:Name="LayoutRoot" 
+        <Grid x:Name="TasksRoot" 
               Background="{StaticResource ApplicationBackgroundBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -535,12 +533,12 @@
         </Grid>
         
         <Grid x:Name="TagRoot"
-              Width="400">
+              Width="420">
             <Grid.Background>
                 <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" Opacity="0.3" />
             </Grid.Background>
 
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

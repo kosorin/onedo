@@ -5,6 +5,7 @@ using SimpleTasks.Helpers;
 using SimpleTasks.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -25,11 +26,21 @@ namespace SimpleTasks.ViewModels
             {
                 SetProperty(ref _tasks, value);
                 OnPropertyChanged(GroupedTasksPropertyString);
+                OnPropertyChanged(TagsPropertyString);
 
                 if (_tasks != null)
                 {
                     _tasks.CollectionChanged += (s, e) => { OnPropertyChanged(GroupedTasksPropertyString); };
+                    _tasks.CollectionChanged += (s, e) => { OnPropertyChanged(TagsPropertyString); };
                 }
+            }
+        }
+
+        public ReadOnlyCollection<TaskModel> ReadOnlyTasks
+        {
+            get
+            {
+                return new ReadOnlyCollection<TaskModel>(_tasks);
             }
         }
 
@@ -42,6 +53,7 @@ namespace SimpleTasks.ViewModels
             }
         }
 
+        private const string TagsPropertyString = "Tags";
         public List<Tag> Tags
         {
             get

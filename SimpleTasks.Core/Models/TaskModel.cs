@@ -1,5 +1,6 @@
 ﻿using SimpleTasks.Core.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace SimpleTasks.Core.Models
@@ -151,6 +152,22 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _completedDate, value);
+            }
+        }
+        #endregion
+
+        #region Tags
+        private List<string> _tags = new List<string>();
+        [DataMember(Order = 2)]
+        public List<string> Tags
+        {
+            get
+            {
+                return _tags;
+            }
+            set
+            {
+                SetProperty(ref _tags, value);
             }
         }
         #endregion
