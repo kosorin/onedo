@@ -32,6 +32,8 @@ namespace SimpleTasks.Views
             base.OnNavigatedTo(e);
 
             NavigationService.RemoveBackEntry();
+
+            App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -264,17 +266,42 @@ namespace SimpleTasks.Views
 
         #region TasksList
 
-        private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LongListSelector selector = sender as LongListSelector;
-            if (selector == null)
-                return;
+        private bool completeButtonTapped = false;
 
-            TaskModel task = selector.SelectedItem as TaskModel;
+        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            completeButtonTapped = true;
+
+            TaskModel task = (sender as ToggleButton).DataContext as TaskModel;
             if (task == null)
                 return;
+            TasksLongListSelector.SelectedItem = null;
 
-            selector.SelectedItem = null;
+            if (task.CompletedDate == null)
+            {
+                task.CompletedDate = DateTime.Now;
+                task.ReminderDate = null;
+            }
+            else
+            {
+                task.CompletedDate = null;
+            }
+            App.Tasks.Update(task);
+            TasksLongListSelector.Focus();
+        }
+
+        private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TaskModel task = TasksLongListSelector.SelectedItem as TaskModel;
+            if (task == null)
+                return;
+            TasksLongListSelector.SelectedItem = null;
+
+            if (completeButtonTapped)
+            {
+                completeButtonTapped = false;
+                return;
+            }
 
             NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
@@ -316,5 +343,7 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
+        
     }
 }

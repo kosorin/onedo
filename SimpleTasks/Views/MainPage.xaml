@@ -86,19 +86,93 @@
                     BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}">
                 <Grid Opacity="{Binding Converter={StaticResource TaskToOpacityConverter}}">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
-                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical">
+                    <ToggleButton Margin="12,15,2,0" 
+                                  IsChecked="{Binding IsComplete}"
+                                  Click="CompleteButton_Click">
+                        <ToggleButton.Template>
+                            <ControlTemplate>
+                                <Grid Width="40"
+                                      Height="40"
+                                      VerticalAlignment="Top">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal"/>
+                                            <VisualState x:Name="Disabled"/>
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="CheckStates">
+                                            <VisualState x:Name="Unchecked">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.4"
+                                                                     To="0"
+                                                                     Storyboard.TargetProperty="Opacity" 
+                                                                     Storyboard.TargetName="CompleteIcon" 
+                                                                     d:IsOptimized="True"/>
+                                                    <ColorAnimation Duration="0:0:0.4"
+                                                                    To="{StaticResource PhoneAccentColor}"
+                                                                    Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
+                                                                    Storyboard.TargetName="CompleteButtonRectangle" 
+                                                                    d:IsOptimized="True"/>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Checked">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.4"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity" 
+                                                                     Storyboard.TargetName="CompleteIcon" 
+                                                                     d:IsOptimized="True"/>
+                                                    <ColorAnimation Duration="0:0:0.4"
+                                                                    To="{StaticResource PhoneSubtleColor}"
+                                                                    Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
+                                                                    Storyboard.TargetName="CompleteButtonRectangle" 
+                                                                    d:IsOptimized="True"/>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="FocusStates"/>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="CompleteButtonRectangle" >
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                                             Opacity="0.24"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.Stroke>
+                                            <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                                             Opacity="0.8"/>
+                                        </Rectangle.Stroke>
+                                    </Rectangle>
+
+                                    <controls:Icon x:Name="CompleteIcon"
+                                                   Style="{StaticResource CheckIconStyle}"
+                                                   Color="{StaticResource PhoneSubtleBrush}"
+                                                   Margin="0,0,0,0"
+                                                   Opacity="0"
+                                                   MaxHeight="0"
+                                                   MaxWidth="0"
+                                                   RenderTransformOrigin="0,0">
+                                        <controls:Icon.RenderTransform>
+                                            <CompositeTransform ScaleX="0.75" ScaleY="0.75" TranslateY="-22" TranslateX="-22" />
+                                        </controls:Icon.RenderTransform>
+                                    </controls:Icon>
+                                </Grid>
+                            </ControlTemplate>
+                        </ToggleButton.Template>
+                    </ToggleButton>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="1">
                         <TextBlock Text="{Binding Title}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
                                    Opacity="1"
-                                   Margin="20,10,20,0"/>
+                                   Margin="8,10,20,0"/>
                         <StackPanel Orientation="Vertical">
                             <Grid MaxHeight="32"
-                                    Margin="12,-2,0,8">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Horizontal"
+                                  Margin="0,-2,0,8">
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <!--<StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <controls:Icon Style="{StaticResource CheckIconStyle}"
                                                        Color="{StaticResource PhoneSubtleBrush}"
@@ -111,7 +185,7 @@
                                         </controls:Icon>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
                                                    Text="{Binding LocalizedResources.DateCompleted, Source={StaticResource LocalizedStrings}}"/>
-                                    </StackPanel>
+                                    </StackPanel>-->
                                     <StackPanel Orientation="Horizontal" 
                                                 Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <StackPanel Orientation="Horizontal"
@@ -179,7 +253,7 @@
                                 <TextBlock Text="{Binding Detail}"
                                            Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                            Opacity="0.8"
-                                           Margin="20,0,20,0"
+                                           Margin="8,0,20,0"
                                            Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
                             </Grid>
                         </StackPanel>

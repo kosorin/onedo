@@ -129,9 +129,11 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _reminderDate, value);
+                OnPropertyChanged(HasReminderName);
             }
         }
 
+        private string HasReminderName = "HasReminder";
         public bool HasReminder { get { return ReminderDate != null; } }
         #endregion
 

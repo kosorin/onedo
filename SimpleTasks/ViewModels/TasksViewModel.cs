@@ -33,7 +33,7 @@ namespace SimpleTasks.ViewModels
             }
         }
 
-        private const string GroupedTasksPropertyString = "GroupedTasks";
+        public string GroupedTasksPropertyString = "GroupedTasks";
         public List<TaskKeyGroup> GroupedTasks
         {
             get
@@ -79,6 +79,17 @@ namespace SimpleTasks.ViewModels
             {
                 ReminderHelper.Add(task);
             }
+        }
+
+        public void Update(TaskModel task)
+        {
+            ReminderHelper.Remove(task);
+            if (task.ReminderDate != null)
+            {
+                ReminderHelper.Add(task);
+            }
+
+            //OnPropertyChanged(GroupedTasksPropertyString);
         }
 
         public void Update(TaskModel oldTask, TaskModel newTask)
