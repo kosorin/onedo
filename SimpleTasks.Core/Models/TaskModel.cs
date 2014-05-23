@@ -136,8 +136,10 @@ namespace SimpleTasks.Core.Models
         #endregion
 
         #region Complete
+        private string IsCompleteName = "IsComplete";
         public bool IsComplete { get { return CompletedDate != null; } }
 
+        private string IsActiveName = "IsActive";
         public bool IsActive { get { return CompletedDate == null; } }
 
         private DateTime? _completedDate = null;
@@ -151,6 +153,8 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _completedDate, value);
+                OnPropertyChanged(IsCompleteName);
+                OnPropertyChanged(IsActiveName);
             }
         }
         #endregion
