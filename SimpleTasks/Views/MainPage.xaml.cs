@@ -71,7 +71,11 @@ namespace SimpleTasks.Views
                 string title = QuickAddTextBox.Text;
                 if (!string.IsNullOrWhiteSpace(title))
                 {
-                    TaskModel task = new TaskModel() { Title = title };
+                    TaskModel task = new TaskModel()
+                    {
+                        Title = title,
+                        DueDate = App.Settings.DefaultDueDateSettingToDateTime
+                    };
                     App.Tasks.Add(task);
                     QuickAddTextBox.Text = "";
                     this.Focus();
