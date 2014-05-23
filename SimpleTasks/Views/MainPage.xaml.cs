@@ -14,6 +14,7 @@ using System.Diagnostics;
 using SimpleTasks.Core.Models;
 using Microsoft.Phone.Scheduler;
 using SimpleTasks.Helpers;
+using System.Collections.Generic;
 
 namespace SimpleTasks.Views
 {
@@ -24,7 +25,8 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = App.Tasks;
 
-            BuildAppBar();
+            CreateAppBarItems();
+            BuildTasksdAppBar();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -34,6 +36,8 @@ namespace SimpleTasks.Views
             NavigationService.RemoveBackEntry();
 
             App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
+
+            TasksSlideView.SelectedIndex = _tasksSlideViewIndex;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -45,6 +49,15 @@ namespace SimpleTasks.Views
             }
         }
 
+        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (TasksSlideView.SelectedIndex == _tagsSlideViewIndex)
+            {
+                TasksSlideView.SelectedIndex = _tasksSlideViewIndex;
+                e.Cancel = true;
+            }
+        }
+
         #region AppBar
 
         private ApplicationBarIconButton appBarNewTaskButton;
@@ -53,19 +66,15 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarCancelQuickButton;
 
-        private void BuildAppBar()
+        private List<ApplicationBarMenuItem> appBarMenuItems;
+
+        private void CreateAppBarItems()
         {
-            ApplicationBar = new ApplicationBar();
-
             #region Ikony
-
-            // Přidat úkol
             appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
             appBarNewTaskButton.Text = AppResources.AppBarNew;
             appBarNewTaskButton.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative)); };
-            ApplicationBar.Buttons.Add(appBarNewTaskButton);
 
-            // Uložit rychlý úkol
             appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
             appBarSaveQuickButton.Text = AppResources.AppBarSave;
             appBarSaveQuickButton.Click += (s, e) =>
@@ -85,47 +94,63 @@ namespace SimpleTasks.Views
                 }
             };
 
-            // Zrušit rychlý úkol
             appBarCancelQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.close.png", UriKind.Relative));
             appBarCancelQuickButton.Text = AppResources.AppBarCancel;
             appBarCancelQuickButton.Click += (s, e) => { QuickAddTextBox.Text = ""; this.Focus(); };
-
             #endregion
 
             #region Menu
 
+            appBarMenuItems = new List<ApplicationBarMenuItem>();
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
             appBarDeleteCompletedItem.Click += (s, e) => { OverlayAction(App.Tasks.DeleteCompleted); };
-            ApplicationBar.MenuItems.Add(appBarDeleteCompletedItem);
+            appBarMenuItems.Add(appBarDeleteCompletedItem);
 
             // Smazat všechny úkoly
             ApplicationBarMenuItem appBarDeleteAllItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteAll);
             appBarDeleteAllItem.Click += appBarDeleteAllItem_Click;
-            ApplicationBar.MenuItems.Add(appBarDeleteAllItem);
+            appBarMenuItems.Add(appBarDeleteAllItem);
 
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
             appBarSettingsMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.Relative)); };
-            ApplicationBar.MenuItems.Add(appBarSettingsMenuItem);
+            appBarMenuItems.Add(appBarSettingsMenuItem);
 
             // O aplikaci
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
             appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
-            ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
+            appBarMenuItems.Add(appBarAboutMenuItem);
 
 #if DEBUG
             // Reset
             ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
             appBarResetMenuItem.Click += appBarResetMenuItem_Click;
-            ApplicationBar.MenuItems.Add(appBarResetMenuItem);
+            appBarMenuItems.Add(appBarResetMenuItem);
 
             // Clear
             ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
             appBarClearMenuItem.Click += (s, e) => { App.Tasks.DeleteAll(); };
-            ApplicationBar.MenuItems.Add(appBarClearMenuItem);
+            appBarMenuItems.Add(appBarClearMenuItem);
 #endif
             #endregion
+        }
+
+        private void BuildTasksdAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBar.Buttons.Add(appBarNewTaskButton);
+
+            foreach (var item in appBarMenuItems)
+            {
+                ApplicationBar.MenuItems.Add(item);
+            }
+        }
+
+        private void BuildTagsAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
         }
 
         void appBarDeleteAllItem_Click(object sender, EventArgs e)
@@ -317,6 +342,15 @@ namespace SimpleTasks.Views
 
         #endregion
 
+        #region TagList
+
+        private void TagListControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region QuickAddTextBox
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -344,6 +378,35 @@ namespace SimpleTasks.Views
 
         #endregion
 
-        
+        #region SlideView
+
+        private int _tagsSlideViewIndex = 1;
+
+        private int _tasksSlideViewIndex = 0;
+
+        private void SlideView_SelectionChanged(object sender, EventArgs e)
+        {
+            this.Focus();
+            if (TasksSlideView.SelectedIndex == _tagsSlideViewIndex)
+            {
+                BuildTagsAppBar();
+
+                TasksPageOverlay.Visibility = Visibility.Visible;
+                TasksPageOverlayTransitionShow.Begin();
+            }
+            else
+            {
+                BuildTasksdAppBar();
+
+                TasksPageOverlayTransitionHide.Completed += (s2, e2) =>
+                {
+                    TasksPageOverlay.Visibility = Visibility.Collapsed;
+                };
+                TasksPageOverlayTransitionHide.Begin();
+            }
+        }
+
+        #endregion
+
     }
 }

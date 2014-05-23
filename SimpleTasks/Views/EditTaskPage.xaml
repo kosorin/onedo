@@ -15,7 +15,8 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
-    toolkit:TiltEffect.IsTiltEnabled="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -724,9 +725,10 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
+        
         <Rectangle x:Name="PageOverlay"
-                   Fill="{StaticResource PhoneBackgroundBrush}"
-                   Opacity="0.65"
+                   Fill="Black"
+                   Opacity="0.58"
                    Visibility="Collapsed">
             <Rectangle.Resources>
                 <Storyboard x:Name="PageOverlayTransitionHide">
