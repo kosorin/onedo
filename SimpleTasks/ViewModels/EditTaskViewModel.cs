@@ -33,6 +33,11 @@ namespace SimpleTasks.ViewModels
             BuildDueDatePresetList();
         }
 
+        public static Uri CreateEditTaskUri(TaskModel task)
+        {
+            return new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative);
+        }
+
         #region Tasks
 
         public bool IsOldTask { get; set; }

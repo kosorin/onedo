@@ -91,7 +91,7 @@ namespace SimpleTasks.Views
             return true;
         }
 
-        private void PrepareSave()
+        private void BeforeSave()
         {
             if (!DueDateToggleButton.IsChecked.Value)
             {
@@ -108,6 +108,14 @@ namespace SimpleTasks.Views
             else
             {
                 ReminderDatePicker.Value = null;
+            }
+        }
+
+        private void AfterSave()
+        {
+            if (LiveTile.IsPinned(ViewModel.CurrentTask))
+            {
+                LiveTile.Update(ViewModel.CurrentTask);
             }
         }
 
@@ -135,6 +143,10 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarOkButton;
 
+        private ApplicationBarIconButton appBarPinButton;
+
+        private ApplicationBarIconButton appBarUnpinButton;
+
         private void CreateAppBarItems()
         {
             appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
@@ -156,6 +168,33 @@ namespace SimpleTasks.Views
             appBarOkButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
             appBarOkButton.Text = AppResources.AppBarOk;
             appBarOkButton.Click += appBarOkButton_Click;
+
+            appBarPinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.png", UriKind.Relative));
+            appBarPinButton.Text = AppResources.AppBarPin;
+            appBarPinButton.Click += appBarPinButton_Click;
+
+            appBarUnpinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.remove.png", UriKind.Relative));
+            appBarUnpinButton.Text = AppResources.AppBarUnpin;
+            appBarUnpinButton.Click += appBarUnpinButton_Click;
+        }
+
+        private void appBarPinButton_Click(object sender, EventArgs e)
+        {
+            if (CanSave())
+            {
+                BeforeSave();
+                ViewModel.SaveTask();
+                LiveTile.Pin(ViewModel.CurrentTask);
+                ApplicationBar.Buttons.RemoveAt(0);
+                ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
+            }
+        }
+
+        void appBarUnpinButton_Click(object sender, EventArgs e)
+        {
+            LiveTile.Unpin(ViewModel.CurrentTask);
+            ApplicationBar.Buttons.RemoveAt(0);
+            ApplicationBar.Buttons.Insert(0, appBarPinButton);
         }
 
         private void BuildAppBar()
@@ -163,6 +202,15 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
+            if (LiveTile.IsPinned(ViewModel.CurrentTask))
+            {
+                ApplicationBar.Buttons.Add(appBarUnpinButton);
+            }
+            else
+            {
+                ApplicationBar.Buttons.Add(appBarPinButton);
+            }
+
             if (ViewModel.IsOldTask)
             {
                 if (ViewModel.CurrentTask.IsComplete)
@@ -206,8 +254,9 @@ namespace SimpleTasks.Views
         {
             if (CanSave())
             {
-                PrepareSave();
+                BeforeSave();
                 ViewModel.CompleteTask();
+                AfterSave();
                 GoBack();
             }
         }
@@ -216,8 +265,9 @@ namespace SimpleTasks.Views
         {
             if (CanSave())
             {
-                PrepareSave();
+                BeforeSave();
                 ViewModel.SaveTask();
+                AfterSave();
                 GoBack();
             }
         }

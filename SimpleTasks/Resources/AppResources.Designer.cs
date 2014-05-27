@@ -178,6 +178,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pin.
+        /// </summary>
+        public static string AppBarPin {
+            get {
+                return ResourceManager.GetString("AppBarPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to pin tile.
         /// </summary>
         public static string AppBarPinTile {
@@ -201,6 +210,15 @@ namespace SimpleTasks.Resources {
         public static string AppBarSettings {
             get {
                 return ResourceManager.GetString("AppBarSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unpin.
+        /// </summary>
+        public static string AppBarUnpin {
+            get {
+                return ResourceManager.GetString("AppBarUnpin", resourceCulture);
             }
         }
         

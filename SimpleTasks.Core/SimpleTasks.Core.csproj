@@ -105,10 +105,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tiles\NormalListTile.cs" />
-    <Compile Include="Tiles\SimpleListTile.cs" />
+    <Compile Include="Tiles\DefaultList\MediumListTile.cs" />
+    <Compile Include="Tiles\DefaultList\SmallListTile.cs" />
+    <Compile Include="Tiles\DefaultTask\MediumTaskTile.cs" />
+    <Compile Include="Tiles\DefaultTask\SmallTaskTile.cs" />
+    <Compile Include="Tiles\DefaultTask\WideTaskTile.cs" />
     <Compile Include="Tiles\TileTemplate.cs" />
-    <Compile Include="Tiles\WideListTile.cs" />
+    <Compile Include="Tiles\DefaultList\WideListTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx">

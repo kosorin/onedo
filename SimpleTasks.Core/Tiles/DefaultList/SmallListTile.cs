@@ -6,20 +6,31 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace SimpleTasks.Core.Tiles
+namespace SimpleTasks.Core.Tiles.DefaultList
 {
-    public class SimpleListTile : TileTemplate
+    public class SmallListTile : TileTemplate
     {
+        public SolidColorBrush BackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.15 }; // (SolidColorBrush)Application.Current.Resources["PhoneAccentBrush"];
+
+        public SolidColorBrush ForegroundBrush = new SolidColorBrush(Colors.White);
+
+        public SolidColorBrush BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.5 };
+
+        public SolidColorBrush ImportantBackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.4 };
+
+        public SolidColorBrush NormalBackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.2 };
+
         public int TaskCount { get; set; }
 
-        public SimpleListTile(int taskCount, int width, int height)
+        public SmallListTile()
         {
-            TaskCount = taskCount;
+            TaskCount = 4;
 
-            Width = width;
-            Height = height;
+            Width = SmallSize;
+            Height = SmallSize;
         }
 
         public override WriteableBitmap Render(List<TaskModel> tasks)
@@ -72,6 +83,11 @@ namespace SimpleTasks.Core.Tiles
             return wb;
         }
 
+        public override WriteableBitmap Render(TaskModel task)
+        {
+            throw new NotImplementedException();
+        }
+
         protected virtual Border GetTaskItemBorder(TaskModel task)
         {
             Border border = new Border()
@@ -81,11 +97,6 @@ namespace SimpleTasks.Core.Tiles
                 BorderBrush = BorderBrush,
             };
             Border innerBorder = new Border();
-            if (task.DueDate != null && task.DueDate.Value > DateTime.Today.AddDays(1))
-            {
-                innerBorder.Opacity = 0.75;
-            }
-
             if (task.Priority == TaskPriority.High)
             {
                 innerBorder.Background = ImportantBackgroundBrush;

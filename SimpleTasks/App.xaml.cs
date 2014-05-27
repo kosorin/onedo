@@ -60,10 +60,6 @@ namespace SimpleTasks
                 // nebo spouštění staré verze, kdy se pro úkoly používal xml místo jsonu.
                 Settings.LastVersionSetting = Version.ToString();
                 IsFirstStart = true;
-
-                #region DEPRECATED asi tak za měsíc nebo až vyjde Wp 8.1 toto smazat
-                TaskCollection.ConvertOldXmlFile("TasksData.xml", Tasks.DataFileName);
-                #endregion
             }
             else if (Settings.LastVersionSetting != Version.ToString())
             {
@@ -267,7 +263,7 @@ namespace SimpleTasks
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
 
-                if (String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
+                if (false && String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
                 {
                     Thread.CurrentThread.CurrentCulture =
                         new CultureInfo(ForceDebugCulture);

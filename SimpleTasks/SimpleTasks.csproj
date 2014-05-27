@@ -122,6 +122,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tiles\DefaultWideTaskTile.xaml.cs">
+      <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\EditTaskViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -160,6 +163,8 @@
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
     <Content Include="Assets\AppBar\appbar.close.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />
+    <Content Include="Assets\AppBar\appbar.pin.png" />
+    <Content Include="Assets\AppBar\appbar.pin.remove.png" />
     <Content Include="Assets\AppBar\appbar.save.png" />
     <Content Include="Assets\AppBar\appbar.undo.curve.png" />
     <Content Include="Assets\ApplicationIcon.png">
@@ -224,6 +229,10 @@
     <Page Include="SampleData\MainSampleData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Tiles\DefaultWideTaskTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AboutPage.xaml">
       <SubType>Designer</SubType>

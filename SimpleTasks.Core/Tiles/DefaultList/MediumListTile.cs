@@ -3,13 +3,17 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SimpleTasks.Core.Tiles
+namespace SimpleTasks.Core.Tiles.DefaultList
 {
-    public class NormalListTile : SimpleListTile
+    public class MediumListTile : SmallListTile
     {
-        public NormalListTile(int taskCount, int width, int height)
-            : base(taskCount, width, height)
+        public MediumListTile()
+            : base()
         {
+            TaskCount = 7;
+
+            Width = MediumSize;
+            Height = MediumSize;
         }
 
         protected override Border GetTaskItemBorder(TaskModel task)
@@ -25,10 +29,6 @@ namespace SimpleTasks.Core.Tiles
                 BorderThickness = new Thickness(10, 0, 0, 0),
                 BorderBrush = BorderBrush,
             };
-            if (task.DueDate != null && task.DueDate.Value > DateTime.Today.AddDays(1))
-            {
-                innerBorder.Opacity = 0.75;
-            }
 
             if (task.Priority == TaskPriority.High)
             {

@@ -337,4 +337,10 @@
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="AppBarPin" xml:space="preserve">
+    <value>pin</value>
+  </data>
+  <data name="AppBarUnpin" xml:space="preserve">
+    <value>unpin</value>
+  </data>
 </root>

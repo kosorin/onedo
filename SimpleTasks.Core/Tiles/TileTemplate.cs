@@ -12,20 +12,18 @@ namespace SimpleTasks.Core.Tiles
 {
     public abstract class TileTemplate
     {
-        public SolidColorBrush BackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.1 }; // (SolidColorBrush)Application.Current.Resources["PhoneAccentBrush"];
+        public static int SmallSize { get { return 159; } }
 
-        public SolidColorBrush ForegroundBrush = new SolidColorBrush(Colors.White);
+        public static int MediumSize { get { return 336; } }
 
-        public SolidColorBrush BorderBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.5 };
-
-        public SolidColorBrush ImportantBackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.3 };
-
-        public SolidColorBrush NormalBackgroundBrush = new SolidColorBrush(Colors.Black) { Opacity = 0.2 };
+        public static int WideSize { get { return 691; } }
 
         public int Width { get; set; }
 
         public int Height { get; set; }
 
         public abstract WriteableBitmap Render(List<TaskModel> tasks);
+
+        public abstract WriteableBitmap Render(TaskModel task);
     }
 }

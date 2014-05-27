@@ -1,6 +1,8 @@
 ﻿using Microsoft.Phone.Shell;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Core.Tiles;
+using SimpleTasks.Core.Tiles.DefaultList;
+using SimpleTasks.Core.Tiles.DefaultTask;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,6 +25,127 @@ namespace SimpleTasks.Core.Helpers
 
         private static string TileImageDirectory { get { return "/Shared/ShellContent/"; } }
 
+        #region Dlaždice pro úkol
+
+        public static ShellTile PinnedTile(TaskModel task)
+        {
+            return ShellTile.ActiveTiles.FirstOrDefault((t) =>
+            {
+                return t.NavigationUri.OriginalString.Contains("Task=" + task.Uid);
+            });
+        }
+
+        public static bool IsPinned(TaskModel task)
+        {
+            return PinnedTile(task) != null;
+        }
+
+        private static FlipTileData CreateTile(TaskModel task)
+        {
+            string smallFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, SmallTileFileName);
+            string mediumFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, MediumTileFileName);
+            string wideFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, WideTileFileName);
+
+            // Vytvoření obrázků dlaždic
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(smallFileName, System.IO.FileMode.Create))
+            {
+                TileTemplate tile = new MediumTaskTile();
+                WriteableBitmap wb = tile.Render(task);
+                wb.WritePNG(stream);
+            }
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(mediumFileName, System.IO.FileMode.Create))
+            {
+                TileTemplate tile = new MediumTaskTile();
+                WriteableBitmap wb = tile.Render(task);
+                wb.WritePNG(stream);
+            }
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(wideFileName, System.IO.FileMode.Create))
+            {
+                TileTemplate tile = new WideTaskTile();
+                WriteableBitmap wb = tile.Render(task);
+                wb.WritePNG(stream);
+            }
+
+            FlipTileData flipTileData = new FlipTileData
+            {
+                SmallBackgroundImage = new Uri("isostore:" + smallFileName, UriKind.Absolute),
+                BackgroundImage = new Uri("isostore:" + mediumFileName, UriKind.Absolute),
+                WideBackgroundImage = new Uri("isostore:" + wideFileName, UriKind.Absolute),
+                Title = "",
+                Count = 0,
+            };
+            return flipTileData;
+        }
+
+        public static void Pin(TaskModel task)
+        {
+            try
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(delegate
+                {
+                    ShellTile.Create(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative), CreateTile(task), true);
+                });
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při vytváření živé dlaždice: {0}", e.Message);
+            }
+        }
+
+        public static void Update(TaskModel task)
+        {
+            try
+            {
+                ShellTile tile = PinnedTile(task);
+                if (tile != null)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(delegate
+                    {
+                        tile.Update(CreateTile(task));
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při aktualizaci živé dlaždice: {0}", e.Message);
+            }
+        }
+
+        public static void Unpin(TaskModel task)
+        {
+            try
+            {
+                ShellTile tile = PinnedTile(task);
+                if (tile != null)
+                {
+                    try
+                    {
+                        string smallFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, SmallTileFileName);
+                        string mediumFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, MediumTileFileName);
+                        string wideFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, WideTileFileName);
+                        IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+                        storage.DeleteFile(smallFileName);
+                        storage.DeleteFile(mediumFileName);
+                        storage.DeleteFile(wideFileName);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(": Chyba při mazání obrázků pro živé dlaždice: {0}", e.Message);
+                    }
+
+                    tile.Delete();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při mazání živé dlaždice: {0}", e.Message);
+            }
+        }
+        
+        #endregion
+
+        #region Hlavní dlaždice
+
         public static void UpdateOrReset(bool update, TaskCollection tasksSource = null, bool updateUI = false)
         {
             if (update)
@@ -39,19 +162,6 @@ namespace SimpleTasks.Core.Helpers
             else
             {
                 Reset();
-            }
-            try
-            {
-                if (ShellTile.ActiveTiles.Count() > 1)
-                {
-                    foreach (ShellTile tile in ShellTile.ActiveTiles.Skip(1))
-                    {
-                        tile.Delete();
-                    }
-                }
-            }
-            catch (Exception)
-            {
             }
         }
 
@@ -108,19 +218,19 @@ namespace SimpleTasks.Core.Helpers
             // Vytvoření obrázků dlaždic
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + SmallTileFileName, System.IO.FileMode.Create))
             {
-                TileTemplate tile = new SimpleListTile(4, 159, 159);
+                TileTemplate tile = new SmallListTile();
                 WriteableBitmap wb = tile.Render(tasks);
                 wb.WritePNG(stream);
             }
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + MediumTileFileName, System.IO.FileMode.Create))
             {
-                TileTemplate tile = new NormalListTile(7, 336, 336);
+                TileTemplate tile = new MediumListTile();
                 WriteableBitmap wb = tile.Render(tasks);
                 wb.WritePNG(stream);
             }
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + WideTileFileName, System.IO.FileMode.Create))
             {
-                TileTemplate tile = new WideListTile(7, 691, 336);
+                TileTemplate tile = new WideListTile();
                 WriteableBitmap wb = tile.Render(tasks);
                 wb.WritePNG(stream);
             }
@@ -156,5 +266,7 @@ namespace SimpleTasks.Core.Helpers
                 Update(tasksSource);
             });
         }
+
+        #endregion
     }
 }

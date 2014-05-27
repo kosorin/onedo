@@ -4,13 +4,17 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SimpleTasks.Core.Tiles
+namespace SimpleTasks.Core.Tiles.DefaultList
 {
-    class WideListTile : SimpleListTile
+    class WideListTile : SmallListTile
     {
-        public WideListTile(int taskCount, int width, int height)
-            : base(taskCount, width, height)
+        public WideListTile()
+            : base()
         {
+            TaskCount = 7;
+
+            Width = WideSize;
+            Height = MediumSize;
         }
 
         protected override Border GetTaskItemBorder(TaskModel task)
@@ -26,10 +30,6 @@ namespace SimpleTasks.Core.Tiles
                 BorderThickness = new Thickness(10, 0, 0, 0),
                 BorderBrush = BorderBrush,
             };
-            if (task.DueDate != null && task.DueDate.Value > DateTime.Today.AddDays(1))
-            {
-                innerBorder.Opacity = 0.75;
-            }
 
             if (task.Priority == TaskPriority.High)
             {
@@ -58,7 +58,7 @@ namespace SimpleTasks.Core.Tiles
 
             TextBlock dueTextBlock = new TextBlock()
             {
-                Text = DateTimeExtensions.ToRelativeString(task.DueDate, "", false),
+                Text = (task.DueDate != null) ? task.DueDate.Value.ToShortDateString() : "",//DateTimeExtensions.ToRelativeString(task.DueDate, "", false),
                 Margin = new Thickness(20, 0, 5, 0),
                 Foreground = ForegroundBrush,
                 FontSize = ((double)Height / (double)TaskCount) * 0.7,

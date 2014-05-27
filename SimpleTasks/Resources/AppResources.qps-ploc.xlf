@@ -205,6 +205,14 @@
           <source>Title</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[19CE8][!!_Тíťłè_!!]</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarUnpin" xml:space="preserve">
+          <source>unpin</source>
+          <target state="new">unpin</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
+          <source>pin</source>
+          <target state="new">pin</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/Detail" xml:space="preserve">
           <source>Detail</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">[790DD][!!_Đęťáìļ_!!]</target>

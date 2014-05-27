@@ -271,6 +271,14 @@
           <source>Title</source>
           <target state="signed-off">Názov</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarUnpin" xml:space="preserve">
+          <source>unpin</source>
+          <target state="signed-off">odopnúť</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
+          <source>pin</source>
+          <target state="signed-off">pripnúť</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/Detail" xml:space="preserve">
           <source>Detail</source>
           <target state="signed-off">Detail</target>

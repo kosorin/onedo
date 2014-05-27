@@ -342,7 +342,7 @@ namespace SimpleTasks.Views
                 return;
             }
 
-            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(task));
         }
 
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
