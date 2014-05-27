@@ -20,7 +20,6 @@
         <conv:TaskToReminderDateStringConverter x:Key="TaskToReminderDateStringConverter" />
         <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
         <conv:TaskToDueDateStringConverter x:Key="TaskToDueDateStringConverter" />
-        <conv:TaskToOpacityConverter x:Key="TaskToOpacityConverter" />
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <conv:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter" />
         <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />

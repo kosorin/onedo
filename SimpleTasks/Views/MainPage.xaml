@@ -86,14 +86,82 @@
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border BorderThickness="0,0,0,1"
                     BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}">
-                <Grid Opacity="{Binding Converter={StaticResource TaskToOpacityConverter}}">
+                <Border.Resources>
+                    <Storyboard x:Name="TaskInfoShow">
+                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                         Storyboard.TargetProperty="(StackPanel.RenderTransform).(CompositeTransform.ScaleY)"
+                                         To="1"
+                                         Duration="0:0:0.12"/>-->
+                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                         Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
+                                         To="0"
+                                         Duration="0:0:0.2"/>
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="Height"
+                                                       Duration="0:0:0.15">
+                            <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="32" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="Height"
+                                                       BeginTime="0:0:0.2"
+                                                       Duration="0:0:0.1">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <sys:Double>NaN</sys:Double>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>-->
+                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1.0"
+                                         Duration="0:0:0.35">
+                            <DoubleAnimation.EasingFunction>
+                                <ExponentialEase EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1"
+                                         Duration="0:0:0.2"/>
+                    </Storyboard>
+                    <Storyboard x:Name="TaskInfoHide">
+                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                         Storyboard.TargetProperty="(StackPanel.RenderTransform).(CompositeTransform.ScaleY)"
+                                         To="0"
+                                         Duration="0:0:0.2"/>-->
+                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                         Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
+                                         To="90"
+                                         Duration="0:0:0.2"/>
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="Height"
+                                                       Duration="0:0:0.2">
+                            <LinearDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>-->
+                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0.45"
+                                         Duration="0:0:0.35">
+                            <DoubleAnimation.EasingFunction>
+                                <ExponentialEase EasingMode="EaseIn" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.2"/>
+                    </Storyboard>
+                </Border.Resources>
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ToggleButton Margin="12,15,2,0" 
-                                  IsChecked="{Binding IsComplete}"
-                                  Click="CompleteButton_Click">
+                                  IsChecked="{Binding IsComplete, Mode=TwoWay}"
+                                  Click="CompleteButton_Click"
+                                  Checked="ToggleButton_Checked"
+                                  Unchecked="ToggleButton_Unchecked">
                         <ToggleButton.Template>
                             <ControlTemplate>
                                 <Grid Width="40"
@@ -163,17 +231,29 @@
                             </ControlTemplate>
                         </ToggleButton.Template>
                     </ToggleButton>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Column="1">
-                        <TextBlock Text="{Binding Title}"
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="TitleTextBox"
+                                   Text="{Binding Title}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
-                                   Opacity="1"
                                    Margin="8,10,0,0"/>
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel x:Name="TaskInfoStackPanel" 
+                                    Orientation="Vertical"
+                                    Grid.Row="1"
+                                    RenderTransformOrigin="0.5,0">
+                            <StackPanel.RenderTransform>
+                                <CompositeTransform/>
+                            </StackPanel.RenderTransform>
+                            <StackPanel.Projection>
+                                <PlaneProjection RotationX="0" CenterOfRotationY="0"/>
+                            </StackPanel.Projection>
                             <Grid MaxHeight="32"
                                   Margin="0,-2,0,8">
-                                <StackPanel Orientation="Horizontal"
-                                            Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
                                     <!--<StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <controls:Icon Style="{StaticResource CheckIconStyle}"
@@ -188,15 +268,14 @@
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
                                                    Text="{Binding LocalizedResources.DateCompleted, Source={StaticResource LocalizedStrings}}"/>
                                     </StackPanel>-->
-                                    <StackPanel Orientation="Horizontal" 
-                                                Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <StackPanel Orientation="Horizontal">
                                         <StackPanel Orientation="Horizontal"
                                                     Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
                                             <controls:Icon Style="{StaticResource CalendarIconStyle}"
-                                                            Color="{StaticResource PhoneAccentBrush}"
-                                                            Margin="4,0,-26,0"
-                                                            MaxHeight="0"
-                                                            RenderTransformOrigin="0,0">
+                                                           Color="{StaticResource PhoneAccentBrush}"
+                                                           Margin="4,0,-26,0"
+                                                           MaxHeight="0"
+                                                           RenderTransformOrigin="0,0">
                                                 <controls:Icon.RenderTransform>
                                                     <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
                                                 </controls:Icon.RenderTransform>
@@ -251,16 +330,15 @@
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
-                            <Grid Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
                                 <TextBlock Text="{Binding Detail}"
                                            Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                            Opacity="0.8"
-                                           Margin="8,0,20,0"
-                                           Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"/>
+                                           Margin="8,0,20,0"/>
                             </Grid>
                         </StackPanel>
-                        <Border Margin="0,0,0,12"/>
-                    </StackPanel>
+                        <Border Grid.Row="2" Margin="0,0,0,12"/>
+                    </Grid>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -337,7 +415,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <DataTemplate x:Key="TagItemTemplate">
             <Border Margin="0,-1,0,0"
                     Height="60">
@@ -356,7 +434,7 @@
                                Grid.Column="1"
                                Foreground="{StaticResource PhoneForegroundBrush}" 
                                Style="{StaticResource PhoneTextTitle3Style}"/>
-                    
+
                     <Border Grid.Column="2">
                         <Border.Background>
                             <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" Opacity="0.15" />
@@ -380,7 +458,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto"  />
             </Grid.RowDefinitions>
-            
+
             <Grid x:Name="ContentPanel">
                 <phone:LongListSelector x:Name="TasksLongListSelector"
                                         LayoutMode="List"
@@ -403,7 +481,7 @@
                            TextWrapping="Wrap" 
                            TextAlignment="Center"/>
             </Grid>
-            
+
             <Rectangle x:Name="PageOverlay"
                        Fill="Black"
                        Opacity="0"
@@ -444,12 +522,12 @@
                     </Storyboard>
                 </Rectangle.Resources>
             </Rectangle>
-            
+
             <Rectangle Fill="{StaticResource PhoneAccentBrush}"
                        Opacity="0.6"
                        Height="10" 
                        VerticalAlignment="Bottom"/>
-            
+
             <Grid Grid.Row="1">
                 <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
                                       Hint="&#8230;&#xe104;"
@@ -605,7 +683,7 @@
                 </Rectangle.Resources>
             </Rectangle>
         </Grid>
-        
+
         <Grid x:Name="TagRoot"
               Width="420">
             <Grid.Background>

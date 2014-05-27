@@ -15,6 +15,7 @@ using SimpleTasks.Core.Models;
 using Microsoft.Phone.Scheduler;
 using SimpleTasks.Helpers;
 using System.Collections.Generic;
+using System.Windows.Media.Animation;
 
 namespace SimpleTasks.Views
 {
@@ -296,23 +297,36 @@ namespace SimpleTasks.Views
         private void CompleteButton_Click(object sender, RoutedEventArgs e)
         {
             completeButtonTapped = true;
+            TasksLongListSelector.Focus();
+        }
 
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Border parent = ((sender as ToggleButton).Parent as Grid).Parent as Border;
             TaskModel task = (sender as ToggleButton).DataContext as TaskModel;
             if (task == null)
                 return;
-            TasksLongListSelector.SelectedItem = null;
 
-            if (task.CompletedDate == null)
-            {
-                task.CompletedDate = DateTime.Now;
-                task.ReminderDate = null;
-            }
-            else
-            {
-                task.CompletedDate = null;
-            }
+            task.CompletedDate = DateTime.Now;
+            task.ReminderDate = null;
+            ((Storyboard)parent.FindName("TaskInfoShow")).Stop();
+            ((Storyboard)parent.FindName("TaskInfoHide")).Begin();
+
             App.Tasks.Update(task);
-            TasksLongListSelector.Focus();
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Border parent = ((sender as ToggleButton).Parent as Grid).Parent as Border;
+            TaskModel task = (sender as ToggleButton).DataContext as TaskModel;
+            if (task == null)
+                return;
+
+            task.CompletedDate = null;
+            ((Storyboard)parent.FindName("TaskInfoShow")).Begin();
+            ((Storyboard)parent.FindName("TaskInfoHide")).Stop();
+
+            App.Tasks.Update(task);
         }
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)

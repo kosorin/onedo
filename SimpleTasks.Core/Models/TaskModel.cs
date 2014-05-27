@@ -140,10 +140,10 @@ namespace SimpleTasks.Core.Models
 
         #region Complete
         private string IsCompleteName = "IsComplete";
-        public bool IsComplete { get { return CompletedDate != null; } }
+        public bool IsComplete { get { return CompletedDate.HasValue; } }
 
         private string IsActiveName = "IsActive";
-        public bool IsActive { get { return CompletedDate == null; } }
+        public bool IsActive { get { return !CompletedDate.HasValue; } }
 
         private DateTime? _completedDate = null;
         [DataMember(Order = 6)]
