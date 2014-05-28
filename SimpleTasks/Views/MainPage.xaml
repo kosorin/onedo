@@ -146,7 +146,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ToggleButton Margin="12,15,2,0" 
-                                  IsChecked="{Binding Task.IsComplete, Mode=OneWay}"
+                                  IsChecked="{Binding Task.IsComplete, Mode=OneTime}"
                                   Click="CompleteButton_Click"
                                   Checked="ToggleButton_Checked"
                                   Unchecked="ToggleButton_Unchecked">
@@ -223,17 +223,18 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TextBlock x:Name="TitleTextBox"
-                                   Text="{Binding Task.Title}"
+                                   Text="{Binding Height}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
-                                   Margin="8,10,0,0"/>
+                                   Margin="8,10,0,15"/>
                         <StackPanel x:Name="TaskInfoStackPanel" 
                                     Orientation="Vertical"
                                     Grid.Row="1"
+                                    Margin="0,-15,0,0"
                                     RenderTransformOrigin="0.5,0"
-                                    SizeChanged="TaskInfoStackPanel_SizeChanged">
+                                    SizeChanged="TaskInfoStackPanel_SizeChanged" 
+                                    Loaded="TaskInfoStackPanel_Loaded">
                             <StackPanel.RenderTransform>
                                 <CompositeTransform/>
                             </StackPanel.RenderTransform>
@@ -241,7 +242,7 @@
                                 <PlaneProjection RotationX="0" CenterOfRotationY="0"/>
                             </StackPanel.Projection>
                             <Grid MaxHeight="32"
-                                  Margin="0,-2,0,8">
+                                  Margin="0,0,0,10">
                                 <StackPanel Orientation="Horizontal">
                                     <!--<StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -319,14 +320,14 @@
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
-                            <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
+                            <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
+                                  Margin="0,0,0,10">
                                 <TextBlock Text="{Binding Task.Detail}"
                                            Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                            Opacity="0.8"
                                            Margin="8,0,20,0"/>
                             </Grid>
                         </StackPanel>
-                        <Border Grid.Row="2" Margin="0,0,0,12"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -341,7 +342,7 @@
             <Setter Property="Height" Value="80" />
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}" />
-        </Style>-->
+        </Style>
 
         <Style x:Key="TagButton" TargetType="Button">
             <Setter Property="Height" Value="80" />
@@ -437,6 +438,7 @@
                 </Grid>
             </Border>
         </DataTemplate>
+        -->
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="TasksRoot" 

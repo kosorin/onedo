@@ -88,7 +88,6 @@ namespace SimpleTasks.Views
                     App.Tasks.Add(task);
                     QuickAddTextBox.Text = "";
                     this.Focus();
-                    TasksLongListSelector.ScrollTo(task);
                 }
             };
 
@@ -303,8 +302,8 @@ namespace SimpleTasks.Views
             task.ReminderDate = null;
             ((Storyboard)parent.FindName("TaskInfoShow")).Stop();
             ((Storyboard)parent.FindName("TaskInfoHide")).Begin();
-
-            App.Tasks.Update(task);
+            Debug.WriteLine("CHECKED");
+            //App.Tasks.Update(task);
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
@@ -317,8 +316,9 @@ namespace SimpleTasks.Views
             task.CompletedDate = null;
             ((Storyboard)parent.FindName("TaskInfoShow")).Begin();
             ((Storyboard)parent.FindName("TaskInfoHide")).Stop();
+            Debug.WriteLine("UN CHECKED");
 
-            App.Tasks.Update(task);
+            //App.Tasks.Update(task);
         }
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -345,14 +345,28 @@ namespace SimpleTasks.Views
             if (scrollBar != null)
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
         }
-        
+
         private void TaskInfoStackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TaskWrapper taskWrapper = (sender as StackPanel).DataContext as TaskWrapper;
+            StackPanel panel = sender as StackPanel;
+            TaskWrapper taskWrapper = panel.DataContext as TaskWrapper;
             if (taskWrapper.Height < 0)
             {
                 taskWrapper.Height = e.NewSize.Height;
+                panel.Height = taskWrapper.Task.IsActive ? e.NewSize.Height : 0;
             }
+        }
+
+        private void TaskInfoStackPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            StackPanel panel = sender as StackPanel;
+            TaskWrapper wrapper = panel.DataContext as TaskWrapper;
+            panel.Height = wrapper.Task.IsActive? wrapper.Height: 0;
+
+            Border parent = ((panel.Parent as Grid).Parent as Grid).Parent as Border;
+            ((Storyboard)parent.FindName("TaskInfoShow")).Stop();
+            ((Storyboard)parent.FindName("TaskInfoHide")).Stop();
+            Debug.WriteLine("LOADED");
         }
 
         #endregion
@@ -383,5 +397,9 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
+        
+
+
     }
 }
