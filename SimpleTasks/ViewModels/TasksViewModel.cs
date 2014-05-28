@@ -45,11 +45,11 @@ namespace SimpleTasks.ViewModels
         }
 
         public string GroupedTasksPropertyString = "GroupedTasks";
-        public List<TaskKeyGroup> GroupedTasks
+        public List<TaskGroup> GroupedTasks
         {
             get
             {
-                return TaskKeyGroup.CreateGroups(Tasks);
+                return TaskGroup.CreateGroups(Tasks);
             }
         }
 
@@ -113,20 +113,25 @@ namespace SimpleTasks.ViewModels
             {
                 ReminderHelper.Add(task);
             }
-
-            //OnPropertyChanged(GroupedTasksPropertyString);
         }
 
         public void Update(TaskModel oldTask, TaskModel newTask)
         {
-            Delete(oldTask);
+            DeleteForUpdate(oldTask);
             Add(newTask);
+        }
+
+        private void DeleteForUpdate(TaskModel task)
+        {
+            Tasks.Remove(task);
+            ReminderHelper.Remove(task);
         }
 
         public void Delete(TaskModel task)
         {
             Tasks.Remove(task);
             ReminderHelper.Remove(task);
+            LiveTile.Unpin(task);
         }
 
         public void DeleteCompleted(int days)
@@ -164,6 +169,7 @@ namespace SimpleTasks.ViewModels
             foreach (TaskModel task in Tasks)
             {
                 ReminderHelper.Remove(task);
+                LiveTile.Unpin(task);
             }
             Tasks.Clear();
         }

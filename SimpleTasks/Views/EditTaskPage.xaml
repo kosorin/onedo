@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
+    xmlns:tiles="clr-namespace:SimpleTasks.Tiles"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -586,7 +587,13 @@
                             </Storyboard>
                         </toolkit:PhoneTextBox.Resources>
                     </toolkit:PhoneTextBox>
-                    
+
+
+
+                    <tiles:DefaultWideTaskTile x:Name="TaskTile">
+
+                    </tiles:DefaultWideTaskTile>
+
                     <!--Detail-->
                     <toolkit:PhoneTextBox x:Name="DetailTextBox"
                                           Margin="0,-15,0,0"
@@ -725,7 +732,7 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        
+
         <Rectangle x:Name="PageOverlay"
                    Fill="Black"
                    Opacity="0.58"

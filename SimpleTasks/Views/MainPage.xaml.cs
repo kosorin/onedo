@@ -303,7 +303,7 @@ namespace SimpleTasks.Views
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Border parent = ((sender as ToggleButton).Parent as Grid).Parent as Border;
-            TaskModel task = (sender as ToggleButton).DataContext as TaskModel;
+            TaskModel task = ((sender as ToggleButton).DataContext as TaskWrapper).Task;
             if (task == null)
                 return;
 
@@ -318,7 +318,7 @@ namespace SimpleTasks.Views
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             Border parent = ((sender as ToggleButton).Parent as Grid).Parent as Border;
-            TaskModel task = (sender as ToggleButton).DataContext as TaskModel;
+            TaskModel task = ((sender as ToggleButton).DataContext as TaskWrapper).Task;
             if (task == null)
                 return;
 
@@ -331,8 +331,8 @@ namespace SimpleTasks.Views
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TaskModel task = TasksLongListSelector.SelectedItem as TaskModel;
-            if (task == null)
+            TaskWrapper taskWrapper = TasksLongListSelector.SelectedItem as TaskWrapper;
+            if (taskWrapper == null)
                 return;
             TasksLongListSelector.SelectedItem = null;
 
@@ -342,7 +342,7 @@ namespace SimpleTasks.Views
                 return;
             }
 
-            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(task));
+            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(taskWrapper.Task));
         }
 
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
@@ -352,6 +352,15 @@ namespace SimpleTasks.Views
             ScrollBar scrollBar = ((FrameworkElement)VisualTreeHelper.GetChild(TasksLongListSelector, 0)).FindName("VerticalScrollBar") as ScrollBar;
             if (scrollBar != null)
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
+        }
+        
+        private void TaskInfoStackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TaskWrapper taskWrapper = (sender as StackPanel).DataContext as TaskWrapper;
+            if (taskWrapper.Height < 0)
+            {
+                taskWrapper.Height = e.NewSize.Height;
+            }
         }
 
         #endregion

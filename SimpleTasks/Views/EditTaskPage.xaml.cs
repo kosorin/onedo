@@ -7,6 +7,7 @@ using SimpleTasks.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -72,6 +73,8 @@ namespace SimpleTasks.Views
             {
                 PageOverlay.Visibility = Visibility.Visible;
             }
+
+            TaskTile.Task = ViewModel.CurrentTask;
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
@@ -202,13 +205,16 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            if (LiveTile.IsPinned(ViewModel.CurrentTask))
+            if (ViewModel.CurrentTask.IsActive)
             {
-                ApplicationBar.Buttons.Add(appBarUnpinButton);
-            }
-            else
-            {
-                ApplicationBar.Buttons.Add(appBarPinButton);
+                if (LiveTile.IsPinned(ViewModel.CurrentTask))
+                {
+                    ApplicationBar.Buttons.Add(appBarUnpinButton);
+                }
+                else
+                {
+                    ApplicationBar.Buttons.Add(appBarPinButton);
+                }
             }
 
             if (ViewModel.IsOldTask)

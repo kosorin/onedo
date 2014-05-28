@@ -7,24 +7,24 @@ using System.Collections.ObjectModel;
 
 namespace SimpleTasks.Models
 {
-    public class TaskKeyGroup : List<TaskModel>
+    public class TaskGroup : List<TaskWrapper>
     {
         public string Title { get; private set; }
 
-        public TaskKeyGroup(string title)
+        public TaskGroup(string title)
         {
             Title = title;
         }
 
-        public static List<TaskKeyGroup> CreateGroups(IEnumerable<TaskModel> items)
+        public static List<TaskGroup> CreateGroups(IEnumerable<TaskModel> items)
         {
-            List<TaskKeyGroup> groups = new List<TaskKeyGroup>();
-            TaskKeyGroup overdueGroup = new TaskKeyGroup(AppResources.DateOverdue);
-            TaskKeyGroup todayGroup = new TaskKeyGroup(AppResources.DateToday);
-            TaskKeyGroup tomorrowGroup = new TaskKeyGroup(AppResources.DateTomorrow);
-            TaskKeyGroup upcomingGroup = new TaskKeyGroup(AppResources.DateUpcoming);
-            TaskKeyGroup somedayGroup = new TaskKeyGroup(AppResources.DateSomeday);
-            TaskKeyGroup completedGroup = new TaskKeyGroup(AppResources.DateCompleted);
+            List<TaskGroup> groups = new List<TaskGroup>();
+            TaskGroup overdueGroup = new TaskGroup(AppResources.DateOverdue);
+            TaskGroup todayGroup = new TaskGroup(AppResources.DateToday);
+            TaskGroup tomorrowGroup = new TaskGroup(AppResources.DateTomorrow);
+            TaskGroup upcomingGroup = new TaskGroup(AppResources.DateUpcoming);
+            TaskGroup somedayGroup = new TaskGroup(AppResources.DateSomeday);
+            TaskGroup completedGroup = new TaskGroup(AppResources.DateCompleted);
 
             groups.Add(overdueGroup);
             groups.Add(todayGroup);
@@ -38,50 +38,51 @@ namespace SimpleTasks.Models
             {
                 foreach (TaskModel task in items)
                 {
+                    TaskWrapper taskWrapper = new TaskWrapper(task);
                     if (task.IsComplete)
-                        completedGroup.Add(task);
+                        completedGroup.Add(taskWrapper);
                     else if (!task.DueDate.HasValue)
-                        somedayGroup.Add(task);
+                        somedayGroup.Add(taskWrapper);
                     else if (task.DueDate < DateTimeExtensions.Today)
-                        overdueGroup.Add(task);
+                        overdueGroup.Add(taskWrapper);
                     else if (task.DueDate == DateTimeExtensions.Today)
-                        todayGroup.Add(task);
+                        todayGroup.Add(taskWrapper);
                     else if (task.DueDate == DateTimeExtensions.Tomorrow)
-                        tomorrowGroup.Add(task);
+                        tomorrowGroup.Add(taskWrapper);
                     else
-                        upcomingGroup.Add(task);
+                        upcomingGroup.Add(taskWrapper);
                 }
             }
 
             // Seřazení úkolů ve skupinách
             overdueGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t1.DueDate.Value, t2.DueDate.Value);
+                return DateTime.Compare(t1.Task.DueDate.Value, t2.Task.DueDate.Value);
             });
 
             todayGroup.Sort((t1, t2) =>
             {
-                return t2.Priority.CompareTo(t1.Priority);
+                return t2.Task.Priority.CompareTo(t1.Task.Priority);
             });
 
             tomorrowGroup.Sort((t1, t2) =>
             {
-                return t2.Priority.CompareTo(t1.Priority);
+                return t2.Task.Priority.CompareTo(t1.Task.Priority);
             });
 
             upcomingGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t1.DueDate.Value, t2.DueDate.Value);
+                return DateTime.Compare(t1.Task.DueDate.Value, t2.Task.DueDate.Value);
             });
 
             somedayGroup.Sort((t1, t2) =>
             {
-                return t2.Priority.CompareTo(t1.Priority);
+                return t2.Task.Priority.CompareTo(t1.Task.Priority);
             });
 
             completedGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t2.CompletedDate.Value, t1.CompletedDate.Value);
+                return DateTime.Compare(t2.Task.CompletedDate.Value, t1.Task.CompletedDate.Value);
             });
 
             return groups;

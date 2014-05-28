@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Tiles
 {
@@ -15,6 +16,23 @@ namespace SimpleTasks.Tiles
         public DefaultWideTaskTile()
         {
             InitializeComponent();
+        }
+
+        public static readonly DependencyProperty TaskProperty = DependencyProperty.Register(
+            "Task",
+            typeof(TaskModel),
+            typeof(DefaultWideTaskTile),
+            null
+        );
+
+        public TaskModel Task
+        {
+            get { return (TaskModel)GetValue(TaskProperty); }
+            set
+            {
+                SetValue(TaskProperty, value);
+                DataContext = value;
+            }
         }
     }
 }
