@@ -33,12 +33,18 @@ namespace SimpleTasks.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
             NavigationService.RemoveBackEntry();
 
             App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
 
-            TasksSlideView.SelectedIndex = _tasksSlideViewIndex;
+            // Animace zesvětlení
+            TasksPageOverlay.Opacity = 1;
+            TasksPageOverlay.Visibility = Visibility.Visible;
+            TasksPageOverlayTransitionHide.Completed += (s2, e2) =>
+            {
+                TasksPageOverlay.Visibility = Visibility.Collapsed;
+            };
+            TasksPageOverlayTransitionHide.Begin();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -47,15 +53,6 @@ namespace SimpleTasks.Views
             if (!e.IsNavigationInitiator)
             {
                 LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
-            }
-        }
-
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (TasksSlideView.SelectedIndex == _tagsSlideViewIndex)
-            {
-                TasksSlideView.SelectedIndex = _tasksSlideViewIndex;
-                e.Cancel = true;
             }
         }
 
@@ -147,11 +144,6 @@ namespace SimpleTasks.Views
             {
                 ApplicationBar.MenuItems.Add(item);
             }
-        }
-
-        private void BuildTagsAppBar()
-        {
-            ApplicationBar = new ApplicationBar();
         }
 
         void appBarDeleteAllItem_Click(object sender, EventArgs e)
@@ -365,15 +357,6 @@ namespace SimpleTasks.Views
 
         #endregion
 
-        #region TagList
-
-        private void TagListControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        #endregion
-
         #region QuickAddTextBox
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -400,36 +383,5 @@ namespace SimpleTasks.Views
         }
 
         #endregion
-
-        #region SlideView
-
-        private int _tagsSlideViewIndex = 1;
-
-        private int _tasksSlideViewIndex = 0;
-
-        private void SlideView_SelectionChanged(object sender, EventArgs e)
-        {
-            this.Focus();
-            if (TasksSlideView.SelectedIndex == _tagsSlideViewIndex)
-            {
-                BuildTagsAppBar();
-
-                TasksPageOverlay.Visibility = Visibility.Visible;
-                TasksPageOverlayTransitionShow.Begin();
-            }
-            else
-            {
-                BuildTasksdAppBar();
-
-                TasksPageOverlayTransitionHide.Completed += (s2, e2) =>
-                {
-                    TasksPageOverlay.Visibility = Visibility.Collapsed;
-                };
-                TasksPageOverlayTransitionHide.Begin();
-            }
-        }
-
-        #endregion
-
     }
 }
