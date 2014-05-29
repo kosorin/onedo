@@ -73,8 +73,6 @@ namespace SimpleTasks.Views
             {
                 PageOverlay.Visibility = Visibility.Visible;
             }
-
-            TaskTile.Task = ViewModel.CurrentTask;
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)

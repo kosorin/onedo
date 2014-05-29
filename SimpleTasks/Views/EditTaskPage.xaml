@@ -588,12 +588,6 @@
                         </toolkit:PhoneTextBox.Resources>
                     </toolkit:PhoneTextBox>
 
-
-
-                    <tiles:DefaultWideTaskTile x:Name="TaskTile">
-
-                    </tiles:DefaultWideTaskTile>
-
                     <!--Detail-->
                     <toolkit:PhoneTextBox x:Name="DetailTextBox"
                                           Margin="0,-15,0,0"
