@@ -3,6 +3,7 @@ using SimpleTasks.Core.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SimpleTasks.Core.Tiles.DefaultList
 {
@@ -56,17 +57,60 @@ namespace SimpleTasks.Core.Tiles.DefaultList
             Grid.SetColumn(titleTextBlock, 0);
             contentGrid.Children.Add(titleTextBlock);
 
-            TextBlock dueTextBlock = new TextBlock()
+            StackPanel moreInfoStackPanel = new StackPanel()
             {
-                Text = (task.DueDate != null) ? task.DueDate.Value.ToShortDateString() : "",//DateTimeExtensions.ToRelativeString(task.DueDate, "", false),
-                Margin = new Thickness(20, 0, 5, 0),
-                Foreground = ForegroundBrush,
-                FontSize = ((double)Height / (double)TaskCount) * 0.7,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                HorizontalAlignment = HorizontalAlignment.Right
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Margin = new Thickness(20, 0, 0, 0),
+                Opacity = 0.65
             };
-            Grid.SetColumn(dueTextBlock, 1);
-            contentGrid.Children.Add(dueTextBlock);
+            if (task.HasDueDate)
+            {
+                moreInfoStackPanel.Children.Add(new TextBlock()
+                {
+                    Text = task.DueDate.Value.ToShortDateString(),
+                    Margin = new Thickness(0, 0, 5, 0),
+                    Foreground = ForegroundBrush,
+                    FontSize = ((double)Height / (double)TaskCount) * 0.7,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    HorizontalAlignment = HorizontalAlignment.Right
+                });
+            }
+            if (task.HasReminder)
+            {
+                moreInfoStackPanel.Children.Add(new TextBlock()
+                {
+                    Text = "\uE1FA",
+                    Foreground = ForegroundBrush,
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                    Margin = new Thickness(0, -3, -5, 0),
+                    FontSize = 32,
+                });
+            }
+            if (task.Priority == TaskPriority.High)
+            {
+                moreInfoStackPanel.Children.Add(new TextBlock()
+                {
+                    Text = "\uE171",
+                    Foreground = ForegroundBrush,
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                    Margin = new Thickness(-4, 0, 0, 0),
+                    FontSize = 32,
+                });
+            }
+            else if (task.Priority == TaskPriority.Low)
+            {
+                moreInfoStackPanel.Children.Add(new TextBlock()
+                {
+                    Text = "\ue1fd",
+                    Foreground = ForegroundBrush,
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                    Margin = new Thickness(-2, 4, 1, 0),
+                    FontSize = 28,
+                });
+            }
+            Grid.SetColumn(moreInfoStackPanel, 1);
+            contentGrid.Children.Add(moreInfoStackPanel);
 
             border.Child = innerBorder;
             return border;

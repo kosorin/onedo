@@ -106,7 +106,7 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
                     Text = "\uE163",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(0, -5, 0, 0),
+                    Margin = new Thickness(0, -4, 0, 0),
                     FontSize = 32,
                     Opacity = InfoOpacity
                 });
@@ -134,7 +134,7 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
                     Text = "\uE1FA",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(0, -5, 0, 0),
+                    Margin = new Thickness(0, -10, 0, 0),
                     FontSize = 32,
                     Opacity = InfoOpacity
                 });
@@ -146,7 +146,7 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
                     Text = "\uE171",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(0, -7, 0, 0),
+                    Margin = new Thickness(-6, -7, 0, 0),
                     FontSize = 32,
                     Opacity = InfoOpacity
                 });
@@ -158,7 +158,7 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
                     Text = "\ue1fd",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(0, 0, 0, 0),
+                    Margin = new Thickness(-2, -2, 0, 0),
                     FontSize = 28,
                     Opacity = InfoOpacity
                 });
