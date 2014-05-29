@@ -100,7 +100,10 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
 
             if (task.HasDueDate)
             {
-                StackPanel dueDateStackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                StackPanel dueDateStackPanel = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal
+                };
                 dueDateStackPanel.Children.Add(new TextBlock()
                 {
                     Text = "\uE163",
@@ -123,7 +126,8 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
                 infoGrid.Children.Add(dueDateStackPanel);
             }
 
-            StackPanel moreInfoStackPanel = new StackPanel() {
+            StackPanel moreInfoStackPanel = new StackPanel()
+            {
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Right
             };
@@ -139,7 +143,7 @@ namespace SimpleTasks.Core.Tiles.DefaultTask
                     Opacity = InfoOpacity
                 });
             }
-            if (task.Priority==TaskPriority.High)
+            if (task.Priority == TaskPriority.High)
             {
                 moreInfoStackPanel.Children.Add(new TextBlock()
                 {

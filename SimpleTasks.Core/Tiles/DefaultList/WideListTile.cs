@@ -61,7 +61,7 @@ namespace SimpleTasks.Core.Tiles.DefaultList
             {
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Right,
-                Margin = new Thickness(20, 0, 0, 0),
+                Margin = new Thickness(20, 0, 5, 0),
                 Opacity = 0.65
             };
             if (task.HasDueDate)
@@ -83,7 +83,7 @@ namespace SimpleTasks.Core.Tiles.DefaultList
                     Text = "\uE1FA",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(0, -3, -5, 0),
+                    Margin = new Thickness(0, -3, -7, 0),
                     FontSize = 32,
                 });
             }
@@ -94,7 +94,7 @@ namespace SimpleTasks.Core.Tiles.DefaultList
                     Text = "\uE171",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(-4, 0, 0, 0),
+                    Margin = new Thickness(-4, 0, -6, 0),
                     FontSize = 32,
                 });
             }
@@ -105,7 +105,7 @@ namespace SimpleTasks.Core.Tiles.DefaultList
                     Text = "\ue1fd",
                     Foreground = ForegroundBrush,
                     FontFamily = new FontFamily("Segoe UI Symbol"),
-                    Margin = new Thickness(-2, 4, 1, 0),
+                    Margin = new Thickness(-2, 4, -1, 0),
                     FontSize = 28,
                 });
             }
