@@ -56,6 +56,35 @@ namespace SimpleTasks.Views
             }
         }
 
+        T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
+        {
+            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+            var children = new FrameworkElement[childrenCount];
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
+                children[i] = child;
+                if (child is T)
+                {
+                    if (name == null || child.Name == name)
+                        return (T)child;
+                }
+            }
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                if (children[i] != null)
+                {
+                    var subChild = FindFirstChild<T>(children[i]);
+                    if (subChild != null)
+                        return subChild;
+                }
+            }
+
+            return null;
+        }
+
         #region AppBar
 
         private ApplicationBarIconButton appBarNewTaskButton;
@@ -285,40 +314,70 @@ namespace SimpleTasks.Views
 
         private bool completeButtonTapped = false;
 
-        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        private void Border_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             completeButtonTapped = true;
-            TasksLongListSelector.Focus();
-        }
+            this.Focus();
 
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            Border parent = ((sender as ToggleButton).Parent as Grid).Parent as Border;
-            TaskModel task = ((sender as ToggleButton).DataContext as TaskWrapper).Task;
+            Border border = ((sender as Border).Parent as Grid).Parent as Border;
+            Storyboard showStoryboard = ((Storyboard)border.FindName("TaskInfoShow"));
+            Storyboard hideStoryboard = ((Storyboard)border.FindName("TaskInfoHide"));
+
+            TaskWrapper wrapper = border.DataContext as TaskWrapper;
+            TaskModel task = wrapper.Task;
             if (task == null)
                 return;
+            if (task.IsActive)
+            {
+                task.CompletedDate = DateTime.Now;
+                task.ReminderDate = null;
 
-            task.CompletedDate = DateTime.Now;
-            task.ReminderDate = null;
-            ((Storyboard)parent.FindName("TaskInfoShow")).Stop();
-            ((Storyboard)parent.FindName("TaskInfoHide")).Begin();
-            Debug.WriteLine("CHECKED");
-            //App.Tasks.Update(task);
+                //showStoryboard.Stop();
+                wrapper.Animation = true;
+                hideStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
+                hideStoryboard.Begin();
+            }
+            else
+            {
+                task.CompletedDate = null;
+
+                //hideStoryboard.Stop();
+                wrapper.Animation = true;
+                showStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
+                showStoryboard.Begin();
+            }
+            App.Tasks.Update(task);
         }
 
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
         {
-            Border parent = ((sender as ToggleButton).Parent as Grid).Parent as Border;
-            TaskModel task = ((sender as ToggleButton).DataContext as TaskWrapper).Task;
-            if (task == null)
-                return;
 
-            task.CompletedDate = null;
-            ((Storyboard)parent.FindName("TaskInfoShow")).Begin();
-            ((Storyboard)parent.FindName("TaskInfoHide")).Stop();
-            Debug.WriteLine("UN CHECKED");
+            if (e.ItemKind == LongListSelectorItemKind.Item)
+            {
+                TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
+                TaskModel task = wrapper.Task;
 
-            //App.Tasks.Update(task);
+                StackPanel panel = FindFirstChild<StackPanel>(e.Container, "TaskInfoStackPanel");
+                wrapper.Height = panel.ActualHeight;
+                panel.Height = panel.ActualHeight;
+
+                Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
+                Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
+                Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
+
+                if (task == null)
+                    return;
+                if (task.IsActive)
+                {
+                    showStoryboard.Begin();
+                    hideStoryboard.Stop();
+                }
+                else
+                {
+                    showStoryboard.Stop();
+                    hideStoryboard.Begin();
+                }
+            }
         }
 
         private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -348,25 +407,12 @@ namespace SimpleTasks.Views
 
         private void TaskInfoStackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            StackPanel panel = sender as StackPanel;
-            TaskWrapper taskWrapper = panel.DataContext as TaskWrapper;
-            if (taskWrapper.Height < 0)
-            {
-                taskWrapper.Height = e.NewSize.Height;
-                panel.Height = taskWrapper.Task.IsActive ? e.NewSize.Height : 0;
-            }
-        }
-
-        private void TaskInfoStackPanel_Loaded(object sender, RoutedEventArgs e)
-        {
-            StackPanel panel = sender as StackPanel;
-            TaskWrapper wrapper = panel.DataContext as TaskWrapper;
-            panel.Height = wrapper.Task.IsActive? wrapper.Height: 0;
-
-            Border parent = ((panel.Parent as Grid).Parent as Grid).Parent as Border;
-            ((Storyboard)parent.FindName("TaskInfoShow")).Stop();
-            ((Storyboard)parent.FindName("TaskInfoHide")).Stop();
-            Debug.WriteLine("LOADED");
+            //StackPanel panel = sender as StackPanel;
+            //TaskWrapper taskWrapper = panel.DataContext as TaskWrapper;
+            //if (!taskWrapper.Animation)
+            //{
+            //    taskWrapper.Height = e.NewSize.Height;
+            //}
         }
 
         #endregion
@@ -397,9 +443,6 @@ namespace SimpleTasks.Views
         }
 
         #endregion
-
-        
-
 
     }
 }

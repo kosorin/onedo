@@ -19,6 +19,13 @@ namespace SimpleTasks.Models
             set { SetProperty(ref _height, value); }
         }
 
+        private bool _animation = false;
+        public bool Animation
+        {
+            get { return _animation; }
+            set { SetProperty(ref _animation, value); }
+        }
+
         public TaskWrapper(TaskModel task)
         {
             Task = task;

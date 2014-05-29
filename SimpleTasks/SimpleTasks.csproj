@@ -114,7 +114,7 @@
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Models\TaskKeyGroup.cs" />
+    <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
     <Compile Include="MyUriMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
