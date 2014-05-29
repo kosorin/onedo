@@ -63,7 +63,7 @@
                         </StackPanel>
 
                         <!--First day of week-->
-                        <StackPanel Margin="0,0,0,12">
+                        <!--<StackPanel Margin="0,0,0,12">
                             <TextBlock Text="{Binding LocalizedResources.SettingsFirstDayOfWeek, Source={StaticResource LocalizedStrings}}" 
                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
                             <toolkit:ListPicker x:Name="FirstDayOfWeekPicker" 
@@ -84,8 +84,9 @@
                                     </DataTemplate>
                                 </toolkit:ListPicker.ItemTemplate>
                             </toolkit:ListPicker>
-                        </StackPanel>
+                        </StackPanel>-->
 
+                        <!--default reminder time-->
                         <toolkit:TimePicker x:Name="ReminderTimePicker"
                                             Header="{Binding LocalizedResources.SettingsDefaultReminderTime, Source={StaticResource LocalizedStrings}}"
                                             Value="{Binding DefaultReminderTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
@@ -113,9 +114,9 @@
                                     </DataTemplate>
                                 </toolkit:ListPicker.FullModeItemTemplate>
                             </toolkit:ListPicker>
-                            <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasksInfo, Source={StaticResource LocalizedStrings}}" 
+                            <!--<TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasksInfo, Source={StaticResource LocalizedStrings}}" 
                                        Style="{StaticResource PhoneTextSubtleStyle}"
-                                       TextWrapping="Wrap"/>
+                                       TextWrapping="Wrap"/>-->
                         </StackPanel>
                         
                     </StackPanel>

@@ -241,7 +241,7 @@ namespace SimpleTasks.ViewModels
 
         #endregion
 
-        #region FirstDayOfWeek
+        #region DEPRECATED FirstDayOfWeek
 
         private const string FirstDayOfWeekKeyName = "FirstDayOfWeek";
         private readonly DayOfWeek FirstDayOfWeekDefault = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
