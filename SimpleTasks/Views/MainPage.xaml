@@ -82,6 +82,13 @@
             </Border>
         </DataTemplate>
 
+        <DataTemplate x:Key="TasksLongListSelectorGroupFooterTemmplate">
+            <!--<Rectangle Fill="{StaticResource PhoneAccentBrush}"
+                       Opacity="0.4"
+                       Height="5" 
+                       VerticalAlignment="Bottom"/>-->
+        </DataTemplate>
+        
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border x:Name="RootBorder"
                     BorderThickness="0,0,0,1"
@@ -165,7 +172,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Border Margin="12,15,2,0" 
+                    <Border Margin="12,15,2,0"
                             Tap="Border_Tap" >
                         <Grid Width="40"
                               Height="40"
@@ -324,6 +331,7 @@
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
+                                    GroupFooterTemplate="{StaticResource TasksLongListSelectorGroupFooterTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
                                     HideEmptyGroups="True"

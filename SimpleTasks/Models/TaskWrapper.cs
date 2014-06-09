@@ -19,6 +19,11 @@ namespace SimpleTasks.Models
             set { SetProperty(ref _height, value); }
         }
 
+        public bool ShowInfo
+        {
+            get { return Task.HasDueDate || Task.HasReminder || Task.Priority != TaskPriority.Normal; }
+        }
+
         private bool _animation = false;
         public bool Animation
         {

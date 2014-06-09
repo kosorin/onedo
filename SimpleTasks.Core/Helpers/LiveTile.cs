@@ -77,13 +77,23 @@ namespace SimpleTasks.Core.Helpers
             return flipTileData;
         }
 
+        public static void PinEmpty(TaskModel task)
+        {
+            Pin(task, new FlipTileData());
+        }
+
         public static void Pin(TaskModel task)
+        {
+            Pin(task, CreateTile(task));
+        }
+
+        public static void Pin(TaskModel task, StandardTileData tileData)
         {
             try
             {
                 Deployment.Current.Dispatcher.BeginInvoke(delegate
                 {
-                    ShellTile.Create(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative), CreateTile(task), true);
+                    ShellTile.Create(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative), tileData, true);
                 });
             }
             catch (Exception e)
@@ -141,7 +151,7 @@ namespace SimpleTasks.Core.Helpers
                 Debug.WriteLine(": Chyba při mazání živé dlaždice: {0}", e.Message);
             }
         }
-        
+
         #endregion
 
         #region Hlavní dlaždice

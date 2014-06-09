@@ -75,6 +75,18 @@ namespace SimpleTasks.Views
             }
         }
 
+        private bool updateTile = false;
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if (updateTile)
+            {
+                updateTile = false;
+                LiveTile.Update(ViewModel.CurrentTask);
+            }            
+        }
+
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
             GoBack();
@@ -185,7 +197,8 @@ namespace SimpleTasks.Views
             {
                 BeforeSave();
                 ViewModel.SaveTask();
-                LiveTile.Pin(ViewModel.CurrentTask);
+                updateTile = true;
+                LiveTile.PinEmpty(ViewModel.CurrentTask);
                 ApplicationBar.Buttons.RemoveAt(0);
                 ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
             }
@@ -261,6 +274,7 @@ namespace SimpleTasks.Views
                 BeforeSave();
                 ViewModel.CompleteTask();
                 AfterSave();
+                updateTile = true;
                 GoBack();
             }
         }
@@ -272,6 +286,7 @@ namespace SimpleTasks.Views
                 BeforeSave();
                 ViewModel.SaveTask();
                 AfterSave();
+                updateTile = true;
                 GoBack();
             }
         }
