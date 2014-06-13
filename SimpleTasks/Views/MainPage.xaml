@@ -9,7 +9,6 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
-    xmlns:slide="clr-namespace:SlideView.Library;assembly=SlideView.Library"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -54,41 +53,25 @@
         </Style>
 
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Border Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
-                    Margin="0,-1,0,0"
-                    toolkit:TiltEffect.SuppressTilt="True">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Border Background="{StaticResource PhoneAccentBrush}"
-                            Padding="12,2,12,2"
-                            HorizontalAlignment="Right"
-                            Grid.Column="1">
-                        <TextBlock Text="{Binding Title}" 
-                                   Foreground="{StaticResource PhoneForegroundBrush}" 
-                                   FontSize="24"
-                                   Padding="6"
-                                   FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"/>
-                    </Border>
-                    <Border Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
-                            Margin="0,40,0,0"
-                            Grid.ColumnSpan="2"/>
-                </Grid>
-            </Border>
+            <Grid Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
+                  Margin="0,0,0,0"
+                  Height="50"
+                  toolkit:TiltEffect.SuppressTilt="True">
+                <Border Background="{StaticResource PhoneAccentBrush}"
+                        Padding="10,0,10,5"
+                        HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Title}" 
+                               Foreground="{StaticResource PhoneForegroundBrush}" 
+                               FontSize="24"
+                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
+                        Height="10"
+                        VerticalAlignment="Bottom"/>
+            </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="TasksLongListSelectorGroupFooterTemmplate">
-            <!--<Rectangle Fill="{StaticResource PhoneAccentBrush}"
-                       Opacity="0.4"
-                       Height="5" 
-                       VerticalAlignment="Bottom"/>-->
-        </DataTemplate>
-        
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border x:Name="RootBorder"
                     BorderThickness="0,0,0,1"
@@ -331,7 +314,6 @@
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
-                                    GroupFooterTemplate="{StaticResource TasksLongListSelectorGroupFooterTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
                                     HideEmptyGroups="True"
