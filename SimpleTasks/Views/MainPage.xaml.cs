@@ -332,6 +332,10 @@ namespace SimpleTasks.Views
             {
                 task.CompletedDate = DateTime.Now;
                 task.ReminderDate = null;
+                if (App.Settings.UnpinCompletedSetting)
+                {
+                    LiveTile.Unpin(task);
+                }
 
                 //showStoryboard.Stop();
                 wrapper.Animation = true;

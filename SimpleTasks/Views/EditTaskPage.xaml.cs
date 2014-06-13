@@ -94,7 +94,10 @@ namespace SimpleTasks.Views
             if (updateTile)
             {
                 updateTile = false;
-                LiveTile.Update(ViewModel.CurrentTask);
+                if (ViewModel.CurrentTask.IsActive)
+                {
+                    LiveTile.Update(ViewModel.CurrentTask);
+                }
                 LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
             }            
         }
@@ -149,7 +152,14 @@ namespace SimpleTasks.Views
         {
             if (LiveTile.IsPinned(ViewModel.CurrentTask))
             {
-                LiveTile.Update(ViewModel.CurrentTask);
+                if (App.Settings.UnpinCompletedSetting && ViewModel.CurrentTask.IsComplete)
+                {
+                    LiveTile.Unpin(ViewModel.CurrentTask);
+                }
+                else
+                {
+                    LiveTile.Update(ViewModel.CurrentTask);
+                }
             }
         }
 
@@ -297,6 +307,7 @@ namespace SimpleTasks.Views
                 BeforeSave();
                 ViewModel.CompleteTask();
                 AfterSave();
+
                 updateTile = true;
                 GoBack();
             }

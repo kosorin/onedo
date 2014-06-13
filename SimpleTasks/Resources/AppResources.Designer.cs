@@ -709,6 +709,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unpin tile upon completion of task.
+        /// </summary>
+        public static string SettingsUnpinCompleted {
+            get {
+                return ResourceManager.GetString("SettingsUnpinCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {

@@ -349,4 +349,7 @@
   <data name="ChooseReminderTime" xml:space="preserve">
     <value>CHOOSE REMINDER TIME</value>
   </data>
+  <data name="SettingsUnpinCompleted" xml:space="preserve">
+    <value>Unpin tile upon completion of task</value>
+  </data>
 </root>

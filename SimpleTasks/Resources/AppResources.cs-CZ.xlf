@@ -283,6 +283,10 @@
           <source>CHOOSE REMINDER TIME</source>
           <target state="signed-off">ZVOLTE ČAS PŘIPOMENUTÍ</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/SettingsUnpinCompleted" xml:space="preserve">
+          <source>Unpin tile upon completion of task</source>
+          <target state="signed-off">Po dokončení úkolu odepnout dlaždici</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
           <target state="signed-off">připnout</target>

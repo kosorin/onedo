@@ -241,6 +241,28 @@ namespace SimpleTasks.ViewModels
 
         #endregion
 
+        #region UnpinCompletedTile
+
+        private const string UnpinCompletedKeyName = "UnpinCompleted";
+        private readonly bool UnpinCompletedDefault = true;
+        public bool UnpinCompletedSetting
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(UnpinCompletedKeyName, UnpinCompletedDefault);
+            }
+            set
+            {
+                if (AddOrUpdateValue(UnpinCompletedKeyName, value))
+                {
+                    LiveTile.UpdateOrReset(value, App.Tasks.Tasks, true);
+                    Save();
+                }
+            }
+        }
+
+        #endregion
+
         #region DEPRECATED FirstDayOfWeek
 
         private const string FirstDayOfWeekKeyName = "FirstDayOfWeek";

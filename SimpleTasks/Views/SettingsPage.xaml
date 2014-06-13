@@ -129,10 +129,15 @@
                     <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
 							              IsChecked="{Binding EnableLiveTileSetting, Mode=TwoWay, FallbackValue=True}"
                                           x:Name="EnableLiveTileToggleSwitch" 
-                                          Margin="0,0,0,-20" />
+                                          Margin="0,0,0,-30" />
                     <TextBlock Text="{Binding LocalizedResources.SettingsPinTile, Source={StaticResource LocalizedStrings}}" 
                                Style="{StaticResource PhoneTextSubtleStyle}"
                                TextWrapping="Wrap"/>
+
+                    <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}"
+							              IsChecked="{Binding UnpinCompletedSetting, Mode=TwoWay, FallbackValue=True}"
+                                          x:Name="UnpinCompletedToggleSwitch" 
+                                          Margin="0,20,0,-20" />
 
                 </StackPanel>
             </phone:PivotItem>
