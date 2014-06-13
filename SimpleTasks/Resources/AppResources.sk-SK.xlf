@@ -277,11 +277,11 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDone" xml:space="preserve">
           <source>done</source>
-          <target state="new">done</target>
+          <target state="signed-off">hotovo</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseReminderTime" xml:space="preserve">
           <source>CHOOSE REMINDER TIME</source>
-          <target state="new">CHOOSE REMINDER TIME</target>
+          <target state="signed-off">VYBERTE ČAS PRIPOMENUTIA</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
