@@ -55,6 +55,7 @@ namespace SimpleTasks.ViewModels
 
         public void SaveTask()
         {
+            CurrentTask.ModifiedSinceStart = true;
             if (IsOldTask)
             {
                 App.Tasks.Update(OldTask, CurrentTask);

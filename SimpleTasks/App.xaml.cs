@@ -107,6 +107,19 @@ namespace SimpleTasks
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
 
+        public static void UpdateAllLiveTiles()
+        {
+            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, Tasks.Tasks);
+            foreach (TaskModel task in Tasks.Tasks)
+            {
+                if (task.ModifiedSinceStart)
+                {
+                    task.ModifiedSinceStart = false;
+                    LiveTile.Update(task);
+                }
+            }
+        }
+
         #region Phone application initialization
 
         /// <summary>

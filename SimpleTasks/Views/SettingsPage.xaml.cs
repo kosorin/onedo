@@ -17,5 +17,14 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = App.Settings;
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            if (!e.IsNavigationInitiator)
+            {
+                App.UpdateAllLiveTiles();
+            }
+        }
     }
 }

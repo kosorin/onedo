@@ -255,7 +255,6 @@ namespace SimpleTasks.ViewModels
             {
                 if (AddOrUpdateValue(UnpinCompletedKeyName, value))
                 {
-                    LiveTile.UpdateOrReset(value, App.Tasks.Tasks, true);
                     Save();
                 }
             }

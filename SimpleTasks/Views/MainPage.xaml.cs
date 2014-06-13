@@ -52,7 +52,7 @@ namespace SimpleTasks.Views
             base.OnNavigatedFrom(e);
             if (!e.IsNavigationInitiator)
             {
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
+                App.UpdateAllLiveTiles();
             }
         }
 
@@ -329,7 +329,7 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
             if (task.IsActive)
-            {
+            {   // DOKONČENÍ
                 task.CompletedDate = DateTime.Now;
                 task.ReminderDate = null;
                 if (App.Settings.UnpinCompletedSetting)
@@ -337,16 +337,14 @@ namespace SimpleTasks.Views
                     LiveTile.Unpin(task);
                 }
 
-                //showStoryboard.Stop();
                 wrapper.Animation = true;
                 hideStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
                 hideStoryboard.Begin();
             }
             else
-            {
+            {   // AKTIVOVÁNÍ
                 task.CompletedDate = null;
 
-                //hideStoryboard.Stop();
                 wrapper.Animation = true;
                 showStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
                 showStoryboard.Begin();

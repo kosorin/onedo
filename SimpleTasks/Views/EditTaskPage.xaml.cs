@@ -86,20 +86,13 @@ namespace SimpleTasks.Views
             }
         }
 
-        private bool updateTile = false;
-
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            if (updateTile)
+            if (!e.IsNavigationInitiator)
             {
-                updateTile = false;
-                if (ViewModel.CurrentTask.IsActive)
-                {
-                    LiveTile.Update(ViewModel.CurrentTask);
-                }
-                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
-            }            
+                App.UpdateAllLiveTiles();
+            }
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
@@ -150,16 +143,9 @@ namespace SimpleTasks.Views
 
         private void AfterSave()
         {
-            if (LiveTile.IsPinned(ViewModel.CurrentTask))
+            if (App.Settings.UnpinCompletedSetting && ViewModel.CurrentTask.IsComplete)
             {
-                if (App.Settings.UnpinCompletedSetting && ViewModel.CurrentTask.IsComplete)
-                {
-                    LiveTile.Unpin(ViewModel.CurrentTask);
-                }
-                else
-                {
-                    LiveTile.Update(ViewModel.CurrentTask);
-                }
+                LiveTile.Unpin(ViewModel.CurrentTask);
             }
         }
 
@@ -230,7 +216,6 @@ namespace SimpleTasks.Views
                 ViewModel.SaveTask();
                 AfterSave();
 
-                updateTile = true;
                 LiveTile.PinEmpty(ViewModel.CurrentTask);
                 ApplicationBar.Buttons.RemoveAt(0);
                 ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
@@ -308,7 +293,6 @@ namespace SimpleTasks.Views
                 ViewModel.CompleteTask();
                 AfterSave();
 
-                updateTile = true;
                 GoBack();
             }
         }
@@ -320,7 +304,7 @@ namespace SimpleTasks.Views
                 BeforeSave();
                 ViewModel.SaveTask();
                 AfterSave();
-                updateTile = true;
+
                 GoBack();
             }
         }

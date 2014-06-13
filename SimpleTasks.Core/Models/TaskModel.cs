@@ -208,6 +208,13 @@ namespace SimpleTasks.Core.Models
                 SetProperty(ref _modified, value);
             }
         }
+
+        private bool _modifiedSinceStart = false;
+        public bool ModifiedSinceStart
+        {
+            get { return _modifiedSinceStart; }
+            set { _modifiedSinceStart = value; }
+        }
         #endregion
 
         public TaskModel()
