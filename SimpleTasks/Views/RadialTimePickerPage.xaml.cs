@@ -44,6 +44,8 @@ namespace SimpleTasks.Views
 
         private void OnManipulationStartedHours(object sender, ManipulationStartedEventArgs e)
         {
+            AngleHoursAnimation.SkipToFill();
+            AngleHoursAnimation.Stop();
             GrabberHours.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
         }
 

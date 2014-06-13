@@ -1,8 +1,12 @@
 ﻿using Microsoft.Phone.Shell;
+using SimpleTasks.Controls;
 using SimpleTasks.Views;
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace SimpleTasks.ViewModels
 {
@@ -13,7 +17,11 @@ namespace SimpleTasks.ViewModels
         #region Fields
         private DateTime _initTime;
         private double _angleHours = default(double);
+        private double _angleHoursAnimateFrom = default(double);
+        private double _angleHoursAnimateTo = default(double);
         private double _angleMinutes = default(double);
+        private double _angleMinutesAnimateFrom = default(double);
+        private double _angleMinutesAnimateTo = default(double);
         private int _hoursSimple = default(int);
         private int _minutes = default(int);
         private bool _isAm;
@@ -51,6 +59,18 @@ namespace SimpleTasks.ViewModels
             }
         }
 
+        public double AngleMinutesAnimateFrom
+        {
+            get { return _angleMinutesAnimateFrom; }
+            set { SetProperty(ref _angleMinutesAnimateFrom, value); }
+        }
+
+        public double AngleMinutesAnimateTo
+        {
+            get { return _angleMinutesAnimateTo; }
+            set { SetProperty(ref _angleMinutesAnimateTo, value); }
+        }
+
         public double AngleHours
         {
             get { return _angleHours; }
@@ -59,6 +79,18 @@ namespace SimpleTasks.ViewModels
                 SetProperty(ref _angleHours, value);
                 HoursSimple = (int)Math.Round(value / 30d);
             }
+        }
+
+        public double AngleHoursAnimateFrom
+        {
+            get { return _angleHoursAnimateFrom; }
+            set { SetProperty(ref _angleHoursAnimateFrom, value); }
+        }
+
+        public double AngleHoursAnimateTo
+        {
+            get { return _angleHoursAnimateTo; }
+            set { SetProperty(ref _angleHoursAnimateTo, value); }
         }
 
         public int Minutes { get { return _minutes; } private set { SetProperty(ref _minutes, value); } }
@@ -164,8 +196,12 @@ namespace SimpleTasks.ViewModels
         public void RoundAngleHours()
         {
             var oldQ = GetQuadrant(AngleHours);
+            AngleHoursAnimateFrom = AngleHours;
             AngleHours = HoursSimple * 30;
+            AngleHoursAnimateTo = AngleHours;
             var newQ = GetQuadrant(AngleHours);
+
+            //_picker.AngleHoursAnimation.Begin();
 
             // when going from 
             if (oldQ == Quadrants.Nw && newQ == Quadrants.Ne)
@@ -205,5 +241,7 @@ namespace SimpleTasks.ViewModels
             return Quadrants.Nw;
         }
         #endregion
+
+
     }
 }

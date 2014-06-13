@@ -273,6 +273,7 @@
                                 <TextBlock Text="{Binding Task.Detail}"
                                            Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                            Opacity="0.8"
+                                           TextTrimming="WordEllipsis"
                                            Margin="8,0,20,0"/>
                             </Grid>
                         </StackPanel>
@@ -309,7 +310,7 @@
 
             <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"
                        HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" 
+                       VerticalAlignment="Center"
                        Style="{StaticResource PhoneTextLargeStyle}"
                        Foreground="{StaticResource PhoneSubtleBrush}"
                        Visibility="{Binding Tasks.Count, 

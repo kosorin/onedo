@@ -352,7 +352,6 @@ namespace SimpleTasks.Views
 
         private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
         {
-
             if (e.ItemKind == LongListSelectorItemKind.Item)
             {
                 TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
