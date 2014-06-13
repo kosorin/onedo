@@ -95,6 +95,7 @@ namespace SimpleTasks.Views
             {
                 updateTile = false;
                 LiveTile.Update(ViewModel.CurrentTask);
+                LiveTile.UpdateOrReset(App.Settings.EnableLiveTileSetting, App.Tasks.Tasks);
             }            
         }
 
@@ -217,6 +218,8 @@ namespace SimpleTasks.Views
             {
                 BeforeSave();
                 ViewModel.SaveTask();
+                AfterSave();
+
                 updateTile = true;
                 LiveTile.PinEmpty(ViewModel.CurrentTask);
                 ApplicationBar.Buttons.RemoveAt(0);

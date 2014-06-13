@@ -208,20 +208,6 @@
                             <Grid MaxHeight="32"
                                   Margin="0,0,0,10">
                                 <StackPanel Orientation="Horizontal">
-                                    <!--<StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding IsComplete, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource CheckIconStyle}"
-                                                       Color="{StaticResource PhoneSubtleBrush}"
-                                                       Margin="4,0,-26,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding LocalizedResources.DateCompleted, Source={StaticResource LocalizedStrings}}"/>
-                                    </StackPanel>-->
                                     <StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding Task.HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <controls:Icon Style="{StaticResource CalendarIconStyle}"
