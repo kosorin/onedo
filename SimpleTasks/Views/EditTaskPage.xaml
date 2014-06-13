@@ -311,7 +311,7 @@
             <Border Style="{StaticResource ButtonBorderStyle}">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CheckStates">
-                        <VisualState x:Name="Checked">
+                        <VisualState x:Name="Unchecked">
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetName="PriorityBorderBackgroundBrush" 
                                                 Storyboard.TargetProperty="Color"
@@ -351,7 +351,7 @@
                                                  Duration="0:0:0.4" />
                             </Storyboard>
                         </VisualState>
-                        <VisualState x:Name="Unchecked">
+                        <VisualState x:Name="Checked">
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetName="PriorityBorderBackgroundBrush" 
                                                 Storyboard.TargetProperty="Color"

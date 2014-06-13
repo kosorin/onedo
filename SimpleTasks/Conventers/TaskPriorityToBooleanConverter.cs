@@ -13,8 +13,8 @@ namespace SimpleTasks.Conventers
             {
                 switch ((TaskPriority)value)
                 {
-                case TaskPriority.High: return true;
-                case TaskPriority.Low: return false;
+                case TaskPriority.High: return false;
+                case TaskPriority.Low: return true;
                 case TaskPriority.Normal:
                 default: return null;
                 }
@@ -32,11 +32,11 @@ namespace SimpleTasks.Conventers
             }
             else if (priority.Value)
             {
-                return TaskPriority.High;
+                return TaskPriority.Low;
             }
             else
             {
-                return TaskPriority.Low;
+                return TaskPriority.High;
             }
         }
     }
