@@ -31,47 +31,58 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
 
-            if (!FirstTimeNavigatedTo)
-                return;
-            FirstTimeNavigatedTo = false;
-
-            // Zjistíme, jaký úkol se bude upravovat (pokud se nepřidává nový úkol)
-            TaskModel task = null;
-            if (this.NavigationContext.QueryString.ContainsKey("Task"))
+            if (FirstTimeNavigatedTo)
             {
-                task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
-            }
+                FirstTimeNavigatedTo = false;
 
-            ViewModel = new EditTaskViewModel(task);
-            DataContext = ViewModel;
-
-            CreateAppBarItems();
-            BuildAppBar();
-
-            // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
-            RoutedEventHandler firstTimeLoadHandler = null;
-            firstTimeLoadHandler = (s, e2) =>
-            {
-                if (!ViewModel.IsOldTask)
+                // Zjistíme, jaký úkol se bude upravovat (pokud se nepřidává nový úkol)
+                TaskModel task = null;
+                if (this.NavigationContext.QueryString.ContainsKey("Task"))
                 {
-                    // Zobrazení klávesnice
-                    TitleTextBox.Focus();
-
-                    // Nastavení defaultního termínu
-                    if (App.Settings.DefaultDueDateSettingToDateTime != null)
-                    {
-                        DueDateToggleButton.IsChecked = true;
-                    }
+                    task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
-                DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
-                this.Loaded -= firstTimeLoadHandler;
-            };
-            this.Loaded += firstTimeLoadHandler;
 
-            // Pokud je úkol dokončený, zobrazíme overlay
-            if (task != null && task.IsComplete)
+                ViewModel = new EditTaskViewModel(task);
+                DataContext = ViewModel;
+
+                CreateAppBarItems();
+                BuildAppBar();
+
+                // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
+                RoutedEventHandler firstTimeLoadHandler = null;
+                firstTimeLoadHandler = (s, e2) =>
+                {
+                    if (!ViewModel.IsOldTask)
+                    {
+                        // Zobrazení klávesnice
+                        TitleTextBox.Focus();
+
+                        // Nastavení defaultního termínu
+                        if (App.Settings.DefaultDueDateSettingToDateTime != null)
+                        {
+                            DueDateToggleButton.IsChecked = true;
+                        }
+                    }
+                    DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
+                    this.Loaded -= firstTimeLoadHandler;
+                };
+                this.Loaded += firstTimeLoadHandler;
+
+                // Pokud je úkol dokončený, zobrazíme overlay
+                if (task != null && task.IsComplete)
+                {
+                    PageOverlay.Visibility = Visibility.Visible;
+                }
+            }
+            else
             {
-                PageOverlay.Visibility = Visibility.Visible;
+                if (PhoneApplicationService.Current.State.ContainsKey("RadialTime"))
+                {
+                    DateTime newReminderTime = (DateTime)PhoneApplicationService.Current.State["RadialTime"];
+                    PhoneApplicationService.Current.State.Remove("RadialTime");
+
+                    ViewModel.CurrentTask.ReminderDate = newReminderTime;
+                }
             }
         }
 
@@ -469,6 +480,16 @@ namespace SimpleTasks.Views
             {
                 ReminderGrid.Visibility = Visibility.Collapsed;
             };
+        }
+
+        private void ReminderTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+            if (phoneApplicationFrame != null)
+            {
+                PhoneApplicationService.Current.State["RadialTime"] = ViewModel.CurrentTask.ReminderDate.Value;
+                phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
+            }
         }
 
         #endregion

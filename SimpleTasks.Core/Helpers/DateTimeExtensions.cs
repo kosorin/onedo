@@ -10,6 +10,8 @@ namespace SimpleTasks.Core.Helpers
 
         public static string Format { get { return "{0:dddd}, {0:d}"; } }
 
+        public static string TimeFormat { get { return "{0:t}"; } }
+
         public static DateTime Today { get { return DateTime.Today; } }
 
         public static DateTime Tomorrow { get { return Today.AddDays(1d); } }

@@ -160,6 +160,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to done.
+        /// </summary>
+        public static string AppBarDone {
+            get {
+                return ResourceManager.GetString("AppBarDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to new.
         /// </summary>
         public static string AppBarNew {
@@ -237,6 +246,15 @@ namespace SimpleTasks.Resources {
         public static string ChooseDueDate {
             get {
                 return ResourceManager.GetString("ChooseDueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHOOSE REMINDER TIME.
+        /// </summary>
+        public static string ChooseReminderTime {
+            get {
+                return ResourceManager.GetString("ChooseReminderTime", resourceCulture);
             }
         }
         

@@ -209,6 +209,14 @@
           <source>unpin</source>
           <target state="new">unpin</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarDone" xml:space="preserve">
+          <source>done</source>
+          <target state="new">done</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/ChooseReminderTime" xml:space="preserve">
+          <source>CHOOSE REMINDER TIME</source>
+          <target state="new">CHOOSE REMINDER TIME</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
           <target state="new">pin</target>

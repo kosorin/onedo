@@ -513,41 +513,34 @@
             </Button>
         </ControlTemplate>
 
-        <ControlTemplate x:Key="ReminderTimePickerTemplate">
-            <Button x:Name="DateTimeButton"
-                    Content="{TemplateBinding toolkit:TimePicker.ValueString}"
+        <ControlTemplate x:Key="ReminderTimePickerTemplate" TargetType="Button">
+            <Border x:Name="Border"
+                    Background="{StaticResource PhoneAccentBrush}"
                     Height="{TemplateBinding Height}">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Border x:Name="Border"
-                                Background="{StaticResource PhoneAccentBrush}"
-                                Height="{TemplateBinding Height}">
-                            <Grid Background="#47000000">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60"/>
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <controls:Icon x:Name="ReminderIcon"
-                                               Grid.Column="0"
-                                               Offset="7,12"
-                                               Opacity="0.35"
-                                               Style="{StaticResource ClockIconStyle}"
-                                               Color="{StaticResource ButtonForegroundBrush}" 
-                                               RenderTransformOrigin="0.5,0.5"
-                                               VerticalAlignment="Center">
-                                    <controls:Icon.RenderTransform>
-                                        <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
-                                    </controls:Icon.RenderTransform>
-                                </controls:Icon>
-                                <TextBlock Text="{TemplateBinding Button.Content}"
-                                           Grid.Column="1"
-                                           FontSize="{StaticResource PhoneFontSizeMedium}"
-                                           Style="{StaticResource ButtonTextBlockStyle}"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+                <Grid Background="#47000000">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <controls:Icon x:Name="ReminderIcon"
+                                   Grid.Column="0"
+                                   Offset="7,12"
+                                   Opacity="0.35"
+                                   Style="{StaticResource ClockIconStyle}"
+                                   Color="{StaticResource ButtonForegroundBrush}" 
+                                   RenderTransformOrigin="0.5,0.5"
+                                   VerticalAlignment="Center">
+                        <controls:Icon.RenderTransform>
+                            <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                        </controls:Icon.RenderTransform>
+                    </controls:Icon>
+                    <TextBlock Text="{TemplateBinding Button.Content}"
+                               Grid.Column="1"
+                               FontSize="{StaticResource PhoneFontSizeMedium}"
+                               Style="{StaticResource ButtonTextBlockStyle}"/>
+                </Grid>
+            </Border>
+
         </ControlTemplate>
 
         <!--EndRegion-->
@@ -716,10 +709,11 @@
                                                 Template="{StaticResource ReminderDatePickerTemplate}"/>
 
                             <!--Čas-->
-                            <toolkit:TimePicker Name="ReminderTimePicker"
-                                                Grid.Row="1"
-                                                Value="{Binding CurrentTask.ReminderDate, Mode=TwoWay}"
-                                                Template="{StaticResource ReminderTimePickerTemplate}" />
+                            <Button Name="ReminderTimePicker"
+                                    Grid.Row="1"
+                                    Content="{Binding CurrentTask.ReminderDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}"
+                                    Template="{StaticResource ReminderTimePickerTemplate}" 
+                                    Tap="ReminderTimePicker_Tap" />
                         </Grid>
 
                     </StackPanel>

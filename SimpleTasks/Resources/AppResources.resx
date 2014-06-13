@@ -343,4 +343,10 @@
   <data name="AppBarUnpin" xml:space="preserve">
     <value>unpin</value>
   </data>
+  <data name="AppBarDone" xml:space="preserve">
+    <value>done</value>
+  </data>
+  <data name="ChooseReminderTime" xml:space="preserve">
+    <value>CHOOSE REMINDER TIME</value>
+  </data>
 </root>
