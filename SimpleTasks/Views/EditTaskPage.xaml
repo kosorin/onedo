@@ -601,7 +601,6 @@
                                       Checked="DueToggleButton_Checked" 
                                       Unchecked="DueToggleButton_Unchecked"/>
                         <Grid x:Name="DueDateGrid"
-                              Background="Gold"
                               Height="{Binding CurrentTask.HasDueDate, 
                                        Converter={StaticResource BooleanToNumberConverter},
                                        ConverterParameter=50,

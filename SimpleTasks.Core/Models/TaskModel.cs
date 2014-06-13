@@ -164,7 +164,7 @@ namespace SimpleTasks.Core.Models
 
         #region Tags
         private List<string> _tags = new List<string>();
-        [DataMember(Order = 2)]
+        [DataMember(Order = 10)]
         public List<string> Tags
         {
             get
@@ -174,6 +174,38 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _tags, value);
+            }
+        }
+        #endregion
+
+        #region Created
+        private DateTime? _created = null;
+        [DataMember(Order = 7)]
+        public DateTime? Created
+        {
+            get
+            {
+                return _created;
+            }
+            set
+            {
+                SetProperty(ref _created, value);
+            }
+        }
+        #endregion
+
+        #region Modified
+        private DateTime? _modified = null;
+        [DataMember(Order = 7)]
+        public DateTime? Modified
+        {
+            get
+            {
+                return _modified;
+            }
+            set
+            {
+                SetProperty(ref _modified, value);
             }
         }
         #endregion

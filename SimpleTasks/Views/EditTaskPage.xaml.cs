@@ -133,6 +133,15 @@ namespace SimpleTasks.Views
             {
                 ReminderDatePicker.Value = null;
             }
+
+            if (ViewModel.IsOldTask)
+            {
+                ViewModel.CurrentTask.Modified = DateTime.Now;
+            }
+            else
+            {
+                ViewModel.CurrentTask.Created = DateTime.Now;
+            }
         }
 
         private void AfterSave()
