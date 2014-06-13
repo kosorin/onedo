@@ -601,6 +601,7 @@
                                       Checked="DueToggleButton_Checked" 
                                       Unchecked="DueToggleButton_Unchecked"/>
                         <Grid x:Name="DueDateGrid"
+                              Background="Gold"
                               Height="{Binding CurrentTask.HasDueDate, 
                                        Converter={StaticResource BooleanToNumberConverter},
                                        ConverterParameter=50,
@@ -615,7 +616,7 @@
                                     <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="50"
-                                                     Duration="0:0:0.4">
+                                                     Duration="0:0:0.45">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseOut"/>
                                         </DoubleAnimation.EasingFunction>
@@ -625,7 +626,7 @@
                                     <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
                                                      To="0"
-                                                     Duration="0:0:0.3">
+                                                     Duration="0:0:0.35">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseIn"/>
                                         </DoubleAnimation.EasingFunction>

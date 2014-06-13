@@ -407,6 +407,7 @@ namespace SimpleTasks.Views
                 DueDatePresetPicker.Visibility = Visibility.Visible;
                 DueDatePicker.IsEnabled = true;
                 DueDatePresetPicker.IsEnabled = true;
+                DueDateGrid.Height = 50;
             };
         }
 
@@ -422,6 +423,7 @@ namespace SimpleTasks.Views
             {
                 DueDatePicker.Visibility = Visibility.Collapsed;
                 DueDatePresetPicker.Visibility = Visibility.Collapsed;
+                DueDateGrid.Height = 0;
             };
         }
 
