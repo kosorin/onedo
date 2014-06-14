@@ -723,7 +723,7 @@
 
         <Rectangle x:Name="PageOverlay"
                    Fill="Black"
-                   Opacity="0.58"
+                   Opacity="0.4"
                    Visibility="Collapsed">
             <Rectangle.Resources>
                 <Storyboard x:Name="PageOverlayTransitionHide">
