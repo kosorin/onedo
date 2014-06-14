@@ -561,7 +561,7 @@
                                           KeyDown="TitleTextBox_KeyDown" 
                                           Style="{StaticResource TitleTextBoxStyle}" 
                                           FontFamily="Segoe UI Symbol" 
-                                          GotFocus="TitleAndDetailTextBox_GotFocus" 
+                                          GotFocus="TitleTextBox_GotFocus" 
                                           LostFocus="TitleAndDetailTextBox_LostFocus">
                         <toolkit:PhoneTextBox.Resources>
                             <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
@@ -589,7 +589,7 @@
                                           AcceptsReturn="True"
                                           Style="{StaticResource TitleTextBoxStyle}" 
                                           FontFamily="Segoe UI Symbol" 
-                                          GotFocus="TitleAndDetailTextBox_GotFocus" 
+                                          GotFocus="DetailTextBox_GotFocus" 
                                           LostFocus="TitleAndDetailTextBox_LostFocus" />
 
                     <!--Výběr termínu-->

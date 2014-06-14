@@ -177,6 +177,8 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarUnpinButton;
 
+        private ApplicationBarIconButton appBarAddBulletButton;
+
         private void CreateAppBarItems()
         {
             appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
@@ -206,6 +208,41 @@ namespace SimpleTasks.Views
             appBarUnpinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.remove.png", UriKind.Relative));
             appBarUnpinButton.Text = AppResources.AppBarUnpin;
             appBarUnpinButton.Click += appBarUnpinButton_Click;
+
+            appBarAddBulletButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.add.below.png", UriKind.Relative));
+            appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
+            appBarAddBulletButton.Click += appBarAddBulletButton_Click;
+        }
+
+        void appBarAddBulletButton_Click(object sender, EventArgs e)
+        {
+            int lineNumber = DetailTextBox.Text.LineNumberAtPosition(DetailTextBox.SelectionStart);
+            List<string> lines = new List<string>( DetailTextBox.Text.Lines());
+
+            char bullet = '\u2022';
+            string bulletText = AppResources.BulletText;
+            string newLineText = string.Format("  {0} {1}", bullet, bulletText);
+
+            if (string.IsNullOrWhiteSpace(lines[lineNumber]))
+            {
+                lines[lineNumber] = newLineText;
+            }
+            else
+            {
+                lines.Insert(++lineNumber, newLineText);
+            }
+
+            string newLine = "\r\n";
+            int newLineLength = newLine.Length;
+            int newSelectionStart = 0;
+            for (int i = 0; i < lineNumber; ++i)
+            {
+                newSelectionStart += lines[i].Length + newLineLength;
+            }
+
+            DetailTextBox.Text = string.Join(newLine, lines);
+            DetailTextBox.SelectionStart = newSelectionStart + 4;
+            DetailTextBox.SelectionLength = bulletText.Length;
         }
 
         private void appBarPinButton_Click(object sender, EventArgs e)
@@ -270,6 +307,15 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
+            ApplicationBar.Buttons.Add(appBarOkButton);
+        }
+
+        private void BuildDetailTextAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            // Ikony
+            ApplicationBar.Buttons.Add(appBarAddBulletButton);
             ApplicationBar.Buttons.Add(appBarOkButton);
         }
 
@@ -364,11 +410,16 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void TitleAndDetailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             BuildTitleTextAppBar();
             TitleTextBoxNoTextStoryboard.Stop();
             TitleTextBox.Opacity = 1;
+        }
+
+        private void DetailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            BuildDetailTextAppBar();
         }
 
         private void TitleAndDetailTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -502,5 +553,6 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
     }
 }

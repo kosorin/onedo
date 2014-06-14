@@ -352,4 +352,10 @@
   <data name="SettingsUnpinCompleted" xml:space="preserve">
     <value>Unpin tile upon completion of task</value>
   </data>
+  <data name="AppBarAddBullet" xml:space="preserve">
+    <value>add bullet</value>
+  </data>
+  <data name="BulletText" xml:space="preserve">
+    <value>bullet</value>
+  </data>
 </root>

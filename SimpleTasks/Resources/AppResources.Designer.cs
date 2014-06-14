@@ -115,6 +115,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add bullet.
+        /// </summary>
+        public static string AppBarAddBullet {
+            get {
+                return ResourceManager.GetString("AppBarAddBullet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string AppBarCancel {
@@ -237,6 +246,15 @@ namespace SimpleTasks.Resources {
         public static string AppBarUnpinTile {
             get {
                 return ResourceManager.GetString("AppBarUnpinTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bullet.
+        /// </summary>
+        public static string BulletText {
+            get {
+                return ResourceManager.GetString("BulletText", resourceCulture);
             }
         }
         

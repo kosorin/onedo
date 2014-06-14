@@ -221,6 +221,14 @@
           <source>Unpin tile upon completion of task</source>
           <target state="new">Unpin tile upon completion of task</target>
         </trans-unit>
+        <trans-unit translate="yes" id="Resx/AppBarAddBullet" xml:space="preserve">
+          <source>add bullet</source>
+          <target state="new">add bullet</target>
+        </trans-unit>
+        <trans-unit translate="yes" id="Resx/BulletText" xml:space="preserve">
+          <source>bullet</source>
+          <target state="new">bullet</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
           <target state="new">pin</target>
