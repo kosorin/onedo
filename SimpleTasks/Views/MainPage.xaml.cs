@@ -346,6 +346,7 @@ namespace SimpleTasks.Views
                 showStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
                 showStoryboard.Begin();
             }
+            task.Modified = DateTime.Now;
             App.Tasks.Update(task);
         }
 
