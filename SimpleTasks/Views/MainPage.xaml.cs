@@ -349,33 +349,47 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
 
+        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            TaskWrapper wrapper = (TaskWrapper)grid.DataContext;
+            TaskModel task = wrapper.Task;
+            if (task == null)
+                return;
+
+            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(task));
+        }
+
         private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
         {
             if (e.ItemKind == LongListSelectorItemKind.Item)
             {
-                TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
-                TaskModel task = wrapper.Task;
+                //TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
+                //TaskModel task = wrapper.Task;
 
-                StackPanel panel = FindFirstChild<StackPanel>(e.Container, "TaskInfoStackPanel");
-                wrapper.Height = panel.ActualHeight;
-                panel.Height = panel.ActualHeight;
+                //Debug.WriteLine(" REALIZED: " + task.Title);
 
-                Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
-                Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
-                Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
+                //StackPanel panel = FindFirstChild<StackPanel>(e.Container, "TaskInfoStackPanel");
+                //wrapper.Height = panel.ActualHeight;
+                ////panel.Height = panel.ActualHeight;
+                ////var r = new Random(task.Title.GetHashCode());
+                ////panel.Background = new SolidColorBrush(Color.FromArgb(255, (byte)r.Next(255), (byte)r.Next(255), (byte)r.Next(255)));
+                //Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
+                //Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
+                //Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
 
-                if (task == null)
-                    return;
-                if (task.IsActive)
-                {
-                    showStoryboard.Begin();
-                    hideStoryboard.Stop();
-                }
-                else
-                {
-                    showStoryboard.Stop();
-                    hideStoryboard.Begin();
-                }
+                //if (task == null)
+                //    return;
+                //if (task.IsActive)
+                //{
+                //    showStoryboard.Begin();
+                //    hideStoryboard.Stop();
+                //}
+                //else
+                //{
+                //    showStoryboard.Stop();
+                //    hideStoryboard.Begin();
+                //}
             }
         }
 
@@ -388,14 +402,34 @@ namespace SimpleTasks.Views
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
         }
 
-        private void TaskInfoStackPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void TaskInfoStackPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            //StackPanel panel = sender as StackPanel;
-            //TaskWrapper taskWrapper = panel.DataContext as TaskWrapper;
-            //if (!taskWrapper.Animation)
-            //{
-            //    taskWrapper.Height = e.NewSize.Height;
-            //}
+            StackPanel panel = (StackPanel)sender;
+            TaskWrapper wrapper = panel.DataContext as TaskWrapper;
+            TaskModel task = wrapper.Task;
+
+            //Grid moreInfo = (Grid)panel.FindName("TaskInfoMoreInfo");
+            //Grid textBlock = (Grid)panel.FindName("DetailGridWrapper");
+
+            //double moreInfoHeight = moreInfo.ActualHeight + 10;
+            //double detailHeight = (textBlock.Visibility == Visibility.Visible) ? textBlock.ActualHeight + 10 : 0;
+            //double oldHeight = moreInfoHeight + detailHeight;
+            //wrapper.Height = oldHeight;
+            //panel.Height = oldHeight;
+
+            Border rootBorder = (Border)((Grid)((Grid)panel.Parent).Parent).Parent;
+            Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
+            Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
+            if (task.IsActive)
+            {
+                showStoryboard.Begin();
+                hideStoryboard.Stop();
+            }
+            else
+            {
+                showStoryboard.Stop();
+                hideStoryboard.Begin();
+            }
         }
 
         #endregion
@@ -426,17 +460,6 @@ namespace SimpleTasks.Views
         }
 
         #endregion
-
-        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            Grid grid = (Grid)sender;
-            TaskWrapper wrapper = (TaskWrapper)grid.DataContext;
-            TaskModel task = wrapper.Task;
-            if (task == null)
-                return;
-
-            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(task));
-        }
 
     }
 }

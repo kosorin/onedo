@@ -79,7 +79,7 @@
                 <Border.Resources>
                     <Storyboard x:Name="TaskInfoShow">
                         <!--Popis-->
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Height"
                                          To="{Binding Height}"
                                          Duration="0:0:0.2">
@@ -102,7 +102,7 @@
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1"
-                                         Duration="0:0:0.2"/>
+                                         Duration="0:0:0.2"/>-->
                         <!--Tlačítko-->
                         <DoubleAnimation Duration="0:0:0.4"
                                          To="0"
@@ -115,7 +115,7 @@
                     </Storyboard>
                     <Storyboard x:Name="TaskInfoHide">
                         <!--Popis-->
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Height"
                                          To="0"
                                          Duration="0:0:0.2">
@@ -138,7 +138,7 @@
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0"
-                                         Duration="0:0:0.2"/>
+                                         Duration="0:0:0.2"/>-->
                         <!--Tlačítko-->
                         <DoubleAnimation Duration="0:0:0.4"
                                          To="1"
@@ -200,7 +200,7 @@
                                     Grid.Row="1"
                                     Margin="0,-15,0,0"
                                     RenderTransformOrigin="0.5,0"
-                                    SizeChanged="TaskInfoStackPanel_SizeChanged">
+                                    Loaded="TaskInfoStackPanel_Loaded">
                             <StackPanel.RenderTransform>
                                 <CompositeTransform/>
                             </StackPanel.RenderTransform>
@@ -208,6 +208,7 @@
                                 <PlaneProjection RotationX="0" CenterOfRotationY="0"/>
                             </StackPanel.Projection>
                             <Grid MaxHeight="32"
+                                  x:Name="TaskInfoMoreInfo"
                                   Margin="0,0,0,10">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Horizontal"
@@ -271,7 +272,8 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
-                                  Margin="0,0,0,10">
+                                  Margin="0,0,0,10"
+                                  x:Name="DetailGridWrapper">
                                 <TextBlock Text="{Binding Task.Detail}"
                                            Style="{StaticResource ButtonDescriptionTextBlockStyle}"
                                            Opacity="0.8"

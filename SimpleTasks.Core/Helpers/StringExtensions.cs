@@ -34,7 +34,6 @@ namespace SimpleTasks.Core.Helpers
         public static int LineNumberAtPosition(this string s, int lastPosition)
         {
             int count = 0;
-            int position = 0;
             int length = s.Length;
 
             char f, n = '\0';
