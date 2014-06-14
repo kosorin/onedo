@@ -313,21 +313,18 @@ namespace SimpleTasks.Views
 
         #region TasksList
 
-        private bool completeButtonTapped = false;
-
         private void Border_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            completeButtonTapped = true;
             this.Focus();
 
             Border border = ((sender as Border).Parent as Grid).Parent as Border;
             Storyboard showStoryboard = ((Storyboard)border.FindName("TaskInfoShow"));
             Storyboard hideStoryboard = ((Storyboard)border.FindName("TaskInfoHide"));
-
             TaskWrapper wrapper = border.DataContext as TaskWrapper;
             TaskModel task = wrapper.Task;
             if (task == null)
                 return;
+
             if (task.IsActive)
             {   // DOKONČENÍ
                 task.CompletedDate = DateTime.Now;
@@ -382,22 +379,6 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void TasksLongListSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TaskWrapper taskWrapper = TasksLongListSelector.SelectedItem as TaskWrapper;
-            if (taskWrapper == null)
-                return;
-            TasksLongListSelector.SelectedItem = null;
-
-            if (completeButtonTapped)
-            {
-                completeButtonTapped = false;
-                return;
-            }
-
-            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(taskWrapper.Task));
-        }
-
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
         {
             // Změnění margin scrollbaru. 
@@ -445,6 +426,17 @@ namespace SimpleTasks.Views
         }
 
         #endregion
+
+        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            TaskWrapper wrapper = (TaskWrapper)grid.DataContext;
+            TaskModel task = wrapper.Task;
+            if (task == null)
+                return;
+
+            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(task));
+        }
 
     }
 }

@@ -184,7 +184,9 @@
                             </controls:Icon>
                         </Grid>
                     </Border>
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Column="1"
+                          Tap="Grid_Tap"
+                          Background="Transparent">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -290,7 +292,7 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="TasksRoot" 
-            Background="{StaticResource ApplicationBackgroundBrush}">
+            Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"  />
@@ -304,7 +306,6 @@
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
                                     HideEmptyGroups="True"
-                                    SelectionChanged="TasksLongListSelector_SelectionChanged"
                                     Loaded="TasksLongListSelector_Loaded"
                                     ItemRealized="TasksLongListSelector_ItemRealized" />
 
@@ -313,9 +314,7 @@
                        VerticalAlignment="Center"
                        Style="{StaticResource PhoneTextLargeStyle}"
                        Foreground="{StaticResource PhoneSubtleBrush}"
-                       Visibility="{Binding Tasks.Count, 
-                                           Converter={StaticResource IntegerToVisibilityConverter}, 
-                                            ConverterParameter=0}"
+                       Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
                        TextWrapping="Wrap" 
                        TextAlignment="Center"/>
         </Grid>
