@@ -11,6 +11,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
+    xmlns:dur="clr-namespace:System.Windows;assembly=mscorlib"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     shell:SystemTray.IsVisible="True"
@@ -39,12 +40,13 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.Resources>
+        
         <Storyboard x:Name="AngleHoursAnimation">
             <DoubleAnimation Storyboard.TargetName="AngleHoursGrabberCompositeTransform"
                              Storyboard.TargetProperty="Rotation"
                              From="{Binding AngleHoursAnimateFrom}"
                              To="{Binding AngleHoursAnimateTo}"
-                             Duration="0:0:1">
+                             Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -53,7 +55,7 @@
                              Storyboard.TargetProperty="Rotation"
                              From="{Binding AngleHoursAnimateFrom}"
                              To="{Binding AngleHoursAnimateTo}"
-                             Duration="0:0:1">
+                             Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -62,7 +64,7 @@
                              Storyboard.TargetProperty="EndAngle"
                              From="{Binding AngleHoursAnimateFrom}"
                              To="{Binding AngleHoursAnimateTo}"
-                             Duration="0:0:1">
+                             Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -73,7 +75,7 @@
                              Storyboard.TargetProperty="Rotation"
                              From="{Binding AngleMinutesAnimateFrom}"
                              To="{Binding AngleMinutesAnimateTo}"
-                             Duration="0:0:1">
+                             Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -82,7 +84,7 @@
                              Storyboard.TargetProperty="Rotation"
                              From="{Binding AngleMinutesAnimateFrom}"
                              To="{Binding AngleMinutesAnimateTo}"
-                             Duration="0:0:1">
+                             Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -91,7 +93,7 @@
                              Storyboard.TargetProperty="EndAngle"
                              From="{Binding AngleMinutesAnimateFrom}"
                              To="{Binding AngleMinutesAnimateTo}"
-                             Duration="0:0:1">
+                             Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
