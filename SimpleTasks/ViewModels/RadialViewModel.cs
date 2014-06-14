@@ -162,6 +162,16 @@ namespace SimpleTasks.ViewModels
         #endregion
 
         #region Constructor
+        private void AnimationDuration(object s, object e)
+        {
+            Duration duration = new Duration(new TimeSpan(0, 0, 0, 0, 350));
+            foreach (var c in _picker.AngleHoursAnimation.Children)
+                c.Duration = duration;
+            foreach (var c in _picker.AngleMinutesAnimation.Children)
+                c.Duration = duration;
+            _picker.AngleMinutesAnimation.Completed -= AnimationDuration;
+        }
+
         public RadialViewModel(RadialTimePickerPage picker)
         {
             _picker = picker;
@@ -174,6 +184,7 @@ namespace SimpleTasks.ViewModels
             IsAm = _initTime.Hour < 12;
 
             // set angles
+            _picker.AngleMinutesAnimation.Completed += AnimationDuration;
             RoundAngleHours();
             RoundAngleMinutes();
 
@@ -200,8 +211,7 @@ namespace SimpleTasks.ViewModels
             AngleHours = HoursSimple * 30;
             AngleHoursAnimateTo = AngleHours;
             var newQ = GetQuadrant(AngleHours);
-
-            //_picker.AngleHoursAnimation.Begin();
+            _picker.AngleHoursAnimation.Begin();
 
             // when going from 
             if (oldQ == Quadrants.Nw && newQ == Quadrants.Ne)
@@ -217,7 +227,10 @@ namespace SimpleTasks.ViewModels
         /// </summary>
         public void RoundAngleMinutes()
         {
+            AngleMinutesAnimateFrom = AngleMinutes;
             AngleMinutes = Minutes * 6;
+            AngleMinutesAnimateTo = AngleMinutes;
+            _picker.AngleMinutesAnimation.Begin();
         }
 
         public void OnClosing(bool canSave)

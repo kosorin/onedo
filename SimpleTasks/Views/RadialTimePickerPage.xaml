@@ -11,7 +11,6 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     shell:SystemTray.IsVisible="True"
@@ -38,33 +37,63 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <phone:PhoneApplicationPage.Resources>
-        <Storyboard x:Name="AngleHoursAnimation"
-                    Duration="0:0:0.6"
-                    >
+        <Storyboard x:Name="AngleHoursAnimation">
             <DoubleAnimation Storyboard.TargetName="AngleHoursGrabberCompositeTransform"
                              Storyboard.TargetProperty="Rotation"
                              From="{Binding AngleHoursAnimateFrom}"
-                             To="{Binding AngleHoursAnimateTo}">
+                             To="{Binding AngleHoursAnimateTo}"
+                             Duration="0:0:1">
                 <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut" />
+                    <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleHoursCompositeTransform"
                              Storyboard.TargetProperty="Rotation"
                              From="{Binding AngleHoursAnimateFrom}"
-                             To="{Binding AngleHoursAnimateTo}">
+                             To="{Binding AngleHoursAnimateTo}"
+                             Duration="0:0:1">
                 <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut" />
+                    <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleHoursRingSlice"
                              Storyboard.TargetProperty="EndAngle"
                              From="{Binding AngleHoursAnimateFrom}"
-                             To="{Binding AngleHoursAnimateTo}">
+                             To="{Binding AngleHoursAnimateTo}"
+                             Duration="0:0:1">
                 <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut" />
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="AngleMinutesAnimation">
+            <DoubleAnimation Storyboard.TargetName="AngleMinutesGrabberCompositeTransform"
+                             Storyboard.TargetProperty="Rotation"
+                             From="{Binding AngleMinutesAnimateFrom}"
+                             To="{Binding AngleMinutesAnimateTo}"
+                             Duration="0:0:1">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="AngleMinutesCompositeTransform"
+                             Storyboard.TargetProperty="Rotation"
+                             From="{Binding AngleMinutesAnimateFrom}"
+                             To="{Binding AngleMinutesAnimateTo}"
+                             Duration="0:0:1">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="AngleMinutesRingSlice"
+                             Storyboard.TargetProperty="EndAngle"
+                             From="{Binding AngleMinutesAnimateFrom}"
+                             To="{Binding AngleMinutesAnimateTo}"
+                             Duration="0:0:1">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
@@ -88,13 +117,12 @@
             Margin="24,16,24,24"/>
 
         <!--ContentPanel - place additional content here-->
-        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="10,50,12,0" VerticalAlignment="Center">
-
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,50,12,0" VerticalAlignment="Center">
             <Grid Width="460" Height="460">
 
                 <!-- ring -->
                 <controls:RingSlice IsHitTestVisible="False" InnerRadius="130" Radius="180" Fill="{StaticResource PhoneAccentBrush02}" StartAngle="0" EndAngle="359.99"/>
-                <controls:RingSlice InnerRadius="130" Radius="180" Fill="{StaticResource PhoneAccentBrush05}" StartAngle="0" EndAngle="{Binding AngleMinutes}"/>
+                <controls:RingSlice x:Name="AngleMinutesRingSlice" InnerRadius="130" Radius="180" Fill="{StaticResource PhoneAccentBrush05}" StartAngle="0" EndAngle="{Binding AngleMinutes}"/>
 
                 <controls:RingSlice IsHitTestVisible="False" InnerRadius="80" Radius="132" Fill="{Binding IsAm, Converter={StaticResource IsAmToColorConverter}, ConverterParameter=HoursBg}" StartAngle="0" EndAngle="359.99"/>
                 <controls:RingSlice x:Name="AngleHoursRingSlice" InnerRadius="80" Radius="132" Fill="{Binding IsAm, Converter={StaticResource IsAmToColorConverter}, ConverterParameter=HoursFg}" StartAngle="0" EndAngle="{Binding AngleHours}"/>
@@ -102,7 +130,7 @@
                 <!-- grabber  minutes -->
                 <Grid RenderTransformOrigin="0.5,0.5">
                     <Grid.RenderTransform>
-                        <CompositeTransform Rotation="{Binding AngleMinutes}"/>
+                        <CompositeTransform x:Name="AngleMinutesGrabberCompositeTransform" Rotation="{Binding AngleMinutes}"/>
                     </Grid.RenderTransform>
                     <Canvas Width="50" Height="55" Margin="0,-403,0,0">
                         <Ellipse Name="GrabberMinutes" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="4" Fill="{StaticResource PhoneBackgroundBrush}"/>
@@ -118,7 +146,7 @@
                     <Grid.Clip>
                         <RectangleGeometry Rect="190,0,80,80">
                             <RectangleGeometry.Transform>
-                                <CompositeTransform Rotation="{Binding AngleMinutes}" CenterX="230" CenterY="230" />
+                                <CompositeTransform x:Name="AngleMinutesCompositeTransform" Rotation="{Binding AngleMinutes}" CenterX="230" CenterY="230" />
                             </RectangleGeometry.Transform>
                         </RectangleGeometry>
                     </Grid.Clip>
@@ -149,11 +177,6 @@
                     </Grid.Clip>
                 </Grid>
 
-                <!-- time textblock -->
-                <TextBlock Margin="0,15,0,15" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{StaticResource PhoneFontSizeExtraLarge}" Foreground="{StaticResource PhoneForegroundBrush05}" FontFamily="{StaticResource PhoneFontFamilyLight}">
-                    <Run Text="{Binding HoursFormated}" Foreground="{StaticResource PhoneForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource PhoneForegroundBrush}"/><Run Text="{Binding ShowAmPm, Converter={StaticResource AmPmToStringConverter}}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                </TextBlock>
-
                 <!-- am/pm textblock -->
                 <!-- Border that preserves space -->
                 <!--<Button Height="50"
@@ -176,8 +199,16 @@
                 </Button>-->
             </Grid>
 
-            
-        </StackPanel>
+            <!-- time textblock -->
+            <TextBlock Margin="0,15,0,15"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                       Foreground="{StaticResource PhoneForegroundBrush05}" 
+                       FontFamily="{StaticResource PhoneFontFamilyLight}" >
+                <Run Text="{Binding HoursFormated}" Foreground="{StaticResource PhoneForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource PhoneForegroundBrush}"/><Run Text="{Binding ShowAmPm, Converter={StaticResource AmPmToStringConverter}}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+            </TextBlock>
+        </Grid>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

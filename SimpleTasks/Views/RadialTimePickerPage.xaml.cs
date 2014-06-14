@@ -26,9 +26,6 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            //AmTextBlock.Text = _ci.DateTimeFormat.AMDesignator;
-            //PmTextBlock.Text = _ci.DateTimeFormat.PMDesignator;
-
             _radialVM = new RadialViewModel(this);
             DataContext = _radialVM;
 
@@ -39,6 +36,8 @@ namespace SimpleTasks.Views
         #region Private Methods
         private void OnManipulationStartedMinutes(object sender, ManipulationStartedEventArgs e)
         {
+            AngleMinutesAnimation.SkipToFill();
+            AngleMinutesAnimation.Stop();
             GrabberMinutes.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
         }
 
