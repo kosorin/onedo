@@ -1,0 +1,58 @@
+{
+  "2.0.0": {
+    "date": "2014-06-15",
+    "items": [
+      "pin a separate tile of task to the start screen",
+      "simple bulleted list in detail",
+      "quick completion of a task",
+      "redesigned reminder time picker",
+      "bug fixes",
+      "minor changes in design and animation"
+    ]
+  },
+  "1.9.7": {
+    "date": "2014-05-23",
+    "items": [
+      "bug fix (default due date)"
+    ]
+  },
+  "1.9.6": {
+    "date": "2014-04-28",
+    "items": [
+      "text box for quick adding task",
+      "correction of translation",
+      "bug fixes",
+      "other minor changes and code optimization"
+    ]
+  },
+  "1.9.5": {
+    "date": "2014-04-24",
+    "items": [
+      "correction of translation",
+      "bug fixes"
+    ]
+  },
+  "1.9.2": {
+    "date": "2014-04-24",
+    "items": [
+      "bug fixes"
+    ]
+  },
+  "1.9.1": {
+    "date": "2014-04-23",
+    "items": [
+      "redesign the task list",
+      "ability to add detail to the task",
+      "transparent tiles (only for Windows Phone 8.1)",
+      "bug fixes",
+      "other minor changes and code optimization"
+    ]
+  },
+  "1.2": {
+    "date": "2013-11-12",
+    "items": [
+      "task reminders",
+      "low task priority"
+    ]
+  }
+}

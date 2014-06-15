@@ -65,50 +65,90 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource ApplicationBackgroundBrush}">
-
         <ScrollViewer>
-            <!--ContentPanel - place additional content here-->
-            <Grid x:Name="ContentPanel" Margin="12,100,12,0">
-                <StackPanel>
-                    <Grid HorizontalAlignment="Center" >
-                        <StackPanel Orientation="Horizontal">
-                            <Path Width="60"
-                                  Height="100"
-                                  Fill="{StaticResource PhoneAccentBrush}"
-                                  Data="{StaticResource LogoPathData}" RenderTransformOrigin="0.5,0.5">
-                                <Path.RenderTransform>
-                                    <CompositeTransform ScaleX="1.35" ScaleY="1.35"/>
-                                </Path.RenderTransform>
-                            </Path>
-                            <TextBlock Text="{Binding ApplicationNameString}" 
-                                       Style="{StaticResource PhoneTextExtraLargeStyle}"
-                                       VerticalAlignment="Bottom"
-                                       Margin="0,0,12,10"
-                                       FontSize="52" 
-                                       FontWeight="Bold" 
-                                       FontFamily="Segoe WP Black"/>
-                        </StackPanel>
-                        <TextBlock Text="{Binding AuthorString}"
-                                   Foreground="{StaticResource PhoneSubtleBrush}" 
-                                   VerticalAlignment="Bottom" 
-                                   Margin="190,0,0,0"/>
-                    </Grid>
-
-
-                    <TextBlock Text="{Binding VersionString}"
+            <StackPanel Margin="0,100,0,0">
+                <Grid HorizontalAlignment="Center" >
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="60"
+                              Height="100"
+                              Fill="{StaticResource PhoneAccentBrush}"
+                              Data="{StaticResource LogoPathData}" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <CompositeTransform ScaleX="1.35" ScaleY="1.35"/>
+                            </Path.RenderTransform>
+                        </Path>
+                        <TextBlock Text="{Binding ApplicationNameString}" 
+                                   Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0,0,12,10"
+                                   FontSize="52" 
+                                   FontWeight="Bold" 
+                                   FontFamily="Segoe WP Black"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding AuthorString}"
                                Foreground="{StaticResource PhoneSubtleBrush}" 
-                               HorizontalAlignment="Center" Margin="0,40,0,10"/>
+                               VerticalAlignment="Bottom" 
+                               Margin="190,0,0,0"/>
+                </Grid>
 
-                    <!--Rate and review-->
-                    <Button Margin="50,20,50,0"
-                            Template="{StaticResource RateButtonTemplate}"
-                            Click="Rate_Click"/>
-                    <!--Contact us-->
-                    <Button Margin="50,20,50,0" 
-                            Template="{StaticResource ContactButtonTemplate}" 
-                            Click="Contact_Click"/>
-                </StackPanel>
-            </Grid>
+
+                <TextBlock Text="{Binding VersionString}"
+                           Foreground="{StaticResource PhoneSubtleBrush}" 
+                           HorizontalAlignment="Center" Margin="0,40,0,10"/>
+
+                <!--Rate and review-->
+                <Button Margin="50,20,50,0"
+                        Template="{StaticResource RateButtonTemplate}"
+                        Click="Rate_Click"/>
+                <!--Contact us-->
+                <Button Margin="50,20,50,0" 
+                        Template="{StaticResource ContactButtonTemplate}" 
+                        Click="Contact_Click"/>
+                
+                <!--What's new-->
+                <TextBlock Text="Changelog"
+                           Margin="20,20,0,-20"
+                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                           FontSize="56"
+                           Foreground="{StaticResource PhoneAccentBrush}"/>
+                <phone:LongListSelector ItemsSource="{Binding ChangelogList}"
+                                        IsGroupingEnabled="True"
+                                        Margin="20,0,0,50"
+                                        LayoutMode="List">
+                    <phone:LongListSelector.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                       Foreground="{StaticResource PhoneAccentBrush}"
+                                       Margin="0,20,0,0">
+                                <Run Text="{Binding Version}"
+                                     FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
+                                
+                                <Run Text="{Binding Date, StringFormat=d}" 
+                                     Foreground="{StaticResource PhoneSubtleBrush}" 
+                                     FontSize="{StaticResource PhoneFontSizeMedium}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </phone:LongListSelector.GroupHeaderTemplate>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                           Text="&#x2022;" 
+                                           HorizontalAlignment="Right"
+                                           Margin="0,0,10,0"/>
+                                <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                           Grid.Column="1"
+                                           TextWrapping="Wrap" 
+                                           Text="{Binding Text}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 

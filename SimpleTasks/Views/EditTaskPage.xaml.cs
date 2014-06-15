@@ -217,7 +217,7 @@ namespace SimpleTasks.Views
         void appBarAddBulletButton_Click(object sender, EventArgs e)
         {
             int lineNumber = DetailTextBox.Text.LineNumberAtPosition(DetailTextBox.SelectionStart);
-            List<string> lines = new List<string>( DetailTextBox.Text.Lines());
+            List<string> lines = new List<string>(DetailTextBox.Text.Lines());
 
             string bullet = string.Format(" {0} ", '\u2022');
             string bulletText = AppResources.BulletText;

@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>cs-CZ;qps-ploc;sk-SK</SupportedCultures>
+    <SupportedCultures>cs-CZ;sk-SK</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SimpleTasks_$(Configuration)_$(Platform).xap</XapFilename>
@@ -119,6 +119,8 @@
     <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Models\ChangelogCategory.cs" />
+    <Compile Include="Models\ChangelogItem.cs" />
     <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
     <Compile Include="MyUriMapper.cs" />
@@ -186,6 +188,9 @@
     <Content Include="Assets\Tiles\FlipTileWide.png" />
     <Content Include="Assets\Tiles\IconicTileMediumLarge.png" />
     <Content Include="Assets\Tiles\IconicTileSmall.png" />
+    <Content Include="Resources\Changelog.cs-CZ.txt" />
+    <None Include="Resources\Changelog.txt" />
+    <None Include="Resources\Changelog.sk-SK.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -200,16 +205,10 @@
       <culture>cs-CZ</culture>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
-      <culture>qps-ploc</culture>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.sk-SK.resx">
       <AutoGen>True</AutoGen>
@@ -222,10 +221,6 @@
     <XliffResource Include="Resources\AppResources.cs-CZ.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.cs-CZ.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.qps-ploc.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.qps-ploc.resx</LastGenOutput>
     </XliffResource>
     <XliffResource Include="Resources\AppResources.sk-SK.xlf">
       <Generator>XliffResxGenerator</Generator>
@@ -273,6 +268,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

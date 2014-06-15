@@ -1,0 +1,58 @@
+﻿{
+  "2.0.0": {
+    "date": "2014-06-15",
+    "items": [
+      "připnutí samostatného úkolu na úvodní obrazovku",
+      "jednoduchý seznam v detailu úkolu",
+      "rychlé dokončení úkolu",
+      "nový vzhled výběru času připomenutí",
+      "oprava menších chyb",
+      "drobné změny v designu a animacích"
+    ]
+  },
+  "1.9.7": {
+    "date": "2014-05-23",
+    "items": [
+      "oprava chyby (výchozí termín splnění)"
+    ]
+  },
+  "1.9.6": {
+    "date": "2014-04-28",
+    "items": [
+      "textové pole pro rychlé přidávání úkolu",
+      "oprava překladu",
+      "oprava chyb",
+      "další drobné změny a optimalizace kódu"
+    ]
+  },
+  "1.9.5": {
+    "date": "2014-04-24",
+    "items": [
+      "oprava překladu",
+      "oprava chyb"
+    ]
+  },
+  "1.9.2": {
+    "date": "2014-04-24",
+    "items": [
+      "oprava chyb"
+    ]
+  },
+  "1.9.1": {
+    "date": "2014-04-23",
+    "items": [
+      "redesign úvodního seznamu úkolů",
+      "možnost přidat detail k úkolu",
+      "průhledná dlaždice (jenom pro Windows Phone 8.1)",
+      "opravy chyb",
+      "další drobné změny a optimalizace kódu"
+    ]
+  },
+  "1.2": {
+    "date": "2013-11-12",
+    "items": [
+      "připomenutí úkolu",
+      "nízká priorita úkolu"
+    ]
+  }
+}

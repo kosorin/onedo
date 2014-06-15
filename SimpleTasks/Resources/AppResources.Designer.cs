@@ -259,6 +259,46 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to changelog.
+        /// </summary>
+        public static string Changelog {
+            get {
+                return ResourceManager.GetString("Changelog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;2.0.0&quot;: {
+        ///    &quot;date&quot;: &quot;2014-06-15&quot;,
+        ///    &quot;items&quot;: [
+        ///      &quot;pin a separate tile of task to the start screen&quot;,
+        ///      &quot;simple bulleted list in detail&quot;,
+        ///      &quot;quick completion of a task&quot;,
+        ///      &quot;redesigned reminder time picker&quot;,
+        ///      &quot;bug fixes&quot;,
+        ///      &quot;minor changes in design and animation&quot;
+        ///    ]
+        ///  },
+        ///  &quot;1.9.7&quot;: {
+        ///    &quot;date&quot;: &quot;2014-05-23&quot;,
+        ///    &quot;items&quot;: [
+        ///      &quot;bug fix (default due date)&quot;
+        ///    ]
+        ///  },
+        ///  &quot;1.9.6&quot;: {
+        ///    &quot;date&quot;: &quot;2014-04-28&quot;,
+        ///    &quot;items&quot;: [
+        ///      &quot;text box for quick adding task&quot;,
+        ///      &quot;corre [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ChangelogFile {
+            get {
+                return ResourceManager.GetString("ChangelogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to choose due date.
         /// </summary>
         public static string ChooseDueDate {

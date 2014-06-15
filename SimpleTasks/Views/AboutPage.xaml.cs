@@ -9,7 +9,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using SimpleTasks.Resources;
+using SimpleTasks.Models;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 namespace SimpleTasks.Views
 {
@@ -19,7 +21,27 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
+            ChangelogList = CreateChangelog();
             DataContext = this;
+        }
+
+        private List<ChangelogCategory> CreateChangelog()
+        {
+            List<ChangelogCategory> changelog = new List<ChangelogCategory>();
+
+            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
+            {
+                JObject categoryData = (JObject)version.Value;
+
+                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
+                foreach (JToken item in (JArray)categoryData["items"])
+                {
+                    category.AddItem(item.ToString());
+                }
+                changelog.Add(category);
+            }
+
+            return changelog;
         }
 
         public static string Version
@@ -29,6 +51,8 @@ namespace SimpleTasks.Views
                 return App.Version.ToString();
             }
         }
+
+        public List<ChangelogCategory> ChangelogList { get; set; }
 
         public static string ApplicationName { get { return "Simple Tasks"; } }
 

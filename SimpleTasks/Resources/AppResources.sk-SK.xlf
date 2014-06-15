@@ -295,6 +295,10 @@
           <source>bullet</source>
           <target state="signed-off" state-qualifier="tm-suggestion">odrážka</target>
         </trans-unit>
+        <trans-unit id="Resx/Changelog" translate="yes" xml:space="preserve">
+          <source>changelog</source>
+          <target state="new">changelog</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
           <target state="signed-off">pripnúť</target>
