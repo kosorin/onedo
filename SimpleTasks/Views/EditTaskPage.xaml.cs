@@ -219,9 +219,9 @@ namespace SimpleTasks.Views
             int lineNumber = DetailTextBox.Text.LineNumberAtPosition(DetailTextBox.SelectionStart);
             List<string> lines = new List<string>( DetailTextBox.Text.Lines());
 
-            char bullet = '\u2022';
+            string bullet = string.Format(" {0} ", '\u2022');
             string bulletText = AppResources.BulletText;
-            string newLineText = string.Format("  {0} {1}", bullet, bulletText);
+            string newLineText = string.Format("{0}{1}", bullet, bulletText);
 
             if (string.IsNullOrWhiteSpace(lines[lineNumber]))
             {
@@ -241,7 +241,7 @@ namespace SimpleTasks.Views
             }
 
             DetailTextBox.Text = string.Join(newLine, lines);
-            DetailTextBox.SelectionStart = newSelectionStart + 4;
+            DetailTextBox.SelectionStart = newSelectionStart + bullet.Length;
             DetailTextBox.SelectionLength = bulletText.Length;
         }
 
