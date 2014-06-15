@@ -293,8 +293,8 @@
 
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="TasksRoot" 
-            Background="Black">
+    <Grid x:Name="TasksRoot"
+          Background="{StaticResource ApplicationBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"  />
