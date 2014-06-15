@@ -54,17 +54,17 @@ namespace SimpleTasks.Core.Tiles.DefaultList
                     stackPanel.Children.Add(border);
                 }
 
-                if (Debugger.IsAttached)
-                {
-                    if (stackPanel.Children.Contains(stackPanel.Children.Last()))
-                    {
-                        stackPanel.Children.Remove(stackPanel.Children.Last());
-                    }
-                    stackPanel.Children.Add(GetTaskItemBorder(new TaskModel
-                    {
-                        Title = DateTime.Now.ToString("HH:mm:ss")
-                    }));
-                }
+                //if (Debugger.IsAttached)
+                //{
+                //    if (stackPanel.Children.Contains(stackPanel.Children.Last()))
+                //    {
+                //        stackPanel.Children.Remove(stackPanel.Children.Last());
+                //    }
+                //    stackPanel.Children.Add(GetTaskItemBorder(new TaskModel
+                //    {
+                //        Title = DateTime.Now.ToString("HH:mm:ss")
+                //    }));
+                //}
 
                 grid.Children.Add(stackPanel);
             }

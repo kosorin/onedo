@@ -34,7 +34,7 @@ namespace SimpleTasks
 
         public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
 
-        public static string ForceDebugCulture = "en-US";
+        public static string ForceDebugCulture = "sk-SK";
 
         public static SettingsViewModel Settings { get; private set; }
 
@@ -57,7 +57,6 @@ namespace SimpleTasks
             if (Settings.LastVersionSetting == null)
             {
                 // První spuštění aplikace
-                // nebo spouštění staré verze, kdy se pro úkoly používal xml místo jsonu.
                 Settings.LastVersionSetting = Version.ToString();
                 IsFirstStart = true;
             }
@@ -276,7 +275,7 @@ namespace SimpleTasks
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
 
-                if (false && String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
+                if (String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
                 {
                     Thread.CurrentThread.CurrentCulture =
                         new CultureInfo(ForceDebugCulture);

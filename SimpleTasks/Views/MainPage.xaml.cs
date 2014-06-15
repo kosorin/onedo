@@ -207,89 +207,49 @@ namespace SimpleTasks.Views
         {
             App.Tasks.DeleteAll();
 
-            if (App.ForceDebugCulture == "en-US")
+            App.Tasks.Add(new TaskModel()
             {
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Go to the dentist",
-                    DueDate = DateTimeExtensions.Today.AddDays(2)
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Call Chuck",
-                    DueDate = DateTimeExtensions.Today.AddDays(0),
-                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
-                    Priority = TaskPriority.Low
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Go to cinema",
-                    Detail = "Amazing Spider-Man 2 or X-Men: Days of Future Past",
-                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Math project",
-                    DueDate = DateTimeExtensions.Today.AddDays(9),
-                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42),
-                    Priority = TaskPriority.High
-                });
-            }
-            else if (App.ForceDebugCulture == "cs-CZ")
+                Title = "Go to the dentist",
+                DueDate = DateTimeExtensions.Today.AddDays(2),
+                CompletedDate = DateTime.Now
+            });
+            App.Tasks.Add(new TaskModel()
             {
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Jít k zubaři",
-                    DueDate = DateTimeExtensions.Today.AddDays(2)
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Zavolat Honzovi",
-                    DueDate = DateTimeExtensions.Today.AddDays(0),
-                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
-                    Priority = TaskPriority.Low
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Jít do kina",
-                    Detail = "Amazing Spider-Man 2 nebo X-Men: Days of Future Past",
-                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Projekt do matematiky",
-                    DueDate = DateTimeExtensions.Today.AddDays(9),
-                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42),
-                    Priority = TaskPriority.High
-                });
+                Title = "Call Chuck",
+                DueDate = DateTimeExtensions.Today.AddDays(0),
+                ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
+                Priority = TaskPriority.High
+            });
+            App.Tasks.Add(new TaskModel()
+            {
+                Title = "Simple list",
+                Detail = " \u2022 just simple\n \u2022 bulleted list\n \u2022 I don't know\n \u2022 what to say",
+                DueDate = DateTimeExtensions.Today.AddDays(5),
+                ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
+                Priority = TaskPriority.Low
+            });
+            App.Tasks.Add(new TaskModel()
+            {
+                Title = "Math project",
+                DueDate = DateTimeExtensions.Today.AddDays(3),
+                ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42)
+            });
+
+            if (App.ForceDebugCulture == "cs-CZ")
+            {
+                App.Tasks.Tasks[0].Title = "Jít k zubaři";
+                App.Tasks.Tasks[1].Title = "Zavolat Honzovi";
+                App.Tasks.Tasks[2].Title = "Jednoduchý seznam";
+                App.Tasks.Tasks[2].Detail = " \u2022 prostě jednoduché\n \u2022 odrážky\n \u2022 nevím, co sem\n \u2022 mám napsat";
+                App.Tasks.Tasks[3].Title = "Projekt do matematiky";
             }
             else if (App.ForceDebugCulture == "sk-SK")
             {
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Ísť k zubárovi",
-                    DueDate = DateTimeExtensions.Today.AddDays(2)
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Kúpiť mlieko",
-                    DueDate = DateTimeExtensions.Today.AddDays(0),
-                    ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
-                    Priority = TaskPriority.Low
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Ísť do kina",
-                    Detail = "Amazing Spider-Man 2 alebo X-Men: Days of Future Past",
-                    ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
-                });
-                App.Tasks.Add(new TaskModel()
-                {
-                    Title = "Projekt z matematiky",
-                    DueDate = DateTimeExtensions.Today.AddDays(9),
-                    ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42),
-                    Priority = TaskPriority.High
-                });
+                App.Tasks.Tasks[0].Title = "Ísť k zubárovi";
+                App.Tasks.Tasks[1].Title = "Kúpiť mlieko";
+                App.Tasks.Tasks[2].Title = "Jednoduchý zoznam";
+                App.Tasks.Tasks[2].Detail = " \u2022 len jednoduché\n \u2022 odrážky\n \u2022 neviem, čo by som\n \u2022 tu mal napísať";
+                App.Tasks.Tasks[3].Title ="Projekt z matematiky";
             }
         }
 
