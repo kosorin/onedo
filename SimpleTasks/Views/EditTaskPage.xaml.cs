@@ -19,10 +19,11 @@ namespace SimpleTasks.Views
 {
     public partial class EditTaskPage : PhoneApplicationPage
     {
+        public EditTaskViewModel ViewModel { get; set; }
+
         public EditTaskPage()
         {
             InitializeComponent();
-            BuildDueDatePresetList();
 
             PageOverlayTransitionHide.Completed += (s2, e2) =>
             {
@@ -73,16 +74,8 @@ namespace SimpleTasks.Views
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
 
-                OriginalTask = task;
-                if (OriginalTask != null)
-                {
-                    Task = CloneOriginalTask();
-                }
-                else
-                {
-                    Task = new TaskModel();
-                }
-                DataContext = this;
+                ViewModel = new EditTaskViewModel(task);
+                DataContext = ViewModel;
 
                 CreateAppBarItems();
 
@@ -90,7 +83,7 @@ namespace SimpleTasks.Views
                 RoutedEventHandler firstTimeLoadHandler = null;
                 firstTimeLoadHandler = (s, e2) =>
                 {
-                    if (IsNewTask)
+                    if (ViewModel.IsNew)
                     {
                         // Zobrazení klávesnice
                         TitleTextBox.Focus();
@@ -119,7 +112,7 @@ namespace SimpleTasks.Views
                     DateTime newReminderTime = (DateTime)PhoneApplicationService.Current.State["RadialTime"];
                     PhoneApplicationService.Current.State.Remove("RadialTime");
 
-                    Task.ReminderDate = newReminderTime;
+                    ViewModel.ReminderDate = newReminderTime;
                 }
             }
 
@@ -154,24 +147,6 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Task
-        private TaskModel CloneOriginalTask()
-        {
-            return new TaskModel()
-            {
-                Title = OriginalTask.Title,
-                Detail = OriginalTask.Detail,
-                Priority = OriginalTask.Priority,
-                DueDate = OriginalTask.DueDate,
-                ReminderDate = OriginalTask.ReminderDate
-            };
-        }
-
-        public bool IsNewTask { get { return OriginalTask == null; } }
-
-        public TaskModel OriginalTask { get; set; }
-
-        public TaskModel Task { get; set; }
-
         private bool CanSave()
         {
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
@@ -183,65 +158,11 @@ namespace SimpleTasks.Views
 
             return true;
         }
-
-        private void BeforeSave()
-        {
-            if (!DueDateToggleButton.IsChecked.Value)
-            {
-                DueDatePicker.Value = null;
-            }
-
-            if (ReminderToggleButton.IsChecked.Value)
-            {
-                if (Task.ReminderDate <= DateTime.Now)
-                {
-                    Task.ReminderDate = DateTime.Now.AddMinutes(2);
-                }
-            }
-            else
-            {
-                ReminderDatePicker.Value = null;
-            }
-        }
-
-        private void AfterSave()
-        {
-            if (OriginalTask != null && OriginalTask.IsComplete && App.Settings.UnpinCompletedSetting)
-            {
-                LiveTile.Unpin(OriginalTask);
-            }
-        }
-
-        private void Save()
-        {
-            if (IsNewTask)
-            {
-                OriginalTask = Task;
-                App.Tasks.Add(Task);
-            }
-            else
-            {
-                OriginalTask.ModifiedSinceStart = true;
-
-                OriginalTask.Title = Task.Title;
-                OriginalTask.Detail = Task.Detail;
-                OriginalTask.Priority = Task.Priority;
-                OriginalTask.DueDate = Task.DueDate;
-                OriginalTask.ReminderDate = Task.ReminderDate;
-
-                App.Tasks.Update(OriginalTask);
-            }
-        }
-
-        private void Delete()
-        {
-            App.Tasks.Delete(OriginalTask);
-        }
         #endregion
 
         #region AppBar
 
-        #region AppBar Buttons declare
+        #region AppBar Create
         private ApplicationBarIconButton appBarSaveButton;
 
         private ApplicationBarIconButton appBarActivateButton;
@@ -257,7 +178,6 @@ namespace SimpleTasks.Views
         private ApplicationBarIconButton appBarUnpinButton;
 
         private ApplicationBarIconButton appBarAddBulletButton;
-        #endregion 
 
         private void CreateAppBarItems()
         {
@@ -299,34 +219,32 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            if (Task.IsActive)
+            if (ViewModel.IsNew)
             {
-                if (LiveTile.IsPinned(OriginalTask))
-                {
-                    ApplicationBar.Buttons.Add(appBarUnpinButton);
-                }
-                else
-                {
-                    ApplicationBar.Buttons.Add(appBarPinButton);
-                }
+                ApplicationBar.Buttons.Add(appBarPinButton);
+                ApplicationBar.Buttons.Add(appBarSaveButton);
             }
-
-            if (!IsNewTask)
+            else
             {
-                if (Task.IsComplete)
+                if (ViewModel.IsComplete)
                 {
                     ApplicationBar.Buttons.Add(appBarActivateButton);
                 }
                 else
                 {
+                    if (ViewModel.IsPinned())
+                    {
+                        ApplicationBar.Buttons.Add(appBarUnpinButton);
+                    }
+                    else
+                    {
+                        ApplicationBar.Buttons.Add(appBarPinButton);
+                    }
                     ApplicationBar.Buttons.Add(appBarSaveButton);
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
+
                 ApplicationBar.Buttons.Add(appBarDeleteButton);
-            }
-            else
-            {
-                ApplicationBar.Buttons.Add(appBarSaveButton);
             }
         }
 
@@ -346,6 +264,7 @@ namespace SimpleTasks.Views
             ApplicationBar.Buttons.Add(appBarAddBulletButton);
             ApplicationBar.Buttons.Add(appBarOkButton);
         }
+        #endregion
 
         private void OkButton(object sender, EventArgs e)
         {
@@ -396,29 +315,26 @@ namespace SimpleTasks.Views
         {
             if (CanSave())
             {
-                BeforeSave();
-                Save();
-                Task = CloneOriginalTask();
-                AfterSave();
+                ViewModel.Pin();
 
                 ApplicationBar.Buttons.RemoveAt(0);
                 ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
-                LiveTile.PinEmpty(OriginalTask);
             }
         }
 
         private void UnpinButton(object sender, EventArgs e)
         {
-            LiveTile.Unpin(OriginalTask);
+            ViewModel.Unpin();
+
             ApplicationBar.Buttons.RemoveAt(0);
             ApplicationBar.Buttons.Insert(0, appBarPinButton);
         }
 
         private void ActivateButton(object sender, EventArgs e)
         {
-            PageOverlayTransitionHide.Begin();
+            ViewModel.Activate();
 
-            OriginalTask.CompletedDate = null;
+            PageOverlayTransitionHide.Begin();
             BuildAppBar();
         }
 
@@ -426,12 +342,7 @@ namespace SimpleTasks.Views
         {
             if (CanSave())
             {
-                BeforeSave();
-                OriginalTask.CompletedDate = DateTime.Now;
-                Task.ReminderDate = null;
-                Save();
-                AfterSave();
-
+                ViewModel.Complete();
                 GoBack();
             }
         }
@@ -440,10 +351,7 @@ namespace SimpleTasks.Views
         {
             if (CanSave())
             {
-                BeforeSave();
-                Save();
-                AfterSave();
-
+                ViewModel.Save();
                 GoBack();
             }
         }
@@ -455,7 +363,7 @@ namespace SimpleTasks.Views
                 Caption = AppResources.DeleteTaskCaption,
                 Message = AppResources.DeleteTask
                             + Environment.NewLine + Environment.NewLine
-                            + Task.Title,
+                            + TitleTextBox.Text,
                 LeftButtonContent = AppResources.DeleteTaskYes,
                 RightButtonContent = AppResources.DeleteTaskNo
             };
@@ -464,7 +372,7 @@ namespace SimpleTasks.Views
             {
                 if (e1.Result == CustomMessageBoxResult.LeftButton)
                 {
-                    Delete();
+                    ViewModel.Delete();
                     GoBack();
                 }
             };
@@ -508,45 +416,11 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Due Date
-        public List<KeyValuePair<string, DateTime>> DueDatePresetList { get; set; }
-
-        private void BuildDueDatePresetList()
-        {
-            DueDatePresetList = new List<KeyValuePair<string, DateTime>>();
-
-            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateToday, DateTimeExtensions.Today));
-            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateTomorrow, DateTimeExtensions.Tomorrow));
-
-            int daysAfterTomorrow = 4;
-            for (int i = 1; i <= daysAfterTomorrow; i++)
-            {
-                DateTime date = DateTimeExtensions.Tomorrow.AddDays(i);
-                DueDatePresetList.Add(new KeyValuePair<string, DateTime>(date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date));
-            }
-
-            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisWeek, DateTimeExtensions.LastDayOfWeek));
-            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextWeek, DateTimeExtensions.LastDayOfNextWeek));
-            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonth, DateTimeExtensions.LastDayOfMonth));
-            DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonth, DateTimeExtensions.LastDayOfNextMonth));
-        }
 
         private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            DueDateGridHide.Pause();
-
-            if (Task.DueDate == null)
-            {
-                if (App.Settings.DefaultDueDateSettingToDateTime != null)
-                {
-                    Task.DueDate = App.Settings.DefaultDueDateSettingToDateTime;
-                }
-                else
-                {
-                    Task.DueDate = DateTimeExtensions.Today;
-                }
-            }
-
             // Animace zobrazení
+            DueDateGridHide.Pause();
             DueDatePicker.Visibility = Visibility.Visible;
             DueDatePresetPicker.Visibility = Visibility.Visible;
             DueDateGridShow.Begin();
@@ -554,9 +428,8 @@ namespace SimpleTasks.Views
 
         private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            DueDateGridShow.Pause();
-
             // Animace skrytí
+            DueDateGridShow.Pause();
             DueDatePicker.IsEnabled = false;
             DueDatePresetPicker.IsEnabled = false;
             DueDateGridHide.Begin();
@@ -567,44 +440,25 @@ namespace SimpleTasks.Views
             if (DueDatePresetPicker.SelectedItem != null)
             {
                 KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)DueDatePresetPicker.SelectedItem;
-                Task.DueDate = pair.Value;
+                ViewModel.DueDate = pair.Value;
             }
         }
 
         #endregion
 
         #region Reminder
-
         private void ReminderToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            ReminderGridHide.Pause();
-
-            if (Task.ReminderDate == null)
-            {
-                DateTime defaultReminderTime = App.Settings.DefaultReminderTimeSetting;
-                if (Task.DueDate == null)
-                {
-                    Task.ReminderDate = DateTime.Today.Date.AddHours(defaultReminderTime.Hour)
-                                                                            .AddMinutes(defaultReminderTime.Minute);
-                }
-                else
-                {
-                    Task.ReminderDate = Task.DueDate.Value.Date.AddHours(defaultReminderTime.Hour)
-                                                                                                 .AddMinutes(defaultReminderTime.Minute);
-                }
-            }
-
-
             // Animace zobrazení
+            ReminderGridHide.Pause();
             ReminderGrid.Visibility = Visibility.Visible;
             ReminderGridShow.Begin();
         }
 
         private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            ReminderGridShow.Pause();
-
             // Animace skrytí
+            ReminderGridShow.Pause();
             ReminderDatePicker.IsEnabled = false;
             ReminderTimePicker.IsEnabled = false;
             ReminderGridHide.Begin();
@@ -615,7 +469,7 @@ namespace SimpleTasks.Views
             var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
             if (phoneApplicationFrame != null)
             {
-                PhoneApplicationService.Current.State["RadialTime"] = Task.ReminderDate.Value;
+                PhoneApplicationService.Current.State["RadialTime"] = ViewModel.ReminderDate;
                 phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
             }
         }

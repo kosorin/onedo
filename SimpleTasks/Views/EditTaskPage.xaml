@@ -556,7 +556,7 @@
                 <StackPanel>
                     <!--Nadpis-->
                     <toolkit:PhoneTextBox x:Name="TitleTextBox"
-                                          Text="{Binding Task.Title, Mode=TwoWay}"
+                                          Text="{Binding Title, Mode=TwoWay}"
                                           Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}"
                                           KeyDown="TitleTextBox_KeyDown" 
                                           Style="{StaticResource TitleTextBoxStyle}" 
@@ -584,7 +584,7 @@
                     <!--Detail-->
                     <toolkit:PhoneTextBox x:Name="DetailTextBox"
                                           Margin="0,-15,0,0"
-                                          Text="{Binding Task.Detail, Mode=TwoWay}"
+                                          Text="{Binding Detail, Mode=TwoWay}"
                                           Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}"
                                           AcceptsReturn="True"
                                           Style="{StaticResource TitleTextBoxStyle}" 
@@ -597,11 +597,11 @@
                                 Margin="50,20,50,0">
                         <ToggleButton x:Name="DueDateToggleButton"
                                       Template="{StaticResource DueDateButtonTemplate}"
-                                      IsChecked="{Binding Task.HasDueDate}"
+                                      IsChecked="{Binding IsSetDueDate, Mode=TwoWay}"
                                       Checked="DueToggleButton_Checked" 
                                       Unchecked="DueToggleButton_Unchecked"/>
                         <Grid x:Name="DueDateGrid"
-                              Height="{Binding Task.HasDueDate, 
+                              Height="{Binding IsSetDueDate, 
                                        Converter={StaticResource BooleanToNumberConverter},
                                        ConverterParameter=50,
                                        FallbackValue=50,
@@ -635,7 +635,7 @@
 
                             <toolkit:DatePicker x:Name="DueDatePicker"
                                                 Grid.Column="0"
-                                                Value="{Binding Task.DueDate, Mode=TwoWay}"
+                                                Value="{Binding DueDate, Mode=TwoWay}"
                                                 ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
                                                 Template="{StaticResource DueDatePickerTemplate}"/>
 
@@ -653,7 +653,7 @@
                     <!--Priorita-->
                     <ToggleButton Margin="50,20,50,0"
                                   IsThreeState="True"
-                                  IsChecked="{Binding Task.Priority, Mode=TwoWay,
+                                  IsChecked="{Binding Priority, Mode=TwoWay,
                                               Converter={StaticResource TaskPriorityToBooleanConverter}}"
                                   Template="{StaticResource PriorityButtonTemplate}"/>
 
@@ -662,18 +662,19 @@
                                 Margin="50,20,50,0">
                         <ToggleButton x:Name="ReminderToggleButton"
                                       Template="{StaticResource ReminderButtonTemplate}"
-                                      IsChecked="{Binding Task.HasReminder}"
+                                      IsChecked="{Binding IsSetReminderDate, Mode=TwoWay}"
                                       Checked="ReminderToggleButton_Checked" 
                                       Unchecked="ReminderToggleButton_Unchecked"/>
 
                         <Grid x:Name="ReminderGrid"
-                              Height="{Binding Task.HasReminder, 
+                              Height="{Binding IsSetReminderDate, 
                                                Converter={StaticResource BooleanToNumberConverter},
                                                ConverterParameter=100,
                                                FallbackValue=100,
                                                Mode=OneTime}"
-                              Visibility="{Binding Task.HasReminder, Mode=OneTime, 
-                                           Converter={StaticResource BooleanToVisibilityConverter}}">
+                              Visibility="{Binding IsSetReminderDate, 
+                                                   Mode=OneTime, 
+                                                   Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
@@ -704,14 +705,14 @@
                             <!--Datum-->
                             <toolkit:DatePicker Name="ReminderDatePicker"
                                                 Grid.Row="0"
-                                                Value="{Binding Task.ReminderDate, Mode=TwoWay}"
+                                                Value="{Binding ReminderDate, Mode=TwoWay}"
                                                 ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
                                                 Template="{StaticResource ReminderDatePickerTemplate}"/>
 
                             <!--Čas-->
                             <Button Name="ReminderTimePicker"
                                     Grid.Row="1"
-                                    Content="{Binding Task.ReminderDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}"
+                                    Content="{Binding ReminderDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}"
                                     Template="{StaticResource ReminderTimePickerTemplate}" 
                                     Tap="ReminderTimePicker_Tap" />
                         </Grid>

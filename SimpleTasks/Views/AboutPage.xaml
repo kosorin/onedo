@@ -139,11 +139,11 @@
                                 <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                                            Text="&#x2022;" 
                                            HorizontalAlignment="Right"
-                                           Margin="0,0,10,0"/>
+                                           Margin="0,0,10,0" />
                                 <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                                            Grid.Column="1"
                                            TextWrapping="Wrap" 
-                                           Text="{Binding Text}"/>
+                                           Text="{Binding Text}" />
                             </Grid>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>

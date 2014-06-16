@@ -133,6 +133,7 @@
     <Compile Include="Tiles\DefaultWideTaskTile.xaml.cs">
       <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EditTaskViewModel.cs" />
     <Compile Include="ViewModels\RadialViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
