@@ -600,12 +600,12 @@
                                     <DoubleAnimation Storyboard.TargetName="DueDatePresetPickerBorder"
                                                      Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
                                                      To="0"
-                                                     Duration="0:0:0.39">
+                                                     Duration="0:0:0.27">
                                     </DoubleAnimation>
                                     <DoubleAnimation Storyboard.TargetName="DueDatePresetPicker"
                                                      Storyboard.TargetProperty="Opacity"
                                                      To="1"
-                                                     BeginTime="0:0:0.26"
+                                                     BeginTime="0:0:0.18"
                                                      Duration="0">
                                     </DoubleAnimation>
                                 </Storyboard>
@@ -613,12 +613,12 @@
                                     <DoubleAnimation Storyboard.TargetName="DueDatePresetPickerBorder"
                                                      Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
                                                      To="-270"
-                                                     Duration="0:0:0.39">
+                                                     Duration="0:0:0.27">
                                     </DoubleAnimation>
                                     <DoubleAnimation Storyboard.TargetName="DueDatePresetPicker"
                                                      Storyboard.TargetProperty="Opacity"
                                                      To="0"
-                                                     BeginTime="0:0:0.13"
+                                                     BeginTime="0:0:0.09"
                                                      Duration="0">
                                     </DoubleAnimation>
                                 </Storyboard>
@@ -699,12 +699,12 @@
                                                          Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
                                                          From="-270"
                                                          To="0"
-                                                         Duration="0:0:0.39">
+                                                         Duration="0:0:0.27">
                                         </DoubleAnimation>
                                         <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPicker"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1"
-                                                         BeginTime="0:0:0.26"
+                                                         BeginTime="0:0:0.18"
                                                          Duration="0">
                                         </DoubleAnimation>
                                     </Storyboard>
@@ -713,12 +713,12 @@
                                                          Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
                                                          From="0"
                                                          To="-270"
-                                                         Duration="0:0:0.39">
+                                                         Duration="0:0:0.27">
                                         </DoubleAnimation>
                                         <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPicker"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0"
-                                                         BeginTime="0:0:0.13"
+                                                         BeginTime="0:0:0.09"
                                                          Duration="0">
                                         </DoubleAnimation>
                                     </Storyboard>

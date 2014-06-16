@@ -234,6 +234,9 @@ namespace SimpleTasks.ViewModels
             AngleMinutesAnimateFrom = AngleMinutes;
             AngleMinutes = Minutes * 6;
             AngleMinutesAnimateTo = AngleMinutes;
+
+            if (AngleMinutesAnimateFrom > 6 && AngleMinutesAnimateTo == 0)
+                AngleMinutesAnimateFrom = AngleMinutesAnimateFrom - 360;
             _picker.AngleMinutesAnimation.Begin();
         }
 
