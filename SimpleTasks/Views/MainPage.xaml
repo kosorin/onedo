@@ -90,7 +90,7 @@
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
                                          To="0"
-                                         Duration="0:0:0.3"/>
+                                         Duration="0:0:0.3"/>-->
                         <DoubleAnimation Storyboard.TargetName="TitleTextBox"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1.0"
@@ -102,7 +102,11 @@
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1"
-                                         Duration="0:0:0.2"/>-->
+                                         Duration="0:0:0.35">
+                            <DoubleAnimation.EasingFunction>
+                                <ExponentialEase EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
                         <!--Tlačítko-->
                         <DoubleAnimation Duration="0:0:0.4"
                                          To="0"
@@ -126,7 +130,7 @@
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
                                          To="90"
-                                         Duration="0:0:0.3"/>
+                                         Duration="0:0:0.3"/>-->
                         <DoubleAnimation Storyboard.TargetName="TitleTextBox"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0.45"
@@ -137,8 +141,12 @@
                         </DoubleAnimation>
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
-                                         To="0"
-                                         Duration="0:0:0.2"/>-->
+                                         To="0.25"
+                                         Duration="0:0:0.35">
+                            <DoubleAnimation.EasingFunction>
+                                <ExponentialEase EasingMode="EaseIn" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
                         <!--Tlačítko-->
                         <DoubleAnimation Duration="0:0:0.4"
                                          To="1"
@@ -195,9 +203,6 @@
                                    Text="{Binding Task.Title}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
                                    Margin="8,10,0,15"/>
-                        <TextBlock 
-                                   Text="{Binding Task.Uid}"
-                            HorizontalAlignment="Right"/>
                         <StackPanel x:Name="TaskInfoStackPanel" 
                                     Orientation="Vertical"
                                     Grid.Row="1"
