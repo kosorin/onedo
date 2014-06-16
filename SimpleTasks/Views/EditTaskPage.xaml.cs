@@ -73,35 +73,24 @@ namespace SimpleTasks.Views
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
 
-                OldTask = task;
-                if (OldTask != null)
+                OriginalTask = task;
+                if (OriginalTask != null)
                 {
-                    CurrentTask = new TaskModel()
-                    {
-                        Title = OldTask.Title,
-                        Detail = OldTask.Detail,
-                        Priority = OldTask.Priority,
-                        DueDate = OldTask.DueDate,
-                        ReminderDate = OldTask.ReminderDate,
-                        CompletedDate = OldTask.CompletedDate
-                    };
-                    IsOldTask = true;
+                    Task = CloneOriginalTask();
                 }
                 else
                 {
-                    CurrentTask = new TaskModel();
-                    IsOldTask = false;
+                    Task = new TaskModel();
                 }
                 DataContext = this;
 
                 CreateAppBarItems();
-                BuildAppBar();
 
                 // Při prvním zobrazení stránky pro editaci úkolu se zobrází klávesnice a nastaví defaultní termín
                 RoutedEventHandler firstTimeLoadHandler = null;
                 firstTimeLoadHandler = (s, e2) =>
                 {
-                    if (!IsOldTask)
+                    if (IsNewTask)
                     {
                         // Zobrazení klávesnice
                         TitleTextBox.Focus();
@@ -130,9 +119,11 @@ namespace SimpleTasks.Views
                     DateTime newReminderTime = (DateTime)PhoneApplicationService.Current.State["RadialTime"];
                     PhoneApplicationService.Current.State.Remove("RadialTime");
 
-                    CurrentTask.ReminderDate = newReminderTime;
+                    Task.ReminderDate = newReminderTime;
                 }
             }
+
+            BuildAppBar();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -163,11 +154,23 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Task
-        public bool IsOldTask { get; set; }
+        private TaskModel CloneOriginalTask()
+        {
+            return new TaskModel()
+            {
+                Title = OriginalTask.Title,
+                Detail = OriginalTask.Detail,
+                Priority = OriginalTask.Priority,
+                DueDate = OriginalTask.DueDate,
+                ReminderDate = OriginalTask.ReminderDate
+            };
+        }
 
-        public TaskModel OldTask { get; set; }
+        public bool IsNewTask { get { return OriginalTask == null; } }
 
-        public TaskModel CurrentTask { get; set; }
+        public TaskModel OriginalTask { get; set; }
+
+        public TaskModel Task { get; set; }
 
         private bool CanSave()
         {
@@ -190,9 +193,9 @@ namespace SimpleTasks.Views
 
             if (ReminderToggleButton.IsChecked.Value)
             {
-                if (CurrentTask.ReminderDate <= DateTime.Now)
+                if (Task.ReminderDate <= DateTime.Now)
                 {
-                    CurrentTask.ReminderDate = DateTime.Now.AddMinutes(5);
+                    Task.ReminderDate = DateTime.Now.AddMinutes(2);
                 }
             }
             else
@@ -203,31 +206,42 @@ namespace SimpleTasks.Views
 
         private void AfterSave()
         {
-            if (App.Settings.UnpinCompletedSetting && CurrentTask.IsComplete)
+            if (OriginalTask != null && OriginalTask.IsComplete && App.Settings.UnpinCompletedSetting)
             {
-                LiveTile.Unpin(CurrentTask);
+                LiveTile.Unpin(OriginalTask);
             }
         }
 
         private void Save()
         {
-            CurrentTask.ModifiedSinceStart = true;
-            if (IsOldTask)
+            if (IsNewTask)
             {
-                App.Tasks.Update(OldTask, CurrentTask);
+                OriginalTask = Task;
+                App.Tasks.Add(Task);
             }
             else
             {
-                App.Tasks.Add(CurrentTask);
+                OriginalTask.ModifiedSinceStart = true;
+
+                OriginalTask.Title = Task.Title;
+                OriginalTask.Detail = Task.Detail;
+                OriginalTask.Priority = Task.Priority;
+                OriginalTask.DueDate = Task.DueDate;
+                OriginalTask.ReminderDate = Task.ReminderDate;
+
+                App.Tasks.Update(OriginalTask);
             }
         }
 
         private void Delete()
-        { App.Tasks.Delete(OldTask); }
+        {
+            App.Tasks.Delete(OriginalTask);
+        }
         #endregion
 
         #region AppBar
 
+        #region AppBar Buttons declare
         private ApplicationBarIconButton appBarSaveButton;
 
         private ApplicationBarIconButton appBarActivateButton;
@@ -243,92 +257,41 @@ namespace SimpleTasks.Views
         private ApplicationBarIconButton appBarUnpinButton;
 
         private ApplicationBarIconButton appBarAddBulletButton;
+        #endregion 
 
         private void CreateAppBarItems()
         {
             appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
             appBarSaveButton.Text = AppResources.AppBarSave;
-            appBarSaveButton.Click += appBarSaveButton_Click;
+            appBarSaveButton.Click += SaveButton;
 
             appBarActivateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.undo.curve.png", UriKind.Relative));
             appBarActivateButton.Text = AppResources.AppBarActivate;
-            appBarActivateButton.Click += appBarActivateButton_Click;
+            appBarActivateButton.Click += ActivateButton;
 
             appBarCompleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.checkmark.pencil.top.png", UriKind.Relative));
             appBarCompleteButton.Text = AppResources.AppBarComplete;
-            appBarCompleteButton.Click += appBarCompleteButton_Click;
+            appBarCompleteButton.Click += CompleteButton;
 
             appBarDeleteButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.delete.png", UriKind.Relative));
             appBarDeleteButton.Text = AppResources.AppBarDelete;
-            appBarDeleteButton.Click += appBarDeleteButton_Click;
+            appBarDeleteButton.Click += DeleteButton;
 
             appBarOkButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
             appBarOkButton.Text = AppResources.AppBarOk;
-            appBarOkButton.Click += appBarOkButton_Click;
+            appBarOkButton.Click += OkButton;
 
             appBarPinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.png", UriKind.Relative));
             appBarPinButton.Text = AppResources.AppBarPin;
-            appBarPinButton.Click += appBarPinButton_Click;
+            appBarPinButton.Click += PinButton;
 
             appBarUnpinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.remove.png", UriKind.Relative));
             appBarUnpinButton.Text = AppResources.AppBarUnpin;
-            appBarUnpinButton.Click += appBarUnpinButton_Click;
+            appBarUnpinButton.Click += UnpinButton;
 
             appBarAddBulletButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.add.below.png", UriKind.Relative));
             appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
-            appBarAddBulletButton.Click += appBarAddBulletButton_Click;
-        }
-
-        void appBarAddBulletButton_Click(object sender, EventArgs e)
-        {
-            int lineNumber = DetailTextBox.Text.LineNumberAtPosition(DetailTextBox.SelectionStart);
-            List<string> lines = new List<string>(DetailTextBox.Text.Lines());
-
-            string bullet = string.Format(" {0} ", '\u2022');
-            string bulletText = AppResources.BulletText;
-            string newLineText = string.Format("{0}{1}", bullet, bulletText);
-
-            if (string.IsNullOrWhiteSpace(lines[lineNumber]))
-            {
-                lines[lineNumber] = newLineText;
-            }
-            else
-            {
-                lines.Insert(++lineNumber, newLineText);
-            }
-
-            string newLine = "\r\n";
-            int newLineLength = newLine.Length;
-            int newSelectionStart = 0;
-            for (int i = 0; i < lineNumber; ++i)
-            {
-                newSelectionStart += lines[i].Length + newLineLength;
-            }
-
-            DetailTextBox.Text = string.Join(newLine, lines);
-            DetailTextBox.SelectionStart = newSelectionStart + bullet.Length;
-            DetailTextBox.SelectionLength = bulletText.Length;
-        }
-
-        private void appBarPinButton_Click(object sender, EventArgs e)
-        {
-            if (CanSave())
-            {
-                BeforeSave();
-                Save();
-                AfterSave();
-
-                LiveTile.PinEmpty(CurrentTask);
-                ApplicationBar.Buttons.RemoveAt(0);
-                ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
-            }
-        }
-
-        void appBarUnpinButton_Click(object sender, EventArgs e)
-        {
-            LiveTile.Unpin(CurrentTask);
-            ApplicationBar.Buttons.RemoveAt(0);
-            ApplicationBar.Buttons.Insert(0, appBarPinButton);
+            appBarAddBulletButton.Click += AddBulletButton;
         }
 
         private void BuildAppBar()
@@ -336,9 +299,9 @@ namespace SimpleTasks.Views
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            if (CurrentTask.IsActive)
+            if (Task.IsActive)
             {
-                if (LiveTile.IsPinned(CurrentTask))
+                if (LiveTile.IsPinned(OriginalTask))
                 {
                     ApplicationBar.Buttons.Add(appBarUnpinButton);
                 }
@@ -348,9 +311,9 @@ namespace SimpleTasks.Views
                 }
             }
 
-            if (IsOldTask)
+            if (!IsNewTask)
             {
-                if (CurrentTask.IsComplete)
+                if (Task.IsComplete)
                 {
                     ApplicationBar.Buttons.Add(appBarActivateButton);
                 }
@@ -384,70 +347,7 @@ namespace SimpleTasks.Views
             ApplicationBar.Buttons.Add(appBarOkButton);
         }
 
-        private void appBarActivateButton_Click(object sender, EventArgs e)
-        {
-            PageOverlayTransitionHide.Begin();
-
-            CurrentTask.CompletedDate = null;
-            BuildAppBar();
-        }
-
-        private void appBarCompleteButton_Click(object sender, EventArgs e)
-        {
-            if (CanSave())
-            {
-                BeforeSave();
-                CurrentTask.CompletedDate = DateTime.Now;
-                CurrentTask.ReminderDate = null;
-                Save();
-                AfterSave();
-
-                GoBack();
-            }
-        }
-
-        private void appBarSaveButton_Click(object sender, EventArgs e)
-        {
-            if (CanSave())
-            {
-                BeforeSave();
-                Save();
-                AfterSave();
-
-                GoBack();
-            }
-        }
-
-        private void appBarDeleteButton_Click(object sender, EventArgs e)
-        {
-            CustomMessageBox messageBox = new CustomMessageBox()
-            {
-                Caption = AppResources.DeleteTaskCaption,
-                Message = AppResources.DeleteTask
-                            + Environment.NewLine + Environment.NewLine
-                            + CurrentTask.Title,
-                LeftButtonContent = AppResources.DeleteTaskYes,
-                RightButtonContent = AppResources.DeleteTaskNo
-            };
-
-            messageBox.Dismissed += (s1, e1) =>
-            {
-                switch (e1.Result)
-                {
-                case CustomMessageBoxResult.LeftButton:
-                    Delete();
-                    GoBack();
-                    break;
-                case CustomMessageBoxResult.RightButton:
-                case CustomMessageBoxResult.None:
-                default:
-                    break;
-                }
-            };
-            messageBox.Show();
-        }
-
-        private void appBarOkButton_Click(object sender, EventArgs e)
+        private void OkButton(object sender, EventArgs e)
         {
             // Při stisku tlačítka na AppBaru nezmizí focus z elementu, 
             // takže např. u TextBoxu se neaktivuje změna textu pro binding
@@ -461,6 +361,115 @@ namespace SimpleTasks.Views
             this.Focus();
         }
 
+        private void AddBulletButton(object sender, EventArgs e)
+        {
+            int lineNumber = DetailTextBox.Text.LineNumberAtPosition(DetailTextBox.SelectionStart);
+            List<string> lines = new List<string>(DetailTextBox.Text.Lines());
+
+            string bullet = string.Format(" {0} ", '\u2022');
+            string bulletText = AppResources.BulletText;
+            string newLineText = string.Format("{0}{1}", bullet, bulletText);
+
+            if (string.IsNullOrWhiteSpace(lines[lineNumber]))
+            {
+                lines[lineNumber] = newLineText;
+            }
+            else
+            {
+                lines.Insert(++lineNumber, newLineText);
+            }
+
+            string newLine = "\r\n";
+            int newLineLength = newLine.Length;
+            int newSelectionStart = 0;
+            for (int i = 0; i < lineNumber; ++i)
+            {
+                newSelectionStart += lines[i].Length + newLineLength;
+            }
+
+            DetailTextBox.Text = string.Join(newLine, lines);
+            DetailTextBox.SelectionStart = newSelectionStart + bullet.Length;
+            DetailTextBox.SelectionLength = bulletText.Length;
+        }
+
+        private void PinButton(object sender, EventArgs e)
+        {
+            if (CanSave())
+            {
+                BeforeSave();
+                Save();
+                Task = CloneOriginalTask();
+                AfterSave();
+
+                ApplicationBar.Buttons.RemoveAt(0);
+                ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
+                LiveTile.PinEmpty(OriginalTask);
+            }
+        }
+
+        private void UnpinButton(object sender, EventArgs e)
+        {
+            LiveTile.Unpin(OriginalTask);
+            ApplicationBar.Buttons.RemoveAt(0);
+            ApplicationBar.Buttons.Insert(0, appBarPinButton);
+        }
+
+        private void ActivateButton(object sender, EventArgs e)
+        {
+            PageOverlayTransitionHide.Begin();
+
+            OriginalTask.CompletedDate = null;
+            BuildAppBar();
+        }
+
+        private void CompleteButton(object sender, EventArgs e)
+        {
+            if (CanSave())
+            {
+                BeforeSave();
+                OriginalTask.CompletedDate = DateTime.Now;
+                Task.ReminderDate = null;
+                Save();
+                AfterSave();
+
+                GoBack();
+            }
+        }
+
+        private void SaveButton(object sender, EventArgs e)
+        {
+            if (CanSave())
+            {
+                BeforeSave();
+                Save();
+                AfterSave();
+
+                GoBack();
+            }
+        }
+
+        private void DeleteButton(object sender, EventArgs e)
+        {
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                Caption = AppResources.DeleteTaskCaption,
+                Message = AppResources.DeleteTask
+                            + Environment.NewLine + Environment.NewLine
+                            + Task.Title,
+                LeftButtonContent = AppResources.DeleteTaskYes,
+                RightButtonContent = AppResources.DeleteTaskNo
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                if (e1.Result == CustomMessageBoxResult.LeftButton)
+                {
+                    Delete();
+                    GoBack();
+                }
+            };
+            messageBox.Show();
+        }
         #endregion
 
         #region Title a Detail
@@ -525,15 +534,15 @@ namespace SimpleTasks.Views
         {
             DueDateGridHide.Pause();
 
-            if (CurrentTask.DueDate == null)
+            if (Task.DueDate == null)
             {
                 if (App.Settings.DefaultDueDateSettingToDateTime != null)
                 {
-                    CurrentTask.DueDate = App.Settings.DefaultDueDateSettingToDateTime;
+                    Task.DueDate = App.Settings.DefaultDueDateSettingToDateTime;
                 }
                 else
                 {
-                    CurrentTask.DueDate = DateTimeExtensions.Today;
+                    Task.DueDate = DateTimeExtensions.Today;
                 }
             }
 
@@ -558,7 +567,7 @@ namespace SimpleTasks.Views
             if (DueDatePresetPicker.SelectedItem != null)
             {
                 KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)DueDatePresetPicker.SelectedItem;
-                CurrentTask.DueDate = pair.Value;
+                Task.DueDate = pair.Value;
             }
         }
 
@@ -570,17 +579,17 @@ namespace SimpleTasks.Views
         {
             ReminderGridHide.Pause();
 
-            if (CurrentTask.ReminderDate == null)
+            if (Task.ReminderDate == null)
             {
                 DateTime defaultReminderTime = App.Settings.DefaultReminderTimeSetting;
-                if (CurrentTask.DueDate == null)
+                if (Task.DueDate == null)
                 {
-                    CurrentTask.ReminderDate = DateTime.Today.Date.AddHours(defaultReminderTime.Hour)
+                    Task.ReminderDate = DateTime.Today.Date.AddHours(defaultReminderTime.Hour)
                                                                             .AddMinutes(defaultReminderTime.Minute);
                 }
                 else
                 {
-                    CurrentTask.ReminderDate = CurrentTask.DueDate.Value.Date.AddHours(defaultReminderTime.Hour)
+                    Task.ReminderDate = Task.DueDate.Value.Date.AddHours(defaultReminderTime.Hour)
                                                                                                  .AddMinutes(defaultReminderTime.Minute);
                 }
             }
@@ -606,7 +615,7 @@ namespace SimpleTasks.Views
             var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
             if (phoneApplicationFrame != null)
             {
-                PhoneApplicationService.Current.State["RadialTime"] = CurrentTask.ReminderDate.Value;
+                PhoneApplicationService.Current.State["RadialTime"] = Task.ReminderDate.Value;
                 phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
             }
         }

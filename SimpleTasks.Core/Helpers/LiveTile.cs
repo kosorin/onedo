@@ -29,6 +29,8 @@ namespace SimpleTasks.Core.Helpers
 
         public static ShellTile PinnedTile(TaskModel task)
         {
+            if (task == null)
+                return null;
             return ShellTile.ActiveTiles.FirstOrDefault((t) =>
             {
                 return t.NavigationUri.OriginalString.Contains("Task=" + task.Uid);

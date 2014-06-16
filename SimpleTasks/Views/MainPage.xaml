@@ -195,6 +195,9 @@
                                    Text="{Binding Task.Title}"
                                    Style="{StaticResource ButtonTextBlockStyle}"
                                    Margin="8,10,0,15"/>
+                        <TextBlock 
+                                   Text="{Binding Task.Uid}"
+                            HorizontalAlignment="Right"/>
                         <StackPanel x:Name="TaskInfoStackPanel" 
                                     Orientation="Vertical"
                                     Grid.Row="1"

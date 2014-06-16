@@ -12,6 +12,7 @@ namespace SimpleTasks.Core.Models
         {
             Uid = Guid.NewGuid().ToString();
             Created = DateTime.Now;
+            ModifiedSinceStart = true;
         }
 
         #region Uid
