@@ -8,6 +8,12 @@ namespace SimpleTasks.Core.Models
     [DataContract(Name = "Task", Namespace = "")]
     public class TaskModel : BindableBase
     {
+        public TaskModel()
+        {
+            Uid = Guid.NewGuid().ToString();
+            Created = DateTime.Now;
+        }
+
         #region Uid
         private string _uid = "";
         [DataMember(Order = 0)]
@@ -17,7 +23,7 @@ namespace SimpleTasks.Core.Models
             {
                 return _uid;
             }
-            set
+            private set
             {
                 SetProperty(ref _uid, value);
             }
@@ -36,8 +42,7 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _title, value);
-                OnPropertyChanged("TitleFirstLine");
-                OnPropertyChanged("TitleDescription");
+                Modified = DateTime.Now;
             }
         }
         #endregion
@@ -54,6 +59,7 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _detail, value);
+                Modified = DateTime.Now;
             }
         }
         #endregion
@@ -70,6 +76,10 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _priority, value);
+                OnPropertyChanged("IsLowPriority");
+                OnPropertyChanged("IsNormalPriority");
+                OnPropertyChanged("IsHighPriority");
+                Modified = DateTime.Now;
             }
         }
 
@@ -101,6 +111,9 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _dueDate, value);
+                OnPropertyChanged("HasDueDate");
+                OnPropertyChanged("IsOverdue");
+                Modified = DateTime.Now;
             }
         }
 
@@ -130,21 +143,15 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _reminderDate, value);
-                OnPropertyChanged(HasReminderName);
+                OnPropertyChanged("HasReminder");
+                Modified = DateTime.Now;
             }
         }
 
-        private string HasReminderName = "HasReminder";
         public bool HasReminder { get { return ReminderDate != null; } }
         #endregion
 
         #region Complete
-        private string IsCompleteName = "IsComplete";
-        public bool IsComplete { get { return CompletedDate.HasValue; } }
-
-        private string IsActiveName = "IsActive";
-        public bool IsActive { get { return !CompletedDate.HasValue; } }
-
         private DateTime? _completedDate = null;
         [DataMember(Order = 6)]
         public DateTime? CompletedDate
@@ -156,10 +163,15 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _completedDate, value);
-                OnPropertyChanged(IsCompleteName);
-                OnPropertyChanged(IsActiveName);
+                OnPropertyChanged("IsComplete");
+                OnPropertyChanged("IsActive");
+                Modified = DateTime.Now;
             }
         }
+
+        public bool IsComplete { get { return CompletedDate.HasValue; } }
+
+        public bool IsActive { get { return !CompletedDate.HasValue; } }
         #endregion
 
         #region Tags
@@ -174,6 +186,7 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _tags, value);
+                Modified = DateTime.Now;
             }
         }
         #endregion
@@ -187,7 +200,7 @@ namespace SimpleTasks.Core.Models
             {
                 return _created;
             }
-            set
+            private set
             {
                 SetProperty(ref _created, value);
             }
@@ -196,14 +209,14 @@ namespace SimpleTasks.Core.Models
 
         #region Modified
         private DateTime? _modified = null;
-        [DataMember(Order = 7)]
+        [DataMember(Order = 8)]
         public DateTime? Modified
         {
             get
             {
                 return _modified;
             }
-            set
+            private set
             {
                 SetProperty(ref _modified, value);
             }
@@ -216,25 +229,5 @@ namespace SimpleTasks.Core.Models
             set { _modifiedSinceStart = value; }
         }
         #endregion
-
-        public TaskModel()
-        {
-            Uid = Guid.NewGuid().ToString();
-        }
-
-        public TaskModel Clone()
-        {
-            TaskModel task = new TaskModel()
-            {
-                Uid = this.Uid,
-                Title = this.Title,
-                Detail = this.Detail,
-                Priority = this.Priority,
-                DueDate = this.DueDate,
-                ReminderDate = this.ReminderDate,
-                CompletedDate = this.CompletedDate,
-            };
-            return task;
-        }
     }
 }

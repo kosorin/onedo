@@ -112,8 +112,7 @@ namespace SimpleTasks.Views
                     TaskModel task = new TaskModel()
                     {
                         Title = title,
-                        DueDate = App.Settings.DefaultDueDateSettingToDateTime,
-                        Created = DateTime.Now
+                        DueDate = App.Settings.DefaultDueDateSettingToDateTime
                     };
                     App.Tasks.Add(task);
                     QuickAddTextBox.Text = "";
@@ -306,7 +305,6 @@ namespace SimpleTasks.Views
                 showStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
                 showStoryboard.Begin();
             }
-            task.Modified = DateTime.Now;
             App.Tasks.Update(task);
         }
 
@@ -318,7 +316,7 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            NavigationService.Navigate(EditTaskViewModel.CreateEditTaskUri(task));
+            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
 
         private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
