@@ -365,4 +365,7 @@
   <data name="Changelog" xml:space="preserve">
     <value>changelog</value>
   </data>
+  <data name="ChooseReminderDate" xml:space="preserve">
+    <value>choose reminder date</value>
+  </data>
 </root>

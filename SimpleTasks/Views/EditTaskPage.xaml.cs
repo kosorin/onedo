@@ -95,6 +95,7 @@ namespace SimpleTasks.Views
                         }
                     }
                     DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
+                    ReminderDatePresetPicker.SelectionChanged += ReminderDatePresetPicker_SelectionChanged;
                     this.Loaded -= firstTimeLoadHandler;
                 };
                 this.Loaded += firstTimeLoadHandler;
@@ -424,6 +425,8 @@ namespace SimpleTasks.Views
             DueDatePicker.Visibility = Visibility.Visible;
             DueDatePresetPicker.Visibility = Visibility.Visible;
             DueDateGridShow.Begin();
+            DueDatePresetPickerHide.Pause();
+            DueDatePresetPickerShow.Begin();
         }
 
         private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
@@ -433,6 +436,8 @@ namespace SimpleTasks.Views
             DueDatePicker.IsEnabled = false;
             DueDatePresetPicker.IsEnabled = false;
             DueDateGridHide.Begin();
+            DueDatePresetPickerShow.Pause();
+            DueDatePresetPickerHide.Begin();
         }
 
         private void DueDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -453,6 +458,8 @@ namespace SimpleTasks.Views
             ReminderGridHide.Pause();
             ReminderGrid.Visibility = Visibility.Visible;
             ReminderGridShow.Begin();
+            ReminderDatePresetPickerHide.Pause();
+            ReminderDatePresetPickerShow.Begin();
         }
 
         private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
@@ -462,6 +469,18 @@ namespace SimpleTasks.Views
             ReminderDatePicker.IsEnabled = false;
             ReminderTimePicker.IsEnabled = false;
             ReminderGridHide.Begin();
+            ReminderDatePresetPickerShow.Pause();
+            ReminderDatePresetPickerHide.Begin();
+        }
+
+        private void ReminderDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ReminderDatePresetPicker.SelectedItem != null)
+            {
+                KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)ReminderDatePresetPicker.SelectedItem;
+                ViewModel.ReminderDate = pair.Value.Date.AddHours(ViewModel.ReminderDate.Hour)
+                                                        .AddMinutes(ViewModel.ReminderDate.Minute);
+            }
         }
 
         private void ReminderTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -473,7 +492,6 @@ namespace SimpleTasks.Views
                 phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
             }
         }
-
         #endregion
     }
 }

@@ -87,6 +87,7 @@ namespace SimpleTasks.Views
 
         #region AppBar
 
+        #region AppBar create
         private ApplicationBarIconButton appBarNewTaskButton;
 
         private ApplicationBarIconButton appBarSaveQuickButton;
@@ -100,29 +101,15 @@ namespace SimpleTasks.Views
             #region Ikony
             appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
             appBarNewTaskButton.Text = AppResources.AppBarNew;
-            appBarNewTaskButton.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative)); };
+            appBarNewTaskButton.Click += AddNewTask_Click;
 
             appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
             appBarSaveQuickButton.Text = AppResources.AppBarSave;
-            appBarSaveQuickButton.Click += (s, e) =>
-            {
-                string title = QuickAddTextBox.Text;
-                if (!string.IsNullOrWhiteSpace(title))
-                {
-                    TaskModel task = new TaskModel()
-                    {
-                        Title = title,
-                        DueDate = App.Settings.DefaultDueDateSettingToDateTime
-                    };
-                    App.Tasks.Add(task);
-                    QuickAddTextBox.Text = "";
-                    this.Focus();
-                }
-            };
+            appBarSaveQuickButton.Click += QuickAddSave;
 
             appBarCancelQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.close.png", UriKind.Relative));
             appBarCancelQuickButton.Text = AppResources.AppBarCancel;
-            appBarCancelQuickButton.Click += (s, e) => { QuickAddTextBox.Text = ""; this.Focus(); };
+            appBarCancelQuickButton.Click += QuickAddCancel;
             #endregion
 
             #region Menu
@@ -135,7 +122,7 @@ namespace SimpleTasks.Views
 
             // Smazat všechny úkoly
             ApplicationBarMenuItem appBarDeleteAllItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteAll);
-            appBarDeleteAllItem.Click += appBarDeleteAllItem_Click;
+            appBarDeleteAllItem.Click += DeleteAllItem_Click;
             appBarMenuItems.Add(appBarDeleteAllItem);
 
             // Nastavení
@@ -151,7 +138,7 @@ namespace SimpleTasks.Views
 #if DEBUG
             // Reset
             ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
-            appBarResetMenuItem.Click += appBarResetMenuItem_Click;
+            appBarResetMenuItem.Click += ResetMenuItem_Click;
             appBarMenuItems.Add(appBarResetMenuItem);
 
             // Clear
@@ -173,8 +160,35 @@ namespace SimpleTasks.Views
                 ApplicationBar.MenuItems.Add(item);
             }
         }
+        #endregion
+        private void AddNewTask_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative));
+        }
 
-        void appBarDeleteAllItem_Click(object sender, EventArgs e)
+        void QuickAddSave(object sender, EventArgs e)
+        {
+            string title = QuickAddTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                TaskModel task = new TaskModel()
+                {
+                    Title = title,
+                    DueDate = App.Settings.DefaultDueDateSettingToDateTime
+                };
+                App.Tasks.Add(task);
+                QuickAddTextBox.Text = "";
+                this.Focus();
+            }
+        }
+
+        void QuickAddCancel(object sender, EventArgs e)
+        {
+            QuickAddTextBox.Text = "";
+            this.Focus();
+        }
+
+        void DeleteAllItem_Click(object sender, EventArgs e)
         {
             CustomMessageBox messageBox = new CustomMessageBox()
             {
@@ -202,7 +216,7 @@ namespace SimpleTasks.Views
             messageBox.Show();
         }
 
-        void appBarResetMenuItem_Click(object sender, EventArgs e)
+        void ResetMenuItem_Click(object sender, EventArgs e)
         {
             App.Tasks.DeleteAll();
 
@@ -248,7 +262,7 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[1].Title = "Kúpiť mlieko";
                 App.Tasks.Tasks[2].Title = "Jednoduchý zoznam";
                 App.Tasks.Tasks[2].Detail = " \u2022 len jednoduché\n \u2022 odrážky\n \u2022 neviem, čo by som\n \u2022 tu mal napísať";
-                App.Tasks.Tasks[3].Title ="Projekt z matematiky";
+                App.Tasks.Tasks[3].Title = "Projekt z matematiky";
             }
         }
 
@@ -323,8 +337,8 @@ namespace SimpleTasks.Views
         {
             if (e.ItemKind == LongListSelectorItemKind.Item)
             {
-                //TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
-                //TaskModel task = wrapper.Task;
+                TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
+                TaskModel task = wrapper.Task;
 
                 //Debug.WriteLine(" REALIZED: " + task.Title);
 
@@ -333,22 +347,24 @@ namespace SimpleTasks.Views
                 ////panel.Height = panel.ActualHeight;
                 ////var r = new Random(task.Title.GetHashCode());
                 ////panel.Background = new SolidColorBrush(Color.FromArgb(255, (byte)r.Next(255), (byte)r.Next(255), (byte)r.Next(255)));
-                //Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
-                //Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
-                //Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
+                Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
+                Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
+                Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
 
-                //if (task == null)
-                //    return;
-                //if (task.IsActive)
-                //{
-                //    showStoryboard.Begin();
-                //    hideStoryboard.Stop();
-                //}
-                //else
-                //{
-                //    showStoryboard.Stop();
-                //    hideStoryboard.Begin();
-                //}
+                if (task == null)
+                    return;
+                if (task.IsActive)
+                {
+                    hideStoryboard.Stop();
+                    showStoryboard.Begin();
+                    showStoryboard.SkipToFill();
+                }
+                else
+                {
+                    showStoryboard.Stop();
+                    hideStoryboard.Begin();
+                    hideStoryboard.SkipToFill();
+                }
             }
         }
 

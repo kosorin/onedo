@@ -308,6 +308,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to choose reminder date.
+        /// </summary>
+        public static string ChooseReminderDate {
+            get {
+                return ResourceManager.GetString("ChooseReminderDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CHOOSE REMINDER TIME.
         /// </summary>
         public static string ChooseReminderTime {

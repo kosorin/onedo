@@ -3,6 +3,7 @@ using SimpleTasks.Core.Models;
 using SimpleTasks.Resources;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace SimpleTasks.ViewModels
 
                 IsSetDueDate = (App.Settings.DefaultDueDateSettingToDateTime != null);
                 DueDate = App.Settings.DefaultDueDateSettingToDateTime ?? DateTime.Now;
+                IsSetReminderDate = false;
                 IsComplete = false;
             }
             else
@@ -35,7 +37,7 @@ namespace SimpleTasks.ViewModels
                 Priority = originalTask.Priority;
                 IsSetDueDate = (originalTask.DueDate != null);
                 DueDate = originalTask.DueDate ?? DateTime.Now;
-                IsSetReminderDate = (ReminderDate != null);
+                IsSetReminderDate = (originalTask.ReminderDate != null);
                 ReminderDate = originalTask.ReminderDate ?? DateTime.Now;
                 IsComplete = originalTask.IsComplete;
             }
@@ -225,7 +227,7 @@ namespace SimpleTasks.ViewModels
         }
         #endregion
 
-        #region DueDate PresetList
+        #region Date PresetList
         public List<KeyValuePair<string, DateTime>> DueDatePresetList { get; set; }
 
         private void BuildDueDatePresetList()
@@ -247,7 +249,6 @@ namespace SimpleTasks.ViewModels
             DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonth, DateTimeExtensions.LastDayOfMonth));
             DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonth, DateTimeExtensions.LastDayOfNextMonth));
         }
-
         #endregion
     }
 }
