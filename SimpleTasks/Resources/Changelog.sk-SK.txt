@@ -50,7 +50,7 @@
       "ďalšie drobné zmeny a optimalizácia kódu"
     ]
   },
-  "1.2": {
+  "1.2.0": {
     "date": "2013-11-12",
     "items": [
       "pripomenutie úlohy",

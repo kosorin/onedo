@@ -50,7 +50,7 @@
       "other minor changes and code optimization"
     ]
   },
-  "1.2": {
+  "1.2.0": {
     "date": "2013-11-12",
     "items": [
       "task reminders",
