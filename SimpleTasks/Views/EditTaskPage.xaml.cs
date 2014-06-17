@@ -32,27 +32,33 @@ namespace SimpleTasks.Views
 
             DueDateGridShow.Completed += (s2, e2) =>
             {
-                DueDatePicker.Visibility = Visibility.Visible;
-                DueDatePresetPicker.Visibility = Visibility.Visible;
                 DueDatePicker.IsEnabled = true;
                 DueDatePresetPicker.IsEnabled = true;
+
                 DueDateGrid.Height = 50;
+                DueDatePresetPickerBorder.Width = 60;
             };
             DueDateGridHide.Completed += (s2, e2) =>
             {
-                DueDatePicker.Visibility = Visibility.Collapsed;
-                DueDatePresetPicker.Visibility = Visibility.Collapsed;
+                DueDateGrid.Visibility = Visibility.Collapsed;
                 DueDateGrid.Height = 0;
+                DueDatePresetPickerBorder.Width = 0;
             };
 
             ReminderGridShow.Completed += (s2, e2) =>
             {
                 ReminderDatePicker.IsEnabled = true;
                 ReminderTimePicker.IsEnabled = true;
+                ReminderDatePresetPicker.IsEnabled = true;
+
+                ReminderGrid.Height = 100;
+                ReminderDatePresetPickerBorder.Width = 60;
             };
             ReminderGridHide.Completed += (s2, e2) =>
             {
                 ReminderGrid.Visibility = Visibility.Collapsed;
+                ReminderGrid.Height = 0;
+                ReminderDatePresetPickerBorder.Width = 0;
             };
         }
 
@@ -421,9 +427,8 @@ namespace SimpleTasks.Views
         private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             // Animace zobrazení
+            DueDateGrid.Visibility = Visibility.Visible;
             DueDateGridHide.Pause();
-            DueDatePicker.Visibility = Visibility.Visible;
-            DueDatePresetPicker.Visibility = Visibility.Visible;
             DueDateGridShow.Begin();
             DueDatePresetPickerHide.Pause();
             DueDatePresetPickerShow.Begin();
@@ -432,9 +437,10 @@ namespace SimpleTasks.Views
         private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             // Animace skrytí
-            DueDateGridShow.Pause();
             DueDatePicker.IsEnabled = false;
             DueDatePresetPicker.IsEnabled = false;
+
+            DueDateGridShow.Pause();
             DueDateGridHide.Begin();
             DueDatePresetPickerShow.Pause();
             DueDatePresetPickerHide.Begin();
@@ -455,8 +461,8 @@ namespace SimpleTasks.Views
         private void ReminderToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             // Animace zobrazení
-            ReminderGridHide.Pause();
             ReminderGrid.Visibility = Visibility.Visible;
+            ReminderGridHide.Pause();
             ReminderGridShow.Begin();
             ReminderDatePresetPickerHide.Pause();
             ReminderDatePresetPickerShow.Begin();
@@ -465,9 +471,11 @@ namespace SimpleTasks.Views
         private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             // Animace skrytí
-            ReminderGridShow.Pause();
             ReminderDatePicker.IsEnabled = false;
             ReminderTimePicker.IsEnabled = false;
+            ReminderDatePresetPicker.IsEnabled = false;
+
+            ReminderGridShow.Pause();
             ReminderGridHide.Begin();
             ReminderDatePresetPickerShow.Pause();
             ReminderDatePresetPickerHide.Begin();

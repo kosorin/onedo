@@ -598,28 +598,22 @@
                             <Grid.Resources>
                                 <Storyboard x:Name="DueDatePresetPickerShow">
                                     <DoubleAnimation Storyboard.TargetName="DueDatePresetPickerBorder"
-                                                     Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
-                                                     To="0"
-                                                     Duration="0:0:0.27">
-                                    </DoubleAnimation>
-                                    <DoubleAnimation Storyboard.TargetName="DueDatePresetPicker"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="1"
-                                                     BeginTime="0:0:0.18"
-                                                     Duration="0">
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="60"
+                                                     Duration="0:0:0.45">
+                                        <DoubleAnimation.EasingFunction>
+                                            <BackEase EasingMode="EaseOut"/>
+                                        </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
                                 <Storyboard x:Name="DueDatePresetPickerHide">
                                     <DoubleAnimation Storyboard.TargetName="DueDatePresetPickerBorder"
-                                                     Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
-                                                     To="-270"
-                                                     Duration="0:0:0.27">
-                                    </DoubleAnimation>
-                                    <DoubleAnimation Storyboard.TargetName="DueDatePresetPicker"
-                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetProperty="Width"
                                                      To="0"
-                                                     BeginTime="0:0:0.09"
-                                                     Duration="0">
+                                                     Duration="0:0:0.35">
+                                        <DoubleAnimation.EasingFunction>
+                                            <BackEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                 </Storyboard>
                             </Grid.Resources>
@@ -630,15 +624,12 @@
                                           Unchecked="DueToggleButton_Unchecked"/>
                             <Border x:Name="DueDatePresetPickerBorder"
                                     Background="{StaticResource PhoneAccentBrush}"
-                                    HorizontalAlignment="Right">
-                                <Border.Projection>
-                                    <PlaneProjection RotationY="-270" CenterOfRotationX="1"/>
-                                </Border.Projection>
+                                    HorizontalAlignment="Right" 
+                                    Width="0">
                                 <Border Background="#A0000000">
                                     <toolkit:ListPicker x:Name="DueDatePresetPicker"
                                                         Template="{StaticResource DueDatePresetPickerTemplate}"
                                                         Margin="0"
-                                                        Opacity="0"
                                                         ItemsSource="{Binding DueDatePresetList}"
                                                         ExpansionMode="FullScreenOnly"
                                                         FullModeHeader="{Binding LocalizedResources.ChooseDueDate, Source={StaticResource LocalizedStrings}}"
@@ -696,30 +687,22 @@
                                 <Grid.Resources>
                                     <Storyboard x:Name="ReminderDatePresetPickerShow">
                                         <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPickerBorder"
-                                                         Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
-                                                         From="-270"
-                                                         To="0"
-                                                         Duration="0:0:0.27">
-                                        </DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPicker"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         BeginTime="0:0:0.18"
-                                                         Duration="0">
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="60"
+                                                     Duration="0:0:0.45">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseOut"/>
+                                            </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
                                     </Storyboard>
                                     <Storyboard x:Name="ReminderDatePresetPickerHide">
                                         <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPickerBorder"
-                                                         Storyboard.TargetProperty="(Border.Projection).(PlaneProjection.RotationY)"
-                                                         From="0"
-                                                         To="-270"
-                                                         Duration="0:0:0.27">
-                                        </DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPicker"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         BeginTime="0:0:0.09"
-                                                         Duration="0">
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="0"
+                                                     Duration="0:0:0.35">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseIn"/>
+                                            </DoubleAnimation.EasingFunction>
                                         </DoubleAnimation>
                                     </Storyboard>
                                 </Grid.Resources>
@@ -730,15 +713,12 @@
                                               Unchecked="ReminderToggleButton_Unchecked"/>
                                 <Border x:Name="ReminderDatePresetPickerBorder"
                                         Background="{StaticResource PhoneAccentBrush}"
-                                        HorizontalAlignment="Right">
-                                    <Border.Projection>
-                                        <PlaneProjection RotationY="-270" CenterOfRotationX="1"/>
-                                    </Border.Projection>
+                                        HorizontalAlignment="Right"
+                                        Width="0">
                                     <Border Background="#AA000000">
                                         <toolkit:ListPicker x:Name="ReminderDatePresetPicker"
                                                             Template="{StaticResource DueDatePresetPickerTemplate}"
                                                             Margin="0"
-                                                            Opacity="0"
                                                             ItemsSource="{Binding DueDatePresetList, Mode=OneWay}"
                                                             ExpansionMode="FullScreenOnly"
                                                             FullModeHeader="{Binding LocalizedResources.ChooseReminderDate, Source={StaticResource LocalizedStrings}}"
@@ -751,10 +731,7 @@
                                                    Converter={StaticResource BooleanToNumberConverter},
                                                    ConverterParameter=100,
                                                    FallbackValue=100,
-                                                   Mode=OneTime}"
-                                  Visibility="{Binding IsSetReminderDate, 
-                                                       Mode=OneTime, 
-                                                       Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                   Mode=OneTime}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
