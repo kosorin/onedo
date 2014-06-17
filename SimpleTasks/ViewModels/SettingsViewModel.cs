@@ -122,7 +122,7 @@ namespace SimpleTasks.ViewModels
         #region DefaultDueDate
 
         private const string DefaultDueDateKeyName = "DefaultDueDate";
-        private const DefaultDueDate DefaultDueDateDefault = DefaultDueDate.NoDueDate;
+        private const DefaultDueDate DefaultDueDateDefault = DefaultDueDate.Today;
         public DefaultDueDate DefaultDueDateSetting
         {
             get
