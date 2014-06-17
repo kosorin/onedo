@@ -141,7 +141,7 @@
                         </DoubleAnimation>
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
-                                         To="0.25"
+                                         To="0.45"
                                          Duration="0:0:0.35">
                             <DoubleAnimation.EasingFunction>
                                 <ExponentialEase EasingMode="EaseIn" />
