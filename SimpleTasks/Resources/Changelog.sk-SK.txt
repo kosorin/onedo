@@ -1,13 +1,15 @@
 {
   "2.0.0": {
-    "date": "2014-06-15",
+    "date": "2014-06-17",
     "items": [
       "pripnúť samostatnú úlohu na úvodnú obrazovku",
       "jednoduchý zoznam v detaile úlohy",
       "rýchle dokončenie úlohy",
       "nový vzhľad výberu času pripomenutia",
       "oprava chýb",
-      "drobné zmeny v dizajne a animácii"
+      "drobné zmeny v dizajne a animácii",
+	  "predvolený termín nastavený na \"dnes\"",
+	  "changelog na stránce \"o aplikácii\""
     ]
   },
   "1.9.7": {

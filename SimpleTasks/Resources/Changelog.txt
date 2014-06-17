@@ -1,13 +1,15 @@
 {
   "2.0.0": {
-    "date": "2014-06-15",
+    "date": "2014-06-17",
     "items": [
       "pin a separate tile of task to the start screen",
       "simple bulleted list in detail",
       "quick completion of a task",
       "redesigned reminder time picker",
       "bug fixes",
-      "minor changes in design and animation"
+      "minor changes in design and animation",
+	  "default due date set to \"today\"",
+	  "changelog on \"about\" page"
     ]
   },
   "1.9.7": {
