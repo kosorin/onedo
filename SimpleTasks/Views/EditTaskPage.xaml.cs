@@ -32,10 +32,13 @@ namespace SimpleTasks.Views
 
             DueDateGridShow.Completed += (s2, e2) =>
             {
-                DueDatePicker.IsEnabled = true;
-                DueDatePresetPicker.IsEnabled = true;
+                DueDateGrid.Height = 150;
 
-                DueDateGrid.Height = 50;
+                DueDatePicker.IsEnabled = true;
+                DueTimePicker.IsEnabled = true;
+                ReminderPicker.IsEnabled = true;
+
+                DueDatePresetPicker.IsEnabled = true;
                 DueDatePresetPickerBorder.Width = 60;
             };
             DueDateGridHide.Completed += (s2, e2) =>
@@ -43,22 +46,6 @@ namespace SimpleTasks.Views
                 DueDateGrid.Visibility = Visibility.Collapsed;
                 DueDateGrid.Height = 0;
                 DueDatePresetPickerBorder.Width = 0;
-            };
-
-            ReminderGridShow.Completed += (s2, e2) =>
-            {
-                ReminderDatePicker.IsEnabled = true;
-                ReminderTimePicker.IsEnabled = true;
-                ReminderDatePresetPicker.IsEnabled = true;
-
-                ReminderGrid.Height = 100;
-                ReminderDatePresetPickerBorder.Width = 60;
-            };
-            ReminderGridHide.Completed += (s2, e2) =>
-            {
-                ReminderGrid.Visibility = Visibility.Collapsed;
-                ReminderGrid.Height = 0;
-                ReminderDatePresetPickerBorder.Width = 0;
             };
         }
 
@@ -101,7 +88,6 @@ namespace SimpleTasks.Views
                         }
                     }
                     DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
-                    ReminderDatePresetPicker.SelectionChanged += ReminderDatePresetPicker_SelectionChanged;
                     this.Loaded -= firstTimeLoadHandler;
                 };
                 this.Loaded += firstTimeLoadHandler;
@@ -116,10 +102,10 @@ namespace SimpleTasks.Views
             {
                 if (PhoneApplicationService.Current.State.ContainsKey("RadialTime"))
                 {
-                    DateTime newReminderTime = (DateTime)PhoneApplicationService.Current.State["RadialTime"];
+                    ViewModel.DueDate = (DateTime)PhoneApplicationService.Current.State["RadialTime"];
                     PhoneApplicationService.Current.State.Remove("RadialTime");
 
-                    ViewModel.ReminderDate = newReminderTime;
+                    //ViewModel.ReminderDate = newReminderTime;
                 }
             }
 
@@ -422,7 +408,7 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        #region Due Date
+        #region Due Date a Reminder
 
         private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -437,8 +423,11 @@ namespace SimpleTasks.Views
         private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             // Animace skrytí
-            DueDatePicker.IsEnabled = false;
             DueDatePresetPicker.IsEnabled = false;
+
+            DueDatePicker.IsEnabled = false;
+            DueTimePicker.IsEnabled = false;
+            ReminderPicker.IsEnabled = false;
 
             DueDateGridShow.Pause();
             DueDateGridHide.Begin();
@@ -446,60 +435,51 @@ namespace SimpleTasks.Views
             DueDatePresetPickerHide.Begin();
         }
 
+        private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+            if (phoneApplicationFrame != null)
+            {
+                PhoneApplicationService.Current.State["RadialTime"] = ViewModel.DueDate;
+                phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
+            }
+        }
+
+        private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                BorderBrush = new SolidColorBrush(Colors.Red),
+                BorderThickness = new Thickness(5),
+                
+                Caption = AppResources.DeleteTaskCaption,
+                Message = AppResources.DeleteTask
+                            + Environment.NewLine + Environment.NewLine
+                            + TitleTextBox.Text,
+                LeftButtonContent = AppResources.DeleteTaskYes,
+                RightButtonContent = AppResources.DeleteTaskNo
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                if (e1.Result == CustomMessageBoxResult.LeftButton)
+                {
+                    ViewModel.Delete();
+                    GoBack();
+                }
+            };
+            messageBox.Show();
+        }
+
         private void DueDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DueDatePresetPicker.SelectedItem != null)
             {
                 KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)DueDatePresetPicker.SelectedItem;
-                ViewModel.DueDate = pair.Value;
-            }
-        }
-
-        #endregion
-
-        #region Reminder
-        private void ReminderToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            // Animace zobrazení
-            ReminderGrid.Visibility = Visibility.Visible;
-            ReminderGridHide.Pause();
-            ReminderGridShow.Begin();
-            ReminderDatePresetPickerHide.Pause();
-            ReminderDatePresetPickerShow.Begin();
-        }
-
-        private void ReminderToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            // Animace skrytí
-            ReminderDatePicker.IsEnabled = false;
-            ReminderTimePicker.IsEnabled = false;
-            ReminderDatePresetPicker.IsEnabled = false;
-
-            ReminderGridShow.Pause();
-            ReminderGridHide.Begin();
-            ReminderDatePresetPickerShow.Pause();
-            ReminderDatePresetPickerHide.Begin();
-        }
-
-        private void ReminderDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ReminderDatePresetPicker.SelectedItem != null)
-            {
-                KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)ReminderDatePresetPicker.SelectedItem;
-                ViewModel.ReminderDate = pair.Value.Date.AddHours(ViewModel.ReminderDate.Hour)
-                                                        .AddMinutes(ViewModel.ReminderDate.Minute);
-            }
-        }
-
-        private void ReminderTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-            if (phoneApplicationFrame != null)
-            {
-                PhoneApplicationService.Current.State["RadialTime"] = ViewModel.ReminderDate;
-                phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
+                ViewModel.DueDate = pair.Value.AddHours(ViewModel.DueDate.Hour).AddMinutes(ViewModel.DueDate.Minute);
             }
         }
         #endregion
+
     }
 }

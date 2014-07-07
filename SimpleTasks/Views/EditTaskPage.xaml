@@ -264,19 +264,87 @@
                     Height="{TemplateBinding Height}">
                 <Button.Template>
                     <ControlTemplate>
-                        <Border x:Name="Border"
-                                Background="{StaticResource PhoneAccentBrush}"
+                        <Border Background="{StaticResource PhoneAccentBrush}"
                                 Height="{TemplateBinding Height}">
-                            <Border Background="#33000000"
-                                    Padding="60,0,0,0">
+                            <Grid Background="#33000000">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <controls:Icon Grid.Column="0"
+                                               Offset="7,11"
+                                               Opacity="0.35"
+                                               Style="{StaticResource CalendarIconStyle}"
+                                               Color="{StaticResource ButtonForegroundBrush}" 
+                                               RenderTransformOrigin="0.5,0.5" 
+                                               VerticalAlignment="Center">
+                                    <controls:Icon.RenderTransform>
+                                        <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                                    </controls:Icon.RenderTransform>
+                                </controls:Icon>
                                 <TextBlock Text="{TemplateBinding Button.Content}"
+                                           Grid.Column="1"
                                            FontSize="{StaticResource PhoneFontSizeMedium}"
                                            Style="{StaticResource ButtonTextBlockStyle}"/>
-                            </Border>
+                            </Grid>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="DueTimePickerTemplate" TargetType="Button">
+            <Border Background="{StaticResource PhoneAccentBrush}"
+                    Height="{TemplateBinding Height}">
+                <Grid Background="#47000000">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <controls:Icon Grid.Column="0"
+                                   Offset="7,12"
+                                   Opacity="0.35"
+                                   Style="{StaticResource ClockIconStyle}"
+                                   Color="{StaticResource ButtonForegroundBrush}" 
+                                   RenderTransformOrigin="0.5,0.5"
+                                   VerticalAlignment="Center">
+                        <controls:Icon.RenderTransform>
+                            <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                        </controls:Icon.RenderTransform>
+                    </controls:Icon>
+                    <TextBlock Text="{TemplateBinding Button.Content}"
+                               Grid.Column="1"
+                               FontSize="{StaticResource PhoneFontSizeMedium}"
+                               Style="{StaticResource ButtonTextBlockStyle}"/>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ReminderPickerTemplate" TargetType="Button">
+            <Border Background="{StaticResource PhoneAccentBrush}"
+                    Height="{TemplateBinding Height}">
+                <Grid Background="#5B000000">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <controls:Icon Grid.Column="0"
+                                   Offset="7,12"
+                                   Opacity="0.35"
+                                   Style="{StaticResource ReminderIconStyle}"
+                                   Color="{StaticResource ButtonForegroundBrush}" 
+                                   RenderTransformOrigin="0.5,0.5"
+                                   VerticalAlignment="Center">
+                        <controls:Icon.RenderTransform>
+                            <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
+                        </controls:Icon.RenderTransform>
+                    </controls:Icon>
+                    <TextBlock Text="{TemplateBinding Button.Content}"
+                               Grid.Column="1"
+                               FontSize="{StaticResource PhoneFontSizeMedium}"
+                               Style="{StaticResource ButtonTextBlockStyle}"/>
+                </Grid>
+            </Border>
         </ControlTemplate>
 
         <ControlTemplate x:Key="DueDatePresetPickerTemplate">
@@ -300,7 +368,6 @@
                            Style="{StaticResource PhoneTextSmallStyle}"/>
             </StackPanel>
         </DataTemplate>
-
         <!--EndRegion-->
 
         <!--Region Priority-->
@@ -333,7 +400,7 @@
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetName="PriorityBorderBackgroundBrush" 
                                                 Storyboard.TargetProperty="Color"
-                                                To="{StaticResource PhoneSubtleColor}"
+                                                To="{StaticResource PhoneDisabledColor}"
                                                 Duration="0:0:0.4"/>
                                 <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
@@ -353,7 +420,7 @@
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetName="PriorityBorderBackgroundBrush" 
                                                 Storyboard.TargetProperty="Color"
-                                                To="{StaticResource PhoneSubtleColor}"
+                                                To="{StaticResource PhoneDisabledColor}"
                                                 Duration="0:0:0.4"/>
                                 <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
                                                  Storyboard.TargetProperty="Opacity"
@@ -373,7 +440,7 @@
                 </VisualStateManager.VisualStateGroups>
                 <Border.Background>
                     <SolidColorBrush x:Name="PriorityBorderBackgroundBrush"
-                                     Color="{StaticResource PhoneSubtleColor}" />
+                                     Color="{StaticResource PhoneDisabledColor}" />
                 </Border.Background>
                 <StackPanel Orientation="Horizontal">
                     <Grid>
@@ -411,134 +478,6 @@
                     </Grid>
                 </StackPanel>
             </Border>
-        </ControlTemplate>
-
-        <!--EndRegion-->
-
-        <!--Region Reminder-->
-
-        <ControlTemplate x:Key="ReminderButtonTemplate">
-            <Border Style="{StaticResource ButtonBorderStyle}">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CheckStates">
-                        <VisualState x:Name="Checked">
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetName="ReminderBorderBackgroundBrush" 
-                                                Storyboard.TargetProperty="Color"
-                                                To="{StaticResource PhoneAccentColor}"
-                                                Duration="0:0:0.4"/>
-                                <DoubleAnimation Storyboard.TargetName="DisabledReminderIcon" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0"
-                                                 Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="ReminderIcon" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="1"
-                                                 Duration="0:0:0.4" />
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Unchecked">
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetName="ReminderBorderBackgroundBrush" 
-                                                Storyboard.TargetProperty="Color"
-                                                To="{StaticResource PhoneSubtleColor}"
-                                                Duration="0:0:0.4"/>
-                                <DoubleAnimation Storyboard.TargetName="DisabledReminderIcon" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="1"
-                                                 Duration="0:0:0.4" />
-                                <DoubleAnimation Storyboard.TargetName="ReminderIcon" 
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="0"
-                                                 Duration="0:0:0.4" />
-                            </Storyboard>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-                <Border.Background>
-                    <SolidColorBrush x:Name="ReminderBorderBackgroundBrush"
-                                     Color="{StaticResource PhoneSubtleColor}" />
-                </Border.Background>
-                <StackPanel Orientation="Horizontal">
-                    <Grid>
-                        <controls:Icon x:Name="ReminderIcon"
-                                       Style="{StaticResource ReminderIconStyle}"
-                                       Color="{StaticResource ButtonForegroundBrush}"/>
-                        <controls:Icon x:Name="DisabledReminderIcon"
-                                       Style="{StaticResource DisabledReminderIconStyle}"
-                                       Color="{StaticResource ButtonForegroundBrush}"/>
-                    </Grid>
-                    <TextBlock Text="{Binding LocalizedResources.Reminder, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource ButtonTextBlockStyle}"/>
-                </StackPanel>
-            </Border>
-        </ControlTemplate>
-
-        <ControlTemplate x:Key="ReminderDatePickerTemplate">
-            <Button x:Name="DateTimeButton"
-                    Content="{TemplateBinding toolkit:DatePicker.ValueString}"
-                    Height="{TemplateBinding Height}">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Border x:Name="Border"
-                                Background="{StaticResource PhoneAccentBrush}"
-                                Height="{TemplateBinding Height}">
-                            <Grid Background="#33000000">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60"/>
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <controls:Icon x:Name="ReminderIcon"
-                                               Grid.Column="0"
-                                               Offset="7,11"
-                                               Opacity="0.35"
-                                               Style="{StaticResource CalendarIconStyle}"
-                                               Color="{StaticResource ButtonForegroundBrush}" 
-                                               RenderTransformOrigin="0.5,0.5" 
-                                               VerticalAlignment="Center">
-                                    <controls:Icon.RenderTransform>
-                                        <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
-                                    </controls:Icon.RenderTransform>
-                                </controls:Icon>
-                                <TextBlock Text="{TemplateBinding Button.Content}"
-                                           Grid.Column="1"
-                                           FontSize="{StaticResource PhoneFontSizeMedium}"
-                                           Style="{StaticResource ButtonTextBlockStyle}"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </ControlTemplate>
-
-        <ControlTemplate x:Key="ReminderTimePickerTemplate" TargetType="Button">
-            <Border x:Name="Border"
-                    Background="{StaticResource PhoneAccentBrush}"
-                    Height="{TemplateBinding Height}">
-                <Grid Background="#47000000">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60"/>
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <controls:Icon x:Name="ReminderIcon"
-                                   Grid.Column="0"
-                                   Offset="7,12"
-                                   Opacity="0.35"
-                                   Style="{StaticResource ClockIconStyle}"
-                                   Color="{StaticResource ButtonForegroundBrush}" 
-                                   RenderTransformOrigin="0.5,0.5"
-                                   VerticalAlignment="Center">
-                        <controls:Icon.RenderTransform>
-                            <CompositeTransform ScaleX="0.75" ScaleY="0.75"/>
-                        </controls:Icon.RenderTransform>
-                    </controls:Icon>
-                    <TextBlock Text="{TemplateBinding Button.Content}"
-                               Grid.Column="1"
-                               FontSize="{StaticResource PhoneFontSizeMedium}"
-                               Style="{StaticResource ButtonTextBlockStyle}"/>
-                </Grid>
-            </Border>
-
         </ControlTemplate>
 
         <!--EndRegion-->
@@ -590,7 +529,7 @@
                                           GotFocus="DetailTextBox_GotFocus" 
                                           LostFocus="TitleAndDetailTextBox_LostFocus" />
 
-                    <!--Výběr termínu-->
+                    <!--Výběr termínu a připomenutí-->
                     <StackPanel Orientation="Vertical"
                                 Margin="50,20,50,0">
                         <Grid>
@@ -640,14 +579,14 @@
                         <Grid x:Name="DueDateGrid"
                               Height="{Binding IsSetDueDate, 
                                        Converter={StaticResource BooleanToNumberConverter},
-                                       ConverterParameter=50,
-                                       FallbackValue=50,
+                                       ConverterParameter=150,
+                                       FallbackValue=150,
                                        Mode=OneTime}">
                             <Grid.Resources>
                                 <Storyboard x:Name="DueDateGridShow">
                                     <DoubleAnimation Storyboard.TargetName="DueDateGrid"
                                                      Storyboard.TargetProperty="Height"
-                                                     To="50"
+                                                     To="150"
                                                      Duration="0:0:0.45">
                                         <DoubleAnimation.EasingFunction>
                                             <BackEase EasingMode="EaseOut"/>
@@ -665,10 +604,31 @@
                                     </DoubleAnimation>
                                 </Storyboard>
                             </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <!--Datum-->
                             <toolkit:DatePicker x:Name="DueDatePicker"
                                                 Value="{Binding DueDate, Mode=TwoWay}"
                                                 ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
                                                 Template="{StaticResource DueDatePickerTemplate}"/>
+
+                            <!--Čas-->
+                            <Button x:Name="DueTimePicker"
+                                    Grid.Row="1"
+                                    Content="{Binding DueDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}"
+                                    Template="{StaticResource DueTimePickerTemplate}" 
+                                    Tap="DueTimePicker_Tap" />
+                            
+                            <!--Připomenutí-->
+                            <Button x:Name="ReminderPicker"
+                                    Grid.Row="2"
+                                    Content="{Binding ReminderDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}"
+                                    Template="{StaticResource ReminderPickerTemplate}" 
+                                    Tap="ReminderPicker_Tap" />
                         </Grid>
                     </StackPanel>
 
@@ -678,102 +638,6 @@
                                   IsChecked="{Binding Priority, Mode=TwoWay,
                                               Converter={StaticResource TaskPriorityToBooleanConverter}}"
                                   Template="{StaticResource PriorityButtonTemplate}"/>
-
-                    <!--Připomenutí-->
-                    <Grid Margin="50,20,50,0">
-                        <StackPanel Orientation="Vertical">
-                            <Grid>
-                                <Grid.Resources>
-                                    <Storyboard x:Name="ReminderDatePresetPickerShow">
-                                        <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPickerBorder"
-                                                     Storyboard.TargetProperty="Width"
-                                                     To="60"
-                                                     Duration="0:0:0.45">
-                                            <DoubleAnimation.EasingFunction>
-                                                <BackEase EasingMode="EaseOut"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                    <Storyboard x:Name="ReminderDatePresetPickerHide">
-                                        <DoubleAnimation Storyboard.TargetName="ReminderDatePresetPickerBorder"
-                                                     Storyboard.TargetProperty="Width"
-                                                     To="0"
-                                                     Duration="0:0:0.35">
-                                            <DoubleAnimation.EasingFunction>
-                                                <BackEase EasingMode="EaseIn"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </Grid.Resources>
-                                <ToggleButton x:Name="ReminderToggleButton"
-                                              Template="{StaticResource ReminderButtonTemplate}"
-                                              IsChecked="{Binding IsSetReminderDate, Mode=TwoWay}"
-                                              Checked="ReminderToggleButton_Checked" 
-                                              Unchecked="ReminderToggleButton_Unchecked"/>
-                                <Border x:Name="ReminderDatePresetPickerBorder"
-                                        Background="{StaticResource PhoneAccentBrush}"
-                                        HorizontalAlignment="Right"
-                                        Width="0">
-                                    <Border Background="#AA000000">
-                                        <toolkit:ListPicker x:Name="ReminderDatePresetPicker"
-                                                            Template="{StaticResource DueDatePresetPickerTemplate}"
-                                                            Margin="0"
-                                                            ItemsSource="{Binding DueDatePresetList, Mode=OneWay}"
-                                                            ExpansionMode="FullScreenOnly"
-                                                            FullModeHeader="{Binding LocalizedResources.ChooseReminderDate, Source={StaticResource LocalizedStrings}}"
-                                                            FullModeItemTemplate="{StaticResource DueDatePresetFullModeTemplate}"/>
-                                    </Border>
-                                </Border>
-                             </Grid>
-                            <Grid x:Name="ReminderGrid"
-                                  Height="{Binding IsSetReminderDate, 
-                                                   Converter={StaticResource BooleanToNumberConverter},
-                                                   ConverterParameter=100,
-                                                   FallbackValue=100,
-                                                   Mode=OneTime}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.Resources>
-                                    <Storyboard x:Name="ReminderGridShow">
-                                        <DoubleAnimation Storyboard.TargetName="ReminderGrid"
-                                                         Storyboard.TargetProperty="Height"
-                                                         To="100"
-                                                         Duration="0:0:0.45">
-                                            <DoubleAnimation.EasingFunction>
-                                                <BackEase EasingMode="EaseOut"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                    <Storyboard x:Name="ReminderGridHide">
-                                        <DoubleAnimation Storyboard.TargetName="ReminderGrid"
-                                                         Storyboard.TargetProperty="Height"
-                                                         To="0"
-                                                         Duration="0:0:0.35">
-                                            <DoubleAnimation.EasingFunction>
-                                                <BackEase EasingMode="EaseIn"/>
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </Grid.Resources>
-
-                                <!--Datum-->
-                                <toolkit:DatePicker Name="ReminderDatePicker"
-                                                    Grid.Row="0"
-                                                    Value="{Binding ReminderDate, Mode=TwoWay}"
-                                                    ValueStringFormat="{Binding Source={StaticResource DateTimeExtensions}, Path=Format}"
-                                                    Template="{StaticResource ReminderDatePickerTemplate}"/>
-
-                                <!--Čas-->
-                                <Button Name="ReminderTimePicker"
-                                        Grid.Row="1"
-                                        Content="{Binding ReminderDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}"
-                                        Template="{StaticResource ReminderTimePickerTemplate}" 
-                                        Tap="ReminderTimePicker_Tap" />
-                            </Grid>
-                        </StackPanel>
-                     </Grid>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
