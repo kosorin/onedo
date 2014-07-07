@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage 
+﻿<phone:PhoneApplicationPage
     x:Class="SimpleTasks.Views.RadialTimePickerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,18 +6,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d"
     xmlns:dur="clr-namespace:System.Windows;assembly=mscorlib"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    Background="{StaticResource PhoneChromeBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
     toolkit:TiltEffect.IsTiltEnabled="True">
-    
+
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -40,31 +42,31 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.Resources>
-        
+
         <Storyboard x:Name="AngleHoursAnimation">
             <DoubleAnimation Storyboard.TargetName="AngleHoursGrabberCompositeTransform"
-                             Storyboard.TargetProperty="Rotation"
-                             From="{Binding AngleHoursAnimateFrom}"
-                             To="{Binding AngleHoursAnimateTo}"
-                             Duration="{Binding AnimationDuration}">
+        		Storyboard.TargetProperty="Rotation"
+        		From="{Binding AngleHoursAnimateFrom}"
+        		To="{Binding AngleHoursAnimateTo}"
+        		Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleHoursCompositeTransform"
-                             Storyboard.TargetProperty="Rotation"
-                             From="{Binding AngleHoursAnimateFrom}"
-                             To="{Binding AngleHoursAnimateTo}"
-                             Duration="{Binding AnimationDuration}">
+        		Storyboard.TargetProperty="Rotation"
+        		From="{Binding AngleHoursAnimateFrom}"
+        		To="{Binding AngleHoursAnimateTo}"
+        		Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleHoursRingSlice"
-                             Storyboard.TargetProperty="EndAngle"
-                             From="{Binding AngleHoursAnimateFrom}"
-                             To="{Binding AngleHoursAnimateTo}"
-                             Duration="{Binding AnimationDuration}">
+        		Storyboard.TargetProperty="EndAngle"
+        		From="{Binding AngleHoursAnimateFrom}"
+        		To="{Binding AngleHoursAnimateTo}"
+        		Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -72,28 +74,28 @@
         </Storyboard>
         <Storyboard x:Name="AngleMinutesAnimation">
             <DoubleAnimation Storyboard.TargetName="AngleMinutesGrabberCompositeTransform"
-                             Storyboard.TargetProperty="Rotation"
-                             From="{Binding AngleMinutesAnimateFrom}"
-                             To="{Binding AngleMinutesAnimateTo}"
-                             Duration="{Binding AnimationDuration}">
+        		Storyboard.TargetProperty="Rotation"
+        		From="{Binding AngleMinutesAnimateFrom}"
+        		To="{Binding AngleMinutesAnimateTo}"
+        		Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleMinutesCompositeTransform"
-                             Storyboard.TargetProperty="Rotation"
-                             From="{Binding AngleMinutesAnimateFrom}"
-                             To="{Binding AngleMinutesAnimateTo}"
-                             Duration="{Binding AnimationDuration}">
+        		Storyboard.TargetProperty="Rotation"
+        		From="{Binding AngleMinutesAnimateFrom}"
+        		To="{Binding AngleMinutesAnimateTo}"
+        		Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleMinutesRingSlice"
-                             Storyboard.TargetProperty="EndAngle"
-                             From="{Binding AngleMinutesAnimateFrom}"
-                             To="{Binding AngleMinutesAnimateTo}"
-                             Duration="{Binding AnimationDuration}">
+        		Storyboard.TargetProperty="EndAngle"
+        		From="{Binding AngleMinutesAnimateFrom}"
+        		To="{Binding AngleMinutesAnimateTo}"
+        		Duration="{Binding AnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -105,16 +107,16 @@
 
         <!-- Title -->
         <TextBlock
-            x:Name="HeaderTitle"
-            Text="{Binding LocalizedResources.ChooseReminderTime, Source={StaticResource LocalizedStrings}}"
-            FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-            FontSize="{StaticResource PhoneFontSizeMedium}"
-            Foreground="{StaticResource PhoneForegroundBrush}"
-            Margin="24,16,24,24"/>
+			x:Name="HeaderTitle"
+			Text="{Binding LocalizedResources.ChooseReminderTime, Source={StaticResource LocalizedStrings}}"
+			FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+			FontSize="{StaticResource PhoneFontSizeMedium}"
+			Foreground="{StaticResource PhoneForegroundBrush}"
+			Margin="24,16,24,24"/>
 
         <!--Picker-->
         <Grid x:Name="ContentPanel" Margin="10,0,12,0" VerticalAlignment="Center">
-            
+
             <!--kolečka-->
             <Grid Width="460" Height="460">
 
@@ -179,15 +181,15 @@
 
             <!--čas (text)-->
             <TextBlock Margin="0,15,0,15"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-                       Foreground="{StaticResource PhoneForegroundBrush05}" 
-                       FontFamily="{StaticResource PhoneFontFamilyLight}" >
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+				Foreground="{StaticResource PhoneForegroundBrush05}" 
+				FontFamily="{StaticResource PhoneFontFamilyLight}" >
                 <Run Text="{Binding HoursFormated}" Foreground="{StaticResource PhoneForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource PhoneForegroundBrush}"/><Run Text="{Binding ShowAmPm, Converter={StaticResource AmPmToStringConverter}}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             </TextBlock>
         </Grid>
-        
+
     </Grid>
 
 </phone:PhoneApplicationPage>

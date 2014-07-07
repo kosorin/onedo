@@ -141,8 +141,8 @@
                                          L 50,70
                                          L 24,63
                                          Z</sys:String>
-        
-        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource PhoneSubtleColor}" />
+
+        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource PhoneDisabledColor}" />
         
         <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource PhoneForegroundColor}" />
         

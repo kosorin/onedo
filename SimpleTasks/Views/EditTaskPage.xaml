@@ -227,8 +227,7 @@
         <!--Region DueDate-->
         <ControlTemplate x:Key="DueDateButtonTemplate">
             <Border x:Name="DueDateButtonBorder"
-                    Style="{StaticResource ButtonBorderStyle}"
-                    Background="{StaticResource PhoneSubtleBrush}">
+                    Style="{StaticResource ButtonBorderStyle}">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CheckStates">
                         <VisualState x:Name="Checked">
@@ -243,7 +242,7 @@
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetName="DueDateButtonBorder" 
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="{StaticResource PhoneSubtleColor}"
+                                                To="{StaticResource PhoneDisabledColor}"
                                                 Duration="0:0:0.4"/>
                             </Storyboard>
                         </VisualState>
