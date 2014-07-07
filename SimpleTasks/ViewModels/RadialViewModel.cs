@@ -261,7 +261,5 @@ namespace SimpleTasks.ViewModels
             return Quadrants.Nw;
         }
         #endregion
-
-
     }
 }

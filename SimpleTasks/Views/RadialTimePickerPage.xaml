@@ -101,25 +101,21 @@
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
         <!-- Title -->
         <TextBlock
             x:Name="HeaderTitle"
-            Grid.Row="1"
             Text="{Binding LocalizedResources.ChooseReminderTime, Source={StaticResource LocalizedStrings}}"
             FontFamily="{StaticResource PhoneFontFamilySemiBold}"
             FontSize="{StaticResource PhoneFontSizeMedium}"
             Foreground="{StaticResource PhoneForegroundBrush}"
             Margin="24,16,24,24"/>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,50,12,0" VerticalAlignment="Center">
+        <!--Picker-->
+        <Grid x:Name="ContentPanel" Margin="10,0,12,0" VerticalAlignment="Center">
+            
+            <!--kolečka-->
             <Grid Width="460" Height="460">
 
                 <!-- ring -->
@@ -179,29 +175,9 @@
                     </Grid.Clip>
                 </Grid>
 
-                <!-- am/pm textblock -->
-                <!-- Border that preserves space -->
-                <!--<Button Height="50"
-                        x:Name="AmPmTextBlock"
-                        Visibility="{Binding Is24Format, Converter={StaticResource BooleanToInvertedVisibilityConverter}}"
-                        Margin="0,85,0,0"
-                        HorizontalAlignment="Center" 
-                        Click="AmPmTextBlock_Click">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Border Padding="10,5">
-                                <TextBlock Text="{Binding IsAm, Converter={StaticResource AmPmToStringConverter}}"
-                                           Margin="0" 
-                                           Foreground="{Binding IsAm, Converter={StaticResource IsAmToColorConverter}, ConverterParameter=PMText}"
-                                           FontFamily="{StaticResource PhoneFontFamilyLight}" 
-                                           FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>-->
             </Grid>
 
-            <!-- time textblock -->
+            <!--čas (text)-->
             <TextBlock Margin="0,15,0,15"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -211,18 +187,7 @@
                 <Run Text="{Binding HoursFormated}" Foreground="{StaticResource PhoneForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource PhoneForegroundBrush}"/><Run Text="{Binding ShowAmPm, Converter={StaticResource AmPmToStringConverter}}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             </TextBlock>
         </Grid>
+        
     </Grid>
- 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>
