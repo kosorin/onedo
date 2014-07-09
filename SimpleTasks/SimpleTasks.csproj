@@ -100,14 +100,15 @@
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RingSlice.cs" />
+    <Compile Include="Controls\RoundTimePicker.xaml.cs">
+      <DependentUpon>RoundTimePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Conventers\BooleanNegationConverter.cs" />
     <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToInvertedVisibilityConverter.cs" />
-    <Compile Include="Conventers\AmPmToStringConverter.cs" />
     <Compile Include="Conventers\TimeToStringConverter.cs" />
-    <Compile Include="Conventers\IsAmToColorConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Conventers\TaskToDueDateStringConverter.cs" />
     <Compile Include="Conventers\TaskToReminderDateStringConverter.cs" />
@@ -134,7 +135,6 @@
       <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EditTaskViewModel.cs" />
-    <Compile Include="ViewModels\RadialViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
@@ -149,8 +149,8 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RadialTimePickerPage.xaml.cs">
-      <DependentUpon>RadialTimePickerPage.xaml</DependentUpon>
+    <Compile Include="Views\DueTimePickerPage.xaml.cs">
+      <DependentUpon>DueTimePickerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -232,6 +232,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RoundTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SampleData\MainSampleData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -256,7 +260,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RadialTimePickerPage.xaml">
+    <Page Include="Views\DueTimePickerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

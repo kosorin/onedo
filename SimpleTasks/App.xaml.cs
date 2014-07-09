@@ -34,7 +34,7 @@ namespace SimpleTasks
 
         public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
 
-        public static string ForceDebugCulture = "cs-CZ";
+        public static string ForceDebugCulture = "en-US";
 
         public static SettingsViewModel Settings { get; private set; }
 

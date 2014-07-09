@@ -280,9 +280,8 @@
           <target state="signed-off">hotovo</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseReminderTime" xml:space="preserve">
-          <source>CHOOSE REMINDER TIME</source>
-          <target state="signed-off">ZVOLTE ČAS PŘIPOMENUTÍ</target>
-        </trans-unit>
+          <source>CHOOSE REMINDER</source>
+          <target state="signed-off">ZVOLTE PŘIPOMENUTÍ</target></trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsUnpinCompleted" xml:space="preserve">
           <source>Unpin tile upon completion of task</source>
           <target state="signed-off">Po dokončení úkolu odepnout dlaždici</target>
@@ -301,7 +300,11 @@
         </trans-unit>
         <trans-unit id="Resx/ChooseReminderDate" translate="yes" xml:space="preserve">
           <source>choose reminder date</source>
-          <target state="translated">zvolte datum připomenutí</target>
+          <target state="signed-off">zvolte datum připomenutí</target>
+        </trans-unit>
+        <trans-unit id="Resx/ChooseTime" translate="yes" xml:space="preserve">
+          <source>CHOOSE TIME</source>
+          <target state="signed-off">ZVOLTE ČAS </target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>

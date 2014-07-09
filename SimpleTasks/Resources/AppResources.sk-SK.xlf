@@ -10,14 +10,12 @@
           <source>LeftToRight</source>
           <target state="translated" state-qualifier="tm-suggestion">LeftToRight</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/ResourceLanguage" translate="yes" xml:space="preserve">
           <source>en-US</source>
           <target state="translated" state-qualifier="tm-suggestion">sk-SK</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/NoTasks" xml:space="preserve">
           <source>All tasks are completed.</source>
           <target state="signed-off" state-qualifier="mt-suggestion">Všetky úlohy sú dokončené.</target>
@@ -74,8 +72,7 @@
           <source>save</source>
           <target state="signed-off">uložiť</target>
           <note from="MultilingualBuild" annotates="source" priority="2">save task</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarAbout" xml:space="preserve">
           <source>about</source>
           <target state="signed-off">o aplikácii</target>
@@ -84,8 +81,7 @@
           <source>new</source>
           <target state="signed-off">nový</target>
           <note from="MultilingualBuild" annotates="source" priority="2">new task</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/PriorityHigh" xml:space="preserve">
           <source>high priority</source>
           <target state="signed-off">vysoká priorita</target>
@@ -98,26 +94,22 @@
           <source>complete</source>
           <target state="signed-off">dokončiť</target>
           <note from="MultilingualBuild" annotates="source" priority="2">complete task</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/PeriodicTaskDescription" xml:space="preserve">
           <source>Updates live tile.</source>
           <target state="signed-off">Aktualizácia živé dlaždice.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Info about background task agent</note>
-        
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTaskNo" xml:space="preserve">
           <source>cancel</source>
           <target state="signed-off" state-qualifier="tm-suggestion">zrušiť</target>
           <note from="MultilingualBuild" annotates="source" priority="2">cancel delete confirmation</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTaskYes" xml:space="preserve">
           <source>delete</source>
           <target state="signed-off">odstrániť</target>
           <note from="MultilingualBuild" annotates="source" priority="2">delete confirmation</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/DeleteTask" xml:space="preserve">
           <source>Are you sure you want to delete this task?</source>
           <target state="signed-off" state-qualifier="mt-suggestion">Naozaj chcete odstrániť túto úlohu?</target>
@@ -130,8 +122,7 @@
           <source>completed</source>
           <target state="signed-off">dokončené</target>
           <note from="MultilingualBuild" annotates="source" priority="2">completed tasks</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSettings" xml:space="preserve">
           <source>settings</source>
           <target state="signed-off" state-qualifier="tm-suggestion">nastavenie</target>
@@ -140,8 +131,7 @@
           <source>delete</source>
           <target state="signed-off">odstrániť</target>
           <note from="MultilingualBuild" annotates="source" priority="2">delete task</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDeleteCompleted" xml:space="preserve">
           <source>delete completed tasks</source>
           <target state="signed-off">odstrániť dokončené úlohy</target>
@@ -150,8 +140,7 @@
           <source>activate</source>
           <target state="signed-off" state-qualifier="tm-suggestion">aktivovať</target>
           <note from="MultilingualBuild" annotates="source" priority="2">activate task</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
           <target state="signed-off" state-qualifier="tm-suggestion">kontaktujte nás</target>
@@ -204,8 +193,7 @@
           <source>general</source>
           <target state="signed-off">obecné</target>
           <note from="MultilingualBuild" annotates="source" priority="2">general pivot in settings</note>
-        
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsTitle" xml:space="preserve">
           <source>SETTINGS</source>
           <target state="signed-off">NASTAVENIE</target>
@@ -226,8 +214,7 @@
           <source>Feedback for {0} {1}</source>
           <target state="signed-off" state-qualifier="mt-suggestion">Spätná väzba pre {0} {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
-          
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version {0}</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Verzia {0}</target>
@@ -293,9 +280,8 @@
           <target state="signed-off">hotovo</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseReminderTime" xml:space="preserve">
-          <source>CHOOSE REMINDER TIME</source>
-          <target state="signed-off">VYBERTE ČAS PRIPOMENUTIA</target>
-        </trans-unit>
+          <source>CHOOSE REMINDER</source>
+          <target state="signed-off">VYBERTE PRIPOMENUTIE</target></trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsUnpinCompleted" xml:space="preserve">
           <source>Unpin tile upon completion of task</source>
           <target state="signed-off">Po dokončení úlohy odopnúť dlaždicu</target>
@@ -315,6 +301,10 @@
         <trans-unit id="Resx/ChooseReminderDate" translate="yes" xml:space="preserve">
           <source>choose reminder date</source>
           <target state="signed-off">vyberte dátum pripomenutia</target>
+        </trans-unit>
+        <trans-unit id="Resx/ChooseTime" translate="yes" xml:space="preserve">
+          <source>CHOOSE TIME</source>
+          <target state="signed-off">VYBERTE ČAS</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>

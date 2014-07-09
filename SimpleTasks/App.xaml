@@ -16,7 +16,6 @@
         <helpcore:DateTimeExtensions x:Key="DateTimeExtensions"/>
 
         <!--Region Konvertory-->
-        <conv:AmPmToStringConverter x:Key="AmPmToStringConverter" />
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
         <conv:TimeToStringConverter x:Key="TimeToStringConverter" /> 
         <conv:TaskToReminderDateStringConverter x:Key="TaskToReminderDateStringConverter" />
@@ -166,18 +165,6 @@
 
         <!--EndRegion-->
         
-        <!--Region Radial Time Picker-->
-        <SolidColorBrush x:Key="PhoneAccentBrush08" Color="{StaticResource PhoneAccentColor}" Opacity="0.8"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush07" Color="{StaticResource PhoneAccentColor}" Opacity="0.7"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush05" Color="{StaticResource PhoneAccentColor}" Opacity="0.5"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush03" Color="{StaticResource PhoneAccentColor}" Opacity="0.3"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush02" Color="{StaticResource PhoneAccentColor}" Opacity="0.2"/>
-        <SolidColorBrush x:Key="PhoneForegroundBrush05" Color="{StaticResource PhoneForegroundColor}" Opacity="0.5"/>
-
-        <conv:IsAmToColorConverter x:Key="IsAmToColorConverter"/>
-        <conv:BooleanToInvertedVisibilityConverter x:Key="BooleanToInvertedVisibilityConverter"/>
-        <!--EndRegion-->
-
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

@@ -270,14 +270,16 @@ namespace SimpleTasks.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;2.0.0&quot;: {
-        ///    &quot;date&quot;: &quot;2014-06-15&quot;,
+        ///    &quot;date&quot;: &quot;2014-06-17&quot;,
         ///    &quot;items&quot;: [
         ///      &quot;pin a separate tile of task to the start screen&quot;,
         ///      &quot;simple bulleted list in detail&quot;,
         ///      &quot;quick completion of a task&quot;,
         ///      &quot;redesigned reminder time picker&quot;,
         ///      &quot;bug fixes&quot;,
-        ///      &quot;minor changes in design and animation&quot;
+        ///      &quot;minor changes in design and animation&quot;,
+        ///	  &quot;default due date set to \&quot;today\&quot;&quot;,
+        ///	  &quot;changelog on \&quot;about\&quot; page&quot;
         ///    ]
         ///  },
         ///  &quot;1.9.7&quot;: {
@@ -286,11 +288,7 @@ namespace SimpleTasks.Resources {
         ///      &quot;bug fix (default due date)&quot;
         ///    ]
         ///  },
-        ///  &quot;1.9.6&quot;: {
-        ///    &quot;date&quot;: &quot;2014-04-28&quot;,
-        ///    &quot;items&quot;: [
-        ///      &quot;text box for quick adding task&quot;,
-        ///      &quot;corre [rest of string was truncated]&quot;;.
+        ///  &quot;1.9.6&quot;: { [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -317,11 +315,20 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CHOOSE REMINDER TIME.
+        ///   Looks up a localized string similar to CHOOSE REMINDER.
         /// </summary>
         public static string ChooseReminderTime {
             get {
                 return ResourceManager.GetString("ChooseReminderTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHOOSE TIME.
+        /// </summary>
+        public static string ChooseTime {
+            get {
+                return ResourceManager.GetString("ChooseTime", resourceCulture);
             }
         }
         
