@@ -10,14 +10,16 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="460" d:DesignWidth="460">
-    
+
     <UserControl.Resources>
-        <SolidColorBrush x:Key="PhoneAccentBrush08" Color="{StaticResource PhoneAccentColor}" Opacity="0.8"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush07" Color="{StaticResource PhoneAccentColor}" Opacity="0.7"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush05" Color="{StaticResource PhoneAccentColor}" Opacity="0.5"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush03" Color="{StaticResource PhoneAccentColor}" Opacity="0.3"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush02" Color="{StaticResource PhoneAccentColor}" Opacity="0.2"/>
-        <SolidColorBrush x:Key="PhoneForegroundBrush05" Color="{StaticResource PhoneForegroundColor}" Opacity="0.5"/>
+        <SolidColorBrush x:Key="HoursAmBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.3"/>
+        <SolidColorBrush x:Key="HoursAmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.7"/>
+        <SolidColorBrush x:Key="HoursPmBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.8"/>
+        <SolidColorBrush x:Key="HoursPmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="1.0"/>
+        <SolidColorBrush x:Key="MinutesBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.2"/>
+        <SolidColorBrush x:Key="MinutesForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.5"/>
+        <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="0.4"/>
+        <SolidColorBrush x:Key="TimeForegroundBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="1.0"/>
 
         <Storyboard x:Name="HoursAngleAnimation" Completed="HoursAngleAnimation_Completed">
             <DoubleAnimation Storyboard.TargetName="AngleHoursGrabberCompositeTransform"
@@ -78,17 +80,17 @@
             </DoubleAnimation>
         </Storyboard>
     </UserControl.Resources>
-    
+
     <Grid Width="460" Height="460">
-        
+
         <!--kolečka-->
         <Grid>
             <!-- ring -->
-            <controls:RingSlice IsHitTestVisible="False" InnerRadius="130" Radius="180" Fill="{StaticResource PhoneAccentBrush02}" StartAngle="0" EndAngle="359.99"/>
-            <controls:RingSlice x:Name="AngleMinutesRingSlice" InnerRadius="130" Radius="180" Fill="{StaticResource PhoneAccentBrush05}" StartAngle="0" EndAngle="{Binding MinutesAngle}"/>
+            <controls:RingSlice IsHitTestVisible="False" InnerRadius="130" Radius="180" Fill="{StaticResource MinutesBackgroundBrush}" StartAngle="0" EndAngle="359.99"/>
+            <controls:RingSlice x:Name="AngleMinutesRingSlice" InnerRadius="130" Radius="180" Fill="{StaticResource MinutesForegroundBrush}" StartAngle="0" EndAngle="{Binding MinutesAngle}"/>
 
-            <controls:RingSlice IsHitTestVisible="False" InnerRadius="80" Radius="132" Fill="{Binding HoursBackground}" StartAngle="0" EndAngle="359.99"/>
-            <controls:RingSlice x:Name="AngleHoursRingSlice" InnerRadius="80" Radius="132" Fill="{Binding HoursForeground}" StartAngle="0" EndAngle="{Binding HoursAngle}"/>
+            <controls:RingSlice IsHitTestVisible="False" InnerRadius="80" Radius="132" Fill="{Binding CurrentHoursBackgroundBrush}" StartAngle="0" EndAngle="359.99"/>
+            <controls:RingSlice x:Name="AngleHoursRingSlice" InnerRadius="80" Radius="132" Fill="{Binding CurrentHoursForegroundBrush}" StartAngle="0" EndAngle="{Binding HoursAngle}"/>
 
             <!-- grabber minutes -->
             <Grid RenderTransformOrigin="0.5,0.5">
@@ -142,19 +144,22 @@
 
         </Grid>
 
-        <StackPanel IsHitTestVisible="False">
+        <!--<StackPanel IsHitTestVisible="False">
+            <TextBlock Text="{Binding Time}" />
+            <TextBlock Text="{Binding Hours}" />
+            <TextBlock Text="{Binding Hours12}" />
+            <TextBlock Text="{Binding Minutes}" />
             <TextBlock Text="{Binding IsAm}" />
-            <TextBlock x:Name="AmOrPm" />
-        </StackPanel>
-        
+        </StackPanel>-->
+
         <!--čas-->
         <TextBlock Margin="0,15,0,15"
 				   HorizontalAlignment="Center"
 				   VerticalAlignment="Center"
 				   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-				   Foreground="{StaticResource PhoneForegroundBrush05}" 
+				   Foreground="{StaticResource TimeForegroundSubtleBrush}" 
 				   FontFamily="{StaticResource PhoneFontFamilyLight}" >
-                   <Run Text="{Binding Hours}" Foreground="{StaticResource PhoneForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource PhoneForegroundBrush}"/>
+                   <Run Text="{Binding HoursText}" Foreground="{StaticResource TimeForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}"/><Run Text="{Binding AmPmText}" FontSize="{StaticResource PhoneFontSizeLarge}" />
         </TextBlock>
     </Grid>
 </UserControl>

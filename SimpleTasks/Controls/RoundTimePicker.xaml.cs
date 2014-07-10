@@ -17,8 +17,10 @@ namespace SimpleTasks.Controls
 {
     /// <summary>
     /// Vlastnosti s možností zápisu: 
+    ///     Is24Format
     ///     DefaultHoursAnimationDuration
     ///     DefaultMinutesAnimationDuration
+    /// Čas
     /// </summary>
     public partial class RoundTimePicker : UserControl, INotifyPropertyChanged
     {
@@ -95,21 +97,24 @@ namespace SimpleTasks.Controls
             {
                 Hours = value.Hour;
                 Minutes = value.Minute;
-                RaisePropertyChanged("Time");
             }
         }
 
         public int Hours
         {
-            get
-            {
-                return (IsAm ? Hours12 : Hours12 + 12) % 24;
-            }
+            get { return (AddTwelveToHours12 ? Hours12 + 12 : Hours12) % 24; }
             private set
             {
                 Hours12 = value % 12;
-                IsAm = value < 12;
+                AddTwelveToHours12 = value >= 12;
+                RaisePropertyChanged("Hours");
                 RaisePropertyChanged("Time");
+                RaisePropertyChanged("IsAm");
+                RaisePropertyChanged("AmPmText");
+                RaisePropertyChanged("HoursText");
+                RaisePropertyChanged("IsAmUI");
+                RaisePropertyChanged("CurrentHoursForegroundBrush");
+                RaisePropertyChanged("CurrentHoursBackgroundBrush");
             }
         }
 
@@ -128,14 +133,20 @@ namespace SimpleTasks.Controls
         public bool Is24Format
         {
             get
-            { 
+            {
                 return _is24Format.HasValue ? _is24Format.Value : (_is24Format = !CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern.Contains("tt")).Value;
             }
             set
             {
                 SetProperty(ref _is24Format, value);
-                RaisePropertyChanged("Time");
+                RaisePropertyChanged("AmPmText");
+                RaisePropertyChanged("HoursText");
             }
+        }
+
+        public bool IsAm
+        {
+            get { return Hours < 12; }
         }
         #endregion
 
@@ -150,6 +161,9 @@ namespace SimpleTasks.Controls
             {
                 SetProperty(ref _hoursAngle, value);
                 Hours12 = HoursFromAngle(value);
+                RaisePropertyChanged("IsAmUI");
+                RaisePropertyChanged("CurrentHoursForegroundBrush");
+                RaisePropertyChanged("CurrentHoursBackgroundBrush");
             }
         }
 
@@ -223,14 +237,48 @@ namespace SimpleTasks.Controls
         }
         #endregion
 
-        private bool _isAm;
-        public bool IsAm
+        #region AM/PM text + 24/12 hour format text
+        private readonly string amText = CultureInfo.CurrentCulture.DateTimeFormat.AMDesignator.ToLower();
+        private readonly string pmText = CultureInfo.CurrentCulture.DateTimeFormat.PMDesignator.ToLower();
+        public string AmPmText
         {
-            get { return _isAm; }
+            get { return Is24Format ? "" : (IsAm ? amText : pmText); }
+        }
+
+        public string HoursText
+        {
+            get
+            {
+                if (Is24Format)
+                {
+                    return Hours.ToString();
+                }
+                else
+                {
+                    int hours = Hours % 12;
+                    return (hours == 0 ? 12 : hours).ToString();
+                }
+            }
+        }
+
+        #endregion
+
+        public int MyProperty { get; set; }
+
+        private bool _addTwelveToHours12;
+        public bool AddTwelveToHours12
+        {
+            get { return _addTwelveToHours12; }
             private set
             {
-                SetProperty(ref _isAm, value);
+                SetProperty(ref _addTwelveToHours12, value);
                 RaisePropertyChanged("Hours");
+                RaisePropertyChanged("IsAm");
+                RaisePropertyChanged("AmPmText");
+                RaisePropertyChanged("HoursText");
+                RaisePropertyChanged("Time");
+                RaisePropertyChanged("CurrentHoursForegroundBrush");
+                RaisePropertyChanged("CurrentHoursBackgroundBrush");
             }
         }
 
@@ -242,43 +290,45 @@ namespace SimpleTasks.Controls
             {
                 SetProperty(ref _hours12, value);
                 RaisePropertyChanged("Hours");
+                RaisePropertyChanged("IsAm");
+                RaisePropertyChanged("AmPmText");
+                RaisePropertyChanged("HoursText");
                 RaisePropertyChanged("Time");
-                RaisePropertyChanged("HoursForeground");
-                RaisePropertyChanged("HoursBackground");
+                RaisePropertyChanged("CurrentHoursForegroundBrush");
+                RaisePropertyChanged("CurrentHoursBackgroundBrush");
             }
         }
 
-        public SolidColorBrush HoursForeground
+        public bool IsAmUI
         {
             get
             {
                 bool isZeroAngle = HoursAngle == 0 || HoursAngle == 360;
-                if ((Hours > 0 && Hours < 12)
+                return (Hours > 0 && Hours < 12)
                     || (Hours == 0 && (isZeroAngle || HoursAngle < 180))
-                    || (Hours == 12 && (!isZeroAngle && HoursAngle > 180)))
-                {
-                    AmOrPm.Text = "AM";
-                    return Resources["PhoneAccentBrush07"] as SolidColorBrush;
-                }
-                else
-                {
-                    AmOrPm.Text = "PM";
-                    return Resources["PhoneAccentBrush"] as SolidColorBrush;
-                }
+                    || (Hours == 12 && (!isZeroAngle && HoursAngle > 180));
             }
         }
 
-        public SolidColorBrush HoursBackground
+        public Brush CurrentHoursForegroundBrush
         {
             get
             {
-                bool isZeroAngle = HoursAngle == 0 || HoursAngle == 360;
-                if ((Hours > 0 && Hours < 12)
-                    || (Hours == 0 && (isZeroAngle || HoursAngle < 180))
-                    || (Hours == 12 && (!isZeroAngle && HoursAngle > 180)))
-                    return Resources["PhoneAccentBrush03"] as SolidColorBrush;
+                if (IsAmUI)
+                    return Resources["HoursAmForegroundBrush"] as Brush;
                 else
-                    return Resources["PhoneAccentBrush08"] as SolidColorBrush;
+                    return Resources["HoursPmForegroundBrush"] as Brush;
+            }
+        }
+
+        public Brush CurrentHoursBackgroundBrush
+        {
+            get
+            {
+                if (IsAmUI)
+                    return Resources["HoursAmBackgroundBrush"] as Brush;
+                else
+                    return Resources["HoursPmBackgroundBrush"] as Brush;
             }
         }
         #endregion
@@ -296,12 +346,12 @@ namespace SimpleTasks.Controls
         private void OnManipulationDeltaHours(object sender, ManipulationDeltaEventArgs e)
         {
             HoursAngle = GetAngle(e.ManipulationOrigin, ((Grid)sender).RenderSize);
+
             Quadrants quadrant = QuadrantFromAngle(HoursAngle);
             if (lastHourQuadrant == Quadrants.NorthWest && quadrant == Quadrants.NorthEast
              || lastHourQuadrant == Quadrants.NorthEast && quadrant == Quadrants.NorthWest)
             {
-                IsAm = !IsAm;
-                HoursAngle = HoursAngle; // toto je kvůli notifikaci potřebných properties
+                AddTwelveToHours12 = !AddTwelveToHours12;
             }
             lastHourQuadrant = quadrant;
         }
@@ -335,14 +385,12 @@ namespace SimpleTasks.Controls
 
         private void HoursAngleAnimation_Completed(object sender, EventArgs e)
         {
-            RaisePropertyChanged("HoursForeground");
-            RaisePropertyChanged("HoursBackground");
-            HoursAngle = Hours12 * 30;
+            HoursAngle = HoursAngleAnimateTo;
         }
 
         private void MinutesAngleAnimation_Completed(object sender, EventArgs e)
         {
-            MinutesAngle = Minutes * 6;
+            MinutesAngle = MinutesAngleAnimateTo;
         }
         #endregion
 
@@ -407,9 +455,6 @@ namespace SimpleTasks.Controls
                 HoursAngleAnimateFrom = HoursAngleAnimateFrom - 360;
 
             CurrentHoursAnimationDuration = duration ?? DefaultHoursAnimationDuration;
-            Debug.WriteLine("dur: {0}", duration);
-            Debug.WriteLine("DEF: {0}", DefaultHoursAnimationDuration);
-            Debug.WriteLine("DURATION: {0}", CurrentHoursAnimationDuration);
             HoursAngleAnimation.Begin();
         }
 
