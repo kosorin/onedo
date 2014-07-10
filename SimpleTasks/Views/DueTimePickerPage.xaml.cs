@@ -18,8 +18,15 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            initTime = (DateTime)PhoneApplicationService.Current.State["DueTime"];
-            PhoneApplicationService.Current.State.Remove("DueTime");
+            if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
+            {
+                initTime = (PhoneApplicationService.Current.State["DueTime"] as DateTime?) ?? DateTime.Now;
+                PhoneApplicationService.Current.State.Remove("DueTime");
+            }
+            else
+            {
+                initTime = DateTime.Now;
+            }
 
             DataContext = this;
             BuildAppBar();
@@ -29,7 +36,6 @@ namespace SimpleTasks.Views
 
         private void SaveTime()
         {
-            // TODO: uložení času 
             PhoneApplicationService.Current.State["DueTime"] = new DateTime(
                 initTime.Year,
                 initTime.Month,

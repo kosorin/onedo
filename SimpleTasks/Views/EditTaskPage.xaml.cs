@@ -100,10 +100,10 @@ namespace SimpleTasks.Views
             }
             else
             {
-                if (PhoneApplicationService.Current.State.ContainsKey("RadialTime"))
+                if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
                 {
-                    ViewModel.DueDate = (DateTime)PhoneApplicationService.Current.State["RadialTime"];
-                    PhoneApplicationService.Current.State.Remove("RadialTime");
+                    ViewModel.DueDate = (DateTime)PhoneApplicationService.Current.State["DueTime"];
+                    PhoneApplicationService.Current.State.Remove("DueTime");
 
                     //ViewModel.ReminderDate = newReminderTime;
                 }
@@ -440,8 +440,8 @@ namespace SimpleTasks.Views
             var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
             if (phoneApplicationFrame != null)
             {
-                PhoneApplicationService.Current.State["RadialTime"] = ViewModel.DueDate;
-                phoneApplicationFrame.Navigate(new Uri("/Views/RadialTimePickerPage.xaml", UriKind.Relative));
+                PhoneApplicationService.Current.State["DueTime"] = ViewModel.DueDate;
+                phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
             }
         }
 
