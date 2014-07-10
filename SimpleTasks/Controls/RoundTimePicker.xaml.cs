@@ -15,12 +15,17 @@ using System.Diagnostics;
 
 namespace SimpleTasks.Controls
 {
+    /// <summary>
+    /// Vlastnosti s možností zápisu: 
+    ///     DefaultHoursAnimationDuration
+    ///     DefaultMinutesAnimationDuration
+    /// </summary>
     public partial class RoundTimePicker : UserControl, INotifyPropertyChanged
     {
         #region Quadrants
         private enum Quadrants { NorthWest = 2, NorthEast = 1, SouthWest = 4, SouthEast = 3 }
 
-        private Quadrants lastQuadrant;
+        private Quadrants lastHourQuadrant;
         #endregion
 
         #region Public Methods
@@ -28,8 +33,12 @@ namespace SimpleTasks.Controls
         {
             InitializeComponent();
 
-            Time = new DateTime(1, 1, 1, 21, 52, 0);
-            Animate(0.65);
+            DefaultHoursAnimationDuration = DurationFromSeconds(0.15);
+            DefaultMinutesAnimationDuration = DurationFromSeconds(0.18);
+
+            Time = DateTime.Now;
+            lastHourQuadrant = QuadrantFromAngle((Time.Hour % 12) * 30);
+            Animate(DurationFromSeconds(0.65));
 
             DataContext = this;
         }
@@ -40,7 +49,7 @@ namespace SimpleTasks.Controls
             Animate();
         }
 
-        public void SetTime(int hours, int minutes, double duration = 0)
+        public void SetTime(int hours, int minutes)
         {
             Hours = hours;
             Minutes = minutes;
@@ -114,72 +123,105 @@ namespace SimpleTasks.Controls
                 RaisePropertyChanged("Time");
             }
         }
+
+        private bool? _is24Format = null;
+        public bool Is24Format
+        {
+            get
+            { 
+                return _is24Format.HasValue ? _is24Format.Value : (_is24Format = !CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern.Contains("tt")).Value;
+            }
+            set
+            {
+                SetProperty(ref _is24Format, value);
+                RaisePropertyChanged("Time");
+            }
+        }
         #endregion
 
         #region Properties for UI
-        private Duration _defaultAnimationDuration = new Duration(TimeSpan.FromSeconds(0.18));
-        public Duration DefaultAnimationDuration
-        {
-            get { return _defaultAnimationDuration; }
-            private set { SetProperty(ref _defaultAnimationDuration, value); }
-        }
 
-        private Duration _animationDuration;
-        public Duration AnimationDuration
+        #region Hours
+        private double _hoursAngle = default(double);
+        public double HoursAngle
         {
-            get { return _animationDuration; }
-            private set { SetProperty(ref _animationDuration, value); }
-        }
-
-        private double _angleMinutes = default(double);
-        public double AngleMinutes
-        {
-            get { return _angleMinutes; }
+            get { return _hoursAngle; }
             private set
             {
-                SetProperty(ref _angleMinutes, value);
-                Minutes = MinutesFromAngle(value);
-            }
-        }
-
-        private double _angleMinutesAnimateFrom = default(double);
-        public double AngleMinutesAnimateFrom
-        {
-            get { return _angleMinutesAnimateFrom; }
-            private set { SetProperty(ref _angleMinutesAnimateFrom, value); }
-        }
-
-        private double _angleMinutesAnimateTo = default(double);
-        public double AngleMinutesAnimateTo
-        {
-            get { return _angleMinutesAnimateTo; }
-            private set { SetProperty(ref _angleMinutesAnimateTo, value); }
-        }
-
-        private double _angleHours = default(double);
-        public double AngleHours
-        {
-            get { return _angleHours; }
-            private set
-            {
-                SetProperty(ref _angleHours, value);
+                SetProperty(ref _hoursAngle, value);
                 Hours12 = HoursFromAngle(value);
             }
         }
 
-        private double _angleHoursAnimateFrom = default(double);
-        public double AngleHoursAnimateFrom
+        private double _hoursAngleAnimateFrom = default(double);
+        public double HoursAngleAnimateFrom
         {
-            get { return _angleHoursAnimateFrom; }
-            private set { SetProperty(ref _angleHoursAnimateFrom, value); }
+            get { return _hoursAngleAnimateFrom; }
+            private set { SetProperty(ref _hoursAngleAnimateFrom, value); }
         }
 
-        private double _angleHoursAnimateTo = default(double);
-        public double AngleHoursAnimateTo
+        private double _hoursAngleAnimateTo = default(double);
+        public double HoursAngleAnimateTo
         {
-            get { return _angleHoursAnimateTo; }
-            private set { SetProperty(ref _angleHoursAnimateTo, value); }
+            get { return _hoursAngleAnimateTo; }
+            private set { SetProperty(ref _hoursAngleAnimateTo, value); }
         }
+
+        private Duration _defaultHoursAnimationDuration;
+        public Duration DefaultHoursAnimationDuration
+        {
+            get { return _defaultHoursAnimationDuration; }
+            set { SetProperty(ref _defaultHoursAnimationDuration, value); }
+        }
+
+        private Duration _currentHoursAnimationDuration;
+        public Duration CurrentHoursAnimationDuration
+        {
+            get { return _currentHoursAnimationDuration; }
+            private set { SetProperty(ref _currentHoursAnimationDuration, value); }
+        }
+        #endregion
+
+        #region Minutes
+        private double _minutesAngle = default(double);
+        public double MinutesAngle
+        {
+            get { return _minutesAngle; }
+            private set
+            {
+                SetProperty(ref _minutesAngle, value);
+                Minutes = MinutesFromAngle(value);
+            }
+        }
+
+        private double _minutesAngleAnimateFrom = default(double);
+        public double MinutesAngleAnimateFrom
+        {
+            get { return _minutesAngleAnimateFrom; }
+            private set { SetProperty(ref _minutesAngleAnimateFrom, value); }
+        }
+
+        private double _minutesAngleAnimateTo = default(double);
+        public double MinutesAngleAnimateTo
+        {
+            get { return _minutesAngleAnimateTo; }
+            private set { SetProperty(ref _minutesAngleAnimateTo, value); }
+        }
+
+        private Duration _defaultMinutesAnimationDuration;
+        public Duration DefaultMinutesAnimationDuration
+        {
+            get { return _defaultMinutesAnimationDuration; }
+            set { SetProperty(ref _defaultMinutesAnimationDuration, value); }
+        }
+
+        private Duration _currentMinutesAnimationDuration;
+        public Duration CurrentMinutesAnimationDuration
+        {
+            get { return _currentMinutesAnimationDuration; }
+            private set { SetProperty(ref _currentMinutesAnimationDuration, value); }
+        }
+        #endregion
 
         private bool _isAm;
         public bool IsAm
@@ -210,13 +252,19 @@ namespace SimpleTasks.Controls
         {
             get
             {
-                bool isZeroAngle = AngleHours == 0 || AngleHours == 360;
+                bool isZeroAngle = HoursAngle == 0 || HoursAngle == 360;
                 if ((Hours > 0 && Hours < 12)
-                    || (Hours == 0 && (isZeroAngle || AngleHours < 180))
-                    || (Hours == 12 && (!isZeroAngle && AngleHours > 180)))
+                    || (Hours == 0 && (isZeroAngle || HoursAngle < 180))
+                    || (Hours == 12 && (!isZeroAngle && HoursAngle > 180)))
+                {
+                    AmOrPm.Text = "AM";
                     return Resources["PhoneAccentBrush07"] as SolidColorBrush;
+                }
                 else
+                {
+                    AmOrPm.Text = "PM";
                     return Resources["PhoneAccentBrush"] as SolidColorBrush;
+                }
             }
         }
 
@@ -224,10 +272,10 @@ namespace SimpleTasks.Controls
         {
             get
             {
-                bool isZeroAngle = AngleHours == 0 || AngleHours == 360;
+                bool isZeroAngle = HoursAngle == 0 || HoursAngle == 360;
                 if ((Hours > 0 && Hours < 12)
-                    || (Hours == 0 && (isZeroAngle || AngleHours < 180))
-                    || (Hours == 12 && (!isZeroAngle && AngleHours > 180)))
+                    || (Hours == 0 && (isZeroAngle || HoursAngle < 180))
+                    || (Hours == 12 && (!isZeroAngle && HoursAngle > 180)))
                     return Resources["PhoneAccentBrush03"] as SolidColorBrush;
                 else
                     return Resources["PhoneAccentBrush08"] as SolidColorBrush;
@@ -236,42 +284,26 @@ namespace SimpleTasks.Controls
         #endregion
 
         #region Event Handlers
-        private void OnManipulationStartedMinutes(object sender, ManipulationStartedEventArgs e)
-        {
-            AngleMinutesAnimation.SkipToFill();
-            AngleMinutesAnimation.Stop();
-            GrabberMinutes.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
-        }
 
+        #region Hours
         private void OnManipulationStartedHours(object sender, ManipulationStartedEventArgs e)
         {
-            AngleHoursAnimation.SkipToFill();
-            AngleHoursAnimation.Stop();
+            HoursAngleAnimation.SkipToFill();
+            HoursAngleAnimation.Stop();
             GrabberHours.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
-        }
-
-        private void OnManipulationDeltaMinutes(object sender, ManipulationDeltaEventArgs e)
-        {
-            AngleMinutes = GetAngle(e.ManipulationOrigin, ((Grid)sender).RenderSize);
         }
 
         private void OnManipulationDeltaHours(object sender, ManipulationDeltaEventArgs e)
         {
-            AngleHours = GetAngle(e.ManipulationOrigin, ((Grid)sender).RenderSize);
-            Quadrants quadrant = QuadrantFromAngle(AngleHours);
-            if (lastQuadrant == Quadrants.NorthWest && quadrant == Quadrants.NorthEast
-             || lastQuadrant == Quadrants.NorthEast && quadrant == Quadrants.NorthWest)
+            HoursAngle = GetAngle(e.ManipulationOrigin, ((Grid)sender).RenderSize);
+            Quadrants quadrant = QuadrantFromAngle(HoursAngle);
+            if (lastHourQuadrant == Quadrants.NorthWest && quadrant == Quadrants.NorthEast
+             || lastHourQuadrant == Quadrants.NorthEast && quadrant == Quadrants.NorthWest)
             {
                 IsAm = !IsAm;
-                AngleHours = AngleHours; // toto je kvůli notifikaci potřebných properties
+                HoursAngle = HoursAngle; // toto je kvůli notifikaci potřebných properties
             }
-            lastQuadrant = quadrant;
-        }
-
-        private void OnManipulationCompletedMinutes(object sender, ManipulationCompletedEventArgs e)
-        {
-            AnimateMinutes();
-            GrabberMinutes.Fill = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
+            lastHourQuadrant = quadrant;
         }
 
         private void OnManipulationCompletedHours(object sender, ManipulationCompletedEventArgs e)
@@ -279,12 +311,38 @@ namespace SimpleTasks.Controls
             AnimateHours();
             GrabberHours.Fill = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
         }
+        #endregion
 
-        private void AngleHoursAnimation_Completed(object sender, EventArgs e)
+        #region Minutes
+        private void OnManipulationStartedMinutes(object sender, ManipulationStartedEventArgs e)
+        {
+            MinutesAngleAnimation.SkipToFill();
+            MinutesAngleAnimation.Stop();
+            GrabberMinutes.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
+        }
+
+        private void OnManipulationDeltaMinutes(object sender, ManipulationDeltaEventArgs e)
+        {
+            MinutesAngle = GetAngle(e.ManipulationOrigin, ((Grid)sender).RenderSize);
+        }
+
+        private void OnManipulationCompletedMinutes(object sender, ManipulationCompletedEventArgs e)
+        {
+            AnimateMinutes();
+            GrabberMinutes.Fill = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
+        }
+        #endregion
+
+        private void HoursAngleAnimation_Completed(object sender, EventArgs e)
         {
             RaisePropertyChanged("HoursForeground");
             RaisePropertyChanged("HoursBackground");
-            AngleHours = Hours12 * 30;
+            HoursAngle = Hours12 * 30;
+        }
+
+        private void MinutesAngleAnimation_Completed(object sender, EventArgs e)
+        {
+            MinutesAngle = Minutes * 6;
         }
         #endregion
 
@@ -329,41 +387,42 @@ namespace SimpleTasks.Controls
             return (int)Math.Round(angle / 6d);
         }
 
-        private void Animate()
+        private Duration DurationFromSeconds(double seconds)
         {
-            AnimationDuration = DefaultAnimationDuration;
-            AnimateHours();
-            AnimateMinutes();
+            return new Duration(TimeSpan.FromSeconds(seconds));
         }
 
-        private void Animate(double duration)
+        private void Animate(Duration? duration = null)
         {
-            AnimationDuration = new Duration(TimeSpan.FromSeconds(duration));
-            AnimateHours();
-            AnimateMinutes();
-            AnimationDuration = DefaultAnimationDuration;
+            AnimateHours(duration ?? DefaultHoursAnimationDuration);
+            AnimateMinutes(duration ?? DefaultMinutesAnimationDuration);
         }
 
-        private void AnimateHours()
+        private void AnimateHours(Duration? duration = null)
         {
-            lastQuadrant = QuadrantFromAngle((Time.Hour % 12) * 30);
-            AngleHoursAnimateFrom = AngleHours;
-            AngleHoursAnimateTo = Hours12 * 30;
+            HoursAngleAnimateFrom = HoursAngle;
+            HoursAngleAnimateTo = Hours12 * 30;
 
-            if (AngleHoursAnimateFrom > 30 && AngleHoursAnimateTo == 0)
-                AngleHoursAnimateFrom = AngleHoursAnimateFrom - 360;
-            AngleHoursAnimation.Begin();
+            if (HoursAngleAnimateFrom > 30 && HoursAngleAnimateTo == 0)
+                HoursAngleAnimateFrom = HoursAngleAnimateFrom - 360;
+
+            CurrentHoursAnimationDuration = duration ?? DefaultHoursAnimationDuration;
+            Debug.WriteLine("dur: {0}", duration);
+            Debug.WriteLine("DEF: {0}", DefaultHoursAnimationDuration);
+            Debug.WriteLine("DURATION: {0}", CurrentHoursAnimationDuration);
+            HoursAngleAnimation.Begin();
         }
 
-        private void AnimateMinutes()
+        private void AnimateMinutes(Duration? duration = null)
         {
-            AngleMinutesAnimateFrom = AngleMinutes;
-            AngleMinutes = (Minutes * 6) % 360;
-            AngleMinutesAnimateTo = AngleMinutes;
+            MinutesAngleAnimateFrom = MinutesAngle;
+            MinutesAngleAnimateTo = Minutes * 6;
 
-            if (AngleMinutesAnimateFrom > 6 && AngleMinutesAnimateTo == 0)
-                AngleMinutesAnimateFrom = AngleMinutesAnimateFrom - 360;
-            AngleMinutesAnimation.Begin();
+            if (MinutesAngleAnimateFrom > 6 && MinutesAngleAnimateTo == 0)
+                MinutesAngleAnimateFrom = MinutesAngleAnimateFrom - 360;
+
+            CurrentMinutesAnimationDuration = duration ?? DefaultMinutesAnimationDuration;
+            MinutesAngleAnimation.Begin();
         }
         #endregion
     }
