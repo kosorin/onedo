@@ -8,6 +8,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:conv="clr-namespace:SimpleTasks.Conventers"
     xmlns:helpcore="clr-namespace:SimpleTasks.Core.Helpers;assembly=SimpleTasks.Core"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls">
 
     <!--Application Resources-->
@@ -165,6 +166,28 @@
 
         <!--EndRegion-->
         
+        <!--Region BasePickerPage-->
+        <Style x:Key="BasePickerPageStyle" TargetType="controls:BasePickerPage">
+            <Setter Property="SupportedOrientations" Value="Portrait" />
+            <Setter Property="Orientation" Value="Portrait" />
+            <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+            <Setter Property="shell:SystemTray.IsVisible" Value="True" />
+            <Setter Property="shell:SystemTray.IsVisible" Value="True" />
+            <Setter Property="shell:SystemTray.BackgroundColor" Value="{StaticResource PhoneChromeColor}" />
+        </Style>
+
+        <Style x:Key="BasePickerPageRootStyle" TargetType="Grid">
+            <Setter Property="Background" Value="{StaticResource PhoneChromeBrush}" />
+        </Style>
+
+        <Style x:Key="BasePickerPageHeaderStyle" TargetType="TextBlock">
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="Margin" Value="24,16,24,24" />
+        </Style>
+        <!--EndRegion-->
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

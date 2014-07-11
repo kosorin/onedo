@@ -9,10 +9,11 @@ using Microsoft.Phone.Controls;
 using SimpleTasks.ViewModels;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Resources;
+using SimpleTasks.Controls;
 
 namespace SimpleTasks.Views
 {
-    public partial class DueTimePickerPage : PhoneApplicationPage
+    public partial class DueTimePickerPage : BasePickerPage
     {
         public DueTimePickerPage()
         {
@@ -29,12 +30,11 @@ namespace SimpleTasks.Views
             }
 
             DataContext = this;
-            BuildAppBar();
         }
 
         private DateTime initTime;
 
-        private void SaveTime()
+        protected override void Save()
         {
             PhoneApplicationService.Current.State["DueTime"] = new DateTime(
                 initTime.Year,
@@ -44,42 +44,5 @@ namespace SimpleTasks.Views
                 TimePicker.Minutes,
                 0);
         }
-
-        #region AppBar
-
-        private void BuildAppBar()
-        {
-            ApplicationBar = new ApplicationBar();
-
-            ApplicationBarIconButton appBarDoneButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Check.png", UriKind.Relative));
-            appBarDoneButton.Text = AppResources.AppBarDone;
-            appBarDoneButton.Click += appBarDoneButton_Click;
-            ApplicationBar.Buttons.Add(appBarDoneButton);
-
-
-            ApplicationBarIconButton appBarCancelButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Cancel.png", UriKind.Relative));
-            appBarCancelButton.Text = AppResources.AppBarCancel;
-            appBarCancelButton.Click += appBarCancelButton_Click;
-            ApplicationBar.Buttons.Add(appBarCancelButton);
-        }
-
-        void appBarDoneButton_Click(object sender, EventArgs e)
-        {
-            if (NavigationService.CanGoBack)
-            {
-                SaveTime();
-                NavigationService.GoBack();
-            }
-        }
-
-        void appBarCancelButton_Click(object sender, EventArgs e)
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-            }
-        }
-
-        #endregion
     }
 }
