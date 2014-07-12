@@ -146,7 +146,6 @@
 
         <!--EndRegion-->
 
-
         <!--Region Globální styly-->
         <SolidColorBrush x:Key="ApplicationBackgroundBrush" 
                          Color="{StaticResource PhoneChromeColor}" 
@@ -208,7 +207,24 @@
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
             <Setter Property="Margin" Value="24,16,24,24" />
         </Style>
+
+        <Style x:Key="QuickButtonStyle" TargetType="Button">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+            <Setter Property="Margin" Value="0,-5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Style="{StaticResource ButtonTextBlockStyle}" FontSize="20" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--EndRegion-->
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

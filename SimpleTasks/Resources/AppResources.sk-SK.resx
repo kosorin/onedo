@@ -210,8 +210,8 @@
     <value>vlastný termín</value>
   </data>
   <data name="ChooseDueDate" xml:space="preserve">
-    <value>vyberte si termín</value>
-  </data>
+    <value>VYBERTE TERMÍN</value>
+  <comment></comment></data>
   <data name="AppBarSave" xml:space="preserve">
     <value>uložiť</value>
     <comment>save task</comment>

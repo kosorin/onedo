@@ -137,7 +137,7 @@
     <comment>save task</comment>
   </data>
   <data name="ChooseDueDate" xml:space="preserve">
-    <value>choose due date</value>
+    <value>CHOOSE DATE</value>
   </data>
   <data name="DateCustomDue" xml:space="preserve">
     <value>custom due date</value>

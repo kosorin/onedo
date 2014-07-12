@@ -297,7 +297,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to choose due date.
+        ///   Looks up a localized string similar to CHOOSE DATE.
         /// </summary>
         public static string ChooseDueDate {
             get {

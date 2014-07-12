@@ -65,9 +65,8 @@
           <target state="signed-off">vlastní termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseDueDate" xml:space="preserve">
-          <source>choose due date</source>
-          <target state="signed-off">zvolte termín splnění</target>
-        </trans-unit>
+          <source>CHOOSE DUE DATE</source>
+          <target state="translated">ZVOLTE TERMÍN SPLNĚNÍ</target></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
           <source>save</source>
           <target state="signed-off">uložit</target>
@@ -308,28 +307,28 @@
         </trans-unit>
         <trans-unit id="Resx/TimeNoon" translate="yes" xml:space="preserve">
           <source>noon</source>
-          <target state="signed-off">poledne</target><note from="MultilingualBuild" annotates="source" priority="2">12 PM</note>
-        </trans-unit>
+          <target state="signed-off">poledne</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">12 PM</note></trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
-          <target state="signed-off">noc</target><note from="MultilingualBuild" annotates="source" priority="2">10 PM</note>
-        </trans-unit>
+          <target state="signed-off">noc</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">10 PM</note></trans-unit>
         <trans-unit id="Resx/TimeMorning" translate="yes" xml:space="preserve">
           <source>morning</source>
-          <target state="signed-off">ráno</target><note from="MultilingualBuild" annotates="source" priority="2">7 AM</note>
-        </trans-unit>
+          <target state="signed-off">ráno</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">7 AM</note></trans-unit>
         <trans-unit id="Resx/TimeLateMorning" translate="yes" xml:space="preserve">
           <source>late morning</source>
-          <target state="signed-off">dopoledne</target><note from="MultilingualBuild" annotates="source" priority="2">10 AM</note>
-        </trans-unit>
+          <target state="signed-off">dopoledne</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">10 AM</note></trans-unit>
         <trans-unit id="Resx/TimeEvening" translate="yes" xml:space="preserve">
           <source>evening</source>
-          <target state="signed-off">večer</target><note from="MultilingualBuild" annotates="source" priority="2">7 PM</note>
-        </trans-unit>
+          <target state="signed-off">večer</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">7 PM</note></trans-unit>
         <trans-unit id="Resx/TimeAfternoon" translate="yes" xml:space="preserve">
           <source>afternoon</source>
-          <target state="signed-off">odpoledne</target><note from="MultilingualBuild" annotates="source" priority="2">3 PM</note>
-        </trans-unit>
+          <target state="signed-off">odpoledne</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">3 PM</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
           <target state="signed-off">připnout</target>

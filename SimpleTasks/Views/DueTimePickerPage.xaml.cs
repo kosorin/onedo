@@ -26,7 +26,7 @@ namespace SimpleTasks.Views
             }
             else
             {
-                initTime = DateTime.Now;
+                initTime = DateTime.Now; // vychozi cas podle nastaveni
             }
 
             TimePicker.SetTime(initTime);
