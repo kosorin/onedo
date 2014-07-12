@@ -56,12 +56,14 @@ namespace SimpleTasks
 
             if (Settings.LastVersionSetting == null)
             {
+                Debug.WriteLine("==== PRVNÍ START ====");
                 // První spuštění aplikace
                 Settings.LastVersionSetting = Version.ToString();
                 IsFirstStart = true;
             }
             else if (Settings.LastVersionSetting != Version.ToString())
             {
+                Debug.WriteLine("==== AKTUALIZACE ====");
                 // Aktualizace aplikace
                 Settings.LastVersionSetting = Version.ToString();
             }

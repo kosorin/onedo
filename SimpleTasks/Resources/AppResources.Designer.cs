@@ -612,20 +612,20 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default due date.
+        ///   Looks up a localized string similar to Default date.
         /// </summary>
-        public static string SettingsDefaultDueDate {
+        public static string SettingsDefaultDate {
             get {
-                return ResourceManager.GetString("SettingsDefaultDueDate", resourceCulture);
+                return ResourceManager.GetString("SettingsDefaultDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default reminder time.
+        ///   Looks up a localized string similar to Default time.
         /// </summary>
-        public static string SettingsDefaultReminderTime {
+        public static string SettingsDefaultTime {
             get {
-                return ResourceManager.GetString("SettingsDefaultReminderTime", resourceCulture);
+                return ResourceManager.GetString("SettingsDefaultTime", resourceCulture);
             }
         }
         

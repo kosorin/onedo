@@ -114,8 +114,8 @@
     <Compile Include="Conventers\TimeSpanToStringConverter.cs" />
     <Compile Include="Conventers\TimeToStringConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
-    <Compile Include="Conventers\TaskToDueDateStringConverter.cs" />
-    <Compile Include="Conventers\TaskToReminderDateStringConverter.cs" />
+    <Compile Include="Conventers\TaskToDueStringConverter.cs" />
+    <Compile Include="Conventers\TaskToReminderStringConverter.cs" />
     <Compile Include="Conventers\DateToRelativeStringConverter.cs" />
     <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />
     <Compile Include="Conventers\TaskPriorityToBooleanConverter.cs" />
@@ -138,7 +138,6 @@
     <Compile Include="Tiles\DefaultWideTaskTile.xaml.cs">
       <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EditTaskViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">

@@ -65,8 +65,8 @@
           <target state="signed-off">vlastný termín</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseDueDate" xml:space="preserve">
-          <source>CHOOSE DUE DATE</source>
-          <target state="translated">VYBERTE TERMÍN</target></trans-unit>
+          <source>CHOOSE DATE</source>
+          <target state="needs-review-translation">VYBERTE TERMÍN</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
           <source>save</source>
           <target state="signed-off">uložiť</target>
@@ -148,9 +148,9 @@
           <source>rate application</source>
           <target state="signed-off">ohodnotiť aplikáciu</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/SettingsDefaultDueDate" xml:space="preserve">
-          <source>Default due date</source>
-          <target state="signed-off">Predvolený termín</target>
+        <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
+          <source>Default date</source>
+          <target state="new">Default date</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
           <source>after 1 day</source>
@@ -222,6 +222,10 @@
           <source>Task reminder</source>
           <target state="signed-off" state-qualifier="mt-suggestion">Pripomenutie úlohy</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
+          <source>Default time</source>
+          <target state="new">Default time</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/Reminder" xml:space="preserve">
           <source>reminder</source>
           <target state="signed-off" state-qualifier="tm-suggestion">pripomenutie</target>
@@ -233,10 +237,6 @@
         <trans-unit translate="yes" id="Resx/DueDate" xml:space="preserve">
           <source>due date</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Termín splnenia</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/SettingsDefaultReminderTime" xml:space="preserve">
-          <source>Default reminder time</source>
-          <target state="signed-off">Predvolený čas pripomenutia</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarOk" xml:space="preserve">
           <source>ok</source>

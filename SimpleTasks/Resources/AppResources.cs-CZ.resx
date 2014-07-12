@@ -133,9 +133,7 @@
   <data name="AboutRateReview" xml:space="preserve">
     <value>ohodnotit aplikaci</value>
   </data>
-  <data name="SettingsDefaultDueDate" xml:space="preserve">
-    <value>Výchozí termín splnění</value>
-  </data>
+  
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
     <value>První den v týdnu</value>
   </data>
@@ -269,9 +267,7 @@
   <data name="DueDate" xml:space="preserve">
     <value>termín splnění</value>
   </data>
-  <data name="SettingsDefaultReminderTime" xml:space="preserve">
-    <value>Výchozí čas připomenutí</value>
-  </data>
+  
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>
   </data>

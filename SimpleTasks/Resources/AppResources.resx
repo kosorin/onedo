@@ -227,8 +227,8 @@
   <data name="AboutRateReview" xml:space="preserve">
     <value>rate application</value>
   </data>
-  <data name="SettingsDefaultDueDate" xml:space="preserve">
-    <value>Default due date</value>
+  <data name="SettingsDefaultDate" xml:space="preserve">
+    <value>Default date</value>
   </data>
   <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
     <value>after 1 day</value>
@@ -292,8 +292,8 @@
   <data name="ReminderTitle" xml:space="preserve">
     <value>Task reminder</value>
   </data>
-  <data name="SettingsDefaultReminderTime" xml:space="preserve">
-    <value>Default reminder time</value>
+  <data name="SettingsDefaultTime" xml:space="preserve">
+    <value>Default time</value>
   </data>
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>

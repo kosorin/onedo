@@ -19,14 +19,11 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
+            initTime = DateTime.Now; // vychozi cas podle nastaveni
             if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
             {
-                initTime = (PhoneApplicationService.Current.State["DueTime"] as DateTime?) ?? DateTime.Now;
+                initTime = (PhoneApplicationService.Current.State["DueTime"] as DateTime?) ?? initTime;
                 PhoneApplicationService.Current.State.Remove("DueTime");
-            }
-            else
-            {
-                initTime = DateTime.Now; // vychozi cas podle nastaveni
             }
 
             TimePicker.SetTime(initTime);

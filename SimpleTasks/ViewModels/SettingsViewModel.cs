@@ -22,9 +22,7 @@ namespace SimpleTasks.ViewModels
                 Debug.WriteLine("  {0}", o.ToString());
             }
 #endif
-            SetDueDatePicker();
-            SetFirstDayOfWeekPicker();
-            ApplyFirstDayOfWeekSetting();
+            SetDatePicker();
             SetDaysPicker();
         }
 
@@ -104,10 +102,7 @@ namespace SimpleTasks.ViewModels
         private readonly string LastVersionDefault = null;
         public string LastVersionSetting
         {
-            get
-            {
-                return GetValueOrDefault<string>(LastVersionKeyName, LastVersionDefault);
-            }
+            get { return GetValueOrDefault<string>(LastVersionKeyName, LastVersionDefault); }
             set
             {
                 if (AddOrUpdateValue(LastVersionKeyName, value))
@@ -119,15 +114,14 @@ namespace SimpleTasks.ViewModels
 
         #endregion
 
-        #region DefaultDueDate
-
+        #region DefaultDate
         private const string DefaultDueDateKeyName = "DefaultDueDate";
-        private const DefaultDueDate DefaultDueDateDefault = DefaultDueDate.Today;
-        public DefaultDueDate DefaultDueDateSetting
+        private const DefaultDateTypes DefaultDateDefault = DefaultDateTypes.NextWeek;
+        public DefaultDateTypes DefaultDateSetting
         {
             get
             {
-                return GetValueOrDefault<DefaultDueDate>(DefaultDueDateKeyName, DefaultDueDateDefault);
+                return GetValueOrDefault<DefaultDateTypes>(DefaultDueDateKeyName, DefaultDateDefault);
             }
             set
             {
@@ -138,7 +132,7 @@ namespace SimpleTasks.ViewModels
             }
         }
 
-        public enum DefaultDueDate
+        public enum DefaultDateTypes
         {
             NoDueDate,
             Today,
@@ -147,76 +141,73 @@ namespace SimpleTasks.ViewModels
             NextWeek
         }
 
-        public DateTime? DefaultDueDateSettingToDateTime
+        public DateTime? DefaultDate
         {
             get
             {
-                switch (DefaultDueDateSetting)
+                switch (DefaultDateSetting)
                 {
-                case DefaultDueDate.Today: return DateTimeExtensions.Today;
-                case DefaultDueDate.Tomorrow: return DateTimeExtensions.Tomorrow;
-                case DefaultDueDate.ThisWeek: return DateTimeExtensions.LastDayOfWeek;
-                case DefaultDueDate.NextWeek: return DateTimeExtensions.LastDayOfNextWeek;
+                case DefaultDateTypes.Today: return DateTimeExtensions.Today;
+                case DefaultDateTypes.Tomorrow: return DateTimeExtensions.Tomorrow;
+                case DefaultDateTypes.ThisWeek: return DateTimeExtensions.LastDayOfWeek;
+                case DefaultDateTypes.NextWeek: return DateTimeExtensions.LastDayOfNextWeek;
 
-                case DefaultDueDate.NoDueDate:
+                case DefaultDateTypes.NoDueDate:
                 default: return null;
                 }
             }
         }
 
-        public List<KeyValuePair<DefaultDueDate, string>> DueDatePickerItems { get; private set; }
+        public List<KeyValuePair<DefaultDateTypes, string>> DatePickerItems { get; private set; }
 
-        private KeyValuePair<DefaultDueDate, string> _dueDatePickerSelectedItem;
-        public KeyValuePair<DefaultDueDate, string> DueDatePickerSelectedItem
+        private KeyValuePair<DefaultDateTypes, string> _datePickerSelectedItem;
+        public KeyValuePair<DefaultDateTypes, string> DatePickerSelectedItem
         {
             get
             {
-                return _dueDatePickerSelectedItem;
+                return _datePickerSelectedItem;
             }
             set
             {
-                SetProperty(ref _dueDatePickerSelectedItem, value);
-                DefaultDueDateSetting = value.Key;
+                SetProperty(ref _datePickerSelectedItem, value);
+                DefaultDateSetting = value.Key;
             }
         }
 
-        private void SetDueDatePicker()
+        private void SetDatePicker()
         {
-            DueDatePickerItems = new List<KeyValuePair<DefaultDueDate, string>>();
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.NoDueDate, AppResources.DateNoDue));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.Today, AppResources.DateToday));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.Tomorrow, AppResources.DateTomorrow));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.ThisWeek, AppResources.DateThisWeek));
-            DueDatePickerItems.Add(new KeyValuePair<DefaultDueDate, string>(DefaultDueDate.NextWeek, AppResources.DateNextWeek));
+            DatePickerItems = new List<KeyValuePair<DefaultDateTypes, string>>();
+            DatePickerItems.Add(new KeyValuePair<DefaultDateTypes, string>(DefaultDateTypes.NoDueDate, AppResources.DateNoDue));
+            DatePickerItems.Add(new KeyValuePair<DefaultDateTypes, string>(DefaultDateTypes.Today, AppResources.DateToday));
+            DatePickerItems.Add(new KeyValuePair<DefaultDateTypes, string>(DefaultDateTypes.Tomorrow, AppResources.DateTomorrow));
+            DatePickerItems.Add(new KeyValuePair<DefaultDateTypes, string>(DefaultDateTypes.ThisWeek, AppResources.DateThisWeek));
+            DatePickerItems.Add(new KeyValuePair<DefaultDateTypes, string>(DefaultDateTypes.NextWeek, AppResources.DateNextWeek));
 
-            var selectedItems = DueDatePickerItems.Where((i) => { return i.Key == DefaultDueDateSetting; });
+            var selectedItems = DatePickerItems.Where((i) => { return i.Key == DefaultDateSetting; });
             if (selectedItems.Count() > 0)
-                DueDatePickerSelectedItem = selectedItems.First();
+                DatePickerSelectedItem = selectedItems.First();
             else
-                DueDatePickerSelectedItem = DueDatePickerItems.First();
+                DatePickerSelectedItem = DatePickerItems.First();
         }
+        #endregion DefaultDate
 
-        #endregion DefaultDueDate
-
-        #region DefaultReminderTime
-
-        private const string DefaultReminderTimeKeyName = "DefaultReminderTime";
-        private readonly DateTime DefaultReminderTimeDefault = new DateTime(1, 1, 1, 8, 0, 0);
-        public DateTime DefaultReminderTimeSetting
+        #region DefaultTime
+        private const string DefaultTimeKeyName = "DefaultReminderTime";
+        private readonly DateTime DefaultTimeDefault = new DateTime(1, 1, 1, 9, 0, 0);
+        public DateTime DefaultTimeSetting
         {
             get
             {
-                return GetValueOrDefault<DateTime>(DefaultReminderTimeKeyName, DefaultReminderTimeDefault);
+                return GetValueOrDefault<DateTime>(DefaultTimeKeyName, DefaultTimeDefault);
             }
             set
             {
-                if (AddOrUpdateValue(DefaultReminderTimeKeyName, value))
+                if (AddOrUpdateValue(DefaultTimeKeyName, value))
                 {
                     Save();
                 }
             }
         }
-
         #endregion
 
         #region EnableLiveTile
@@ -261,62 +252,6 @@ namespace SimpleTasks.ViewModels
         }
 
         #endregion
-
-        #region DEPRECATED FirstDayOfWeek
-
-        private const string FirstDayOfWeekKeyName = "FirstDayOfWeek";
-        private readonly DayOfWeek FirstDayOfWeekDefault = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-        public DayOfWeek FirstDayOfWeekSetting
-        {
-            get
-            {
-                return GetValueOrDefault<DayOfWeek>(FirstDayOfWeekKeyName, FirstDayOfWeekDefault);
-            }
-            set
-            {
-                if (AddOrUpdateValue(FirstDayOfWeekKeyName, value))
-                {
-                    Save();
-                }
-                ApplyFirstDayOfWeekSetting();
-            }
-        }
-
-        public List<KeyValuePair<DayOfWeek, string>> FirstDayOfWeekPickerItems { get; private set; }
-
-        private KeyValuePair<DayOfWeek, string> _firstDayOfWeekPickerSelectedItem;
-        public KeyValuePair<DayOfWeek, string> FirstDayOfWeekPickerSelectedItem
-        {
-            get
-            {
-                return _firstDayOfWeekPickerSelectedItem;
-            }
-            set
-            {
-                SetProperty(ref _firstDayOfWeekPickerSelectedItem, value);
-                FirstDayOfWeekSetting = value.Key;
-            }
-        }
-
-        private void ApplyFirstDayOfWeekSetting()
-        {
-            DateTimeExtensions.FirstDayOfWeek = FirstDayOfWeekSetting;
-        }
-
-        private void SetFirstDayOfWeekPicker()
-        {
-            FirstDayOfWeekPickerItems = new List<KeyValuePair<DayOfWeek, string>>();
-            for (int i = 0; i < Enum.GetNames(typeof(DayOfWeek)).Length; i++)
-                FirstDayOfWeekPickerItems.Add(new KeyValuePair<DayOfWeek, string>((DayOfWeek)i, CultureInfo.CurrentCulture.DateTimeFormat.DayNames[i].ToString()));
-
-            var selectedItems = FirstDayOfWeekPickerItems.Where((i) => { return i.Key == FirstDayOfWeekSetting; });
-            if (selectedItems.Count() > 0)
-                FirstDayOfWeekPickerSelectedItem = selectedItems.First();
-            else
-                FirstDayOfWeekPickerSelectedItem = FirstDayOfWeekPickerItems.First();
-        }
-
-        #endregion FirstDayOfWeek
 
         #region DeleteCompleted
 

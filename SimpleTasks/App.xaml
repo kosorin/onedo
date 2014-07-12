@@ -20,9 +20,9 @@
         <conv:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
         <conv:TimeToStringConverter x:Key="TimeToStringConverter" />
-        <conv:TaskToReminderDateStringConverter x:Key="TaskToReminderDateStringConverter" />
+        <conv:TaskToReminderStringConverter x:Key="TaskToReminderDateStringConverter" />
         <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
-        <conv:TaskToDueDateStringConverter x:Key="TaskToDueDateStringConverter" />
+        <conv:TaskToDueStringConverter x:Key="TaskToDueDateStringConverter" />
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <conv:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter" />
         <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />

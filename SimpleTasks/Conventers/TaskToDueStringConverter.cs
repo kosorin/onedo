@@ -3,11 +3,12 @@ using System.Globalization;
 using System.Windows.Data;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
+using System.Windows;
 using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Conventers
 {
-    public class TaskToReminderDateStringConverter : IValueConverter
+    public class TaskToDueStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -16,16 +17,9 @@ namespace SimpleTasks.Conventers
             if (value is TaskModel)
             {
                 TaskModel task = value as TaskModel;
-                if (task.ReminderDate.HasValue)
+                if (task.DueDate.HasValue)
                 {
-                    DateTime date = task.ReminderDate.Value;
-                    if (task.DueDate.HasValue)
-                    {
-                        if (date.Date == task.DueDate.Value.Date)
-                        {
-                            return date.ToShortTimeString();
-                        }
-                    }
+                    DateTime date = task.DueDate.Value;
 
                     int days = (int)(date - DateTimeExtensions.Today).TotalDays;
                     int daysToEndOfWeek = (int)(DateTimeExtensions.LastDayOfWeek - DateTimeExtensions.Today).TotalDays;
@@ -33,36 +27,53 @@ namespace SimpleTasks.Conventers
                     int daysToEndOfMonth = (int)(DateTimeExtensions.LastDayOfMonth - DateTimeExtensions.Today).TotalDays;
                     int daysToEndOfNextMonth = (int)(DateTimeExtensions.LastDayOfNextMonth - DateTimeExtensions.Today).TotalDays;
 
+                    string text = date.ToShortDateString();
                     if (days < 0)
                     {
-                        return string.Format("{0}, {1}", date.ToShortDateString(), date.ToShortTimeString());
+                        if (date.Year == DateTime.Today.Year)
+                        {
+                            text = string.Format("{0}", date.ToString("M", CultureInfo.CurrentCulture).ToLower());
+                        }
+                        else
+                        {
+                            text = string.Format("{0}", date.ToShortDateString().ToLower());
+                        }
                     }
                     else if (days == 0)
                     {
-                        return string.Format("{0}, {1}", AppResources.DateToday, date.ToShortTimeString());
+                        text = string.Format("{0}, {1}", AppResources.DateToday, date.ToShortTimeString());
                     }
                     else if (days == 1)
                     {
-                        return string.Format("{0}, {1}", AppResources.DateTomorrow, date.ToShortTimeString());
+                        text = string.Format("{0}, {1}", AppResources.DateTomorrow, date.ToShortTimeString());
                     }
                     else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= DateTimeExtensions.Today.AddDays(5).Date)
                     {
-                        return string.Format("{0}, {1}", date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date.ToShortTimeString());
+                        text = string.Format("{0}, {1}", date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date.ToShortTimeString());
                     }
                     else if (days > daysToEndOfWeek && days <= daysToEndOfNextWeek)
                     {
-                        return AppResources.DateNextWeek;
+                        text = string.Format("{0}, {1}", AppResources.DateNextWeek, date.ToString("dddd", CultureInfo.CurrentCulture).ToLower());
                     }
                     else if (days > daysToEndOfNextWeek && days <= daysToEndOfMonth)
                     {
-                        return AppResources.DateThisMonth;
+                        text = string.Format("{0}, {1}", AppResources.DateThisMonth, date.ToString("M", CultureInfo.CurrentCulture).ToLower());
                     }
                     else if (days > daysToEndOfMonth && days <= daysToEndOfNextMonth)
                     {
-                        return AppResources.DateNextMonth;
+                        text = string.Format("{0}, {1}", AppResources.DateNextMonth, date.ToString("M", CultureInfo.CurrentCulture).ToLower());
+                    }
+                    else if (days > daysToEndOfNextMonth && date.Year == DateTime.Today.Year)
+                    {
+                        text = string.Format("{0}", date.ToString("M", CultureInfo.CurrentCulture).ToLower());
+                    }
+                    else 
+                    {
+                        text = string.Format("{0}", date.ToShortDateString().ToLower());
                     }
 
-                    return date.ToShortDateString();
+
+                    return text;
                 }
             }
 

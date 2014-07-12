@@ -81,8 +81,7 @@
                 </Button>
 
                 <Grid x:Name="ItemsGrid"
-                      Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                      Margin="10,0">
+                      Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -142,7 +141,7 @@
                         <Grid x:Name="OuterGrid" Background="{TemplateBinding Background}">
                             <Border Style="{StaticResource BorderStyle}"
                                     BorderThickness="1">
-                                <Grid Width="64" Height="48">
+                                <Grid Width="68" Height="48">
                                     <Rectangle x:Name="BackgroundRectangle"
                                                Fill="{StaticResource PhoneInactiveBrush}"
                                                Opacity="0.45"/>
@@ -167,7 +166,7 @@
 
             <wpcontrols:Calendar x:Name="Calendar" 
                                  VerticalAlignment="Top" 
-                                 Margin="0,120,0,0" 
+                                 Margin="-1,120,-1,0" 
                                  Template="{StaticResource CalendarTemplate}"
                                  CalendarItemStyle="{StaticResource CalendarItemStyle}"/>
 

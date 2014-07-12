@@ -174,8 +174,14 @@ namespace SimpleTasks.Views
                 TaskModel task = new TaskModel()
                 {
                     Title = title,
-                    DueDate = App.Settings.DefaultDueDateSettingToDateTime
+                    DueDate = App.Settings.DefaultDate
                 };
+                if (task.DueDate != null)
+                {
+                    DateTime defaultTime = App.Settings.DefaultTimeSetting;
+                    task.DueDate = task.DueDate.Value.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+                }
+
                 App.Tasks.Add(task);
                 QuickAddTextBox.Text = "";
                 this.Focus();

@@ -3,12 +3,11 @@ using System.Globalization;
 using System.Windows.Data;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
-using System.Windows;
 using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Conventers
 {
-    public class TaskToDueDateStringConverter : IValueConverter
+    public class TaskToReminderStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -17,9 +16,16 @@ namespace SimpleTasks.Conventers
             if (value is TaskModel)
             {
                 TaskModel task = value as TaskModel;
-                if (task.DueDate.HasValue)
+                if (task.ReminderDate.HasValue)
                 {
-                    DateTime date = task.DueDate.Value;
+                    DateTime date = task.ReminderDate.Value;
+                    if (task.DueDate.HasValue)
+                    {
+                        if (date.Date == task.DueDate.Value.Date)
+                        {
+                            return date.ToShortTimeString();
+                        }
+                    }
 
                     int days = (int)(date - DateTimeExtensions.Today).TotalDays;
                     int daysToEndOfWeek = (int)(DateTimeExtensions.LastDayOfWeek - DateTimeExtensions.Today).TotalDays;
@@ -29,19 +35,19 @@ namespace SimpleTasks.Conventers
 
                     if (days < 0)
                     {
-                        return date.ToShortDateString();
+                        return string.Format("{0}, {1}", date.ToShortDateString(), date.ToShortTimeString());
                     }
                     else if (days == 0)
                     {
-                        return AppResources.DateToday;
+                        return string.Format("{0}, {1}", AppResources.DateToday, date.ToShortTimeString());
                     }
                     else if (days == 1)
                     {
-                        return AppResources.DateTomorrow;
+                        return string.Format("{0}, {1}", AppResources.DateTomorrow, date.ToShortTimeString());
                     }
                     else if (date.Date <= DateTimeExtensions.LastDayOfWeek || date.Date <= DateTimeExtensions.Today.AddDays(5).Date)
                     {
-                        return date.ToString("dddd", CultureInfo.CurrentCulture).ToLower();
+                        return string.Format("{0}, {1}", date.ToString("dddd", CultureInfo.CurrentCulture).ToLower(), date.ToShortTimeString());
                     }
                     else if (days > daysToEndOfWeek && days <= daysToEndOfNextWeek)
                     {
@@ -55,7 +61,7 @@ namespace SimpleTasks.Conventers
                     {
                         return AppResources.DateNextMonth;
                     }
-                    
+
                     return date.ToShortDateString();
                 }
             }

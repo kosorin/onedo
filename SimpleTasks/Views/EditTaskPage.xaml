@@ -426,24 +426,12 @@
                             <Button.Template>
                                 <ControlTemplate>
                                     <Grid Background="{TemplateBinding Background}">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CheckStates">
-                                                <VisualState x:Name="Checked">
-                                                    <Storyboard>
-                                                    </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unchecked">
-                                                    <Storyboard>
-                                                    </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="70" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <ContentControl Style="{StaticResource CalendarIcon}" Foreground="{StaticResource ButtonIconBrush}"/>
-                                        <TextBlock Grid.Column="1" Text="Tuesday, 7/15/2014" Style="{StaticResource ButtonTextStyle}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding DueDate, StringFormat='d'}" Style="{StaticResource ButtonTextStyle}" />
                                         <Button Grid.ColumnSpan="2" Style="{StaticResource ButtonCloseButtonStyle}" HorizontalAlignment="Right" Margin="5" />
                                     </Grid>
                                 </ControlTemplate>

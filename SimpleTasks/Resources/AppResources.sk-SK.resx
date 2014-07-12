@@ -141,9 +141,7 @@
   <data name="AboutRateReview" xml:space="preserve">
     <value>ohodnotiť aplikáciu</value>
   </data>
-  <data name="SettingsDefaultDueDate" xml:space="preserve">
-    <value>Predvolený termín</value>
-  </data>
+  
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
     <value>Odstrániť dokončené úlohy</value>
   </data>
@@ -277,9 +275,7 @@
   <data name="DueDate" xml:space="preserve">
     <value>Termín splnenia</value>
   </data>
-  <data name="SettingsDefaultReminderTime" xml:space="preserve">
-    <value>Predvolený čas pripomenutia</value>
-  </data>
+  
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>
   </data>

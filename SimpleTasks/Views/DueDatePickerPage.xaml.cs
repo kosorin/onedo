@@ -19,19 +19,16 @@ namespace SimpleTasks.Views
         public DueDatePickerPage()
         {
             InitializeComponent();
+            DataContext = this;
 
+            initDate = DateTime.Now; // TODO: vychozi datum podle nastaveni
             if (PhoneApplicationService.Current.State.ContainsKey("DueDate"))
             {
-                initDate = (PhoneApplicationService.Current.State["DueDate"] as DateTime?) ?? DateTime.Now;
+                initDate = (PhoneApplicationService.Current.State["DueDate"] as DateTime?) ?? initDate;
                 PhoneApplicationService.Current.State.Remove("DueDate");
             }
-            else
-            {
-                initDate = DateTime.Now; // TODO: vychozi datum podle nastaveni
-            }
 
-
-            Calendar.MinimumDate = initDate.AddMonths(-1);
+            Calendar.MinimumDate = (initDate < DateTime.Today ? initDate : DateTime.Today).AddMonths(-1);
             Calendar.MaximumDate = (initDate > DateTime.Today ? initDate : DateTime.Today).AddYears(2);
 
             Calendar.Sunday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[0].ToUpper();
@@ -44,8 +41,6 @@ namespace SimpleTasks.Views
             Calendar.StartingDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
             SelectDate(initDate);
-
-            DataContext = this;
         }
 
         private DateTime initDate;
@@ -80,11 +75,16 @@ namespace SimpleTasks.Views
             SelectDate(DateTimeExtensions.LastDayOfNextWeek);
         }
 
-        private void SelectDate(DateTime date)
+        public void SelectDate(DateTime date)
         {
-            Calendar.SelectedMonth = date.Month;
-            Calendar.SelectedYear = date.Year;
-            Calendar.SelectedDate = date;
+            SelectDate(date.Year, date.Month, date.Day);
+        }
+
+        public void SelectDate(int year, int month, int day)
+        {
+            Calendar.SelectedDate = new DateTime(year, month, day);
+            Calendar.SelectedMonth = month;
+            Calendar.SelectedYear = year;
             Calendar.Refresh();
         }
     }

@@ -46,13 +46,13 @@
                 <ScrollViewer>
                     <StackPanel>
 
-                        <!--Default due date-->
+                        <!--Default date-->
                         <StackPanel Margin="0,0,0,12">
-                            <TextBlock Text="{Binding LocalizedResources.SettingsDefaultDueDate, Source={StaticResource LocalizedStrings}}" 
+                            <TextBlock Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}}" 
                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <toolkit:ListPicker x:Name="DueDatePicker" 
-                                                ItemsSource="{Binding DueDatePickerItems, Mode=OneTime}"
-                                                SelectedItem="{Binding DueDatePickerSelectedItem, Mode=TwoWay}" 
+                            <toolkit:ListPicker x:Name="DatePicker" 
+                                                ItemsSource="{Binding DatePickerItems, Mode=OneTime}"
+                                                SelectedItem="{Binding DatePickerSelectedItem, Mode=TwoWay}" 
                                                 Margin="12,0,12,12">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
@@ -62,34 +62,10 @@
                             </toolkit:ListPicker>
                         </StackPanel>
 
-                        <!--First day of week-->
-                        <!--<StackPanel Margin="0,0,0,12">
-                            <TextBlock Text="{Binding LocalizedResources.SettingsFirstDayOfWeek, Source={StaticResource LocalizedStrings}}" 
-                                       Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <toolkit:ListPicker x:Name="FirstDayOfWeekPicker" 
-                                                ItemsSource="{Binding FirstDayOfWeekPickerItems, Mode=OneTime}"
-                                                SelectedItem="{Binding FirstDayOfWeekPickerSelectedItem, Mode=TwoWay}" 
-                                                Margin="12,0,12,12"
-                                                FullModeHeader="{Binding LocalizedResources.SettingsFirstDayOfWeekPickerHeader, Source={StaticResource LocalizedStrings}}">
-                                <toolkit:ListPicker.FullModeItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Value}"
-                                                   Style="{StaticResource PhoneTextExtraLargeStyle}"
-                                                   Margin="0,15"/>
-                                    </DataTemplate>
-                                </toolkit:ListPicker.FullModeItemTemplate>
-                                <toolkit:ListPicker.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Value}"/>
-                                    </DataTemplate>
-                                </toolkit:ListPicker.ItemTemplate>
-                            </toolkit:ListPicker>
-                        </StackPanel>-->
-
-                        <!--default reminder time-->
-                        <toolkit:TimePicker x:Name="ReminderTimePicker"
-                                            Header="{Binding LocalizedResources.SettingsDefaultReminderTime, Source={StaticResource LocalizedStrings}}"
-                                            Value="{Binding DefaultReminderTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
+                        <!--default time-->
+                        <toolkit:TimePicker x:Name="TimePicker"
+                                            Header="{Binding LocalizedResources.SettingsDefaultTime, Source={StaticResource LocalizedStrings}}"
+                                            Value="{Binding DefaultTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
 
                         <!--Automatically delete completed tasks-->
                         <StackPanel x:Name="DeleteCompletedDaysPanel"
