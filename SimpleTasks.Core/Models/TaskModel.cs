@@ -132,6 +132,17 @@ namespace SimpleTasks.Core.Models
         #endregion
 
         #region Reminder
+        private TimeSpan? _reminder = null;
+        public TimeSpan? Reminder
+        {
+            get { return _reminder; }
+            set
+            {
+                SetProperty(ref _reminder, value);
+                Modified = DateTime.Now;
+            }
+        }
+
         private DateTime? _reminderDate = null;
         [DataMember(Order = 5)]
         public DateTime? ReminderDate

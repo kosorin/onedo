@@ -6,6 +6,7 @@ using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -24,29 +25,6 @@ namespace SimpleTasks.Views
         public EditTaskPage()
         {
             InitializeComponent();
-
-            PageOverlayTransitionHide.Completed += (s2, e2) =>
-            {
-                PageOverlay.Visibility = Visibility.Collapsed;
-            };
-
-            DueDateGridShow.Completed += (s2, e2) =>
-            {
-                DueDateGrid.Height = 150;
-
-                DueDatePicker.IsEnabled = true;
-                DueTimePicker.IsEnabled = true;
-                ReminderPicker.IsEnabled = true;
-
-                DueDatePresetPicker.IsEnabled = true;
-                DueDatePresetPickerBorder.Width = 60;
-            };
-            DueDateGridHide.Completed += (s2, e2) =>
-            {
-                DueDateGrid.Visibility = Visibility.Collapsed;
-                DueDateGrid.Height = 0;
-                DueDatePresetPickerBorder.Width = 0;
-            };
         }
 
         #region Page
@@ -84,10 +62,9 @@ namespace SimpleTasks.Views
                         // Nastavení defaultního termínu
                         if (App.Settings.DefaultDueDateSettingToDateTime != null)
                         {
-                            DueDateToggleButton.IsChecked = true;
+                            //DueDateToggleButton.IsChecked = true;
                         }
                     }
-                    DueDatePresetPicker.SelectionChanged += DueDatePresetPicker_SelectionChanged;
                     this.Loaded -= firstTimeLoadHandler;
                 };
                 this.Loaded += firstTimeLoadHandler;
@@ -100,12 +77,11 @@ namespace SimpleTasks.Views
             }
             else
             {
+                // Příchod ze stránky výběru času.
                 if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
                 {
                     ViewModel.DueDate = (DateTime)PhoneApplicationService.Current.State["DueTime"];
                     PhoneApplicationService.Current.State.Remove("DueTime");
-
-                    //ViewModel.ReminderDate = newReminderTime;
                 }
             }
 
@@ -373,7 +349,7 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        #region Title a Detail
+        #region Název
         private void TitleTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -389,17 +365,12 @@ namespace SimpleTasks.Views
             TitleTextBox.Opacity = 1;
         }
 
-        private void DetailTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            BuildDetailTextAppBar();
-        }
+            DetailTextBox_LostFocus(sender, e);
 
-        private void TitleAndDetailTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            var focusedElement = FocusManager.GetFocusedElement();
-            if (focusedElement != TitleTextBox && focusedElement != DetailTextBox)
+            if (e.OriginalSource == TitleTextBox)
             {
-                BuildAppBar();
                 if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
                 {
                     TitleTextBoxNoTextStoryboard.Begin();
@@ -408,78 +379,67 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        #region Due Date a Reminder
-
-        private void DueToggleButton_Checked(object sender, RoutedEventArgs e)
+        #region Detail
+        private void DetailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            // Animace zobrazení
-            DueDateGrid.Visibility = Visibility.Visible;
-            DueDateGridHide.Pause();
-            DueDateGridShow.Begin();
-            DueDatePresetPickerHide.Pause();
-            DueDatePresetPickerShow.Begin();
+            BuildDetailTextAppBar();
         }
 
-        private void DueToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void DetailTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            // Animace skrytí
-            DueDatePresetPicker.IsEnabled = false;
-
-            DueDatePicker.IsEnabled = false;
-            DueTimePicker.IsEnabled = false;
-            ReminderPicker.IsEnabled = false;
-
-            DueDateGridShow.Pause();
-            DueDateGridHide.Begin();
-            DueDatePresetPickerShow.Pause();
-            DueDatePresetPickerHide.Begin();
-        }
-
-        private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-            if (phoneApplicationFrame != null)
+            var focusedElement = FocusManager.GetFocusedElement();
+            if (focusedElement != TitleTextBox && focusedElement != DetailTextBox)
             {
-                PhoneApplicationService.Current.State["DueTime"] = ViewModel.DueDate;
-                phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
-            }
-        }
-
-        private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            CustomMessageBox messageBox = new CustomMessageBox()
-            {
-                BorderBrush = new SolidColorBrush(Colors.Red),
-                BorderThickness = new Thickness(5),
-                
-                Caption = AppResources.DeleteTaskCaption,
-                Message = AppResources.DeleteTask
-                            + Environment.NewLine + Environment.NewLine
-                            + TitleTextBox.Text,
-                LeftButtonContent = AppResources.DeleteTaskYes,
-                RightButtonContent = AppResources.DeleteTaskNo
-            };
-
-            messageBox.Dismissed += (s1, e1) =>
-            {
-                if (e1.Result == CustomMessageBoxResult.LeftButton)
-                {
-                    ViewModel.Delete();
-                    GoBack();
-                }
-            };
-            messageBox.Show();
-        }
-
-        private void DueDatePresetPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DueDatePresetPicker.SelectedItem != null)
-            {
-                KeyValuePair<string, DateTime> pair = (KeyValuePair<string, DateTime>)DueDatePresetPicker.SelectedItem;
-                ViewModel.DueDate = pair.Value.AddHours(ViewModel.DueDate.Hour).AddMinutes(ViewModel.DueDate.Minute);
+                BuildAppBar();
             }
         }
         #endregion
 
+        #region Termín (datum+čas+připomenutí)
+        private bool hasDue = true;
+
+        private void ShowDue()
+        {
+            HideDueStoryboard.Pause();
+            ShowDueStoryboard.Begin();
+        }
+
+        private void HideDue()
+        {
+            ShowDueStoryboard.Pause();
+            HideDueStoryboard.Begin();
+        }
+        #endregion
+
+        #region Datum
+        private void DueDatePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (hasDue)
+            {
+                HideDue();
+            }
+            else
+            {
+                ShowDue();
+            }
+
+            hasDue = !hasDue;
+        }
+        #endregion
+
+        #region Čas
+        private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+            if (phoneApplicationFrame != null)
+            { // TODO: vymyslet navigaci
+                PhoneApplicationService.Current.State["DueTime"] = ViewModel.DueDate;
+                phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
+            }
+        }
+        #endregion
+
+        #region Připomenutí
+        #endregion
     }
 }

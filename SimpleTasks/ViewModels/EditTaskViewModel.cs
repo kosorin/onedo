@@ -38,11 +38,13 @@ namespace SimpleTasks.ViewModels
                 IsSetDueDate = (originalTask.DueDate != null);
                 DueDate = originalTask.DueDate ?? DateTime.Now;
                 IsSetReminderDate = (originalTask.ReminderDate != null);
+                Reminder = originalTask.Reminder;
                 ReminderDate = originalTask.ReminderDate ?? DateTime.Now;
                 IsComplete = originalTask.IsComplete;
             }
 
             BuildDueDatePresetList();
+            BuildReminderPresetList();
         }
 
         #region Data
@@ -98,6 +100,13 @@ namespace SimpleTasks.ViewModels
         {
             get { return _reminderDate; }
             set { SetProperty(ref _reminderDate, value); }
+        }
+
+        private TimeSpan? _reminder = null;
+        public TimeSpan? Reminder
+        {
+            get { return _reminder; }
+            set { SetProperty(ref _reminder, value); }
         }
 
         private bool _isSetReminderDate = false;
@@ -227,8 +236,10 @@ namespace SimpleTasks.ViewModels
         }
         #endregion
 
-        #region Date PresetList
+        #region PresetLists
         public List<KeyValuePair<string, DateTime>> DueDatePresetList { get; set; }
+
+        public List<TimeSpan?> ReminderPresetList { get; set; }
 
         private void BuildDueDatePresetList()
         {
@@ -248,6 +259,30 @@ namespace SimpleTasks.ViewModels
             DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextWeek, DateTimeExtensions.LastDayOfNextWeek));
             DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateThisMonth, DateTimeExtensions.LastDayOfMonth));
             DueDatePresetList.Add(new KeyValuePair<string, DateTime>(AppResources.DateNextMonth, DateTimeExtensions.LastDayOfNextMonth));
+        }
+
+        private void BuildReminderPresetList()
+        {
+            ReminderPresetList = new List<TimeSpan?>();
+            ReminderPresetList.Add(null);
+            ReminderPresetList.Add(TimeSpan.FromMinutes(5));
+            ReminderPresetList.Add(TimeSpan.FromMinutes(10));
+            ReminderPresetList.Add(TimeSpan.FromMinutes(15));
+            ReminderPresetList.Add(TimeSpan.FromMinutes(20));
+            ReminderPresetList.Add(TimeSpan.FromMinutes(30));
+            ReminderPresetList.Add(TimeSpan.FromMinutes(45));
+            ReminderPresetList.Add(TimeSpan.FromHours(1));
+            ReminderPresetList.Add(TimeSpan.FromHours(1.5));
+            ReminderPresetList.Add(TimeSpan.FromHours(2));
+            ReminderPresetList.Add(TimeSpan.FromHours(3));
+            ReminderPresetList.Add(TimeSpan.FromHours(4));
+            ReminderPresetList.Add(TimeSpan.FromHours(10));
+            ReminderPresetList.Add(TimeSpan.FromHours(18));
+            ReminderPresetList.Add(TimeSpan.FromDays(1));
+            ReminderPresetList.Add(TimeSpan.FromDays(2));
+            ReminderPresetList.Add(TimeSpan.FromDays(4));
+            ReminderPresetList.Add(TimeSpan.FromDays(7));
+            ReminderPresetList.Add(TimeSpan.FromDays(14));
         }
         #endregion
     }

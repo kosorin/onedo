@@ -8,14 +8,50 @@
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
     mc:Ignorable="d"
     Style="{StaticResource BasePickerPageStyle}">
-
+    <controls:BasePickerPage.Resources>
+        <Style x:Key="QuickButtonStyle" TargetType="Button">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+            <Setter Property="Margin" Value="0,-5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" Style="{StaticResource ButtonTextBlockStyle}" FontSize="20" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </controls:BasePickerPage.Resources>
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}" 
                    Text="{Binding LocalizedResources.ChooseTime, Source={StaticResource LocalizedStrings}}" />
 
-        <controls:RoundTimePicker x:Name="TimePicker"
+        <StackPanel VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center" 
+                    Margin="0,0,0,20">
+            <controls:RoundTimePicker x:Name="TimePicker"
                                   HorizontalAlignment="Center"
-                                  VerticalAlignment="Center" />
+                                  VerticalAlignment="Center"  />
+            <Grid VerticalAlignment="Bottom" Margin="15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel >
+                    <Button Content="{Binding LocalizedResources.TimeMorning, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Morning_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeNoon, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Noon_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeEvening, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Evening_Click" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="{Binding LocalizedResources.TimeLateMorning, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="LateMorning_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeAfternoon, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Afternoon_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeNight, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Night_Click" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 
 </controls:BasePickerPage>

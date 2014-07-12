@@ -792,6 +792,60 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to afternoon.
+        /// </summary>
+        public static string TimeAfternoon {
+            get {
+                return ResourceManager.GetString("TimeAfternoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to evening.
+        /// </summary>
+        public static string TimeEvening {
+            get {
+                return ResourceManager.GetString("TimeEvening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to late morning.
+        /// </summary>
+        public static string TimeLateMorning {
+            get {
+                return ResourceManager.GetString("TimeLateMorning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to morning.
+        /// </summary>
+        public static string TimeMorning {
+            get {
+                return ResourceManager.GetString("TimeMorning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to night.
+        /// </summary>
+        public static string TimeNight {
+            get {
+                return ResourceManager.GetString("TimeNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to noon.
+        /// </summary>
+        public static string TimeNoon {
+            get {
+                return ResourceManager.GetString("TimeNoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {

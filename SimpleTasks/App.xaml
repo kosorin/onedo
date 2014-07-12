@@ -17,8 +17,9 @@
         <helpcore:DateTimeExtensions x:Key="DateTimeExtensions"/>
 
         <!--Region Konvertory-->
+        <conv:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
-        <conv:TimeToStringConverter x:Key="TimeToStringConverter" /> 
+        <conv:TimeToStringConverter x:Key="TimeToStringConverter" />
         <conv:TaskToReminderDateStringConverter x:Key="TaskToReminderDateStringConverter" />
         <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
         <conv:TaskToDueDateStringConverter x:Key="TaskToDueDateStringConverter" />
@@ -68,19 +69,19 @@
             <Setter Property="Size" Value="40,30" />
             <Setter Property="Offset" Value="11,17" />
         </Style>
-        
+
         <Style x:Key="StarIconStyle" TargetType="controls:Icon">
             <Setter Property="Data" Value="F1 M 17.4167,32.25L 32.9107,32.25L 38,18L 43.0893,32.25L 58.5833,32.25L 45.6798,41.4944L 51.4583,56L 38,48.0833L 26.125,56L 30.5979,41.7104L 17.4167,32.25 Z" />
             <Setter Property="Size" Value="41.1667,38" />
             <Setter Property="Offset" Value="11,13" />
         </Style>
-        
+
         <Style x:Key="CheckIconStyle" TargetType="controls:Icon">
             <Setter Property="Data" Value="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z" />
             <Setter Property="Size" Value="37.9998,31.6665" />
             <Setter Property="Offset" Value="11.0001,14.1668" />
         </Style>
-        
+
         <Style x:Key="CalendarIconStyle" TargetType="controls:Icon">
             <Setter Property="Data" Value="F1 M 18.0025,57.0081L 18.0025,23.0032L 23.0032,23.0032L 23.0032,20.0028C 23.0033,18.898 23.8988,18.0025 25.0035,18.0025L 29.004,18.0025C 30.1087,18.0025 31.0042,18.898 31.0043,20.0026L 31.0043,23.0032L 45.0063,23.0032L 45.0062,20.0026C 45.0062,18.8978 45.9018,18.0023 47.0065,18.0023L 51.0071,18.0023C 52.1118,18.0023 53.0074,18.8978 53.0074,20.0026L 53.0074,23.0032L 58.0081,23.0032L 58.0081,57.0081L 18.0025,57.0081 Z M 21.0029,54.0077L 55.0076,54.0077L 55.0076,31.0044L 21.0029,31.0044L 21.0029,54.0077 Z M 23.0032,47.0066L 29.004,47.0066L 29.004,52.0073L 23.0032,52.0073L 23.0032,47.0066 Z M 31.0043,47.0066L 37.0051,47.0066L 37.0051,52.0073L 31.0043,52.0073L 31.0043,47.0066 Z M 39.0054,47.0066L 45.0062,47.0066L 45.0062,52.0073L 39.0054,52.0073L 39.0054,47.0066 Z M 47.0065,47.0066L 53.0074,47.0066L 53.0074,52.0073L 47.0065,52.0073L 47.0065,47.0066 Z M 23.0032,40.0056L 29.004,40.0056L 29.004,45.0063L 23.0032,45.0063L 23.0032,40.0056 Z M 31.0043,40.0056L 37.0051,40.0056L 37.0051,45.0063L 31.0043,45.0063L 31.0043,40.0056 Z M 39.0054,40.0056L 45.0062,40.0056L 45.0062,45.0063L 39.0054,45.0063L 39.0054,40.0056 Z M 47.0065,40.0056L 53.0074,40.0056L 53.0074,45.0063L 47.0065,45.0063L 47.0065,40.0056 Z M 31.0043,33.0048L 37.0051,33.0048L 37.0051,38.0055L 31.0043,38.0055L 31.0043,33.0048 Z M 39.0054,33.0048L 45.0062,33.0048L 45.0062,38.0055L 39.0054,38.0055L 39.0054,33.0048 Z M 47.0065,33.0048L 53.0074,33.0048L 53.0074,38.0055L 47.0065,38.0055L 47.0065,33.0048 Z M 48.5067,20.0029C 47.6782,20.0029 47.0065,20.6745 47.0065,21.5031L 47.0065,24.5035C 47.0065,25.332 47.6782,26.0037 48.5067,26.0037L 49.5068,26.0037C 50.3354,26.0037 51.0071,25.332 51.0071,24.5035L 51.0071,21.5031C 51.0071,20.6745 50.3354,20.0029 49.5068,20.0029L 48.5067,20.0029 Z M 26.5037,20.0028C 25.6751,20.0028 25.0035,20.6745 25.0035,21.503L 25.0035,24.5035C 25.0035,25.332 25.6751,26.0037 26.5037,26.0037L 27.5038,26.0037C 28.3324,26.0037 29.004,25.332 29.004,24.5035L 29.004,21.503C 29.004,20.6745 28.3324,20.0028 27.5038,20.0028L 26.5037,20.0028 Z M 32.0045,41.0057L 32.0045,44.0061L 36.005,44.0061L 36.005,41.0057L 32.0045,41.0057 Z" />
             <Setter Property="Size" Value="40.0056,39.0058" />
@@ -112,7 +113,7 @@
             <Setter Property="Size" Value="38,38" />
             <Setter Property="Offset" Value="10,12" />
         </Style>
-        
+
         <Style x:Key="DownArrowIconStyle" TargetType="controls:Icon">
             <Setter Property="Data" Value="F1 M 50,229.312 50,79.668 256,284.688 462,79.668 462,229.312 256,434.332" />
             <Setter Property="Size" Value="30,30" />
@@ -120,6 +121,31 @@
         </Style>
 
         <!--EndRegion-->
+
+
+        <!--Region EditTask, DueTimePicker-->
+
+        <!--Region Colors & Brushes-->
+        <Color x:Key="ButtonIconColor">#FFFFFFFF</Color>
+        <Color x:Key="ButtonBackgroundColor">#44FFFFFF</Color>
+        <Color x:Key="ButtonForegroundColor">#FFFFFFFF</Color>
+
+        <SolidColorBrush x:Key="TextBoxCaretBrush" Color="{StaticResource PhoneAccentColor}"/>
+        <SolidColorBrush x:Key="ButtonIconBrush" Color="{StaticResource ButtonIconColor}"/>
+        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}"/>
+        <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource ButtonForegroundColor}"/>
+        <!--EndRegion-->
+
+        <Style x:Key="ButtonTextStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+        </Style>
+
+        <!--EndRegion-->
+
 
         <!--Region Globální styly-->
         <SolidColorBrush x:Key="ApplicationBackgroundBrush" 
@@ -142,10 +168,6 @@
                                          L 24,63
                                          Z</sys:String>
 
-        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource PhoneDisabledColor}" />
-        
-        <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource PhoneForegroundColor}" />
-        
         <Style x:Key="ButtonBorderStyle" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}" />
             <Setter Property="Height" Value="60" />
@@ -163,9 +185,8 @@
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
-
         <!--EndRegion-->
-        
+
         <!--Region BasePickerPage-->
         <Style x:Key="BasePickerPageStyle" TargetType="controls:BasePickerPage">
             <Setter Property="SupportedOrientations" Value="Portrait" />

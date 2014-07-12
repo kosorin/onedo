@@ -29,6 +29,7 @@ namespace SimpleTasks.Views
                 initTime = DateTime.Now;
             }
 
+            TimePicker.SetTime(initTime);
             DataContext = this;
         }
 
@@ -43,6 +44,36 @@ namespace SimpleTasks.Views
                 TimePicker.Hours,
                 TimePicker.Minutes,
                 0);
+        }
+
+        private void Morning_Click(object sender, RoutedEventArgs e)
+        {
+            TimePicker.SetTime(7, 0);
+        }
+
+        private void LateMorning_Click(object sender, RoutedEventArgs e)
+        {
+            TimePicker.SetTime(10, 0);
+        }
+
+        private void Noon_Click(object sender, RoutedEventArgs e)
+        {
+            TimePicker.SetTime(12, 0);
+        }
+
+        private void Afternoon_Click(object sender, RoutedEventArgs e)
+        {
+            TimePicker.SetTime(15, 0);
+        }
+
+        private void Evening_Click(object sender, RoutedEventArgs e)
+        {
+            TimePicker.SetTime(19, 0);
+        }
+
+        private void Night_Click(object sender, RoutedEventArgs e)
+        {
+            TimePicker.SetTime(22, 0);
         }
     }
 }

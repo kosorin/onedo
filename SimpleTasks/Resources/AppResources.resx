@@ -371,4 +371,28 @@
   <data name="ChooseTime" xml:space="preserve">
     <value>CHOOSE TIME</value>
   </data>
+  <data name="TimeAfternoon" xml:space="preserve">
+    <value>afternoon</value>
+    <comment>3 PM</comment>
+  </data>
+  <data name="TimeEvening" xml:space="preserve">
+    <value>evening</value>
+    <comment>7 PM</comment>
+  </data>
+  <data name="TimeLateMorning" xml:space="preserve">
+    <value>late morning</value>
+    <comment>10 AM</comment>
+  </data>
+  <data name="TimeMorning" xml:space="preserve">
+    <value>morning</value>
+    <comment>7 AM</comment>
+  </data>
+  <data name="TimeNight" xml:space="preserve">
+    <value>night</value>
+    <comment>10 PM</comment>
+  </data>
+  <data name="TimeNoon" xml:space="preserve">
+    <value>noon</value>
+    <comment>12 PM</comment>
+  </data>
 </root>

@@ -96,9 +96,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BasePickerPage.cs" />
     <Compile Include="Controls\Icon.xaml.cs">
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MyTextBox.cs" />
+    <Compile Include="Controls\MyToggleButton.cs" />
     <Compile Include="Controls\RingSlice.cs" />
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
@@ -108,6 +111,7 @@
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToInvertedVisibilityConverter.cs" />
+    <Compile Include="Conventers\TimeSpanToStringConverter.cs" />
     <Compile Include="Conventers\TimeToStringConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Conventers\TaskToDueDateStringConverter.cs" />
@@ -240,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tiles\DefaultWideTaskTile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -284,6 +292,7 @@
       <Name>SimpleTasks.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />
