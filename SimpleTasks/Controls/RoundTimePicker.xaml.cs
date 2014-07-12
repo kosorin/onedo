@@ -35,12 +35,9 @@ namespace SimpleTasks.Controls
         {
             InitializeComponent();
 
-            DefaultHoursAnimationDuration = DurationFromSeconds(0.15);
-            DefaultMinutesAnimationDuration = DurationFromSeconds(0.18);
-
             Time = DateTime.Now;
             lastHourQuadrant = QuadrantFromAngle((Time.Hour % 12) * 30);
-            Animate(DurationFromSeconds(0.65));
+            Animate();
 
             DataContext = this;
         }
@@ -181,13 +178,6 @@ namespace SimpleTasks.Controls
             private set { SetProperty(ref _hoursAngleAnimateTo, value); }
         }
 
-        private Duration _defaultHoursAnimationDuration;
-        public Duration DefaultHoursAnimationDuration
-        {
-            get { return _defaultHoursAnimationDuration; }
-            set { SetProperty(ref _defaultHoursAnimationDuration, value); }
-        }
-
         private Duration _currentHoursAnimationDuration;
         public Duration CurrentHoursAnimationDuration
         {
@@ -222,13 +212,6 @@ namespace SimpleTasks.Controls
             private set { SetProperty(ref _minutesAngleAnimateTo, value); }
         }
 
-        private Duration _defaultMinutesAnimationDuration;
-        public Duration DefaultMinutesAnimationDuration
-        {
-            get { return _defaultMinutesAnimationDuration; }
-            set { SetProperty(ref _defaultMinutesAnimationDuration, value); }
-        }
-
         private Duration _currentMinutesAnimationDuration;
         public Duration CurrentMinutesAnimationDuration
         {
@@ -260,10 +243,7 @@ namespace SimpleTasks.Controls
                 }
             }
         }
-
         #endregion
-
-        public int MyProperty { get; set; }
 
         private bool _addTwelveToHours12;
         public bool AddTwelveToHours12
@@ -386,11 +366,15 @@ namespace SimpleTasks.Controls
         private void HoursAngleAnimation_Completed(object sender, EventArgs e)
         {
             HoursAngle = HoursAngleAnimateTo;
+            if (HoursAngle == 360)
+                HoursAngle = 0;
         }
 
         private void MinutesAngleAnimation_Completed(object sender, EventArgs e)
         {
             MinutesAngle = MinutesAngleAnimateTo;
+            if (MinutesAngle == 360)
+                MinutesAngle = 0;
         }
         #endregion
 
@@ -440,33 +424,35 @@ namespace SimpleTasks.Controls
             return new Duration(TimeSpan.FromSeconds(seconds));
         }
 
-        private void Animate(Duration? duration = null)
+        private void Animate()
         {
-            AnimateHours(duration ?? DefaultHoursAnimationDuration);
-            AnimateMinutes(duration ?? DefaultMinutesAnimationDuration);
+            AnimateHours();
+            AnimateMinutes();
         }
 
-        private void AnimateHours(Duration? duration = null)
+        private void AnimateHours()
         {
             HoursAngleAnimateFrom = HoursAngle;
             HoursAngleAnimateTo = Hours12 * 30;
 
-            if (HoursAngleAnimateFrom > 30 && HoursAngleAnimateTo == 0)
-                HoursAngleAnimateFrom = HoursAngleAnimateFrom - 360;
+            double diff = Math.Sqrt(Math.Abs(HoursAngleAnimateTo - HoursAngleAnimateFrom) / 10) / 8;
 
-            CurrentHoursAnimationDuration = duration ?? DefaultHoursAnimationDuration;
+            CurrentHoursAnimationDuration = DurationFromSeconds(diff);
+            Debug.WriteLine(CurrentHoursAnimationDuration);
             HoursAngleAnimation.Begin();
         }
 
-        private void AnimateMinutes(Duration? duration = null)
+        private void AnimateMinutes()
         {
             MinutesAngleAnimateFrom = MinutesAngle;
             MinutesAngleAnimateTo = Minutes * 6;
+            if (Minutes == 0 || Minutes == 60)
+            {
+                MinutesAngleAnimateTo = MinutesAngleAnimateFrom >= 180 ? 360 : 0;
+            }
 
-            if (MinutesAngleAnimateFrom > 6 && MinutesAngleAnimateTo == 0)
-                MinutesAngleAnimateFrom = MinutesAngleAnimateFrom - 360;
-
-            CurrentMinutesAnimationDuration = duration ?? DefaultMinutesAnimationDuration;
+            double diff = Math.Sqrt(Math.Abs(MinutesAngleAnimateTo - MinutesAngleAnimateFrom) / 10) / 8;
+            CurrentMinutesAnimationDuration = DurationFromSeconds(diff);
             MinutesAngleAnimation.Begin();
         }
         #endregion
