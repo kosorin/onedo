@@ -17,6 +17,8 @@
         <helpcore:DateTimeExtensions x:Key="DateTimeExtensions"/>
 
         <!--Region Konvertory-->
+        <toolkit:ListViewDateTimeConverter x:Key="RelativeTimeConverter" />
+        <conv:DateToBoolConverter x:Key="DateToBoolConverter" />
         <conv:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
         <conv:DateToStringConverter x:Key="DateToStringConverter" />
         <conv:TimeToStringConverter x:Key="TimeToStringConverter" />

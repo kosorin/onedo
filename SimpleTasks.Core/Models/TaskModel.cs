@@ -133,6 +133,7 @@ namespace SimpleTasks.Core.Models
 
         #region Reminder
         private TimeSpan? _reminder = null;
+        [DataMember(Order = 5)]
         public TimeSpan? Reminder
         {
             get { return _reminder; }
@@ -159,7 +160,7 @@ namespace SimpleTasks.Core.Models
             }
         }
 
-        public bool HasReminder { get { return ReminderDate != null; } }
+        public bool HasReminder { get { return DueDate != null && Reminder != null; } }
         #endregion
 
         #region Complete

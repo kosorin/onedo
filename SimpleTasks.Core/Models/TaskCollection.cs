@@ -50,7 +50,7 @@ namespace SimpleTasks.Core.Models
         {
             Debug.WriteLine(string.Format("> Ukládám data do souboru {0}...", fileName));
 
-            string data = JsonConvert.SerializeObject(tasks, Newtonsoft.Json.Formatting.Indented);
+            string data = JsonConvert.SerializeObject(tasks, Formatting.Indented);
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 using (Stream stream = isf.OpenFile(fileName, FileMode.Create, FileAccess.Write))

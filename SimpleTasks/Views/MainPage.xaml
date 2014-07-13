@@ -91,7 +91,7 @@
                                          Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
                                          To="0"
                                          Duration="0:0:0.3"/>-->
-                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
+                        <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1.0"
                                          Duration="0:0:0.35">
@@ -131,7 +131,7 @@
                                          Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
                                          To="90"
                                          Duration="0:0:0.3"/>-->
-                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
+                        <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0.45"
                                          Duration="0:0:0.35">
@@ -199,10 +199,40 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock x:Name="TitleTextBox"
-                                   Text="{Binding Task.Title}"
-                                   Style="{StaticResource ButtonTextBlockStyle}"
-                                   Margin="8,10,0,15"/>
+                        <StackPanel x:Name="TaskTitleAndPriority" Orientation="Horizontal">
+              
+                            <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
+                                               Color="{StaticResource PhoneAccentBrush}"
+                                               Opacity="1"
+                                               Margin="-9,0,-20,0"
+                                               MaxHeight="0"
+                                               RenderTransformOrigin="0,0">
+                                    <controls:Icon.RenderTransform>
+                                        <CompositeTransform ScaleX="1" ScaleY="1" TranslateY="-32"/>
+                                    </controls:Icon.RenderTransform>
+                                </controls:Icon>
+                            </Border>
+
+                            <Border Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
+                                               Color="{StaticResource PhoneDisabledBrush}"
+                                               Opacity=".6"
+                                               Margin="-9,0,-20,0"
+                                               MaxHeight="0"
+                                               RenderTransformOrigin="0,0">
+                                    <controls:Icon.RenderTransform>
+                                        <CompositeTransform ScaleX="1" ScaleY="1" TranslateY="-32"/>
+                                    </controls:Icon.RenderTransform>
+                                </controls:Icon>
+                            </Border>
+                            
+                            <TextBlock x:Name="TitleTextBox"
+                                       Text="{Binding Task.Title}"
+                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Margin="8,10,0,15"/>
+                        </StackPanel>
+                       
                         <StackPanel x:Name="TaskInfoStackPanel" 
                                     Orientation="Vertical"
                                     Grid.Row="1"
@@ -246,36 +276,6 @@
                                         </controls:Icon>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
                                                    Text="{Binding Task, Converter={StaticResource TaskToReminderDateStringConverter}}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
-                                                       Color="{StaticResource PhoneAccentBrush}"
-                                                       Opacity="1"
-                                                       Margin="0,0,-32,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
-                                                       Color="{StaticResource PhoneForegroundBrush}"
-                                                       Opacity="0.6"
-                                                       Margin="0,0,-31,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>

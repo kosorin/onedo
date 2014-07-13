@@ -9,83 +9,39 @@ using System.Windows.Controls.Primitives;
 
 namespace SimpleTasks.Controls
 {
-    public class MyToggleButton : ToggleButton
+    [TemplateVisualState(Name = CheckedState, GroupName = CheckStates)]
+    [TemplateVisualState(Name = UncheckedState, GroupName = CheckStates)]
+    public class MyToggleButton : Button
     {
-        #region Icons
-        public static readonly DependencyProperty IndeterminateIconProperty =
-            DependencyProperty.Register("IndeterminateIcon", typeof(ContentControl), typeof(MyToggleButton), null);
+        private const string CheckStates = "CheckStates";
 
-        public ContentControl IndeterminateIcon
+        private const string CheckedState = "Checked";
+
+        private const string UncheckedState = "Unchecked";
+
+        public static readonly DependencyProperty IsCheckedProperty =
+            DependencyProperty.Register("IsChecked", typeof(bool), typeof(MyToggleButton), 
+            new PropertyMetadata(false, new PropertyChangedCallback(OnIsCheckedPropertyChanged)));
+
+        public bool IsChecked
         {
-            get { return base.GetValue(IndeterminateIconProperty) as ContentControl; }
-            set { base.SetValue(IndeterminateIconProperty, value); }
+            get { return (bool)base.GetValue(IsCheckedProperty); }
+            set { base.SetValue(IsCheckedProperty, value); }
         }
 
-        public static readonly DependencyProperty UncheckedIconProperty =
-            DependencyProperty.Register("UncheckedIcon", typeof(ContentControl), typeof(MyToggleButton), null);
-
-        public ContentControl UncheckedIcon
+        private static void OnIsCheckedPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            get { return base.GetValue(UncheckedIconProperty) as ContentControl; }
-            set { base.SetValue(UncheckedIconProperty, value); }
+            MyToggleButton tb = sender as MyToggleButton;
+            if (tb != null)
+            {
+                VisualStateManager.GoToState(tb, tb.IsChecked? CheckedState : UncheckedState, true);
+            }
         }
 
-        public static readonly DependencyProperty CheckedIconProperty =
-            DependencyProperty.Register("CheckedIcon", typeof(ContentControl), typeof(MyToggleButton), null);
-
-        public ContentControl CheckedIcon
+        public void ApplyStates()
         {
-            get { return base.GetValue(CheckedIconProperty) as ContentControl; }
-            set { base.SetValue(CheckedIconProperty, value); }
+            VisualStateManager.GoToState(this, IsChecked ? CheckedState : UncheckedState, true);
         }
-
-        public static readonly DependencyProperty ActualIconProperty =
-            DependencyProperty.Register("ActualIcon", typeof(ContentControl), typeof(MyToggleButton), null);
-
-        public ContentControl ActualIcon
-        {
-            get { return base.GetValue(ActualIconProperty) as ContentControl; }
-            private set { base.SetValue(ActualIconProperty, value); }
-        }
-        #endregion
-
-        #region Texts
-        public static readonly DependencyProperty IndeterminateTextProperty =
-            DependencyProperty.Register("IndeterminateText", typeof(string), typeof(MyToggleButton), null);
-
-        public string IndeterminateText
-        {
-            get { return base.GetValue(IndeterminateTextProperty) as string; }
-            set { base.SetValue(IndeterminateTextProperty, value); }
-        }
-
-        public static readonly DependencyProperty UncheckedTextProperty =
-            DependencyProperty.Register("UncheckedText", typeof(string), typeof(MyToggleButton), null);
-
-        public string UncheckedText
-        {
-            get { return base.GetValue(UncheckedTextProperty) as string; }
-            set { base.SetValue(UncheckedTextProperty, value); }
-        }
-
-        public static readonly DependencyProperty CheckedTextProperty =
-            DependencyProperty.Register("CheckedText", typeof(string), typeof(MyToggleButton), null);
-
-        public string CheckedText
-        {
-            get { return base.GetValue(CheckedTextProperty) as string; }
-            set { base.SetValue(CheckedTextProperty, value); }
-        }
-
-        public static readonly DependencyProperty ActualTextProperty =
-            DependencyProperty.Register("ActualText", typeof(string), typeof(MyToggleButton), null);
-
-        public string ActualText
-        {
-            get { return base.GetValue(ActualTextProperty) as string; }
-            private set { base.SetValue(ActualTextProperty, value); }
-        }
-        #endregion
 
         public MyToggleButton()
         {

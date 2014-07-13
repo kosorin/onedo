@@ -66,7 +66,7 @@
         </trans-unit>
         <trans-unit translate="yes" id="Resx/ChooseDueDate" xml:space="preserve">
           <source>CHOOSE DATE</source>
-          <target state="needs-review-translation">ZVOLTE TERMÍN SPLNĚNÍ</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note></trans-unit>
+          <target state="signed-off">ZVOLTE DATUM</target></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
           <source>save</source>
           <target state="signed-off">uložit</target>
@@ -150,7 +150,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
           <source>Default date</source>
-          <target state="new">Default date</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">Výchozí datum</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteAfterOneDay" xml:space="preserve">
           <source>after 1 day</source>
@@ -224,7 +224,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
-          <target state="new">Default time</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">Výchozí čas</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/Reminder" xml:space="preserve">
           <source>reminder</source>
@@ -308,27 +308,37 @@
         <trans-unit id="Resx/TimeNoon" translate="yes" xml:space="preserve">
           <source>noon</source>
           <target state="signed-off">poledne</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">12 PM</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">12 PM</note>
+          </trans-unit>
+        <trans-unit id="Resx/NoReminder" translate="yes" xml:space="preserve">
+          <source>no reminder</source>
+          <target state="signed-off">žádné připomenutí</target>
+        </trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
           <target state="signed-off">noc</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">10 PM</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">10 PM</note>
+          </trans-unit>
         <trans-unit id="Resx/TimeMorning" translate="yes" xml:space="preserve">
           <source>morning</source>
           <target state="signed-off">ráno</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">7 AM</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">7 AM</note>
+          </trans-unit>
         <trans-unit id="Resx/TimeLateMorning" translate="yes" xml:space="preserve">
           <source>late morning</source>
           <target state="signed-off">dopoledne</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">10 AM</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">10 AM</note>
+          </trans-unit>
         <trans-unit id="Resx/TimeEvening" translate="yes" xml:space="preserve">
           <source>evening</source>
           <target state="signed-off">večer</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">7 PM</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">7 PM</note>
+          </trans-unit>
         <trans-unit id="Resx/TimeAfternoon" translate="yes" xml:space="preserve">
           <source>afternoon</source>
           <target state="signed-off">odpoledne</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">3 PM</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">3 PM</note>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>
           <target state="signed-off">připnout</target>

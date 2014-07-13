@@ -130,7 +130,7 @@ namespace SimpleTasks.Views
 
                 // datum & čas
                 IsSetDueDate = (task.DueDate != null);
-                DueDate = task.DueDate ?? DateTime.Today;
+                DueDate = task.DueDate ?? (defaultDate ?? DateTime.Today);
                 if (task.DueDate == null)
                 {
                     DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
@@ -151,13 +151,16 @@ namespace SimpleTasks.Views
                 {
                     // Zobrazení klávesnice
                     TitleTextBox.Focus();
-
-                    // Nastavení defaultního termínu
-                    if (App.Settings.DefaultDate != null)
-                    {
-                        //DueDateToggleButton.IsChecked = true;
-                    }
                 }
+
+                // Bez tohoto se to jaksi nechce samo změnit
+                DueDatePicker.ApplyStates();
+                ReminderPicker.ApplyStates();
+
+                // Aby nebylo vidět případné skrytí
+                HideReminderStoryboard.SkipToFill();
+                HideDueStoryboard.SkipToFill();
+
                 this.Loaded -= firstTimeLoadHandler;
             };
             this.Loaded += firstTimeLoadHandler;
@@ -192,7 +195,7 @@ namespace SimpleTasks.Views
 
         #region Task properties
         private string _title = "";
-        public string Title
+        public new string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
@@ -227,12 +230,11 @@ namespace SimpleTasks.Views
             {
                 if (value)
                 {
-                    DateTime? newDueDate = App.Settings.DefaultDate;
-                    if (newDueDate == null)
-                    {
-                        newDueDate = DateTimeExtensions.Today;
-                    }
-                    DueDate = newDueDate.Value;
+                    ShowDue();
+                }
+                else
+                {
+                    HideDue();
                 }
                 SetProperty(ref _isSetDueDate, value);
             }
@@ -260,17 +262,11 @@ namespace SimpleTasks.Views
             {
                 if (value)
                 {
-                    DateTime defaultReminderTime = App.Settings.DefaultTimeSetting;
-                    if (IsSetDueDate)
-                    {
-                        ReminderDate = DueDate.Date.AddHours(defaultReminderTime.Hour)
-                                                   .AddMinutes(defaultReminderTime.Minute);
-                    }
-                    else
-                    {
-                        ReminderDate = DateTime.Today.Date.AddHours(defaultReminderTime.Hour)
-                                                          .AddMinutes(defaultReminderTime.Minute);
-                    }
+                    ShowReminder();
+                }
+                else
+                {
+                    HideReminder();
                 }
                 SetProperty(ref _isSetReminderDate, value);
             }
@@ -660,35 +656,39 @@ namespace SimpleTasks.Views
         #region Termín (datum+čas+připomenutí)
         private void ShowDue()
         {
+            DueDatePicker.ApplyStates();
             HideDueStoryboard.Pause();
             ShowDueStoryboard.Begin();
         }
 
         private void HideDue()
         {
+            DueDatePicker.ApplyStates();
             ShowDueStoryboard.Pause();
             HideDueStoryboard.Begin();
+        }
+
+        private void DueDateCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            IsSetDueDate = false;
         }
         #endregion
 
         #region Datum
         private void DueDatePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //if (hasDue)
-            //{
-            //    HideDue();
-            //}
-            //else
-            //{
-            //    ShowDue();
-            //}
-
-            //hasDue = !hasDue;
-            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-            if (phoneApplicationFrame != null)
-            { // TODO: vymyslet navigaci
-                PhoneApplicationService.Current.State["DueDate"] = DueDate;
-                phoneApplicationFrame.Navigate(new Uri("/Views/DueDatePickerPage.xaml", UriKind.Relative));
+            if (IsSetDueDate)
+            {
+                var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+                if (phoneApplicationFrame != null)
+                { // TODO: vymyslet navigaci
+                    PhoneApplicationService.Current.State["DueDate"] = DueDate;
+                    phoneApplicationFrame.Navigate(new Uri("/Views/DueDatePickerPage.xaml", UriKind.Relative));
+                }
+            }
+            else
+            {
+                IsSetDueDate = true;
             }
         }
         #endregion
@@ -706,6 +706,34 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Připomenutí
+        private void ShowReminder()
+        {
+            ReminderPicker.ApplyStates();
+            HideReminderStoryboard.Pause();
+            ShowReminderStoryboard.Begin();
+        }
+
+        private void HideReminder()
+        {
+            ReminderPicker.ApplyStates();
+            ShowReminderStoryboard.Pause();
+            HideReminderStoryboard.Begin();
+        }
+
+        private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (IsSetReminder)
+            {
+            }
+            else
+            {
+                IsSetReminder = true;
+            }
+        }
+        private void ReminderCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            IsSetReminder = false;
+        }
         #endregion
     }
 }

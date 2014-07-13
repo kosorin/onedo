@@ -11,9 +11,35 @@ using SimpleTasks.Controls;
 using System.Globalization;
 using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
+using WPControls;
+using System.Windows.Media;
 
 namespace SimpleTasks.Views
 {
+    public class CalendarColorConverter : IDateToBrushConverter
+    {
+        public CalendarColorConverter(Brush inactiveItemBrush)
+        {
+            InactiveItemBrush = inactiveItemBrush;
+        }
+
+        public Brush InactiveItemBrush { get; set; }
+
+        public Brush Convert(DateTime dateTime, bool isSelected, Brush defaultValue, BrushType brushType)
+        {
+            if (isSelected)
+            {
+                return defaultValue;
+            }
+            
+            if (dateTime.Date < DateTime.Today && brushType == BrushType.Foreground)
+            {
+                return InactiveItemBrush;
+            }
+            return defaultValue;
+        }
+    }
+
     public partial class DueDatePickerPage : BasePickerPage
     {
         public DueDatePickerPage()
@@ -21,12 +47,14 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = this;
 
-            initDate = DateTime.Now; // TODO: vychozi datum podle nastaveni
+            initDate = DateTime.Today; 
             if (PhoneApplicationService.Current.State.ContainsKey("DueDate"))
             {
                 initDate = (PhoneApplicationService.Current.State["DueDate"] as DateTime?) ?? initDate;
                 PhoneApplicationService.Current.State.Remove("DueDate");
             }
+
+            Calendar.ColorConverter = new CalendarColorConverter(Resources["CalendarItemSubtleBrush"] as Brush);
 
             Calendar.MinimumDate = (initDate < DateTime.Today ? initDate : DateTime.Today).AddMonths(-1);
             Calendar.MaximumDate = (initDate > DateTime.Today ? initDate : DateTime.Today).AddYears(2);

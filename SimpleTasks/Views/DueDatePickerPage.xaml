@@ -19,7 +19,11 @@
         </Style>
 
         <SolidColorBrush x:Key="BorderBrush" Color="#666" />
+        <SolidColorBrush x:Key="CalendarItemBrush" Color="#fff" />
+        <SolidColorBrush x:Key="CalendarItemSubtleBrush" Color="#666" />
         
+        <SolidColorBrush x:Key="InfoForegroundBrush" Color="#fff" />
+
         <Style x:Key="BorderStyle" TargetType="Border" >
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
@@ -138,7 +142,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="wpcontrols:CalendarItem">
-                        <Grid x:Name="OuterGrid" Background="{TemplateBinding Background}">
+                        <Grid x:Name="OuterGrid" Background="{TemplateBinding Background}"
+                              IsHitTestVisible="{Binding ItemDate, Converter={StaticResource DateToBoolConverter}, RelativeSource={RelativeSource TemplatedParent}}">
                             <Border Style="{StaticResource BorderStyle}"
                                     BorderThickness="1">
                                 <Grid Width="68" Height="48">
@@ -148,7 +153,9 @@
                                     <TextBlock x:Name="DayNumberBlock" 
                                                Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}" 
                                                FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                                               FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                               FontSize="28" 
+                                               Foreground="{TemplateBinding Foreground}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Grid>
                             </Border>
                         </Grid>

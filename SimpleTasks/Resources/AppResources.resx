@@ -395,4 +395,7 @@
     <value>noon</value>
     <comment>12 PM</comment>
   </data>
+  <data name="NoReminder" xml:space="preserve">
+    <value>no reminder</value>
+  </data>
 </root>

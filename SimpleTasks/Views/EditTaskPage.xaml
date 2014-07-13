@@ -163,6 +163,23 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="CloseIcon" TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                            <Path Data="F1 M 77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 " 
+                                  Width="30" Height="30" 
+                                  Canvas.Left="10" Canvas.Top="10"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--EndRegion-->
 
         <Style x:Key="ButtonCloseButtonStyle" TargetType="Button">
@@ -288,7 +305,7 @@
 
         <Storyboard x:Name="ShowDueStoryboard">
             <ColorAnimation Storyboard.TargetName="DueDatePicker" 
-                            Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                            Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                             To="{StaticResource PhoneAccentColor}"
                             Duration="0:0:0.4"/>
 
@@ -300,16 +317,24 @@
                     <CircleEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="DueDateCloseButton" 
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.4"/>
             <DoubleAnimation Storyboard.TargetName="DueTimePicker" 
                              Storyboard.TargetProperty="Opacity"
                              To="1"
                              Duration="0:0:0.3"
                              BeginTime="0:0:0.15"/>
-            <DoubleAnimation Storyboard.TargetName="ReminderPicker" 
+            <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
                              Storyboard.TargetProperty="Opacity"
                              To="1"
                              Duration="0:0:0.3"
                              BeginTime="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueTimePicker"
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
@@ -318,12 +343,17 @@
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
             </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+
         <Storyboard x:Name="HideDueStoryboard">
             <ColorAnimation Storyboard.TargetName="DueDatePicker" 
-                            Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                            Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                             To="{StaticResource ButtonBackgroundColor}"
-                            Duration="0:0:0.3"
+                            Duration="0:0:0.4"
                             BeginTime="0:0:0.3"/>
             <DoubleAnimation Storyboard.TargetName="DueGrid" 
                              Storyboard.TargetProperty="Height"
@@ -334,20 +364,56 @@
                     <CubicEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="DueDateCloseButton" 
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.4"
+                             BeginTime="0:0:0.3"/>
             <DoubleAnimation Storyboard.TargetName="DueTimePicker" 
                              Storyboard.TargetProperty="Opacity"
                              To="0"
                              Duration="0:0:0.3"
                              BeginTime="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetName="ReminderPicker" 
+            <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
                              Storyboard.TargetProperty="Opacity"
                              To="0"
                              Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueTimePicker"
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderPicker"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+
+        <Storyboard x:Name="ShowReminderStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ReminderCloseButton" 
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.4"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="HideReminderStoryboard">
+            <DoubleAnimation Storyboard.TargetName="ReminderCloseButton" 
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.4"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
@@ -419,24 +485,70 @@
                         </Grid.RowDefinitions>
 
                         <!--Datum-->
-                        <Button x:Name="DueDatePicker" Grid.Row="0" Tap="DueDatePicker_Tap">
-                            <Button.Background>
-                                <SolidColorBrush x:Name="DueDatePickerBackground" Color="{StaticResource PhoneAccentColor}" />
-                            </Button.Background>
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Grid Background="{TemplateBinding Background}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <ContentControl Style="{StaticResource CalendarIcon}" Foreground="{StaticResource ButtonIconBrush}"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding DueDate, StringFormat='d'}" Style="{StaticResource ButtonTextStyle}" />
-                                        <Button Grid.ColumnSpan="2" Style="{StaticResource ButtonCloseButtonStyle}" HorizontalAlignment="Right" Margin="5" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <controls:MyToggleButton x:Name="DueDatePicker" Tap="DueDatePicker_Tap" Grid.ColumnSpan="2"
+                                          IsChecked="{Binding IsSetDueDate}">
+                                <controls:MyToggleButton.Background>
+                                    <SolidColorBrush x:Name="DueDatePickerBackground" Color="{StaticResource PhoneAccentColor}" />
+                                </controls:MyToggleButton.Background>
+                                <controls:MyToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid Background="{TemplateBinding Background}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CheckSatets">
+                                                    <VisualState x:Name="Checked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="DateText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="1"
+                                                                             Duration="0:0:0.4"/>
+                                                            <DoubleAnimation Storyboard.TargetName="NoDateText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="0"
+                                                                             Duration="0:0:0.4"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unchecked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="DateText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="0"
+                                                                             Duration="0:0:0.4"
+                                                                             BeginTime="0:0:0.4"/>
+                                                            <DoubleAnimation Storyboard.TargetName="NoDateText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="1"
+                                                                             Duration="0:0:0.4"
+                                                                             BeginTime="0:0:0.4"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentControl Style="{StaticResource CalendarIcon}" Foreground="{StaticResource ButtonIconBrush}"/>
+                                            <TextBlock x:Name="DateText" Grid.Column="1" Text="{Binding DueDate, StringFormat='d'}" Style="{StaticResource ButtonTextStyle}"/>
+                                            <TextBlock x:Name="NoDateText" Grid.Column="1" Text="{Binding LocalizedResources.DateNoDue, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonTextStyle}"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </controls:MyToggleButton.Template>
+                            </controls:MyToggleButton>
+                            <Button x:Name="DueDateCloseButton" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}" Tap="DueDateCloseButton_Tap">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid Background="#70000000">
+                                            <ContentControl Style="{StaticResource CloseIcon}" Foreground="{StaticResource ButtonIconBrush}" Opacity="0.75"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
 
                         <!--Čas-->
                         <Button x:Name="DueTimePicker" Grid.Row="1" Tap="DueTimePicker_Tap">
@@ -457,23 +569,67 @@
                         </Button>
 
                         <!--Připomenutí-->
-                        <ToggleButton x:Name="ReminderPicker" Grid.Row="2">
-                            <ToggleButton.Template>
-                                <ControlTemplate>
-                                    <Border Background="{StaticResource PhoneAccentBrush}">
-                                        <Grid Background="#33000000">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <ContentControl Style="{StaticResource ReminderIcon}" Foreground="{StaticResource ButtonIconBrush}"/>
-                                            <TextBlock Grid.Column="1" Text="15 minutes" Style="{StaticResource ButtonTextStyle}" />
-                                            <Button Grid.ColumnSpan="2" Style="{StaticResource ButtonCloseButtonStyle}" HorizontalAlignment="Right" Margin="5" />
+                        <Grid x:Name="ReminderPickerGrid" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <controls:MyToggleButton x:Name="ReminderPicker" Grid.ColumnSpan="2" Tap="ReminderPicker_Tap"
+                                                     IsChecked="{Binding IsSetReminder}">
+                                <controls:MyToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Border Background="{StaticResource PhoneAccentBrush}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CheckSatets">
+                                                    <VisualState x:Name="Checked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="ReminderText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="1"
+                                                                             Duration="0:0:0.4"/>
+                                                            <DoubleAnimation Storyboard.TargetName="NoReminderText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="0"
+                                                                             Duration="0:0:0.4"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Unchecked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="ReminderText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="0"
+                                                                             Duration="0:0:0.4"/>
+                                                            <DoubleAnimation Storyboard.TargetName="NoReminderText" 
+                                                                             Storyboard.TargetProperty="Opacity"
+                                                                             To="1"
+                                                                             Duration="0:0:0.4"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid Background="#33000000">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <ContentControl Style="{StaticResource ReminderIcon}" Foreground="{StaticResource ButtonIconBrush}"/>
+                                                <TextBlock x:Name="ReminderText" Grid.Column="1" Text="{Binding Reminder, Converter={StaticResource TimeSpanToStringConverter}}" Style="{StaticResource ButtonTextStyle}" />
+                                                <TextBlock x:Name="NoReminderText" Grid.Column="1" Text="{Binding LocalizedResources.NoReminder, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonTextStyle}" />
+                                            </Grid>
+                                        </Border>
+                                    </ControlTemplate>
+                                </controls:MyToggleButton.Template>
+                            </controls:MyToggleButton>
+                            <Button x:Name="ReminderCloseButton" Tap="ReminderCloseButton_Tap" Grid.Column="1" Background="{StaticResource PhoneAccentBrush}">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Grid Background="#70000000">
+                                            <ContentControl Style="{StaticResource CloseIcon}" Foreground="{StaticResource ButtonIconBrush}" Opacity="0.75"/>
                                         </Grid>
-                                    </Border>
-                                </ControlTemplate>
-                            </ToggleButton.Template>
-                        </ToggleButton>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
                     </Grid>
 
                     <!--Priorita-->

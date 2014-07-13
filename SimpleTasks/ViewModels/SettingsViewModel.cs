@@ -115,17 +115,17 @@ namespace SimpleTasks.ViewModels
         #endregion
 
         #region DefaultDate
-        private const string DefaultDueDateKeyName = "DefaultDueDate";
+        private const string DefaultDateKeyName = "DefaultDueDate";
         private const DefaultDateTypes DefaultDateDefault = DefaultDateTypes.NextWeek;
         public DefaultDateTypes DefaultDateSetting
         {
             get
             {
-                return GetValueOrDefault<DefaultDateTypes>(DefaultDueDateKeyName, DefaultDateDefault);
+                return GetValueOrDefault<DefaultDateTypes>(DefaultDateKeyName, DefaultDateDefault);
             }
             set
             {
-                if (AddOrUpdateValue(DefaultDueDateKeyName, value))
+                if (AddOrUpdateValue(DefaultDateKeyName, value))
                 {
                     Save();
                 }

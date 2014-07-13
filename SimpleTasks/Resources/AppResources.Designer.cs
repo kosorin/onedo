@@ -531,6 +531,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no reminder.
+        /// </summary>
+        public static string NoReminder {
+            get {
+                return ResourceManager.GetString("NoReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All tasks are completed..
         /// </summary>
         public static string NoTasks {

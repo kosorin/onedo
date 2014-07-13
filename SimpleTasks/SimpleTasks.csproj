@@ -111,6 +111,7 @@
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />
     <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToInvertedVisibilityConverter.cs" />
+    <Compile Include="Conventers\DateToBoolConverter.cs" />
     <Compile Include="Conventers\TimeSpanToStringConverter.cs" />
     <Compile Include="Conventers\TimeToStringConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
