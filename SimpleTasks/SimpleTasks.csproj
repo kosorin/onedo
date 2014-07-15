@@ -105,6 +105,7 @@
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Conventers\ToUpperConverter.cs" />
     <Compile Include="Conventers\BooleanNegationConverter.cs" />
     <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
     <Compile Include="Conventers\BooleanToNumberConverter.cs" />

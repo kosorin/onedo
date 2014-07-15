@@ -41,37 +41,30 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.Resources>
+        <!--Barvy-->
         <SolidColorBrush x:Key="TasksLongListSelectorBackgroundBrush" 
                          Color="{StaticResource PhoneSubtleColor}" 
                          Opacity="0.2"/>
 
-        <Style x:Key="TextBlockInfo" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="22" />
-            <Setter Property="Margin" Value="0,1,8,0" />
-            <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
-        </Style>
-
+        <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Grid Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
-                  Margin="0,0,0,0"
-                  Height="50"
+            <Grid Margin="0,0,0,0"
+                  Height="70"
                   toolkit:TiltEffect.SuppressTilt="True">
+                <TextBlock Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" 
+                           Opacity="0.75"
+                           Foreground="{StaticResource PhoneForegroundBrush}" 
+                           FontSize="32"
+                           FontWeight="Light"
+                           VerticalAlignment="Center" Margin="10,0,0,10"/>
                 <Border Background="{StaticResource PhoneAccentBrush}"
-                        Padding="10,0,10,5"
-                        HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding Title}" 
-                               Foreground="{StaticResource PhoneForegroundBrush}" 
-                               FontSize="24"
-                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                               VerticalAlignment="Center"/>
-                </Border>
-                <Border Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
                         Height="10"
+                        Opacity="0.6"
                         VerticalAlignment="Bottom"/>
             </Grid>
         </DataTemplate>
 
+        <!--Task Context Menu-->
         <Style x:Key="TaskMenuItemBorderStyle" TargetType="Border">
             <Setter Property="Width" Value="110"/>
             <Setter Property="Margin" Value="5,0" />
@@ -91,7 +84,6 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Margin" Value="0,15,0,0" />
         </Style>
-        
         <ControlTemplate x:Key="TaskMenuTemplate" TargetType="toolkit:ContextMenu">
             <StackPanel x:Name="OuterPanel">
                 <VisualStateManager.VisualStateGroups>
@@ -261,6 +253,13 @@
             </StackPanel>
         </ControlTemplate>
 
+        <!--Task-->
+        <Style x:Key="TextBlockInfo" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="Margin" Value="0,1,8,0" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
+        </Style>
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border x:Name="RootBorder"
                     BorderThickness="0,0,0,1"
@@ -355,7 +354,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <!--Check Box-->
                     <Border Margin="12,15,2,0"
                             Tap="Border_Tap" >
@@ -384,7 +383,7 @@
                             </ContentControl>
                         </Grid>
                     </Border>
-                    
+
                     <!--Info-->
                     <Grid Grid.Column="1"
                           Tap="Grid_Tap"
@@ -476,7 +475,7 @@
                                             </ContentControl.RenderTransform>
                                         </ContentControl>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding Task, Converter={StaticResource TimeSpanToStringConverter}}"/>
+                                                   Text="{Binding Task.Reminder, Converter={StaticResource TimeSpanToStringConverter}}"/>
                                     </StackPanel>
 
                                 </StackPanel>
@@ -499,6 +498,7 @@
             </Border>
         </DataTemplate>
 
+        <!--Quick Add TextBox-->
         <Style x:Key="QuickAddTextBoxHintStyle" TargetType="ContentControl">
             <Setter Property="FontFamily" Value="Segoe UI Symbol" />
             <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
@@ -513,7 +513,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"  />
         </Grid.RowDefinitions>
-        
+
         <!--Úkoly-->
         <Grid x:Name="ContentPanel" Grid.Row="1">
             <phone:LongListSelector x:Name="TasksLongListSelector"
@@ -534,11 +534,6 @@
                        Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
                        TextWrapping="Wrap" 
                        TextAlignment="Center"/>
-
-            <Rectangle Fill="{StaticResource PhoneAccentBrush}"
-                   Opacity="0.6"
-                   Height="10" 
-                   VerticalAlignment="Bottom"/>
         </Grid>
 
         <!--Overlay úkolů-->
@@ -585,6 +580,10 @@
         </Rectangle>
 
         <!--Quick add-->
+        <Rectangle Grid.Row="1" Fill="{StaticResource PhoneAccentBrush}"
+                   Opacity="0.6"
+                   Height="10" 
+                   VerticalAlignment="Bottom"/>
         <Grid Grid.Row="2">
             <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
                                   Hint="&#8230;&#xe104;"

@@ -43,11 +43,11 @@ namespace SimpleTasks.Models
                         completedGroup.Add(taskWrapper);
                     else if (!task.DueDate.HasValue)
                         somedayGroup.Add(taskWrapper);
-                    else if (task.DueDate < DateTimeExtensions.Today)
+                    else if (task.DueDate.Value.Date < DateTimeExtensions.Today)
                         overdueGroup.Add(taskWrapper);
-                    else if (task.DueDate == DateTimeExtensions.Today)
+                    else if (task.DueDate.Value.Date == DateTimeExtensions.Today)
                         todayGroup.Add(taskWrapper);
-                    else if (task.DueDate == DateTimeExtensions.Tomorrow)
+                    else if (task.DueDate.Value.Date == DateTimeExtensions.Tomorrow)
                         tomorrowGroup.Add(taskWrapper);
                     else
                         upcomingGroup.Add(taskWrapper);
@@ -57,7 +57,7 @@ namespace SimpleTasks.Models
             // Seřazení úkolů ve skupinách
             overdueGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t1.Task.DueDate.Value, t2.Task.DueDate.Value);
+                return DateTime.Compare(t1.Task.DueDate.Value.Date, t2.Task.DueDate.Value.Date);
             });
 
             todayGroup.Sort((t1, t2) =>
@@ -72,7 +72,7 @@ namespace SimpleTasks.Models
 
             upcomingGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t1.Task.DueDate.Value, t2.Task.DueDate.Value);
+                return DateTime.Compare(t1.Task.DueDate.Value.Date, t2.Task.DueDate.Value.Date);
             });
 
             somedayGroup.Sort((t1, t2) =>
@@ -82,7 +82,7 @@ namespace SimpleTasks.Models
 
             completedGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t2.Task.CompletedDate.Value, t1.Task.CompletedDate.Value);
+                return DateTime.Compare(t2.Task.CompletedDate.Value.Date, t1.Task.CompletedDate.Value.Date);
             });
 
             return groups;

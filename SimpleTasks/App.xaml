@@ -23,6 +23,7 @@
             <!--EndRegion-->
             
             <!--Region Konvertory-->
+            <conv:ToUpperConverter x:Key="ToUpperConverter" />
             <conv:DateToBoolConverter x:Key="DateToBoolConverter" />
             <conv:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
             <conv:DateToStringConverter x:Key="DateToStringConverter" />
