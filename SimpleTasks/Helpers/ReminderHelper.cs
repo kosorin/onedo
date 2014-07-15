@@ -13,12 +13,12 @@ namespace SimpleTasks.Helpers
     {
         public static void Add(TaskModel task)
         {
-            if (task.ReminderDate.HasValue)
+            if (task.HasReminder)
             {
                 Add(task.Uid,
                     task.Title,
                     task.Detail,
-                    task.ReminderDate.Value,
+                    task.ReminderDate,
                     new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
             }
         }

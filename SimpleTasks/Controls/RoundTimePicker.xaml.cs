@@ -366,15 +366,11 @@ namespace SimpleTasks.Controls
         private void HoursAngleAnimation_Completed(object sender, EventArgs e)
         {
             HoursAngle = HoursAngleAnimateTo;
-            if (HoursAngle == 360)
-                HoursAngle = 0;
         }
 
         private void MinutesAngleAnimation_Completed(object sender, EventArgs e)
         {
             MinutesAngle = MinutesAngleAnimateTo;
-            if (MinutesAngle == 360)
-                MinutesAngle = 0;
         }
         #endregion
 

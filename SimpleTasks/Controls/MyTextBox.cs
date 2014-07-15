@@ -1,10 +1,12 @@
 ﻿using Microsoft.Phone.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -128,18 +130,18 @@ namespace SimpleTasks.Controls
         }
 
         /// <summary>
-        /// Identifies the HintStyle DependencyProperty.
+        /// Identifies the HintForeground DependencyProperty.
         /// </summary>
-        public static readonly DependencyProperty HintStyleProperty =
-            DependencyProperty.Register("HintStyle", typeof(Style), typeof(MyTextBox), null);
+        public static readonly DependencyProperty HintForegroundProperty =
+            DependencyProperty.Register("HintForeground", typeof(Brush), typeof(MyTextBox), null);
 
         /// <summary>
         /// Gets or sets the Hint style
         /// </summary>
-        public Style HintStyle
+        public Brush HintForeground
         {
-            get { return base.GetValue(HintStyleProperty) as Style; }
-            set { base.SetValue(HintStyleProperty, value); }
+            get { return base.GetValue(HintForegroundProperty) as Brush; }
+            set { base.SetValue(HintForegroundProperty, value); }
         }
 
         /// <summary>

@@ -38,7 +38,7 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource ApplicationBackgroundBrush}">
+          Background="{StaticResource PageBackgroundBrush}">
         <phone:Pivot Title="{Binding LocalizedResources.SettingsTitle, Source={StaticResource LocalizedStrings}}">
 
             <!--General-->

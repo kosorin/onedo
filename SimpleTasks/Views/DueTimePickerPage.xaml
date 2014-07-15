@@ -26,14 +26,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel >
-                    <Button Content="{Binding LocalizedResources.TimeMorning, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Morning_Click" />
-                    <Button Content="{Binding LocalizedResources.TimeNoon, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Noon_Click" />
-                    <Button Content="{Binding LocalizedResources.TimeEvening, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Evening_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeMorning, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Morning_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeNoon, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Noon_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeEvening, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Evening_Click" />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Button Content="{Binding LocalizedResources.TimeLateMorning, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="LateMorning_Click" />
-                    <Button Content="{Binding LocalizedResources.TimeAfternoon, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Afternoon_Click" />
-                    <Button Content="{Binding LocalizedResources.TimeNight, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Night_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeLateMorning, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="LateMorning_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeAfternoon, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Afternoon_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeNight, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Night_Click" />
                 </StackPanel>
             </Grid>
         </StackPanel>

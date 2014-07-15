@@ -1,0 +1,68 @@
+﻿<controls:BasePickerPage
+    x:Class="SimpleTasks.Views.ReminderPickerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    Style="{StaticResource BasePickerPageStyle}">
+    
+    <controls:BasePickerPage.Resources>
+        <SolidColorBrush x:Key="TimeForegroundBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="1.0"/>
+        <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="0.4"/>
+    </controls:BasePickerPage.Resources>
+
+    <Grid Style="{StaticResource BasePickerPageRootStyle}">
+        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}" 
+                   Text="{Binding LocalizedResources.ChooseReminderTime, Source={StaticResource LocalizedStrings}}" />
+
+        <StackPanel VerticalAlignment="Bottom" 
+                    Margin="0,0,0,20">
+
+            <TextBlock Margin="0,15,0,15"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
+				   Foreground="{StaticResource TimeForegroundSubtleBrush}" 
+				   FontFamily="{StaticResource PhoneFontFamilyLight}" >
+                <Run Text="{Binding RoundValue, ElementName=DaySlider}" Foreground="{StaticResource TimeForegroundBrush}"/>d
+                <Run Text="{Binding RoundValue, ElementName=HourSlider, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}"/>h
+                <Run Text="{Binding RoundValue, ElementName=MinuteSlider, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}" />m
+            </TextBlock>
+
+            <Grid Margin="0,0,0,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <controls:MySlider Grid.Row="2" x:Name="MinuteSlider" Label="{Binding LocalizedResources.MinutesLabel, Source={StaticResource LocalizedStrings}}" Maximum="59" Margin="30,0"/>
+                <controls:MySlider Grid.Row="1" x:Name="HourSlider" Label="{Binding LocalizedResources.HoursLabel, Source={StaticResource LocalizedStrings}}" Maximum="23" Margin="30,0,30,-60" Mask="#33000000"/>
+                <controls:MySlider Grid.Row="0" x:Name="DaySlider" Label="{Binding LocalizedResources.DaysLabel, Source={StaticResource LocalizedStrings}}" Maximum="30" Margin="30,0,30,-60" Mask="#66000000"/>
+            </Grid>
+
+            <Grid VerticalAlignment="Bottom" Margin="15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel >
+                    <Button Content="in due time" Tag="0:0:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="15 minutes" Tag="0:0:15" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="1 hour" Tag="0:1:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click"  />
+                    <Button Content="1 day" Tag="1:0:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="5 minutes" Tag="0:0:5" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="30 minutes" Tag="0:0:30" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="18 hours" Tag="0:18:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="1 week" Tag="7:0:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+
+</controls:BasePickerPage>

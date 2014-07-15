@@ -16,6 +16,7 @@ using Microsoft.Phone.Scheduler;
 using SimpleTasks.Helpers;
 using System.Collections.Generic;
 using System.Windows.Media.Animation;
+using System.Windows.Input;
 
 namespace SimpleTasks.Views
 {
@@ -152,9 +153,8 @@ namespace SimpleTasks.Views
         private void BuildTasksdAppBar()
         {
             ApplicationBar = new ApplicationBar();
-
+            
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
-
             foreach (var item in appBarMenuItems)
             {
                 ApplicationBar.MenuItems.Add(item);
@@ -229,29 +229,28 @@ namespace SimpleTasks.Views
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Go to the dentist",
-                DueDate = DateTimeExtensions.Today.AddDays(2),
+                DueDate = DateTimeExtensions.Today.AddDays(2).AddHours(10).AddMinutes(35),
                 CompletedDate = DateTime.Now
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Call Chuck",
-                DueDate = DateTimeExtensions.Today.AddDays(0),
-                ReminderDate = DateTimeExtensions.Today.AddHours(21).AddMinutes(13),
+                DueDate = DateTimeExtensions.Today.AddDays(0).AddHours(16).AddMinutes(00),
+                Reminder = TimeSpan.FromDays(1),
                 Priority = TaskPriority.High
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Simple list",
                 Detail = " \u2022 just simple\n \u2022 bulleted list\n \u2022 I don't know\n \u2022 what to say",
-                DueDate = DateTimeExtensions.Today.AddDays(5),
-                ReminderDate = DateTimeExtensions.Today.AddHours(65).AddMinutes(27),
+                DueDate = DateTimeExtensions.Today.AddDays(5).AddHours(7).AddMinutes(0),
                 Priority = TaskPriority.Low
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Math project",
-                DueDate = DateTimeExtensions.Today.AddDays(3),
-                ReminderDate = DateTimeExtensions.Today.AddDays(4).AddHours(13).AddMinutes(42)
+                DueDate = DateTimeExtensions.Today.AddDays(3).AddHours(21).AddMinutes(18),
+                Reminder = TimeSpan.FromHours(1)
             });
 
             if (App.ForceDebugCulture == "cs-CZ")
@@ -307,7 +306,7 @@ namespace SimpleTasks.Views
             if (task.IsActive)
             {   // DOKONČENÍ
                 task.CompletedDate = DateTime.Now;
-                task.ReminderDate = null;
+                task.Reminder = null;
                 if (App.Settings.UnpinCompletedSetting)
                 {
                     LiveTile.Unpin(task);
@@ -439,7 +438,6 @@ namespace SimpleTasks.Views
             ApplicationBar.Buttons.Add(appBarSaveQuickButton);
             ApplicationBar.Buttons.Add(appBarCancelQuickButton);
         }
-
         #endregion
 
     }

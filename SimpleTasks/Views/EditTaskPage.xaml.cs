@@ -93,6 +93,13 @@ namespace SimpleTasks.Views
                     DueDate = (DateTime)PhoneApplicationService.Current.State["DueTime"];
                     PhoneApplicationService.Current.State.Remove("DueTime");
                 }
+
+                // Příchod ze stránky výběru připomenutí.
+                if (PhoneApplicationService.Current.State.ContainsKey("Reminder"))
+                {
+                    Reminder = (TimeSpan)PhoneApplicationService.Current.State["Reminder"];
+                    PhoneApplicationService.Current.State.Remove("Reminder");
+                }
             }
 
             BuildAppBar();
@@ -316,9 +323,9 @@ namespace SimpleTasks.Views
                 ReminderDate = DateTime.Now.AddMinutes(2);
             }
             if (IsSetReminder)
-                Original.ReminderDate = ReminderDate;
+                Original.Reminder = Reminder;
             else
-                Original.ReminderDate = null;
+                Original.Reminder = null;
 
             // Completed Date
             if (IsComplete)
@@ -724,12 +731,19 @@ namespace SimpleTasks.Views
         {
             if (IsSetReminder)
             {
+                var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+                if (phoneApplicationFrame != null)
+                { // TODO: vymyslet navigaci
+                    PhoneApplicationService.Current.State["Reminder"] = Reminder;
+                    phoneApplicationFrame.Navigate(new Uri("/Views/ReminderPickerPage.xaml", UriKind.Relative));
+                }
             }
             else
             {
                 IsSetReminder = true;
             }
         }
+
         private void ReminderCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             IsSetReminder = false;

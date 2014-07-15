@@ -72,19 +72,11 @@ namespace SimpleTasks.ViewModels
         {
             Tasks = TaskCollection.LoadFromFile(DataFileName);
 #if DEBUG
-            var reminders = new List<Reminder>(ScheduledActionService.GetActions<Reminder>());
             Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
-                if (ReminderHelper.Exists(task))
-                    reminders.Remove(ReminderHelper.Get(task));
-                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, ReminderHelper.Exists(task));
-            }
-
-            Debug.WriteLine("> Přebývající připomenutí ({0}):", reminders.Count);
-            foreach (var reminder in reminders)
-            {
-                Debug.WriteLine(": {1} ({0})", reminder.Name, reminder.Title);
+                Reminder reminder = ReminderHelper.Get(task);
+                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null? reminder.Name : "<false>");
             }
 #endif
         }
@@ -97,7 +89,7 @@ namespace SimpleTasks.ViewModels
         public void Add(TaskModel task)
         {
             Tasks.Add(task);
-            if (task.ReminderDate != null)
+            if (task.HasReminder)
             {
                 ReminderHelper.Add(task);
             }
@@ -106,7 +98,7 @@ namespace SimpleTasks.ViewModels
         public void Update(TaskModel task)
         {
             ReminderHelper.Remove(task);
-            if (task.ReminderDate != null)
+            if (task.HasReminder)
             {
                 ReminderHelper.Add(task);
             }

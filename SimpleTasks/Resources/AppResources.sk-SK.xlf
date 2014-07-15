@@ -314,6 +314,18 @@
           <source>no reminder</source>
           <target state="signed-off">bez pripomenutia</target>
         </trans-unit>
+        <trans-unit id="Resx/MinutesLabel" translate="yes" xml:space="preserve">
+          <source>MINUTES</source>
+          <target state="new">MINUTES</target>
+        </trans-unit>
+        <trans-unit id="Resx/HoursLabel" translate="yes" xml:space="preserve">
+          <source>HOURS</source>
+          <target state="new">HOURS</target>
+        </trans-unit>
+        <trans-unit id="Resx/DaysLabel" translate="yes" xml:space="preserve">
+          <source>DAYS</source>
+          <target state="new">DAYS</target>
+        </trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
           <target state="signed-off">noc</target>

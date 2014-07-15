@@ -183,12 +183,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel >
-                    <Button Content="{Binding LocalizedResources.DateToday, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Today_Click" />
-                    <Button Content="{Binding LocalizedResources.DateThisWeek, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="ThisWeek_Click" />
+                    <Button Content="{Binding LocalizedResources.DateToday, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Today_Click" />
+                    <Button Content="{Binding LocalizedResources.DateThisWeek, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="ThisWeek_Click" />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Button Content="{Binding LocalizedResources.DateTomorrow, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="Tomorrow_Click" />
-                    <Button Content="{Binding LocalizedResources.DateNextWeek, Source={StaticResource LocalizedStrings}}" Style="{StaticResource QuickButtonStyle}" Click="NextWeek_Click" />
+                    <Button Content="{Binding LocalizedResources.DateTomorrow, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Tomorrow_Click" />
+                    <Button Content="{Binding LocalizedResources.DateNextWeek, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="NextWeek_Click" />
                 </StackPanel>
             </Grid>
         </Grid>

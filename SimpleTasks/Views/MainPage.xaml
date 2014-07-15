@@ -72,6 +72,195 @@
             </Grid>
         </DataTemplate>
 
+        <Style x:Key="TaskMenuItemBorderStyle" TargetType="Border">
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Margin" Value="5,0" />
+        </Style>
+        <Style x:Key="TaskMenuItemIconStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <Style x:Key="TaskMenuItemTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Segoe WP"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,15,0,0" />
+        </Style>
+        
+        <ControlTemplate x:Key="TaskMenuTemplate" TargetType="toolkit:ContextMenu">
+            <StackPanel x:Name="OuterPanel">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="VisibilityStates">
+                        <VisualState x:Name="Open">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleX" Storyboard.TargetProperty="ScaleX">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleY" Storyboard.TargetProperty="ScaleY">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:.3" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:.42" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border1" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border2" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border1Reversed" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border2Reversed" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenReversed">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleX" Storyboard.TargetProperty="ScaleX">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleY" Storyboard.TargetProperty="ScaleY">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.42" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border1Reversed" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border2Reversed" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border1" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border2" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenLandscape">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleX" Storyboard.TargetProperty="ScaleY">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleY" Storyboard.TargetProperty="ScaleX">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.42" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border1" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border2" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border1Reversed" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border2Reversed" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="OpenLandscapeReversed">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleX" Storyboard.TargetProperty="ScaleY">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="ScaleY" Storyboard.TargetProperty="ScaleX">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.42" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border1Reversed" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border2Reversed" Storyboard.TargetProperty="Opacity" To="1"/>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border1" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Duration="0:0:0.42" Storyboard.TargetName="Border2" Storyboard.TargetProperty="Opacity">
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.4099" Value="0"/>
+                                    <LinearDoubleKeyFrame KeyTime="0:0:0.41" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Closed">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="ScaleX" Storyboard.TargetProperty="ScaleX" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="ScaleX" Storyboard.TargetProperty="ScaleY" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="ScaleY" Storyboard.TargetProperty="ScaleY" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="ScaleY" Storyboard.TargetProperty="ScaleX" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border1" Storyboard.TargetProperty="Opacity" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border2" Storyboard.TargetProperty="Opacity" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border1Reversed" Storyboard.TargetProperty="Opacity" To="0"/>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Border2Reversed" Storyboard.TargetProperty="Opacity" To="0"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <StackPanel.RenderTransform>
+                    <ScaleTransform x:Name="ScaleX"/>
+                </StackPanel.RenderTransform>
+
+                <Rectangle MinWidth="2" MinHeight="2" Fill="{TemplateBinding BorderBrush}" x:Name="Border1"/>
+                <Rectangle MinWidth="2" MinHeight="2" Fill="{TemplateBinding Background}" x:Name="Border2"/>
+                <Grid x:Name="InnerGrid" Background="{TemplateBinding Background}">
+                    <Grid.RenderTransform>
+                        <ScaleTransform x:Name="ScaleY"/>
+                    </Grid.RenderTransform>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="0,20" Grid.Row="1" HorizontalAlignment="Center">
+                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe1fd;"/>
+                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="today" />
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe1cc;"  />
+                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="tomorrow"  />
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe111;"  />
+                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="next week" />
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe143;"  />
+                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="someday" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <Rectangle MinWidth="2" MinHeight="2" Fill="{TemplateBinding Background}" x:Name="Border1Reversed"/>
+                <Rectangle MinWidth="2" MinHeight="2" Fill="{TemplateBinding BorderBrush}" x:Name="Border2Reversed"/>
+            </StackPanel>
+        </ControlTemplate>
+
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border x:Name="RootBorder"
                     BorderThickness="0,0,0,1"
@@ -158,11 +347,16 @@
                                         Storyboard.TargetName="CompleteButtonRectangle" />
                     </Storyboard>
                 </Border.Resources>
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu Template="{StaticResource TaskMenuTemplate}" />
+                </toolkit:ContextMenuService.ContextMenu>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    
+                    <!--Check Box-->
                     <Border Margin="12,15,2,0"
                             Tap="Border_Tap" >
                         <Grid Width="40"
@@ -178,20 +372,20 @@
                                                      Opacity="0.8"/>
                                 </Rectangle.Stroke>
                             </Rectangle>
-                            <controls:Icon x:Name="CompleteIcon"
+                            <ContentControl x:Name="CompleteIcon"
                                            Style="{StaticResource CheckIconStyle}"
-                                           Color="{StaticResource PhoneSubtleBrush}"
-                                           Margin="0,0,0,0"
-                                           Opacity="0"
+                                           Foreground="{StaticResource PhoneSubtleBrush}"
+                                           Opacity="{Binding Task.IsComplete, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}"
                                            MaxHeight="0"
-                                           MaxWidth="0"
-                                           RenderTransformOrigin="0,0">
-                                <controls:Icon.RenderTransform>
-                                    <CompositeTransform ScaleX="0.75" ScaleY="0.75" TranslateY="-22" TranslateX="-22" />
-                                </controls:Icon.RenderTransform>
-                            </controls:Icon>
+                                           MaxWidth="0">
+                                <ContentControl.RenderTransform>
+                                    <CompositeTransform ScaleX="0.75" ScaleY="0.75" TranslateY="-18" TranslateX="-18" />
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
                         </Grid>
                     </Border>
+                    
+                    <!--Info-->
                     <Grid Grid.Column="1"
                           Tap="Grid_Tap"
                           Background="Transparent">
@@ -199,40 +393,43 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+
+                        <!--Horní info-->
                         <StackPanel x:Name="TaskTitleAndPriority" Orientation="Horizontal">
-              
+
+                            <!--Vysoká priorita-->
                             <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
-                                               Color="{StaticResource PhoneAccentBrush}"
+                                <ContentControl Style="{StaticResource HighPriorityIconStyle}"
+                                               Foreground="{StaticResource PhoneAccentBrush}"
                                                Opacity="1"
-                                               Margin="-9,0,-20,0"
-                                               MaxHeight="0"
-                                               RenderTransformOrigin="0,0">
-                                    <controls:Icon.RenderTransform>
-                                        <CompositeTransform ScaleX="1" ScaleY="1" TranslateY="-32"/>
-                                    </controls:Icon.RenderTransform>
-                                </controls:Icon>
+                                               Margin="-5,0,-16,50"
+                                               MaxHeight="0">
+                                </ContentControl>
                             </Border>
 
+                            <!--Nízká priorita-->
                             <Border Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
-                                               Color="{StaticResource PhoneDisabledBrush}"
+                                <ContentControl Style="{StaticResource LowPriorityIconStyle}"
+                                               Foreground="{StaticResource PhoneDisabledBrush}"
                                                Opacity=".6"
-                                               Margin="-9,0,-20,0"
+                                               Margin="-5,0,-16,40"
                                                MaxHeight="0"
-                                               RenderTransformOrigin="0,0">
-                                    <controls:Icon.RenderTransform>
-                                        <CompositeTransform ScaleX="1" ScaleY="1" TranslateY="-32"/>
-                                    </controls:Icon.RenderTransform>
-                                </controls:Icon>
+                                               RenderTransformOrigin="0.5,0.5">
+                                    <ContentControl.RenderTransform>
+                                        <CompositeTransform ScaleX="0.8" ScaleY="0.8" />
+                                    </ContentControl.RenderTransform>
+                                </ContentControl>
                             </Border>
-                            
+
+                            <!--Název-->
                             <TextBlock x:Name="TitleTextBox"
                                        Text="{Binding Task.Title}"
-                                       Style="{StaticResource ButtonTextBlockStyle}"
+                                       Style="{StaticResource ButtonTextStyle}"
                                        Margin="8,10,0,15"/>
+
                         </StackPanel>
-                       
+
+                        <!--Spodní info-->
                         <StackPanel x:Name="TaskInfoStackPanel" 
                                     Orientation="Vertical"
                                     Grid.Row="1"
@@ -245,47 +442,55 @@
                             <StackPanel.Projection>
                                 <PlaneProjection RotationX="0" CenterOfRotationY="0"/>
                             </StackPanel.Projection>
+
+                            <!--Datum+připomenutí-->
                             <Grid MaxHeight="32"
                                   x:Name="TaskInfoMoreInfo"
                                   Margin="0,0,0,10">
                                 <StackPanel Orientation="Horizontal">
+
+                                    <!--Datum-->
                                     <StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding Task.HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource CalendarIconStyle}"
-                                                       Color="{StaticResource PhoneAccentBrush}"
-                                                       Margin="4,0,-26,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
+                                        <ContentControl Style="{StaticResource CalendarIconStyle}"
+                                                       Foreground="{StaticResource PhoneAccentBrush}"
+                                                       Margin="6,0,-18,26"
+                                                       MaxHeight="0">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55"/>
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
                                                    Text="{Binding Task, Converter={StaticResource TaskToDueDateStringConverter}}"/>
                                     </StackPanel>
+
+                                    <!--Připomenutí-->
                                     <StackPanel Orientation="Horizontal"
                                                 Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource ReminderIconStyle}"
-                                                       Color="{StaticResource PhoneAccentBrush}"
-                                                       Margin="0,0,-26,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
+                                        <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                       Foreground="{StaticResource PhoneAccentBrush}"
+                                                       Margin="6,0,-18,26"
+                                                       MaxHeight="0">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding Task, Converter={StaticResource TaskToReminderDateStringConverter}}"/>
+                                                   Text="{Binding Task, Converter={StaticResource TimeSpanToStringConverter}}"/>
                                     </StackPanel>
+
                                 </StackPanel>
                             </Grid>
+
+                            <!--Detail-->
                             <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
                                   Margin="0,0,0,10"
                                   x:Name="DetailGridWrapper">
                                 <TextBlock Text="{Binding Task.Detail}"
-                                           Style="{StaticResource ButtonDescriptionTextBlockStyle}"
+                                           Style="{StaticResource LightTextStyle}"
+                                           FontSize="{StaticResource PhoneFontSizeNormal}"
                                            Opacity="0.8"
-                                           TextTrimming="WordEllipsis"
+                                           TextWrapping="Wrap"
                                            Margin="8,0,20,0"/>
                             </Grid>
                         </StackPanel>
@@ -302,13 +507,15 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="TasksRoot"
-          Background="{StaticResource ApplicationBackgroundBrush}">
+          Background="{StaticResource PageBackgroundBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"  />
         </Grid.RowDefinitions>
-
-        <Grid x:Name="ContentPanel">
+        
+        <!--Úkoly-->
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <phone:LongListSelector x:Name="TasksLongListSelector"
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
@@ -327,9 +534,16 @@
                        Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
                        TextWrapping="Wrap" 
                        TextAlignment="Center"/>
+
+            <Rectangle Fill="{StaticResource PhoneAccentBrush}"
+                   Opacity="0.6"
+                   Height="10" 
+                   VerticalAlignment="Bottom"/>
         </Grid>
 
+        <!--Overlay úkolů-->
         <Rectangle x:Name="PageOverlay"
+                   Grid.RowSpan="2"
                    Fill="Black"
                    Opacity="0"
                    Visibility="Collapsed">
@@ -370,14 +584,11 @@
             </Rectangle.Resources>
         </Rectangle>
 
-        <Rectangle Fill="{StaticResource PhoneAccentBrush}"
-                   Opacity="0.6"
-                   Height="10" 
-                   VerticalAlignment="Bottom"/>
-
-        <Grid Grid.Row="1">
+        <!--Quick add-->
+        <Grid Grid.Row="2">
             <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
                                   Hint="&#8230;&#xe104;"
+                                  Height="65"
                                   HintStyle="{StaticResource QuickAddTextBoxHintStyle}" 
                                   LostFocus="QuickAddTextBox_LostFocus" 
                                   GotFocus="QuickAddTextBox_GotFocus">
@@ -403,7 +614,7 @@
                                 <ControlTemplate TargetType="toolkit:PhoneTextBox">
                                     <Grid x:Name="RootGrid"
                                             Background="Transparent"
-                                            Height="65">
+                                            Height="{TemplateBinding Height}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="FocusStates">
                                                 <VisualState x:Name="Focused">
@@ -501,11 +712,12 @@
             </toolkit:PhoneTextBox>
         </Grid>
 
+        <!--Overlay celé stránky-->
         <Rectangle x:Name="TasksPageOverlay"
                     Fill="Black"
                     Opacity="1"
                     Visibility="Collapsed"
-                    Grid.RowSpan="2">
+                    Grid.RowSpan="3">
             <Rectangle.Resources>
                 <Storyboard x:Name="TasksPageOverlayTransitionShow">
                     <DoubleAnimation Storyboard.TargetName="TasksPageOverlay"
@@ -529,6 +741,7 @@
                 </Storyboard>
             </Rectangle.Resources>
         </Rectangle>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

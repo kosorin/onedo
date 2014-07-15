@@ -140,27 +140,45 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _reminder, value);
-                Modified = DateTime.Now;
-            }
-        }
-
-        private DateTime? _reminderDate = null;
-        [DataMember(Order = 5)]
-        public DateTime? ReminderDate
-        {
-            get
-            {
-                return _reminderDate;
-            }
-            set
-            {
-                SetProperty(ref _reminderDate, value);
                 OnPropertyChanged("HasReminder");
                 Modified = DateTime.Now;
             }
         }
 
-        public bool HasReminder { get { return DueDate != null && Reminder != null; } }
+        public DateTime ReminderDate
+        {
+            get
+            {
+               if (DueDate == null || Reminder == null)
+               {
+                   throw new InvalidOperationException();
+               }
+               return DueDate.Value - Reminder.Value;
+            }
+        }
+
+        public bool HasReminder
+        {
+            get { return DueDate != null && Reminder != null; }
+        }
+
+        #region ReminderDateObsolete
+        private DateTime? _reminderDateObsolete = null;
+        [Obsolete("Smazat po několika aktualizacích (dnes je 13.7.2014)")]
+        [DataMember(Order = 5, Name = "ReminderDate")]
+        public DateTime? ReminderDateObsolete
+        {
+            get { return null; }
+            set { SetProperty(ref _reminderDateObsolete, value); }
+        }
+
+        [Obsolete("Smazat po několika aktualizacích (dnes je 13.7.2014)")]
+        public DateTime? ReminderDateObsoleteGet
+        {
+            get { return _reminderDateObsolete; }
+        }
+        #endregion
+
         #endregion
 
         #region Complete

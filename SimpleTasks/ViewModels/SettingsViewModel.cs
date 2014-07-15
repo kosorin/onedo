@@ -17,7 +17,7 @@ namespace SimpleTasks.ViewModels
             settings = IsolatedStorageSettings.ApplicationSettings;
 #if DEBUG
             Debug.WriteLine("> Nastavení:");
-            foreach (object o in IsolatedStorageSettings.ApplicationSettings)
+            foreach (object o in settings)
             {
                 Debug.WriteLine("  {0}", o.ToString());
             }
@@ -97,7 +97,6 @@ namespace SimpleTasks.ViewModels
         #endregion Settings
 
         #region LastVersion
-
         private const string LastVersionKeyName = "LastVersion";
         private readonly string LastVersionDefault = null;
         public string LastVersionSetting

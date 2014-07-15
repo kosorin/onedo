@@ -16,6 +16,7 @@ using SimpleTasks.Helpers;
 using System.Reflection;
 using SimpleTasks.Core.Models;
 using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace SimpleTasks
 {
@@ -34,7 +35,7 @@ namespace SimpleTasks
 
         public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
 
-        public static string ForceDebugCulture = "sk-SK";
+        public static string ForceDebugCulture = "en-US";
 
         public static SettingsViewModel Settings { get; private set; }
 
@@ -56,16 +57,27 @@ namespace SimpleTasks
 
             if (Settings.LastVersionSetting == null)
             {
-                Debug.WriteLine("==== PRVNÍ START ====");
-                // První spuštění aplikace
+                Debug.WriteLine("==== INSTALACE ====");
                 Settings.LastVersionSetting = Version.ToString();
                 IsFirstStart = true;
             }
             else if (Settings.LastVersionSetting != Version.ToString())
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
-                // Aktualizace aplikace
                 Settings.LastVersionSetting = Version.ToString();
+            }
+            if (Settings.LastVersionSetting == null || Settings.LastVersionSetting != Version.ToString())
+            {
+                Tasks.Load();
+                foreach (TaskModel task in Tasks.Tasks)
+                {
+                    if (task.ReminderDateObsoleteGet != null && task.Reminder == null)
+                    {
+                        task.DueDate = task.ReminderDateObsoleteGet;
+                        task.Reminder = TimeSpan.Zero;
+                    }
+                }
+                Tasks.Save();
             }
 
             Tasks.Load();
@@ -140,6 +152,8 @@ namespace SimpleTasks
             // Standard XAML initialization
             InitializeComponent();
 
+            InitializeTheme();
+
             // Phone-specific initialization
             InitializePhoneApplication();
 
@@ -159,13 +173,8 @@ namespace SimpleTasks
                 // which shows areas of a page that are handed off to GPU with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
-                // Prevent the screen from turning off while under the debugger by disabling
-                // the application's idle detection.
-                // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
-                // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
         // Code to execute if a navigation fails
@@ -319,6 +328,20 @@ namespace SimpleTasks
 
                 throw;
             }
+        }
+
+        private void InitializeTheme()
+        {
+            string source = (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
+                "Dark" :
+                "Light";
+            ResourceDictionary theme = new ResourceDictionary
+            {
+                Source = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative)
+            };
+
+            Resources.MergedDictionaries.Clear();
+            Resources.MergedDictionaries.Add(theme);
         }
 
         #endregion

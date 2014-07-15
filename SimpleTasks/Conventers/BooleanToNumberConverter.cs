@@ -13,7 +13,10 @@ namespace SimpleTasks.Conventers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double number = (parameter is double) ? (double)parameter : 1d;
+            string param = parameter as string ?? "1";
+            bool negate = param.StartsWith("!");
+
+            double number = System.Convert.ToDouble(negate ? param.Substring(1) : param);
             return (value is bool && (bool)value) ? number : 0d;
         }
 

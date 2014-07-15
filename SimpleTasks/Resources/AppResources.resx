@@ -398,4 +398,13 @@
   <data name="NoReminder" xml:space="preserve">
     <value>no reminder</value>
   </data>
+  <data name="DaysLabel" xml:space="preserve">
+    <value>DAYS</value>
+  </data>
+  <data name="HoursLabel" xml:space="preserve">
+    <value>HOURS</value>
+  </data>
+  <data name="MinutesLabel" xml:space="preserve">
+    <value>MINUTES</value>
+  </data>
 </root>

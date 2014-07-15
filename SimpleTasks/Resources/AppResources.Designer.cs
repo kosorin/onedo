@@ -450,6 +450,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DAYS.
+        /// </summary>
+        public static string DaysLabel {
+            get {
+                return ResourceManager.GetString("DaysLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete all tasks?.
         /// </summary>
         public static string DeleteAllTasks {
@@ -518,6 +527,24 @@ namespace SimpleTasks.Resources {
         public static string DueDate {
             get {
                 return ResourceManager.GetString("DueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HOURS.
+        /// </summary>
+        public static string HoursLabel {
+            get {
+                return ResourceManager.GetString("HoursLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MINUTES.
+        /// </summary>
+        public static string MinutesLabel {
+            get {
+                return ResourceManager.GetString("MinutesLabel", resourceCulture);
             }
         }
         
