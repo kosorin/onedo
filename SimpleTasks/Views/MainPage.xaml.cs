@@ -410,17 +410,23 @@ namespace SimpleTasks.Views
         #endregion
 
         #region QuickAddTextBox
+        SupportedPageOrientation orientation;
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             PageOverlayTransitionQuickHide.Begin();
             BuildTasksdAppBar();
+
+            SupportedOrientations = orientation;
         }
 
         private void QuickAddTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             PageOverlayTransitionQuickShow.Begin();
             BuildQuickAddAppBar();
+
+            orientation = SupportedOrientations;
+            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
         }
         #endregion
     }

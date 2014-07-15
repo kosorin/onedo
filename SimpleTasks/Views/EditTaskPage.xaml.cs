@@ -568,7 +568,6 @@ namespace SimpleTasks.Views
         {
             Activate();
 
-            PageOverlayTransitionHide.Begin();
             BuildAppBar();
         }
 
@@ -615,6 +614,8 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Název
+        SupportedPageOrientation orientation;
+
         private void TitleTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -628,6 +629,9 @@ namespace SimpleTasks.Views
             BuildTitleTextAppBar();
             TitleTextBoxNoTextStoryboard.Stop();
             TitleTextBox.Opacity = 1;
+
+            orientation = SupportedOrientations;
+            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
         }
 
         private void TitleTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -641,6 +645,7 @@ namespace SimpleTasks.Views
                     TitleTextBoxNoTextStoryboard.Begin();
                 }
             }
+            SupportedOrientations = orientation;
         }
         #endregion
 
@@ -648,6 +653,9 @@ namespace SimpleTasks.Views
         private void DetailTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             BuildDetailTextAppBar();
+
+            orientation = SupportedOrientations;
+            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
         }
 
         private void DetailTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -657,6 +665,7 @@ namespace SimpleTasks.Views
             {
                 BuildAppBar();
             }
+            SupportedOrientations = orientation;
         }
         #endregion
 

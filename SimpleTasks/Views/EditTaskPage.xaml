@@ -12,7 +12,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
     shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
@@ -156,7 +156,6 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
-
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource PageBackgroundBrush}">
 
@@ -461,21 +460,6 @@
                 </ToggleButton>
             </StackPanel>
         </ScrollViewer>
-
-        <Rectangle x:Name="PageOverlay"
-                   Fill="Black"
-                   Opacity="0.4"
-                   Visibility="Collapsed">
-            <Rectangle.Resources>
-                <Storyboard x:Name="PageOverlayTransitionHide">
-                    <DoubleAnimation Storyboard.TargetName="PageOverlay"
-                                     Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.3"
-                                     To="0">
-                    </DoubleAnimation>
-                </Storyboard>
-            </Rectangle.Resources>
-        </Rectangle>
     </Grid>
 
 </phone:PhoneApplicationPage>
