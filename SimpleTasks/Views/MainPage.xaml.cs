@@ -17,6 +17,7 @@ using SimpleTasks.Helpers;
 using System.Collections.Generic;
 using System.Windows.Media.Animation;
 using System.Windows.Input;
+using System.Threading;
 
 namespace SimpleTasks.Views
 {
@@ -37,15 +38,6 @@ namespace SimpleTasks.Views
             NavigationService.RemoveBackEntry();
 
             App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
-
-            // Animace zesvětlení
-            TasksPageOverlay.Opacity = 1;
-            TasksPageOverlay.Visibility = Visibility.Visible;
-            TasksPageOverlayTransitionHide.Completed += (s2, e2) =>
-            {
-                TasksPageOverlay.Visibility = Visibility.Collapsed;
-            };
-            TasksPageOverlayTransitionHide.Begin();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -153,12 +145,18 @@ namespace SimpleTasks.Views
         private void BuildTasksdAppBar()
         {
             ApplicationBar = new ApplicationBar();
-            
+
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
             foreach (var item in appBarMenuItems)
             {
                 ApplicationBar.MenuItems.Add(item);
             }
+        }
+        private void BuildQuickAddAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.Buttons.Add(appBarSaveQuickButton);
+            ApplicationBar.Buttons.Add(appBarCancelQuickButton);
         }
         #endregion
         private void AddNewTask_Click(object sender, EventArgs e)
@@ -273,18 +271,15 @@ namespace SimpleTasks.Views
 
         private void OverlayAction(Action action)
         {
-            PageOverlay.Visibility = Visibility.Visible;
-            PageOverlayTransitionShow.Completed += (s2, e2) =>
+            PageOverlayTransitionShow.Begin();
+            EventHandler overlayHandler = null;
+            overlayHandler = (s, e) =>
             {
                 action();
-
-                PageOverlayTransitionHide.Completed += (s3, e3) =>
-                {
-                    PageOverlay.Visibility = Visibility.Collapsed;
-                };
                 PageOverlayTransitionHide.Begin();
+                PageOverlayTransitionShow.Completed -= overlayHandler;
             };
-            PageOverlayTransitionShow.Begin();
+            PageOverlayTransitionShow.Completed += overlayHandler;
         }
 
         #endregion
@@ -418,27 +413,15 @@ namespace SimpleTasks.Views
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            PageOverlayTransitionQuickHide.Completed += (s2, e2) =>
-            {
-                PageOverlay.Visibility = Visibility.Collapsed;
-            };
             PageOverlayTransitionQuickHide.Begin();
-
-            ApplicationBar.Buttons.Remove(appBarSaveQuickButton);
-            ApplicationBar.Buttons.Remove(appBarCancelQuickButton);
-            ApplicationBar.Buttons.Add(appBarNewTaskButton);
+            BuildTasksdAppBar();
         }
 
         private void QuickAddTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            PageOverlay.Visibility = Visibility.Visible;
             PageOverlayTransitionQuickShow.Begin();
-
-            ApplicationBar.Buttons.Remove(appBarNewTaskButton);
-            ApplicationBar.Buttons.Add(appBarSaveQuickButton);
-            ApplicationBar.Buttons.Add(appBarCancelQuickButton);
+            BuildQuickAddAppBar();
         }
         #endregion
-
     }
 }

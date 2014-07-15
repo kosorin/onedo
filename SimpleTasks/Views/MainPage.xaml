@@ -536,37 +536,53 @@
                        TextAlignment="Center"/>
         </Grid>
 
-        <!--Overlay úkolů-->
+        <!--Overlay úkolů-->   
         <Rectangle x:Name="PageOverlay"
                    Grid.RowSpan="2"
                    Fill="Black"
                    Opacity="0"
                    Visibility="Collapsed">
             <Rectangle.Resources>
+
+                <!--Task List-->
                 <Storyboard x:Name="PageOverlayTransitionShow">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.4"
-                                     BeginTime="0:0:0.4"
+                                     Duration="0:0:0.25"
+                                     BeginTime="0:0:0.25"
                                      To="1">
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="PageOverlayTransitionHide">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.4"
+                                     Duration="0:0:0.25"
                                      To="0">
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0:0:0.25" Value="Collapsed" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
+
+                <!--Quick Add-->
                 <Storyboard x:Name="PageOverlayTransitionQuickShow">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
                                      Duration="0:0:0.4"
                                      To="0.58">
                         <DoubleAnimation.EasingFunction>
-                            <CubicEase EasingMode="EaseOut" />
+                            <CubicEase EasingMode="EaseOut"/>
                         </DoubleAnimation.EasingFunction>
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="PageOverlayTransitionQuickHide">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
@@ -575,7 +591,12 @@
                                      BeginTime="0:0:0.2"
                                      To="0">
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="Collapsed" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
+                
             </Rectangle.Resources>
         </Rectangle>
 
@@ -710,37 +731,7 @@
                 </toolkit:PhoneTextBox.Style>
             </toolkit:PhoneTextBox>
         </Grid>
-
-        <!--Overlay celé stránky-->
-        <Rectangle x:Name="TasksPageOverlay"
-                    Fill="Black"
-                    Opacity="1"
-                    Visibility="Collapsed"
-                    Grid.RowSpan="3">
-            <Rectangle.Resources>
-                <Storyboard x:Name="TasksPageOverlayTransitionShow">
-                    <DoubleAnimation Storyboard.TargetName="TasksPageOverlay"
-                                        Storyboard.TargetProperty="Opacity"
-                                        Duration="0:0:1"
-                                        To="0.65">
-                        <DoubleAnimation.EasingFunction>
-                            <CubicEase EasingMode="EaseIn" />
-                        </DoubleAnimation.EasingFunction>
-                    </DoubleAnimation>
-                </Storyboard>
-                <Storyboard x:Name="TasksPageOverlayTransitionHide">
-                    <DoubleAnimation Storyboard.TargetName="TasksPageOverlay"
-                                        Storyboard.TargetProperty="Opacity"
-                                        Duration="0:0:1"
-                                        To="0">
-                        <DoubleAnimation.EasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </DoubleAnimation.EasingFunction>
-                    </DoubleAnimation>
-                </Storyboard>
-            </Rectangle.Resources>
-        </Rectangle>
-
+        
     </Grid>
 
 </phone:PhoneApplicationPage>
