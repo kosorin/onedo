@@ -6,7 +6,7 @@ using System.Windows.Data;
 
 namespace SimpleTasks.Conventers
 {
-    public class TaskPriorityToVisibilityConverter : IValueConverter
+    public class PriorityToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

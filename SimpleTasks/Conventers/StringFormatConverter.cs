@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
 namespace SimpleTasks.Conventers
 {
-    public class IntegerToVisibilityConverter : IValueConverter
+    public class StringFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int parameterValue = 0;
-            if (parameter != null && parameter is string)
-            {
-                int.TryParse((string)parameter, out parameterValue);
-            }
-
-            return (value is int && (int)value == parameterValue) ? Visibility.Visible : Visibility.Collapsed;
+            string format = parameter as string ?? "";
+            return string.Format(format, value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

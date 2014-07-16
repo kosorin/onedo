@@ -113,6 +113,9 @@ namespace SimpleTasks.Core.Models
                 SetProperty(ref _dueDate, value);
                 OnPropertyChanged("HasDueDate");
                 OnPropertyChanged("IsOverdue");
+                OnPropertyChanged("Reminder");
+                OnPropertyChanged("ReminderDate");
+                OnPropertyChanged("HasReminder");
                 Modified = DateTime.Now;
             }
         }
@@ -126,7 +129,7 @@ namespace SimpleTasks.Core.Models
                 if (DueDate == null)
                     return false;
                 else
-                    return (DueDate < DateTime.Today);
+                    return (DueDate < DateTime.Now);
             }
         }
         #endregion

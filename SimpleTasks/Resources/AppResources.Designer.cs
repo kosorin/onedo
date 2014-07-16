@@ -299,18 +299,9 @@ namespace SimpleTasks.Resources {
         /// <summary>
         ///   Looks up a localized string similar to CHOOSE DATE.
         /// </summary>
-        public static string ChooseDueDate {
+        public static string ChooseDate {
             get {
-                return ResourceManager.GetString("ChooseDueDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to choose reminder date.
-        /// </summary>
-        public static string ChooseReminderDate {
-            get {
-                return ResourceManager.GetString("ChooseReminderDate", resourceCulture);
+                return ResourceManager.GetString("ChooseDate", resourceCulture);
             }
         }
         
@@ -347,6 +338,24 @@ namespace SimpleTasks.Resources {
         public static string DateCustomDue {
             get {
                 return ResourceManager.GetString("DateCustomDue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last month.
+        /// </summary>
+        public static string DateLastMonth {
+            get {
+                return ResourceManager.GetString("DateLastMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last week.
+        /// </summary>
+        public static string DateLastWeek {
+            get {
+                return ResourceManager.GetString("DateLastWeek", resourceCulture);
             }
         }
         
@@ -423,6 +432,33 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to d.
+        /// </summary>
+        public static string DateTimeDaysAbbr {
+            get {
+                return ResourceManager.GetString("DateTimeDaysAbbr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to h.
+        /// </summary>
+        public static string DateTimeHoursAbbr {
+            get {
+                return ResourceManager.GetString("DateTimeHoursAbbr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string DateTimeMinutesAbbr {
+            get {
+                return ResourceManager.GetString("DateTimeMinutesAbbr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to today.
         /// </summary>
         public static string DateToday {
@@ -446,6 +482,15 @@ namespace SimpleTasks.Resources {
         public static string DateUpcoming {
             get {
                 return ResourceManager.GetString("DateUpcoming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yesterday.
+        /// </summary>
+        public static string DateYesterday {
+            get {
+                return ResourceManager.GetString("DateYesterday", resourceCulture);
             }
         }
         
@@ -549,15 +594,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter task title..
-        /// </summary>
-        public static string MissingTitle {
-            get {
-                return ResourceManager.GetString("MissingTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to no reminder.
         /// </summary>
         public static string NoReminder {
@@ -612,6 +648,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick add task.
+        /// </summary>
+        public static string QuickAddLabel {
+            get {
+                return ResourceManager.GetString("QuickAddLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to reminder.
         /// </summary>
         public static string Reminder {
@@ -621,11 +666,11 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Task reminder.
+        ///   Looks up a localized string similar to before due date.
         /// </summary>
-        public static string ReminderTitle {
+        public static string ReminderBeforeDueDateText {
             get {
-                return ResourceManager.GetString("ReminderTitle", resourceCulture);
+                return ResourceManager.GetString("ReminderBeforeDueDateText", resourceCulture);
             }
         }
         
@@ -828,6 +873,69 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 15 minutes.
+        /// </summary>
+        public static string Time15mins {
+            get {
+                return ResourceManager.GetString("Time15mins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 18 hours.
+        /// </summary>
+        public static string Time18hours {
+            get {
+                return ResourceManager.GetString("Time18hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 day.
+        /// </summary>
+        public static string Time1day {
+            get {
+                return ResourceManager.GetString("Time1day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 hour.
+        /// </summary>
+        public static string Time1hour {
+            get {
+                return ResourceManager.GetString("Time1hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 week.
+        /// </summary>
+        public static string Time1week {
+            get {
+                return ResourceManager.GetString("Time1week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30 minutes.
+        /// </summary>
+        public static string Time30mins {
+            get {
+                return ResourceManager.GetString("Time30mins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5 minutes.
+        /// </summary>
+        public static string Time5mins {
+            get {
+                return ResourceManager.GetString("Time5mins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to afternoon.
         /// </summary>
         public static string TimeAfternoon {
@@ -878,6 +986,15 @@ namespace SimpleTasks.Resources {
         public static string TimeNoon {
             get {
                 return ResourceManager.GetString("TimeNoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in due time.
+        /// </summary>
+        public static string TimeZero {
+            get {
+                return ResourceManager.GetString("TimeZero", resourceCulture);
             }
         }
         

@@ -9,10 +9,18 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     Style="{StaticResource BasePickerPageStyle}">
-    
+
     <controls:BasePickerPage.Resources>
         <SolidColorBrush x:Key="TimeForegroundBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="1.0"/>
         <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="0.4"/>
+
+        <Style x:Key="TimeTextStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="FontSize" Value="56" />
+            <Setter Property="Foreground" Value="{StaticResource TimeForegroundSubtleBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyLight}" />
+
+        </Style>
     </controls:BasePickerPage.Resources>
 
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
@@ -22,16 +30,23 @@
         <StackPanel VerticalAlignment="Bottom" 
                     Margin="0,0,0,20">
 
-            <TextBlock Margin="0,15,0,15"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Center"
-				   FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
-				   Foreground="{StaticResource TimeForegroundSubtleBrush}" 
-				   FontFamily="{StaticResource PhoneFontFamilyLight}" >
-                <Run Text="{Binding RoundValue, ElementName=DaySlider}" Foreground="{StaticResource TimeForegroundBrush}"/>d
-                <Run Text="{Binding RoundValue, ElementName=HourSlider, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}"/>h
-                <Run Text="{Binding RoundValue, ElementName=MinuteSlider, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}" />m
-            </TextBlock>
+            <Grid Margin="0,15,40,-10" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="110" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Style="{StaticResource TimeTextStyle}">
+                    <Run Text="{Binding RoundValue, ElementName=DaySlider}" Foreground="{StaticResource TimeForegroundBrush}"/><Run Text="{Binding LocalizedResources.DateTimeDaysAbbr, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
+                </TextBlock>
+                <TextBlock Grid.Column="1" Style="{StaticResource TimeTextStyle}">
+                    <Run Text="{Binding RoundValue, ElementName=HourSlider}" Foreground="{StaticResource TimeForegroundBrush}"/><Run Text="{Binding LocalizedResources.DateTimeHoursAbbr, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
+                </TextBlock>
+                <TextBlock Grid.Column="2" Style="{StaticResource TimeTextStyle}">
+                    <Run Text="{Binding RoundValue, ElementName=MinuteSlider}" Foreground="{StaticResource TimeForegroundBrush}" /><Run Text="{Binding LocalizedResources.DateTimeMinutesAbbr, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
+                </TextBlock>
+            </Grid>
+            <TextBlock Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Style="{StaticResource TimeTextStyle}" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,30" />
 
             <Grid Margin="0,0,0,30">
                 <Grid.RowDefinitions>
@@ -39,9 +54,9 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <controls:MySlider Grid.Row="2" x:Name="MinuteSlider" Label="{Binding LocalizedResources.MinutesLabel, Source={StaticResource LocalizedStrings}}" Maximum="59" Margin="30,0"/>
-                <controls:MySlider Grid.Row="1" x:Name="HourSlider" Label="{Binding LocalizedResources.HoursLabel, Source={StaticResource LocalizedStrings}}" Maximum="23" Margin="30,0,30,-60" Mask="#33000000"/>
-                <controls:MySlider Grid.Row="0" x:Name="DaySlider" Label="{Binding LocalizedResources.DaysLabel, Source={StaticResource LocalizedStrings}}" Maximum="30" Margin="30,0,30,-60" Mask="#66000000"/>
+                <controls:MySlider Grid.Row="2" x:Name="MinuteSlider" Label="{Binding LocalizedResources.MinutesLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="59" Margin="30,0"/>
+                <controls:MySlider Grid.Row="1" x:Name="HourSlider" Label="{Binding LocalizedResources.HoursLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="23" Margin="30,0,30,-60" Mask="#33000000"/>
+                <controls:MySlider Grid.Row="0" x:Name="DaySlider" Label="{Binding LocalizedResources.DaysLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="30" Margin="30,0,30,-60" Mask="#66000000"/>
             </Grid>
 
             <Grid VerticalAlignment="Bottom" Margin="15,0">
@@ -50,16 +65,16 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel >
-                    <Button Content="in due time" Tag="0:0:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
-                    <Button Content="15 minutes" Tag="0:0:15" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
-                    <Button Content="1 hour" Tag="0:1:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click"  />
-                    <Button Content="1 day" Tag="1:0:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.TimeZero, Source={StaticResource LocalizedStrings}}" Tag="0.00:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.Time15mins, Source={StaticResource LocalizedStrings}}" Tag="0.00:15" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.Time1hour, Source={StaticResource LocalizedStrings}}" Tag="0.01:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click"  />
+                    <Button Content="{Binding LocalizedResources.Time1day, Source={StaticResource LocalizedStrings}}" Tag="1.00:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Button Content="5 minutes" Tag="0:0:5" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
-                    <Button Content="30 minutes" Tag="0:0:30" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
-                    <Button Content="18 hours" Tag="0:18:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
-                    <Button Content="1 week" Tag="7:0:0" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.Time5mins, Source={StaticResource LocalizedStrings}}" Tag="0.00:05" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.Time30mins, Source={StaticResource LocalizedStrings}}" Tag="0.00:30" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.Time18hours, Source={StaticResource LocalizedStrings}}" Tag="0.18:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                    <Button Content="{Binding LocalizedResources.Time1week, Source={StaticResource LocalizedStrings}}" Tag="7.00:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
                 </StackPanel>
             </Grid>
         </StackPanel>

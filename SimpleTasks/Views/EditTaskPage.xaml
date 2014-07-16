@@ -256,7 +256,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <ContentControl Style="{StaticResource CalendarIconStyle}" Foreground="{StaticResource ButtonIconBrush}"/>
-                                        <TextBlock x:Name="DateText" Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}" Grid.Column="1" Text="{Binding DueDate, StringFormat='d'}" Style="{StaticResource ButtonTextStyle}"/>
+                                        <TextBlock x:Name="DateText" Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}" Grid.Column="1" Text="{Binding DueDate, Converter={StaticResource DateConverter}}" Style="{StaticResource ButtonTextStyle}"/>
                                         <TextBlock x:Name="NoDateText" Grid.Column="1" Text="{Binding LocalizedResources.DateNoDue, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonTextStyle}"/>
                                     </Grid>
                                 </ControlTemplate>

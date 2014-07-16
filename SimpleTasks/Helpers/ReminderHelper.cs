@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Scheduler;
+﻿using Microsoft.Phone.Shell;
+using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,13 @@ namespace SimpleTasks.Helpers
                     NavigationUri = navigationUri,
                 });
             }
-            catch (Exception)
+            catch (InvalidOperationException e)
             {
-                Debug.WriteLine("Chyba při přidání připomínky.");
+                Debug.WriteLine("Chyba při přidání připomínky: {0}", e.Message);
+            }
+            catch (SchedulerServiceException e)
+            {
+                Debug.WriteLine("Chyba při přidání připomínky: {0}", e.Message);
             }
         }
 

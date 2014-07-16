@@ -18,6 +18,9 @@ using System.Collections.Generic;
 using System.Windows.Media.Animation;
 using System.Windows.Input;
 using System.Threading;
+using Microsoft.Devices;
+using SimpleTasks.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace SimpleTasks.Views
 {
@@ -49,6 +52,7 @@ namespace SimpleTasks.Views
             }
         }
 
+        #region Other
         T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
         {
             int childrenCount = VisualTreeHelper.GetChildrenCount(element);
@@ -77,6 +81,7 @@ namespace SimpleTasks.Views
 
             return null;
         }
+        #endregion
 
         #region AppBar
 
@@ -152,6 +157,7 @@ namespace SimpleTasks.Views
                 ApplicationBar.MenuItems.Add(item);
             }
         }
+
         private void BuildQuickAddAppBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -220,6 +226,7 @@ namespace SimpleTasks.Views
             messageBox.Show();
         }
 
+#if DEBUG
         void ResetMenuItem_Click(object sender, EventArgs e)
         {
             App.Tasks.DeleteAll();
@@ -268,6 +275,7 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[3].Title = "Projekt z matematiky";
             }
         }
+#endif
 
         private void OverlayAction(Action action)
         {
@@ -285,12 +293,15 @@ namespace SimpleTasks.Views
         #endregion
 
         #region TasksList
-
-        private void Border_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void CompleteButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             this.Focus();
 
-            Border border = ((sender as Border).Parent as Grid).Parent as Border;
+            ToggleComplete(((sender as Border).Parent as Grid).Parent as Border);
+        }
+
+        private void ToggleComplete(Border border)
+        {
             Storyboard showStoryboard = ((Storyboard)border.FindName("TaskInfoShow"));
             Storyboard hideStoryboard = ((Storyboard)border.FindName("TaskInfoHide"));
             TaskWrapper wrapper = border.DataContext as TaskWrapper;
@@ -301,7 +312,6 @@ namespace SimpleTasks.Views
             if (task.IsActive)
             {   // DOKONČENÍ
                 task.CompletedDate = DateTime.Now;
-                task.Reminder = null;
                 if (App.Settings.UnpinCompletedSetting)
                 {
                     LiveTile.Unpin(task);
@@ -322,7 +332,7 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
 
-        private void Grid_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void TaskListItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Grid grid = (Grid)sender;
             TaskWrapper wrapper = (TaskWrapper)grid.DataContext;
@@ -340,13 +350,6 @@ namespace SimpleTasks.Views
                 TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
                 TaskModel task = wrapper.Task;
 
-                //Debug.WriteLine(" REALIZED: " + task.Title);
-
-                //StackPanel panel = FindFirstChild<StackPanel>(e.Container, "TaskInfoStackPanel");
-                //wrapper.Height = panel.ActualHeight;
-                ////panel.Height = panel.ActualHeight;
-                ////var r = new Random(task.Title.GetHashCode());
-                ////panel.Background = new SolidColorBrush(Color.FromArgb(255, (byte)r.Next(255), (byte)r.Next(255), (byte)r.Next(255)));
                 Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
                 Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
                 Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
@@ -427,6 +430,99 @@ namespace SimpleTasks.Views
 
             orientation = SupportedOrientations;
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
+        }
+        #endregion
+
+        #region Gestures
+        private double _completeGestureTreshold = -105;
+
+        private bool _canUseGestures = true;
+
+        private void RootBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            Border border = (Border)sender;
+        }
+
+        private void RootBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            Border border = (Border)sender;
+            Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
+            if (storyboard != null)
+            {
+                storyboard.Begin();
+            }
+            border.Background = null;
+
+            double value = e.TotalManipulation.Translation.X;
+            if (_canUseGestures && value < _completeGestureTreshold)
+            {
+                VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
+                ToggleComplete(border);
+            }
+        }
+
+        private void RootBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            Border border = (Border)sender;
+            TranslateTransform t = (TranslateTransform)border.RenderTransform;
+
+            t.X += e.DeltaManipulation.Translation.X;
+            if (t.X > 0)
+            {
+                t.X = 0;
+            }
+
+            if (t.X < _completeGestureTreshold)
+            {
+                border.Background = new SolidColorBrush(Colors.White)
+                {
+                    Opacity = 0.15
+                };
+            }
+            else
+            {
+                border.Background = null;
+            }
+        }
+        #endregion
+
+        #region Context Menu
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            _canUseGestures = false;
+        }
+
+        private void ContextMenu_Closed(object sender, RoutedEventArgs e)
+        {
+            _canUseGestures = true;
+        }
+
+        private void TodayMenuItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            TaskModel task = (TaskModel)((TaskWrapper)((TaskListMenuItem)sender).DataContext).Task;
+            task.DueDate = DateTimeExtensions.Tomorrow.AddMinutes(-1);
+            App.Tasks.Update(task);
+        }
+
+        private void TomorrowMenuItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            TaskModel task = (TaskModel)((TaskWrapper)((TaskListMenuItem)sender).DataContext).Task;
+            task.DueDate = DateTimeExtensions.Tomorrow.AddDays(1).AddMinutes(-1);
+            App.Tasks.Update(task);
+        }
+
+        private void NextWeekMenuItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            TaskModel task = (TaskModel)((TaskWrapper)((TaskListMenuItem)sender).DataContext).Task;
+            task.DueDate = DateTimeExtensions.LastDayOfNextWeek.AddDays(1).AddMinutes(-1);
+            App.Tasks.Update(task);
+        }
+
+        private void SomedayMenuItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            TaskModel task = (TaskModel)((TaskWrapper)((TaskListMenuItem)sender).DataContext).Task;
+            task.DueDate = null;
+            App.Tasks.Update(task);
         }
         #endregion
     }

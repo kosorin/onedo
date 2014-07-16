@@ -28,7 +28,7 @@ namespace SimpleTasks.Controls
         #region Dependency Properties
 
         #region RoundValue
-        public static readonly DependencyProperty RoundValueProperty = DependencyProperty.Register("RoundValue", typeof(int), typeof(MySlider), null);
+        public static readonly DependencyProperty RoundValueProperty = DependencyProperty.Register("RoundValue", typeof(int), typeof(MySlider), new PropertyMetadata(0));
         public int RoundValue
         {
             get { return (int)base.GetValue(RoundValueProperty); }

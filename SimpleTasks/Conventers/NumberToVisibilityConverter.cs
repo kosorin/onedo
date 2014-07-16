@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
+
 namespace SimpleTasks.Conventers
 {
-    public class TimeSpanToStringConverter : IValueConverter
+    public class NumberToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value !=null)
-                Debug.WriteLine("KONV: " + value.GetType());
-            else
-                Debug.WriteLine("KONV: NIC");
-            TimeSpan? ts = value as TimeSpan?;
-            if (ts == null)
+            int parameterValue = 0;
+            if (parameter != null && parameter is string)
             {
-                return "žádné";
+                int.TryParse((string)parameter, out parameterValue);
             }
-            return ts.Value.ToString("d'd 'hh'h 'mm'm 'ss's '");
+            return (value is int && (int)value == parameterValue) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

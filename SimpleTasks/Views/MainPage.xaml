@@ -48,8 +48,7 @@
 
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Grid Margin="0,0,0,0"
-                  Height="70"
+            <Grid Height="70"
                   toolkit:TiltEffect.SuppressTilt="True">
                 <TextBlock Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" 
                            Opacity="0.75"
@@ -65,24 +64,52 @@
         </DataTemplate>
 
         <!--Task Context Menu-->
-        <Style x:Key="TaskMenuItemBorderStyle" TargetType="Border">
-            <Setter Property="Width" Value="110"/>
-            <Setter Property="Margin" Value="5,0" />
-        </Style>
         <Style x:Key="TaskMenuItemIconStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneBackgroundBrush}"/>
             <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
             <Setter Property="FontSize" Value="32" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="Margin" Value="0,15,0,0" />
         </Style>
         <Style x:Key="TaskMenuItemTextStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneBackgroundBrush}"/>
             <Setter Property="FontFamily" Value="Segoe WP"/>
             <Setter Property="FontWeight" Value="Light"/>
             <Setter Property="FontSize" Value="22" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0,15,0,0" />
+            <Setter Property="Margin" Value="0,20,0,0" />
+        </Style>
+        <Style x:Key="TaskMenuItemStyle" TargetType="controls:TaskListMenuItem">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneBackgroundBrush}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="controls:TaskListMenuItem">
+                        <Grid Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Presenter" Storyboard.TargetProperty="Opacity" To="0.5"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <Border>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="{TemplateBinding Icon}"  />
+                                    <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="{TemplateBinding Header}" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <ControlTemplate x:Key="TaskMenuTemplate" TargetType="toolkit:ContextMenu">
             <StackPanel x:Name="OuterPanel">
@@ -221,32 +248,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="0,20" Grid.Row="1" HorizontalAlignment="Center">
-                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe1fd;"/>
-                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="today" />
-                            </StackPanel>
-                        </Border>
-                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe1cc;"  />
-                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="tomorrow"  />
-                            </StackPanel>
-                        </Border>
-                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe111;"  />
-                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="next week" />
-                            </StackPanel>
-                        </Border>
-                        <Border Style="{StaticResource TaskMenuItemBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource TaskMenuItemIconStyle}" Text="&#xe17e;&#xe143;"  />
-                                <TextBlock Style="{StaticResource TaskMenuItemTextStyle}" Text="someday" />
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
+                    <ItemsPresenter Margin="{TemplateBinding Padding}" Grid.Row="1"/>
                 </Grid>
                 <Rectangle MinWidth="2" MinHeight="2" Fill="{TemplateBinding Background}" x:Name="Border1Reversed"/>
                 <Rectangle MinWidth="2" MinHeight="2" Fill="{TemplateBinding BorderBrush}" x:Name="Border2Reversed"/>
@@ -263,22 +265,27 @@
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border x:Name="RootBorder"
                     BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}">
+                    BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}"
+                    ManipulationStarted="RootBorder_ManipulationStarted"
+                    ManipulationCompleted="RootBorder_ManipulationCompleted"
+                    ManipulationDelta="RootBorder_ManipulationDelta">
+                <Border.RenderTransform>
+                    <TranslateTransform />
+                </Border.RenderTransform>
                 <Border.Resources>
-                    <Storyboard x:Name="TaskInfoShow">
-                        <!--Popis-->
-                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Height"
-                                         To="{Binding Height}"
-                                         Duration="0:0:0.2">
+                    <Storyboard x:Key="ResetTranslate">
+                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                                         Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
+                                         To="0"
+                                         Duration="0:0:0.4">
                             <DoubleAnimation.EasingFunction>
-                                <QuadraticEase EasingMode="EaseIn" />
+                                <CircleEase EasingMode="EaseOut" />
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
-                                         To="0"
-                                         Duration="0:0:0.3"/>-->
+                    </Storyboard>
+                    
+                    <Storyboard x:Name="TaskInfoShow">
+                        <!--Popis-->
                         <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1.0"
@@ -307,18 +314,6 @@
                     </Storyboard>
                     <Storyboard x:Name="TaskInfoHide">
                         <!--Popis-->
-                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Height"
-                                         To="0"
-                                         Duration="0:0:0.2">
-                            <DoubleAnimation.EasingFunction>
-                                <QuadraticEase EasingMode="EaseIn" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
-                                         To="90"
-                                         Duration="0:0:0.3"/>-->
                         <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0.45"
@@ -347,7 +342,17 @@
                     </Storyboard>
                 </Border.Resources>
                 <toolkit:ContextMenuService.ContextMenu>
-                    <toolkit:ContextMenu Template="{StaticResource TaskMenuTemplate}" />
+                    <toolkit:ContextMenu Template="{StaticResource TaskMenuTemplate}" Opened="ContextMenu_Opened" Closed="ContextMenu_Closed">
+                        <toolkit:ContextMenu.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </toolkit:ContextMenu.ItemsPanel>
+                        <controls:TaskListMenuItem Tap="TodayMenuItem_Tap" Style="{StaticResource TaskMenuItemStyle}" Header="{Binding LocalizedResources.DateToday, Source={StaticResource LocalizedStrings}}" Icon="&#xe17e;&#xe1fd;" />
+                        <controls:TaskListMenuItem Tap="TomorrowMenuItem_Tap" Style="{StaticResource TaskMenuItemStyle}" Header="{Binding LocalizedResources.DateTomorrow, Source={StaticResource LocalizedStrings}}" Icon="&#xe17e;&#xe1cc;" />
+                        <controls:TaskListMenuItem Tap="NextWeekMenuItem_Tap" Style="{StaticResource TaskMenuItemStyle}" Header="{Binding LocalizedResources.DateNextWeek, Source={StaticResource LocalizedStrings}}" Icon="&#xe17e;&#xe111;" />
+                        <controls:TaskListMenuItem Tap="SomedayMenuItem_Tap" Style="{StaticResource TaskMenuItemStyle}" Header="{Binding LocalizedResources.DateSomeday, Source={StaticResource LocalizedStrings}}" Icon="&#xe17e;&#xe143;" />
+                    </toolkit:ContextMenu>
                 </toolkit:ContextMenuService.ContextMenu>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -357,7 +362,7 @@
 
                     <!--Check Box-->
                     <Border Margin="12,15,2,0"
-                            Tap="Border_Tap" >
+                            Tap="CompleteButton_Tap" >
                         <Grid Width="40"
                               Height="40"
                               VerticalAlignment="Top">
@@ -386,7 +391,7 @@
 
                     <!--Info-->
                     <Grid Grid.Column="1"
-                          Tap="Grid_Tap"
+                          Tap="TaskListItem_Tap"
                           Background="Transparent">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -460,7 +465,7 @@
                                             </ContentControl.RenderTransform>
                                         </ContentControl>
                                         <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding Task, Converter={StaticResource TaskToDueDateStringConverter}}"/>
+                                                   Text="{Binding Task.DueDate, Converter={StaticResource TaskToDueStringConverter}}"/>
                                     </StackPanel>
 
                                     <!--Připomenutí-->
@@ -497,7 +502,7 @@
                 </Grid>
             </Border>
         </DataTemplate>
-
+        
         <!--Quick Add TextBox-->
         <Style x:Key="QuickAddTextBoxHintStyle" TargetType="ContentControl">
             <Setter Property="FontFamily" Value="Segoe UI Symbol" />
@@ -536,7 +541,7 @@
                        TextAlignment="Center"/>
         </Grid>
 
-        <!--Overlay úkolů-->   
+        <!--Overlay úkolů-->
         <Rectangle x:Name="PageOverlay"
                    Grid.RowSpan="2"
                    Fill="Black"
@@ -596,7 +601,7 @@
                         <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="Collapsed" />
                     </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
-                
+
             </Rectangle.Resources>
         </Rectangle>
 
@@ -607,7 +612,7 @@
                    VerticalAlignment="Bottom"/>
         <Grid Grid.Row="2">
             <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
-                                  Hint="&#8230;&#xe104;"
+                                  Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}}"
                                   Height="65"
                                   HintStyle="{StaticResource QuickAddTextBoxHintStyle}" 
                                   LostFocus="QuickAddTextBox_LostFocus" 
@@ -619,7 +624,7 @@
                         <Setter Property="Background">
                             <Setter.Value>
                                 <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" 
-                                                    Opacity="0.45"/>
+                                                 Opacity="0.45"/>
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
@@ -687,7 +692,7 @@
                                             <Grid VerticalAlignment="Center">
                                                 <ContentControl x:Name="HintContent" 
                                                                 Background="Transparent" 
-                                                                Content="{TemplateBinding Hint}" 
+                                                                Content="{Binding Hint, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0} &#8230;&#xe104;'}" 
                                                                 HorizontalAlignment="Left"
                                                                 Margin="10" 
                                                                 Style="{TemplateBinding HintStyle}" 
@@ -731,7 +736,6 @@
                 </toolkit:PhoneTextBox.Style>
             </toolkit:PhoneTextBox>
         </Grid>
-        
     </Grid>
 
 </phone:PhoneApplicationPage>

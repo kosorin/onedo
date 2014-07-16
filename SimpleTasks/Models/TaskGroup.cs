@@ -46,7 +46,12 @@ namespace SimpleTasks.Models
                     else if (task.DueDate.Value.Date < DateTimeExtensions.Today)
                         overdueGroup.Add(taskWrapper);
                     else if (task.DueDate.Value.Date == DateTimeExtensions.Today)
-                        todayGroup.Add(taskWrapper);
+                    {
+                        if (task.DueDate.Value > DateTime.Now)
+                            todayGroup.Add(taskWrapper);
+                        else
+                            overdueGroup.Add(taskWrapper);
+                    }
                     else if (task.DueDate.Value.Date == DateTimeExtensions.Tomorrow)
                         tomorrowGroup.Add(taskWrapper);
                     else

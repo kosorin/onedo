@@ -95,7 +95,7 @@ namespace SimpleTasks.Views
         }
         private void ThisWeek_Click(object sender, RoutedEventArgs e)
         {
-            SelectDate(DateTimeExtensions.LastDayOfWeek);
+            SelectDate(DateTimeExtensions.LastDayOfActualWeek);
         }
 
         private void NextWeek_Click(object sender, RoutedEventArgs e)

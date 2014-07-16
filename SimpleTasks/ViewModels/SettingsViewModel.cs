@@ -148,7 +148,7 @@ namespace SimpleTasks.ViewModels
                 {
                 case DefaultDateTypes.Today: return DateTimeExtensions.Today;
                 case DefaultDateTypes.Tomorrow: return DateTimeExtensions.Tomorrow;
-                case DefaultDateTypes.ThisWeek: return DateTimeExtensions.LastDayOfWeek;
+                case DefaultDateTypes.ThisWeek: return DateTimeExtensions.LastDayOfActualWeek;
                 case DefaultDateTypes.NextWeek: return DateTimeExtensions.LastDayOfNextWeek;
 
                 case DefaultDateTypes.NoDueDate:

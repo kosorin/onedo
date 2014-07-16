@@ -20,10 +20,6 @@
           <source>All tasks are completed.</source>
           <target state="signed-off" state-qualifier="mt-suggestion">Všetky úlohy sú dokončené.</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/MissingTitle" xml:space="preserve">
-          <source>Enter task title.</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">Zadajte názov úlohy.</target>
-        </trans-unit>
         <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
           <source>tomorrow</source>
           <target state="signed-off" state-qualifier="tm-suggestion">zajtra</target>
@@ -64,14 +60,15 @@
           <source>custom due date</source>
           <target state="signed-off">vlastný termín</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/ChooseDueDate" xml:space="preserve">
-          <source>CHOOSE DATE</source>
-          <target state="signed-off">VYBERTE DÁTUM</target></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarSave" xml:space="preserve">
           <source>save</source>
           <target state="signed-off">uložiť</target>
           <note from="MultilingualBuild" annotates="source" priority="2">save task</note>
           </trans-unit>
+        <trans-unit id="Resx/ChooseDate" translate="yes" xml:space="preserve">
+          <source>CHOOSE DATE</source>
+          <target state="signed-off">VYBRAŤ DÁTUM</target>
+        </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarAbout" xml:space="preserve">
           <source>about</source>
           <target state="signed-off">o aplikácii</target>
@@ -217,11 +214,8 @@
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version {0}</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Verzia {0}</target>
-        </trans-unit>
-        <trans-unit translate="yes" id="Resx/ReminderTitle" xml:space="preserve">
-          <source>Task reminder</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">Pripomenutie úlohy</target>
-        </trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
+          </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Predvolený čas</target>
@@ -297,10 +291,6 @@
           <source>changelog</source>
           <target state="signed-off">changelog</target>
         </trans-unit>
-        <trans-unit id="Resx/ChooseReminderDate" translate="yes" xml:space="preserve">
-          <source>choose reminder date</source>
-          <target state="signed-off">vyberte dátum pripomenutia</target>
-        </trans-unit>
         <trans-unit id="Resx/ChooseTime" translate="yes" xml:space="preserve">
           <source>CHOOSE TIME</source>
           <target state="signed-off">VYBERTE ČAS</target>
@@ -308,7 +298,7 @@
         <trans-unit id="Resx/TimeNoon" translate="yes" xml:space="preserve">
           <source>noon</source>
           <target state="signed-off" state-qualifier="tm-suggestion">poludnie</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">12 PM</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">12 PM (12:00)</note>
           </trans-unit>
         <trans-unit id="Resx/NoReminder" translate="yes" xml:space="preserve">
           <source>no reminder</source>
@@ -316,40 +306,107 @@
         </trans-unit>
         <trans-unit id="Resx/MinutesLabel" translate="yes" xml:space="preserve">
           <source>MINUTES</source>
-          <target state="new">MINUTES</target>
+          <target state="signed-off">minúty</target>
+        </trans-unit>
+        <trans-unit id="Resx/DateYesterday" translate="yes" xml:space="preserve">
+          <source>yesterday</source>
+          <target state="signed-off">včera</target>
+        </trans-unit>
+        <trans-unit id="Resx/DateTimeMinutesAbbr" translate="yes" xml:space="preserve">
+          <source>m</source>
+          <target state="signed-off">m</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for minutes</note>
+          </trans-unit>
+        <trans-unit id="Resx/DateTimeHoursAbbr" translate="yes" xml:space="preserve">
+          <source>h</source>
+          <target state="signed-off">h</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for hours</note>
+          </trans-unit>
+        <trans-unit id="Resx/DateTimeDaysAbbr" translate="yes" xml:space="preserve">
+          <source>d</source>
+          <target state="signed-off">d</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for days</note>
+          </trans-unit>
+        <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
+          <source>Quick add task</source>
+          <target state="signed-off">Rýchle pridanie úlohy</target>
+        </trans-unit>
+        <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
+          <source>before due date</source>
+          <target state="signed-off">pred termínom</target>
+        </trans-unit>
+        <trans-unit id="Resx/TimeZero" translate="yes" xml:space="preserve">
+          <source>in due time</source>
+          <target state="signed-off">na začiatku</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time5mins" translate="yes" xml:space="preserve">
+          <source>5 minutes</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">5 minút</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time30mins" translate="yes" xml:space="preserve">
+          <source>30 minutes</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">30 minút</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time1week" translate="yes" xml:space="preserve">
+          <source>1 week</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">1 týždeň</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time1hour" translate="yes" xml:space="preserve">
+          <source>1 hour</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">1 hodina</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time1day" translate="yes" xml:space="preserve">
+          <source>1 day</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">1 deň</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time18hours" translate="yes" xml:space="preserve">
+          <source>18 hours</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">18 hodín</target>
+        </trans-unit>
+        <trans-unit id="Resx/Time15mins" translate="yes" xml:space="preserve">
+          <source>15 minutes</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">15 minút</target>
+        </trans-unit>
+        <trans-unit id="Resx/DateLastWeek" translate="yes" xml:space="preserve">
+          <source>last week</source>
+          <target state="signed-off">predošlý týždeň</target>
+        </trans-unit>
+        <trans-unit id="Resx/DateLastMonth" translate="yes" xml:space="preserve">
+          <source>last month</source>
+          <target state="signed-off">predošlý mesiac</target>
         </trans-unit>
         <trans-unit id="Resx/HoursLabel" translate="yes" xml:space="preserve">
           <source>HOURS</source>
-          <target state="new">HOURS</target>
+          <target state="signed-off">HODINY</target>
         </trans-unit>
         <trans-unit id="Resx/DaysLabel" translate="yes" xml:space="preserve">
           <source>DAYS</source>
-          <target state="new">DAYS</target>
+          <target state="signed-off">DNI</target>
         </trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
           <target state="signed-off">noc</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">10 PM</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">10 PM (22:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeMorning" translate="yes" xml:space="preserve">
           <source>morning</source>
           <target state="signed-off">ráno</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">7 AM</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">7 AM (7:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeLateMorning" translate="yes" xml:space="preserve">
           <source>late morning</source>
           <target state="signed-off">dopoludnie</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">10 AM</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">10 AM (10:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeEvening" translate="yes" xml:space="preserve">
           <source>evening</source>
           <target state="signed-off">večer</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">7 PM</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">7 PM (19:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeAfternoon" translate="yes" xml:space="preserve">
           <source>afternoon</source>
           <target state="signed-off">popoludnie</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">3 PM</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">3 PM (15:00)</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarPin" xml:space="preserve">
           <source>pin</source>

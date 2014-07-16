@@ -11,6 +11,7 @@ using SimpleTasks.ViewModels;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Resources;
 using SimpleTasks.Controls;
+using System.Diagnostics;
 
 namespace SimpleTasks.Views
 {
@@ -18,15 +19,21 @@ namespace SimpleTasks.Views
     {
         public ReminderPickerPage()
         {
-            InitializeComponent();
-
             initReminder = TimeSpan.Zero;
             if (PhoneApplicationService.Current.State.ContainsKey("Reminder"))
             {
                 initReminder = (PhoneApplicationService.Current.State["Reminder"] as TimeSpan?) ?? initReminder;
                 PhoneApplicationService.Current.State.Remove("Reminder");
             }
+
+            InitializeComponent();
+            Loaded += ReminderPickerPage_Loaded;
             DataContext = this;
+        }
+
+        void ReminderPickerPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetTimeSpan(initReminder); // v konstruktoru to blblo
         }
 
         private TimeSpan initReminder;
@@ -42,11 +49,14 @@ namespace SimpleTasks.Views
 
         private void QuickButton_Click(object sender, RoutedEventArgs e)
         {
-            string tag = (string)((Button)sender).Tag;
-            string[] values = tag.Split(':');
-            DaySlider.SetSliderValue(Convert.ToInt32(values[0]));
-            HourSlider.SetSliderValue(Convert.ToInt32(values[1]));
-            MinuteSlider.SetSliderValue(Convert.ToInt32(values[2]));
+            SetTimeSpan(TimeSpan.Parse((string)((Button)sender).Tag));
+        }
+
+        private void SetTimeSpan(TimeSpan ts)
+        {
+            DaySlider.SetSliderValue(ts.Days);
+            HourSlider.SetSliderValue(ts.Hours);
+            MinuteSlider.SetSliderValue(ts.Minutes);
         }
     }
 }

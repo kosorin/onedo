@@ -105,23 +105,22 @@
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TaskListMenuItem.cs" />
+    <Compile Include="Conventers\StringFormatConverter.cs" />
     <Compile Include="Conventers\ToUpperConverter.cs" />
-    <Compile Include="Conventers\BooleanNegationConverter.cs" />
-    <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
-    <Compile Include="Conventers\BooleanToNumberConverter.cs" />
-    <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Conventers\BooleanToInvertedVisibilityConverter.cs" />
+    <Compile Include="Conventers\BoolNegationConverter.cs" />
+    <Compile Include="Conventers\BoolToNumberConverter.cs" />
+    <Compile Include="Conventers\BoolToVisibilityConverter.cs" />
     <Compile Include="Conventers\DateToBoolConverter.cs" />
-    <Compile Include="Conventers\TimeSpanToStringConverter.cs" />
-    <Compile Include="Conventers\TimeToStringConverter.cs" />
+    <Compile Include="Conventers\TimeSpanConverter.cs" />
+    <Compile Include="Conventers\TimeConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
-    <Compile Include="Conventers\TaskToDueStringConverter.cs" />
-    <Compile Include="Conventers\DateToRelativeStringConverter.cs" />
-    <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />
-    <Compile Include="Conventers\TaskPriorityToBooleanConverter.cs" />
-    <Compile Include="Conventers\DateToStringConverter.cs" />
+    <Compile Include="Conventers\DueConverter.cs" />
+    <Compile Include="Conventers\PriorityToVisibilityConverter.cs" />
+    <Compile Include="Conventers\PriorityToBoolConverter.cs" />
+    <Compile Include="Conventers\DateConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
-    <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
+    <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\ChangelogCategory.cs" />

@@ -26,21 +26,11 @@ namespace SimpleTasks.ViewModels
             {
                 SetProperty(ref _tasks, value);
                 OnPropertyChanged(GroupedTasksPropertyString);
-                OnPropertyChanged(TagsPropertyString);
 
                 if (_tasks != null)
                 {
                     _tasks.CollectionChanged += (s, e) => { OnPropertyChanged(GroupedTasksPropertyString); };
-                    _tasks.CollectionChanged += (s, e) => { OnPropertyChanged(TagsPropertyString); };
                 }
-            }
-        }
-
-        public ReadOnlyCollection<TaskModel> ReadOnlyTasks
-        {
-            get
-            {
-                return new ReadOnlyCollection<TaskModel>(_tasks);
             }
         }
 
@@ -48,20 +38,6 @@ namespace SimpleTasks.ViewModels
         public List<TaskGroup> GroupedTasks
         {
             get { return TaskGroup.CreateGroups(Tasks); }
-        }
-
-        private const string TagsPropertyString = "Tags";
-        public List<Tag> Tags
-        {
-            get
-            {
-                return new List<Tag>() 
-                { 
-                    new Tag() { Name = "dokončené" },
-                    new Tag() { Name = "škola" },
-                    new Tag() { Name = "všechny" }
-                };
-            }
         }
 
         public TasksViewModel()
@@ -76,7 +52,7 @@ namespace SimpleTasks.ViewModels
             foreach (TaskModel task in Tasks)
             {
                 Reminder reminder = ReminderHelper.Get(task);
-                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null? reminder.Name : "<false>");
+                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null ? reminder.Name : "<false>");
             }
 #endif
         }
@@ -89,7 +65,7 @@ namespace SimpleTasks.ViewModels
         public void Add(TaskModel task)
         {
             Tasks.Add(task);
-            if (task.HasReminder)
+            if (task.IsActive && task.HasReminder)
             {
                 ReminderHelper.Add(task);
             }
@@ -97,23 +73,20 @@ namespace SimpleTasks.ViewModels
 
         public void Update(TaskModel task)
         {
-            ReminderHelper.Remove(task);
-            if (task.HasReminder)
+            Reminder reminder = ReminderHelper.Get(task);
+            if (reminder != null)
+            {
+                if (task.IsComplete || !task.HasReminder || !reminder.IsScheduled || reminder.BeginTime != task.ReminderDate)
+                {
+                    ReminderHelper.Remove(task);
+                    reminder = null;
+                }
+            }
+
+            if (reminder == null && task.IsActive && task.HasReminder)
             {
                 ReminderHelper.Add(task);
             }
-        }
-
-        public void Update(TaskModel oldTask, TaskModel newTask)
-        {
-            DeleteForUpdate(oldTask);
-            Add(newTask);
-        }
-
-        private void DeleteForUpdate(TaskModel task)
-        {
-            Tasks.Remove(task);
-            ReminderHelper.Remove(task);
         }
 
         public void Delete(TaskModel task)
@@ -146,8 +119,7 @@ namespace SimpleTasks.ViewModels
         public void DeleteCompleted()
         {
             // Odstranění dokončených úkolů
-            var completedTasks = Tasks.Where((t) => { return t.IsComplete; }).ToList();
-            foreach (TaskModel task in completedTasks)
+            foreach (TaskModel task in Tasks.Where(t => t.IsComplete).ToList())
             {
                 Delete(task);
             }

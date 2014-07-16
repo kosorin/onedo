@@ -136,7 +136,7 @@
     <value>save</value>
     <comment>save task</comment>
   </data>
-  <data name="ChooseDueDate" xml:space="preserve">
+  <data name="ChooseDate" xml:space="preserve">
     <value>CHOOSE DATE</value>
   </data>
   <data name="DateCustomDue" xml:space="preserve">
@@ -168,9 +168,6 @@
   </data>
   <data name="DateTomorrow" xml:space="preserve">
     <value>tomorrow</value>
-  </data>
-  <data name="MissingTitle" xml:space="preserve">
-    <value>Enter task title.</value>
   </data>
   <data name="NoTasks" xml:space="preserve">
     <value>All tasks are completed.</value>
@@ -279,6 +276,7 @@
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Version {0}</value>
+    <comment>Version {VersionNumber}</comment>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>due date</value>
@@ -288,9 +286,6 @@
   </data>
   <data name="Reminder" xml:space="preserve">
     <value>reminder</value>
-  </data>
-  <data name="ReminderTitle" xml:space="preserve">
-    <value>Task reminder</value>
   </data>
   <data name="SettingsDefaultTime" xml:space="preserve">
     <value>Default time</value>
@@ -365,35 +360,32 @@
   <data name="Changelog" xml:space="preserve">
     <value>changelog</value>
   </data>
-  <data name="ChooseReminderDate" xml:space="preserve">
-    <value>choose reminder date</value>
-  </data>
   <data name="ChooseTime" xml:space="preserve">
     <value>CHOOSE TIME</value>
   </data>
   <data name="TimeAfternoon" xml:space="preserve">
     <value>afternoon</value>
-    <comment>3 PM</comment>
+    <comment>3 PM (15:00)</comment>
   </data>
   <data name="TimeEvening" xml:space="preserve">
     <value>evening</value>
-    <comment>7 PM</comment>
+    <comment>7 PM (19:00)</comment>
   </data>
   <data name="TimeLateMorning" xml:space="preserve">
     <value>late morning</value>
-    <comment>10 AM</comment>
+    <comment>10 AM (10:00)</comment>
   </data>
   <data name="TimeMorning" xml:space="preserve">
     <value>morning</value>
-    <comment>7 AM</comment>
+    <comment>7 AM (7:00)</comment>
   </data>
   <data name="TimeNight" xml:space="preserve">
     <value>night</value>
-    <comment>10 PM</comment>
+    <comment>10 PM (22:00)</comment>
   </data>
   <data name="TimeNoon" xml:space="preserve">
     <value>noon</value>
-    <comment>12 PM</comment>
+    <comment>12 PM (12:00)</comment>
   </data>
   <data name="NoReminder" xml:space="preserve">
     <value>no reminder</value>
@@ -406,5 +398,56 @@
   </data>
   <data name="MinutesLabel" xml:space="preserve">
     <value>MINUTES</value>
+  </data>
+  <data name="DateLastMonth" xml:space="preserve">
+    <value>last month</value>
+  </data>
+  <data name="DateLastWeek" xml:space="preserve">
+    <value>last week</value>
+  </data>
+  <data name="DateYesterday" xml:space="preserve">
+    <value>yesterday</value>
+  </data>
+  <data name="DateTimeDaysAbbr" xml:space="preserve">
+    <value>d</value>
+    <comment>1 letter abbreviation for days</comment>
+  </data>
+  <data name="DateTimeHoursAbbr" xml:space="preserve">
+    <value>h</value>
+    <comment>1 letter abbreviation for hours</comment>
+  </data>
+  <data name="DateTimeMinutesAbbr" xml:space="preserve">
+    <value>m</value>
+    <comment>1 letter abbreviation for minutes</comment>
+  </data>
+  <data name="QuickAddLabel" xml:space="preserve">
+    <value>Quick add task</value>
+  </data>
+  <data name="ReminderBeforeDueDateText" xml:space="preserve">
+    <value>before due date</value>
+  </data>
+  <data name="Time15mins" xml:space="preserve">
+    <value>15 minutes</value>
+  </data>
+  <data name="Time18hours" xml:space="preserve">
+    <value>18 hours</value>
+  </data>
+  <data name="Time1day" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="Time1hour" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="Time1week" xml:space="preserve">
+    <value>1 week</value>
+  </data>
+  <data name="Time30mins" xml:space="preserve">
+    <value>30 minutes</value>
+  </data>
+  <data name="Time5mins" xml:space="preserve">
+    <value>5 minutes</value>
+  </data>
+  <data name="TimeZero" xml:space="preserve">
+    <value>in due time</value>
   </data>
 </root>

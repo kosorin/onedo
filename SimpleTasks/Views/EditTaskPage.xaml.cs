@@ -124,7 +124,7 @@ namespace SimpleTasks.Views
 
                 // připomenutí
                 IsSetReminder = false;
-                Reminder = null;
+                Reminder = TimeSpan.Zero;
             }
             else
             {
@@ -145,7 +145,7 @@ namespace SimpleTasks.Views
 
                 // připomenutí
                 IsSetReminder = (task.Reminder != null);
-                Reminder = task.Reminder;
+                Reminder = task.Reminder ?? TimeSpan.Zero;
             }
         }
 
@@ -247,13 +247,6 @@ namespace SimpleTasks.Views
             }
         }
 
-        private DateTime _reminderDate;
-        public DateTime ReminderDate
-        {
-            get { return _reminderDate; }
-            set { SetProperty(ref _reminderDate, value); }
-        }
-
         private TimeSpan? _reminder = null;
         public TimeSpan? Reminder
         {
@@ -318,10 +311,6 @@ namespace SimpleTasks.Views
                 Original.DueDate = null;
 
             // Reminder Date
-            if (ReminderDate <= DateTime.Now)
-            {
-                ReminderDate = DateTime.Now.AddMinutes(2);
-            }
             if (IsSetReminder)
                 Original.Reminder = Reminder;
             else

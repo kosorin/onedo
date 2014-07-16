@@ -23,21 +23,30 @@
             <!--EndRegion-->
             
             <!--Region Konvertory-->
+
+            <!--To String-->
+            <conv:StringFormatConverter x:Key="StringFormatConverter" />
             <conv:ToUpperConverter x:Key="ToUpperConverter" />
-            <conv:DateToBoolConverter x:Key="DateToBoolConverter" />
-            <conv:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
-            <conv:DateToStringConverter x:Key="DateToStringConverter" />
-            <conv:TimeToStringConverter x:Key="TimeToStringConverter" />
-            <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
-            <conv:TaskToDueStringConverter x:Key="TaskToDueDateStringConverter" />
+            <conv:DueConverter x:Key="TaskToDueStringConverter" />
+            <conv:TimeSpanConverter x:Key="TimeSpanToStringConverter" />
+            <conv:DateConverter x:Key="DateConverter" />
+            <conv:TimeConverter x:Key="TimeToStringConverter" />
+            
+            <!--To Visibility-->
             <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <conv:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter" />
-            <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
-            <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <conv:BooleanNegationToVisibilityConverter x:Key="BooleanNegationToVisibilityConverter" />
-            <conv:BooleanToNumberConverter x:Key="BooleanToNumberConverter" />
-            <conv:TaskPriorityToBooleanConverter x:Key="TaskPriorityToBooleanConverter" />
-            <conv:TaskPriorityToVisibilityConverter x:Key="TaskPriorityToVisibilityConverter" />
+            <conv:NumberToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <conv:PriorityToVisibilityConverter x:Key="TaskPriorityToVisibilityConverter" />
+            
+            <!--To Bool-->
+            <conv:BoolNegationConverter x:Key="BoolNegationConverter" />
+            <conv:DateToBoolConverter x:Key="DateToBoolConverter" />
+            <conv:PriorityToBoolConverter x:Key="TaskPriorityToBooleanConverter" />
+
+            <!--To Number-->
+            <conv:BoolToNumberConverter x:Key="BooleanToNumberConverter" />
+            
             <!--EndRegion-->
 
             <!--Region Ikony-->

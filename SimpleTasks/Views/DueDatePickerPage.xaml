@@ -167,7 +167,7 @@
 
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}" 
-                   Text="{Binding LocalizedResources.ChooseDueDate, Source={StaticResource LocalizedStrings}}" />
+                   Text="{Binding LocalizedResources.ChooseDate, Source={StaticResource LocalizedStrings}}" />
 
         <Grid Margin="0,0,0,20">
 

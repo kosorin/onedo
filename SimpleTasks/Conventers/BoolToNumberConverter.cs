@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace SimpleTasks.Conventers
 {
-    public class BooleanToNumberConverter : IValueConverter
+    public class BoolToNumberConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

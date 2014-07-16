@@ -5,17 +5,17 @@ using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Conventers
 {
-    public class DateToRelativeStringConverter : IValueConverter
+    public class TimeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string defaultString = (parameter is string) ? parameter as string : "";
+            string defaultString = parameter as string ?? "";
 
             if (value is DateTime?)
             {
                 DateTime? date = value as DateTime?;
                 if (date.HasValue)
-                    return DateTimeExtensions.ToRelativeString(date, "", true); ;
+                    return string.Format(CultureInfo.CurrentCulture, DateTimeExtensions.TimeFormat, date.Value);
             }
 
             return defaultString;

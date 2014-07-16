@@ -335,13 +335,18 @@ namespace SimpleTasks
             string source = (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
                 "Dark" :
                 "Light";
-            ResourceDictionary theme = new ResourceDictionary
-            {
-                Source = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative)
-            };
 
-            Resources.MergedDictionaries.Clear();
-            Resources.MergedDictionaries.Add(theme);
+            // Dark je defaultní, takže řešíme jen Light
+            if (source == "Light")
+            {
+                ResourceDictionary theme = new ResourceDictionary
+                {
+                    Source = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative)
+                };
+
+                Resources.MergedDictionaries.Clear();
+                Resources.MergedDictionaries.Add(theme);
+            }
         }
 
         #endregion
