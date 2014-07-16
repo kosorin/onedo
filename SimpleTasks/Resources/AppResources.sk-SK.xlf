@@ -306,7 +306,7 @@
         </trans-unit>
         <trans-unit id="Resx/MinutesLabel" translate="yes" xml:space="preserve">
           <source>MINUTES</source>
-          <target state="signed-off">minúty</target>
+          <target state="signed-off">MINÚTY</target>
         </trans-unit>
         <trans-unit id="Resx/DateYesterday" translate="yes" xml:space="preserve">
           <source>yesterday</source>

@@ -341,7 +341,7 @@
                                         Storyboard.TargetName="CompleteButtonRectangle" />
                     </Storyboard>
                 </Border.Resources>
-                <toolkit:ContextMenuService.ContextMenu>
+                <!--<toolkit:ContextMenuService.ContextMenu>
                     <toolkit:ContextMenu Template="{StaticResource TaskMenuTemplate}" Opened="ContextMenu_Opened" Closed="ContextMenu_Closed">
                         <toolkit:ContextMenu.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -353,7 +353,7 @@
                         <controls:TaskListMenuItem Tap="NextWeekMenuItem_Tap" Style="{StaticResource TaskMenuItemStyle}" Header="{Binding LocalizedResources.DateNextWeek, Source={StaticResource LocalizedStrings}}" Icon="&#xe17e;&#xe111;" />
                         <controls:TaskListMenuItem Tap="SomedayMenuItem_Tap" Style="{StaticResource TaskMenuItemStyle}" Header="{Binding LocalizedResources.DateSomeday, Source={StaticResource LocalizedStrings}}" Icon="&#xe17e;&#xe143;" />
                     </toolkit:ContextMenu>
-                </toolkit:ContextMenuService.ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -499,6 +499,8 @@
                             </Grid>
                         </StackPanel>
                     </Grid>
+                    
+                    <ContentControl x:Name="CompleteGestureIcon" Margin="-105" Grid.Column="1" Style="{StaticResource CompleteIconStyle}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
             </Border>
         </DataTemplate>

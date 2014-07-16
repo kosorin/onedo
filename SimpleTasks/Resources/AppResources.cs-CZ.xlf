@@ -214,7 +214,8 @@
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version {0}</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Verze {0}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
+          </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Výchozí čas</target>
@@ -328,7 +329,7 @@
           </trans-unit>
         <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
           <source>Quick add task</source>
-          <target state="signed-off">Rychle přidat úkol</target>
+          <target state="signed-off">Rychlé přidání úkolu</target>
         </trans-unit>
         <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
           <source>before due date</source>

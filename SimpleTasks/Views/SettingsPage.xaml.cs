@@ -26,5 +26,26 @@ namespace SimpleTasks.Views
                 App.UpdateAllLiveTiles();
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
+            {
+                App.Settings.DefaultTimeSetting = (DateTime)PhoneApplicationService.Current.State["DueTime"];
+                DefaultTimeButton.Content = App.Settings.DefaultTimeSetting.ToShortTimeString();
+                PhoneApplicationService.Current.State.Remove("DueTime");
+            }
+        }
+
+        private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
+            if (phoneApplicationFrame != null)
+            {
+                PhoneApplicationService.Current.State["DueTime"] = App.Settings.DefaultTimeSetting;
+                phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
+            }
+        }
     }
 }

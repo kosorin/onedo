@@ -440,7 +440,6 @@ namespace SimpleTasks.Views
 
         private void RootBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
-            Border border = (Border)sender;
         }
 
         private void RootBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
@@ -464,6 +463,7 @@ namespace SimpleTasks.Views
         private void RootBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
             Border border = (Border)sender;
+            ContentControl icon = (ContentControl)border.FindName("CompleteGestureIcon");
             TranslateTransform t = (TranslateTransform)border.RenderTransform;
 
             t.X += e.DeltaManipulation.Translation.X;
@@ -474,14 +474,13 @@ namespace SimpleTasks.Views
 
             if (t.X < _completeGestureTreshold)
             {
-                border.Background = new SolidColorBrush(Colors.White)
-                {
-                    Opacity = 0.15
-                };
+                border.Background = new SolidColorBrush((Color)App.Current.Resources["PhoneForegroundColor"]) { Opacity = 0.15 };
+                icon.Foreground = new SolidColorBrush((Color)App.Current.Resources["PhoneAccentColor"]);
             }
             else
             {
                 border.Background = null;
+                icon.Foreground = new SolidColorBrush((Color)App.Current.Resources["PhoneForegroundColor"]) { Opacity = 0.6 }; ;
             }
         }
         #endregion

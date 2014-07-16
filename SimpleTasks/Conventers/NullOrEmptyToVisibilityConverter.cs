@@ -9,7 +9,7 @@ namespace SimpleTasks.Conventers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value == null && string.IsNullOrEmpty(value as string) ? Visibility.Visible : Visibility.Collapsed;
+            return value != null && (value is string && (string)value != "") ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
