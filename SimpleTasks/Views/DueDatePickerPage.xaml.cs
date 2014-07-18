@@ -54,7 +54,7 @@ namespace SimpleTasks.Views
                 PhoneApplicationService.Current.State.Remove("DueDate");
             }
 
-            Calendar.ColorConverter = new CalendarColorConverter(Resources["CalendarItemSubtleBrush"] as Brush);
+            Calendar.ColorConverter = new CalendarColorConverter(Application.Current.Resources["CalendarItemSubtleBrush"] as Brush);
 
             Calendar.MinimumDate = (initDate < DateTime.Today ? initDate : DateTime.Today).AddMonths(-1);
             Calendar.MaximumDate = (initDate > DateTime.Today ? initDate : DateTime.Today).AddYears(2);

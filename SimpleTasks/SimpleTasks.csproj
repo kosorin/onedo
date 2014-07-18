@@ -97,9 +97,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BasePickerPage.cs" />
     <Compile Include="Controls\MySlider.cs" />
     <Compile Include="Controls\MyTextBox.cs" />
+    <Compile Include="Controls\IconButton.cs" />
     <Compile Include="Controls\MyToggleButton.cs" />
     <Compile Include="Controls\RingSlice.cs" />
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
@@ -123,6 +125,7 @@
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Models\ChangelogList.cs" />
     <Compile Include="Models\ChangelogCategory.cs" />
     <Compile Include="Models\ChangelogItem.cs" />
     <Compile Include="Models\TaskGroup.cs" />
@@ -133,6 +136,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\AboutDataSource\AboutDataSource.xaml.cs">
+      <DependentUpon>AboutDataSource.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tiles\DefaultWideTaskTile.xaml.cs">
       <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
@@ -236,19 +242,20 @@
     </XliffResource>
   </ItemGroup>
   <ItemGroup>
+    <DesignData Include="SampleData\TasksViewModelSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </DesignData>
     <Page Include="Controls\RoundTimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+    <DesignData Include="SampleData\AboutDataSource\ChangelogListSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </DesignData>
+    <DesignTimeOnly Include="SampleData\AboutDataSource\AboutDataSource.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
-      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
-    </Page>
-    <Page Include="SampleData\MainSampleData.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    </DesignTimeOnly>
     <Page Include="Themes\Light.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -319,6 +326,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <DesignTimeOnly Include="SampleData\AboutDataSource\AboutDataSource.xsd" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />

@@ -17,6 +17,7 @@ using System.Reflection;
 using SimpleTasks.Core.Models;
 using System.Collections.Generic;
 using System.Windows.Media;
+using System.Collections;
 
 namespace SimpleTasks
 {
@@ -135,15 +136,8 @@ namespace SimpleTasks
 
         #region Phone application initialization
 
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
-        /// <summary>
-        /// Constructor for the Application object.
-        /// </summary>
         public App()
         {
             // Global handler for uncaught exceptions.
@@ -177,7 +171,6 @@ namespace SimpleTasks
             }
         }
 
-        // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             if (Debugger.IsAttached)
@@ -187,7 +180,6 @@ namespace SimpleTasks
             }
         }
 
-        // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             if (Debugger.IsAttached)
@@ -260,23 +252,6 @@ namespace SimpleTasks
 
         #endregion
 
-        // Initialize the app's font and flow direction as defined in its localized resource strings.
-        //
-        // To ensure that the font of your application is aligned with its supported languages and that the
-        // FlowDirection for each of those languages follows its traditional direction, ResourceLanguage
-        // and ResourceFlowDirection should be initialized in each resx file to match these values with that
-        // file's culture. For example:
-        //
-        // AppResources.es-ES.resx
-        //    ResourceLanguage's value should be "es-ES"
-        //    ResourceFlowDirection's value should be "LeftToRight"
-        //
-        // AppResources.ar-SA.resx
-        //     ResourceLanguage's value should be "ar-SA"
-        //     ResourceFlowDirection's value should be "RightToLeft"
-        //
-        // For more info on localizing Windows Phone apps see http://go.microsoft.com/fwlink/?LinkId=262072.
-        //
         private void InitializeLanguage()
         {
             try
@@ -332,21 +307,29 @@ namespace SimpleTasks
 
         private void InitializeTheme()
         {
-            string source = (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
+            string source = string.Format("/SimpleTasks;component/Themes/{0}.xaml", (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
                 "Dark" :
-                "Light";
+                "Light");
 
-            // Dark je defaultní, takže řešíme jen Light
-            if (source == "Light")
-            {
-                ResourceDictionary theme = new ResourceDictionary
-                {
-                    Source = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative)
-                };
+            //ResourceDictionary app = this.Resources;
+            //ResourceDictionary theme = new ResourceDictionary
+            //{
+            //    Source = new Uri(source, UriKind.Relative)
+            //};
 
-                Resources.MergedDictionaries.Clear();
-                Resources.MergedDictionaries.Add(theme);
-            }
+            //foreach (DictionaryEntry style in theme)
+            //{
+            //    SolidColorBrush colorBrush = style.Value as SolidColorBrush;
+            //    SolidColorBrush existingBrush = app[style.Key] as SolidColorBrush;
+
+            //    if (existingBrush != null && colorBrush != null)
+            //    {
+            //        existingBrush.Color = colorBrush.Color;
+            //    }
+            //}
+
+            //Resources.MergedDictionaries.Clear();
+            //Resources.MergedDictionaries.Add(theme);
         }
 
         #endregion

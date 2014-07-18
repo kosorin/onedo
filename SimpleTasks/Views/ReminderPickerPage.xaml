@@ -11,8 +11,6 @@
     Style="{StaticResource BasePickerPageStyle}">
 
     <controls:BasePickerPage.Resources>
-        <SolidColorBrush x:Key="TimeForegroundBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="1.0"/>
-        <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="0.4"/>
 
         <Style x:Key="TimeTextStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -46,7 +44,7 @@
                     <Run Text="{Binding RoundValue, ElementName=MinuteSlider}" Foreground="{StaticResource TimeForegroundBrush}" /><Run Text="{Binding LocalizedResources.DateTimeMinutesAbbr, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
                 </TextBlock>
             </Grid>
-            <TextBlock Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Style="{StaticResource TimeTextStyle}" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,30" />
+            <TextBlock Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Style="{StaticResource TimeTextStyle}" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="{StaticResource TimeBeforeTextBrush}" />
 
             <Grid Margin="0,0,0,30">
                 <Grid.RowDefinitions>

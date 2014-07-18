@@ -8,18 +8,29 @@
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
 
-    <!--Region Globální styly-->
-    <Color x:Key="PageBackgroundColor">#0c0c0c</Color>
-    <Color x:Key="TextColor">#FFFFFFFF</Color>
+    <!--<Color x:Key="AppBarBackgroundColor">#FF1F1F1F</Color>
+    <Color x:Key="AppBarForegroundColor">#fff</Color>
+    <Color x:Key="SystemTrayBackgroundColor">#1F1F1F</Color>
+    <Color x:Key="SystemTrayForegroundColor">#fff</Color>-->
 
-    <SolidColorBrush x:Key="PageBackgroundBrush" Color="{StaticResource PageBackgroundColor}" />
-    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}" />
+    <!--Region Globální styly-->
+    <Color x:Key="BackgroundColor">#0c0c0c</Color>
+    <Color x:Key="NormalColor">White</Color>
+    <Color x:Key="SlightColor">#CCFFFFFF</Color>
+    <Color x:Key="SubtleColor">#99FFFFFF</Color>
+    <Color x:Key="ChromeColor">#FF1F1F1F</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
+    <SolidColorBrush x:Key="NormalBrush" Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="SlightBrush" Color="{StaticResource SlightColor}" />
+    <SolidColorBrush x:Key="SubtleBrush" Color="{StaticResource SubtleColor}" />
+    <SolidColorBrush x:Key="ChromeBrush" Color="{StaticResource ChromeColor}" />
     <!--EndRegion-->
 
     <!--Region Tlačítka-->
     <Color x:Key="ButtonBackgroundColor">#44FFFFFF</Color>
-    <Color x:Key="ButtonForegroundColor">#FFFFFFFF</Color>
-    <Color x:Key="ButtonIconColor">#FFFFFFFF</Color>
+    <Color x:Key="ButtonForegroundColor">White</Color>
+    <Color x:Key="ButtonIconColor">White</Color>
     
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}"/>
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource ButtonForegroundColor}"/>
@@ -28,10 +39,31 @@
 
     <!--Region BasePickerPage--> 
     <Color x:Key="BasePickerPageBackgroundColor">#FF1F1F1F</Color> <!--PhoneChromeColor-->
-    <Color x:Key="BasePickerPageForegroundColor">#FFFFFFFF</Color>
+    <Color x:Key="BasePickerPageForegroundColor">White</Color>
 
     <SolidColorBrush x:Key="BasePickerPageBackgroundBrush" Color="{StaticResource BasePickerPageBackgroundColor}"/>
     <SolidColorBrush x:Key="BasePickerPageForegroundBrush" Color="{StaticResource BasePickerPageForegroundColor}"/>
     <!--EndRegion-->
 
+    <!--Region MainPage-->
+    <SolidColorBrush x:Key="TasksListDelimiterBrush" Color="{StaticResource SubtleColor}" Opacity="0.2"/>
+    
+    <SolidColorBrush x:Key="QuickAddBackgroundBrush" Color="#99FFFFFF" Opacity="0.45"/>
+    <!--EndRegion-->
+
+	<!--Region DueDatePicker-->
+	<SolidColorBrush x:Key="BorderBrush" Color="#666" />
+    <SolidColorBrush x:Key="CalendarItemBrush" Color="White" />
+    <SolidColorBrush x:Key="CalendarItemBackgroundBrush" Color="{StaticResource PhoneInactiveColor}" />
+    <SolidColorBrush x:Key="CalendarItemSubtleBrush" Color="#666" />
+	<SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush" Color="#2a2a2a" />
+
+    <SolidColorBrush x:Key="InfoForegroundBrush" Color="White" />
+	<!--EndRegion-->
+
+	<!--Region ReminderPicker-->
+    <SolidColorBrush x:Key="TimeForegroundBrush" Color="White" Opacity="1.0"/>
+    <SolidColorBrush x:Key="TimeBeforeTextBrush" Color="White" Opacity="0.4"/>
+    <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="White" Opacity="0.4"/>
+	<!--EndRegion-->
 </ResourceDictionary>

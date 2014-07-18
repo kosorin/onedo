@@ -15,7 +15,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Themes\Dark.xaml"/>
+                <ResourceDictionary Source="/SimpleTasks;component/Themes/Light.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--Region Lokalizace-->
@@ -261,17 +261,30 @@
             <!--EndRegion-->
 
             <!--Region TextBlock-->
-            <Style x:Key="LightTextStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Style x:Key="NormalTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource NormalBrush}" />
+                <Setter Property="FontFamily" Value="Segoe WP" />
                 <Setter Property="FontWeight" Value="Light" />
+                <Setter Property="FontSize" Value="24" />
             </Style>
 
-            <Style x:Key="ButtonTextStyle" TargetType="TextBlock" BasedOn="{StaticResource LightTextStyle}">
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="32" />
+            <Style x:Key="SlightTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource SlightBrush}" />
+            </Style>
+
+            <Style x:Key="SubtleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource SubtleBrush}" />
+            </Style>
+
+            <Style x:Key="AccentTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+            </Style>
+
+            <Style x:Key="ButtonTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
                 <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+                <Setter Property="FontSize" Value="32" />
                 <Setter Property="TextWrapping" Value="NoWrap" />
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <!--EndRegion-->
 

@@ -228,4 +228,20 @@
     </Style>
     <!--EndRegion-->
 
+    <!--Region IconButton-->
+    <Style TargetType="controls:IconButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:IconButton" >
+                    <Border Height="60" Background="{StaticResource ButtonBackgroundBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentControl Style="{TemplateBinding IconStyle}" Foreground="{StaticResource ButtonForegroundBrush}" Margin="7,0,3,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{TemplateBinding Content}" Style="{StaticResource ButtonTextStyle}" Margin="0,5,0,0" />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--EndRegion-->
 </ResourceDictionary>

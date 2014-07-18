@@ -11,6 +11,7 @@ namespace SimpleTasks.Controls
 {
     [TemplateVisualState(Name = CheckedState, GroupName = CheckStates)]
     [TemplateVisualState(Name = UncheckedState, GroupName = CheckStates)]
+    [TemplateVisualState(Name = IndeterminateState, GroupName = CheckStates)]
     public class MyToggleButton : Button
     {
         private const string CheckStates = "CheckStates";
@@ -18,6 +19,8 @@ namespace SimpleTasks.Controls
         private const string CheckedState = "Checked";
 
         private const string UncheckedState = "Unchecked";
+
+        private const string IndeterminateState = "Indeterminate";
 
         public static readonly DependencyProperty IsCheckedProperty =
             DependencyProperty.Register("IsChecked", typeof(bool), typeof(MyToggleButton), 
@@ -46,6 +49,13 @@ namespace SimpleTasks.Controls
         public MyToggleButton()
         {
             DefaultStyleKey = typeof(MyToggleButton);
+            VisualStateManager.GoToState(this, IndeterminateState, true);
+            Loaded += MyToggleButton_Loaded;
+        }
+
+        void MyToggleButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            ApplyStates();
         }
     }
 }

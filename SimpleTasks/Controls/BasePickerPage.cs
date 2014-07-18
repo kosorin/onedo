@@ -12,21 +12,10 @@ using SimpleTasks.Resources;
 
 namespace SimpleTasks.Controls
 {
-    public abstract class BasePickerPage : PhoneApplicationPage
+    public abstract class BasePickerPage : BasePage
     {
         public BasePickerPage()
         {
-            TransitionService.SetNavigationInTransition(this, new NavigationInTransition()
-            {
-                Backward = new SlideTransition() { Mode = SlideTransitionMode.SlideDownFadeIn },
-                Forward = new SlideTransition() { Mode = SlideTransitionMode.SlideUpFadeIn }
-            });
-            TransitionService.SetNavigationOutTransition(this, new NavigationOutTransition()
-            {
-                Backward = new SlideTransition() { Mode = SlideTransitionMode.SlideDownFadeOut },
-                Forward = new SlideTransition() { Mode = SlideTransitionMode.SlideUpFadeOut }
-            });
-
             BuildAppBar();
         }
 
@@ -40,7 +29,6 @@ namespace SimpleTasks.Controls
             appBarDoneButton.Text = AppResources.AppBarDone;
             appBarDoneButton.Click += appBarDoneButton_Click;
             ApplicationBar.Buttons.Add(appBarDoneButton);
-
 
             ApplicationBarIconButton appBarCancelButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Cancel.png", UriKind.Relative));
             appBarCancelButton.Text = AppResources.AppBarCancel;

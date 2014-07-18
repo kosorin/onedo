@@ -18,11 +18,7 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
-        <SolidColorBrush x:Key="BorderBrush" Color="#666" />
-        <SolidColorBrush x:Key="CalendarItemBrush" Color="#fff" />
-        <SolidColorBrush x:Key="CalendarItemSubtleBrush" Color="#666" />
-        
-        <SolidColorBrush x:Key="InfoForegroundBrush" Color="#fff" />
+
 
         <Style x:Key="BorderStyle" TargetType="Border" >
             <Setter Property="BorderThickness" Value="1"/>
@@ -30,7 +26,7 @@
             <Setter Property="Margin" Value="-1,-1,0,0"/>
         </Style>
         <Style x:Key="WeekdayBorderStyle" TargetType="Border" BasedOn="{StaticResource BorderStyle}" >
-            <Setter Property="Background" Value="#2a2a2a"/>
+            <Setter Property="Background" Value="{StaticResource CalendarWeekdayBackgroundBrush}"/>
         </Style>
         
         <ControlTemplate x:Key="CalendarTemplate"  TargetType="wpcontrols:Calendar">
@@ -148,7 +144,7 @@
                                     BorderThickness="1">
                                 <Grid Width="68" Height="48">
                                     <Rectangle x:Name="BackgroundRectangle"
-                                               Fill="{StaticResource PhoneInactiveBrush}"
+                                               Fill="{StaticResource CalendarItemBackgroundBrush}"
                                                Opacity="0.45"/>
                                     <TextBlock x:Name="DayNumberBlock" 
                                                Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}" 

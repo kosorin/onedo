@@ -24,7 +24,7 @@ using Microsoft.Phone.Tasks;
 
 namespace SimpleTasks.Views
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage : BasePage
     {
         public MainPage()
         {
@@ -297,37 +297,30 @@ namespace SimpleTasks.Views
         {
             this.Focus();
 
-            ToggleComplete(((sender as Border).Parent as Grid).Parent as Border);
+            ToggleComplete((sender as MyToggleButton).DataContext as TaskWrapper);
         }
 
-        private void ToggleComplete(Border border)
+        private void ToggleComplete(TaskWrapper wrapper)
         {
-            Storyboard showStoryboard = ((Storyboard)border.FindName("TaskInfoShow"));
-            Storyboard hideStoryboard = ((Storyboard)border.FindName("TaskInfoHide"));
-            TaskWrapper wrapper = border.DataContext as TaskWrapper;
+            if (wrapper == null)
+                return;
             TaskModel task = wrapper.Task;
             if (task == null)
                 return;
 
             if (task.IsActive)
-            {   // DOKONČENÍ
+            {   
+                // DOKONČENÍ
                 task.CompletedDate = DateTime.Now;
                 if (App.Settings.UnpinCompletedSetting)
                 {
                     LiveTile.Unpin(task);
                 }
-
-                wrapper.Animation = true;
-                hideStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
-                hideStoryboard.Begin();
             }
             else
-            {   // AKTIVOVÁNÍ
+            {   
+                // AKTIVOVÁNÍ
                 task.CompletedDate = null;
-
-                wrapper.Animation = true;
-                showStoryboard.Completed += (s2, e2) => { wrapper.Animation = false; };
-                showStoryboard.Begin();
             }
             App.Tasks.Update(task);
         }
@@ -343,34 +336,6 @@ namespace SimpleTasks.Views
             NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
 
-        private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
-        {
-            if (e.ItemKind == LongListSelectorItemKind.Item)
-            {
-                TaskWrapper wrapper = e.Container.DataContext as TaskWrapper;
-                TaskModel task = wrapper.Task;
-
-                Border rootBorder = FindFirstChild<Border>(e.Container, "RootBorder");
-                Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
-                Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
-
-                if (task == null)
-                    return;
-                if (task.IsActive)
-                {
-                    hideStoryboard.Stop();
-                    showStoryboard.Begin();
-                    showStoryboard.SkipToFill();
-                }
-                else
-                {
-                    showStoryboard.Stop();
-                    hideStoryboard.Begin();
-                    hideStoryboard.SkipToFill();
-                }
-            }
-        }
-
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
         {
             // Změnění margin scrollbaru. 
@@ -379,37 +344,6 @@ namespace SimpleTasks.Views
             if (scrollBar != null)
                 scrollBar.Margin = new Thickness(-10, 0, 0, 0);
         }
-
-        private void TaskInfoStackPanel_Loaded(object sender, RoutedEventArgs e)
-        {
-            StackPanel panel = (StackPanel)sender;
-            TaskWrapper wrapper = panel.DataContext as TaskWrapper;
-            TaskModel task = wrapper.Task;
-
-            //Grid moreInfo = (Grid)panel.FindName("TaskInfoMoreInfo");
-            //Grid textBlock = (Grid)panel.FindName("DetailGridWrapper");
-
-            //double moreInfoHeight = moreInfo.ActualHeight + 10;
-            //double detailHeight = (textBlock.Visibility == Visibility.Visible) ? textBlock.ActualHeight + 10 : 0;
-            //double oldHeight = moreInfoHeight + detailHeight;
-            //wrapper.Height = oldHeight;
-            //panel.Height = oldHeight;
-
-            Border rootBorder = (Border)((Grid)((Grid)panel.Parent).Parent).Parent;
-            Storyboard showStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoShow"));
-            Storyboard hideStoryboard = ((Storyboard)rootBorder.FindName("TaskInfoHide"));
-            if (task.IsActive)
-            {
-                showStoryboard.Begin();
-                hideStoryboard.Stop();
-            }
-            else
-            {
-                showStoryboard.Stop();
-                hideStoryboard.Begin();
-            }
-        }
-
         #endregion
 
         #region QuickAddTextBox
@@ -456,7 +390,7 @@ namespace SimpleTasks.Views
             if (_canUseGestures && value < _completeGestureTreshold)
             {
                 VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
-                ToggleComplete(border);
+                ToggleComplete(border.DataContext as TaskWrapper);
             }
         }
 
@@ -474,13 +408,13 @@ namespace SimpleTasks.Views
 
             if (t.X < _completeGestureTreshold)
             {
-                border.Background = new SolidColorBrush((Color)App.Current.Resources["PhoneForegroundColor"]) { Opacity = 0.15 };
-                icon.Foreground = new SolidColorBrush((Color)App.Current.Resources["PhoneAccentColor"]);
+                border.Background = new SolidColorBrush((Color)CurrentApp.Resources["SubtleColor"]) { Opacity = 0.30 };
+                icon.Foreground = (Brush)CurrentApp.Resources["PhoneAccentBrush"];
             }
             else
             {
                 border.Background = null;
-                icon.Foreground = new SolidColorBrush((Color)App.Current.Resources["PhoneForegroundColor"]) { Opacity = 0.6 }; ;
+                icon.Foreground = (Brush)CurrentApp.Resources["SubtleBrush"];
             }
         }
         #endregion
@@ -524,5 +458,6 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
         #endregion
+
     }
 }

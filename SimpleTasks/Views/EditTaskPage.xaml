@@ -157,7 +157,7 @@
         </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PageBackgroundBrush}">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
 
         <ScrollViewer Margin="30,40,30,0">
             <StackPanel>
