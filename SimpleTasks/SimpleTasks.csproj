@@ -108,6 +108,7 @@
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TaskListMenuItem.cs" />
+    <Compile Include="Conventers\SettingsConverter.cs" />
     <Compile Include="Conventers\StringFormatConverter.cs" />
     <Compile Include="Conventers\ToUpperConverter.cs" />
     <Compile Include="Conventers\BoolNegationConverter.cs" />
@@ -150,7 +151,6 @@
       <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TasksViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>

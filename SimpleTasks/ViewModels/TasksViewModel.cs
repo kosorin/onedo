@@ -13,8 +13,6 @@ namespace SimpleTasks.ViewModels
 {
     public class TasksViewModel : BindableBase
     {
-        public readonly string DataFileName = "Tasks.json";
-
         private TaskCollection _tasks = new TaskCollection();
         public TaskCollection Tasks
         {
@@ -46,7 +44,9 @@ namespace SimpleTasks.ViewModels
 
         public void Load()
         {
-            Tasks = TaskCollection.LoadFromFile(DataFileName);
+            Tasks = TaskCollection.LoadFromFile(App.TasksFileName);
+            DeleteCompleted(App.Settings.Tasks.DeleteCompletedBefore);
+
 #if DEBUG
             Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
@@ -59,7 +59,7 @@ namespace SimpleTasks.ViewModels
 
         public void Save()
         {
-            TaskCollection.SaveToFile(DataFileName, Tasks);
+            TaskCollection.SaveToFile(App.TasksFileName, Tasks);
         }
 
         public void Add(TaskModel task)
@@ -96,19 +96,12 @@ namespace SimpleTasks.ViewModels
             LiveTile.Unpin(task);
         }
 
-        public void DeleteCompleted(int days)
+        public void DeleteCompleted(DateTime beforeDate)
         {
             // Odstranění úkolů, které byly odstarněny před více jak 'days' dny.
             var completedTasks = Tasks.Where((t) =>
             {
-                if (t.IsComplete)
-                {
-                    return (DateTime.Now - t.CompletedDate.Value) >= TimeSpan.FromDays(days);
-                }
-                else
-                {
-                    return false;
-                }
+                return t.IsComplete && t.Completed.Value < beforeDate;
             }).ToList();
             foreach (TaskModel task in completedTasks)
             {

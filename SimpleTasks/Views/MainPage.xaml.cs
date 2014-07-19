@@ -134,6 +134,11 @@ namespace SimpleTasks.Views
             appBarMenuItems.Add(appBarAboutMenuItem);
 
 #if DEBUG
+            // Reminders
+            ApplicationBarMenuItem appBarRemindersMenuItem = new ApplicationBarMenuItem("seznam připomenutí");
+            appBarRemindersMenuItem.Click += RemindersMenuItem_Click;
+            appBarMenuItems.Add(appBarRemindersMenuItem);
+
             // Reset
             ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
             appBarResetMenuItem.Click += ResetMenuItem_Click;
@@ -178,11 +183,11 @@ namespace SimpleTasks.Views
                 TaskModel task = new TaskModel()
                 {
                     Title = title,
-                    DueDate = App.Settings.DefaultDate
+                    DueDate = App.Settings.Tasks.DefaultDate
                 };
                 if (task.DueDate != null)
                 {
-                    DateTime defaultTime = App.Settings.DefaultTimeSetting;
+                    DateTime defaultTime = App.Settings.Tasks.DefaultTime;
                     task.DueDate = task.DueDate.Value.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
                 }
 
@@ -227,6 +232,15 @@ namespace SimpleTasks.Views
         }
 
 #if DEBUG
+        private void RemindersMenuItem_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("> Reminders:");
+            foreach (var r in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
+            {
+                Debug.WriteLine(": {0} - {1} {2}", r.Name, r.IsScheduled, r.BeginTime);
+            }
+        }
+
         void ResetMenuItem_Click(object sender, EventArgs e)
         {
             App.Tasks.DeleteAll();
@@ -235,7 +249,7 @@ namespace SimpleTasks.Views
             {
                 Title = "Go to the dentist",
                 DueDate = DateTimeExtensions.Today.AddDays(2).AddHours(10).AddMinutes(35),
-                CompletedDate = DateTime.Now
+                Completed = DateTime.Now
             });
             App.Tasks.Add(new TaskModel()
             {
@@ -311,8 +325,8 @@ namespace SimpleTasks.Views
             if (task.IsActive)
             {   
                 // DOKONČENÍ
-                task.CompletedDate = DateTime.Now;
-                if (App.Settings.UnpinCompletedSetting)
+                task.Completed = DateTime.Now;
+                if (App.Settings.Tiles.UnpinCompleted)
                 {
                     LiveTile.Unpin(task);
                 }
@@ -320,7 +334,7 @@ namespace SimpleTasks.Views
             else
             {   
                 // AKTIVOVÁNÍ
-                task.CompletedDate = null;
+                task.Completed = null;
             }
             App.Tasks.Update(task);
         }

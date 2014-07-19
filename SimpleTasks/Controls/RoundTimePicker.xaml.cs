@@ -434,7 +434,6 @@ namespace SimpleTasks.Controls
             double diff = Math.Sqrt(Math.Abs(HoursAngleAnimateTo - HoursAngleAnimateFrom) / 10) / 8;
 
             CurrentHoursAnimationDuration = DurationFromSeconds(diff);
-            Debug.WriteLine(CurrentHoursAnimationDuration);
             HoursAngleAnimation.Begin();
         }
 

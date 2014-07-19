@@ -37,6 +37,14 @@ namespace SimpleTasks.Controls
             TiltEffect.SetIsTiltEnabled(this, true);
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            SystemTray.ForegroundColor = (Color)CurrentApp.Resources["SystemTrayForegroundColor"];
+            SystemTray.BackgroundColor = (Color)CurrentApp.Resources["SystemTrayBackgroundColor"];
+        }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

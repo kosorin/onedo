@@ -32,19 +32,19 @@ namespace SimpleTasks
 
         public static bool IsFirstStart = false;
 
-        public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
-
         public static string ForceDebugCulture = "cs-CZ";
 
-        public static SettingsViewModel Settings { get; private set; }
+        public static readonly string SettingsFileName = "Settings.json";
+        public static Settings Settings { get; private set; }
 
+        public static readonly string TasksFileName = "Tasks.json";
         public static TasksViewModel Tasks { get; private set; }
 
         static App()
         {
             Debug.WriteLine("===== Application Constructor =====");
 
-            Settings = new SettingsViewModel();
+            Settings = new Settings();
             Tasks = new TasksViewModel();
         }
 
@@ -54,19 +54,13 @@ namespace SimpleTasks
             Debug.WriteLine("> OS VERSION {0}", Environment.OSVersion.Version);
             Debug.WriteLine("> APP VERSION {0}", Version);
 
-            if (Settings.LastVersionSetting == null)
+            Settings = Settings.LoadFromFile(SettingsFileName);
+
+            if (Settings.Version == null || Settings.Version != Version.ToString())
             {
-                Debug.WriteLine("==== INSTALACE ====");
-                Settings.LastVersionSetting = Version.ToString();
-                IsFirstStart = true;
-            }
-            else if (Settings.LastVersionSetting != Version.ToString())
-            {
-                Debug.WriteLine("==== AKTUALIZACE ====");
-                Settings.LastVersionSetting = Version.ToString();
-            }
-            if (Settings.LastVersionSetting == null || Settings.LastVersionSetting != Version.ToString())
-            {
+                Debug.WriteLine("==== INSTALACE/AKTUALIZACE ====");
+
+                #region Načtení dat se starým formátem
                 Tasks.Load();
                 foreach (TaskModel task in Tasks.Tasks)
                 {
@@ -75,16 +69,21 @@ namespace SimpleTasks
                         task.DueDate = task.ReminderDateObsoleteGet;
                         task.Reminder = TimeSpan.Zero;
                     }
+
+                    if (task.CompletedDateObsoleteGet != null && task.Completed == null)
+                    {
+                        task.Completed = task.CompletedDateObsoleteGet;
+                    }
                 }
                 Tasks.Save();
+                #endregion
+
+                Settings.Version = Version.ToString();
+                Debug.WriteLine("==== ===== Installed ===== ====");
             }
 
             Tasks.Load();
-            if (Settings.DeleteCompletedTasksDaysSetting >= 0)
-            {
-                Tasks.DeleteCompleted(Settings.DeleteCompletedTasksDaysSetting);
-            }
-
+        
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");
         }
@@ -94,11 +93,8 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
+                Settings = Settings.LoadFromFile(SettingsFileName);
                 Tasks.Load();
-                if (Settings.DeleteCompletedTasksDaysSetting >= 0)
-                {
-                    Tasks.DeleteCompleted(Settings.DeleteCompletedTasksDaysSetting);
-                }
 
                 RootFrame.UriMapper = new MyUriMapper();
             }
@@ -108,6 +104,7 @@ namespace SimpleTasks
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
+            Settings.SaveToFile(SettingsFileName, Settings);
             Tasks.Save();
             Debug.WriteLine("===== ===== DEACTIVATED ===== =====");
         }
@@ -115,13 +112,14 @@ namespace SimpleTasks
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
+            Settings.SaveToFile(SettingsFileName, Settings);
             Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
 
         public static void UpdateAllLiveTiles()
         {
-            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, Tasks.Tasks);
+            LiveTile.UpdateOrReset(Settings.Tiles.Enable, Tasks.Tasks);
             foreach (TaskModel task in Tasks.Tasks)
             {
                 if (task.ModifiedSinceStart)

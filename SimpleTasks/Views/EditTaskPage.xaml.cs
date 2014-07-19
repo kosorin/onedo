@@ -87,8 +87,8 @@ namespace SimpleTasks.Views
             Original = task;
             IsNew = (Original == null);
 
-            DateTime? defaultDate = App.Settings.DefaultDate;
-            DateTime defaultTime = App.Settings.DefaultTimeSetting;
+            DateTime? defaultDate = App.Settings.Tasks.DefaultDate;
+            DateTime defaultTime = App.Settings.Tasks.DefaultTime;
             if (IsNew)
             {
                 Original = new TaskModel();
@@ -295,9 +295,9 @@ namespace SimpleTasks.Views
 
             // Completed Date
             if (IsComplete)
-                Original.CompletedDate = DateTime.Now;
+                Original.Completed = DateTime.Now;
             else
-                Original.CompletedDate = null;
+                Original.Completed = null;
 
             // ULOŽENÍ
             Original.ModifiedSinceStart = true;
@@ -328,7 +328,7 @@ namespace SimpleTasks.Views
                 IsComplete = true;
                 Save();
 
-                if (App.Settings.UnpinCompletedSetting)
+                if (App.Settings.Tiles.UnpinCompleted)
                 {
                     Unpin();
                 }

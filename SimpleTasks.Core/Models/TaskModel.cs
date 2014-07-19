@@ -14,7 +14,7 @@ namespace SimpleTasks.Core.Models
             Created = DateTime.Now;
         }
 
-        #region Uid
+        #region Uid 0
         private string _uid = "";
         [DataMember(Order = 0)]
         public string Uid
@@ -30,7 +30,7 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Title
+        #region Title 1
         private string _title = "";
         [DataMember(Order = 1)]
         public string Title
@@ -47,7 +47,7 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Detail
+        #region Detail 2
         private string _detail = "";
         [DataMember(Order = 2)]
         public string Detail
@@ -64,44 +64,9 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Priority
-        private TaskPriority _priority = TaskPriority.Normal;
-        [DataMember(Order = 3)]
-        public TaskPriority Priority
-        {
-            get
-            {
-                return _priority;
-            }
-            set
-            {
-                SetProperty(ref _priority, value);
-                OnPropertyChanged("IsLowPriority");
-                OnPropertyChanged("IsNormalPriority");
-                OnPropertyChanged("IsHighPriority");
-                Modified = DateTime.Now;
-            }
-        }
-
-        public bool IsLowPriority
-        {
-            get { return Priority == TaskPriority.Low; }
-        }
-
-        public bool IsNormalPriority
-        {
-            get { return Priority == TaskPriority.Normal; }
-        }
-
-        public bool IsHighPriority
-        {
-            get { return Priority == TaskPriority.High; }
-        }
-        #endregion
-
-        #region Due Date
+        #region DueDate 10
         private DateTime? _dueDate = null;
-        [DataMember(Order = 4)]
+        [DataMember(Order = 10)]
         public DateTime? DueDate
         {
             get
@@ -134,9 +99,9 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Reminder
+        #region Reminder 11
         private TimeSpan? _reminder = null;
-        [DataMember(Order = 5)]
+        [DataMember(Order = 11)]
         public TimeSpan? Reminder
         {
             get { return _reminder; }
@@ -152,11 +117,11 @@ namespace SimpleTasks.Core.Models
         {
             get
             {
-               if (DueDate == null || Reminder == null)
-               {
-                   throw new InvalidOperationException();
-               }
-               return DueDate.Value - Reminder.Value;
+                if (DueDate == null || Reminder == null)
+                {
+                    throw new InvalidOperationException();
+                }
+                return DueDate.Value - Reminder.Value;
             }
         }
 
@@ -184,49 +149,54 @@ namespace SimpleTasks.Core.Models
 
         #endregion
 
-        #region Complete
-        private DateTime? _completedDate = null;
-        [DataMember(Order = 6)]
-        public DateTime? CompletedDate
+        #region Priority 20
+        private TaskPriority _priority = TaskPriority.Normal;
+        [DataMember(Order = 20)]
+        public TaskPriority Priority
         {
             get
             {
-                return _completedDate;
+                return _priority;
             }
             set
             {
-                SetProperty(ref _completedDate, value);
-                OnPropertyChanged("IsComplete");
-                OnPropertyChanged("IsActive");
+                SetProperty(ref _priority, value);
+                OnPropertyChanged("IsLowPriority");
+                OnPropertyChanged("IsNormalPriority");
+                OnPropertyChanged("IsHighPriority");
                 Modified = DateTime.Now;
             }
         }
 
-        public bool IsComplete { get { return CompletedDate.HasValue; } }
+        public bool IsLowPriority
+        {
+            get { return Priority == TaskPriority.Low; }
+        }
 
-        public bool IsActive { get { return !CompletedDate.HasValue; } }
+        public bool IsNormalPriority
+        {
+            get { return Priority == TaskPriority.Normal; }
+        }
+
+        public bool IsHighPriority
+        {
+            get { return Priority == TaskPriority.High; }
+        }
         #endregion
 
-        #region Tags
+        #region Tags 30
         private List<string> _tags = new List<string>();
-        [DataMember(Order = 10)]
+        [DataMember(Name = "Tags", Order = 30)]
         public List<string> Tags
         {
-            get
-            {
-                return _tags;
-            }
-            set
-            {
-                SetProperty(ref _tags, value);
-                Modified = DateTime.Now;
-            }
+            get { return _tags; }
+            set { SetProperty(ref _tags, value); }
         }
         #endregion
 
-        #region Created
+        #region Created 100
         private DateTime? _created = null;
-        [DataMember(Order = 7)]
+        [DataMember(Order = 100)]
         public DateTime? Created
         {
             get
@@ -240,9 +210,9 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Modified
+        #region Modified 101
         private DateTime? _modified = null;
-        [DataMember(Order = 8)]
+        [DataMember(Order = 101)]
         public DateTime? Modified
         {
             get
@@ -261,6 +231,47 @@ namespace SimpleTasks.Core.Models
             get { return _modifiedSinceStart; }
             set { _modifiedSinceStart = value; }
         }
+        #endregion
+
+        #region Completed 102
+        private DateTime? _completed = null;
+        [DataMember(Order = 102)]
+        public DateTime? Completed
+        {
+            get
+            {
+                return _completed;
+            }
+            set
+            {
+                SetProperty(ref _completed, value);
+                OnPropertyChanged("IsComplete");
+                OnPropertyChanged("IsActive");
+                Modified = DateTime.Now;
+            }
+        }
+
+        public bool IsComplete { get { return Completed.HasValue; } }
+
+        public bool IsActive { get { return !Completed.HasValue; } }
+
+        #region CompletedDateObsolete
+        private DateTime? _completedDateObsolete = null;
+        [Obsolete("Smazat po několika aktualizacích (dnes je 19.7.2014)")]
+        [DataMember(Order = 6, Name = "CompletedDate")]
+        public DateTime? CompletedDateObsolete
+        {
+            get { return null; }
+            set { SetProperty(ref _completedDateObsolete, value); }
+        }
+
+        [Obsolete("Smazat po několika aktualizacích (dnes je 19.7.2014)")]
+        public DateTime? CompletedDateObsoleteGet
+        {
+            get { return _completedDateObsolete; }
+        }
+        #endregion
+
         #endregion
     }
 }

@@ -36,7 +36,6 @@ namespace SimpleTasks.Conventers
                 sb.Append("m ");
             }
             return sb.ToString();
-            return Regex.Replace(ts.ToString(parameter as string ?? defaultFormat), @"\s?[0-9]{1,2}[^0-9]?", "");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -4,8 +4,18 @@ using System.Globalization;
 
 namespace SimpleTasks.Core.Helpers
 {
-    public class DateTimeExtensions
+    public static class DateTimeExtensions
     {
+        public static DateTime SetTime(this DateTime dt, DateTime time)
+        {
+            return new DateTime(dt.Year, dt.Month, dt.Day, time.Hour, time.Minute, time.Second);
+        }
+
+        public static DateTime SetDate(this DateTime dt, DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, date.Day, dt.Hour, dt.Minute, dt.Second);
+        }
+
         public static DayOfWeek FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
         public static string DateFormat { get { return "{0:ddd}, {0:d}"; } }

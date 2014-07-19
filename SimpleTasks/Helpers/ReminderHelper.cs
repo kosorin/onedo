@@ -27,6 +27,12 @@ namespace SimpleTasks.Helpers
         public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
         {
             Remove(name);
+            if (beginTime <= DateTime.Now)
+            {
+                Debug.WriteLine("> Reminder Add: overdue: {0} <= {1}", beginTime, DateTime.Now);
+                return;
+            }
+
             try
             {
                 ScheduledActionService.Add(new Reminder(name)

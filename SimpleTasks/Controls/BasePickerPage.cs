@@ -19,6 +19,14 @@ namespace SimpleTasks.Controls
             BuildAppBar();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            SystemTray.ForegroundColor = (Color)CurrentApp.Resources["BasePickerPageForegroundColor"];
+            SystemTray.BackgroundColor = (Color)CurrentApp.Resources["BasePickerPageBackgroundColor"];
+        }
+
         protected abstract void Save();
 
         protected void BuildAppBar()

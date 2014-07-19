@@ -82,7 +82,7 @@ namespace SimpleTasks.Models
 
             completedGroup.Sort((t1, t2) =>
             {
-                return DateTime.Compare(t2.Task.CompletedDate.Value.Date, t1.Task.CompletedDate.Value.Date);
+                return DateTime.Compare(t2.Task.Completed.Value.Date, t1.Task.Completed.Value.Date);
             });
 
             return groups;

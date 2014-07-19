@@ -25,6 +25,8 @@
             
             <!--Region Konvertory-->
 
+            <conv:SettingsConverter x:Key="SettingsConverter" />
+
             <!--To String-->
             <conv:StringFormatConverter x:Key="StringFormatConverter" />
             <conv:ToUpperConverter x:Key="ToUpperConverter" />
@@ -289,14 +291,12 @@
             </Style>
             <!--EndRegion-->
 
-            <!--Region BasePickerPage-->
+            <!--Region BasePage-->
             <Style x:Key="BasePageStyle" TargetType="controls:BasePage">
                 <Setter Property="SupportedOrientations" Value="Portrait" />
                 <Setter Property="Orientation" Value="Portrait" />
                 <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
                 <Setter Property="shell:SystemTray.IsVisible" Value="True" />
-                <Setter Property="shell:SystemTray.ForegroundColor" Value="{StaticResource SystemTrayForegroundColor}" />
-                <Setter Property="shell:SystemTray.BackgroundColor" Value="{StaticResource SystemTrayBackgroundColor}" />
             </Style>
             <!--EndRegion-->
 
@@ -306,8 +306,6 @@
                 <Setter Property="Orientation" Value="Portrait" />
                 <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
                 <Setter Property="shell:SystemTray.IsVisible" Value="True" />
-                <Setter Property="shell:SystemTray.ForegroundColor" Value="{StaticResource BasePickerPageForegroundColor}" />
-                <Setter Property="shell:SystemTray.BackgroundColor" Value="{StaticResource BasePickerPageBackgroundColor}" />
             </Style>
 
             <Style x:Key="BasePickerPageRootStyle" TargetType="Grid">
