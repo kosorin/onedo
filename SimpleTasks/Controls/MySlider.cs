@@ -112,6 +112,12 @@ namespace SimpleTasks.Controls
             ManipulationDelta += MySlider_ManipulationDelta;
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            SetSliderValue(RoundValue);
+        }
+
         public void SetSliderValue(int value)
         {
             double dv = (double)value;

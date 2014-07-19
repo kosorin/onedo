@@ -301,8 +301,8 @@
     <value>zrušiť</value>
   </data>
   <data name="SettingsDeleteWhenStarts" xml:space="preserve">
-    <value>pri spustení aplikácie</value>
-  </data>
+    <value>pri zatvorení aplikácie</value>
+  <comment></comment></data>
   <data name="SettingsDeleteNever" xml:space="preserve">
     <value>nikdy</value>
   </data>

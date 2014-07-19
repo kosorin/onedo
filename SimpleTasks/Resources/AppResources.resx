@@ -324,7 +324,7 @@
     <value>never</value>
   </data>
   <data name="SettingsDeleteWhenStarts" xml:space="preserve">
-    <value>when application starts</value>
+    <value>when application closes</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>

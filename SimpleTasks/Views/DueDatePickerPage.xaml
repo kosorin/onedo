@@ -13,16 +13,16 @@
 
         <wpcontrols:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter2"/>
 
-        <Style x:Key="WeekdayNameStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextSmallStyle}">
+        <Style x:Key="WeekdayNameStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="Foreground" Value="{StaticResource CalendarWeekdayBrush}"/>
+            <Setter Property="FontSize" Value="18.667"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
-
-
         <Style x:Key="BorderStyle" TargetType="Border" >
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CalendarBorderBrush}"/>
             <Setter Property="Margin" Value="-1,-1,0,0"/>
         </Style>
         <Style x:Key="WeekdayBorderStyle" TargetType="Border" BasedOn="{StaticResource BorderStyle}" >
@@ -43,8 +43,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="1">
-                    <TextBlock Style="{StaticResource PhoneTextLargeStyle}"
-                               Text="{TemplateBinding YearMonthLabel}"
+                    <TextBlock Text="{TemplateBinding YearMonthLabel}"
+                               Style="{StaticResource NormalTextStyle}"
+                               FontSize="32"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Bottom"
                                Margin="0,0,0,8">
@@ -57,7 +58,8 @@
                     <Button.Template>
                         <ControlTemplate>
                             <Border Margin="0,8" Width="60" Height="40">
-                                <TextBlock FontFamily="Segoe UI Symbol"
+                                <TextBlock Foreground="{StaticResource NormalBrush}" 
+                                           FontFamily="Segoe UI Symbol"
                                            FontSize="72"
                                            Margin="0,-32,0,0"
                                            Text="&#xE0A6;" />
@@ -71,7 +73,8 @@
                     <Button.Template>
                         <ControlTemplate>
                             <Border Margin="0,8" Width="60" Height="40">
-                                <TextBlock FontFamily="Segoe UI Symbol"
+                                <TextBlock Foreground="{StaticResource NormalBrush}" 
+                                           FontFamily="Segoe UI Symbol"
                                            FontSize="72"
                                            Margin="0,-32,0,0"
                                            Text="&#xE0AB;"/>
@@ -129,12 +132,11 @@
                     <Border Grid.Row="1" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="7"
                             Margin="-1,-1,0,0"
                             BorderThickness="1" 
-                            BorderBrush="{StaticResource BorderBrush}"/>
+                            BorderBrush="{StaticResource CalendarBorderBrush}"/>
                 </Grid>
             </Grid>
         </ControlTemplate>
         <Style x:Key="CalendarItemStyle" TargetType="wpcontrols:CalendarItem">
-            <Setter Property="Background" Value="BlueViolet"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="wpcontrols:CalendarItem">
@@ -148,7 +150,7 @@
                                                Opacity="0.45"/>
                                     <TextBlock x:Name="DayNumberBlock" 
                                                Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}" 
-                                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                               Style="{StaticResource NormalTextStyle}"
                                                FontSize="28" 
                                                Foreground="{TemplateBinding Foreground}"
                                                VerticalAlignment="Center" HorizontalAlignment="Center"/>

@@ -320,7 +320,7 @@ namespace SimpleTasks.Controls
         {
             HoursAngleAnimation.SkipToFill();
             HoursAngleAnimation.Stop();
-            GrabberHours.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
+            GrabberHours.Fill = Application.Current.Resources["NormalBrush"] as SolidColorBrush;
         }
 
         private void OnManipulationDeltaHours(object sender, ManipulationDeltaEventArgs e)
@@ -339,7 +339,7 @@ namespace SimpleTasks.Controls
         private void OnManipulationCompletedHours(object sender, ManipulationCompletedEventArgs e)
         {
             AnimateHours();
-            GrabberHours.Fill = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
+            GrabberHours.Fill = Application.Current.Resources["BackgroundBrush"] as SolidColorBrush;
         }
         #endregion
 
@@ -348,7 +348,7 @@ namespace SimpleTasks.Controls
         {
             MinutesAngleAnimation.SkipToFill();
             MinutesAngleAnimation.Stop();
-            GrabberMinutes.Fill = Application.Current.Resources["PhoneForegroundBrush"] as SolidColorBrush;
+            GrabberMinutes.Fill = Application.Current.Resources["NormalBrush"] as SolidColorBrush;
         }
 
         private void OnManipulationDeltaMinutes(object sender, ManipulationDeltaEventArgs e)
@@ -359,7 +359,7 @@ namespace SimpleTasks.Controls
         private void OnManipulationCompletedMinutes(object sender, ManipulationCompletedEventArgs e)
         {
             AnimateMinutes();
-            GrabberMinutes.Fill = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
+            GrabberMinutes.Fill = Application.Current.Resources["BackgroundBrush"] as SolidColorBrush;
         }
         #endregion
 

@@ -22,11 +22,6 @@ namespace SimpleTasks.Controls
 
         public BasePage()
         {
-            // Page
-            Loaded += BasePage_Loaded;
-            SupportedOrientations = SupportedPageOrientation.Portrait;
-            Orientation = PageOrientation.Portrait;
-
             TransitionService.SetNavigationInTransition(this, new NavigationInTransition()
             {
                 Backward = new SlideTransition() { Mode = SlideTransitionMode.SlideDownFadeIn },
@@ -40,12 +35,6 @@ namespace SimpleTasks.Controls
 
             // WP Toolkit
             TiltEffect.SetIsTiltEnabled(this, true);
-        }
-
-        void BasePage_Loaded(object sender, RoutedEventArgs e)
-        {
-            // System tray
-            SystemTray.IsVisible = true;
         }
 
         #region INotifyPropertyChanged

@@ -15,7 +15,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/SimpleTasks;component/Themes/Light.xaml" />
+                <ResourceDictionary  Source="/SimpleTasks;component/Themes/Dark.xaml" />
+                <!--<ResourceDictionary  Source="/SimpleTasks;component/Themes/Light.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
 
             <!--Region Lokalizace-->
@@ -285,6 +286,17 @@
                 <Setter Property="FontSize" Value="32" />
                 <Setter Property="TextWrapping" Value="NoWrap" />
                 <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <!--EndRegion-->
+
+            <!--Region BasePickerPage-->
+            <Style x:Key="BasePageStyle" TargetType="controls:BasePage">
+                <Setter Property="SupportedOrientations" Value="Portrait" />
+                <Setter Property="Orientation" Value="Portrait" />
+                <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+                <Setter Property="shell:SystemTray.IsVisible" Value="True" />
+                <Setter Property="shell:SystemTray.ForegroundColor" Value="{StaticResource SystemTrayForegroundColor}" />
+                <Setter Property="shell:SystemTray.BackgroundColor" Value="{StaticResource SystemTrayBackgroundColor}" />
             </Style>
             <!--EndRegion-->
 

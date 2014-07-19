@@ -257,9 +257,8 @@
           <target state="signed-off">dlaždice</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteWhenStarts" xml:space="preserve">
-          <source>when application starts</source>
-          <target state="signed-off">při spuštění aplikace</target>
-        </trans-unit>
+          <source>when application closes</source>
+          <target state="signed-off">při zavření aplikace</target></trans-unit>
         <trans-unit translate="yes" id="Resx/Title" xml:space="preserve">
           <source>Title</source>
           <target state="signed-off">Název</target>

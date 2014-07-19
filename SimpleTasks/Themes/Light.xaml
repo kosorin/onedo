@@ -8,13 +8,13 @@
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
 
-    <!--<Color x:Key="AppBarBackgroundColor">#33000000</Color>
-    <Color x:Key="AppBarForegroundColor">#DE000000</Color>
+    <Visibility x:Key="DarkThemeVisibility">Collapsed</Visibility>
+
     <Color x:Key="SystemTrayBackgroundColor">#CCC</Color>
-    <Color x:Key="SystemTrayForegroundColor">#DE000000</Color>-->
+    <Color x:Key="SystemTrayForegroundColor">#DE000000</Color>
 
     <!--Region Globální styly-->
-    <Color x:Key="BackgroundColor">#FFEFEFEF</Color>
+    <Color x:Key="BackgroundColor">#ececec</Color>
     <Color x:Key="NormalColor">#DE000000</Color>
     <Color x:Key="SlightColor">#99000000</Color>
     <Color x:Key="SubtleColor">#66000000</Color>
@@ -27,7 +27,7 @@
     <SolidColorBrush x:Key="ChromeBrush" Color="{StaticResource ChromeColor}" />
     <!--EndRegion-->
 
-    <!--Region Tlačítka-->
+    <!--Region Button-->
     <Color x:Key="ButtonBackgroundColor">#44000000</Color>
     <Color x:Key="ButtonForegroundColor">#DE000000</Color>
     <Color x:Key="ButtonIconColor">#DE000000</Color>
@@ -35,10 +35,12 @@
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}"/>
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource ButtonForegroundColor}"/>
     <SolidColorBrush x:Key="ButtonIconBrush" Color="{StaticResource ButtonIconColor}"/>
+
+    <SolidColorBrush x:Key="MyButtonBackgroundBrush" Color="#11000000"/>
     <!--EndRegion-->
 
     <!--Region BasePickerPage--> 
-    <Color x:Key="BasePickerPageBackgroundColor">#FFDDDDDD</Color> <!--PhoneChromeColor-->
+    <Color x:Key="BasePickerPageBackgroundColor">#FFDDDDDD</Color>
     <Color x:Key="BasePickerPageForegroundColor">#DE000000</Color>
 
     <SolidColorBrush x:Key="BasePickerPageBackgroundBrush" Color="{StaticResource BasePickerPageBackgroundColor}"/>
@@ -48,23 +50,27 @@
     <!--Region MainPage-->
     <SolidColorBrush x:Key="TasksListDelimiterBrush" Color="{StaticResource SubtleColor}" Opacity="0.2"/>
 
-    <SolidColorBrush x:Key="QuickAddBackgroundBrush" Color="#a6a6a6" />
+    <SolidColorBrush x:Key="QuickAddHintBrush" Color="{StaticResource SlightColor}" Opacity="0.55" />
+    <SolidColorBrush x:Key="QuickAddBackgroundBrush" Color="#b5b5b5" />
     <!--EndRegion-->
 
-	<!--Region DueDatePicker-->
-	<SolidColorBrush x:Key="BorderBrush" Color="#FFB2B2B2" />
-    <SolidColorBrush x:Key="CalendarItemBrush" Color="White" />
-    <SolidColorBrush x:Key="CalendarItemBackgroundBrush" Color="#5D9C9C9C" />
-    <SolidColorBrush x:Key="CalendarItemSubtleBrush" Color="#FFB2B2B2" />
-	<SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush" Color="#FFC6C6C6" />
+    <!--Region EditPage-->
+    <SolidColorBrush x:Key="DetailMaskBrush" Color="#20000000"/>
+    <!--EndRegion-->
 
-    <SolidColorBrush x:Key="InfoForegroundBrush" Color="#DE000000" />
-	<!--EndRegion-->
+    <!--Region DatePicker-->
+    <SolidColorBrush x:Key="CalendarBorderBrush" Color="#FFB2B2B2" />
+    <SolidColorBrush x:Key="CalendarItemBackgroundBrush" Color="#5D9C9C9C" />
+    <SolidColorBrush x:Key="CalendarItemBrush" Color="#DE000000" />
+    <SolidColorBrush x:Key="CalendarItemSubtleBrush" Color="#a3a3a3" />
+    <SolidColorBrush x:Key="CalendarWeekdayBrush" Color="{StaticResource SlightColor}" />
+    <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush" Color="#FFC6C6C6" />
+    <!--EndRegion-->
 
 	<!--Region ReminderPicker-->
-    <SolidColorBrush x:Key="TimeForegroundBrush" Color="#DE000000" Opacity="1.0"/>
-    <SolidColorBrush x:Key="TimeBeforeTextBrush" Color="#DE000000" Opacity="0.6"/>
-    <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="#DE000000" Opacity="0.25"/>
+    <SolidColorBrush x:Key="TimeBeforeTextBrush" Color="{StaticResource SubtleColor}"/>
+    <SolidColorBrush x:Key="TimeForegroundBrush" Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="{StaticResource SubtleColor}" Opacity="0.6"/>
 	<!--EndRegion-->
 
 </ResourceDictionary>

@@ -88,7 +88,7 @@ namespace SimpleTasks.Conventers
                 }
                 else if (date.Date >= DateTimeExtensions.FirstDayOfActualWeek)
                 {
-                    return string.Format("{0}, {1}", dayOfWeek, shortTime);
+                    return string.Format("{0}, {1}", AppResources.DateThisWeek, dayOfWeek);
                 }
                 else if (date.Date >= DateTimeExtensions.FirstDayOfPreviousWeek)
                 {

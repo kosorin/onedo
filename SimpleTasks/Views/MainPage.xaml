@@ -9,6 +9,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
+    Style="{StaticResource BasePageStyle}"
     mc:Ignorable="d" 
     d:DataContext="{d:DesignData /SampleData/TasksViewModelSampleData.xaml}">
 
@@ -16,12 +17,14 @@
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Grid Height="70" toolkit:TiltEffect.SuppressTilt="True">
-                <TextBlock Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" 
-                           Style="{StaticResource NormalTextStyle}"
+                <TextBlock Style="{StaticResource NormalTextStyle}"
                            FontSize="32"
                            Opacity="0.75"
                            VerticalAlignment="Bottom" 
-                           Margin="10,0,0,15"/>
+                           Margin="10,0,0,15">
+                    <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
+                    <Run Text="{Binding Count, StringFormat='( {0} )'}" Foreground="{StaticResource SlightBrush}" FontSize="24" />
+                </TextBlock>
                 <Border Background="{StaticResource PhoneAccentBrush}"
                         Height="10"
                         Opacity="0.6"
@@ -51,32 +54,6 @@
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
                     </Storyboard>
-
-                    <Storyboard x:Name="TaskInfoShow">
-                        <!--Popis-->
-                        <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1.0"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <ExponentialEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <ExponentialEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <!--Tlačítko-->
-                    </Storyboard>
-                    <Storyboard x:Name="TaskInfoHide">
-                        <!--Popis-->
-
-                        <!--Tlačítko-->
-                    </Storyboard>
                 </Border.Resources>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -97,12 +74,12 @@
                                             <VisualStateGroup.Transitions>
                                                 <VisualTransition From="Checked" To="Unchecked">
                                                     <Storyboard>
-                                                        <DoubleAnimation Duration="0:0:0.8"
+                                                        <DoubleAnimation Duration="0:0:0.6"
                                                                          From="1"
                                                                          To="0"
                                                                          Storyboard.TargetProperty="Opacity" 
                                                                          Storyboard.TargetName="CheckTransformControl" />
-                                                        <DoubleAnimation Duration="0:0:1.1"
+                                                        <DoubleAnimation Duration="0:0:0.6"
                                                                          From="0.75"
                                                                          To="2"
                                                                          Storyboard.TargetProperty="ScaleX" 
@@ -111,7 +88,7 @@
                                                                 <PowerEase EasingMode="EaseOut"/>
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
-                                                        <DoubleAnimation Duration="0:0:1.1"
+                                                        <DoubleAnimation Duration="0:0:0.6"
                                                                          From="0.75"
                                                                          To="2"
                                                                          Storyboard.TargetProperty="ScaleY" 
@@ -120,7 +97,7 @@
                                                                 <PowerEase EasingMode="EaseOut"/>
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
-                                                        <DoubleAnimation Duration="0:0:1.1"
+                                                        <DoubleAnimation Duration="0:0:0.6"
                                                                          From="-18"
                                                                          To="-48"
                                                                          Storyboard.TargetProperty="TranslateX" 
@@ -129,7 +106,7 @@
                                                                 <PowerEase EasingMode="EaseOut"/>
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
-                                                        <DoubleAnimation Duration="0:0:1.1"
+                                                        <DoubleAnimation Duration="0:0:0.6"
                                                                          From="-18"
                                                                          To="-48"
                                                                          Storyboard.TargetProperty="TranslateY" 
@@ -155,14 +132,14 @@
                                             </VisualState>
                                             <VisualState x:Name="Unchecked">
                                                 <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0.4"
-                                                                     To="0"
-                                                                     Storyboard.TargetProperty="Opacity" 
-                                                                     Storyboard.TargetName="CompleteIcon" />
-                                                    <ColorAnimation Duration="0:0:0.4"
+                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" 
+                                                                                   Storyboard.TargetName="CompleteIcon">
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                    <!--<ColorAnimation Duration="0:0:0.4"
                                                                     To="{StaticResource PhoneAccentColor}"
                                                                     Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
-                                                                    Storyboard.TargetName="CompleteButtonRectangle" />
+                                                                    Storyboard.TargetName="CompleteButtonRectangle" />-->
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Indeterminate" />
@@ -178,7 +155,6 @@
                                     </Rectangle>
                                     <ContentControl x:Name="CompleteIcon"
                                                     Style="{StaticResource CheckIconStyle}"
-                                                    Opacity="{Binding Task.IsComplete, Mode=OneTime, Converter={StaticResource BooleanToNumberConverter}}"
                                                     Foreground="{StaticResource SubtleBrush}"
                                                     MaxWidth="0" MaxHeight="0">
                                         <ContentControl.RenderTransform>
@@ -289,7 +265,7 @@
                                            Style="{StaticResource NormalTextStyle}"
                                            FontSize="32"
                                            TextWrapping="Wrap"
-                                           Margin="8,10,0,15"/>
+                                           Margin="8,13,0,12"/>
 
                             </StackPanel>
 
@@ -319,7 +295,7 @@
                                                 </ContentControl.RenderTransform>
                                             </ContentControl>
                                             <TextBlock Text="{Binding Task.DueDate, Converter={StaticResource TaskToDueStringConverter}}"
-                                                       Style="{StaticResource SubtleTextStyle}"
+                                                       Style="{StaticResource SlightTextStyle}"
                                                        FontSize="22"
                                                        Margin="0,1,8,0"/>
                                         </StackPanel>
@@ -336,7 +312,7 @@
                                                 </ContentControl.RenderTransform>
                                             </ContentControl>
                                             <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource TimeSpanToStringConverter}}"
-                                                       Style="{StaticResource SubtleTextStyle}"
+                                                       Style="{StaticResource SlightTextStyle}"
                                                        FontSize="22"
                                                        Margin="0,1,8,0"/>
                                         </StackPanel>
@@ -350,7 +326,7 @@
                                       x:Name="DetailGridWrapper">
                                     <TextBlock Text="{Binding Task.Detail}"
                                                Style="{StaticResource SlightTextStyle}"
-                                               FontSize="20"
+                                               FontSize="22"
                                                TextWrapping="Wrap"
                                                Opacity="0.8"
                                                Margin="8,0,20,0"/>
@@ -367,14 +343,15 @@
 
         <!--Quick Add TextBox-->
         <Style x:Key="QuickAddTextBoxHintStyle" TargetType="ContentControl">
-            <Setter Property="Foreground" Value="{StaticResource NormalBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource QuickAddHintBrush}" />
             <Setter Property="FontFamily" Value="Segoe UI Symbol" />
+            <Setter Property="FontWeight" Value="Thin" />
         </Style>
         <Style x:Key="QuickAddTextBoxStyle" TargetType="toolkit:PhoneTextBox">
             <Setter Property="FontFamily" Value="Segoe WP"/>
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="Background" Value="{StaticResource QuickAddBackgroundBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource NormalBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource SlightBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
             <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
             <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
@@ -406,7 +383,7 @@
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                              Storyboard.TargetName="ContentElement"
                                                              Duration="0:0:0.45"
-                                                             To="0.7">
+                                                             To="0.6">
                                                 <DoubleAnimation.EasingFunction>
                                                     <PowerEase EasingMode="EaseIn" />
                                                 </DoubleAnimation.EasingFunction>

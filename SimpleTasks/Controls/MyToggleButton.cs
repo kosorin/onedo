@@ -50,11 +50,11 @@ namespace SimpleTasks.Controls
         {
             DefaultStyleKey = typeof(MyToggleButton);
             VisualStateManager.GoToState(this, IndeterminateState, true);
-            Loaded += MyToggleButton_Loaded;
         }
 
-        void MyToggleButton_Loaded(object sender, RoutedEventArgs e)
+        public override void OnApplyTemplate()
         {
+            base.OnApplyTemplate();
             ApplyStates();
         }
     }

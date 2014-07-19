@@ -16,7 +16,7 @@ namespace SimpleTasks.Models
             Title = title;
         }
 
-        public static List<TaskGroup> CreateGroups(IEnumerable<TaskModel> items)
+        public static List<TaskGroup> CreateOrderByDate(IEnumerable<TaskModel> items)
         {
             List<TaskGroup> groups = new List<TaskGroup>();
             TaskGroup overdueGroup = new TaskGroup(AppResources.DateOverdue);
@@ -46,12 +46,7 @@ namespace SimpleTasks.Models
                     else if (task.DueDate.Value.Date < DateTimeExtensions.Today)
                         overdueGroup.Add(taskWrapper);
                     else if (task.DueDate.Value.Date == DateTimeExtensions.Today)
-                    {
-                        if (task.DueDate.Value > DateTime.Now)
-                            todayGroup.Add(taskWrapper);
-                        else
-                            overdueGroup.Add(taskWrapper);
-                    }
+                        todayGroup.Add(taskWrapper);
                     else if (task.DueDate.Value.Date == DateTimeExtensions.Tomorrow)
                         tomorrowGroup.Add(taskWrapper);
                     else
@@ -92,5 +87,52 @@ namespace SimpleTasks.Models
 
             return groups;
         }
+        public static List<TaskGroup> CreateOrderByPriority(IEnumerable<TaskModel> items)
+        {
+            List<TaskGroup> groups = new List<TaskGroup>();
+            TaskGroup lowGroup = new TaskGroup(AppResources.PriorityLow);
+            TaskGroup normalGroup = new TaskGroup(AppResources.PriorityNormal);
+            TaskGroup highGroup = new TaskGroup(AppResources.PriorityHigh);
+
+            groups.Add(highGroup);
+            groups.Add(normalGroup);
+            groups.Add(lowGroup);
+
+            // Přidání úkolů do jednotlivých skupin
+            if (items != null)
+            {
+                foreach (TaskModel task in items)
+                {
+                    TaskWrapper taskWrapper = new TaskWrapper(task);
+                    if (task.IsHighPriority)
+                        highGroup.Add(taskWrapper);
+                    else if (task.IsLowPriority)
+                        lowGroup.Add(taskWrapper);
+                    else
+                        normalGroup.Add(taskWrapper);
+                }
+            }
+
+            // Seřazení úkolů ve skupinách
+            Comparison<TaskWrapper> dateComparison = (t1, t2) =>
+            {
+                if (t1.Task.IsComplete || t2.Task.IsComplete)
+                {
+                    return t1.Task.IsComplete && t2.Task.IsComplete ? 0 : (t1.Task.IsComplete ? 1 : -1);
+                }
+                if (!t1.Task.HasDueDate || !t2.Task.HasDueDate)
+                {
+                    return !t1.Task.HasDueDate && !t2.Task.HasDueDate ? 0 : (t1.Task.HasDueDate ? -1 : 1);
+                }
+                return DateTime.Compare(t1.Task.DueDate.Value.Date, t2.Task.DueDate.Value.Date);
+            };
+
+            lowGroup.Sort(dateComparison);
+            normalGroup.Sort(dateComparison);
+            highGroup.Sort(dateComparison);
+
+            return groups;
+        }
+
     }
 }

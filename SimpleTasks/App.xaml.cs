@@ -1,23 +1,21 @@
-﻿using System;
-using System.Diagnostics;
-using System.Resources;
-using System.Windows;
-using System.Windows.Markup;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
-using Microsoft.Phone.Scheduler;
-using SimpleTasks.Core.Helpers;
-using System.Threading;
-using System.Globalization;
-using SimpleTasks.Helpers;
-using System.Reflection;
-using SimpleTasks.Core.Models;
-using System.Collections.Generic;
-using System.Windows.Media;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace SimpleTasks
 {
@@ -36,7 +34,7 @@ namespace SimpleTasks
 
         public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
 
-        public static string ForceDebugCulture = "sk-SK";
+        public static string ForceDebugCulture = "cs-CZ";
 
         public static SettingsViewModel Settings { get; private set; }
 
@@ -305,31 +303,54 @@ namespace SimpleTasks
             }
         }
 
-        private void InitializeTheme()
+        public void InitializeTheme()
         {
-            string source = string.Format("/SimpleTasks;component/Themes/{0}.xaml", (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
+
+            string source = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
                 "Dark" :
-                "Light");
+                "Light";
+            string currentSource = (Visibility)Resources["DarkThemeVisibility"] == Visibility.Visible ?
+                "Dark" :
+                "Light";
 
-            //ResourceDictionary app = this.Resources;
-            //ResourceDictionary theme = new ResourceDictionary
-            //{
-            //    Source = new Uri(source, UriKind.Relative)
-            //};
+            if (source == currentSource)
+            {
+                // Téma už je nastavené
+                return;
+            }
+            else
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
-            //foreach (DictionaryEntry style in theme)
-            //{
-            //    SolidColorBrush colorBrush = style.Value as SolidColorBrush;
-            //    SolidColorBrush existingBrush = app[style.Key] as SolidColorBrush;
+                // ResourceDictionary
+                Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative);
+                ResourceDictionary app = Resources.MergedDictionaries[0];
+                ResourceDictionary theme = new ResourceDictionary
+                {
+                    Source = sourceUri
+                };
 
-            //    if (existingBrush != null && colorBrush != null)
-            //    {
-            //        existingBrush.Color = colorBrush.Color;
-            //    }
-            //}
+                // Barvy
+                foreach (var ck in theme.Where(x => x.Value is Color))
+                {
+                    app.Remove(ck.Key);
+                    app.Add(ck.Key, (Color)ck.Value);
+                }
 
-            //Resources.MergedDictionaries.Clear();
-            //Resources.MergedDictionaries.Add(theme);
+                // Brushe
+                foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
+                {
+                    SolidColorBrush brush = (SolidColorBrush)ck.Value;
+                    SolidColorBrush appBrush = (SolidColorBrush)app[ck.Key];
+
+                    appBrush.Color = brush.Color;
+                    appBrush.Opacity = brush.Opacity;
+                }
+
+                sw.Stop();
+                Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
+            }
         }
 
         #endregion

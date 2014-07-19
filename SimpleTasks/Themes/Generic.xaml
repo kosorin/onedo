@@ -12,12 +12,12 @@
     <SolidColorBrush x:Key="MyTextBoxCaretBrush" Color="{StaticResource PhoneAccentColor}"/>
 
     <Style TargetType="controls:MyTextBox">
-        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+        <Setter Property="FontFamily" Value="Segoe WP"/>
         <Setter Property="FontSize" Value="25.333"/>
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
         <Setter Property="HintForeground" Value="{StaticResource ButtonForegroundBrush}"/>
-        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource MyButtonBackgroundBrush}"/>
         <Setter Property="CaretBrush" Value="{StaticResource MyTextBoxCaretBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
         <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
@@ -62,7 +62,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="HintBorder" Background="{TemplateBinding Mask}">
+                        <Border x:Name="HintBorder" Background="{TemplateBinding Mask}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" MinHeight="55" />
@@ -111,12 +111,7 @@
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="Value" Value="0"/>
         <Setter Property="Mask" Value="#00000000" />
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{StaticResource PhoneAccentColor}" Opacity="0.4" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+        <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:MySlider">
@@ -148,7 +143,7 @@
                                         </DoubleAnimation>
                                         <ColorAnimation Storyboard.TargetName="Grabber"
                                                         Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)"
-                                                        To="{StaticResource PhoneForegroundColor}"
+                                                        To="{StaticResource NormalColor}"
                                                         Duration="0:0:0.15"/>
                                     </Storyboard>
                                 </VisualState>
@@ -156,7 +151,7 @@
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Grabber"
                                                                       Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)">
-                                            <DiscreteColorKeyFrame KeyTime="0" Value="{StaticResource PhoneForegroundColor}"/>
+                                            <DiscreteColorKeyFrame KeyTime="0" Value="{StaticResource NormalColor}"/>
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -169,7 +164,7 @@
                                         </DoubleAnimation>
                                         <ColorAnimation Storyboard.TargetName="Grabber"
                                                         Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)"
-                                                        To="{StaticResource PhoneBackgroundColor}"
+                                                        To="{StaticResource BackgroundColor}"
                                                         Duration="0:0:0.15"/>
                                     </Storyboard>
                                 </VisualState>
@@ -179,17 +174,19 @@
                         <Grid x:Name="HorizontalTemplate">
                             <!--Pozadí-->
                             <Border x:Name="HorizontalTrack" 
-                                        Background="{TemplateBinding Background}"
-                                        Height="50"
-                                        IsHitTestVisible="False"
-                                        Margin="0,0,0,60" VerticalAlignment="Top"/>
+                                    Background="{TemplateBinding Background}"
+                                    Height="50"
+                                    Opacity="0.4"
+                                    IsHitTestVisible="False"
+                                    Margin="0,0,0,60" VerticalAlignment="Top"/>
 
                             <!--Popředí-->
                             <Rectangle x:Name="HorizontalFill"
-                                           Fill="{TemplateBinding Foreground}" 
-                                           Height="50"
-                                           IsHitTestVisible="False"
-                                           Margin="0,0,0,60" VerticalAlignment="Top">
+                                       Fill="{TemplateBinding Background}" 
+                                       Height="50"
+                                       IsHitTestVisible="False"
+                                       Margin="0,0,0,60" 
+                                       VerticalAlignment="Top">
                                 <Rectangle.Clip>
                                     <RectangleGeometry x:Name="HorizontalFillGeometry" Rect="0,0,0,50"/>
                                 </Rectangle.Clip>
@@ -205,8 +202,8 @@
                                         <Canvas.RenderTransform>
                                             <CompositeTransform Rotation="180" />
                                         </Canvas.RenderTransform>
-                                        <Ellipse x:Name="Grabber" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="4" Fill="{StaticResource PhoneBackgroundBrush}"/>
-                                        <Path Width="14.25" Height="8" Canvas.Left="17.875" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource PhoneForegroundBrush}" Fill="{StaticResource PhoneForegroundBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
+                                        <Ellipse x:Name="Grabber" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource NormalBrush}" StrokeThickness="4" Fill="{StaticResource BackgroundBrush}"/>
+                                        <Path Width="14.25" Height="8" Canvas.Left="17.875" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource NormalBrush}" Fill="{StaticResource NormalBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
                                         <Canvas.CacheMode>
                                             <BitmapCache RenderAtScale="1"/>
                                         </Canvas.CacheMode>
@@ -214,8 +211,8 @@
                                 </Grid>
                             </Border>
 
-                            <Border Background="{TemplateBinding Mask}" Height="50" VerticalAlignment="Top">
-                                <TextBlock Opacity="0.4" Foreground="{StaticResource PhoneForegroundBrush}" Text="{TemplateBinding Label}" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="16" Margin="0,0,5,0" />
+                            <Border Height="50" VerticalAlignment="Top" IsHitTestVisible="False">
+                                <TextBlock Style="{StaticResource NormalTextStyle}" Text="{TemplateBinding Label}" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="16" Margin="0,0,5,0" />
                             </Border>
                         </Grid>
 

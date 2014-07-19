@@ -9,6 +9,7 @@
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
     xmlns:sample="clr-namespace:Expression.Blend.SampleData.AboutDataSource"
     x:Class="SimpleTasks.Views.AboutPage"
+    Style="{StaticResource BasePageStyle}"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData /SampleData/AboutDataSource/AboutDataSource.xaml}">
 

@@ -1,25 +1,25 @@
-﻿<UserControl x:Class="SimpleTasks.Controls.RoundTimePicker"
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
     xmlns:converters="clr-namespace:SimpleTasks.Conventers"
+    xmlns:sample="clr-namespace:Expression.Blend.SampleData.RoundTimePickerDataSource" 
+    x:Class="SimpleTasks.Controls.RoundTimePicker"
     mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="460" d:DesignWidth="460">
+    d:DesignHeight="460" d:DesignWidth="460" 
+    d:DataContext="{d:DesignData /SampleData/RoundTimePickerDataSource/RoundTimePickerDataSource.xaml}">
 
     <UserControl.Resources>
+        <sample:RoundTimePickerDataSource x:Key="RoundTimePickerDataSource" d:IsDataSource="True"/>
+
         <SolidColorBrush x:Key="HoursAmBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.3"/>
-        <SolidColorBrush x:Key="HoursAmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.7"/>
+        <SolidColorBrush x:Key="HoursAmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.71"/>
         <SolidColorBrush x:Key="HoursPmBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.8"/>
         <SolidColorBrush x:Key="HoursPmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="1.0"/>
         <SolidColorBrush x:Key="MinutesBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.2"/>
         <SolidColorBrush x:Key="MinutesForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.5"/>
-        <SolidColorBrush x:Key="TimeForegroundSubtleBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="0.4"/>
-        <SolidColorBrush x:Key="TimeForegroundBrush" Color="{StaticResource PhoneForegroundColor}" Opacity="1.0"/>
 
         <Storyboard x:Name="HoursAngleAnimation" Completed="HoursAngleAnimation_Completed">
             <DoubleAnimation Storyboard.TargetName="AngleHoursGrabberCompositeTransform"
@@ -81,6 +81,16 @@
         </Storyboard>
     </UserControl.Resources>
 
+    <UserControl.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+    </UserControl.FontFamily>
+    <UserControl.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+    </UserControl.FontSize>
+    <UserControl.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+    </UserControl.Foreground>
+
     <Grid Width="460" Height="460">
 
         <!--kolečka-->
@@ -98,11 +108,11 @@
                     <CompositeTransform x:Name="AngleMinutesGrabberCompositeTransform" Rotation="{Binding MinutesAngle}"/>
                 </Grid.RenderTransform>
                 <Canvas Width="50" Height="55" Margin="0,-403,0,0">
-                    <Ellipse Name="GrabberMinutes" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="4" Fill="{StaticResource PhoneBackgroundBrush}"/>
-                    <Path Width="14.25" Height="8" Canvas.Left="17.9312" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource PhoneForegroundBrush}" Fill="{StaticResource PhoneForegroundBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
                     <Canvas.CacheMode>
                         <BitmapCache RenderAtScale="1"/>
                     </Canvas.CacheMode>
+                    <Ellipse x:Name="GrabberMinutes" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource NormalBrush}" StrokeThickness="4" Fill="{StaticResource BackgroundBrush}"/>
+                    <Path Width="14.25" Height="8" Canvas.Left="17.9312" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource NormalBrush}" Fill="{StaticResource NormalBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
                 </Canvas>
             </Grid>
 
@@ -123,11 +133,11 @@
                     <CompositeTransform x:Name="AngleHoursGrabberCompositeTransform" Rotation="{Binding HoursAngle}"/>
                 </Grid.RenderTransform>
                 <Canvas Width="50" Height="55" Margin="0,-308,0,0">
-                    <Ellipse Name="GrabberHours" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="4" Fill="{StaticResource PhoneBackgroundBrush}"/>
-                    <Path Width="14.25" Height="8" Canvas.Left="17.9312" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource PhoneForegroundBrush}" Fill="{StaticResource PhoneForegroundBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
                     <Canvas.CacheMode>
                         <BitmapCache RenderAtScale="1"/>
                     </Canvas.CacheMode>
+                    <Ellipse x:Name="GrabberHours" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource NormalBrush}" StrokeThickness="4" Fill="{StaticResource BackgroundBrush}"/>
+                    <Path Width="14.25" Height="8" Canvas.Left="17.9312" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource NormalBrush}" Fill="{StaticResource NormalBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
                 </Canvas>
             </Grid>
 
@@ -153,13 +163,13 @@
         </StackPanel>-->
 
         <!--čas-->
-        <TextBlock Margin="0,15,0,15"
-				   HorizontalAlignment="Center"
-				   VerticalAlignment="Center"
-				   FontSize="{StaticResource PhoneFontSizeExtraLarge}"
-				   Foreground="{StaticResource TimeForegroundSubtleBrush}" 
-				   FontFamily="{StaticResource PhoneFontFamilyLight}" >
-                   <Run Text="{Binding HoursText}" Foreground="{StaticResource TimeForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}"/><Run Text="{Binding AmPmText}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+        <TextBlock Style="{StaticResource NormalTextStyle}"
+                   Foreground="{StaticResource TimeForegroundSubtleBrush}"
+                   FontSize="42.667" 
+                   Margin="0,15,0,15"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+			<Run Text="{Binding HoursText}" Foreground="{StaticResource TimeForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}"/><Run Text="{Binding AmPmText}" />
         </TextBlock>
     </Grid>
 </UserControl>

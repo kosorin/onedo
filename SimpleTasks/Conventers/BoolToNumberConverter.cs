@@ -41,7 +41,6 @@ namespace SimpleTasks.Conventers
             {
                 trueNumber = System.Convert.ToDouble(param, CultureInfo.InvariantCulture);
             }
-            Debug.WriteLine("FALSE {0} ; TRUE {1}", falseNumber,trueNumber);
             return (value is bool && (bool)value) ? trueNumber : falseNumber;
         }
 

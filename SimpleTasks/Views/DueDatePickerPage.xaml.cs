@@ -18,23 +18,28 @@ namespace SimpleTasks.Views
 {
     public class CalendarColorConverter : IDateToBrushConverter
     {
-        public CalendarColorConverter(Brush inactiveItemBrush)
+        public CalendarColorConverter()
         {
-            InactiveItemBrush = inactiveItemBrush;
+            DefaultForeground = Application.Current.Resources["CalendarItemBrush"] as Brush;
+            InactiveForeground = Application.Current.Resources["CalendarItemSubtleBrush"] as Brush;
         }
 
-        public Brush InactiveItemBrush { get; set; }
+        public Brush DefaultForeground { get; set; }
+
+        public Brush InactiveForeground { get; set; }
 
         public Brush Convert(DateTime dateTime, bool isSelected, Brush defaultValue, BrushType brushType)
         {
-            if (isSelected)
+            if (brushType == BrushType.Foreground)
             {
-                return defaultValue;
-            }
-            
-            if (dateTime.Date < DateTime.Today && brushType == BrushType.Foreground)
-            {
-                return InactiveItemBrush;
+                if (dateTime.Date < DateTime.Today && !isSelected)
+                {
+                    return InactiveForeground;
+                }
+                else
+                {
+                    return DefaultForeground;
+                }
             }
             return defaultValue;
         }
@@ -54,7 +59,7 @@ namespace SimpleTasks.Views
                 PhoneApplicationService.Current.State.Remove("DueDate");
             }
 
-            Calendar.ColorConverter = new CalendarColorConverter(Application.Current.Resources["CalendarItemSubtleBrush"] as Brush);
+            Calendar.ColorConverter = new CalendarColorConverter();
 
             Calendar.MinimumDate = (initDate < DateTime.Today ? initDate : DateTime.Today).AddMonths(-1);
             Calendar.MaximumDate = (initDate > DateTime.Today ? initDate : DateTime.Today).AddYears(2);

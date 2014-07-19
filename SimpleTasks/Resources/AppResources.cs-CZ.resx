@@ -293,8 +293,8 @@
     <value>zrušit</value>
   </data>
   <data name="SettingsDeleteWhenStarts" xml:space="preserve">
-    <value>při spuštění aplikace</value>
-  </data>
+    <value>při zavření aplikace</value>
+  <comment></comment></data>
   <data name="SettingsDeleteNever" xml:space="preserve">
     <value>nikdy</value>
   </data>

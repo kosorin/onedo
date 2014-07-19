@@ -1,5 +1,4 @@
-﻿<phone:PhoneApplicationPage
-    x:Class="SimpleTasks.Views.EditTaskPage"
+﻿<controls:BasePage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -9,153 +8,131 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
     xmlns:tiles="clr-namespace:SimpleTasks.Tiles"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    xmlns:sample="clr-namespace:Expression.Blend.SampleData.EditDataSource"
+    x:Class="SimpleTasks.Views.EditTaskPage"
+    Style="{StaticResource BasePageStyle}"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
-    toolkit:TiltEffect.IsTiltEnabled="True"
+    d:DataContext="{d:DesignData /SampleData/EditDataSource/EditDataSource.xaml}"
     BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-
-    <phone:PhoneApplicationPage.Resources>
+    <controls:BasePage.Resources>
+        <sample:EditDataSource x:Key="EditDataSource" d:IsDataSource="True"/>
+        
         <Storyboard x:Name="ShowDueStoryboard">
             <ColorAnimation Storyboard.TargetName="DueDatePicker" 
-                            Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
-                            To="{StaticResource PhoneAccentColor}"
-                            Duration="0:0:0.4"/>
+                Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
+                To="{StaticResource PhoneAccentColor}"
+                Duration="0:0:0.4"/>
 
             <DoubleAnimation Storyboard.TargetName="DueGrid" 
-                             Storyboard.TargetProperty="Height"
-                             To="180"
-                             Duration="0:0:0.4">
+                Storyboard.TargetProperty="Height"
+                To="180"
+                Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
                     <CircleEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="DueDateCloseButton" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="1"
-                             Duration="0:0:0.4"/>
+                Storyboard.TargetProperty="Opacity"
+                To="1"
+                Duration="0:0:0.4"/>
             <DoubleAnimation Storyboard.TargetName="DueTimePicker" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="1"
-                             Duration="0:0:0.3"
-                             BeginTime="0:0:0.15"/>
+                Storyboard.TargetProperty="Opacity"
+                To="1"
+                Duration="0:0:0.3"
+                BeginTime="0:0:0.15"/>
             <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="1"
-                             Duration="0:0:0.3"
-                             BeginTime="0:0:0.3"/>
+                Storyboard.TargetProperty="Opacity"
+                To="1"
+                Duration="0:0:0.3"
+                BeginTime="0:0:0.3"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueTimePicker"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderPicker"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
 
         <Storyboard x:Name="HideDueStoryboard">
             <ColorAnimation Storyboard.TargetName="DueDatePicker" 
-                            Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
-                            To="{StaticResource ButtonBackgroundColor}"
-                            Duration="0:0:0.4"
-                            BeginTime="0:0:0.3"/>
+                Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
+                To="{StaticResource ButtonBackgroundColor}"
+                Duration="0:0:0.4"
+                BeginTime="0:0:0.3"/>
             <DoubleAnimation Storyboard.TargetName="DueGrid" 
-                             Storyboard.TargetProperty="Height"
-                             To="60"
-                             Duration="0:0:0.7"
-                             BeginTime="0:0:0.3">
+                Storyboard.TargetProperty="Height"
+                To="60"
+                Duration="0:0:0.7"
+                BeginTime="0:0:0.3">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="DueDateCloseButton" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="0"
-                             Duration="0:0:0.4"
-                             BeginTime="0:0:0.3"/>
+                Storyboard.TargetProperty="Opacity"
+                To="0"
+                Duration="0:0:0.4"
+                BeginTime="0:0:0.3"/>
             <DoubleAnimation Storyboard.TargetName="DueTimePicker" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="0"
-                             Duration="0:0:0.3"
-                             BeginTime="0:0:0.2"/>
+                Storyboard.TargetProperty="Opacity"
+                To="0"
+                Duration="0:0:0.3"
+                BeginTime="0:0:0.2"/>
             <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="0"
-                             Duration="0:0:0.3"/>
+                Storyboard.TargetProperty="Opacity"
+                To="0"
+                Duration="0:0:0.3"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueTimePicker"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderPicker"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
 
         <Storyboard x:Name="ShowReminderStoryboard">
             <DoubleAnimation Storyboard.TargetName="ReminderCloseButton" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="1"
-                             Duration="0:0:0.4"/>
+                Storyboard.TargetProperty="Opacity"
+                To="1"
+                Duration="0:0:0.4"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
 
         <Storyboard x:Name="HideReminderStoryboard">
             <DoubleAnimation Storyboard.TargetName="ReminderCloseButton" 
-                             Storyboard.TargetProperty="Opacity"
-                             To="0"
-                             Duration="0:0:0.4"/>
+                Storyboard.TargetProperty="Opacity"
+                To="0"
+                Duration="0:0:0.4"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
-                                           Storyboard.TargetProperty="IsEnabled">
+                Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-    </phone:PhoneApplicationPage.Resources>
+    </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
 
@@ -173,13 +150,13 @@
                         <controls:MyTextBox.Resources>
                             <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
                                 <DoubleAnimation Storyboard.TargetName="TitleTextBox"
-                                                    Storyboard.TargetProperty="Opacity"
-                                                    From="1.0"
-                                                    To="0.35"
-                                                    AutoReverse="True"
-                                                    RepeatBehavior="Forever"
-                                                    BeginTime="0:0:0.5"
-                                                    Duration="0:0:0.5" >
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 From="1.0"
+                                                 To="0.35"
+                                                 AutoReverse="True"
+                                                 RepeatBehavior="Forever"
+                                                 BeginTime="0:0:0.5"
+                                                 Duration="0:0:0.5" >
                                     <DoubleAnimation.EasingFunction>
                                         <PowerEase EasingMode="EaseInOut"/>
                                     </DoubleAnimation.EasingFunction>
@@ -193,9 +170,12 @@
                                         GotFocus="DetailTextBox_GotFocus" 
                                         LostFocus="DetailTextBox_LostFocus"
                                         AcceptsReturn="True"
-                                        Mask="#2A000000"
+                                        Mask="{StaticResource DetailMaskBrush}"
                                         Text="{Binding Detail, Mode=TwoWay}"
                                         Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}">
+                        <controls:MyTextBox.BorderBrush>
+                            <SolidColorBrush Color="{StaticResource SubtleColor}" Opacity="0.6"/>
+                        </controls:MyTextBox.BorderBrush>
                     </controls:MyTextBox>
                 </StackPanel>
 
@@ -214,7 +194,7 @@
                             <ColumnDefinition Width="60"/>
                         </Grid.ColumnDefinitions>
                         <controls:MyToggleButton x:Name="DueDatePicker" Tap="DueDatePicker_Tap" Grid.ColumnSpan="2"
-                                        IsChecked="{Binding IsSetDueDate}" DoubleTap="DueDatePicker_Tap">
+                                                 IsChecked="{Binding IsSetDueDate}" DoubleTap="DueDatePicker_Tap">
                             <controls:MyToggleButton.Background>
                                 <SolidColorBrush x:Name="DueDatePickerBackground" Color="{StaticResource PhoneAccentColor}" />
                             </controls:MyToggleButton.Background>
@@ -226,27 +206,27 @@
                                                 <VisualState x:Name="Checked">
                                                     <Storyboard>
                                                         <DoubleAnimation Storyboard.TargetName="DateText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="1"
-                                                                            Duration="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="1"
+                                                            Duration="0:0:0.4"/>
                                                         <DoubleAnimation Storyboard.TargetName="NoDateText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="0"
-                                                                            Duration="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0"
+                                                            Duration="0:0:0.4"/>
                                                     </Storyboard>
                                                 </VisualState>
                                                 <VisualState x:Name="Unchecked">
                                                     <Storyboard>
                                                         <DoubleAnimation Storyboard.TargetName="DateText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="0"
-                                                                            Duration="0:0:0.4"
-                                                                            BeginTime="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0"
+                                                            Duration="0:0:0.4"
+                                                            BeginTime="0:0:0.4"/>
                                                         <DoubleAnimation Storyboard.TargetName="NoDateText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="1"
-                                                                            Duration="0:0:0.4"
-                                                                            BeginTime="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="1"
+                                                            Duration="0:0:0.4"
+                                                            BeginTime="0:0:0.4"/>
                                                     </Storyboard>
                                                 </VisualState>
                                             </VisualStateGroup>
@@ -284,7 +264,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <ContentControl Style="{StaticResource ClockIconStyle}" Foreground="{StaticResource ButtonIconBrush}"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding DueDate, Mode=OneWay, Converter={StaticResource TimeToStringConverter}}" Style="{StaticResource ButtonTextStyle}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding DueDate, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}" Style="{StaticResource ButtonTextStyle}" />
                                     </Grid>
                                 </Border>
                             </ControlTemplate>
@@ -298,7 +278,7 @@
                             <ColumnDefinition Width="60"/>
                         </Grid.ColumnDefinitions>
                         <controls:MyToggleButton x:Name="ReminderPicker" Grid.ColumnSpan="2" Tap="ReminderPicker_Tap" DoubleTap="ReminderPicker_Tap"
-                                                    IsChecked="{Binding IsSetReminder}">
+                            IsChecked="{Binding IsSetReminder}">
                             <controls:MyToggleButton.Template>
                                 <ControlTemplate>
                                     <Border Background="{StaticResource PhoneAccentBrush}">
@@ -307,25 +287,25 @@
                                                 <VisualState x:Name="Checked">
                                                     <Storyboard>
                                                         <DoubleAnimation Storyboard.TargetName="ReminderText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="1"
-                                                                            Duration="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="1"
+                                                            Duration="0:0:0.4"/>
                                                         <DoubleAnimation Storyboard.TargetName="NoReminderText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="0"
-                                                                            Duration="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0"
+                                                            Duration="0:0:0.4"/>
                                                     </Storyboard>
                                                 </VisualState>
                                                 <VisualState x:Name="Unchecked">
                                                     <Storyboard>
                                                         <DoubleAnimation Storyboard.TargetName="ReminderText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="0"
-                                                                            Duration="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="0"
+                                                            Duration="0:0:0.4"/>
                                                         <DoubleAnimation Storyboard.TargetName="NoReminderText" 
-                                                                            Storyboard.TargetProperty="Opacity"
-                                                                            To="1"
-                                                                            Duration="0:0:0.4"/>
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            To="1"
+                                                            Duration="0:0:0.4"/>
                                                     </Storyboard>
                                                 </VisualState>
                                             </VisualStateGroup>
@@ -357,9 +337,9 @@
 
                 <!--Priorita-->
                 <ToggleButton x:Name="PriorityButton"
-                                Margin="0,0,0,20"
-                                IsThreeState="True"
-                                IsChecked="{Binding Priority, Mode=TwoWay, Converter={StaticResource TaskPriorityToBooleanConverter}}">
+                    Margin="0,0,0,20"
+                    IsThreeState="True"
+                    IsChecked="{Binding Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
                     <ToggleButton.Template>
                         <ControlTemplate>
                             <Grid Height="60">
@@ -368,61 +348,61 @@
                                         <VisualState x:Name="Unchecked">
                                             <Storyboard>
                                                 <ColorAnimation Storyboard.TargetName="BackgroundColor" 
-                                                                Storyboard.TargetProperty="Color"
-                                                                To="{StaticResource PhoneAccentColor}"
-                                                                Duration="0:0:0.4"/>
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="{StaticResource PhoneAccentColor}"
+                                                    Duration="0:0:0.4"/>
                                                 <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="1"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.4" />
                                                 <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="0"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4" />
                                                 <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="0"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Indeterminate">
                                             <Storyboard>
                                                 <ColorAnimation Storyboard.TargetName="BackgroundColor" 
-                                                                Storyboard.TargetProperty="Color"
-                                                                To="{StaticResource ButtonBackgroundColor}"
-                                                                Duration="0:0:0.4"/>
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="{StaticResource ButtonBackgroundColor}"
+                                                    Duration="0:0:0.4"/>
                                                 <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
-                                                                Storyboard.TargetProperty="Opacity"
-                                                                To="0"
-                                                                Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4" />
                                                 <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="1"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.4" />
                                                 <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="0"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
                                                 <ColorAnimation Storyboard.TargetName="BackgroundColor" 
-                                                                Storyboard.TargetProperty="Color"
-                                                                To="{StaticResource ButtonBackgroundColor}"
-                                                                Duration="0:0:0.4"/>
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="{StaticResource ButtonBackgroundColor}"
+                                                    Duration="0:0:0.4"/>
                                                 <DoubleAnimation Storyboard.TargetName="HighPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="0"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4" />
                                                 <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="0"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.4" />
                                                 <DoubleAnimation Storyboard.TargetName="LowPriorityGrid" 
-                                                                    Storyboard.TargetProperty="Opacity"
-                                                                    To="1"
-                                                                    Duration="0:0:0.4" />
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.4" />
                                             </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
@@ -462,4 +442,4 @@
         </ScrollViewer>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</controls:BasePage>

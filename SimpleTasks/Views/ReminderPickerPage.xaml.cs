@@ -27,13 +27,9 @@ namespace SimpleTasks.Views
             }
 
             InitializeComponent();
-            Loaded += ReminderPickerPage_Loaded;
-            DataContext = this;
-        }
 
-        void ReminderPickerPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            SetTimeSpan(initReminder); // v konstruktoru to blblo
+            SetTimeSpan(initReminder);
+            DataContext = this;
         }
 
         private TimeSpan initReminder;

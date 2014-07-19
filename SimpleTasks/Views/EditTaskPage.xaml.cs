@@ -1,5 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Resources;
@@ -20,32 +21,8 @@ using System.Windows.Navigation;
 
 namespace SimpleTasks.Views
 {
-    public partial class EditTaskPage : PhoneApplicationPage, INotifyPropertyChanged
-    { // TODO: page overlay pri dokonceni pres visualstatemanager
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-            storage = value;
-
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-        #endregion
-
+    public partial class EditTaskPage : BasePage
+    {
         private TaskModel Original { get; set; }
 
         public bool IsNew { get; private set; }

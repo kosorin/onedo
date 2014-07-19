@@ -12,12 +12,10 @@
 
     <controls:BasePickerPage.Resources>
 
-        <Style x:Key="TimeTextStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="FontSize" Value="56" />
+        <Style x:Key="TimeTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
             <Setter Property="Foreground" Value="{StaticResource TimeForegroundSubtleBrush}" />
-            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyLight}" />
-
+            <Setter Property="FontSize" Value="56" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
     </controls:BasePickerPage.Resources>
 
@@ -44,7 +42,7 @@
                     <Run Text="{Binding RoundValue, ElementName=MinuteSlider}" Foreground="{StaticResource TimeForegroundBrush}" /><Run Text="{Binding LocalizedResources.DateTimeMinutesAbbr, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>
                 </TextBlock>
             </Grid>
-            <TextBlock Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Style="{StaticResource TimeTextStyle}" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="{StaticResource TimeBeforeTextBrush}" />
+            <TextBlock Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Style="{StaticResource NormalTextStyle}" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,30" Foreground="{StaticResource TimeBeforeTextBrush}" />
 
             <Grid Margin="0,0,0,30">
                 <Grid.RowDefinitions>
@@ -52,9 +50,21 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <controls:MySlider Grid.Row="2" x:Name="MinuteSlider" Label="{Binding LocalizedResources.MinutesLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="59" Margin="30,0"/>
-                <controls:MySlider Grid.Row="1" x:Name="HourSlider" Label="{Binding LocalizedResources.HoursLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="23" Margin="30,0,30,-60" Mask="#33000000"/>
-                <controls:MySlider Grid.Row="0" x:Name="DaySlider" Label="{Binding LocalizedResources.DaysLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="30" Margin="30,0,30,-60" Mask="#66000000"/>
+                <controls:MySlider Grid.Row="2" x:Name="MinuteSlider" Label="{Binding LocalizedResources.MinutesLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="59" Margin="30,0">
+                    <controls:MySlider.Background>
+                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" Opacity="1"/>
+                    </controls:MySlider.Background>
+                </controls:MySlider>
+                <controls:MySlider Grid.Row="1" x:Name="HourSlider" Label="{Binding LocalizedResources.HoursLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="23" Margin="30,0,30,-60" Mask="#33FFFFFF">
+                    <controls:MySlider.Background>
+                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" Opacity="0.7"/>
+                    </controls:MySlider.Background>
+                </controls:MySlider>
+                <controls:MySlider Grid.Row="0" x:Name="DaySlider" Label="{Binding LocalizedResources.DaysLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Maximum="30" Margin="30,0,30,-60" Mask="#66FFFFFF">
+                    <controls:MySlider.Background>
+                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" Opacity="0.42"/>
+                    </controls:MySlider.Background>
+                </controls:MySlider>
             </Grid>
 
             <Grid VerticalAlignment="Bottom" Margin="15,0">

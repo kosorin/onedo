@@ -792,7 +792,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to when application starts.
+        ///   Looks up a localized string similar to when application closes.
         /// </summary>
         public static string SettingsDeleteWhenStarts {
             get {
