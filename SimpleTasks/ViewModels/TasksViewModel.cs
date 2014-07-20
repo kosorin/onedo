@@ -35,7 +35,7 @@ namespace SimpleTasks.ViewModels
         public string GroupedTasksPropertyString = "GroupedTasks";
         public List<TaskGroup> GroupedTasks
         {
-            get { return TaskGroup.CreateOrderByPriority(Tasks); }
+            get { return TaskGroup.CreateOrderByDate(Tasks); }
         }
 
         public TasksViewModel()
