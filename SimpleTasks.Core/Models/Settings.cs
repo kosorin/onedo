@@ -43,7 +43,9 @@ namespace SimpleTasks.Core.Models
                         using (Stream stream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
                         {
                             StreamReader sr = new StreamReader(stream);
-                            settings = JsonConvert.DeserializeObject<Settings>(sr.ReadToEnd());
+                            string s = sr.ReadToEnd();
+                            Debug.WriteLine("> Settings: \n{0}", s);
+                            settings = JsonConvert.DeserializeObject<Settings>(s);
                             sr.Close();
                             Debug.WriteLine(": Nahrávání nastavení dokončeno.");
                         }

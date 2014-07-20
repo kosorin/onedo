@@ -45,7 +45,10 @@ namespace SimpleTasks.ViewModels
         public void Load()
         {
             Tasks = TaskCollection.LoadFromFile(App.TasksFileName);
-            DeleteCompleted(App.Settings.Tasks.DeleteCompletedBefore);
+            if (App.Settings.Tasks.DeleteCompleted > 0)
+            {
+                DeleteCompleted(App.Settings.Tasks.DeleteCompletedBefore);
+            }
 
 #if DEBUG
             Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
@@ -59,6 +62,10 @@ namespace SimpleTasks.ViewModels
 
         public void Save()
         {
+            if (App.Settings.Tasks.DeleteCompleted == 0)
+            {
+                DeleteCompleted();
+            }
             TaskCollection.SaveToFile(App.TasksFileName, Tasks);
         }
 

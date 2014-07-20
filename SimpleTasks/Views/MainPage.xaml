@@ -234,7 +234,8 @@
                             <!--Horní info-->
                             <StackPanel x:Name="TaskTitleAndPriority" 
                                         Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        Height="70">
 
                                 <!--Vysoká priorita-->
                                 <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -265,7 +266,7 @@
                                            Style="{StaticResource NormalTextStyle}"
                                            FontSize="32"
                                            TextWrapping="Wrap"
-                                           Margin="8,13,0,12"/>
+                                           Margin="8,12,0,12"/>
 
                             </StackPanel>
 

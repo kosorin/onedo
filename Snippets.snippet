@@ -15,6 +15,10 @@
           <Default>Name</Default>
         </Literal>
         <Literal>
+          <ID>pname</ID>
+          <Default>_name</Default>
+        </Literal>
+        <Literal>
           <ID>type</ID>
           <Default>int</Default>
         </Literal>
@@ -25,12 +29,52 @@
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[#region $name$
-                 private $type$ _$name$ = $default$;
+                 private $type$ $pname$ = $default$;
                  [DataMember(Name = "$name$")]
                  public $type$ $name$
                  {
-                     get { return _$name$; }
-                     set { SetProperty(ref _$name$, value); }
+                     get { return $pname$; }
+                     set { SetProperty(ref $pname$, value); }
+                 }
+                 #endregion]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  
+  
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Property NotifyPropertyChanged</Title>
+      <Shortcut>
+        propn
+      </Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>name</ID>
+          <Default>Name</Default>
+        </Literal>
+        <Literal>
+          <ID>pname</ID>
+          <Default>_name</Default>
+        </Literal>
+        <Literal>
+          <ID>type</ID>
+          <Default>int</Default>
+        </Literal>
+        <Literal>
+          <ID>default</ID>
+          <Default>0</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region $name$
+                 private $type$ $pname$ = $default$;
+                 public $type$ $name$
+                 {
+                     get { return $pname$; }
+                     set { SetProperty(ref $pname$, value); }
                  }
                  #endregion]]>
       </Code>
