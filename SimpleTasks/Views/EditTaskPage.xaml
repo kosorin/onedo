@@ -17,8 +17,98 @@
 
     <controls:BasePage.Resources>
         <sample:EditDataSource x:Key="EditDataSource" d:IsDataSource="True"/>
-        
+
         <Storyboard x:Name="ShowDueStoryboard">
+            <ColorAnimation Storyboard.TargetName="DueDatePicker" 
+                            Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
+                            To="{StaticResource PhoneAccentColor}"
+                            Duration="0:0:0.4"/>
+
+            <DoubleAnimation Storyboard.TargetName="DueGrid" 
+                            Storyboard.TargetProperty="Height"
+                            To="180"
+                            Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="DueDateCloseButton" 
+                            Storyboard.TargetProperty="Opacity"
+                            To="1"
+                            Duration="0:0:0.4"/>
+            <!--<DoubleAnimation Storyboard.TargetName="DueTimePicker" 
+                            Storyboard.TargetProperty="Opacity"
+                            To="1"
+                            Duration="0:0:0.3"
+                            BeginTime="0:0:0.15"/>
+            <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
+                            Storyboard.TargetProperty="Opacity"
+                            To="1"
+                            Duration="0:0:0.3"
+                            BeginTime="0:0:0.3"/>-->
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueTimePicker"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderPicker"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="True" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="HideDueStoryboard">
+            <ColorAnimation Storyboard.TargetName="DueDatePicker" 
+                            Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
+                            To="{StaticResource ButtonBackgroundColor}"
+                            Duration="0:0:0.4"/>
+            <DoubleAnimation Storyboard.TargetName="DueGrid" 
+                            Storyboard.TargetProperty="Height"
+                            To="60"
+                            Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="DueDateCloseButton" 
+                            Storyboard.TargetProperty="Opacity"
+                            To="0"
+                            Duration="0:0:0.4"/>
+            <!--<DoubleAnimation Storyboard.TargetName="DueTimePicker" 
+                            Storyboard.TargetProperty="Opacity"
+                            To="0"
+                            Duration="0:0:0.3"
+                            BeginTime="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
+                            Storyboard.TargetProperty="Opacity"
+                            To="0"
+                            Duration="0:0:0.3"/>-->
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
+                                        Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueTimePicker"
+                                             Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderPicker"
+                                             Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <Storyboard x:Name="ShowDueStoryboardOLD">
             <ColorAnimation Storyboard.TargetName="DueDatePicker" 
                 Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                 To="{StaticResource PhoneAccentColor}"
@@ -64,7 +154,7 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
 
-        <Storyboard x:Name="HideDueStoryboard">
+        <Storyboard x:Name="HideDueStoryboardOLD">
             <ColorAnimation Storyboard.TargetName="DueDatePicker" 
                 Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                 To="{StaticResource ButtonBackgroundColor}"
@@ -224,17 +314,15 @@
                                                         <DoubleAnimation Storyboard.TargetName="DateText" 
                                                             Storyboard.TargetProperty="Opacity"
                                                             To="0"
-                                                            Duration="0:0:0.4"
-                                                            BeginTime="0:0:0.4"/>
+                                                            Duration="0:0:0.4"/>
                                                         <DoubleAnimation Storyboard.TargetName="NoDateText" 
                                                             Storyboard.TargetProperty="Opacity"
                                                             To="1"
-                                                            Duration="0:0:0.4"
-                                                            BeginTime="0:0:0.4"/>
+                                                            Duration="0:0:0.4"/>
                                                         <DoubleAnimation Storyboard.TargetName="Arrow"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="1"
-                                                             BeginTime="0:0:0.50"
+                                                             BeginTime="0:0:0.1"
                                                              Duration="0:0:0.2"/>
                                                     </Storyboard>
                                                 </VisualState>
