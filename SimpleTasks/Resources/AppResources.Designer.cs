@@ -495,7 +495,34 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DAYS.
+        ///   Looks up a localized string similar to {0} day.
+        /// </summary>
+        public static string Days1 {
+            get {
+                return ResourceManager.GetString("Days1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days.
+        /// </summary>
+        public static string Days2To4 {
+            get {
+                return ResourceManager.GetString("Days2To4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} days.
+        /// </summary>
+        public static string Days5AndMore {
+            get {
+                return ResourceManager.GetString("Days5AndMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days.
         /// </summary>
         public static string DaysLabel {
             get {
@@ -576,7 +603,34 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HOURS.
+        ///   Looks up a localized string similar to {0} hour.
+        /// </summary>
+        public static string Hours1 {
+            get {
+                return ResourceManager.GetString("Hours1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} hours.
+        /// </summary>
+        public static string Hours2To4 {
+            get {
+                return ResourceManager.GetString("Hours2To4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} hours.
+        /// </summary>
+        public static string Hours5AndMore {
+            get {
+                return ResourceManager.GetString("Hours5AndMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hours.
         /// </summary>
         public static string HoursLabel {
             get {
@@ -585,7 +639,34 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MINUTES.
+        ///   Looks up a localized string similar to {0} minute.
+        /// </summary>
+        public static string Minutes1 {
+            get {
+                return ResourceManager.GetString("Minutes1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} minutes.
+        /// </summary>
+        public static string Minutes2To4 {
+            get {
+                return ResourceManager.GetString("Minutes2To4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} minutes.
+        /// </summary>
+        public static string Minutes5AndMore {
+            get {
+                return ResourceManager.GetString("Minutes5AndMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minutes.
         /// </summary>
         public static string MinutesLabel {
             get {
@@ -1004,6 +1085,24 @@ namespace SimpleTasks.Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} week.
+        /// </summary>
+        public static string Weeks1 {
+            get {
+                return ResourceManager.GetString("Weeks1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} weeks.
+        /// </summary>
+        public static string Weeks2To4 {
+            get {
+                return ResourceManager.GetString("Weeks2To4", resourceCulture);
             }
         }
     }

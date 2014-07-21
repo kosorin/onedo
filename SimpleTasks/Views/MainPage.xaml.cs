@@ -254,7 +254,7 @@ namespace SimpleTasks.Views
             {
                 Title = "Call Chuck",
                 DueDate = DateTimeExtensions.Today.AddHours(13).AddMinutes(00),
-                Reminder = TimeSpan.FromHours(2.5),
+                Reminder = TimeSpan.FromHours(4),
                 Priority = TaskPriority.High
             });
             App.Tasks.Add(new TaskModel()

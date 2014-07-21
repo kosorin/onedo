@@ -31,7 +31,7 @@
             <conv:StringFormatConverter x:Key="StringFormatConverter" />
             <conv:ToUpperConverter x:Key="ToUpperConverter" />
             <conv:DueConverter x:Key="TaskToDueStringConverter" />
-            <conv:TimeSpanConverter x:Key="TimeSpanToStringConverter" />
+            <conv:ReminderConverter x:Key="ReminderConverter" />
             <conv:DateConverter x:Key="DateConverter" />
             <conv:TimeConverter x:Key="TimeToStringConverter" />
             

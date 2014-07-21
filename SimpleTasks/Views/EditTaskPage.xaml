@@ -213,6 +213,10 @@
                                                             Storyboard.TargetProperty="Opacity"
                                                             To="0"
                                                             Duration="0:0:0.4"/>
+                                                        <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0"
+                                                             Duration="0:0:0.2"/>
                                                     </Storyboard>
                                                 </VisualState>
                                                 <VisualState x:Name="Unchecked">
@@ -227,6 +231,11 @@
                                                             To="1"
                                                             Duration="0:0:0.4"
                                                             BeginTime="0:0:0.4"/>
+                                                        <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1"
+                                                             BeginTime="0:0:0.50"
+                                                             Duration="0:0:0.2"/>
                                                     </Storyboard>
                                                 </VisualState>
                                             </VisualStateGroup>
@@ -238,6 +247,7 @@
                                         <ContentControl Style="{StaticResource CalendarIconStyle}" Foreground="{StaticResource ButtonIconBrush}"/>
                                         <TextBlock x:Name="DateText" Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}" Grid.Column="1" Text="{Binding DueDate, Converter={StaticResource DateConverter}}" Style="{StaticResource ButtonTextStyle}"/>
                                         <TextBlock x:Name="NoDateText" Grid.Column="1" Text="{Binding LocalizedResources.DateNoDue, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonTextStyle}"/>
+                                        <TextBlock x:Name="Arrow" Grid.Column="1" Text="&#xe019;" Style="{StaticResource ButtonTextStyle}" Foreground="{StaticResource SlightBrush}" FontFamily="Segoe UI Symbol" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,7,14,0" IsHitTestVisible="False" />
                                     </Grid>
                                 </ControlTemplate>
                             </controls:MyToggleButton.Template>
@@ -316,7 +326,7 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <ContentControl Style="{StaticResource ReminderIconStyle}" Foreground="{StaticResource ButtonIconBrush}"/>
-                                            <TextBlock x:Name="ReminderText" Grid.Column="1" Text="{Binding Reminder, Converter={StaticResource TimeSpanToStringConverter}}" Style="{StaticResource ButtonTextStyle}" />
+                                            <TextBlock x:Name="ReminderText" Grid.Column="1" Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}" Style="{StaticResource ButtonTextStyle}" />
                                             <TextBlock x:Name="NoReminderText" Grid.Column="1" Text="{Binding LocalizedResources.NoReminder, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ButtonTextStyle}" />
                                         </Grid>
                                     </Border>

@@ -115,7 +115,7 @@
     <Compile Include="Conventers\BoolToNumberConverter.cs" />
     <Compile Include="Conventers\BoolToVisibilityConverter.cs" />
     <Compile Include="Conventers\DateToBoolConverter.cs" />
-    <Compile Include="Conventers\TimeSpanConverter.cs" />
+    <Compile Include="Conventers\ReminderConverter.cs" />
     <Compile Include="Conventers\TimeConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
     <Compile Include="Conventers\DueConverter.cs" />
@@ -129,6 +129,7 @@
     <Compile Include="Models\ChangelogList.cs" />
     <Compile Include="Models\ChangelogCategory.cs" />
     <Compile Include="Models\ChangelogItem.cs" />
+    <Compile Include="Models\ReminderLengthType.cs" />
     <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
     <Compile Include="MyUriMapper.cs" />

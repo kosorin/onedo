@@ -304,9 +304,8 @@
           <target state="signed-off">žádné připomenutí</target>
         </trans-unit>
         <trans-unit id="Resx/MinutesLabel" translate="yes" xml:space="preserve">
-          <source>MINUTES</source>
-          <target state="signed-off">MINUTY</target>
-        </trans-unit>
+          <source>minutes</source>
+          <target state="signed-off">minuty</target></trans-unit>
         <trans-unit id="Resx/DateYesterday" translate="yes" xml:space="preserve">
           <source>yesterday</source>
           <target state="signed-off">včera</target>
@@ -337,6 +336,50 @@
         <trans-unit id="Resx/TimeZero" translate="yes" xml:space="preserve">
           <source>in due time</source>
           <target state="signed-off">na začátku</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} minutes</source>
+          <target state="signed-off">{0} minut</target>
+        </trans-unit>
+        <trans-unit id="Resx/Weeks2To4" translate="yes" xml:space="preserve">
+          <source>{0} weeks</source>
+          <target state="signed-off">{0} týdny</target>
+        </trans-unit>
+        <trans-unit id="Resx/Weeks1" translate="yes" xml:space="preserve">
+          <source>{0} week</source>
+          <target state="signed-off">{0} týden</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes2To4" translate="yes" xml:space="preserve">
+          <source>{0} minutes</source>
+          <target state="signed-off">{0} minuty</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes1" translate="yes" xml:space="preserve">
+          <source>{0} minute</source>
+          <target state="signed-off">{0} minuta</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} hours</source>
+          <target state="signed-off">{0} hodin</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours2To4" translate="yes" xml:space="preserve">
+          <source>{0} hours</source>
+          <target state="signed-off">{0} hodiny</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours1" translate="yes" xml:space="preserve">
+          <source>{0} hour</source>
+          <target state="signed-off">{0} hodina</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} days</source>
+          <target state="signed-off">{0} dní</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days2To4" translate="yes" xml:space="preserve">
+          <source>{0} days</source>
+          <target state="signed-off">{0} dny</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days1" translate="yes" xml:space="preserve">
+          <source>{0} day</source>
+          <target state="signed-off">{0} den</target>
         </trans-unit>
         <trans-unit id="Resx/Time5mins" translate="yes" xml:space="preserve">
           <source>5 minutes</source>
@@ -375,13 +418,11 @@
           <target state="signed-off">minulý měsíc</target>
         </trans-unit>
         <trans-unit id="Resx/HoursLabel" translate="yes" xml:space="preserve">
-          <source>HOURS</source>
-          <target state="signed-off">HODINY</target>
-        </trans-unit>
+          <source>hours</source>
+          <target state="signed-off">hodiny</target></trans-unit>
         <trans-unit id="Resx/DaysLabel" translate="yes" xml:space="preserve">
-          <source>DAYS</source>
-          <target state="signed-off">DNY</target>
-        </trans-unit>
+          <source>days</source>
+          <target state="signed-off">dny</target></trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
           <target state="signed-off">noc</target>

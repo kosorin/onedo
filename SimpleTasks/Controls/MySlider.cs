@@ -28,12 +28,23 @@ namespace SimpleTasks.Controls
         #region Dependency Properties
 
         #region RoundValue
-        public static readonly DependencyProperty RoundValueProperty = DependencyProperty.Register("RoundValue", typeof(int), typeof(MySlider), new PropertyMetadata(0));
+        public static readonly DependencyProperty RoundValueProperty = DependencyProperty.Register("RoundValue", typeof(int), typeof(MySlider), new PropertyMetadata(0, OnRoundValueChanged));
         public int RoundValue
         {
             get { return (int)base.GetValue(RoundValueProperty); }
             set { base.SetValue(RoundValueProperty, value); }
         }
+
+        public static void OnRoundValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MySlider mySlider = (MySlider)d;
+            if (mySlider.RoundValueChanged != null)
+            {
+                mySlider.RoundValueChanged(mySlider, new RoutedPropertyChangedEventArgs<int>((int)e.OldValue, (int)e.NewValue));
+            }
+        }
+
+        public event EventHandler<RoutedPropertyChangedEventArgs<int>> RoundValueChanged;
         #endregion
 
         #region AnimationValue

@@ -312,7 +312,7 @@
                                                     <CompositeTransform ScaleX="0.55" ScaleY="0.55" />
                                                 </ContentControl.RenderTransform>
                                             </ContentControl>
-                                            <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource TimeSpanToStringConverter}}"
+                                            <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
                                                        Style="{StaticResource SlightTextStyle}"
                                                        FontSize="22"
                                                        Margin="0,1,8,0"/>

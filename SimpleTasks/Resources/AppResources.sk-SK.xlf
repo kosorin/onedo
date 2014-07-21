@@ -304,9 +304,8 @@
           <target state="signed-off">bez pripomenutia</target>
         </trans-unit>
         <trans-unit id="Resx/MinutesLabel" translate="yes" xml:space="preserve">
-          <source>MINUTES</source>
-          <target state="signed-off">MINÚTY</target>
-        </trans-unit>
+          <source>minutes</source>
+          <target state="signed-off">minúty</target></trans-unit>
         <trans-unit id="Resx/DateYesterday" translate="yes" xml:space="preserve">
           <source>yesterday</source>
           <target state="signed-off">včera</target>
@@ -337,6 +336,50 @@
         <trans-unit id="Resx/TimeZero" translate="yes" xml:space="preserve">
           <source>in due time</source>
           <target state="signed-off">na začiatku</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} minutes</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">0 minút</target>
+        </trans-unit>
+        <trans-unit id="Resx/Weeks2To4" translate="yes" xml:space="preserve">
+          <source>{0} weeks</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} týždne</target>
+        </trans-unit>
+        <trans-unit id="Resx/Weeks1" translate="yes" xml:space="preserve">
+          <source>{0} week</source>
+          <target state="signed-off">{0} týždeň</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes2To4" translate="yes" xml:space="preserve">
+          <source>{0} minutes</source>
+          <target state="signed-off">0 minúty</target>
+        </trans-unit>
+        <trans-unit id="Resx/Minutes1" translate="yes" xml:space="preserve">
+          <source>{0} minute</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} minúta</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} hours</source>
+          <target state="signed-off">{0} hodín</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours2To4" translate="yes" xml:space="preserve">
+          <source>{0} hours</source>
+          <target state="signed-off">{0} hodiny</target>
+        </trans-unit>
+        <trans-unit id="Resx/Hours1" translate="yes" xml:space="preserve">
+          <source>{0} hour</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} hodina</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} days</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} dní</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days2To4" translate="yes" xml:space="preserve">
+          <source>{0} days</source>
+          <target state="signed-off">{0} dni</target>
+        </trans-unit>
+        <trans-unit id="Resx/Days1" translate="yes" xml:space="preserve">
+          <source>{0} day</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} deň</target>
         </trans-unit>
         <trans-unit id="Resx/Time5mins" translate="yes" xml:space="preserve">
           <source>5 minutes</source>
@@ -375,13 +418,11 @@
           <target state="signed-off">predošlý mesiac</target>
         </trans-unit>
         <trans-unit id="Resx/HoursLabel" translate="yes" xml:space="preserve">
-          <source>HOURS</source>
-          <target state="signed-off">HODINY</target>
-        </trans-unit>
+          <source>hours</source>
+          <target state="signed-off">hodiny</target></trans-unit>
         <trans-unit id="Resx/DaysLabel" translate="yes" xml:space="preserve">
-          <source>DAYS</source>
-          <target state="signed-off">DNI</target>
-        </trans-unit>
+          <source>days</source>
+          <target state="signed-off">dni</target></trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
           <target state="signed-off">noc</target>

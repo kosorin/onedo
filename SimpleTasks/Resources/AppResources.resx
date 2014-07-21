@@ -391,13 +391,13 @@
     <value>no reminder</value>
   </data>
   <data name="DaysLabel" xml:space="preserve">
-    <value>DAYS</value>
+    <value>days</value>
   </data>
   <data name="HoursLabel" xml:space="preserve">
-    <value>HOURS</value>
+    <value>hours</value>
   </data>
   <data name="MinutesLabel" xml:space="preserve">
-    <value>MINUTES</value>
+    <value>minutes</value>
   </data>
   <data name="DateLastMonth" xml:space="preserve">
     <value>last month</value>
@@ -449,5 +449,38 @@
   </data>
   <data name="TimeZero" xml:space="preserve">
     <value>in due time</value>
+  </data>
+  <data name="Days1" xml:space="preserve">
+    <value>{0} day</value>
+  </data>
+  <data name="Days2To4" xml:space="preserve">
+    <value>{0} days</value>
+  </data>
+  <data name="Days5AndMore" xml:space="preserve">
+    <value>{0} days</value>
+  </data>
+  <data name="Hours1" xml:space="preserve">
+    <value>{0} hour</value>
+  </data>
+  <data name="Hours2To4" xml:space="preserve">
+    <value>{0} hours</value>
+  </data>
+  <data name="Hours5AndMore" xml:space="preserve">
+    <value>{0} hours</value>
+  </data>
+  <data name="Minutes1" xml:space="preserve">
+    <value>{0} minute</value>
+  </data>
+  <data name="Minutes2To4" xml:space="preserve">
+    <value>{0} minutes</value>
+  </data>
+  <data name="Minutes5AndMore" xml:space="preserve">
+    <value>{0} minutes</value>
+  </data>
+  <data name="Weeks1" xml:space="preserve">
+    <value>{0} week</value>
+  </data>
+  <data name="Weeks2To4" xml:space="preserve">
+    <value>{0} weeks</value>
   </data>
 </root>
