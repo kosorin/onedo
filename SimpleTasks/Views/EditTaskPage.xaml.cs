@@ -76,6 +76,7 @@ namespace SimpleTasks.Views
                 {
                     Reminder = (TimeSpan)PhoneApplicationService.Current.State["Reminder"];
                     PhoneApplicationService.Current.State.Remove("Reminder");
+                    IsSetReminder = true;
                 }
             }
 
@@ -663,7 +664,7 @@ namespace SimpleTasks.Views
             {
                 var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
                 if (phoneApplicationFrame != null)
-                { // TODO: vymyslet navigaci
+                {
                     PhoneApplicationService.Current.State["DueDate"] = DueDate;
                     phoneApplicationFrame.Navigate(new Uri("/Views/DueDatePickerPage.xaml", UriKind.Relative));
                 }
@@ -680,7 +681,7 @@ namespace SimpleTasks.Views
         {
             var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
             if (phoneApplicationFrame != null)
-            { // TODO: vymyslet navigaci
+            {
                 PhoneApplicationService.Current.State["DueTime"] = DueDate;
                 phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
             }
@@ -704,25 +705,9 @@ namespace SimpleTasks.Views
 
         private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //if (IsSetReminder)
-            //{
-            //    var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-            //    if (phoneApplicationFrame != null)
-            //    { // TODO: vymyslet navigaci
-            //        PhoneApplicationService.Current.State["Reminder"] = Reminder;
-            //        phoneApplicationFrame.Navigate(new Uri("/Views/ReminderPickerPage.xaml", UriKind.Relative));
-            //    }
-            //}
-            //else
-            //{
-            //    IsSetReminder = true;
-            //}
-
-            IsSetReminder = true;
-
             var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
             if (phoneApplicationFrame != null)
-            { // TODO: vymyslet navigaci
+            {
                 PhoneApplicationService.Current.State["Reminder"] = Reminder;
                 phoneApplicationFrame.Navigate(new Uri("/Views/ReminderPickerPage.xaml", UriKind.Relative));
             }
