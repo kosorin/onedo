@@ -247,45 +247,39 @@ namespace SimpleTasks.Views
 
             App.Tasks.Add(new TaskModel()
             {
-                Title = "Go to the dentist",
-                DueDate = DateTimeExtensions.Today.AddDays(2).AddHours(10).AddMinutes(35),
+                Title = "Buy milk",
                 Completed = DateTime.Now
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Call Chuck",
-                DueDate = DateTimeExtensions.Today.AddDays(0).AddHours(16).AddMinutes(00),
-                Reminder = TimeSpan.FromDays(1),
+                DueDate = DateTimeExtensions.Today.AddHours(13).AddMinutes(00),
+                Reminder = TimeSpan.FromHours(2.5),
                 Priority = TaskPriority.High
             });
             App.Tasks.Add(new TaskModel()
             {
-                Title = "Simple list",
-                Detail = " \u2022 just simple\n \u2022 bulleted list\n \u2022 I don't know\n \u2022 what to say",
-                DueDate = DateTimeExtensions.Today.AddDays(5).AddHours(7).AddMinutes(0),
-                Priority = TaskPriority.Low
+                Title = "Walk the dog",
+                DueDate = DateTimeExtensions.Today.AddHours(18).AddMinutes(45)
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Math project",
-                DueDate = DateTimeExtensions.Today.AddDays(3).AddHours(21).AddMinutes(18),
-                Reminder = TimeSpan.FromHours(1)
+                DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30)
             });
 
             if (App.ForceDebugCulture == "cs-CZ")
             {
-                App.Tasks.Tasks[0].Title = "Jít k zubaři";
+                App.Tasks.Tasks[0].Title = "Koupit mléko";
                 App.Tasks.Tasks[1].Title = "Zavolat Honzovi";
-                App.Tasks.Tasks[2].Title = "Jednoduchý seznam";
-                App.Tasks.Tasks[2].Detail = " \u2022 prostě jednoduché\n \u2022 odrážky\n \u2022 nevím, co sem\n \u2022 mám napsat";
+                App.Tasks.Tasks[2].Title = "Vyvenčit psa";
                 App.Tasks.Tasks[3].Title = "Projekt do matematiky";
             }
             else if (App.ForceDebugCulture == "sk-SK")
             {
-                App.Tasks.Tasks[0].Title = "Ísť k zubárovi";
-                App.Tasks.Tasks[1].Title = "Kúpiť mlieko";
-                App.Tasks.Tasks[2].Title = "Jednoduchý zoznam";
-                App.Tasks.Tasks[2].Detail = " \u2022 len jednoduché\n \u2022 odrážky\n \u2022 neviem, čo by som\n \u2022 tu mal napísať";
+                App.Tasks.Tasks[0].Title = "Kúpiť mlieko";
+                App.Tasks.Tasks[1].Title = "Zavolať Danovi";
+                App.Tasks.Tasks[2].Title = "Vyvenčiť psa";
                 App.Tasks.Tasks[3].Title = "Projekt z matematiky";
             }
         }

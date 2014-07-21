@@ -136,10 +136,10 @@
                                                                                    Storyboard.TargetName="CompleteIcon">
                                                         <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
                                                     </DoubleAnimationUsingKeyFrames>
-                                                    <!--<ColorAnimation Duration="0:0:0.4"
+                                                    <ColorAnimation Duration="0:0:0.4"
                                                                     To="{StaticResource PhoneAccentColor}"
                                                                     Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
-                                                                    Storyboard.TargetName="CompleteButtonRectangle" />-->
+                                                                    Storyboard.TargetName="CompleteButtonRectangle" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Indeterminate" />
