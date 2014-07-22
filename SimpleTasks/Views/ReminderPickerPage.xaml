@@ -16,7 +16,7 @@
             <Setter Property="FontSize" Value="50" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
-        
+
         <Style x:Key="BeforeTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
             <Setter Property="Foreground" Value="{StaticResource TimeBeforeTextBrush}"/>
             <Setter Property="FontSize" Value="28" />
@@ -125,17 +125,13 @@
             </Grid>
 
             <Grid>
-                <!--Sliders-->
-                <Grid Margin="0,120,0,0">
-                    <controls:MySlider x:Name="MinutesSlider" Maximum="60" RoundValueChanged="MinutesSlider_RoundValueChanged" />
-                    <controls:MySlider x:Name="HoursSlider" Maximum="24" RoundValueChanged="HoursSlider_RoundValueChanged" />
-                    <controls:MySlider x:Name="DaysSlider" Maximum="30" RoundValueChanged="DaysSlider_RoundValueChanged" />
-                </Grid>
+                <!--Slider-->
+                <controls:MySlider Margin="0,120,0,0" x:Name="ReminderSlider" RoundValueChanged="ReminderSlider_RoundValueChanged" />
 
                 <!--Výběr typu-->
                 <toolkit:ListPicker x:Name="TypePicker" 
                                 ItemsSource="{Binding LengthTypes}" 
-                                SelectedIndex="{Binding LengthType, Mode=TwoWay}"  
+                                SelectedItem="{Binding LengthType, Mode=TwoWay}"  
                                 VerticalContentAlignment="Bottom" 
                                 SelectionChanged="LengthTypes_SelectionChanged"
                                 VerticalAlignment="Top"

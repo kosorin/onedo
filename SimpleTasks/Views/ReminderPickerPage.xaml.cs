@@ -49,65 +49,44 @@ namespace SimpleTasks.Views
 
         private TimeSpan GetTimeSpan()
         {
-            switch (LengthType)
+            Debug.WriteLine("LT: {0}", LengthType.Label);
+            switch (LengthTypes.FindIndex(t => t == LengthType))
             {
-            case 2: return new TimeSpan(DaysSlider.RoundValue, 0, 0, 0);
-            case 1: return new TimeSpan(HoursSlider.RoundValue, 0, 0);
+            case 2: return new TimeSpan(ReminderSlider.RoundValue, 0, 0, 0);
+            case 1: return new TimeSpan(ReminderSlider.RoundValue, 0, 0);
             case 0:
-            default: return new TimeSpan(0, MinutesSlider.RoundValue, 0);
+            default: return new TimeSpan(0, ReminderSlider.RoundValue, 0);
             }
         }
 
         private void SetTimeSpan(TimeSpan ts)
         {
             int type;
+            int value;
             if (ts.Days != 0)
             {
                 type = 2;
-
-                SetSliders(type);
-                LengthType = type;
-                DaysSlider.SetSliderValue(ts.Days);
+                value = ts.Days;
             }
             else if (ts.Hours != 0)
             {
                 type = 1;
-
-                SetSliders(type);
-                LengthType = type;
-                HoursSlider.SetSliderValue(ts.Hours);
+                value = ts.Hours;
             }
             else
             {
                 type = 0;
-
-                SetSliders(type);
-                LengthType = type;
-                MinutesSlider.SetSliderValue(ts.Minutes);
+                value = ts.Minutes;
             }
+
+            SetSliders(type);
+            ReminderSlider.SetSliderValue(value);
         }
 
         private void SetSliders(int type)
         {
-            switch (type)
-            {
-            case 2:
-                DaysShow.Begin();
-                HoursHide.Begin();
-                MinutesHide.Begin();
-                break;
-            case 1:
-                DaysHide.Begin();
-                HoursShow.Begin();
-                MinutesHide.Begin();
-                break;
-            case 0:
-            default:
-                DaysHide.Begin();
-                HoursHide.Begin();
-                MinutesShow.Begin();
-                break;
-            }
+            LengthType = LengthTypes[type];
+            ReminderSlider.SetMaximum(LengthTypes[type].Maximum);
             OnPropertyChanged("ReminderValue");
         }
 
@@ -121,8 +100,8 @@ namespace SimpleTasks.Views
             }
         }
 
-        private int _lengthType = 0;
-        public int LengthType
+        private ReminderLengthType _lengthType = null;
+        public ReminderLengthType LengthType
         {
             get { return _lengthType; }
             set { SetProperty(ref _lengthType, value); }
@@ -144,9 +123,9 @@ namespace SimpleTasks.Views
                 {
                     _lengthTypes = new List<ReminderLengthType>()
                     {
-                        new ReminderLengthType(AppResources.MinutesLabel + " " + AppResources.ReminderBeforeDueDateText, 0.82),
-                        new ReminderLengthType(AppResources.HoursLabel + " " + AppResources.ReminderBeforeDueDateText, 0.70),
-                        new ReminderLengthType(AppResources.DaysLabel + " " + AppResources.ReminderBeforeDueDateText, 0.58)
+                        (LengthType = new ReminderLengthType(60, AppResources.MinutesLabel, 0.82)),
+                        new ReminderLengthType(24, AppResources.HoursLabel, 0.70),
+                        new ReminderLengthType(30, AppResources.DaysLabel, 0.58)
                     };
                 }
                 return _lengthTypes;
@@ -162,7 +141,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void MinutesSlider_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+        private void ReminderSlider_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
         {
             OnPropertyChanged("ReminderValue");
         }

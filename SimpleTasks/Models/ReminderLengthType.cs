@@ -23,8 +23,16 @@ namespace SimpleTasks.Models
             set { SetProperty(ref _opacity, value); }
         }
 
-        public ReminderLengthType(string label, double opacity)
+        private int _maximum = 0;
+        public int Maximum
         {
+            get { return _maximum; }
+            set { SetProperty(ref _maximum, value); }
+        }
+
+        public ReminderLengthType(int maximum, string label, double opacity)
+        {
+            Maximum = maximum;
             Label = label;
             Opacity = opacity;
         }

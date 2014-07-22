@@ -21,6 +21,7 @@ using System.Threading;
 using Microsoft.Devices;
 using SimpleTasks.Controls;
 using Microsoft.Phone.Tasks;
+using System.Globalization;
 
 namespace SimpleTasks.Views
 {
@@ -234,11 +235,12 @@ namespace SimpleTasks.Views
 #if DEBUG
         private void RemindersMenuItem_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("> Reminders:");
+            string s = string.Format("> Reminders ({0})", DateTime.Now.ToString(CultureInfo.CurrentCulture));
             foreach (var r in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
             {
-                Debug.WriteLine(": {0} - {1} {2}", r.Name, r.IsScheduled, r.BeginTime);
+               s += string.Format("\n{0}\n  {1} -  {2}", r.Name, r.IsScheduled, r.BeginTime);
             }
+            MessageBox.Show(s);
         }
 
         void ResetMenuItem_Click(object sender, EventArgs e)

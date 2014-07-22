@@ -136,7 +136,22 @@ namespace SimpleTasks.Controls
             {
                 throw new ArgumentOutOfRangeException();
             }
+
             Value = dv;
+            MySlider_ManipulationStarted(null, null);
+            MySlider_ManipulationCompleted(null, null);
+        }
+
+        public void SetMaximum(double maximum)
+        {
+            Debug.WriteLine("OLD {0}; {1}", AnimationValue, Maximum);
+            double ratio =  maximum / Maximum;
+
+            Maximum = maximum;
+            AnimationValue = ratio * AnimationValue;
+            Value = ratio * Value;
+            Debug.WriteLine("    {0}; {1}", AnimationValue, Maximum);
+            //UpdateThumbPosition(Value);
             MySlider_ManipulationStarted(null, null);
             MySlider_ManipulationCompleted(null, null);
         }
@@ -161,7 +176,6 @@ namespace SimpleTasks.Controls
             // Tahatko
             TranslateTransform thumb = (TranslateTransform)GetTemplateChild("HorizontalThumb");
             thumb.X = position;
-
         }
     }
 }
