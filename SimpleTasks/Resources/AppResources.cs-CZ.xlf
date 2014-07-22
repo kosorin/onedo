@@ -345,6 +345,10 @@
           <source>{0} weeks</source>
           <target state="signed-off">{0} týdny</target>
         </trans-unit>
+        <trans-unit id="Resx/WhatsNew" translate="yes" xml:space="preserve">
+          <source>What's new</source>
+          <target state="signed-off">Co je nového</target>
+        </trans-unit>
         <trans-unit id="Resx/Weeks1" translate="yes" xml:space="preserve">
           <source>{0} week</source>
           <target state="signed-off">{0} týden</target>

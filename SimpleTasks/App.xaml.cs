@@ -33,7 +33,7 @@ namespace SimpleTasks
             }
         }
 
-        public static bool IsFirstStart { get; private set; }
+        public static bool IsFirstStart { get; set; }
 
         public static readonly string SettingsFileName = "Settings.json";
         public static Settings Settings { get; private set; }
@@ -86,7 +86,7 @@ namespace SimpleTasks
             }
 
             Tasks.Load();
-        
+
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");
         }

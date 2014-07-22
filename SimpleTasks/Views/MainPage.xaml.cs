@@ -34,6 +34,28 @@ namespace SimpleTasks.Views
 
             CreateAppBarItems();
             BuildTasksdAppBar();
+
+            if (App.IsFirstStart)
+            {
+                Loaded += FirstStart_Loaded;
+            }
+        }
+
+        void FirstStart_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= FirstStart_Loaded;
+            if (App.IsFirstStart)
+            {
+                App.IsFirstStart = false;
+                ChangelogCategory changelog = AboutPage.LoadChangelog()[0];
+                string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
+                foreach (ChangelogItem item in changelog)
+                {
+                    text += "  • " + item.Text + System.Environment.NewLine;
+                }
+
+                MessageBox.Show(text, AppResources.WhatsNew, MessageBoxButton.OK);
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -238,7 +260,7 @@ namespace SimpleTasks.Views
             string s = string.Format("> Reminders ({0})", DateTime.Now.ToString(CultureInfo.CurrentCulture));
             foreach (var r in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
             {
-               s += string.Format("\n{0}\n  {1} -  {2}", r.Name, r.IsScheduled, r.BeginTime);
+                s += string.Format("\n{0}\n  {1} -  {2}", r.Name, r.IsScheduled, r.BeginTime);
             }
             MessageBox.Show(s);
         }
@@ -319,7 +341,7 @@ namespace SimpleTasks.Views
                 return;
 
             if (task.IsActive)
-            {   
+            {
                 // DOKONČENÍ
                 task.Completed = DateTime.Now;
                 if (App.Settings.Tiles.UnpinCompleted)
@@ -328,7 +350,7 @@ namespace SimpleTasks.Views
                 }
             }
             else
-            {   
+            {
                 // AKTIVOVÁNÍ
                 task.Completed = null;
             }

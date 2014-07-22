@@ -31,10 +31,12 @@
     <Color x:Key="ButtonBackgroundColor">#44FFFFFF</Color>
     <Color x:Key="ButtonForegroundColor">White</Color>
     <Color x:Key="ButtonIconColor">White</Color>
+    <Color x:Key="ButtonCloseIconColor">#AAffffff</Color>
     
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource ButtonBackgroundColor}"/>
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource ButtonForegroundColor}"/>
     <SolidColorBrush x:Key="ButtonIconBrush" Color="{StaticResource ButtonIconColor}"/>
+    <SolidColorBrush x:Key="ButtonCloseIconBrush" Color="{StaticResource ButtonCloseIconColor}"/>
 
     <SolidColorBrush x:Key="MyButtonBackgroundBrush" Color="#39FFFFFF"/>
     <!--EndRegion-->

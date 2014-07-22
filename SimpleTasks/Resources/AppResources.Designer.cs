@@ -269,26 +269,21 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
+        ///  &quot;3.0.0&quot;: {
+        ///    &quot;date&quot;: &quot;2014-07-22&quot;,
+        ///    &quot;items&quot;: [
+        ///      &quot;swipe left gesture for task completion&quot;,
+        ///      &quot;redesigned UI&quot;,
+        ///      &quot;reminder is now entered as a time before the due date (it is not necessary to specify two dates - due date and reminder date)&quot;,
+        ///      &quot;Fixed bug when deleting completed tasks&quot;
+        ///    ]
+        ///  },
         ///  &quot;2.0.0&quot;: {
         ///    &quot;date&quot;: &quot;2014-06-17&quot;,
         ///    &quot;items&quot;: [
         ///      &quot;pin a separate tile of task to the start screen&quot;,
         ///      &quot;simple bulleted list in detail&quot;,
-        ///      &quot;quick completion of a task&quot;,
-        ///      &quot;redesigned reminder time picker&quot;,
-        ///      &quot;bug fixes&quot;,
-        ///      &quot;minor changes in design and animation&quot;,
-        ///	  &quot;default due date set to \&quot;today\&quot;&quot;,
-        ///	  &quot;changelog on \&quot;about\&quot; page&quot;
-        ///    ]
-        ///  },
-        ///  &quot;1.9.7&quot;: {
-        ///    &quot;date&quot;: &quot;2014-05-23&quot;,
-        ///    &quot;items&quot;: [
-        ///      &quot;bug fix (default due date)&quot;
-        ///    ]
-        ///  },
-        ///  &quot;1.9.6&quot;: { [rest of string was truncated]&quot;;.
+        ///      &quot;quick completion o [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -1103,6 +1098,15 @@ namespace SimpleTasks.Resources {
         public static string Weeks2To4 {
             get {
                 return ResourceManager.GetString("Weeks2To4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s new.
+        /// </summary>
+        public static string WhatsNew {
+            get {
+                return ResourceManager.GetString("WhatsNew", resourceCulture);
             }
         }
     }

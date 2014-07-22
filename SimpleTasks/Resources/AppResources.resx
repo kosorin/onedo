@@ -483,4 +483,7 @@
   <data name="Weeks2To4" xml:space="preserve">
     <value>{0} weeks</value>
   </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>What's new</value>
+  </data>
 </root>

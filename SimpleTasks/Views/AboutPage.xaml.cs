@@ -25,12 +25,12 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            ChangelogList = CreateChangelog();
+            ChangelogList = LoadChangelog();
             DataContext = this;
         }
 
         #region Properties
-        private ChangelogList CreateChangelog()
+        public static ChangelogList LoadChangelog()
         {
             ChangelogList changelog = new ChangelogList();
 
