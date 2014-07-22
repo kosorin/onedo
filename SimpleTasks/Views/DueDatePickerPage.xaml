@@ -1,0 +1,195 @@
+﻿<controls:BasePickerPage
+    x:Class="SimpleTasks.Views.DueDatePickerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+    xmlns:wpcontrols="clr-namespace:WPControls;assembly=WPControls"
+    mc:Ignorable="d"
+    Style="{StaticResource BasePickerPageStyle}">
+    <controls:BasePickerPage.Resources>
+
+        <wpcontrols:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter2"/>
+
+        <Style x:Key="WeekdayNameStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="Foreground" Value="{StaticResource CalendarWeekdayBrush}"/>
+            <Setter Property="FontSize" Value="18.667"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BorderStyle" TargetType="Border" >
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CalendarBorderBrush}"/>
+            <Setter Property="Margin" Value="-1,-1,0,0"/>
+        </Style>
+        <Style x:Key="WeekdayBorderStyle" TargetType="Border" BasedOn="{StaticResource BorderStyle}" >
+            <Setter Property="Background" Value="{StaticResource CalendarWeekdayBackgroundBrush}"/>
+        </Style>
+        
+        <ControlTemplate x:Key="CalendarTemplate"  TargetType="wpcontrols:Calendar">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <TextBlock Text="{TemplateBinding YearMonthLabel}"
+                               Style="{StaticResource NormalTextStyle}"
+                               FontSize="32"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,8">
+                    </TextBlock>
+                </Grid>
+                
+                <Button Grid.Column="0"
+                        x:Name="PreviousMonthButton"
+                        Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Margin="0,8" Width="60" Height="40">
+                                <TextBlock Foreground="{StaticResource NormalBrush}" 
+                                           FontFamily="Segoe UI Symbol"
+                                           FontSize="72"
+                                           Margin="0,-32,0,0"
+                                           Text="&#xE0A6;" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Column="2" 
+                        x:Name="NextMonthButton" 
+                        Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Margin="0,8" Width="60" Height="40">
+                                <TextBlock Foreground="{StaticResource NormalBrush}" 
+                                           FontFamily="Segoe UI Symbol"
+                                           FontSize="72"
+                                           Margin="0,-32,0,0"
+                                           Text="&#xE0AB;"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Grid x:Name="ItemsGrid"
+                      Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border Grid.Column="1" Style="{StaticResource WeekdayBorderStyle}"/>
+                    <Border Grid.Column="2" Style="{StaticResource WeekdayBorderStyle}"/>
+                    <Border Grid.Column="3" Style="{StaticResource WeekdayBorderStyle}"/>
+                    <Border Grid.Column="4" Style="{StaticResource WeekdayBorderStyle}"/>
+                    <Border Grid.Column="5" Style="{StaticResource WeekdayBorderStyle}"/>
+                    <Border Grid.Column="6" Style="{StaticResource WeekdayBorderStyle}"/>
+                    <Border Grid.Column="7" Style="{StaticResource WeekdayBorderStyle}"/>
+
+                    <TextBlock Grid.Column="1" Text="{TemplateBinding Sunday}" Style="{StaticResource WeekdayNameStyle}"/>
+                    <TextBlock Grid.Column="2" Text="{TemplateBinding Monday}" Style="{StaticResource WeekdayNameStyle}"/>
+                    <TextBlock Grid.Column="3" Text="{TemplateBinding Tuesday}" Style="{StaticResource WeekdayNameStyle}"/>
+                    <TextBlock Grid.Column="4" Text="{TemplateBinding Wednesday}" Style="{StaticResource WeekdayNameStyle}"/>
+                    <TextBlock Grid.Column="5" Text="{TemplateBinding Thursday}" Style="{StaticResource WeekdayNameStyle}"/>
+                    <TextBlock Grid.Column="6" Text="{TemplateBinding Friday}" Style="{StaticResource WeekdayNameStyle}"/>
+                    <TextBlock Grid.Column="7" Text="{TemplateBinding Saturday}" Style="{StaticResource WeekdayNameStyle}"/>
+
+
+                    <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Column="3" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Column="4" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Column="5" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Column="6" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Column="7" Grid.Row="1" Grid.RowSpan="6" Style="{StaticResource BorderStyle}"/>
+                    <Border Grid.Row="1" Grid.RowSpan="6" Grid.Column="1" Grid.ColumnSpan="7"
+                            Margin="-1,-1,0,0"
+                            BorderThickness="1" 
+                            BorderBrush="{StaticResource CalendarBorderBrush}"/>
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="CalendarItemStyle" TargetType="wpcontrols:CalendarItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="wpcontrols:CalendarItem">
+                        <Grid x:Name="OuterGrid" Background="{TemplateBinding Background}"
+                              IsHitTestVisible="{Binding ItemDate, Converter={StaticResource DateToBoolConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Border Style="{StaticResource BorderStyle}"
+                                    BorderThickness="1">
+                                <Grid Width="68" Height="48">
+                                    <Rectangle x:Name="BackgroundRectangle"
+                                               Fill="{StaticResource CalendarItemBackgroundBrush}"
+                                               Opacity="0.45"/>
+                                    <TextBlock x:Name="DayNumberBlock" 
+                                               Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}" 
+                                               Style="{StaticResource NormalTextStyle}"
+                                               FontSize="28" 
+                                               Foreground="{TemplateBinding Foreground}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </controls:BasePickerPage.Resources>
+
+    <Grid Style="{StaticResource BasePickerPageRootStyle}">
+        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}" 
+                   Text="{Binding LocalizedResources.ChooseDate, Source={StaticResource LocalizedStrings}}" />
+
+        <Grid Margin="0,0,0,20">
+
+            <wpcontrols:Calendar x:Name="Calendar" 
+                                 VerticalAlignment="Top" 
+                                 Margin="-1,120,-1,0" 
+                                 Template="{StaticResource CalendarTemplate}"
+                                 CalendarItemStyle="{StaticResource CalendarItemStyle}"/>
+
+            <Grid VerticalAlignment="Bottom" Margin="15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel >
+                    <Button Content="{Binding LocalizedResources.DateToday, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Today_Click" />
+                    <Button Content="{Binding LocalizedResources.DateThisWeek, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="ThisWeek_Click" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="{Binding LocalizedResources.DateTomorrow, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="Tomorrow_Click" />
+                    <Button Content="{Binding LocalizedResources.DateNextWeek, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BasePickerQuickButtonStyle}" Click="NextWeek_Click" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</controls:BasePickerPage>

@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage
+﻿<controls:BasePage
     x:Class="SimpleTasks.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,153 +9,50 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    d:DataContext="{d:DesignData ../SampleData/MainSampleData.xaml}"
-    mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
-    toolkit:TiltEffect.IsTiltEnabled="True">
+    Style="{StaticResource BasePageStyle}"
+    mc:Ignorable="d" 
+    d:DataContext="{d:DesignData /SampleData/TasksViewModelSampleData.xaml}">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-
-    <phone:PhoneApplicationPage.Resources>
-        <SolidColorBrush x:Key="TasksLongListSelectorBackgroundBrush" 
-                         Color="{StaticResource PhoneSubtleColor}" 
-                         Opacity="0.2"/>
-
-        <Style x:Key="TextBlockInfo" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="22" />
-            <Setter Property="Margin" Value="0,1,8,0" />
-            <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
-        </Style>
-
+    <controls:BasePage.Resources>
+        <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Grid Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
-                  Margin="0,0,0,0"
-                  Height="50"
-                  toolkit:TiltEffect.SuppressTilt="True">
+            <Grid Height="70" toolkit:TiltEffect.SuppressTilt="True">
+                <TextBlock Style="{StaticResource NormalTextStyle}"
+                           FontSize="32"
+                           Opacity="0.75"
+                           VerticalAlignment="Bottom" 
+                           Margin="10,0,0,15">
+                    <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
+                    <Run Text="{Binding Count, StringFormat='( {0} )'}" Foreground="{StaticResource SlightBrush}" FontSize="24" />
+                </TextBlock>
                 <Border Background="{StaticResource PhoneAccentBrush}"
-                        Padding="10,0,10,5"
-                        HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding Title}" 
-                               Foreground="{StaticResource PhoneForegroundBrush}" 
-                               FontSize="24"
-                               FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                               VerticalAlignment="Center"/>
-                </Border>
-                <Border Background="{StaticResource TasksLongListSelectorBackgroundBrush}"
                         Height="10"
+                        Opacity="0.6"
                         VerticalAlignment="Bottom"/>
             </Grid>
         </DataTemplate>
 
+        <!--List Task-->
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <Border x:Name="RootBorder"
                     BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource TasksLongListSelectorBackgroundBrush}">
+                    BorderBrush="{StaticResource TasksListDelimiterBrush}"
+                    ManipulationStarted="RootBorder_ManipulationStarted"
+                    ManipulationCompleted="RootBorder_ManipulationCompleted"
+                    ManipulationDelta="RootBorder_ManipulationDelta">
+                <Border.RenderTransform>
+                    <TranslateTransform />
+                </Border.RenderTransform>
                 <Border.Resources>
-                    <Storyboard x:Name="TaskInfoShow">
-                        <!--Popis-->
-                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Height"
-                                         To="{Binding Height}"
-                                         Duration="0:0:0.2">
-                            <DoubleAnimation.EasingFunction>
-                                <QuadraticEase EasingMode="EaseIn" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
+                    <Storyboard x:Key="ResetTranslate">
+                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                                         Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
                                          To="0"
-                                         Duration="0:0:0.3"/>-->
-                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1.0"
-                                         Duration="0:0:0.35">
+                                         Duration="0:0:0.4">
                             <DoubleAnimation.EasingFunction>
-                                <ExponentialEase EasingMode="EaseOut" />
+                                <CircleEase EasingMode="EaseOut" />
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <ExponentialEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <!--Tlačítko-->
-                        <DoubleAnimation Duration="0:0:0.4"
-                                         To="0"
-                                         Storyboard.TargetProperty="Opacity" 
-                                         Storyboard.TargetName="CompleteIcon" />
-                        <ColorAnimation Duration="0:0:0.4"
-                                        To="{StaticResource PhoneAccentColor}"
-                                        Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
-                                        Storyboard.TargetName="CompleteButtonRectangle" />
-                    </Storyboard>
-                    <Storyboard x:Name="TaskInfoHide">
-                        <!--Popis-->
-                        <!--<DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Height"
-                                         To="0"
-                                         Duration="0:0:0.2">
-                            <DoubleAnimation.EasingFunction>
-                                <QuadraticEase EasingMode="EaseIn" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="(StackPanel.Projection).(PlaneProjection.RotationX)"
-                                         To="90"
-                                         Duration="0:0:0.3"/>-->
-                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0.45"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <ExponentialEase EasingMode="EaseIn" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0.45"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <ExponentialEase EasingMode="EaseIn" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <!--Tlačítko-->
-                        <DoubleAnimation Duration="0:0:0.4"
-                                         To="1"
-                                         Storyboard.TargetProperty="Opacity" 
-                                         Storyboard.TargetName="CompleteIcon" />
-                        <ColorAnimation Duration="0:0:0.4"
-                                        To="{StaticResource PhoneSubtleColor}"
-                                        Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
-                                        Storyboard.TargetName="CompleteButtonRectangle" />
                     </Storyboard>
                 </Border.Resources>
                 <Grid>
@@ -163,152 +60,388 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Border Margin="12,15,2,0"
-                            Tap="Border_Tap" >
-                        <Grid Width="40"
-                              Height="40"
-                              VerticalAlignment="Top">
-                            <Rectangle x:Name="CompleteButtonRectangle" >
-                                <Rectangle.Fill>
-                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
-                                                     Opacity="0.24"/>
-                                </Rectangle.Fill>
-                                <Rectangle.Stroke>
-                                    <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
-                                                     Opacity="0.8"/>
-                                </Rectangle.Stroke>
-                            </Rectangle>
-                            <controls:Icon x:Name="CompleteIcon"
-                                           Style="{StaticResource CheckIconStyle}"
-                                           Color="{StaticResource PhoneSubtleBrush}"
-                                           Margin="0,0,0,0"
-                                           Opacity="0"
-                                           MaxHeight="0"
-                                           MaxWidth="0"
-                                           RenderTransformOrigin="0,0">
-                                <controls:Icon.RenderTransform>
-                                    <CompositeTransform ScaleX="0.75" ScaleY="0.75" TranslateY="-22" TranslateX="-22" />
-                                </controls:Icon.RenderTransform>
-                            </controls:Icon>
+
+                    <!--Check Box-->
+                    <controls:MyToggleButton Margin="12,15,2,0" Tap="CompleteButton_Tap" 
+                                             IsChecked="{Binding Task.IsComplete}">
+                        <controls:MyToggleButton.Template>
+                            <ControlTemplate>
+                                <Grid Width="40"
+                                      Height="40"
+                                      VerticalAlignment="Top">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CheckStates">
+                                            <VisualStateGroup.Transitions>
+                                                <VisualTransition From="Checked" To="Unchecked">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0:0:0.6"
+                                                                         From="1"
+                                                                         To="0"
+                                                                         Storyboard.TargetProperty="Opacity" 
+                                                                         Storyboard.TargetName="CheckTransformControl" />
+                                                        <DoubleAnimation Duration="0:0:0.6"
+                                                                         From="0.75"
+                                                                         To="2"
+                                                                         Storyboard.TargetProperty="ScaleX" 
+                                                                         Storyboard.TargetName="CheckTransform">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation Duration="0:0:0.6"
+                                                                         From="0.75"
+                                                                         To="2"
+                                                                         Storyboard.TargetProperty="ScaleY" 
+                                                                         Storyboard.TargetName="CheckTransform">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation Duration="0:0:0.6"
+                                                                         From="-18"
+                                                                         To="-48"
+                                                                         Storyboard.TargetProperty="TranslateX" 
+                                                                         Storyboard.TargetName="CheckTransform">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation Duration="0:0:0.6"
+                                                                         From="-18"
+                                                                         To="-48"
+                                                                         Storyboard.TargetProperty="TranslateY" 
+                                                                         Storyboard.TargetName="CheckTransform">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <PowerEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </VisualTransition>
+                                            </VisualStateGroup.Transitions>
+                                            <VisualState x:Name="Checked">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0:0:0.4"
+                                                                     To="1"
+                                                                     Storyboard.TargetProperty="Opacity" 
+                                                                     Storyboard.TargetName="CompleteIcon" />
+                                                    <ColorAnimation Duration="0:0:0.4"
+                                                                    To="{StaticResource SubtleColor}"
+                                                                    Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
+                                                                    Storyboard.TargetName="CompleteButtonRectangle" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Unchecked">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" 
+                                                                                   Storyboard.TargetName="CompleteIcon">
+                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                    <ColorAnimation Duration="0:0:0.4"
+                                                                    To="{StaticResource PhoneAccentColor}"
+                                                                    Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" 
+                                                                    Storyboard.TargetName="CompleteButtonRectangle" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Indeterminate" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle x:Name="CompleteButtonRectangle" >
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{StaticResource SubtleColor}" Opacity="0.24"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.Stroke>
+                                            <SolidColorBrush Color="{StaticResource SubtleColor}" Opacity="0.8"/>
+                                        </Rectangle.Stroke>
+                                    </Rectangle>
+                                    <ContentControl x:Name="CompleteIcon"
+                                                    Style="{StaticResource CheckIconStyle}"
+                                                    Foreground="{StaticResource SubtleBrush}"
+                                                    MaxWidth="0" MaxHeight="0">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.75" ScaleY="0.75" TranslateY="-18" TranslateX="-18" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                    <ContentControl x:Name="CheckTransformControl" 
+                                                    Style="{StaticResource CheckIconStyle}"
+                                                    Opacity="0"
+                                                    Foreground="{StaticResource SubtleBrush}"
+                                                    MaxWidth="0" MaxHeight="0" >
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform x:Name="CheckTransform" ScaleX="2" ScaleY="2" TranslateX="-50" TranslateY="-50"  />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                </Grid>
+                            </ControlTemplate>
+                        </controls:MyToggleButton.Template>
+
+                    </controls:MyToggleButton>
+
+                    <!--Info-->
+                    <controls:MyToggleButton Grid.Column="1" IsChecked="{Binding Task.IsActive}">
+                        <Grid 
+                              Tap="TaskListItem_Tap"
+                              Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="TaskTitleAndPriority"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.45"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.45"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Indeterminate" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            
+                            <!--Horní info-->
+                            <StackPanel x:Name="TaskTitleAndPriority" 
+                                        Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
+                                        Orientation="Horizontal"
+                                        Height="70">
+
+                                <!--Vysoká priorita-->
+                                <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Style="{StaticResource HighPriorityIconStyle}"
+                                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                                    Opacity="1"
+                                                    Margin="-5,0,-16,50"
+                                                    MaxHeight="0">
+                                    </ContentControl>
+                                </Border>
+
+                                <!--Nízká priorita-->
+                                <Border Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Style="{StaticResource LowPriorityIconStyle}"
+                                                   Foreground="{StaticResource SubtleBrush}"
+                                                   Opacity=".6"
+                                                   Margin="-5,0,-16,40"
+                                                   MaxHeight="0"
+                                                   RenderTransformOrigin="0.5,0.5">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.8" ScaleY="0.8" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                </Border>
+
+                                <!--Název-->
+                                <TextBlock Text="{Binding Task.Title}"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           FontSize="32"
+                                           TextWrapping="Wrap"
+                                           Margin="8,12,0,12"/>
+
+                            </StackPanel>
+
+                            <!--Spodní info-->
+                            <StackPanel x:Name="TaskInfoStackPanel" 
+                                        Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
+                                        Orientation="Vertical"
+                                        Grid.Row="1"
+                                        Margin="0,-15,0,0"
+                                        RenderTransformOrigin="0.5,0">
+
+                                <!--Datum & připomenutí-->
+                                <Grid MaxHeight="32"
+                                      x:Name="TaskInfoMoreInfo"
+                                      Margin="0,0,0,10">
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <!--Datum-->
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding Task.HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <ContentControl Style="{StaticResource CalendarIconStyle}"
+                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                           Margin="6,0,-18,26"
+                                                           MaxHeight="0">
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.55" ScaleY="0.55"/>
+                                                </ContentControl.RenderTransform>
+                                            </ContentControl>
+                                            <TextBlock Text="{Binding Task.DueDate, Converter={StaticResource TaskToDueStringConverter}}"
+                                                       Style="{StaticResource SlightTextStyle}"
+                                                       FontSize="22"
+                                                       Margin="0,1,8,0"/>
+                                        </StackPanel>
+
+                                        <!--Připomenutí-->
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                           Foreground="{StaticResource PhoneAccentBrush}"
+                                                           Margin="6,0,-18,26"
+                                                           MaxHeight="0">
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.55" ScaleY="0.55" />
+                                                </ContentControl.RenderTransform>
+                                            </ContentControl>
+                                            <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
+                                                       Style="{StaticResource SlightTextStyle}"
+                                                       FontSize="22"
+                                                       Margin="0,1,8,0"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--Detail-->
+                                <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
+                                      Margin="0,0,0,10"
+                                      x:Name="DetailGridWrapper">
+                                    <TextBlock Text="{Binding Task.Detail}"
+                                               Style="{StaticResource SlightTextStyle}"
+                                               FontSize="22"
+                                               TextWrapping="Wrap"
+                                               Opacity="0.8"
+                                               Margin="8,0,20,0"/>
+                                </Grid>
+                            </StackPanel>
                         </Grid>
-                    </Border>
-                    <Grid Grid.Column="1"
-                          Tap="Grid_Tap"
-                          Background="Transparent">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock x:Name="TitleTextBox"
-                                   Text="{Binding Task.Title}"
-                                   Style="{StaticResource ButtonTextBlockStyle}"
-                                   Margin="8,10,0,15"/>
-                        <StackPanel x:Name="TaskInfoStackPanel" 
-                                    Orientation="Vertical"
-                                    Grid.Row="1"
-                                    Margin="0,-15,0,0"
-                                    RenderTransformOrigin="0.5,0"
-                                    Loaded="TaskInfoStackPanel_Loaded">
-                            <StackPanel.RenderTransform>
-                                <CompositeTransform/>
-                            </StackPanel.RenderTransform>
-                            <StackPanel.Projection>
-                                <PlaneProjection RotationX="0" CenterOfRotationY="0"/>
-                            </StackPanel.Projection>
-                            <Grid MaxHeight="32"
-                                  x:Name="TaskInfoMoreInfo"
-                                  Margin="0,0,0,10">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Task.HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource CalendarIconStyle}"
-                                                       Color="{StaticResource PhoneAccentBrush}"
-                                                       Margin="4,0,-26,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding Task, Converter={StaticResource TaskToDueDateStringConverter}}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource ReminderIconStyle}"
-                                                       Color="{StaticResource PhoneAccentBrush}"
-                                                       Margin="0,0,-26,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding Task, Converter={StaticResource TaskToReminderDateStringConverter}}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource HighPriorityIconStyle}"
-                                                       Color="{StaticResource PhoneAccentBrush}"
-                                                       Opacity="1"
-                                                       Margin="0,0,-32,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <controls:Icon Style="{StaticResource LowPriorityIconStyle}"
-                                                       Color="{StaticResource PhoneForegroundBrush}"
-                                                       Opacity="0.6"
-                                                       Margin="0,0,-31,0"
-                                                       MaxHeight="0"
-                                                       RenderTransformOrigin="0,0">
-                                            <controls:Icon.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55" ScaleY="0.55" TranslateY="-16"/>
-                                            </controls:Icon.RenderTransform>
-                                        </controls:Icon>
-                                        <TextBlock Style="{StaticResource TextBlockInfo}"
-                                                   Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
-                                  Margin="0,0,0,10"
-                                  x:Name="DetailGridWrapper">
-                                <TextBlock Text="{Binding Task.Detail}"
-                                           Style="{StaticResource ButtonDescriptionTextBlockStyle}"
-                                           Opacity="0.8"
-                                           TextTrimming="WordEllipsis"
-                                           Margin="8,0,20,0"/>
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
+                    </controls:MyToggleButton>
+
+                    <!--Gesture Complete icon-->
+                    <ContentControl x:Name="CompleteGestureIcon" Margin="-105" Grid.Column="1" Style="{StaticResource CompleteIconStyle}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
             </Border>
         </DataTemplate>
 
+        <!--Quick Add TextBox-->
         <Style x:Key="QuickAddTextBoxHintStyle" TargetType="ContentControl">
+            <Setter Property="Foreground" Value="{StaticResource QuickAddHintBrush}" />
             <Setter Property="FontFamily" Value="Segoe UI Symbol" />
-            <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}" />
+            <Setter Property="FontWeight" Value="Thin" />
         </Style>
-
-    </phone:PhoneApplicationPage.Resources>
+        <Style x:Key="QuickAddTextBoxStyle" TargetType="toolkit:PhoneTextBox">
+            <Setter Property="FontFamily" Value="Segoe WP"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Background" Value="{StaticResource QuickAddBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource SlightBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="InputScope" Value="Text" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="toolkit:PhoneTextBox">
+                        <Grid x:Name="RootGrid"
+                              Background="Transparent"
+                              Height="{TemplateBinding Height}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="ContentElement"
+                                                             Duration="0:0:0.45"
+                                                             To="1">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="ContentElement"
+                                                             Duration="0:0:0.45"
+                                                             To="0.6">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase EasingMode="EaseIn" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="HintBorder" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="{TemplateBinding Background}" 
+                                    Margin="0">
+                                <Grid VerticalAlignment="Center">
+                                    <ContentControl x:Name="HintContent" 
+                                                    Background="Transparent" 
+                                                    Content="{Binding Hint, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0} &#8230;&#xe104;'}" 
+                                                    HorizontalAlignment="Left"
+                                                    Margin="10" 
+                                                    Style="{TemplateBinding HintStyle}" 
+                                                    Visibility="{TemplateBinding ActualHintVisibility}" 
+                                                    VerticalAlignment="Center"/>
+                                    <ContentControl x:Name="ContentElement"
+                                                    BorderThickness="0" 
+                                                    HorizontalContentAlignment="Stretch" 
+                                                    Margin="{StaticResource PhoneTextBoxInnerMargin}" 
+                                                    Padding="{TemplateBinding Padding}" 
+                                                    VerticalContentAlignment="Stretch"/>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="TextBorder"
+                                    BorderBrush="{StaticResource PhoneDisabledBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="Transparent" 
+                                    Margin="{StaticResource PhoneTouchTargetOverhang}" 
+                                    Visibility="Collapsed">
+                                <TextBox x:Name="Text" 
+                                         Text="{TemplateBinding Text}"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </controls:BasePage.Resources>
 
     <Grid x:Name="TasksRoot"
-          Background="{StaticResource ApplicationBackgroundBrush}">
+          Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"  />
         </Grid.RowDefinitions>
 
-        <Grid x:Name="ContentPanel">
+        <!--Úkoly-->
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <phone:LongListSelector x:Name="TasksLongListSelector"
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
@@ -316,8 +449,7 @@
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
                                     HideEmptyGroups="True"
-                                    Loaded="TasksLongListSelector_Loaded"
-                                    ItemRealized="TasksLongListSelector_ItemRealized" />
+                                    Loaded="TasksLongListSelector_Loaded"/>
 
             <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"
                        HorizontalAlignment="Center" 
@@ -329,35 +461,53 @@
                        TextAlignment="Center"/>
         </Grid>
 
+        <!--Overlay úkolů-->
         <Rectangle x:Name="PageOverlay"
+                   Grid.RowSpan="2"
                    Fill="Black"
                    Opacity="0"
                    Visibility="Collapsed">
             <Rectangle.Resources>
+
+                <!--Task List-->
                 <Storyboard x:Name="PageOverlayTransitionShow">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.4"
-                                     BeginTime="0:0:0.4"
+                                     Duration="0:0:0.25"
+                                     BeginTime="0:0:0.25"
                                      To="1">
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="PageOverlayTransitionHide">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.4"
+                                     Duration="0:0:0.25"
                                      To="0">
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0:0:0.25" Value="Collapsed" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
+
+                <!--Quick Add-->
                 <Storyboard x:Name="PageOverlayTransitionQuickShow">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
                                      Storyboard.TargetProperty="Opacity"
                                      Duration="0:0:0.4"
                                      To="0.58">
                         <DoubleAnimation.EasingFunction>
-                            <CubicEase EasingMode="EaseOut" />
+                            <CubicEase EasingMode="EaseOut"/>
                         </DoubleAnimation.EasingFunction>
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Name="PageOverlayTransitionQuickHide">
                     <DoubleAnimation Storyboard.TargetName="PageOverlay"
@@ -366,170 +516,30 @@
                                      BeginTime="0:0:0.2"
                                      To="0">
                     </DoubleAnimation>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
+                                                   Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="Collapsed" />
+                    </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
+
             </Rectangle.Resources>
         </Rectangle>
 
-        <Rectangle Fill="{StaticResource PhoneAccentBrush}"
+        <!--Quick add-->
+        <Rectangle Grid.Row="1" Fill="{StaticResource PhoneAccentBrush}"
                    Opacity="0.6"
                    Height="10" 
                    VerticalAlignment="Bottom"/>
-
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
-                                  Hint="&#8230;&#xe104;"
+                                  Style="{StaticResource QuickAddTextBoxStyle}"
+                                  Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}}"
+                                  Height="65"
                                   HintStyle="{StaticResource QuickAddTextBoxHintStyle}" 
                                   LostFocus="QuickAddTextBox_LostFocus" 
-                                  GotFocus="QuickAddTextBox_GotFocus">
-                <toolkit:PhoneTextBox.Resources>
-                    <Style x:Key="QuickAddTextBoxStyle" TargetType="toolkit:PhoneTextBox">
-                        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
-                        <Setter Property="Background">
-                            <Setter.Value>
-                                <SolidColorBrush Color="{StaticResource PhoneSubtleColor}" 
-                                                    Opacity="0.45"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-                        <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
-                        <Setter Property="SelectionBackground" Value="{StaticResource PhoneAccentBrush}"/>
-                        <Setter Property="SelectionForeground" Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Padding" Value="5"/>
-                        <Setter Property="InputScope" Value="Text" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="toolkit:PhoneTextBox">
-                                    <Grid x:Name="RootGrid"
-                                            Background="Transparent"
-                                            Height="65">
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="FocusStates">
-                                                <VisualState x:Name="Focused">
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                                                            Storyboard.TargetName="HintBorder"
-                                                                            Duration="0:0:0.7"
-                                                                            To="0.65">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseIn" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                                            Storyboard.TargetName="ContentElement"
-                                                                            Duration="0:0:0.45"
-                                                                            To="0.85">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseIn" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </VisualState>
-                                                <VisualState x:Name="Unfocused">
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                                                            Storyboard.TargetName="HintBorder"
-                                                                            Duration="0:0:1"
-                                                                            To="0.45">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                                            Storyboard.TargetName="ContentElement"
-                                                                            Duration="0:0:0.45"
-                                                                            To="0.4">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseIn" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                        <Border x:Name="HintBorder" 
-                                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                                Background="{TemplateBinding Background}" 
-                                                Margin="0">
-                                            <Grid VerticalAlignment="Center">
-                                                <ContentControl x:Name="HintContent" 
-                                                                Background="Transparent" 
-                                                                Content="{TemplateBinding Hint}" 
-                                                                HorizontalAlignment="Left"
-                                                                Margin="10" 
-                                                                Style="{TemplateBinding HintStyle}" 
-                                                                Visibility="{TemplateBinding ActualHintVisibility}" 
-                                                                VerticalAlignment="Center"/>
-                                                <ContentControl x:Name="ContentElement"
-                                                                BorderThickness="0" 
-                                                                HorizontalContentAlignment="Stretch" 
-                                                                Margin="{StaticResource PhoneTextBoxInnerMargin}" 
-                                                                Padding="{TemplateBinding Padding}" 
-                                                                VerticalContentAlignment="Stretch"/>
-                                            </Grid>
-                                        </Border>
-                                        <Border x:Name="TextBorder"
-                                                BorderBrush="{StaticResource PhoneDisabledBrush}" 
-                                                BorderThickness="{TemplateBinding BorderThickness}" 
-                                                Background="Transparent" 
-                                                Margin="{StaticResource PhoneTouchTargetOverhang}" 
-                                                Visibility="Collapsed">
-                                            <TextBox x:Name="Text" 
-                                                        Foreground="{StaticResource PhoneDisabledBrush}"
-                                                        FontWeight="{TemplateBinding FontWeight}"
-                                                        FontStyle="{TemplateBinding FontStyle}" 
-                                                        FontSize="{TemplateBinding FontSize}" 
-                                                        FontFamily="{TemplateBinding FontFamily}"
-                                                        HorizontalAlignment="Left" 
-                                                        SelectionForeground="{TemplateBinding SelectionForeground}"
-                                                        SelectionBackground="{TemplateBinding SelectionBackground}"
-                                                        TextAlignment="{TemplateBinding TextAlignment}" 
-                                                        TextWrapping="{TemplateBinding TextWrapping}" 
-                                                        Text="{TemplateBinding Text}"/>
-                                        </Border>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </toolkit:PhoneTextBox.Resources>
-                <toolkit:PhoneTextBox.Style>
-                    <StaticResource ResourceKey="QuickAddTextBoxStyle"/>
-                </toolkit:PhoneTextBox.Style>
-            </toolkit:PhoneTextBox>
+                                  GotFocus="QuickAddTextBox_GotFocus"/>
         </Grid>
-
-        <Rectangle x:Name="TasksPageOverlay"
-                    Fill="Black"
-                    Opacity="1"
-                    Visibility="Collapsed"
-                    Grid.RowSpan="2">
-            <Rectangle.Resources>
-                <Storyboard x:Name="TasksPageOverlayTransitionShow">
-                    <DoubleAnimation Storyboard.TargetName="TasksPageOverlay"
-                                        Storyboard.TargetProperty="Opacity"
-                                        Duration="0:0:1"
-                                        To="0.65">
-                        <DoubleAnimation.EasingFunction>
-                            <CubicEase EasingMode="EaseIn" />
-                        </DoubleAnimation.EasingFunction>
-                    </DoubleAnimation>
-                </Storyboard>
-                <Storyboard x:Name="TasksPageOverlayTransitionHide">
-                    <DoubleAnimation Storyboard.TargetName="TasksPageOverlay"
-                                        Storyboard.TargetProperty="Opacity"
-                                        Duration="0:0:1"
-                                        To="0">
-                        <DoubleAnimation.EasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </DoubleAnimation.EasingFunction>
-                    </DoubleAnimation>
-                </Storyboard>
-            </Rectangle.Resources>
-        </Rectangle>
     </Grid>
 
-</phone:PhoneApplicationPage>
+</controls:BasePage>
  

@@ -13,7 +13,6 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
     toolkit:TiltEffect.IsTiltEnabled="True">
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -37,8 +36,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-    <Grid x:Name="LayoutRoot"
-          Background="{StaticResource ApplicationBackgroundBrush}">
+    <Grid x:Name="LayoutRoot">
         <phone:Pivot Title="{Binding LocalizedResources.SettingsTitle, Source={StaticResource LocalizedStrings}}">
 
             <!--General-->
@@ -46,50 +44,85 @@
                 <ScrollViewer>
                     <StackPanel>
 
-                        <!--Default due date-->
+                        <!--Default date-->
                         <StackPanel Margin="0,0,0,12">
-                            <TextBlock Text="{Binding LocalizedResources.SettingsDefaultDueDate, Source={StaticResource LocalizedStrings}}" 
+                            <TextBlock Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}}" 
                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <toolkit:ListPicker x:Name="DueDatePicker" 
-                                                ItemsSource="{Binding DueDatePickerItems, Mode=OneTime}"
-                                                SelectedItem="{Binding DueDatePickerSelectedItem, Mode=TwoWay}" 
+                            <toolkit:ListPicker x:Name="DatePicker" 
+                                                ItemsSource="{Binding Tasks.DefaultDatePickerList}"
+                                                SelectedItem="{Binding Tasks.DefaultDateType, Mode=TwoWay}" 
                                                 Margin="12,0,12,12">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Value}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DefaultDateType'}" />
                                     </DataTemplate>
                                 </toolkit:ListPicker.ItemTemplate>
                             </toolkit:ListPicker>
                         </StackPanel>
 
-                        <!--First day of week-->
-                        <!--<StackPanel Margin="0,0,0,12">
-                            <TextBlock Text="{Binding LocalizedResources.SettingsFirstDayOfWeek, Source={StaticResource LocalizedStrings}}" 
+                        <!--default time-->
+                        <StackPanel Margin="0,0,0,12">
+                            <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTime, Source={StaticResource LocalizedStrings}}" 
                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <toolkit:ListPicker x:Name="FirstDayOfWeekPicker" 
-                                                ItemsSource="{Binding FirstDayOfWeekPickerItems, Mode=OneTime}"
-                                                SelectedItem="{Binding FirstDayOfWeekPickerSelectedItem, Mode=TwoWay}" 
-                                                Margin="12,0,12,12"
-                                                FullModeHeader="{Binding LocalizedResources.SettingsFirstDayOfWeekPickerHeader, Source={StaticResource LocalizedStrings}}">
-                                <toolkit:ListPicker.FullModeItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Value}"
-                                                   Style="{StaticResource PhoneTextExtraLargeStyle}"
-                                                   Margin="0,15"/>
-                                    </DataTemplate>
-                                </toolkit:ListPicker.FullModeItemTemplate>
-                                <toolkit:ListPicker.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Value}"/>
-                                    </DataTemplate>
-                                </toolkit:ListPicker.ItemTemplate>
-                            </toolkit:ListPicker>
-                        </StackPanel>-->
-
-                        <!--default reminder time-->
-                        <toolkit:TimePicker x:Name="ReminderTimePicker"
-                                            Header="{Binding LocalizedResources.SettingsDefaultReminderTime, Source={StaticResource LocalizedStrings}}"
-                                            Value="{Binding DefaultReminderTimeSetting, Mode=TwoWay}" Margin="0,0,0,12"/>
+                            <Button x:Name="DefaultTimeButton" 
+                                    Content="{Binding Tasks.DefaultTime, Converter={StaticResource TimeToStringConverter}, Mode=OneWay}"
+                                    Tap="DefaultTime_Tap">
+                                <Button.Resources>
+                                    <Style x:Key="ButtonStyle1" TargetType="Button">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+                                        <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+                                        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+                                        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+                                        <Setter Property="Padding" Value="10,5,10,6"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Grid Background="Transparent">
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal"/>
+                                                                <VisualState x:Name="MouseOver"/>
+                                                                <VisualState x:Name="Pressed">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneButtonBasePressedForegroundBrush}"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Disabled">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="{StaticResource PhoneTouchTargetOverhang}">
+                                                            <ContentControl HorizontalAlignment="Left" x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Resources>
+                                <Button.Style>
+                                    <StaticResource ResourceKey="ButtonStyle1"/>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
 
                         <!--Automatically delete completed tasks-->
                         <StackPanel x:Name="DeleteCompletedDaysPanel"
@@ -97,18 +130,18 @@
                             <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}" 
                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
                             <toolkit:ListPicker x:Name="DaysPicker" 
-                                                ItemsSource="{Binding DaysPickerItems, Mode=OneTime}"
-                                                SelectedItem="{Binding DaysPickerSelectedItem, Mode=TwoWay}" 
+                                                ItemsSource="{Binding Tasks.DeleteCompletedPickerList}"
+                                                SelectedItem="{Binding Tasks.DeleteCompleted, Mode=TwoWay}" 
                                                 Margin="12,0,12,12"
                                                 FullModeHeader="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Value}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DeleteCompleted'}" />
                                     </DataTemplate>
                                 </toolkit:ListPicker.ItemTemplate>
                                 <toolkit:ListPicker.FullModeItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Value}"
+                                        <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DeleteCompleted'}"
                                                    Style="{StaticResource PhoneTextExtraLargeStyle}"
                                                    Margin="0,15"/>
                                     </DataTemplate>
@@ -127,7 +160,7 @@
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsTile, Source={StaticResource LocalizedStrings}}">
                 <StackPanel Margin="0,0,0,12">
                     <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
-							              IsChecked="{Binding EnableLiveTileSetting, Mode=TwoWay, FallbackValue=True}"
+							              IsChecked="{Binding Tiles.Enable, Mode=TwoWay, FallbackValue=True}"
                                           x:Name="EnableLiveTileToggleSwitch" 
                                           Margin="0,0,0,-30" />
                     <TextBlock Text="{Binding LocalizedResources.SettingsPinTile, Source={StaticResource LocalizedStrings}}" 
@@ -135,7 +168,7 @@
                                TextWrapping="Wrap"/>
 
                     <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}"
-							              IsChecked="{Binding UnpinCompletedSetting, Mode=TwoWay, FallbackValue=True}"
+							              IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay, FallbackValue=True}"
                                           x:Name="UnpinCompletedToggleSwitch" 
                                           Margin="0,20,0,-20" />
 

@@ -1,0 +1,28 @@
+﻿<Models:ChangelogList xmlns:Models="clr-namespace:SimpleTasks.Models" Capacity="13">
+	<Models:ChangelogCategory Capacity="70" Date="07/17/2014 20:44:19" Version="2.0.0">
+		<Models:ChangelogItem Text="Class nam cras"/>
+		<Models:ChangelogItem Text="Vestibulum sed phasellus maecenas mauris"/>
+		<Models:ChangelogItem Text="Adipiscing consequat praesent"/>
+	</Models:ChangelogCategory>
+	<Models:ChangelogCategory Capacity="59" Date="07/17/2014 20:44:19" Version="1.9.7">
+		<Models:ChangelogItem Text="Integer amet"/>
+		<Models:ChangelogItem Text="Parturient ante nullam"/>
+		<Models:ChangelogItem Text="Vestibulum dignissim quisque dictumst vestibulum"/>
+		<Models:ChangelogItem Text="Eleifend adipiscing"/>
+		<Models:ChangelogItem Text="Elementum fusce aptent"/>
+	</Models:ChangelogCategory>
+	<Models:ChangelogCategory Capacity="13" Date="07/17/2014 20:44:19" Version="1.5.6">
+		<Models:ChangelogItem Text="Facilisi est aliquam"/>
+		<Models:ChangelogItem Text="Congue arcu cursus diam faucibus"/>
+		<Models:ChangelogItem Text="Aliquet vestibulum facilisis hac"/>
+		<Models:ChangelogItem Text="Adipiscing habitant"/>
+		<Models:ChangelogItem Text="Leo fermentum fringilla"/>
+	</Models:ChangelogCategory>
+	<Models:ChangelogCategory Capacity="55" Date="07/17/2014 20:44:19" Version="1.2.0">
+		<Models:ChangelogItem Text="Parturient eget"/>
+		<Models:ChangelogItem Text="Vestibulum vestibulum morbi dictum elit"/>
+		<Models:ChangelogItem Text="Lectus interdum libero"/>
+		<Models:ChangelogItem Text="Enim lobortis mus"/>
+		<Models:ChangelogItem Text="Commodo nec"/>
+	</Models:ChangelogCategory>
+</Models:ChangelogList>

@@ -8,180 +8,343 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:conv="clr-namespace:SimpleTasks.Conventers"
     xmlns:helpcore="clr-namespace:SimpleTasks.Core.Helpers;assembly=SimpleTasks.Core"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls">
 
     <!--Application Resources-->
     <Application.Resources>
-        <local:LocalizedStrings x:Key="LocalizedStrings"/>
-        <helpcore:DateTimeExtensions x:Key="DateTimeExtensions"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="/SimpleTasks;component/Themes/Dark.xaml" />
+                <!--<ResourceDictionary  Source="/SimpleTasks;component/Themes/Light.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
 
-        <!--Region Konvertory-->
-        <conv:AmPmToStringConverter x:Key="AmPmToStringConverter" />
-        <conv:DateToStringConverter x:Key="DateToStringConverter" />
-        <conv:TimeToStringConverter x:Key="TimeToStringConverter" /> 
-        <conv:TaskToReminderDateStringConverter x:Key="TaskToReminderDateStringConverter" />
-        <conv:DateToRelativeStringConverter x:Key="DateToRelativeStringConverter" />
-        <conv:TaskToDueDateStringConverter x:Key="TaskToDueDateStringConverter" />
-        <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-        <conv:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter" />
-        <conv:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
-        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <conv:BooleanNegationToVisibilityConverter x:Key="BooleanNegationToVisibilityConverter" />
-        <conv:BooleanToNumberConverter x:Key="BooleanToNumberConverter" />
-        <conv:TaskPriorityToBooleanConverter x:Key="TaskPriorityToBooleanConverter" />
-        <conv:TaskPriorityToVisibilityConverter x:Key="TaskPriorityToVisibilityConverter" />
-        <!--EndRegion-->
+            <!--Region Lokalizace-->
+            <local:LocalizedStrings x:Key="LocalizedStrings"/>
+            <!--EndRegion-->
+            
+            <!--Region Konvertory-->
 
-        <!--Region Ikony-->
-        <Style x:Key="AlertIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 38,22.1667C 41.1666,22.1667 57,52.25 55.4166,53.8333C 53.8333,55.4167 22.1667,55.4167 20.5833,53.8333C 19,52.25 34.8333,22.1667 38,22.1667 Z M 38,45.9167C 36.6883,45.9167 35.625,46.98 35.625,48.2917C 35.625,49.6034 36.6883,50.6667 38,50.6667C 39.3116,50.6667 40.375,49.6034 40.375,48.2917C 40.375,46.98 39.3116,45.9167 38,45.9167 Z M 35.625,31.6667L 36.4166,44.3333L 39.5833,44.3333L 40.375,31.6667L 35.625,31.6667 Z " />
-            <Setter Property="Size" Value="8,33.8" />
-            <Setter Property="Offset" Value="25.4724,14.1667" />
-        </Style>
+            <conv:SettingsConverter x:Key="SettingsConverter" />
 
-        <Style x:Key="LowPriorityIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 42,19.0002L 34,19.0002L 34,43.7502L 24,33.7502L 24,44.2502L 38,58.2502L 52,44.2502L 52,33.7502L 42,43.7502L 42,19.0002 Z " />
-            <Setter Property="Size" Value="24,33.64285714285714" />
-            <Setter Property="Offset" Value="18,15" />
-        </Style>
+            <!--To String-->
+            <conv:StringFormatConverter x:Key="StringFormatConverter" />
+            <conv:ToUpperConverter x:Key="ToUpperConverter" />
+            <conv:DueConverter x:Key="TaskToDueStringConverter" />
+            <conv:ReminderConverter x:Key="ReminderConverter" />
+            <conv:DateConverter x:Key="DateConverter" />
+            <conv:TimeConverter x:Key="TimeToStringConverter" />
+            
+            <!--To Visibility-->
+            <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <conv:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter" />
+            <conv:NumberToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
+            <conv:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <conv:PriorityToVisibilityConverter x:Key="TaskPriorityToVisibilityConverter" />
+            
+            <!--To Bool-->
+            <conv:BoolNegationConverter x:Key="BoolNegationConverter" />
+            <conv:DateToBoolConverter x:Key="DateToBoolConverter" />
+            <conv:PriorityToBoolConverter x:Key="TaskPriorityToBooleanConverter" />
 
-        <Style x:Key="TagIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M31 2h-7c-1.65 0-3.955 0.955-5.121 2.121l-11.757 11.757c-1.167 1.167-1.167 3.076 0 4.243l8.757 8.757c1.167 1.167 3.076 1.167 4.243 0l11.757-11.757c1.167-1.167 2.121-3.471 2.121-5.121v-7c0-1.65-1.35-3-3-3zM27 12c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zM2.707 18.707l10.699 10.699c-1.133 0.599-2.577 0.423-3.528-0.528l-8.757-8.757c-1.167-1.167-1.167-3.076 0-4.243l11.757-11.757c1.167-1.167 3.471-2.121 5.121-2.121l-15.293 15.293c-0.389 0.389-0.389 1.025 0 1.414z" />
-            <Setter Property="Size" Value="34,32" />
-            <Setter Property="Offset" Value="18,15" />
-        </Style>
+            <!--To Number-->
+            <conv:BoolToNumberConverter x:Key="BooleanToNumberConverter" />
+            
+            <!--EndRegion-->
 
-        <Style x:Key="HighPriorityIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 m37.999275,44.509476c-1.797794,0 -3.255135,1.457344 -3.255135,3.255135c0,1.797794 1.45734,3.255131 3.255135,3.255131c1.797653,0 3.255131,-1.457336 3.255131,-3.255131c0,-1.797791 -1.457478,-3.255135 -3.255131,-3.255135zm-3.255135,-19.530794l1.084953,17.36062l4.340225,0l1.085087,-17.36062l-6.510265,0z" />
-            <Setter Property="Size" Value="8,33.8" />
-            <Setter Property="Offset" Value="25.4724,14.1667" />
-        </Style>
+            <!--Region Ikony-->
+            <Style x:Key="CloseIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 " 
+                                  Width="30" Height="30" 
+                                  Canvas.Left="10" Canvas.Top="10"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="CalendarIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                                    Opacity="{TemplateBinding Opacity}"
+                                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 18.0025,57.0081L 18.0025,23.0032L 23.0032,23.0032L 23.0032,20.0028C 23.0033,18.898 23.8988,18.0025 25.0035,18.0025L 29.004,18.0025C 30.1087,18.0025 31.0042,18.898 31.0043,20.0026L 31.0043,23.0032L 45.0063,23.0032L 45.0062,20.0026C 45.0062,18.8978 45.9018,18.0023 47.0065,18.0023L 51.0071,18.0023C 52.1118,18.0023 53.0074,18.8978 53.0074,20.0026L 53.0074,23.0032L 58.0081,23.0032L 58.0081,57.0081L 18.0025,57.0081 Z M 21.0029,54.0077L 55.0076,54.0077L 55.0076,31.0044L 21.0029,31.0044L 21.0029,54.0077 Z M 23.0032,47.0066L 29.004,47.0066L 29.004,52.0073L 23.0032,52.0073L 23.0032,47.0066 Z M 31.0043,47.0066L 37.0051,47.0066L 37.0051,52.0073L 31.0043,52.0073L 31.0043,47.0066 Z M 39.0054,47.0066L 45.0062,47.0066L 45.0062,52.0073L 39.0054,52.0073L 39.0054,47.0066 Z M 47.0065,47.0066L 53.0074,47.0066L 53.0074,52.0073L 47.0065,52.0073L 47.0065,47.0066 Z M 23.0032,40.0056L 29.004,40.0056L 29.004,45.0063L 23.0032,45.0063L 23.0032,40.0056 Z M 31.0043,40.0056L 37.0051,40.0056L 37.0051,45.0063L 31.0043,45.0063L 31.0043,40.0056 Z M 39.0054,40.0056L 45.0062,40.0056L 45.0062,45.0063L 39.0054,45.0063L 39.0054,40.0056 Z M 47.0065,40.0056L 53.0074,40.0056L 53.0074,45.0063L 47.0065,45.0063L 47.0065,40.0056 Z M 31.0043,33.0048L 37.0051,33.0048L 37.0051,38.0055L 31.0043,38.0055L 31.0043,33.0048 Z M 39.0054,33.0048L 45.0062,33.0048L 45.0062,38.0055L 39.0054,38.0055L 39.0054,33.0048 Z M 47.0065,33.0048L 53.0074,33.0048L 53.0074,38.0055L 47.0065,38.0055L 47.0065,33.0048 Z M 48.5067,20.0029C 47.6782,20.0029 47.0065,20.6745 47.0065,21.5031L 47.0065,24.5035C 47.0065,25.332 47.6782,26.0037 48.5067,26.0037L 49.5068,26.0037C 50.3354,26.0037 51.0071,25.332 51.0071,24.5035L 51.0071,21.5031C 51.0071,20.6745 50.3354,20.0029 49.5068,20.0029L 48.5067,20.0029 Z M 26.5037,20.0028C 25.6751,20.0028 25.0035,20.6745 25.0035,21.503L 25.0035,24.5035C 25.0035,25.332 25.6751,26.0037 26.5037,26.0037L 27.5038,26.0037C 28.3324,26.0037 29.004,25.332 29.004,24.5035L 29.004,21.503C 29.004,20.6745 28.3324,20.0028 27.5038,20.0028L 26.5037,20.0028 Z M 32.0045,41.0057L 32.0045,44.0061L 36.005,44.0061L 36.005,41.0057L 32.0045,41.0057 Z " 
+                                                      Width="40.0056" Height="39.0058" 
+                                                      Canvas.Left="5" Canvas.Top="5.5"
+                                                      Stretch="Fill" 
+                                                      Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ClockIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                                    Opacity="{TemplateBinding Opacity}"
+                                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M367,295.5H227.5V142h45v108.5H367V295.5z M256,95c-88.992,0-161,72.022-161,161c0,88.992,72.023,161,161,161c88.992,0,161-72.023,161-161C417,167.007,344.977,95,256,95 M256,50c113.771,0,206,92.229,206,206s-92.229,206-206,206S50,369.771,50,256S142.229,50,256,50z" 
+                                                      Width="38" Height="38" 
+                                                      Canvas.Left="6" Canvas.Top="6"
+                                                      Stretch="Fill" 
+                                                      Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ReminderIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                                    Opacity="{TemplateBinding Opacity}"
+                                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M310.489,117.73c-11.175-6.415-18.095-18.365-18.072-31.25c0-0.021,0-0.042,0-0.063	C292.417,66.304,276.111,50,256,50c-20.113,0-36.417,16.304-36.417,36.417c0,0.021,0,0.042,0,0.064	c0.022,12.901-6.883,24.828-18.072,31.25C120.429,164.271,167.02,318.832,82.3,346.149v36.101h347.4v-36.101	C344.979,318.831,391.571,164.27,310.489,117.73z M256,71.642c8.147,0,14.775,6.627,14.775,14.775	c0,8.147-6.628,14.775-14.775,14.775c-8.147,0-14.775-6.628-14.775-14.775C241.225,78.27,247.853,71.642,256,71.642z M306.167,412.333c0,27.431-22.236,49.667-49.667,49.667c-27.43,0-49.667-22.236-49.667-49.667H306.167z" 
+                                                      Width="38" Height="38" 
+                                                      Canvas.Left="6" Canvas.Top="6"
+                                                      Stretch="Fill" 
+                                                      Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="LowPriorityIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                                    Opacity="{TemplateBinding Opacity}"
+                                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 42,19.0002L 34,19.0002L 34,43.7502L 24,33.7502L 24,44.2502L 38,58.2502L 52,44.2502L 52,33.7502L 42,43.7502L 42,19.0002 Z " 
+                                                      Width="28" Height="39.25" 
+                                                      Canvas.Left="10.5" Canvas.Top="5.375"
+                                                      Stretch="Fill" 
+                                                      Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="HighPriorityIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                                    Opacity="{TemplateBinding Opacity}"
+                                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 m37.999275,44.509476c-1.797794,0 -3.255135,1.457344 -3.255135,3.255135c0,1.797794 1.45734,3.255131 3.255135,3.255131c1.797653,0 3.255131,-1.457336 3.255131,-3.255131c0,-1.797791 -1.457478,-3.255135 -3.255131,-3.255135zm-3.255135,-19.530794l1.084953,17.36062l4.340225,0l1.085087,-17.36062l-6.510265,0z" 
+                                                      Width="8" Height="33.8" 
+                                                      Canvas.Left="21" Canvas.Top="8.1"
+                                                      Stretch="Fill" 
+                                                      Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="TitleIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                                    Opacity="{TemplateBinding Opacity}"
+                                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 54.6818,20.1053L 55.8947,21.3182C 57.4019,22.8254 57.4019,25.2691 55.8947,26.7763L 53.7721,28.8989L 47.1011,22.2279L 49.2237,20.1053C 50.7309,18.5981 53.1746,18.5981 54.6818,20.1053 Z M 36.1848,46.4862L 29.5138,39.8152L 45.8881,23.4408L 52.5592,30.1119L 36.1848,46.4862 Z M 28.9073,42.241L 33.759,47.0927L 27.0251,48.9749L 28.9073,42.241 Z M 19,57L 19,25L 40.8063,25L 36.8063,29L 23,29L 23,53L 53,53L 53,32.6912L 57,28.6911L 57,57L 19,57 Z " 
+                                                      Width="38.0251" Height="38.0251" 
+                                                      Canvas.Left="6" Canvas.Top="6"
+                                                      Stretch="Fill" 
+                                                      Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="DescriptionIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 23.75,18.9999L 53.8333,19L 53.8333,57L 23.75,57L 23.75,55.4167C 22.0011,55.4167 20.5833,54.3533 20.5833,53.0417C 20.5833,52.4334 20.8882,51.8785 21.3897,51.4583C 20.8882,51.0382 20.5833,50.4833 20.5833,49.875C 20.5833,49.2667 20.8882,48.7118 21.3897,48.2917C 20.8882,47.8715 20.5833,47.3166 20.5833,46.7083C 20.5833,46.1001 20.8882,45.5452 21.3897,45.125C 20.8882,44.7048 20.5833,44.1499 20.5833,43.5417C 20.5833,42.9334 20.8882,42.3785 21.3897,41.9583C 20.8882,41.5381 20.5833,40.9833 20.5833,40.375C 20.5833,39.7667 20.8882,39.2118 21.3897,38.7917C 20.8882,38.3715 20.5833,37.8166 20.5833,37.2083C 20.5833,36.6 20.8882,36.0452 21.3897,35.625C 20.8882,35.2048 20.5833,34.6499 20.5833,34.0417C 20.5833,33.4334 20.8882,32.8785 21.3897,32.4583C 20.8882,32.0381 20.5833,31.4833 20.5833,30.875C 20.5833,30.2667 20.8882,29.7118 21.3897,29.2917C 20.8882,28.8715 20.5833,28.3166 20.5833,27.7083C 20.5833,27.1001 20.8882,26.5452 21.3897,26.125C 20.8882,25.7048 20.5833,25.1499 20.5833,24.5417C 20.5833,23.23 22.0011,22.1667 23.75,22.1667L 23.75,18.9999 Z M 23.75,23.75C 22.8755,23.75 22.1666,24.1045 22.1666,24.5417C 22.1666,24.9789 22.8755,25.3334 23.75,25.3334C 24.6244,25.3334 25.3333,24.9789 25.3333,24.5417C 25.3333,24.1045 24.6244,23.75 23.75,23.75 Z M 23.75,26.9167C 22.8755,26.9167 22.1666,27.2712 22.1666,27.7084C 22.1666,28.1456 22.8755,28.5 23.75,28.5C 24.6244,28.5 25.3333,28.1456 25.3333,27.7084C 25.3333,27.2712 24.6244,26.9167 23.75,26.9167 Z M 23.75,30.0834C 22.8755,30.0834 22.1666,30.4378 22.1666,30.875C 22.1666,31.3123 22.8755,31.6667 23.75,31.6667C 24.6244,31.6667 25.3333,31.3123 25.3333,30.875C 25.3333,30.4378 24.6244,30.0834 23.75,30.0834 Z M 23.75,33.25C 22.8755,33.25 22.1666,33.6045 22.1666,34.0417C 22.1666,34.4789 22.8755,34.8334 23.75,34.8334C 24.6244,34.8334 25.3333,34.4789 25.3333,34.0417C 25.3333,33.6045 24.6244,33.25 23.75,33.25 Z M 23.75,36.4167C 22.8755,36.4167 22.1666,36.7711 22.1666,37.2084C 22.1666,37.6456 22.8755,38 23.75,38C 24.6244,38 25.3333,37.6456 25.3333,37.2084C 25.3333,36.7711 24.6244,36.4167 23.75,36.4167 Z M 23.75,39.5834C 22.8755,39.5834 22.1667,39.9378 22.1667,40.375C 22.1667,40.8123 22.8755,41.1667 23.75,41.1667C 24.6244,41.1667 25.3333,40.8123 25.3333,40.375C 25.3333,39.9378 24.6244,39.5834 23.75,39.5834 Z M 23.75,42.75C 22.8755,42.75 22.1667,43.1045 22.1667,43.5417C 22.1667,43.9789 22.8755,44.3334 23.75,44.3334C 24.6244,44.3334 25.3333,43.9789 25.3333,43.5417C 25.3333,43.1045 24.6244,42.75 23.75,42.75 Z M 23.75,45.9167C 22.8755,45.9167 22.1667,46.2711 22.1667,46.7083C 22.1667,47.1456 22.8755,47.5 23.75,47.5C 24.6244,47.5 25.3333,47.1456 25.3333,46.7083C 25.3333,46.2711 24.6244,45.9167 23.75,45.9167 Z M 23.75,49.0833C 22.8755,49.0833 22.1667,49.4378 22.1667,49.875C 22.1667,50.3122 22.8755,50.6667 23.75,50.6667C 24.6244,50.6667 25.3333,50.3122 25.3333,49.875C 25.3333,49.4378 24.6244,49.0833 23.75,49.0833 Z M 23.75,52.25C 22.8755,52.25 22.1667,52.6045 22.1667,53.0417C 22.1667,53.4789 22.8755,53.8333 23.75,53.8333C 24.6244,53.8333 25.3333,53.4789 25.3333,53.0417C 25.3333,52.6045 24.6244,52.25 23.75,52.25 Z M 30.0833,25.3333L 30.0833,28.5L 47.5,28.5L 47.5,25.3334L 30.0833,25.3333 Z M 33.25,31.6667L 33.25,33.25L 44.3333,33.25L 44.3333,31.6667L 33.25,31.6667 Z " 
+                                  Width="33.25" Height="38.0001" 
+                                  Canvas.Left="8.325" Canvas.Top="6"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="CheckIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z" 
+                                  Width="37.9998" Height="31.6665" 
+                                  Canvas.Left="6" Canvas.Top="9"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="MailIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 19,25L 57,25L 38,38L 19,25 Z M 38,42.75L 57,30L 57,51L 19,51L 19,30L 38,42.75 Z" 
+                                  Width="38" Height="26" 
+                                  Canvas.Left="6" Canvas.Top="12"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="StarIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 17.4167,32.25L 32.9107,32.25L 38,18L 43.0893,32.25L 58.5833,32.25L 45.6798,41.4944L 51.4583,56L 38,48.0833L 26.125,56L 30.5979,41.7104L 17.4167,32.25 Z " 
+                                  Width="41.1667" Height="38" 
+                                  Canvas.Left="4.4" Canvas.Top="6"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="CompleteIconStyle" TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50" Height="50" 
+                                Opacity="{TemplateBinding Opacity}"
+                                Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 21.1376,33.4875L 28.1042,40.0582L 40.2958,26.1251L 43.6208,29.0542L 28.5,47.5L 17.8126,36.8125L 21.1376,33.4875 Z M 13,27L 37.25,27L 34.25,30L 16,30L 16,49L 35,49L 35,42.5L 38,38.5L 38,52L 13,52L 13,27 Z M 44.2034,25.3333L 58.0053,26.1463L 52.9735,36.0216L 44.2034,25.3333 Z M 54.3843,36.7405L 59.416,26.8651L 72.0415,33.2982L 72.0415,45.7373L 54.3843,36.7405 Z " 
+                                  Width="59.0415" Height="26.6667" 
+                                  Canvas.Left="-4.5" Canvas.Top="11.6"
+                                  Stretch="Fill" 
+                                  Fill="{TemplateBinding Foreground}"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--EndRegion-->
 
-        <Style x:Key="OverdueIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 38,22.1667C 41.1666,22.1667 57,52.25 55.4166,53.8333C 53.8333,55.4167 22.1667,55.4167 20.5833,53.8333C 19,52.25 34.8333,22.1667 38,22.1667 Z M 38,45.9167C 36.6883,45.9167 35.625,46.98 35.625,48.2917C 35.625,49.6034 36.6883,50.6667 38,50.6667C 39.3116,50.6667 40.375,49.6034 40.375,48.2917C 40.375,46.98 39.3116,45.9167 38,45.9167 Z M 35.625,31.6667L 36.4166,44.3333L 39.5833,44.3333L 40.375,31.6667L 35.625,31.6667 Z " />
-            <Setter Property="Size" Value="35.0552,32.8541" />
-            <Setter Property="Offset" Value="25.4724,14.1667" />
-        </Style>
+            <!--Region Ostatní-->
+            <sys:String x:Key="LogoPathData">M 10,30 L 48,11 L 50,30 L 10,50 Z    M 10,50 L 50,70 L 50,50 L 36,43 Z    M 10,70 L 12,89 L 50,70 L 24,63 Z</sys:String>
+            <!--EndRegion-->
 
-        <Style x:Key="MailIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 18,23L 58,23L 58,53L 18,53L 18,23 Z M 22,49L 54,49L 54,31L 38,43L 22,31L 22,49 Z M 23,27L 38,38L 53,27L 23,27 Z" />
-            <Setter Property="Size" Value="40,30" />
-            <Setter Property="Offset" Value="11,17" />
-        </Style>
-        
-        <Style x:Key="StarIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 17.4167,32.25L 32.9107,32.25L 38,18L 43.0893,32.25L 58.5833,32.25L 45.6798,41.4944L 51.4583,56L 38,48.0833L 26.125,56L 30.5979,41.7104L 17.4167,32.25 Z" />
-            <Setter Property="Size" Value="41.1667,38" />
-            <Setter Property="Offset" Value="11,13" />
-        </Style>
-        
-        <Style x:Key="CheckIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z" />
-            <Setter Property="Size" Value="37.9998,31.6665" />
-            <Setter Property="Offset" Value="11.0001,14.1668" />
-        </Style>
-        
-        <Style x:Key="CalendarIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 18.0025,57.0081L 18.0025,23.0032L 23.0032,23.0032L 23.0032,20.0028C 23.0033,18.898 23.8988,18.0025 25.0035,18.0025L 29.004,18.0025C 30.1087,18.0025 31.0042,18.898 31.0043,20.0026L 31.0043,23.0032L 45.0063,23.0032L 45.0062,20.0026C 45.0062,18.8978 45.9018,18.0023 47.0065,18.0023L 51.0071,18.0023C 52.1118,18.0023 53.0074,18.8978 53.0074,20.0026L 53.0074,23.0032L 58.0081,23.0032L 58.0081,57.0081L 18.0025,57.0081 Z M 21.0029,54.0077L 55.0076,54.0077L 55.0076,31.0044L 21.0029,31.0044L 21.0029,54.0077 Z M 23.0032,47.0066L 29.004,47.0066L 29.004,52.0073L 23.0032,52.0073L 23.0032,47.0066 Z M 31.0043,47.0066L 37.0051,47.0066L 37.0051,52.0073L 31.0043,52.0073L 31.0043,47.0066 Z M 39.0054,47.0066L 45.0062,47.0066L 45.0062,52.0073L 39.0054,52.0073L 39.0054,47.0066 Z M 47.0065,47.0066L 53.0074,47.0066L 53.0074,52.0073L 47.0065,52.0073L 47.0065,47.0066 Z M 23.0032,40.0056L 29.004,40.0056L 29.004,45.0063L 23.0032,45.0063L 23.0032,40.0056 Z M 31.0043,40.0056L 37.0051,40.0056L 37.0051,45.0063L 31.0043,45.0063L 31.0043,40.0056 Z M 39.0054,40.0056L 45.0062,40.0056L 45.0062,45.0063L 39.0054,45.0063L 39.0054,40.0056 Z M 47.0065,40.0056L 53.0074,40.0056L 53.0074,45.0063L 47.0065,45.0063L 47.0065,40.0056 Z M 31.0043,33.0048L 37.0051,33.0048L 37.0051,38.0055L 31.0043,38.0055L 31.0043,33.0048 Z M 39.0054,33.0048L 45.0062,33.0048L 45.0062,38.0055L 39.0054,38.0055L 39.0054,33.0048 Z M 47.0065,33.0048L 53.0074,33.0048L 53.0074,38.0055L 47.0065,38.0055L 47.0065,33.0048 Z M 48.5067,20.0029C 47.6782,20.0029 47.0065,20.6745 47.0065,21.5031L 47.0065,24.5035C 47.0065,25.332 47.6782,26.0037 48.5067,26.0037L 49.5068,26.0037C 50.3354,26.0037 51.0071,25.332 51.0071,24.5035L 51.0071,21.5031C 51.0071,20.6745 50.3354,20.0029 49.5068,20.0029L 48.5067,20.0029 Z M 26.5037,20.0028C 25.6751,20.0028 25.0035,20.6745 25.0035,21.503L 25.0035,24.5035C 25.0035,25.332 25.6751,26.0037 26.5037,26.0037L 27.5038,26.0037C 28.3324,26.0037 29.004,25.332 29.004,24.5035L 29.004,21.503C 29.004,20.6745 28.3324,20.0028 27.5038,20.0028L 26.5037,20.0028 Z M 32.0045,41.0057L 32.0045,44.0061L 36.005,44.0061L 36.005,41.0057L 32.0045,41.0057 Z" />
-            <Setter Property="Size" Value="40.0056,39.0058" />
-            <Setter Property="Offset" Value="10.0025,10.0023" />
-        </Style>
+            <!--Region TextBlock-->
+            <Style x:Key="NormalTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource NormalBrush}" />
+                <Setter Property="FontFamily" Value="Segoe WP" />
+                <Setter Property="FontWeight" Value="Light" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
 
-        <Style x:Key="ReminderIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M310.489,117.73c-11.175-6.415-18.095-18.365-18.072-31.25c0-0.021,0-0.042,0-0.063	C292.417,66.304,276.111,50,256,50c-20.113,0-36.417,16.304-36.417,36.417c0,0.021,0,0.042,0,0.064	c0.022,12.901-6.883,24.828-18.072,31.25C120.429,164.271,167.02,318.832,82.3,346.149v36.101h347.4v-36.101	C344.979,318.831,391.571,164.27,310.489,117.73z M256,71.642c8.147,0,14.775,6.627,14.775,14.775	c0,8.147-6.628,14.775-14.775,14.775c-8.147,0-14.775-6.628-14.775-14.775C241.225,78.27,247.853,71.642,256,71.642z M306.167,412.333c0,27.431-22.236,49.667-49.667,49.667c-27.43,0-49.667-22.236-49.667-49.667H306.167z" />
-            <Setter Property="Size" Value="38,38" />
-            <Setter Property="Offset" Value="10,12" />
-        </Style>
+            <Style x:Key="SlightTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource SlightBrush}" />
+            </Style>
 
-        <Style x:Key="DisabledReminderIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M212.118,412.334h99.333c0,27.43-22.236,49.666-49.667,49.666
-	                                       C234.354,462,212.118,439.764,212.118,412.334z M133.184,299.327c23.112-57.658,14.929-147.915,73.611-181.599
-	                                       c11.189-6.42,18.095-18.35,18.072-31.25c0-0.021,0-0.041,0-0.062c0-20.113,16.305-36.416,36.418-36.416
-	                                       c20.109,0,36.416,16.303,36.416,36.416c0,0.021,0,0.041,0,0.062c-0.021,12.646,6.65,24.375,17.461,30.871L133.184,299.327z
-	                                       M246.509,86.416c0,8.146,6.628,14.775,14.776,14.775c8.146,0,14.775-6.629,14.775-14.775c0-8.148-6.629-14.773-14.775-14.773
-	                                       C253.137,71.643,246.509,78.268,246.509,86.416z M356.678,169.174l47.293-47.294l-25.455-25.455L77.014,397.927l25.456,25.455
-	                                       l41.132-41.132h291.385v-36.101C371.434,325.656,381.771,233.561,356.678,169.174z" />
-            <Setter Property="Size" Value="38,38" />
-            <Setter Property="Offset" Value="10,12" />
-        </Style>
+            <Style x:Key="SubtleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource SubtleBrush}" />
+            </Style>
 
-        <Style x:Key="ClockIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M367,295.5H227.5V142h45v108.5H367V295.5z M256,95c-88.992,0-161,72.022-161,161
-	                                       c0,88.992,72.023,161,161,161c88.992,0,161-72.023,161-161C417,167.007,344.977,95,256,95 M256,50c113.771,0,206,92.229,206,206
-	                                       s-92.229,206-206,206S50,369.771,50,256S142.229,50,256,50z" />
-            <Setter Property="Size" Value="38,38" />
-            <Setter Property="Offset" Value="10,12" />
-        </Style>
-        
-        <Style x:Key="DownArrowIconStyle" TargetType="controls:Icon">
-            <Setter Property="Data" Value="F1 M 50,229.312 50,79.668 256,284.688 462,79.668 462,229.312 256,434.332" />
-            <Setter Property="Size" Value="30,30" />
-            <Setter Property="Offset" Value="11,11" />
-        </Style>
+            <Style x:Key="AccentTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+            </Style>
 
-        <!--EndRegion-->
+            <Style x:Key="ButtonTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+            <!--EndRegion-->
 
-        <!--Region Globální styly-->
-        <SolidColorBrush x:Key="ApplicationBackgroundBrush" 
-                         Color="{StaticResource PhoneChromeColor}" 
-                         Opacity="0.37"/>
+            <!--Region BasePage-->
+            <Style x:Key="BasePageStyle" TargetType="controls:BasePage">
+                <Setter Property="SupportedOrientations" Value="Portrait" />
+                <Setter Property="Orientation" Value="Portrait" />
+                <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+                <Setter Property="shell:SystemTray.IsVisible" Value="True" />
+            </Style>
+            <!--EndRegion-->
 
-        <sys:String x:Key="LogoPathData">M 10,30
-                                         L 48,11
-                                         L 50,30
-                                         L 10,50
-                                         Z 
-                                         M 10,50
-                                         L 50,70
-                                         L 50,50
-                                         L 36,43
-                                         Z 
-                                         M 10,70
-                                         L 12,89
-                                         L 50,70
-                                         L 24,63
-                                         Z</sys:String>
-        
-        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource PhoneSubtleColor}" />
-        
-        <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource PhoneForegroundColor}" />
-        
-        <Style x:Key="ButtonBorderStyle" TargetType="Border">
-            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}" />
-            <Setter Property="Height" Value="60" />
-        </Style>
+            <!--Region BasePickerPage-->
+            <Style x:Key="BasePickerPageStyle" TargetType="controls:BasePickerPage">
+                <Setter Property="SupportedOrientations" Value="Portrait" />
+                <Setter Property="Orientation" Value="Portrait" />
+                <Setter Property="toolkit:TiltEffect.IsTiltEnabled" Value="True" />
+                <Setter Property="shell:SystemTray.IsVisible" Value="True" />
+            </Style>
 
-        <Style x:Key="ButtonTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}" />
-            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
-            <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="TextWrapping" Value="NoWrap" />
-        </Style>
+            <Style x:Key="BasePickerPageRootStyle" TargetType="Grid">
+                <Setter Property="Background" Value="{StaticResource BasePickerPageBackgroundBrush}" />
+            </Style>
 
-        <Style x:Key="ButtonDescriptionTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource ButtonTextBlockStyle}">
-            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
+            <Style x:Key="BasePickerPageHeaderStyle" TargetType="TextBlock">
+                <Setter Property="IsHitTestVisible" Value="False" />
+                <Setter Property="FontFamily" Value="Segoe WP Semibold" />
+                <Setter Property="FontSize" Value="22.667" />
+                <Setter Property="Foreground" Value="{StaticResource BasePickerPageForegroundBrush}" />
+                <Setter Property="Margin" Value="24,16,24,24" />
+            </Style>
 
-        <!--EndRegion-->
-        
-        <!--Region Radial Time Picker-->
-        <SolidColorBrush x:Key="PhoneAccentBrush08" Color="{StaticResource PhoneAccentColor}" Opacity="0.8"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush07" Color="{StaticResource PhoneAccentColor}" Opacity="0.7"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush05" Color="{StaticResource PhoneAccentColor}" Opacity="0.5"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush03" Color="{StaticResource PhoneAccentColor}" Opacity="0.3"/>
-        <SolidColorBrush x:Key="PhoneAccentBrush02" Color="{StaticResource PhoneAccentColor}" Opacity="0.2"/>
-        <SolidColorBrush x:Key="PhoneForegroundBrush05" Color="{StaticResource PhoneForegroundColor}" Opacity="0.5"/>
+            <Style x:Key="BasePickerQuickButtonTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ButtonTextStyle}">
+                <Setter Property="FontSize" Value="20" />
+            </Style>
 
-        <conv:IsAmToColorConverter x:Key="IsAmToColorConverter"/>
-        <conv:BooleanToInvertedVisibilityConverter x:Key="BooleanToInvertedVisibilityConverter"/>
-        <!--EndRegion-->
+            <Style x:Key="BasePickerQuickButtonStyle" TargetType="Button">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{StaticResource ButtonBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
+                <Setter Property="Margin" Value="0,-5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Height" Value="60" />
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Style="{StaticResource BasePickerQuickButtonTextStyle}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--EndRegion-->
+        </ResourceDictionary>
 
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
-        <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService
             Launching="Application_Launching" Closing="Application_Closing"
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>

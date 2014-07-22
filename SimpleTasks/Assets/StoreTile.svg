@@ -2,7 +2,7 @@
 <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
  <g>
   <title>background</title>
-  <rect x="-1" y="-1" width="302" height="302" id="canvas_background" fill="#00aba9"/>
+  <rect x="-1" y="-1" width="302" height="302" id="canvas_background" fill="#3E65FF"/>
  </g>
 
  <g>

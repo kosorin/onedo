@@ -133,9 +133,7 @@
   <data name="AboutRateReview" xml:space="preserve">
     <value>ohodnotit aplikaci</value>
   </data>
-  <data name="SettingsDefaultDueDate" xml:space="preserve">
-    <value>Výchozí termín splnění</value>
-  </data>
+  
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
     <value>První den v týdnu</value>
   </data>
@@ -158,7 +156,7 @@
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Verze {0}</value>
-  </data>
+  <comment>Version {VersionNumber}</comment></data>
   <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
     <value>Odstranit za</value>
   </data>
@@ -168,9 +166,7 @@
   <data name="NoTasks" xml:space="preserve">
     <value>Všechny úkoly byly dokončeny.</value>
   </data>
-  <data name="MissingTitle" xml:space="preserve">
-    <value>Zadejte název úkolu.</value>
-  </data>
+  
   <data name="DateTomorrow" xml:space="preserve">
     <value>zítra</value>
   </data>
@@ -201,9 +197,7 @@
   <data name="DateCustomDue" xml:space="preserve">
     <value>vlastní termín</value>
   </data>
-  <data name="ChooseDueDate" xml:space="preserve">
-    <value>zvolte termín splnění</value>
-  </data>
+  
   <data name="AppBarSave" xml:space="preserve">
     <value>uložit</value>
     <comment>save task</comment>
@@ -257,9 +251,7 @@
   <data name="AppBarPinTile" xml:space="preserve">
     <value>připnout dlaždici</value>
   </data>
-  <data name="ReminderTitle" xml:space="preserve">
-    <value>Připomenutí úkolu</value>
-  </data>
+  
   <data name="Reminder" xml:space="preserve">
     <value>připomenutí</value>
   </data>
@@ -269,9 +261,7 @@
   <data name="DueDate" xml:space="preserve">
     <value>termín splnění</value>
   </data>
-  <data name="SettingsDefaultReminderTime" xml:space="preserve">
-    <value>Výchozí čas připomenutí</value>
-  </data>
+  
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>
   </data>
@@ -303,8 +293,8 @@
     <value>zrušit</value>
   </data>
   <data name="SettingsDeleteWhenStarts" xml:space="preserve">
-    <value>při spuštění aplikace</value>
-  </data>
+    <value>při zavření aplikace</value>
+  <comment></comment></data>
   <data name="SettingsDeleteNever" xml:space="preserve">
     <value>nikdy</value>
   </data>
@@ -339,8 +329,8 @@
     <value>hotovo</value>
   </data>
   <data name="ChooseReminderTime" xml:space="preserve">
-    <value>ZVOLTE ČAS PŘIPOMENUTÍ</value>
-  </data>
+    <value>ZVOLTE PŘIPOMENUTÍ</value>
+  <comment></comment></data>
   <data name="SettingsUnpinCompleted" xml:space="preserve">
     <value>Po dokončení úkolu odepnout dlaždici</value>
   </data>
@@ -354,4 +344,4 @@
   <data name="ChangelogFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Changelog.cs-CZ.txt;System.String, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e;utf-8</value>
   </data>
-<data name="Changelog" xml:space="preserve"><value>changelog</value></data><data name="ChooseReminderDate" xml:space="preserve"><value>zvolte datum připomenutí</value></data></root>
+<data name="Changelog" xml:space="preserve"><value>changelog</value></data><data name="ChooseTime" xml:space="preserve"><value>ZVOLTE ČAS </value></data><data name="TimeNoon" xml:space="preserve"><value>poledne</value><comment>12 PM (12:00)</comment></data><data name="TimeNight" xml:space="preserve"><value>noc</value><comment>10 PM (22:00)</comment></data><data name="TimeMorning" xml:space="preserve"><value>ráno</value><comment>7 AM (7:00)</comment></data><data name="TimeLateMorning" xml:space="preserve"><value>dopoledne</value><comment>10 AM (10:00)</comment></data><data name="TimeEvening" xml:space="preserve"><value>večer</value><comment>7 PM (19:00)</comment></data><data name="TimeAfternoon" xml:space="preserve"><value>odpoledne</value><comment>3 PM (15:00)</comment></data><data name="SettingsDefaultDate" xml:space="preserve"><value>Výchozí datum</value></data><data name="SettingsDefaultTime" xml:space="preserve"><value>Výchozí čas</value></data><data name="NoReminder" xml:space="preserve"><value>žádné připomenutí</value></data><data name="ChooseDate" xml:space="preserve"><value>ZVOLTE DATUM</value></data><data name="MinutesLabel" xml:space="preserve"><value>minuty</value><comment></comment></data><data name="DateYesterday" xml:space="preserve"><value>včera</value></data><data name="DateTimeMinutesAbbr" xml:space="preserve"><value>m</value><comment>1 letter abbreviation for minutes</comment></data><data name="DateTimeHoursAbbr" xml:space="preserve"><value>h</value><comment>1 letter abbreviation for hours</comment></data><data name="DateTimeDaysAbbr" xml:space="preserve"><value>d</value><comment>1 letter abbreviation for days</comment></data><data name="QuickAddLabel" xml:space="preserve"><value>Rychlé přidání úkolu</value></data><data name="ReminderBeforeDueDateText" xml:space="preserve"><value>před termínem</value></data><data name="TimeZero" xml:space="preserve"><value>na začátku</value></data><data name="Time5mins" xml:space="preserve"><value>5 minut</value></data><data name="Time30mins" xml:space="preserve"><value>30 minut</value></data><data name="Time1week" xml:space="preserve"><value>1 týden</value></data><data name="Time1hour" xml:space="preserve"><value>1 hodina</value></data><data name="Time1day" xml:space="preserve"><value>1 den</value></data><data name="Time18hours" xml:space="preserve"><value>18 hodin</value></data><data name="Time15mins" xml:space="preserve"><value>15 minut</value></data><data name="DateLastWeek" xml:space="preserve"><value>minulý týden</value></data><data name="DateLastMonth" xml:space="preserve"><value>minulý měsíc</value></data><data name="HoursLabel" xml:space="preserve"><value>hodiny</value><comment></comment></data><data name="DaysLabel" xml:space="preserve"><value>dny</value><comment></comment></data><data name="Minutes5AndMore" xml:space="preserve"><value>{0} minut</value></data><data name="Weeks2To4" xml:space="preserve"><value>{0} týdny</value></data><data name="Weeks1" xml:space="preserve"><value>{0} týden</value></data><data name="Minutes2To4" xml:space="preserve"><value>{0} minuty</value></data><data name="Minutes1" xml:space="preserve"><value>{0} minuta</value></data><data name="Hours5AndMore" xml:space="preserve"><value>{0} hodin</value></data><data name="Hours2To4" xml:space="preserve"><value>{0} hodiny</value></data><data name="Hours1" xml:space="preserve"><value>{0} hodina</value></data><data name="Days5AndMore" xml:space="preserve"><value>{0} dní</value></data><data name="Days2To4" xml:space="preserve"><value>{0} dny</value></data><data name="Days1" xml:space="preserve"><value>{0} den</value></data><data name="WhatsNew" xml:space="preserve"><value>Co je nového</value></data></root>

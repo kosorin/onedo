@@ -12,22 +12,27 @@ using SimpleTasks.Resources;
 using SimpleTasks.Models;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Media;
+using SimpleTasks.Controls;
 
 namespace SimpleTasks.Views
 {
-    public partial class AboutPage : PhoneApplicationPage
+    public partial class AboutPage : BasePage
     {
         public AboutPage()
         {
             InitializeComponent();
 
-            ChangelogList = CreateChangelog();
+            ChangelogList = LoadChangelog();
             DataContext = this;
         }
 
-        private List<ChangelogCategory> CreateChangelog()
+        #region Properties
+        public static ChangelogList LoadChangelog()
         {
-            List<ChangelogCategory> changelog = new List<ChangelogCategory>();
+            ChangelogList changelog = new ChangelogList();
 
             foreach (var version in JObject.Parse(AppResources.ChangelogFile))
             {
@@ -38,50 +43,35 @@ namespace SimpleTasks.Views
                 {
                     category.AddItem(item.ToString());
                 }
-                changelog.Add(category);
+                changelog.AddCategory(category);
             }
 
             return changelog;
         }
 
-        public static string Version
-        {
-            get
-            {
-                return App.Version.ToString();
-            }
-        }
+        public string VersionString { get { return string.Format(AppResources.AboutVersion, App.Version.ToString()); } }
 
-        public List<ChangelogCategory> ChangelogList { get; set; }
+        public ChangelogList ChangelogList { get; set; }
+        #endregion
 
-        public static string ApplicationName { get { return "Simple Tasks"; } }
-
-        public static string AuthorName { get { return "David Kosorin"; } }
-
-        public static string AuthorEmail { get { return "kosorin@outlook.com"; } }
-
-        public static string EmailSubject { get { return string.Format(AppResources.AboutEmailSubject, ApplicationName, Version); } }
-
-        public string ApplicationNameString { get { return ApplicationName.TrimStart(ApplicationName[0]); } }
-
-        public string AuthorString { get { return string.Format("by {0}", AuthorName); } }
-
-        public string VersionString { get { return string.Format(AppResources.AboutVersion, Version); } }
-
+        #region Rate
         private void Rate_Click(object sender, RoutedEventArgs e)
         {
             MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
             marketplaceReviewTask.Show();
         }
+        #endregion
 
+        #region Email
         private void Contact_Click(object sender, RoutedEventArgs e)
         {
             EmailComposeTask task = new EmailComposeTask
             {
-                To = AuthorEmail,
-                Subject = EmailSubject
+                To = "kosorin@outlook.com",
+                Subject = string.Format(AppResources.AboutEmailSubject, "Simple Tasks", App.Version.ToString())
             };
             task.Show();
         }
+        #endregion
     }
 }

@@ -1,0 +1,208 @@
+﻿<controls:BasePickerPage
+    x:Class="SimpleTasks.Views.ReminderPickerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+    xmlns:models="clr-namespace:SimpleTasks.Models"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    Style="{StaticResource BasePickerPageStyle}">
+
+    <controls:BasePickerPage.Resources>
+        <Style x:Key="ReminderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="FontSize" Value="50" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="BeforeTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="Foreground" Value="{StaticResource TimeBeforeTextBrush}"/>
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <!--Minutes-->
+        <Storyboard x:Name="MinutesShow">
+            <DoubleAnimation Storyboard.TargetName="MinutesSlider"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MinutesSlider"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="MinutesHide">
+            <DoubleAnimation Storyboard.TargetName="MinutesSlider"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MinutesSlider"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="Collapsed" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--Hours-->
+        <Storyboard x:Name="HoursShow">
+            <DoubleAnimation Storyboard.TargetName="HoursSlider"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoursSlider"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="HoursHide">
+            <DoubleAnimation Storyboard.TargetName="HoursSlider"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoursSlider"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="Collapsed" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!--Days-->
+        <Storyboard x:Name="DaysShow">
+            <DoubleAnimation Storyboard.TargetName="DaysSlider"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DaysSlider"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="Visible" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="DaysHide">
+            <DoubleAnimation Storyboard.TargetName="DaysSlider"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.3"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DaysSlider"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="Collapsed" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </controls:BasePickerPage.Resources>
+
+    <Grid Style="{StaticResource BasePickerPageRootStyle}">
+        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}" 
+                   Text="{Binding LocalizedResources.ChooseReminderTime, Source={StaticResource LocalizedStrings}}" />
+
+        <!--Rychlý výběr-->
+        <Grid VerticalAlignment="Bottom" Margin="15,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel >
+                <Button Content="{Binding LocalizedResources.TimeZero, Source={StaticResource LocalizedStrings}}" Tag="0.00:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                <Button Content="{Binding LocalizedResources.Time15mins, Source={StaticResource LocalizedStrings}}" Tag="0.00:15" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                <Button Content="{Binding LocalizedResources.Time1hour, Source={StaticResource LocalizedStrings}}" Tag="0.01:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click"  />
+                <Button Content="{Binding LocalizedResources.Time1day, Source={StaticResource LocalizedStrings}}" Tag="1.00:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Button Content="{Binding LocalizedResources.Time5mins, Source={StaticResource LocalizedStrings}}" Tag="0.00:05" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                <Button Content="{Binding LocalizedResources.Time30mins, Source={StaticResource LocalizedStrings}}" Tag="0.00:30" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                <Button Content="{Binding LocalizedResources.Time18hours, Source={StaticResource LocalizedStrings}}" Tag="0.18:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+                <Button Content="{Binding LocalizedResources.Time1week, Source={StaticResource LocalizedStrings}}" Tag="7.00:00" Style="{StaticResource BasePickerQuickButtonStyle}" Click="QuickButton_Click" />
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Margin="30,100,30,0">
+
+            <!--Info-->
+            <Grid Height="110">
+                <StackPanel VerticalAlignment="Center" >
+                    <TextBlock Text="{Binding ReminderValue, Converter={StaticResource ReminderConverter}, FallbackValue='5 minutes'}" Style="{StaticResource ReminderTextStyle}" />
+                    <TextBlock Visibility="{Binding BeforeTextVisibility}" Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Style="{StaticResource BeforeTextStyle}" />
+                </StackPanel>
+            </Grid>
+
+            <Grid>
+                <!--Slider-->
+                <controls:MySlider Margin="0,120,0,0" x:Name="ReminderSlider" RoundValueChanged="ReminderSlider_RoundValueChanged" />
+
+                <!--Výběr typu-->
+                <toolkit:ListPicker x:Name="TypePicker" 
+                                ItemsSource="{Binding LengthTypes}" 
+                                SelectedItem="{Binding LengthType, Mode=TwoWay}"  
+                                VerticalContentAlignment="Bottom" 
+                                SelectionChanged="LengthTypes_SelectionChanged"
+                                VerticalAlignment="Top"
+                                Margin="0,60,0,0">
+                    <toolkit:ListPicker.Template>
+                        <ControlTemplate TargetType="toolkit:ListPicker">
+                            <StackPanel>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="PickerStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1"
+                                                             BeginTime="0:0:0.15"
+                                                             Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Highlighted">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames
+            									Storyboard.TargetName="ItemsPresenter"
+            									Storyboard.TargetProperty="Margin"
+            									Duration="0">
+                                                    <DiscreteObjectKeyFrame
+            										Value="0,0,0,0"
+            										KeyTime="0"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0"
+                                                             BeginTime="0:0:0.15"
+                                                             Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid Background="{StaticResource BasePickerPageBackgroundBrush}">
+                                    <Border x:Name="Border" MinHeight="60">
+                                        <UserControl x:Name="UserControl">
+                                            <StackPanel>
+                                                <Canvas x:Name="ItemsPresenterHost">
+                                                    <ItemsPresenter x:Name="ItemsPresenter" Margin="0,4,0,0">
+                                                        <ItemsPresenter.RenderTransform>
+                                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform"/>
+                                                        </ItemsPresenter.RenderTransform>
+                                                    </ItemsPresenter>
+                                                </Canvas>
+                                            </StackPanel>
+                                        </UserControl>
+                                    </Border>
+                                    <TextBlock x:Name="Arrow" Text="&#xe019;" Style="{StaticResource ButtonTextStyle}" Foreground="{StaticResource SlightBrush}" FontFamily="Segoe UI Symbol" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,7,14,0" IsHitTestVisible="False" />
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </toolkit:ListPicker.Template>
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <Border Height="60" Margin="-8,-10" Padding="10,0">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource PhoneAccentColor}" Opacity="{Binding Opacity}" />
+                                </Border.Background>
+                                <TextBlock Text="{Binding Label}" Style="{StaticResource ButtonTextStyle}" />
+                            </Border>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+
+</controls:BasePickerPage>

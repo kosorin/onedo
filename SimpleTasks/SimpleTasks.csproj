@@ -24,6 +24,7 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <ExpressionBlendVersion>12.0.50429.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,31 +97,39 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Icon.xaml.cs">
-      <DependentUpon>Icon.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\BasePage.cs" />
+    <Compile Include="Controls\BasePickerPage.cs" />
+    <Compile Include="Controls\MySlider.cs" />
+    <Compile Include="Controls\MyTextBox.cs" />
+    <Compile Include="Controls\IconButton.cs" />
+    <Compile Include="Controls\MyToggleButton.cs" />
     <Compile Include="Controls\RingSlice.cs" />
-    <Compile Include="Conventers\BooleanNegationConverter.cs" />
-    <Compile Include="Conventers\BooleanNegationToVisibilityConverter.cs" />
-    <Compile Include="Conventers\BooleanToNumberConverter.cs" />
-    <Compile Include="Conventers\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Conventers\BooleanToInvertedVisibilityConverter.cs" />
-    <Compile Include="Conventers\AmPmToStringConverter.cs" />
-    <Compile Include="Conventers\TimeToStringConverter.cs" />
-    <Compile Include="Conventers\IsAmToColorConverter.cs" />
+    <Compile Include="Controls\RoundTimePicker.xaml.cs">
+      <DependentUpon>RoundTimePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskListMenuItem.cs" />
+    <Compile Include="Conventers\SettingsConverter.cs" />
+    <Compile Include="Conventers\StringFormatConverter.cs" />
+    <Compile Include="Conventers\ToUpperConverter.cs" />
+    <Compile Include="Conventers\BoolNegationConverter.cs" />
+    <Compile Include="Conventers\BoolToNumberConverter.cs" />
+    <Compile Include="Conventers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Conventers\DateToBoolConverter.cs" />
+    <Compile Include="Conventers\ReminderConverter.cs" />
+    <Compile Include="Conventers\TimeConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />
-    <Compile Include="Conventers\TaskToDueDateStringConverter.cs" />
-    <Compile Include="Conventers\TaskToReminderDateStringConverter.cs" />
-    <Compile Include="Conventers\DateToRelativeStringConverter.cs" />
-    <Compile Include="Conventers\TaskPriorityToVisibilityConverter.cs" />
-    <Compile Include="Conventers\TaskPriorityToBooleanConverter.cs" />
-    <Compile Include="Conventers\DateToStringConverter.cs" />
+    <Compile Include="Conventers\DueConverter.cs" />
+    <Compile Include="Conventers\PriorityToVisibilityConverter.cs" />
+    <Compile Include="Conventers\PriorityToBoolConverter.cs" />
+    <Compile Include="Conventers\DateConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
-    <Compile Include="Conventers\IntegerToVisibilityConverter.cs" />
+    <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Models\ChangelogList.cs" />
     <Compile Include="Models\ChangelogCategory.cs" />
     <Compile Include="Models\ChangelogItem.cs" />
+    <Compile Include="Models\ReminderLengthType.cs" />
     <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
     <Compile Include="MyUriMapper.cs" />
@@ -130,15 +139,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\AboutDataSource\AboutDataSource.xaml.cs">
+      <DependentUpon>AboutDataSource.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\EditDataSource\EditDataSource.xaml.cs">
+      <DependentUpon>EditDataSource.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\RoundTimePickerDataSource\RoundTimePickerDataSource.xaml.cs">
+      <DependentUpon>RoundTimePickerDataSource.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tiles\DefaultWideTaskTile.xaml.cs">
       <DependentUpon>DefaultWideTaskTile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EditTaskViewModel.cs" />
-    <Compile Include="ViewModels\RadialViewModel.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DueDatePickerPage.xaml.cs">
+      <DependentUpon>DueDatePickerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReminderPickerPage.xaml.cs">
+      <DependentUpon>ReminderPickerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditTaskPage.xaml.cs">
       <DependentUpon>EditTaskPage.xaml</DependentUpon>
@@ -149,8 +170,8 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RadialTimePickerPage.xaml.cs">
-      <DependentUpon>RadialTimePickerPage.xaml</DependentUpon>
+    <Compile Include="Views\DueTimePickerPage.xaml.cs">
+      <DependentUpon>DueTimePickerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -228,13 +249,39 @@
     </XliffResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\Icon.xaml">
+    <DesignData Include="SampleData\TasksViewModelSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </DesignData>
+    <Page Include="Controls\RoundTimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SampleData\MainSampleData.xaml">
+    <DesignData Include="SampleData\AboutDataSource\ChangelogListSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </DesignData>
+    <DesignTimeOnly Include="SampleData\AboutDataSource\AboutDataSource.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </DesignTimeOnly>
+    <DesignTimeOnly Include="SampleData\EditDataSource\EditDataSource.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </DesignTimeOnly>
+    <DesignTimeOnly Include="SampleData\RoundTimePickerDataSource\RoundTimePickerDataSource.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </DesignTimeOnly>
+    <Page Include="Themes\Light.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tiles\DefaultWideTaskTile.xaml">
       <SubType>Designer</SubType>
@@ -243,6 +290,14 @@
     <Page Include="Views\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DueDatePickerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReminderPickerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EditTaskPage.xaml">
       <SubType>Designer</SubType>
@@ -256,7 +311,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RadialTimePickerPage.xaml">
+    <Page Include="Views\DueTimePickerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -266,6 +321,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
@@ -273,12 +329,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="WPControls">
+      <HintPath>..\packages\WPControls.1.5.2\lib\wp8\WPControls.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleTasks.Core\SimpleTasks.Core.csproj">
       <Project>{B40DF63D-03CC-4078-A3C7-E18422DA4005}</Project>
       <Name>SimpleTasks.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <DesignTimeOnly Include="SampleData\EditDataSource\EditDataSource.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignTimeOnly Include="SampleData\AboutDataSource\AboutDataSource.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignTimeOnly Include="SampleData\RoundTimePickerDataSource\RoundTimePickerDataSource.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Scheduler;
+﻿using Microsoft.Phone.Shell;
+using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -11,34 +12,16 @@ namespace SimpleTasks.Helpers
 {
     public class ReminderHelper
     {
+        #region Public
         public static void Add(TaskModel task)
         {
-            if (task.ReminderDate.HasValue)
+            if (task.HasReminder)
             {
                 Add(task.Uid,
                     task.Title,
                     task.Detail,
-                    task.ReminderDate.Value,
+                    task.ReminderDate,
                     new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
-            }
-        }
-
-        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
-        {
-            Remove(name);
-            try
-            {
-                ScheduledActionService.Add(new Reminder(name)
-                {
-                    BeginTime = beginTime,
-                    Title = title,
-                    Content = content,
-                    NavigationUri = navigationUri,
-                });
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Chyba při přidání připomínky.");
             }
         }
 
@@ -47,32 +30,14 @@ namespace SimpleTasks.Helpers
             return Get(task.Uid);
         }
 
-        public static Reminder Get(string name)
-        {
-            return (Reminder)ScheduledActionService.Find(name);
-        }
-
         public static bool Exists(TaskModel task)
         {
             return Exists(task.Uid);
         }
 
-        public static bool Exists(string name)
-        {
-            return ScheduledActionService.Find(name) != null;
-        }
-
         public static void Remove(TaskModel task)
         {
             Remove(task.Uid);
-        }
-
-        public static void Remove(string name)
-        {
-            if (Exists(name))
-            {
-                ScheduledActionService.Remove(name);
-            }
         }
 
         public static void RemoveAll()
@@ -83,5 +48,55 @@ namespace SimpleTasks.Helpers
                 ScheduledActionService.Remove(reminder.Name);
             }
         }
+        #endregion
+
+        #region Private
+        private static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
+        {
+            Remove(name);
+            if (beginTime <= DateTime.Now)
+            {
+                Debug.WriteLine("> Reminder Add: overdue: {0} <= {1}", beginTime, DateTime.Now);
+                return;
+            }
+
+            try
+            {
+                ScheduledActionService.Add(new Reminder(name)
+                {
+                    BeginTime = beginTime,
+                    Title = title,
+                    Content = content,
+                    NavigationUri = navigationUri,
+                });
+            }
+            catch (InvalidOperationException e)
+            {
+                Debug.WriteLine("Chyba při přidání připomínky: {0}", e.Message);
+            }
+            catch (SchedulerServiceException e)
+            {
+                Debug.WriteLine("Chyba při přidání připomínky: {0}", e.Message);
+            }
+        }
+
+        private static Reminder Get(string name)
+        {
+            return (Reminder)ScheduledActionService.Find(name);
+        }
+
+        private static bool Exists(string name)
+        {
+            return ScheduledActionService.Find(name) != null;
+        }
+
+        private static void Remove(string name)
+        {
+            if (Exists(name))
+            {
+                ScheduledActionService.Remove(name);
+            }
+        }
+        #endregion
     }
 }

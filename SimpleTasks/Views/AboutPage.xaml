@@ -1,5 +1,4 @@
-﻿<phone:PhoneApplicationPage
-    x:Class="SimpleTasks.Views.AboutPage"
+﻿<controls:BasePage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -8,148 +7,118 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:controls="clr-namespace:SimpleTasks.Controls"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    xmlns:sample="clr-namespace:Expression.Blend.SampleData.AboutDataSource"
+    x:Class="SimpleTasks.Views.AboutPage"
+    Style="{StaticResource BasePageStyle}"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PhoneChromeColor}"
-    toolkit:TiltEffect.IsTiltEnabled="True">
+    d:DataContext="{d:DesignData /SampleData/AboutDataSource/AboutDataSource.xaml}">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeIn" />
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeIn" />
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut" />
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideUpFadeOut" />
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
+    <controls:BasePage.Resources>
+        <sample:AboutDataSource x:Key="AboutDataSource" d:IsDataSource="True"/>
+    </controls:BasePage.Resources>
 
-    <phone:PhoneApplicationPage.Resources>
-        <ControlTemplate x:Key="RateButtonTemplate">
-            <Border Style="{StaticResource ButtonBorderStyle}">
-                <StackPanel Orientation="Horizontal">
-                    <controls:Icon Style="{StaticResource StarIconStyle}"
-                                   Color="{StaticResource ButtonForegroundBrush}"/>
-                    <TextBlock Text="{Binding LocalizedResources.AboutRateReview, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource ButtonTextBlockStyle}"/>
-                </StackPanel>
-            </Border>
-        </ControlTemplate>
-
-        <ControlTemplate x:Key="ContactButtonTemplate">
-            <Border Style="{StaticResource ButtonBorderStyle}">
-                <StackPanel Orientation="Horizontal">
-                    <controls:Icon Style="{StaticResource MailIconStyle}"
-                                   Color="{StaticResource ButtonForegroundBrush}"/>
-                    <TextBlock Text="{Binding LocalizedResources.AboutContactUs, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource ButtonTextBlockStyle}"/>
-                </StackPanel>
-            </Border>
-        </ControlTemplate>
-    </phone:PhoneApplicationPage.Resources>
-
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot"
-          Background="{StaticResource ApplicationBackgroundBrush}">
-        <ScrollViewer>
-            <StackPanel Margin="0,50,0,0">
-                <Grid HorizontalAlignment="Center" >
-                    <StackPanel Orientation="Horizontal">
-                        <Path Width="60"
-                              Height="100"
+	<Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
+		<ScrollViewer>
+			<StackPanel Margin="0,50,0,0">
+                
+                <!--Logo-->
+				<Grid HorizontalAlignment="Center" >
+					<StackPanel Orientation="Horizontal">
+						<Path Width="60" Height="100"
                               Fill="{StaticResource PhoneAccentBrush}"
                               Data="{StaticResource LogoPathData}" RenderTransformOrigin="0.5,0.5">
-                            <Path.RenderTransform>
-                                <CompositeTransform ScaleX="1.35" ScaleY="1.35"/>
-                            </Path.RenderTransform>
-                        </Path>
-                        <TextBlock Text="{Binding ApplicationNameString}" 
-                                   Style="{StaticResource PhoneTextExtraLargeStyle}"
+							<Path.RenderTransform>
+								<CompositeTransform ScaleX="1.35" ScaleY="1.35"/>
+							</Path.RenderTransform>
+						</Path>
+						<TextBlock Text="imple Tasks"
+                                   Style="{StaticResource NormalTextStyle}"
+                                   FontSize="52"
+                                   FontWeight="Bold"
                                    VerticalAlignment="Bottom"
-                                   Margin="0,0,12,10"
-                                   FontSize="52" 
-                                   FontWeight="Bold" 
-                                   FontFamily="Segoe WP Black"/>
-                    </StackPanel>
-                    <TextBlock Text="{Binding AuthorString}"
-                               Foreground="{StaticResource PhoneSubtleBrush}" 
+                                   Margin="0,0,12,10"/>
+					</StackPanel>
+					<TextBlock Text="by David Kosorin"
+                               Style="{StaticResource SubtleTextStyle}"
+                               FontWeight="Normal"
                                VerticalAlignment="Bottom" 
-                               Margin="190,0,0,0"/>
-                </Grid>
+                               Margin="160,0,0,-5"/>
+				</Grid>
 
+				<!--Version-->
+				<TextBlock Text="{Binding VersionString}"
+                           Style="{StaticResource SubtleTextStyle}" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,40,0,10"/>
 
-                <TextBlock Text="{Binding VersionString}"
-                           Foreground="{StaticResource PhoneSubtleBrush}" 
-                           HorizontalAlignment="Center" Margin="0,40,0,10"/>
+				<!--Rate and review-->
+				<controls:IconButton IconStyle="{StaticResource StarIconStyle}" 
+                                     Content="{Binding LocalizedResources.AboutRateReview, Source={StaticResource LocalizedStrings}}"
+                                     Click="Rate_Click"
+                                     Margin="50,20,50,0"/>
 
-                <!--Rate and review-->
-                <Button Margin="50,20,50,0"
-                        Template="{StaticResource RateButtonTemplate}"
-                        Click="Rate_Click"/>
-                <!--Contact us-->
-                <Button Margin="50,20,50,0" 
-                        Template="{StaticResource ContactButtonTemplate}" 
-                        Click="Contact_Click"/>
-                
-                <!--What's new-->
-                <TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
-                           Margin="20,20,0,-20"
-                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+				<!--Contact us-->
+				<controls:IconButton IconStyle="{StaticResource MailIconStyle}" 
+                                     Content="{Binding LocalizedResources.AboutContactUs, Source={StaticResource LocalizedStrings}}"
+                                     Click="Contact_Click"
+                                     Margin="50,20,50,0" />
+
+				<!--Changelog header-->
+				<TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource AccentTextStyle}"
+                           FontWeight="Normal"
                            FontSize="56"
-                           Foreground="{StaticResource PhoneAccentBrush}"/>
-                <phone:LongListSelector ItemsSource="{Binding ChangelogList}"
-                                        IsGroupingEnabled="True"
-                                        Margin="20,0,0,50"
-                                        LayoutMode="List">
-                    <phone:LongListSelector.GroupHeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                                       Foreground="{StaticResource PhoneAccentBrush}"
-                                       Margin="0,20,0,0">
-                                <Run Text="{Binding Version}"
-                                     FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
-                                
-                                <Run Text="{Binding Date, StringFormat=d}" 
-                                     Foreground="{StaticResource PhoneSubtleBrush}" 
-                                     FontSize="{StaticResource PhoneFontSizeMedium}" />
-                            </TextBlock>
-                        </DataTemplate>
-                    </phone:LongListSelector.GroupHeaderTemplate>
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                                           Text="&#x2022;" 
+                           Margin="20,20,0,-20"/>
+                
+                <!--Changelog-->
+                <phone:LongListSelector ItemsSource="{Binding}"
+                                        DataContext="{Binding ChangelogList}"
+                                        d:DataContext="{d:DesignData /SampleData/AboutDataSource/ChangelogListSampleData.xaml}"
+									    IsGroupingEnabled="True"
+				                        Margin="20,0,0,50"
+				                        LayoutMode="List">
+					<phone:LongListSelector.GroupHeaderTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"  Margin="0,20,0,0">
+                                <!--Číslo verze-->
+                                <TextBlock Text="{Binding Version}"
+                                           Style="{StaticResource AccentTextStyle}"
+                                           FontWeight="Normal"
+                                           FontSize="42.667"/>
+                                <!--Datum-->
+                                <TextBlock Text="{Binding Date, StringFormat=d}"
+                                           Style="{StaticResource SubtleTextStyle}"
+                                           FontSize="22.667"
+                                           Margin="5,0,0,4" 
+                                           VerticalAlignment="Bottom" />
+							</StackPanel>
+						</DataTemplate>
+					</phone:LongListSelector.GroupHeaderTemplate>
+					<phone:LongListSelector.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="30"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Style="{StaticResource NormalTextStyle}"
+                                           Text="•" 
+                                           FontSize="20"
                                            HorizontalAlignment="Right"
-                                           Margin="0,0,10,0" />
-                                <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                                           Grid.Column="1"
-                                           TextWrapping="Wrap" 
-                                           Text="{Binding Text}" />
-                            </Grid>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+                                           Margin="0,0,10,0"/>
+                                <!--Text-->
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Text}"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           FontSize="20"
+                                           TextWrapping="Wrap"/>
+							</Grid>
+						</DataTemplate>
+					</phone:LongListSelector.ItemTemplate>
+				</phone:LongListSelector>
+                
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
 
-</phone:PhoneApplicationPage>
+</controls:BasePage>

@@ -1,26 +1,29 @@
-﻿using System;
-using System.Diagnostics;
-using System.Resources;
-using System.Windows;
-using System.Windows.Markup;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
+﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
-using Microsoft.Phone.Scheduler;
-using SimpleTasks.Core.Helpers;
-using System.Threading;
-using System.Globalization;
-using SimpleTasks.Helpers;
-using System.Reflection;
-using SimpleTasks.Core.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace SimpleTasks
 {
     public partial class App : Application
     {
+        public static string ForceDebugCulture = "en-US";
+
+        #region Properties
         public static Version Version
         {
             get
@@ -30,21 +33,20 @@ namespace SimpleTasks
             }
         }
 
-        public static bool IsFirstStart = false;
+        public static bool IsFirstStart { get; set; }
 
-        public static bool IsWindowsPhone81 { get { return Environment.OSVersion.Version >= new Version(8, 10, 12359); } }
+        public static readonly string SettingsFileName = "Settings.json";
+        public static Settings Settings { get; private set; }
 
-        public static string ForceDebugCulture = "cs-CZ";
-
-        public static SettingsViewModel Settings { get; private set; }
-
+        public static readonly string TasksFileName = "Tasks.json";
         public static TasksViewModel Tasks { get; private set; }
+        #endregion
 
         static App()
         {
             Debug.WriteLine("===== Application Constructor =====");
 
-            Settings = new SettingsViewModel();
+            Settings = new Settings();
             Tasks = new TasksViewModel();
         }
 
@@ -54,23 +56,36 @@ namespace SimpleTasks
             Debug.WriteLine("> OS VERSION {0}", Environment.OSVersion.Version);
             Debug.WriteLine("> APP VERSION {0}", Version);
 
-            if (Settings.LastVersionSetting == null)
+            Settings = Settings.LoadFromFile(SettingsFileName);
+
+            if (Settings.Version == null || Settings.Version != Version.ToString())
             {
-                // První spuštění aplikace
-                Settings.LastVersionSetting = Version.ToString();
+                Debug.WriteLine("==== INSTALACE/AKTUALIZACE ====");
                 IsFirstStart = true;
-            }
-            else if (Settings.LastVersionSetting != Version.ToString())
-            {
-                // Aktualizace aplikace
-                Settings.LastVersionSetting = Version.ToString();
+
+                #region Načtení dat se starým formátem
+                Tasks.Load();
+                foreach (TaskModel task in Tasks.Tasks)
+                {
+                    if (task.ReminderDateObsoleteGet != null && task.Reminder == null)
+                    {
+                        task.DueDate = task.ReminderDateObsoleteGet;
+                        task.Reminder = TimeSpan.Zero;
+                    }
+
+                    if (task.CompletedDateObsoleteGet != null && task.Completed == null)
+                    {
+                        task.Completed = task.CompletedDateObsoleteGet;
+                    }
+                }
+                Tasks.Save();
+                #endregion
+
+                Settings.Version = Version.ToString();
+                Debug.WriteLine("==== ===== Installed ===== ====");
             }
 
             Tasks.Load();
-            if (Settings.DeleteCompletedTasksDaysSetting >= 0)
-            {
-                Tasks.DeleteCompleted(Settings.DeleteCompletedTasksDaysSetting);
-            }
 
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");
@@ -81,11 +96,8 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
+                Settings = Settings.LoadFromFile(SettingsFileName);
                 Tasks.Load();
-                if (Settings.DeleteCompletedTasksDaysSetting >= 0)
-                {
-                    Tasks.DeleteCompleted(Settings.DeleteCompletedTasksDaysSetting);
-                }
 
                 RootFrame.UriMapper = new MyUriMapper();
             }
@@ -95,6 +107,7 @@ namespace SimpleTasks
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
+            Settings.SaveToFile(SettingsFileName, Settings);
             Tasks.Save();
             Debug.WriteLine("===== ===== DEACTIVATED ===== =====");
         }
@@ -102,13 +115,14 @@ namespace SimpleTasks
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
+            Settings.SaveToFile(SettingsFileName, Settings);
             Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
 
         public static void UpdateAllLiveTiles()
         {
-            LiveTile.UpdateOrReset(Settings.EnableLiveTileSetting, Tasks.Tasks);
+            LiveTile.UpdateOrReset(Settings.Tiles.Enable, Tasks.Tasks);
             foreach (TaskModel task in Tasks.Tasks)
             {
                 if (task.ModifiedSinceStart)
@@ -121,15 +135,8 @@ namespace SimpleTasks
 
         #region Phone application initialization
 
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
-        /// <summary>
-        /// Constructor for the Application object.
-        /// </summary>
         public App()
         {
             // Global handler for uncaught exceptions.
@@ -137,6 +144,8 @@ namespace SimpleTasks
 
             // Standard XAML initialization
             InitializeComponent();
+
+            InitializeTheme();
 
             // Phone-specific initialization
             InitializePhoneApplication();
@@ -157,16 +166,10 @@ namespace SimpleTasks
                 // which shows areas of a page that are handed off to GPU with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
-                // Prevent the screen from turning off while under the debugger by disabling
-                // the application's idle detection.
-                // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
-                // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
-        // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             if (Debugger.IsAttached)
@@ -176,7 +179,6 @@ namespace SimpleTasks
             }
         }
 
-        // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             if (Debugger.IsAttached)
@@ -249,23 +251,6 @@ namespace SimpleTasks
 
         #endregion
 
-        // Initialize the app's font and flow direction as defined in its localized resource strings.
-        //
-        // To ensure that the font of your application is aligned with its supported languages and that the
-        // FlowDirection for each of those languages follows its traditional direction, ResourceLanguage
-        // and ResourceFlowDirection should be initialized in each resx file to match these values with that
-        // file's culture. For example:
-        //
-        // AppResources.es-ES.resx
-        //    ResourceLanguage's value should be "es-ES"
-        //    ResourceFlowDirection's value should be "LeftToRight"
-        //
-        // AppResources.ar-SA.resx
-        //     ResourceLanguage's value should be "ar-SA"
-        //     ResourceFlowDirection's value should be "RightToLeft"
-        //
-        // For more info on localizing Windows Phone apps see http://go.microsoft.com/fwlink/?LinkId=262072.
-        //
         private void InitializeLanguage()
         {
             try
@@ -319,6 +304,55 @@ namespace SimpleTasks
             }
         }
 
+        public void InitializeTheme()
+        {
+
+            string source = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
+                "Dark" :
+                "Light";
+            string currentSource = (Visibility)Resources["DarkThemeVisibility"] == Visibility.Visible ?
+                "Dark" :
+                "Light";
+
+            if (source == currentSource)
+            {
+                // Téma už je nastavené
+                return;
+            }
+            else
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+
+                // ResourceDictionary
+                Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative);
+                ResourceDictionary app = Resources.MergedDictionaries[0];
+                ResourceDictionary theme = new ResourceDictionary
+                {
+                    Source = sourceUri
+                };
+
+                // Barvy
+                foreach (var ck in theme.Where(x => x.Value is Color))
+                {
+                    app.Remove(ck.Key);
+                    app.Add(ck.Key, (Color)ck.Value);
+                }
+
+                // Brushe
+                foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
+                {
+                    SolidColorBrush brush = (SolidColorBrush)ck.Value;
+                    SolidColorBrush appBrush = (SolidColorBrush)app[ck.Key];
+
+                    appBrush.Color = brush.Color;
+                    appBrush.Opacity = brush.Opacity;
+                }
+
+                sw.Stop();
+                Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
+            }
+        }
         #endregion
     }
 }

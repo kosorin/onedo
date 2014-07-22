@@ -1,0 +1,44 @@
+﻿<ViewModels:TasksViewModel xmlns:ViewModels="clr-namespace:SimpleTasks.ViewModels" xmlns:Models="clr-namespace:SimpleTasks.Models" xmlns:Models1="clr-namespace:SimpleTasks.Core.Models;assembly=SimpleTasks.Core" xmlns:System="clr-namespace:System;assembly=mscorlib">
+	<ViewModels:TasksViewModel.GroupedTasks>
+		<Models:TaskGroup Capacity="76" Title="Penatibus euismod vestibulum porttitor tincidunt">
+            <Models:TaskWrapper>
+                <Models:TaskWrapper.Task>
+					<Models1:TaskModel Detail="" DueDate="2014/12/12 11:30" HasReminder="True" HasDueDate="True" IsHighPriority="False" IsLowPriority="False" IsComplete="False" IsNormalPriority="True" IsActive="True" IsOverdue="False" ModifiedSinceStart="False" Priority="Low" ReminderDate="07/17/2014 23:15:56" Title="Erat feugiat tristique nam gravida" Uid="Turpis vestibulum"/>
+				</Models:TaskWrapper.Task>
+			</Models:TaskWrapper>
+            <Models:TaskWrapper>
+                <Models:TaskWrapper.Task>
+					<Models1:TaskModel Detail="" HasReminder="False" HasDueDate="False" IsHighPriority="True" IsLowPriority="False" IsComplete="False" IsNormalPriority="False" IsActive="True" IsOverdue="True" ModifiedSinceStart="True" Priority="Low" ReminderDate="07/17/2014 23:15:56" Title="Laoreet vitae sociosqu" Uid="Risus aenean velit"/>
+				</Models:TaskWrapper.Task>
+			</Models:TaskWrapper>
+		</Models:TaskGroup>
+		<Models:TaskGroup Capacity="16" Title="Lorem est vehicula">
+            <Models:TaskWrapper>
+                <Models:TaskWrapper.Task>
+					<Models1:TaskModel HasReminder="False" HasDueDate="False" IsHighPriority="True" IsLowPriority="True" IsComplete="True" IsNormalPriority="False" IsActive="False" IsOverdue="True" ModifiedSinceStart="True" Priority="Low" ReminderDate="07/17/2014 23:15:56" Title="Phasellus leo mus nulla" Uid="Litora morbi hac luctus volutpat">
+					    <Models1:TaskModel.Detail>
+					        Maecenas nec non
+                            delší text
+                        </Models1:TaskModel.Detail> 
+                    </Models1:TaskModel>    
+				</Models:TaskWrapper.Task>
+			</Models:TaskWrapper>
+		</Models:TaskGroup>
+		<Models:TaskGroup Capacity="39" Title="Conubia vel felis">
+			<Models:TaskWrapper>
+				<Models:TaskWrapper.Task>
+                    <Models1:TaskModel HasReminder="False" HasDueDate="False" IsHighPriority="True" IsLowPriority="True" IsComplete="False" IsNormalPriority="True" IsActive="True" IsOverdue="False" ModifiedSinceStart="False" Priority="High" ReminderDate="07/17/2014 23:15:56" Title="Ipsum inceptos cubilia" Uid="Montes vestibulum habitant orci"/>
+				</Models:TaskWrapper.Task>
+			</Models:TaskWrapper>
+			<Models:TaskWrapper>
+				<Models:TaskWrapper.Task>
+					<Models1:TaskModel HasReminder="False" HasDueDate="False" IsHighPriority="False" IsLowPriority="True" IsComplete="True" IsNormalPriority="False" IsActive="False" IsOverdue="True" ModifiedSinceStart="True" Priority="Low" ReminderDate="07/17/2014 23:15:56" Title="Nostra ornare" Uid="Nam lobortis sed fringilla egestas"/>
+				</Models:TaskWrapper.Task>
+			</Models:TaskWrapper>
+		</Models:TaskGroup>
+	</ViewModels:TasksViewModel.GroupedTasks>
+	<ViewModels:TasksViewModel.Tasks>
+		<Models1:TaskModel Detail="Bibendum adipiscing cras phasellus" HasReminder="False" HasDueDate="False" IsHighPriority="True" IsLowPriority="True" IsComplete="True" IsNormalPriority="False" IsActive="False" IsOverdue="True" ModifiedSinceStart="True" Priority="Normal" ReminderDate="07/17/2014 23:15:56" Title="Curabitur aliquam integer vestibulum" Uid="Maecenas praesent accumsan nam">
+		</Models1:TaskModel>
+	</ViewModels:TasksViewModel.Tasks>
+</ViewModels:TasksViewModel>

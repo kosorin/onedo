@@ -1,4 +1,13 @@
-{
+{  
+  "3.0.0": {
+    "date": "2014-07-22",
+    "items": [
+	  "gesto tiahnutie úlohy doľava pre dokončenie úlohy",
+      "zmeny vzhľadu",
+      "pripomenutie sa teraz zadáva ako čas pred termínom (nie je teda potrebné zadávať dvakrát dátum pre termín a pripomenutie)",
+      "opravená chyba pri mazaní dokončených úloh"
+    ]
+  },
   "2.0.0": {
     "date": "2014-06-17",
     "items": [
@@ -50,7 +59,7 @@
       "ďalšie drobné zmeny a optimalizácia kódu"
     ]
   },
-  "1.2": {
+  "1.2.0": {
     "date": "2013-11-12",
     "items": [
       "pripomenutie úlohy",
