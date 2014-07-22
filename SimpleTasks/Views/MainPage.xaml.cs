@@ -292,14 +292,14 @@ namespace SimpleTasks.Views
                 DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30)
             });
 
-            if (App.ForceDebugCulture == "cs-CZ")
+            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "cs")
             {
                 App.Tasks.Tasks[0].Title = "Koupit mléko";
                 App.Tasks.Tasks[1].Title = "Zavolat Honzovi";
                 App.Tasks.Tasks[2].Title = "Vyvenčit psa";
                 App.Tasks.Tasks[3].Title = "Projekt do matematiky";
             }
-            else if (App.ForceDebugCulture == "sk-SK")
+            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
             {
                 App.Tasks.Tasks[0].Title = "Kúpiť mlieko";
                 App.Tasks.Tasks[1].Title = "Zavolať Danovi";
