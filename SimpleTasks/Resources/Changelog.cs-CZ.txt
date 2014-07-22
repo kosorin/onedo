@@ -1,10 +1,10 @@
 ﻿{
   "3.0.0": {
-    "date": "2014-07-20",
+    "date": "2014-07-22",
     "items": [
-      "gesto táhnutí doleva na úvodní obrazovce pro dokončení úkolu",
-      "změny ve vzhledu",
-	  "připomenutí se nyní zadává jako doba před termínem, není tedy potřeba zadávat dvakrát datum pro termín a připomenutí",
+      "gesto táhnutí úkolu doleva pro dokončení úkolu",
+      "změny vzhledu",
+	  "připomenutí se nyní zadává jako doba před termínem (není tedy potřeba zadávat dvakrát datum pro termín a připomenutí)",
 	  "opravena chyba při mazání dokončených úkolů"
     ]
   },

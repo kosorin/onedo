@@ -1,4 +1,13 @@
 {
+  "3.0.0": {
+    "date": "2014-07-22",
+    "items": [
+      "swipe left gesture for task completion",
+      "redesigned UI",
+      "reminder is now entered as a time before the due date (it is not necessary to specify two dates - due date and reminder date)",
+      "Fixed bug when deleting completed tasks"
+    ]
+  },
   "2.0.0": {
     "date": "2014-06-17",
     "items": [

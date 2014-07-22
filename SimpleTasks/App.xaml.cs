@@ -21,6 +21,9 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
+        public static string ForceDebugCulture = "en-US";
+
+        #region Properties
         public static Version Version
         {
             get
@@ -30,15 +33,14 @@ namespace SimpleTasks
             }
         }
 
-        public static bool IsFirstStart = false;
-
-        public static string ForceDebugCulture = "cs-CZ";
+        public static bool IsFirstStart { get; private set; }
 
         public static readonly string SettingsFileName = "Settings.json";
         public static Settings Settings { get; private set; }
 
         public static readonly string TasksFileName = "Tasks.json";
         public static TasksViewModel Tasks { get; private set; }
+        #endregion
 
         static App()
         {
@@ -59,6 +61,7 @@ namespace SimpleTasks
             if (Settings.Version == null || Settings.Version != Version.ToString())
             {
                 Debug.WriteLine("==== INSTALACE/AKTUALIZACE ====");
+                IsFirstStart = true;
 
                 #region Načtení dat se starým formátem
                 Tasks.Load();
@@ -350,7 +353,6 @@ namespace SimpleTasks
                 Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
             }
         }
-
         #endregion
     }
 }
