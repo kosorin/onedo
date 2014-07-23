@@ -34,12 +34,18 @@ namespace SimpleTasks.Conventers
             {
                 int days = ts.Days % 7;
                 int weeks = ts.Days / 7;
-                if (weeks > 0 && weeks < 5)
+                int months = ts.Days / 28;
+                if (months > 0)
+                {
+                    return string.Format(format, FormattedText(months, AppResources.Months1, AppResources.Months2To4, ""));
+                }
+                else if (weeks > 0)
                 {
                     string text = FormattedText(weeks, AppResources.Weeks1, AppResources.Weeks2To4, "");
                     if (days > 0)
                     {
                         text += " + " + FormattedText(days, AppResources.Days1, AppResources.Days2To4, AppResources.Days5AndMore);
+
                     }
                     return string.Format(format, text);
                 }

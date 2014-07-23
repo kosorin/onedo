@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="sk-SK" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="3.0.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="sk-SK" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="3.0.1" build-num="1">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.0.1200.0" tool-company="Microsoft" />
     </header>
@@ -339,7 +339,7 @@
         </trans-unit>
         <trans-unit id="Resx/Minutes5AndMore" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">0 minút</target>
+          <target state="translated">{0} minút</target>
         </trans-unit>
         <trans-unit id="Resx/Weeks2To4" translate="yes" xml:space="preserve">
           <source>{0} weeks</source>
@@ -349,13 +349,21 @@
           <source>What's new</source>
           <target state="signed-off">Čo je nové</target>
         </trans-unit>
+        <trans-unit id="Resx/Months2To4" translate="yes" xml:space="preserve">
+          <source>{0} months</source>
+          <target state="signed-off">{0} mesiace</target>
+        </trans-unit>
+        <trans-unit id="Resx/Months1" translate="yes" xml:space="preserve">
+          <source>{0} month</source>
+          <target state="signed-off">{0} mesiac</target>
+        </trans-unit>
         <trans-unit id="Resx/Weeks1" translate="yes" xml:space="preserve">
           <source>{0} week</source>
           <target state="signed-off">{0} týždeň</target>
         </trans-unit>
         <trans-unit id="Resx/Minutes2To4" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="signed-off">0 minúty</target>
+          <target state="translated">{0} minúty</target>
         </trans-unit>
         <trans-unit id="Resx/Minutes1" translate="yes" xml:space="preserve">
           <source>{0} minute</source>

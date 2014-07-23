@@ -275,7 +275,7 @@ namespace SimpleTasks.Resources {
         ///      &quot;swipe left gesture for task completion&quot;,
         ///      &quot;redesigned UI&quot;,
         ///      &quot;reminder is now entered as a time before the due date (it is not necessary to specify two dates - due date and reminder date)&quot;,
-        ///      &quot;Fixed bug when deleting completed tasks&quot;
+        ///      &quot;fixed bug when deleting completed tasks&quot;
         ///    ]
         ///  },
         ///  &quot;2.0.0&quot;: {
@@ -666,6 +666,24 @@ namespace SimpleTasks.Resources {
         public static string MinutesLabel {
             get {
                 return ResourceManager.GetString("MinutesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} month.
+        /// </summary>
+        public static string Months1 {
+            get {
+                return ResourceManager.GetString("Months1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} months.
+        /// </summary>
+        public static string Months2To4 {
+            get {
+                return ResourceManager.GetString("Months2To4", resourceCulture);
             }
         }
         

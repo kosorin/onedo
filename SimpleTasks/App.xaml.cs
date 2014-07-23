@@ -58,9 +58,9 @@ namespace SimpleTasks
 
             Settings = Settings.LoadFromFile(SettingsFileName);
 
-            if (Settings.Version == null || Settings.Version != Version.ToString())
+            if (Settings.Version == null)
             {
-                Debug.WriteLine("==== INSTALACE/AKTUALIZACE ====");
+                Debug.WriteLine("==== INSTALACE ====");
                 IsFirstStart = true;
 
                 #region Načtení dat se starým formátem
@@ -83,6 +83,12 @@ namespace SimpleTasks
 
                 Settings.Version = Version.ToString();
                 Debug.WriteLine("==== ===== Installed ===== ====");
+            }
+            else if (Settings.Version != Version.ToString())
+            {
+                Debug.WriteLine("==== AKTUALIZACE ====");
+                Settings.Version = Version.ToString();
+                Debug.WriteLine("==== ===== Actualized ===== ====");
             }
 
             Tasks.Load();

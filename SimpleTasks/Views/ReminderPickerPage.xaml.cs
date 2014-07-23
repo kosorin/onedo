@@ -52,7 +52,7 @@ namespace SimpleTasks.Views
             Debug.WriteLine("LT: {0}", LengthType.Label);
             switch (LengthTypes.FindIndex(t => t == LengthType))
             {
-            case 2: return new TimeSpan(ReminderSlider.RoundValue, 0, 0, 0);
+            case 2: return new TimeSpan(ConvertBackDays(ReminderSlider.RoundValue), 0, 0, 0);
             case 1: return new TimeSpan(ReminderSlider.RoundValue, 0, 0);
             case 0:
             default: return new TimeSpan(0, ReminderSlider.RoundValue, 0);
@@ -66,7 +66,7 @@ namespace SimpleTasks.Views
             if (ts.Days != 0)
             {
                 type = 2;
-                value = ts.Days;
+                value = ConvertDays(ts.Days);
             }
             else if (ts.Hours != 0)
             {
@@ -81,6 +81,40 @@ namespace SimpleTasks.Views
 
             SetSliders(type);
             ReminderSlider.SetSliderValue(value);
+        }
+
+        private int ConvertDays(int value)
+        {
+            if (value == 0) return 0;
+            if (value == 1) return 2;
+            if (value == 2) return 4;
+            if (value == 3) return 6;
+            if (value == 4) return 7;
+            if (value == 5) return 8;
+            if (value == 6) return 9;
+
+            if (value >= 7 && value < 14) return 10;
+            if (value >= 14 && value < 21) return 12;
+            if (value >= 21 && value < 28) return 14;
+            if (value >= 28 && value < 35) return 16;
+            return 0;
+        }
+
+        private int ConvertBackDays(int value)
+        {
+            if (value == 0) return 0;
+            if (value >= 1 && value <= 3) return 1;
+            if (value == 4 || value == 5) return 2;
+            if (value == 6) return 3;
+            if (value == 7) return 4;
+            if (value == 8) return 5;
+            if (value == 9) return 6;
+
+            if (value == 10 || value == 11) return 7;
+            if (value == 12 || value == 13) return 14;
+            if (value == 14 || value == 15) return 21;
+            if (value == 16 || value == 17) return 30;
+            return 0;
         }
 
         private void SetSliders(int type)
@@ -125,7 +159,7 @@ namespace SimpleTasks.Views
                     {
                         (LengthType = new ReminderLengthType(60, AppResources.MinutesLabel, 0.82)),
                         new ReminderLengthType(24, AppResources.HoursLabel, 0.70),
-                        new ReminderLengthType(30, AppResources.DaysLabel, 0.58)
+                        new ReminderLengthType(17, AppResources.DaysLabel, 0.58)
                     };
                 }
                 return _lengthTypes;
