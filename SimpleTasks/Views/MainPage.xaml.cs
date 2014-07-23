@@ -64,6 +64,8 @@ namespace SimpleTasks.Views
             NavigationService.RemoveBackEntry();
 
             App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
+
+            App.Tracker.SendView("MainPage");
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -365,6 +367,7 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
+            App.Tracker.SendEvent("EvCategory", "EvAction", "task edit", task.GetHashCode());
             NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
 

@@ -33,6 +33,19 @@ namespace SimpleTasks
             }
         }
 
+        private static GoogleAnalytics.Core.Tracker _gaTracker = null;
+        public static GoogleAnalytics.Core.Tracker Tracker
+        {
+            get
+            {
+                if (_gaTracker==null)
+                {
+                    _gaTracker = GoogleAnalytics.EasyTracker.GetTracker();
+                }
+                return _gaTracker;
+            }
+        }
+
         public static bool IsFirstStart { get; set; }
 
         public static readonly string SettingsFileName = "Settings.json";
