@@ -325,7 +325,6 @@
             </Style>
 
             <Style x:Key="BasePickerQuickButtonStyle" TargetType="Button">
-                <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="BorderBrush" Value="{StaticResource ButtonBackgroundBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
                 <Setter Property="Margin" Value="0,-5" />
