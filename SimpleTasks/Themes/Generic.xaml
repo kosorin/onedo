@@ -65,7 +65,7 @@
                         <Border x:Name="HintBorder" Background="{TemplateBinding Mask}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" MinHeight="55" />
+                                    <RowDefinition Height="{TemplateBinding Height}" MinHeight="{TemplateBinding MinHeight}" />
                                     <RowDefinition Height="5" />
                                 </Grid.RowDefinitions>
                                 <ContentControl x:Name="HintContent" 
@@ -76,17 +76,21 @@
                                                 Opacity="0.5"
                                                 BorderThickness="0" 
                                                 HorizontalContentAlignment="Stretch" 
-                                                Margin="10,12,5,8"
+                                                Margin="10,5,5,0"
                                                 Padding="{TemplateBinding Padding}"
-                                                VerticalContentAlignment="Stretch"/>
+                                                VerticalContentAlignment="Stretch"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center" />
                                 <ContentControl x:Name="ContentElement" 
                                                 Foreground="{TemplateBinding Foreground}"
                                                 FontWeight="{TemplateBinding FontWeight}"
                                                 BorderThickness="0" 
                                                 HorizontalContentAlignment="Stretch" 
-                                                Margin="10,12,5,8"
+                                                Margin="10,5,5,0"
                                                 Padding="{TemplateBinding Padding}"
-                                                VerticalContentAlignment="Stretch"/>
+                                                VerticalContentAlignment="Stretch"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center" />
                                 <Border Grid.Row="1" 
                                         Background="Transparent">
                                     <Border x:Name="BottomBorder" 

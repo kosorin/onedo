@@ -269,6 +269,7 @@
                         <StackPanel Margin="0,0,0,20">
                             <!--Název-->
                             <controls:MyTextBox x:Name="TitleTextBox"
+                                                Height="55"
                                                 KeyDown="TitleTextBox_KeyDown"
                                                 GotFocus="TitleTextBox_GotFocus"
                                                 LostFocus="TitleTextBox_LostFocus"
@@ -294,6 +295,7 @@
 
                             <!--Detail-->
                             <controls:MyTextBox x:Name="DetailTextBox"
+                                                MinHeight="55"
                                                 GotFocus="DetailTextBox_GotFocus"
                                                 LostFocus="DetailTextBox_LostFocus"
                                                 AcceptsReturn="True"
