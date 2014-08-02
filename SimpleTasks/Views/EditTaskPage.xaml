@@ -8,6 +8,7 @@
                    xmlns:controls="clr-namespace:SimpleTasks.Controls"
                    xmlns:tiles="clr-namespace:SimpleTasks.Tiles"
                    xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
+                   xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
                    xmlns:sample="clr-namespace:Expression.Blend.SampleData.EditDataSource"
                    x:Class="SimpleTasks.Views.EditTaskPage"
                    Style="{StaticResource BasePageStyle}"
@@ -143,7 +144,7 @@
 
         <ControlTemplate x:Key="CheckBoxTemplate"
                          TargetType="ToggleButton">
-            <Grid Height="50"
+            <Grid Height="55"
                   Background="Transparent">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CheckStates">
@@ -214,6 +215,7 @@
 
                 <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
                            Style="{StaticResource NormalTextStyle}"
+                           TextTrimming="WordEllipsis"
                            Margin="60,0,0,0"
                            VerticalAlignment="Center" />
             </Grid>
@@ -222,385 +224,491 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
-        <Grid Margin="30,40,30,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
-            <ScrollViewer>
-                <StackPanel>
-                    <!--Text-->
-                    <StackPanel Margin="0,0,0,20">
-                        <!--Název-->
-                        <controls:MyTextBox x:Name="TitleTextBox"
-                                            KeyDown="TitleTextBox_KeyDown"
-                                            GotFocus="TitleTextBox_GotFocus"
-                                            LostFocus="TitleTextBox_LostFocus"
-                                            Text="{Binding Title, Mode=TwoWay}"
-                                            Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}">
-                            <controls:MyTextBox.Resources>
-                                <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
-                                    <DoubleAnimation Storyboard.TargetName="TitleTextBox"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="1.0"
-                                                     To="0.35"
-                                                     AutoReverse="True"
-                                                     RepeatBehavior="Forever"
-                                                     BeginTime="0:0:0.5"
-                                                     Duration="0:0:0.5">
-                                        <DoubleAnimation.EasingFunction>
-                                            <PowerEase EasingMode="EaseInOut" />
-                                        </DoubleAnimation.EasingFunction>
-                                    </DoubleAnimation>
-                                </Storyboard>
-                            </controls:MyTextBox.Resources>
-                        </controls:MyTextBox>
-
-                        <!--Detail-->
-                        <controls:MyTextBox x:Name="DetailTextBox"
-                                            GotFocus="DetailTextBox_GotFocus"
-                                            LostFocus="DetailTextBox_LostFocus"
-                                            AcceptsReturn="True"
-                                            Mask="{StaticResource DetailMaskBrush}"
-                                            Text="{Binding Detail, Mode=TwoWay}"
-                                            Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}">
-                            <controls:MyTextBox.BorderBrush>
-                                <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                 Opacity="0.6" />
-                            </controls:MyTextBox.BorderBrush>
-                        </controls:MyTextBox>
-                    </StackPanel>
-
-                    <!--Termín & Připomenutí-->
-                    <Grid x:Name="DueGrid"
-                          Margin="0,20,0,20"
-                          Height="180">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="60" />
-                        </Grid.RowDefinitions>
-
-                        <!--Datum-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="60" />
-                            </Grid.ColumnDefinitions>
-                            <controls:MyToggleButton x:Name="DueDatePicker"
-                                                     Tap="DueDatePicker_Tap"
-                                                     Grid.ColumnSpan="2"
-                                                     IsChecked="{Binding IsSetDueDate}"
-                                                     DoubleTap="DueDatePicker_Tap">
-                                <controls:MyToggleButton.Background>
-                                    <SolidColorBrush x:Name="DueDatePickerBackground"
-                                                     Color="{StaticResource PhoneAccentColor}" />
-                                </controls:MyToggleButton.Background>
-                                <controls:MyToggleButton.Template>
-                                    <ControlTemplate>
-                                        <Grid Background="{TemplateBinding Background}">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CheckSatets">
-                                                    <VisualState x:Name="Checked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="DateText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="1"
-                                                                             Duration="0:0:0.4" />
-                                                            <DoubleAnimation Storyboard.TargetName="NoDateText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="0"
-                                                                             Duration="0:0:0.4" />
-                                                            <DoubleAnimation Storyboard.TargetName="Arrow"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="0"
-                                                                             Duration="0:0:0.2" />
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                    <VisualState x:Name="Unchecked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="DateText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="0"
-                                                                             Duration="0:0:0.4" />
-                                                            <DoubleAnimation Storyboard.TargetName="NoDateText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="1"
-                                                                             Duration="0:0:0.4" />
-                                                            <DoubleAnimation Storyboard.TargetName="Arrow"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="1"
-                                                                             BeginTime="0:0:0.1"
-                                                                             Duration="0:0:0.2" />
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                            Foreground="{StaticResource ButtonIconBrush}" />
-                                            <TextBlock x:Name="DateText"
-                                                       Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}"
-                                                       Grid.Column="1"
-                                                       Text="{Binding DueDate, Converter={StaticResource DateConverter}}"
-                                                       Style="{StaticResource ButtonTextStyle}" />
-                                            <TextBlock x:Name="NoDateText"
-                                                       Grid.Column="1"
-                                                       Text="{Binding LocalizedResources.DateNoDue, Source={StaticResource LocalizedStrings}}"
-                                                       Style="{StaticResource ButtonTextStyle}" />
-                                            <TextBlock x:Name="Arrow"
-                                                       Grid.Column="1"
-                                                       Text="&#xe019;"
-                                                       Style="{StaticResource ButtonTextStyle}"
-                                                       Foreground="{StaticResource SlightBrush}"
-                                                       FontFamily="Segoe UI Symbol"
-                                                       HorizontalAlignment="Right"
-                                                       VerticalAlignment="Top"
-                                                       Margin="0,7,14,0"
-                                                       IsHitTestVisible="False" />
-                                        </Grid>
-                                    </ControlTemplate>
-                                </controls:MyToggleButton.Template>
-                            </controls:MyToggleButton>
-                            <Button x:Name="DueDateCloseButton"
-                                    Grid.Column="1"
-                                    Background="{StaticResource PhoneAccentBrush}"
-                                    Tap="DueDateCloseButton_Tap">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Grid Background="#70000000">
-                                            <ContentControl Style="{StaticResource CloseIconStyle}"
-                                                            Foreground="{StaticResource ButtonCloseIconBrush}" />
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
+        <phone:Pivot x:Name="MainPivot">
+            <phone:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <Border>
+                        <TextBlock Style="{StaticResource SlightTextStyle}"
+                                   FontSize="40"
+                                   Text="{Binding Converter={StaticResource ToUpperConverter}}" />
+                    </Border>
+                </DataTemplate>
+            </phone:Pivot.HeaderTemplate>
+            <phone:Pivot.Template>
+                <ControlTemplate TargetType="phone:Pivot">
+                    <Border Background="{TemplateBinding Background}"
+                            CacheMode="BitmapCache">
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0"
+                                    CacheMode="BitmapCache">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{StaticResource SystemTrayBackgroundColor}" />
+                                </Border.Background>
+                                <primitives:PivotHeadersControl x:Name="HeadersListElement"
+                                                                Margin="0,5,0,10" />
+                            </Border>
+                            <ItemsPresenter Grid.Row="1"
+                                            x:Name="PivotItemPresenter"
+                                            Margin="{TemplateBinding Padding}" />
                         </Grid>
+                    </Border>
+                </ControlTemplate>
+            </phone:Pivot.Template>
 
-                        <!--Čas-->
-                        <Button x:Name="DueTimePicker"
-                                Grid.Row="1"
-                                Tap="DueTimePicker_Tap">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Border Background="{StaticResource PhoneAccentBrush}">
-                                        <Grid Background="#22000000">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <ContentControl Style="{StaticResource ClockIconStyle}"
-                                                            Foreground="{StaticResource ButtonIconBrush}" />
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding DueDate, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
-                                                       Style="{StaticResource ButtonTextStyle}" />
-                                        </Grid>
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+            <!--Úkol-->
+            <phone:PivotItem Header="task"
+                             Margin="0">
+                <ScrollViewer Margin="30,40,20,0">
+                    <StackPanel>
+                        <!--Text-->
+                        <StackPanel Margin="0,0,0,20">
+                            <!--Název-->
+                            <controls:MyTextBox x:Name="TitleTextBox"
+                                                KeyDown="TitleTextBox_KeyDown"
+                                                GotFocus="TitleTextBox_GotFocus"
+                                                LostFocus="TitleTextBox_LostFocus"
+                                                Text="{Binding Title, Mode=TwoWay}"
+                                                Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}">
+                                <controls:MyTextBox.Resources>
+                                    <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
+                                        <DoubleAnimation Storyboard.TargetName="TitleTextBox"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         From="1.0"
+                                                         To="0.35"
+                                                         AutoReverse="True"
+                                                         RepeatBehavior="Forever"
+                                                         BeginTime="0:0:0.5"
+                                                         Duration="0:0:0.5">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </controls:MyTextBox.Resources>
+                            </controls:MyTextBox>
 
-                        <!--Připomenutí-->
-                        <Grid x:Name="ReminderPickerGrid"
-                              Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="60" />
-                            </Grid.ColumnDefinitions>
-                            <controls:MyToggleButton x:Name="ReminderPicker"
-                                                     Grid.ColumnSpan="2"
-                                                     Tap="ReminderPicker_Tap"
-                                                     DoubleTap="ReminderPicker_Tap"
-                                                     IsChecked="{Binding IsSetReminder}">
-                                <controls:MyToggleButton.Template>
-                                    <ControlTemplate>
-                                        <Border Background="{StaticResource PhoneAccentBrush}">
-                                            <VisualStateManager.VisualStateGroups>
-                                                <VisualStateGroup x:Name="CheckSatets">
-                                                    <VisualState x:Name="Checked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="ReminderText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="1"
-                                                                             Duration="0:0:0.4" />
-                                                            <DoubleAnimation Storyboard.TargetName="NoReminderText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="0"
-                                                                             Duration="0:0:0.4" />
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                    <VisualState x:Name="Unchecked">
-                                                        <Storyboard>
-                                                            <DoubleAnimation Storyboard.TargetName="ReminderText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="0"
-                                                                             Duration="0:0:0.4" />
-                                                            <DoubleAnimation Storyboard.TargetName="NoReminderText"
-                                                                             Storyboard.TargetProperty="Opacity"
-                                                                             To="1"
-                                                                             Duration="0:0:0.4" />
-                                                        </Storyboard>
-                                                    </VisualState>
-                                                </VisualStateGroup>
-                                            </VisualStateManager.VisualStateGroups>
-                                            <Grid Background="#33000000">
+                            <!--Detail-->
+                            <controls:MyTextBox x:Name="DetailTextBox"
+                                                GotFocus="DetailTextBox_GotFocus"
+                                                LostFocus="DetailTextBox_LostFocus"
+                                                AcceptsReturn="True"
+                                                Mask="{StaticResource DetailMaskBrush}"
+                                                Text="{Binding Detail, Mode=TwoWay}"
+                                                Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}">
+                                <controls:MyTextBox.BorderBrush>
+                                    <SolidColorBrush Color="{StaticResource SubtleColor}"
+                                                     Opacity="0.6" />
+                                </controls:MyTextBox.BorderBrush>
+                            </controls:MyTextBox>
+                        </StackPanel>
+
+                        <!--Termín & Připomenutí-->
+                        <Grid x:Name="DueGrid"
+                              Margin="0,20,0,20"
+                              Height="180">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+
+                            <!--Datum-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <controls:MyToggleButton x:Name="DueDatePicker"
+                                                         Tap="DueDatePicker_Tap"
+                                                         Grid.ColumnSpan="2"
+                                                         IsChecked="{Binding IsSetDueDate}"
+                                                         DoubleTap="DueDatePicker_Tap">
+                                    <controls:MyToggleButton.Background>
+                                        <SolidColorBrush x:Name="DueDatePickerBackground"
+                                                         Color="{StaticResource PhoneAccentColor}" />
+                                    </controls:MyToggleButton.Background>
+                                    <controls:MyToggleButton.Template>
+                                        <ControlTemplate>
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CheckSatets">
+                                                        <VisualState x:Name="Checked">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="DateText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.4" />
+                                                                <DoubleAnimation Storyboard.TargetName="NoDateText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.4" />
+                                                                <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.2" />
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unchecked">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="DateText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.4" />
+                                                                <DoubleAnimation Storyboard.TargetName="NoDateText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.4" />
+                                                                <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 BeginTime="0:0:0.1"
+                                                                                 Duration="0:0:0.2" />
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="70" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                                <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                <ContentControl Style="{StaticResource CalendarIconStyle}"
                                                                 Foreground="{StaticResource ButtonIconBrush}" />
-                                                <TextBlock x:Name="ReminderText"
+                                                <TextBlock x:Name="DateText"
+                                                           Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}"
                                                            Grid.Column="1"
-                                                           Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
+                                                           Text="{Binding DueDate, Converter={StaticResource DateConverter}}"
                                                            Style="{StaticResource ButtonTextStyle}" />
-                                                <TextBlock x:Name="NoReminderText"
+                                                <TextBlock x:Name="NoDateText"
                                                            Grid.Column="1"
-                                                           Text="{Binding LocalizedResources.NoReminder, Source={StaticResource LocalizedStrings}}"
+                                                           Text="{Binding LocalizedResources.DateNoDue, Source={StaticResource LocalizedStrings}}"
+                                                           Style="{StaticResource ButtonTextStyle}" />
+                                                <TextBlock x:Name="Arrow"
+                                                           Grid.Column="1"
+                                                           Text="&#xe019;"
+                                                           Style="{StaticResource ButtonTextStyle}"
+                                                           Foreground="{StaticResource SlightBrush}"
+                                                           FontFamily="Segoe UI Symbol"
+                                                           HorizontalAlignment="Right"
+                                                           VerticalAlignment="Top"
+                                                           Margin="0,7,14,0"
+                                                           IsHitTestVisible="False" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </controls:MyToggleButton.Template>
+                                </controls:MyToggleButton>
+                                <Button x:Name="DueDateCloseButton"
+                                        Grid.Column="1"
+                                        Background="{StaticResource PhoneAccentBrush}"
+                                        Tap="DueDateCloseButton_Tap">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Grid Background="#70000000">
+                                                <ContentControl Style="{StaticResource CloseIconStyle}"
+                                                                Foreground="{StaticResource ButtonCloseIconBrush}" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                            <!--Čas-->
+                            <Button x:Name="DueTimePicker"
+                                    Grid.Row="1"
+                                    Tap="DueTimePicker_Tap">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Background="{StaticResource PhoneAccentBrush}">
+                                            <Grid Background="#22000000">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <ContentControl Style="{StaticResource ClockIconStyle}"
+                                                                Foreground="{StaticResource ButtonIconBrush}" />
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding DueDate, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
                                                            Style="{StaticResource ButtonTextStyle}" />
                                             </Grid>
                                         </Border>
                                     </ControlTemplate>
-                                </controls:MyToggleButton.Template>
-                            </controls:MyToggleButton>
-                            <Button x:Name="ReminderCloseButton"
-                                    Tap="ReminderCloseButton_Tap"
-                                    Grid.Column="1"
-                                    Background="{StaticResource PhoneAccentBrush}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Grid Background="#70000000">
-                                            <ContentControl Style="{StaticResource CloseIconStyle}"
-                                                            Foreground="{StaticResource ButtonCloseIconBrush}" />
-                                        </Grid>
-                                    </ControlTemplate>
                                 </Button.Template>
                             </Button>
+
+                            <!--Připomenutí-->
+                            <Grid x:Name="ReminderPickerGrid"
+                                  Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <controls:MyToggleButton x:Name="ReminderPicker"
+                                                         Grid.ColumnSpan="2"
+                                                         Tap="ReminderPicker_Tap"
+                                                         DoubleTap="ReminderPicker_Tap"
+                                                         IsChecked="{Binding IsSetReminder}">
+                                    <controls:MyToggleButton.Template>
+                                        <ControlTemplate>
+                                            <Border Background="{StaticResource PhoneAccentBrush}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CheckSatets">
+                                                        <VisualState x:Name="Checked">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="ReminderText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.4" />
+                                                                <DoubleAnimation Storyboard.TargetName="NoReminderText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.4" />
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unchecked">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Storyboard.TargetName="ReminderText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.4" />
+                                                                <DoubleAnimation Storyboard.TargetName="NoReminderText"
+                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.4" />
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Grid Background="#33000000">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="70" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                                    Foreground="{StaticResource ButtonIconBrush}" />
+                                                    <TextBlock x:Name="ReminderText"
+                                                               Grid.Column="1"
+                                                               Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
+                                                               Style="{StaticResource ButtonTextStyle}" />
+                                                    <TextBlock x:Name="NoReminderText"
+                                                               Grid.Column="1"
+                                                               Text="{Binding LocalizedResources.NoReminder, Source={StaticResource LocalizedStrings}}"
+                                                               Style="{StaticResource ButtonTextStyle}" />
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </controls:MyToggleButton.Template>
+                                </controls:MyToggleButton>
+                                <Button x:Name="ReminderCloseButton"
+                                        Tap="ReminderCloseButton_Tap"
+                                        Grid.Column="1"
+                                        Background="{StaticResource PhoneAccentBrush}">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Grid Background="#70000000">
+                                                <ContentControl Style="{StaticResource CloseIconStyle}"
+                                                                Foreground="{StaticResource ButtonCloseIconBrush}" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
                         </Grid>
-                    </Grid>
 
-                    <!--Priorita-->
-                    <ToggleButton x:Name="PriorityButton"
-                                  Margin="0,0,0,20"
-                                  IsThreeState="True"
-                                  IsChecked="{Binding Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
-                        <ToggleButton.Template>
-                            <ControlTemplate>
-                                <Grid Height="60">
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup x:Name="CheckStates">
-                                            <VisualState x:Name="Unchecked">
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="BackgroundColor"
-                                                                    Storyboard.TargetProperty="Color"
-                                                                    To="{StaticResource PhoneAccentColor}"
-                                                                    Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="1"
-                                                                     Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="0"
-                                                                     Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="LowPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="0"
-                                                                     Duration="0:0:0.4" />
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Indeterminate">
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="BackgroundColor"
-                                                                    Storyboard.TargetProperty="Color"
-                                                                    To="{StaticResource ButtonBackgroundColor}"
-                                                                    Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="0"
-                                                                     Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="1"
-                                                                     Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="LowPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="0"
-                                                                     Duration="0:0:0.4" />
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Checked">
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetName="BackgroundColor"
-                                                                    Storyboard.TargetProperty="Color"
-                                                                    To="{StaticResource ButtonBackgroundColor}"
-                                                                    Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="0"
-                                                                     Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="0"
-                                                                     Duration="0:0:0.4" />
-                                                    <DoubleAnimation Storyboard.TargetName="LowPriorityGrid"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     To="1"
-                                                                     Duration="0:0:0.4" />
-                                                </Storyboard>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <Grid.Background>
-                                        <SolidColorBrush x:Name="BackgroundColor"
-                                                         Color="{StaticResource ButtonBackgroundColor}" />
-                                    </Grid.Background>
-                                    <Grid x:Name="LowPriorityGrid"
-                                          Opacity="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                        <!--Priorita-->
+                        <ToggleButton x:Name="PriorityButton"
+                                      Margin="0,0,0,20"
+                                      IsThreeState="True"
+                                      IsChecked="{Binding Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
+                            <ToggleButton.Template>
+                                <ControlTemplate>
+                                    <Grid Height="60">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CheckStates">
+                                                <VisualState x:Name="Unchecked">
+                                                    <Storyboard>
+                                                        <ColorAnimation Storyboard.TargetName="BackgroundColor"
+                                                                        Storyboard.TargetProperty="Color"
+                                                                        To="{StaticResource PhoneAccentColor}"
+                                                                        Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="1"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="LowPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Indeterminate">
+                                                    <Storyboard>
+                                                        <ColorAnimation Storyboard.TargetName="BackgroundColor"
+                                                                        Storyboard.TargetProperty="Color"
+                                                                        To="{StaticResource ButtonBackgroundColor}"
+                                                                        Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="1"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="LowPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Checked">
+                                                    <Storyboard>
+                                                        <ColorAnimation Storyboard.TargetName="BackgroundColor"
+                                                                        Storyboard.TargetProperty="Color"
+                                                                        To="{StaticResource ButtonBackgroundColor}"
+                                                                        Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="NormalPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="LowPriorityGrid"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="1"
+                                                                         Duration="0:0:0.4" />
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid.Background>
+                                            <SolidColorBrush x:Name="BackgroundColor"
+                                                             Color="{StaticResource ButtonBackgroundColor}" />
+                                        </Grid.Background>
+                                        <Grid x:Name="LowPriorityGrid"
+                                              Opacity="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <ContentControl Style="{StaticResource LowPriorityIconStyle}"
-                                                        Foreground="{StaticResource ButtonIconBrush}" />
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"
-                                                   Style="{StaticResource ButtonTextStyle}" />
+                                            <ContentControl Style="{StaticResource LowPriorityIconStyle}"
+                                                            Foreground="{StaticResource ButtonIconBrush}" />
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"
+                                                       Style="{StaticResource ButtonTextStyle}" />
+                                        </Grid>
+                                        <Grid x:Name="NormalPriorityGrid">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"
+                                                       Style="{StaticResource ButtonTextStyle}" />
+                                        </Grid>
+                                        <Grid x:Name="HighPriorityGrid"
+                                              Opacity="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentControl Style="{StaticResource HighPriorityIconStyle}"
+                                                            Foreground="{StaticResource ButtonIconBrush}" />
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
+                                                       Style="{StaticResource ButtonTextStyle}" />
+                                        </Grid>
                                     </Grid>
-                                    <Grid x:Name="NormalPriorityGrid">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding LocalizedResources.PriorityNormal, Source={StaticResource LocalizedStrings}}"
-                                                   Style="{StaticResource ButtonTextStyle}" />
-                                    </Grid>
-                                    <Grid x:Name="HighPriorityGrid"
-                                          Opacity="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                        Foreground="{StaticResource ButtonIconBrush}" />
-                                        <TextBlock Grid.Column="1"
-                                                   Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
-                                                   Style="{StaticResource ButtonTextStyle}" />
-                                    </Grid>
-                                </Grid>
-                            </ControlTemplate>
-                        </ToggleButton.Template>
-                    </ToggleButton>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
 
-                    <!--Podúkoly-->
-                    <Grid Grid.Row="1">
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--Podúkoly-->
+            <phone:PivotItem Header="subtasks"
+                             Margin="0">
+                <Grid Margin="30,40,30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--Seznam-->
+                    <Border Background="{StaticResource CalendarWeekdayBackgroundBrush}"
+                            Padding="0,5">
+                        <rlb:ReorderListBox Grid.Row="0"
+                                            x:Name="SubtaskListBox"
+                                            ItemsSource="{Binding Subtasks}"
+                                            IsReorderEnabled="True">
+                            <rlb:ReorderListBox.ItemContainerStyle>
+                                <Style TargetType="rlb:ReorderListBoxItem">
+                                    <Setter Property="DragHandleTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Canvas Width="52"
+                                                        Height="55"
+                                                        Background="Transparent">
+                                                    <Canvas.CacheMode>
+                                                        <BitmapCache RenderAtScale="1" />
+                                                    </Canvas.CacheMode>
+                                                    <ContentControl Canvas.Top="2.5"
+                                                                    Style="{StaticResource ReorderIconStyle}"
+                                                                    Foreground="{StaticResource NormalBrush}"
+                                                                    Opacity="0.8" />
+                                                </Canvas>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </rlb:ReorderListBox.ItemContainerStyle>
+                            <rlb:ReorderListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton Grid.Column="0"
+                                                      x:Name="MondayButton"
+                                                      Content="{Binding Text}"
+                                                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                                                      Template="{StaticResource CheckBoxTemplate}" />
+                                        <ContentControl Grid.Column="1"
+                                                        Style="{StaticResource DeleteIconStyle}"
+                                                        Foreground="{StaticResource SlightBrush}"
+                                                        Opacity="0.8">
+                                            <ContentControl.Background>
+                                                <SolidColorBrush Color="{StaticResource SubtleColor}"
+                                                                 Opacity="0.2" />
+                                            </ContentControl.Background>
+                                        </ContentControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </rlb:ReorderListBox.ItemTemplate>
+                        </rlb:ReorderListBox>
+                    </Border>
+
+                    <!--Oddělení-->
+                    <Rectangle Grid.Row="1"
+                               Fill="{StaticResource PhoneAccentBrush}"
+                               Opacity="0.6" />
+
+                    <!--Tlačítko-->
+                    <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60" />
                             <ColumnDefinition Width="*" />
@@ -625,27 +733,9 @@
                             </controls:MyTextBox.Background>
                         </controls:MyTextBox>
                     </Grid>
-                    <rlb:ReorderListBox Grid.Row="2"
-                                        x:Name="SubtaskListBox"
-                                        ItemsSource="{Binding Subtasks}"
-                                        IsReorderEnabled="True"
-                                        Background="{StaticResource CalendarWeekdayBackgroundBrush}">
-                        <rlb:ReorderListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <ToggleButton Grid.Row="0"
-                                                  Grid.Column="0"
-                                                  x:Name="MondayButton"
-                                                  Content="{Binding Text}"
-                                                  IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                                  Template="{StaticResource CheckBoxTemplate}" />
-                                </Grid>
-                            </DataTemplate>
-                        </rlb:ReorderListBox.ItemTemplate>
-                    </rlb:ReorderListBox>
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
     </Grid>
 
 </controls:BasePage>

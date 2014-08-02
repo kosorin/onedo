@@ -73,6 +73,71 @@ namespace Expression.Blend.SampleData.EditDataSource
 				}
 			}
 		}
+
+		private Subtasks _Subtasks = new Subtasks();
+
+		public Subtasks Subtasks
+		{
+			get
+			{
+				return this._Subtasks;
+			}
+		}
+	}
+
+	public class SubtasksItem : INotifyPropertyChanged
+	{
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			if (this.PropertyChanged != null)
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+
+		private bool _IsCompleted = false;
+
+		public bool IsCompleted
+		{
+			get
+			{
+				return this._IsCompleted;
+			}
+
+			set
+			{
+				if (this._IsCompleted != value)
+				{
+					this._IsCompleted = value;
+					this.OnPropertyChanged("IsCompleted");
+				}
+			}
+		}
+
+		private string _Text = string.Empty;
+
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+
+			set
+			{
+				if (this._Text != value)
+				{
+					this._Text = value;
+					this.OnPropertyChanged("Text");
+				}
+			}
+		}
+	}
+
+	public class Subtasks : System.Collections.ObjectModel.ObservableCollection<SubtasksItem>
+	{ 
 	}
 #endif
 }
