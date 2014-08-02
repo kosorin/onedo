@@ -240,18 +240,43 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="CompleteIconStyle" TargetType="ContentControl">
+            <Style x:Key="CompleteIconStyle"
+                   TargetType="ContentControl">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <Canvas Width="50" Height="50" 
-                                Opacity="{TemplateBinding Opacity}"
-                                Background="{TemplateBinding Background}">
-                                <Path Data="F1 M 21.1376,33.4875L 28.1042,40.0582L 40.2958,26.1251L 43.6208,29.0542L 28.5,47.5L 17.8126,36.8125L 21.1376,33.4875 Z M 13,27L 37.25,27L 34.25,30L 16,30L 16,49L 35,49L 35,42.5L 38,38.5L 38,52L 13,52L 13,27 Z M 44.2034,25.3333L 58.0053,26.1463L 52.9735,36.0216L 44.2034,25.3333 Z M 54.3843,36.7405L 59.416,26.8651L 72.0415,33.2982L 72.0415,45.7373L 54.3843,36.7405 Z " 
-                                  Width="59.0415" Height="26.6667" 
-                                  Canvas.Left="-4.5" Canvas.Top="11.6"
-                                  Stretch="Fill" 
-                                  Fill="{TemplateBinding Foreground}"/>
+                            <Canvas Width="50"
+                                    Height="50"
+                                    Opacity="{TemplateBinding Opacity}"
+                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 21.1376,33.4875L 28.1042,40.0582L 40.2958,26.1251L 43.6208,29.0542L 28.5,47.5L 17.8126,36.8125L 21.1376,33.4875 Z M 13,27L 37.25,27L 34.25,30L 16,30L 16,49L 35,49L 35,42.5L 38,38.5L 38,52L 13,52L 13,27 Z M 44.2034,25.3333L 58.0053,26.1463L 52.9735,36.0216L 44.2034,25.3333 Z M 54.3843,36.7405L 59.416,26.8651L 72.0415,33.2982L 72.0415,45.7373L 54.3843,36.7405 Z "
+                                      Width="59.0415"
+                                      Height="26.6667"
+                                      Canvas.Left="-4.5"
+                                      Canvas.Top="11.6"
+                                      Stretch="Fill"
+                                      Fill="{TemplateBinding Foreground}" />
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="PlusIconStyle"
+                   TargetType="ContentControl">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Canvas Width="50"
+                                    Height="50"
+                                    Opacity="{TemplateBinding Opacity}"
+                                    Background="{TemplateBinding Background}">
+                                <Path Data="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z "
+                                      Width="38"
+                                      Height="38"
+                                      Canvas.Left="6"
+                                      Canvas.Top="6"
+                                      Stretch="Fill"
+                                      Fill="{TemplateBinding Foreground}" />
                             </Canvas>
                         </ControlTemplate>
                     </Setter.Value>

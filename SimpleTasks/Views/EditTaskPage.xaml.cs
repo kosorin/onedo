@@ -242,10 +242,6 @@ namespace SimpleTasks.Views
                 // připomenutí
                 IsSetReminder = false;
                 Reminder = TimeSpan.Zero;
-
-                Subtasks.Add(new Subtask("mléko"));
-                Subtasks.Add(new Subtask("rohlíky"));
-                Subtasks.Add(new Subtask("máslo"));
             }
             else
             {
@@ -276,6 +272,12 @@ namespace SimpleTasks.Views
                 IsSetReminder = (task.Reminder != null);
                 Reminder = task.Reminder ?? TimeSpan.Zero;
             }
+
+            Subtasks.Add(new Subtask("mléko"));
+            Subtasks.Add(new Subtask("rohlíky rohlíky rohlíky rohlíky rohlíky rohlíky"));
+            Subtasks.Add(new Subtask("máslo"));
+            Subtasks.Add(new Subtask("test"));
+            Subtasks.Add(new Subtask("čokoláda"));
         }
 
         private bool CanSave()
