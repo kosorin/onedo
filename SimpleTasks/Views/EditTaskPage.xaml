@@ -653,7 +653,8 @@
                         <rlb:ReorderListBox Grid.Row="0"
                                             x:Name="SubtaskListBox"
                                             ItemsSource="{Binding Subtasks}"
-                                            IsReorderEnabled="True">
+                                            IsReorderEnabled="True"
+                                            Height="440">
                             <rlb:ReorderListBox.ItemContainerStyle>
                                 <Style TargetType="rlb:ReorderListBoxItem">
                                     <Setter Property="DragHandleTemplate">
@@ -690,7 +691,8 @@
                                         <ContentControl Grid.Column="1"
                                                         Style="{StaticResource DeleteIconStyle}"
                                                         Foreground="{StaticResource SlightBrush}"
-                                                        Opacity="0.8">
+                                                        Opacity="0.8"
+                                                        Tap="SubtaskListBox_Delete_Tap">
                                             <ContentControl.Background>
                                                 <SolidColorBrush Color="{StaticResource SubtleColor}"
                                                                  Opacity="0.2" />
@@ -707,13 +709,14 @@
                                Fill="{StaticResource PhoneAccentBrush}"
                                Opacity="0.6" />
 
-                    <!--Tlačítko-->
+                    <!--Tlačítko & TextBox-->
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Border Background="{StaticResource ButtonBackgroundBrush}">
+                        <Border Background="{StaticResource ButtonBackgroundBrush}"
+                                Tap="AddSubtaskBorder_Tap">
                             <ContentControl Style="{StaticResource PlusIconStyle}"
                                             Foreground="{StaticResource SubtleBrush}"
                                             RenderTransformOrigin="0.5,0.5">
@@ -725,8 +728,11 @@
                         </Border>
                         <controls:MyTextBox Grid.Column="1"
                                             x:Name="SubtaskTextBox"
-                                            Text="{Binding Title, Mode=TwoWay}"
-                                            Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}">
+                                            Text="{Binding loasdasd, Mode=TwoWay}"
+                                            Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}"
+                                            GotFocus="SubtaskTextBox_GotFocus"
+                                            LostFocus="SubtaskTextBox_LostFocus"
+                                            KeyDown="SubtaskTextBox_KeyDown">
                             <controls:MyTextBox.Background>
                                 <SolidColorBrush Color="{StaticResource ButtonBackgroundColor}"
                                                  Opacity="0.78" />

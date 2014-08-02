@@ -273,11 +273,11 @@ namespace SimpleTasks.Views
                 Reminder = task.Reminder ?? TimeSpan.Zero;
             }
 
-            Subtasks.Add(new Subtask("mléko"));
-            Subtasks.Add(new Subtask("rohlíky rohlíky rohlíky rohlíky rohlíky rohlíky"));
-            Subtasks.Add(new Subtask("máslo"));
-            Subtasks.Add(new Subtask("test"));
-            Subtasks.Add(new Subtask("čokoláda"));
+            //Subtasks.Add(new Subtask("mléko"));
+            //Subtasks.Add(new Subtask("rohlíky rohlíky rohlíky rohlíky rohlíky rohlíky"));
+            //Subtasks.Add(new Subtask("máslo"));
+            //Subtasks.Add(new Subtask("test"));
+            //Subtasks.Add(new Subtask("čokoláda"));
         }
 
         private bool CanSave()
@@ -404,6 +404,8 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarAddBulletButton;
 
+        private ApplicationBarIconButton appBarAddSubtask;
+
         private void CreateAppBarItems()
         {
             appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
@@ -437,6 +439,10 @@ namespace SimpleTasks.Views
             appBarAddBulletButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.add.below.png", UriKind.Relative));
             appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
             appBarAddBulletButton.Click += AddBulletButton;
+
+            appBarAddSubtask = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
+            appBarAddSubtask.Text = AppResources.AppBarOk;
+            appBarAddSubtask.Click += AddSubtask;
         }
 
         private void BuildAppBar()
@@ -488,6 +494,14 @@ namespace SimpleTasks.Views
             // Ikony
             ApplicationBar.Buttons.Add(appBarAddBulletButton);
             ApplicationBar.Buttons.Add(appBarOkButton);
+        }
+
+        private void BuildSubtaskTextAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            // Ikony
+            ApplicationBar.Buttons.Add(appBarAddSubtask);
         }
         #endregion
 
@@ -601,6 +615,11 @@ namespace SimpleTasks.Views
                 }
             };
             messageBox.Show();
+        }
+
+        private void AddSubtask(object sender, EventArgs e)
+        {
+            AddSubtask();
         }
         #endregion
 
@@ -744,6 +763,64 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Subtasks
+        private void AddSubtask()
+        {
+            this.Focus();
+            if (!string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
+            {
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
+                {
+                    Subtasks.Add(new Subtask(SubtaskTextBox.Text));
+                    SubtaskTextBox.Text = "";
+                });
+            }
+        }
+
+        private void DeleteSubtask(Subtask subtask)
+        {
+            if (subtask != null)
+            {
+                //Subtasks.Remove(subtask);
+                TimeSpan ts = TimeSpan.FromSeconds(0.3);
+                SubtaskListBox.AnimateRearrange(ts, delegate
+                {
+                    Subtasks.Remove(subtask);
+                });
+            }
+        }
+
+        private void SubtaskListBox_Delete_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ContentControl cc = sender as ContentControl;
+            if (cc != null)
+            {
+                DeleteSubtask(cc.DataContext as Subtask);
+            }
+        }
+
+        private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            BuildSubtaskTextAppBar();
+        }
+
+        private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            BuildAppBar();
+        }
+
+        private void SubtaskTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddSubtask();
+            }
+        }
+
+        private void AddSubtaskBorder_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            SubtaskTextBox.Focus();
+        }
         #endregion
+
     }
 }
