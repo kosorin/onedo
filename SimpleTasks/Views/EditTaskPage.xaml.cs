@@ -7,6 +7,7 @@ using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -49,10 +50,9 @@ namespace SimpleTasks.Views
                 {
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
-                SetTaskData(task);
+                Load(task);
 
                 CreateAppBarItems();
-
                 FirstTimeLoaded();
             }
             else
@@ -81,50 +81,6 @@ namespace SimpleTasks.Views
             }
 
             BuildAppBar();
-        }
-
-        private void SetTaskData(TaskModel task)
-        {
-            Original = task;
-            IsNew = (Original == null);
-
-            DateTime? defaultDate = App.Settings.Tasks.DefaultDate;
-            DateTime defaultTime = App.Settings.Tasks.DefaultTime;
-            if (IsNew)
-            {
-                Original = new TaskModel();
-                IsComplete = false;
-
-                // datum & čas
-                IsSetDueDate = (defaultDate != null);
-                DueDate = defaultDate ?? DateTime.Today;
-                DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
-
-                // připomenutí
-                IsSetReminder = false;
-                Reminder = TimeSpan.Zero;
-            }
-            else
-            {
-                IsComplete = task.IsComplete;
-
-                // text
-                Title = task.Title;
-                Detail = task.Detail;
-                Priority = task.Priority;
-
-                // datum & čas
-                IsSetDueDate = (task.DueDate != null);
-                DueDate = task.DueDate ?? (defaultDate ?? DateTime.Today);
-                if (task.DueDate == null)
-                {
-                    DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
-                }
-
-                // připomenutí
-                IsSetReminder = (task.Reminder != null);
-                Reminder = task.Reminder ?? TimeSpan.Zero;
-            }
         }
 
         private void FirstTimeLoaded()
@@ -193,6 +149,13 @@ namespace SimpleTasks.Views
             set { SetProperty(ref _detail, value); }
         }
 
+        private ObservableCollection<Subtask> _subtasks = new ObservableCollection<Subtask>();
+        public ObservableCollection<Subtask> Subtasks
+        {
+            get { return _subtasks; }
+            set { SetProperty(ref _subtasks, value); }
+        }
+
         private TaskPriority _priority = TaskPriority.Normal;
         public TaskPriority Priority
         {
@@ -259,6 +222,62 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Task methods
+        private void Load(TaskModel task)
+        {
+            Original = task;
+            IsNew = (Original == null);
+
+            DateTime? defaultDate = App.Settings.Tasks.DefaultDate;
+            DateTime defaultTime = App.Settings.Tasks.DefaultTime;
+            if (IsNew)
+            {
+                Original = new TaskModel();
+                IsComplete = false;
+
+                // datum & čas
+                IsSetDueDate = (defaultDate != null);
+                DueDate = defaultDate ?? DateTime.Today;
+                DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+
+                // připomenutí
+                IsSetReminder = false;
+                Reminder = TimeSpan.Zero;
+
+                Subtasks.Add(new Subtask("mléko"));
+                Subtasks.Add(new Subtask("rohlíky"));
+                Subtasks.Add(new Subtask("máslo"));
+            }
+            else
+            {
+                IsComplete = task.IsComplete;
+
+                // text
+                Title = task.Title;
+                Detail = task.Detail;
+
+                // podúkoly
+                foreach (Subtask subtask in task.Subtasks)
+                {
+                    Subtasks.Add(new Subtask { Text = subtask.Text, IsCompleted = subtask.IsCompleted });
+                }
+
+                // priorita
+                Priority = task.Priority;
+
+                // datum & čas
+                IsSetDueDate = (task.DueDate != null);
+                DueDate = task.DueDate ?? (defaultDate ?? DateTime.Today);
+                if (task.DueDate == null)
+                {
+                    DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+                }
+
+                // připomenutí
+                IsSetReminder = (task.Reminder != null);
+                Reminder = task.Reminder ?? TimeSpan.Zero;
+            }
+        }
+
         private bool CanSave()
         {
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
@@ -281,6 +300,9 @@ namespace SimpleTasks.Views
 
             // Priority
             Original.Priority = Priority;
+
+            // Subtasks
+            Original.Subtasks = new List<Subtask>(Subtasks);
 
             // Due Date
             if (IsSetDueDate)
@@ -717,6 +739,9 @@ namespace SimpleTasks.Views
         {
             IsSetReminder = false;
         }
+        #endregion
+
+        #region Subtasks
         #endregion
     }
 }

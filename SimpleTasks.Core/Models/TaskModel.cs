@@ -19,10 +19,7 @@ namespace SimpleTasks.Core.Models
         [DataMember(Order = 0)]
         public string Uid
         {
-            get
-            {
-                return _uid;
-            }
+            get { return _uid; }
             private set
             {
                 SetProperty(ref _uid, value);
@@ -30,15 +27,13 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+
         #region Title 1
         private string _title = "";
         [DataMember(Order = 1)]
         public string Title
         {
-            get
-            {
-                return _title;
-            }
+            get { return _title; }
             set
             {
                 SetProperty(ref _title, value);
@@ -63,6 +58,17 @@ namespace SimpleTasks.Core.Models
             }
         }
         #endregion
+
+        #region Subtasks 3
+        private List<Subtask> _subtasks = new List<Subtask>();
+        [DataMember(Order = 3)]
+        public List<Subtask> Subtasks
+        {
+            get { return _subtasks; }
+            set { SetProperty(ref _subtasks, value); }
+        }
+        #endregion
+
 
         #region DueDate 10
         private DateTime? _dueDate = null;
@@ -149,6 +155,7 @@ namespace SimpleTasks.Core.Models
 
         #endregion
 
+
         #region Priority 20
         private TaskPriority _priority = TaskPriority.Normal;
         [DataMember(Order = 20)]
@@ -184,6 +191,7 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+
         #region Tags 30
         private List<string> _tags = new List<string>();
         [DataMember(Name = "Tags", Order = 30)]
@@ -193,6 +201,7 @@ namespace SimpleTasks.Core.Models
             set { SetProperty(ref _tags, value); }
         }
         #endregion
+
 
         #region Created 100
         private DateTime? _created = null;
