@@ -13,9 +13,10 @@ namespace SimpleTasks.Core.Models
     {
         public Subtask() { }
 
-        public Subtask(string text)
+        public Subtask(string text, bool isCompleted = false)
         {
             Text = text;
+            IsCompleted = isCompleted;
         }
 
         #region Text

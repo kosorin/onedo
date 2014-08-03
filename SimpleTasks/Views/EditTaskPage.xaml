@@ -142,77 +142,6 @@
                                         Value="False" />
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-
-        <ControlTemplate x:Key="CheckBoxTemplate"
-                         TargetType="ToggleButton">
-            <Grid Height="55"
-                  Background="Transparent">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CheckStates">
-                        <VisualState x:Name="Unchecked">
-                            <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.25"
-                                                 To="0"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 Storyboard.TargetName="CheckIcon" />
-                                <ColorAnimation Duration="0:0:0.25"
-                                                To="{StaticResource SubtleColor}"
-                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="CompleteButtonRectangle" />
-                                <DoubleAnimation Duration="0:0:0.25"
-                                                 To="0.6"
-                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                                 Storyboard.TargetName="CompleteButtonRectangle" />
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Checked">
-                            <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.25"
-                                                 To="1"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 Storyboard.TargetName="CheckIcon" />
-                                <ColorAnimation Duration="0:0:0.25"
-                                                To="{StaticResource PhoneAccentColor}"
-                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="CompleteButtonRectangle" />
-                                <DoubleAnimation Duration="0:0:0.25"
-                                                 To="0.3"
-                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                                 Storyboard.TargetName="CompleteButtonRectangle" />
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Indeterminate" />
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-
-                <Border x:Name="CompleteButtonRectangle"
-                        Width="40"
-                        Height="40"
-                        BorderThickness="1">
-                    <Border.Background>
-                        <SolidColorBrush Color="{StaticResource BackgroundColor}" />
-                    </Border.Background>
-                    <Border.BorderBrush>
-                        <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                         Opacity="0.8" />
-                    </Border.BorderBrush>
-
-                    <ContentControl x:Name="CheckIcon"
-                                    Style="{StaticResource CheckIconStyle}"
-                                    Foreground="{StaticResource SubtleBrush}"
-                                    Opacity="0"
-                                    MaxWidth="0"
-                                    MaxHeight="0">
-                        <ContentControl.RenderTransform>
-                            <CompositeTransform ScaleX="0.75"
-                                                ScaleY="0.75"
-                                                TranslateY="-18"
-                                                TranslateX="-18" />
-                        </ContentControl.RenderTransform>
-                    </ContentControl>
-                </Border>
-            </Grid>
-        </ControlTemplate>
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
@@ -743,17 +672,9 @@
                                         <ToggleButton Grid.Column="0"
                                                       x:Name="MondayButton"
                                                       IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                                      Template="{StaticResource CheckBoxTemplate}"
-                                                      HorizontalAlignment="Left"
-                                                      Margin="10,0,0,0" />
-
-                                        <!--Text-->
-                                        <Border Margin="60,0,0,0"
-                                                VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding Text}"
-                                                       Style="{StaticResource NormalTextStyle}"
-                                                       TextTrimming="WordEllipsis" />
-                                        </Border>
+                                                      Content="{Binding Text}"
+                                                      Margin="10,0,0,0"
+                                                      Style="{StaticResource CheckboxStyle}" />
 
                                         <!--Smazání-->
                                         <ContentControl Grid.Column="1"

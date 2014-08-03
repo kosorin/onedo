@@ -312,7 +312,7 @@ namespace SimpleTasks.Views
             Original.Priority = Priority;
 
             // Subtasks
-            Original.Subtasks = new List<Subtask>(Subtasks);
+            Original.Subtasks = Subtasks;
 
             // Due Date
             if (IsSetDueDate)

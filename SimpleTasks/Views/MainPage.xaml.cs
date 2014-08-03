@@ -22,6 +22,7 @@ using Microsoft.Devices;
 using SimpleTasks.Controls;
 using Microsoft.Phone.Tasks;
 using System.Globalization;
+using System.Collections.ObjectModel;
 
 namespace SimpleTasks.Views
 {
@@ -273,40 +274,39 @@ namespace SimpleTasks.Views
 
             App.Tasks.Add(new TaskModel()
             {
-                Title = "Buy milk",
-                Completed = DateTime.Now
-            });
-            App.Tasks.Add(new TaskModel()
-            {
-                Title = "Call Chuck",
-                DueDate = DateTimeExtensions.Today.AddHours(13).AddMinutes(00),
-                Reminder = TimeSpan.FromHours(4),
-                Priority = TaskPriority.High
-            });
-            App.Tasks.Add(new TaskModel()
-            {
-                Title = "Walk the dog",
-                DueDate = DateTimeExtensions.Today.AddHours(18).AddMinutes(45)
+                Title = "Grocery list",
+                DueDate = DateTimeExtensions.Tomorrow.AddHours(10).AddMinutes(30),
+                Subtasks = new ObservableCollection<Subtask>
+                { 
+                    new Subtask("milk"), 
+                    new Subtask("apples", true),
+                    new Subtask("potatoes"),
+                }
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Math project",
-                DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30)
+                DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
+                Reminder = TimeSpan.FromDays(1),
+                Priority = TaskPriority.High
+            });
+            App.Tasks.Add(new TaskModel()
+            {
+                Title = "Call Chuck",
+                Completed = DateTime.Now
             });
 
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "cs")
             {
-                App.Tasks.Tasks[0].Title = "Koupit mléko";
-                App.Tasks.Tasks[1].Title = "Zavolat Honzovi";
-                App.Tasks.Tasks[2].Title = "Vyvenčit psa";
-                App.Tasks.Tasks[3].Title = "Projekt do matematiky";
+                App.Tasks.Tasks[0].Title = "Seznam potravin";
+                App.Tasks.Tasks[1].Title = "Projekt do matematiky";
+                App.Tasks.Tasks[2].Title = "Zavolat Honzovi";
             }
             else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
             {
-                App.Tasks.Tasks[0].Title = "Kúpiť mlieko";
-                App.Tasks.Tasks[1].Title = "Zavolať Danovi";
-                App.Tasks.Tasks[2].Title = "Vyvenčiť psa";
-                App.Tasks.Tasks[3].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[0].Title = "Zoznam potravín";
+                App.Tasks.Tasks[1].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[2].Title = "Zavolať Danovi";
             }
         }
 #endif
@@ -407,13 +407,14 @@ namespace SimpleTasks.Views
 
         private bool _canUseGestures = true;
 
-        private void RootBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
         }
 
-        private void RootBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void InfoGrid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            Border border = (Border)sender;
+            Grid infoGrid = (Grid)sender;
+            Border border = (Border)infoGrid.FindName("RootBorder");
             Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
             if (storyboard != null)
             {
@@ -429,9 +430,10 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void RootBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-            Border border = (Border)sender;
+            Grid infoGrid = (Grid)sender;
+            Border border = (Border)infoGrid.FindName("RootBorder");
             ContentControl icon = (ContentControl)border.FindName("CompleteGestureIcon");
             TranslateTransform t = (TranslateTransform)border.RenderTransform;
 

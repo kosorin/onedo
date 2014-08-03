@@ -1,6 +1,7 @@
 ﻿using SimpleTasks.Core.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 
 namespace SimpleTasks.Core.Models
@@ -60,9 +61,9 @@ namespace SimpleTasks.Core.Models
         #endregion
 
         #region Subtasks 3
-        private List<Subtask> _subtasks = new List<Subtask>();
+        private ObservableCollection<Subtask> _subtasks = new ObservableCollection<Subtask>();
         [DataMember(Order = 3)]
-        public List<Subtask> Subtasks
+        public ObservableCollection<Subtask> Subtasks
         {
             get { return _subtasks; }
             set { SetProperty(ref _subtasks, value); }
