@@ -361,6 +361,10 @@
           <source>task</source>
           <target state="new">task</target>
         </trans-unit>
+        <trans-unit id="Resx/AppBarCompleteAllSubtasks" translate="yes" xml:space="preserve">
+          <source>complete all subtasks</source>
+          <target state="new">complete all subtasks</target>
+        </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
           <source>subtask</source>
           <target state="new">subtask</target>

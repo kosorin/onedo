@@ -507,4 +507,7 @@
   <data name="TaskText" xml:space="preserve">
     <value>task</value>
   </data>
+  <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
+    <value>complete all subtasks</value>
+  </data>
 </root>

@@ -146,7 +146,8 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
-        <phone:Pivot x:Name="MainPivot">
+        <phone:Pivot x:Name="MainPivot"
+                     SelectionChanged="MainPivot_SelectionChanged">
             <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <Border>

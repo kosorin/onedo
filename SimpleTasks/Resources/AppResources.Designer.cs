@@ -151,6 +151,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to complete all subtasks.
+        /// </summary>
+        public static string AppBarCompleteAllSubtasks {
+            get {
+                return ResourceManager.GetString("AppBarCompleteAllSubtasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete.
         /// </summary>
         public static string AppBarDelete {

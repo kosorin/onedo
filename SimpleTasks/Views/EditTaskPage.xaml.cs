@@ -140,6 +140,11 @@ namespace SimpleTasks.Views
                 NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
             }
         }
+
+        private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BuildAppBar();
+        }
         #endregion
 
         #region Task properties
@@ -412,7 +417,9 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarAddBulletButton;
 
-        private ApplicationBarIconButton appBarAddSubtask;
+        private ApplicationBarIconButton appBarAddSubtaskButton;
+
+        private ApplicationBarIconButton appBarCompleteAllSubtasksButton;
 
         private void CreateAppBarItems()
         {
@@ -448,12 +455,28 @@ namespace SimpleTasks.Views
             appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
             appBarAddBulletButton.Click += AddBulletButton;
 
-            appBarAddSubtask = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
-            appBarAddSubtask.Text = AppResources.AppBarAddSubtask;
-            appBarAddSubtask.Click += AddSubtask;
+            appBarAddSubtaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
+            appBarAddSubtaskButton.Text = AppResources.AppBarAddSubtask;
+            appBarAddSubtaskButton.Click += AddSubtask;
+
+            appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.check.png", UriKind.Relative));
+            appBarCompleteAllSubtasksButton.Text = AppResources.AppBarCompleteAllSubtasks;
+            appBarCompleteAllSubtasksButton.Click += CompleteAllSubtasks;
         }
 
         private void BuildAppBar()
+        {
+            if (MainPivot.SelectedIndex == 0)
+            {
+                BuildTaskAppBar();
+            }
+            else if (MainPivot.SelectedIndex == 1)
+            {
+                BuildSubtasksAppBar();
+            }
+        }
+
+        private void BuildTaskAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
@@ -504,12 +527,13 @@ namespace SimpleTasks.Views
             ApplicationBar.Buttons.Add(appBarOkButton);
         }
 
-        private void BuildSubtaskTextAppBar()
+        private void BuildSubtasksAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
             // Ikony
-            ApplicationBar.Buttons.Add(appBarAddSubtask);
+            ApplicationBar.Buttons.Add(appBarAddSubtaskButton);
+            ApplicationBar.Buttons.Add(appBarCompleteAllSubtasksButton);
         }
         #endregion
 
@@ -627,7 +651,22 @@ namespace SimpleTasks.Views
 
         private void AddSubtask(object sender, EventArgs e)
         {
-            AddSubtask();
+            if (string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
+            {
+                SubtaskTextBox.Focus();
+            }
+            else
+            {
+                AddSubtask();
+            }
+        }
+
+        private void CompleteAllSubtasks(object sender, EventArgs e)
+        {
+            foreach (Subtask subtask in Subtasks)
+            {
+                subtask.IsCompleted = true;
+            }
         }
         #endregion
 
@@ -813,13 +852,11 @@ namespace SimpleTasks.Views
 
         private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            BuildSubtaskTextAppBar();
             SubtasksAlignment = VerticalAlignment.Bottom;
         }
 
         private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            BuildAppBar();
             SubtasksAlignment = VerticalAlignment.Stretch;
         }
 
@@ -831,6 +868,5 @@ namespace SimpleTasks.Views
             }
         }
         #endregion
-
     }
 }
