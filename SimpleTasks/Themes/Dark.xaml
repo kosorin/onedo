@@ -15,7 +15,7 @@
 
     <!--Region Globální styly-->
     <Color x:Key="BackgroundColor">#0c0c0c</Color>
-    <Color x:Key="NormalColor">White</Color>
+    <Color x:Key="NormalColor">#FFF</Color>
     <Color x:Key="SlightColor">#CCFFFFFF</Color>
     <Color x:Key="SubtleColor">#99FFFFFF</Color>
     <Color x:Key="ChromeColor">#FF1F1F1F</Color>

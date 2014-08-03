@@ -185,7 +185,7 @@
             <!--Úkol-->
             <phone:PivotItem Header="{Binding LocalizedResources.TaskText, Source={StaticResource LocalizedStrings}}"
                              Margin="0">
-                <ScrollViewer Margin="30,40,20,0">
+                <ScrollViewer Margin="24,40,24,0">
                     <StackPanel>
                         <!--Text-->
                         <StackPanel Margin="0,0,0,20">
@@ -564,7 +564,7 @@
             <!--Podúkoly-->
             <phone:PivotItem Header="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
                              Margin="0">
-                <Grid Margin="20,40,20,0">
+                <Grid Margin="24,40,24,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -704,13 +704,12 @@
                     <!--TextBox-->
                     <controls:MyTextBox Grid.Row="1"
                                         x:Name="SubtaskTextBox"
-                                        Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFormatConverter}, ConverterParameter='\{0} &#8230;&#xe104;'}"
+                                        Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, StringFormat='\{0} &#8230;&#xe104;'}"
                                         GotFocus="SubtaskTextBox_GotFocus"
                                         LostFocus="SubtaskTextBox_LostFocus"
                                         KeyDown="SubtaskTextBox_KeyDown"
                                         FontFamily="Segoe UI Symbol"
-                                        BorderBrush="Transparent"
-                                        Height="50">
+                                        Height="60">
                         <controls:MyTextBox.Background>
                             <SolidColorBrush Color="{StaticResource ButtonBackgroundColor}"
                                              Opacity="0.78" />

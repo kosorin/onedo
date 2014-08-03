@@ -126,7 +126,7 @@
                                                                      Storyboard.TargetProperty="Opacity"
                                                                      Storyboard.TargetName="CompleteIcon" />
                                                     <ColorAnimation Duration="0:0:0.4"
-                                                                    To="{StaticResource SubtleColor}"
+                                                                    To="{StaticResource SlightColor}"
                                                                     Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)"
                                                                     Storyboard.TargetName="CompleteButtonRectangle" />
                                                 </Storyboard>
@@ -359,8 +359,7 @@
                             </Grid>
 
                             <!--Podúkoly-->
-                            <StackPanel x:Name="SubtasksStackPanel"
-                                        HorizontalAlignment="Left">
+                            <StackPanel x:Name="SubtasksStackPanel">
                                 <ItemsControl ItemsSource="{Binding Task.Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -371,6 +370,7 @@
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>
+                            
                         </StackPanel>
                     </controls:MyToggleButton>
 
@@ -510,6 +510,7 @@
                                     HideEmptyGroups="True"
                                     Loaded="TasksLongListSelector_Loaded" />
 
+            <!--No tasks text-->
             <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -595,13 +596,15 @@
                    Height="10"
                    VerticalAlignment="Bottom" />
         <Grid Grid.Row="2">
-            <toolkit:PhoneTextBox x:Name="QuickAddTextBox"
-                                  Style="{StaticResource QuickAddTextBoxStyle}"
-                                  Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}}"
-                                  Height="65"
-                                  HintStyle="{StaticResource QuickAddTextBoxHintStyle}"
-                                  LostFocus="QuickAddTextBox_LostFocus"
-                                  GotFocus="QuickAddTextBox_GotFocus" />
+            <controls:MyTextBox Grid.Row="1"
+                                x:Name="QuickAddTextBox"
+                                Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}, StringFormat='\{0} &#8230;&#xe104;'}"
+                                GotFocus="QuickAddTextBox_GotFocus"
+                                LostFocus="QuickAddTextBox_LostFocus"
+                                FontSize="30"
+                                FontFamily="Segoe UI Symbol"
+                                Background="{StaticResource QuickAddBackgroundBrush}"
+                                Height="65" />
         </Grid>
     </Grid>
 
