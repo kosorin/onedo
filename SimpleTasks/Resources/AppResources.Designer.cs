@@ -124,6 +124,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add subtask.
+        /// </summary>
+        public static string AppBarAddSubtask {
+            get {
+                return ResourceManager.GetString("AppBarAddSubtask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cancel.
         /// </summary>
         public static string AppBarCancel {
@@ -269,6 +278,12 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
+        ///  &quot;3.0.1&quot;: {
+        ///    &quot;date&quot;: &quot;2014-07-23&quot;,
+        ///    &quot;items&quot;: [
+        ///      &quot;minor bug fix&quot;
+        ///    ]
+        ///  },
         ///  &quot;3.0.0&quot;: {
         ///    &quot;date&quot;: &quot;2014-07-22&quot;,
         ///    &quot;items&quot;: [
@@ -281,9 +296,7 @@ namespace SimpleTasks.Resources {
         ///  &quot;2.0.0&quot;: {
         ///    &quot;date&quot;: &quot;2014-06-17&quot;,
         ///    &quot;items&quot;: [
-        ///      &quot;pin a separate tile of task to the start screen&quot;,
-        ///      &quot;simple bulleted list in detail&quot;,
-        ///      &quot;quick completion o [rest of string was truncated]&quot;;.
+        ///      &quot;pin a separate tile of t [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -963,6 +976,42 @@ namespace SimpleTasks.Resources {
         public static string SettingsUnpinCompleted {
             get {
                 return ResourceManager.GetString("SettingsUnpinCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a subtask.
+        /// </summary>
+        public static string SubtaskAdd {
+            get {
+                return ResourceManager.GetString("SubtaskAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to subtasks.
+        /// </summary>
+        public static string SubtasksText {
+            get {
+                return ResourceManager.GetString("SubtasksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to subtask.
+        /// </summary>
+        public static string SubtaskText {
+            get {
+                return ResourceManager.GetString("SubtaskText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task.
+        /// </summary>
+        public static string TaskText {
+            get {
+                return ResourceManager.GetString("TaskText", resourceCulture);
             }
         }
         

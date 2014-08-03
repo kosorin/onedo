@@ -118,7 +118,15 @@ namespace SimpleTasks.Views
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            GoBack();
+            if (MainPivot.SelectedIndex != 0)
+            {
+                MainPivot.SelectedIndex = 0;
+            }
+            else
+            {
+                GoBack();
+            }
+            e.Cancel = true;
         }
 
         private void GoBack()
@@ -440,8 +448,8 @@ namespace SimpleTasks.Views
             appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
             appBarAddBulletButton.Click += AddBulletButton;
 
-            appBarAddSubtask = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.png", UriKind.Relative));
-            appBarAddSubtask.Text = AppResources.AppBarOk;
+            appBarAddSubtask = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
+            appBarAddSubtask.Text = AppResources.AppBarAddSubtask;
             appBarAddSubtask.Click += AddSubtask;
         }
 
@@ -763,9 +771,15 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Subtasks
+        private VerticalAlignment _subtasksAlignment = VerticalAlignment.Stretch;
+        public VerticalAlignment SubtasksAlignment
+        {
+            get { return _subtasksAlignment; }
+            set { SetProperty(ref _subtasksAlignment, value); }
+        }
+
         private void AddSubtask()
         {
-            this.Focus();
             if (!string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
             {
                 SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
@@ -780,13 +794,12 @@ namespace SimpleTasks.Views
         {
             if (subtask != null)
             {
-                //Subtasks.Remove(subtask);
-                TimeSpan ts = TimeSpan.FromSeconds(0.3);
-                SubtaskListBox.AnimateRearrange(ts, delegate
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
                 {
                     Subtasks.Remove(subtask);
                 });
             }
+            this.Focus();
         }
 
         private void SubtaskListBox_Delete_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -801,11 +814,13 @@ namespace SimpleTasks.Views
         private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             BuildSubtaskTextAppBar();
+            SubtasksAlignment = VerticalAlignment.Bottom;
         }
 
         private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             BuildAppBar();
+            SubtasksAlignment = VerticalAlignment.Stretch;
         }
 
         private void SubtaskTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -814,11 +829,6 @@ namespace SimpleTasks.Views
             {
                 AddSubtask();
             }
-        }
-
-        private void AddSubtaskBorder_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            SubtaskTextBox.Focus();
         }
         #endregion
 
