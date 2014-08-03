@@ -363,14 +363,38 @@
                                 <ItemsControl ItemsSource="{Binding Task.Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <ToggleButton IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                                          Content="{Binding Text}"
-                                                          Style="{StaticResource CheckboxStyle}" />
+                                            <Border x:Name="RootBorder"
+                                                    ManipulationStarted="SubtaskBorder_ManipulationStarted"
+                                                    ManipulationCompleted="SubtaskBorder_ManipulationCompleted"
+                                                    ManipulationDelta="SubtaskBorder_ManipulationDelta"
+                                                    Tap="SubtaskBorder_Tap"
+                                                    Background="Transparent">
+                                                <Border.Resources>
+                                                    <Storyboard x:Key="ResetTranslate">
+                                                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                                                                         Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </Border.Resources>
+                                                <Border.RenderTransform>
+                                                    <TranslateTransform />
+                                                </Border.RenderTransform>
+
+                                                <ToggleButton IsChecked="{Binding IsCompleted}"
+                                                              Content="{Binding Text}"
+                                                              Style="{StaticResource CheckboxStyle}"
+                                                              IsHitTestVisible="False" />
+                                            </Border>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </StackPanel>
-                            
+
                         </StackPanel>
                     </controls:MyToggleButton>
 

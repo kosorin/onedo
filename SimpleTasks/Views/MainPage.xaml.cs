@@ -359,6 +359,18 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
 
+        private void ToggleSubtaskComplete(Border border)
+        {
+            if (border != null)
+            {
+                Subtask subtask = border.DataContext as Subtask;
+                if (subtask != null)
+                {
+                    subtask.IsCompleted = !subtask.IsCompleted;
+                }
+            }
+        }
+
         private void TaskListItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Grid grid = (Grid)sender;
@@ -369,6 +381,11 @@ namespace SimpleTasks.Views
 
             App.Tracker.SendEvent("EvCategory", "EvAction", "task edit", task.GetHashCode());
             NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+        }
+
+        private void SubtaskBorder_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ToggleSubtaskComplete(sender as Border);
         }
 
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
@@ -454,6 +471,51 @@ namespace SimpleTasks.Views
                 icon.Foreground = (Brush)CurrentApp.Resources["SubtleBrush"];
             }
         }
+
+        private void SubtaskBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+        }
+
+        private void SubtaskBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            Border border = (Border)sender;
+            Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
+            if (storyboard != null)
+            {
+                storyboard.Begin();
+            }
+            border.Background = new SolidColorBrush(Colors.Transparent);
+
+            double value = e.TotalManipulation.Translation.X;
+            Debug.WriteLine("OMG {0} < {1} = {2}", value, _completeGestureTreshold, value < _completeGestureTreshold);
+            if (_canUseGestures && value < _completeGestureTreshold)
+            {
+                Debug.WriteLine("OOOOKKKK");
+                VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
+                ToggleSubtaskComplete(border);
+            }
+        }
+
+        private void SubtaskBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            Border border = (Border)sender;
+            TranslateTransform t = (TranslateTransform)border.RenderTransform;
+
+            t.X += e.DeltaManipulation.Translation.X;
+            if (t.X > 0)
+            {
+                t.X = 0;
+            }
+
+            if (t.X < _completeGestureTreshold)
+            {
+                border.Background = new SolidColorBrush((Color)CurrentApp.Resources["SubtleColor"]) { Opacity = 0.30 };
+            }
+            else
+            {
+                border.Background = new SolidColorBrush(Colors.Transparent);
+            }
+        }
         #endregion
 
         #region Context Menu
@@ -495,6 +557,5 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
         #endregion
-
     }
 }
