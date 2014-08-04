@@ -173,7 +173,7 @@
                                     <SolidColorBrush Color="{StaticResource SystemTrayBackgroundColor}" />
                                 </Border.Background>
                                 <primitives:PivotHeadersControl x:Name="HeadersListElement"
-                                                                Margin="0,5,0,10" />
+                                                                Margin="2,5,0,10" />
                             </Border>
                             <ItemsPresenter Grid.Row="1"
                                             x:Name="PivotItemPresenter"
