@@ -555,6 +555,7 @@
                                     <!--Přeskrtnutí-->
                                     <Border x:Name="Strike"
                                             BorderBrush="{StaticResource SubtleBrush}"
+                                            Opacity="0.7"
                                             Width="0"
                                             BorderThickness="0,0,0,2"
                                             VerticalAlignment="Center"
