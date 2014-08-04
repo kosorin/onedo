@@ -53,6 +53,20 @@ namespace SimpleTasks.Views
                 Load(task);
 
                 CreateAppBarItems();
+                
+                if (this.NavigationContext.QueryString.ContainsKey("Pivot"))
+                {
+                    string pivot = this.NavigationContext.QueryString["Pivot"];
+                    if (pivot == "Task")
+                    {
+                        MainPivot.SelectedIndex = 0;
+                    }
+                    else if (pivot == "Subtasks")
+                    {
+                        MainPivot.SelectedIndex = 1;
+                    }
+                }
+
                 FirstTimeLoaded();
             }
             else

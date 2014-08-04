@@ -359,11 +359,11 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
 
-        private void ToggleSubtaskComplete(Border border)
+        private void ToggleSubtaskComplete(FrameworkElement element)
         {
-            if (border != null)
+            if (element != null)
             {
-                Subtask subtask = border.DataContext as Subtask;
+                Subtask subtask = element.DataContext as Subtask;
                 if (subtask != null)
                 {
                     subtask.IsCompleted = !subtask.IsCompleted;
@@ -383,9 +383,27 @@ namespace SimpleTasks.Views
             NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
 
-        private void SubtaskBorder_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void SubtaskCheckbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            ToggleSubtaskComplete(sender as Border);
+            ToggleSubtaskComplete(sender as FrameworkElement);
+        }
+
+        private void SubtaskText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)sender;
+            while (element != null)
+            {
+                element = VisualTreeHelper.GetParent(element) as FrameworkElement;
+                if (element is ItemsControl)
+                    break;
+            }
+            ItemsControl itemsControl = element as ItemsControl;
+            TaskWrapper wrapper = (TaskWrapper)itemsControl.DataContext;
+            TaskModel task = wrapper.Task;
+            if (task == null)
+                return;
+
+            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}&Pivot=Subtasks", task.Uid), UriKind.Relative));
         }
         #endregion
 

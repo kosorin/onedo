@@ -368,7 +368,6 @@
                                                     ManipulationStarted="SubtaskBorder_ManipulationStarted"
                                                     ManipulationCompleted="SubtaskBorder_ManipulationCompleted"
                                                     ManipulationDelta="SubtaskBorder_ManipulationDelta"
-                                                    Tap="SubtaskBorder_Tap"
                                                     Background="Transparent">
                                                 <Border.Resources>
                                                     <Storyboard x:Key="ResetTranslate">
@@ -386,10 +385,26 @@
                                                     <TranslateTransform />
                                                 </Border.RenderTransform>
 
-                                                <ToggleButton IsChecked="{Binding IsCompleted}"
-                                                              Content="{Binding Text}"
-                                                              Style="{StaticResource CheckboxStyle}"
-                                                              IsHitTestVisible="False" />
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Background="Transparent"
+                                                            Width="40"
+                                                            Height="40"
+                                                            Tap="SubtaskCheckbox_Tap" />
+
+                                                    <Border Grid.Column="1"
+                                                            Background="Transparent"
+                                                            Tap="SubtaskText_Tap" />
+                                                    <ToggleButton x:Name="Checkbox"
+                                                                  Grid.ColumnSpan="2"
+                                                                  IsChecked="{Binding IsCompleted}"
+                                                                  Content="{Binding Text}"
+                                                                  Style="{StaticResource CheckboxStyle}"
+                                                                  IsHitTestVisible="False" />
+                                                </Grid>
                                             </Border>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
