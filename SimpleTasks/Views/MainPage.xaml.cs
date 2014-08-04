@@ -22,6 +22,7 @@ using Microsoft.Devices;
 using SimpleTasks.Controls;
 using Microsoft.Phone.Tasks;
 using System.Globalization;
+using System.Collections.ObjectModel;
 
 namespace SimpleTasks.Views
 {
@@ -273,40 +274,39 @@ namespace SimpleTasks.Views
 
             App.Tasks.Add(new TaskModel()
             {
-                Title = "Buy milk",
-                Completed = DateTime.Now
-            });
-            App.Tasks.Add(new TaskModel()
-            {
-                Title = "Call Chuck",
-                DueDate = DateTimeExtensions.Today.AddHours(13).AddMinutes(00),
-                Reminder = TimeSpan.FromHours(4),
-                Priority = TaskPriority.High
-            });
-            App.Tasks.Add(new TaskModel()
-            {
-                Title = "Walk the dog",
-                DueDate = DateTimeExtensions.Today.AddHours(18).AddMinutes(45)
+                Title = "Grocery list",
+                DueDate = DateTimeExtensions.Tomorrow.AddHours(10).AddMinutes(30),
+                Subtasks = new ObservableCollection<Subtask>
+                { 
+                    new Subtask("milk"), 
+                    new Subtask("apples", true),
+                    new Subtask("potatoes"),
+                }
             });
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Math project",
-                DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30)
+                DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
+                Reminder = TimeSpan.FromDays(1),
+                Priority = TaskPriority.High
+            });
+            App.Tasks.Add(new TaskModel()
+            {
+                Title = "Call Chuck",
+                Completed = DateTime.Now
             });
 
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "cs")
             {
-                App.Tasks.Tasks[0].Title = "Koupit mléko";
-                App.Tasks.Tasks[1].Title = "Zavolat Honzovi";
-                App.Tasks.Tasks[2].Title = "Vyvenčit psa";
-                App.Tasks.Tasks[3].Title = "Projekt do matematiky";
+                App.Tasks.Tasks[0].Title = "Seznam potravin";
+                App.Tasks.Tasks[1].Title = "Projekt do matematiky";
+                App.Tasks.Tasks[2].Title = "Zavolat Honzovi";
             }
             else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
             {
-                App.Tasks.Tasks[0].Title = "Kúpiť mlieko";
-                App.Tasks.Tasks[1].Title = "Zavolať Danovi";
-                App.Tasks.Tasks[2].Title = "Vyvenčiť psa";
-                App.Tasks.Tasks[3].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[0].Title = "Zoznam potravín";
+                App.Tasks.Tasks[1].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[2].Title = "Zavolať Danovi";
             }
         }
 #endif
@@ -359,6 +359,18 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
 
+        private void ToggleSubtaskComplete(Border border)
+        {
+            if (border != null)
+            {
+                Subtask subtask = border.DataContext as Subtask;
+                if (subtask != null)
+                {
+                    subtask.IsCompleted = !subtask.IsCompleted;
+                }
+            }
+        }
+
         private void TaskListItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Grid grid = (Grid)sender;
@@ -369,6 +381,11 @@ namespace SimpleTasks.Views
 
             App.Tracker.SendEvent("EvCategory", "EvAction", "task edit", task.GetHashCode());
             NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+        }
+
+        private void SubtaskBorder_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ToggleSubtaskComplete(sender as Border);
         }
 
         private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
@@ -407,13 +424,14 @@ namespace SimpleTasks.Views
 
         private bool _canUseGestures = true;
 
-        private void RootBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
         }
 
-        private void RootBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void InfoGrid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            Border border = (Border)sender;
+            Grid infoGrid = (Grid)sender;
+            Border border = (Border)infoGrid.FindName("RootBorder");
             Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
             if (storyboard != null)
             {
@@ -429,9 +447,10 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void RootBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-            Border border = (Border)sender;
+            Grid infoGrid = (Grid)sender;
+            Border border = (Border)infoGrid.FindName("RootBorder");
             ContentControl icon = (ContentControl)border.FindName("CompleteGestureIcon");
             TranslateTransform t = (TranslateTransform)border.RenderTransform;
 
@@ -450,6 +469,51 @@ namespace SimpleTasks.Views
             {
                 border.Background = null;
                 icon.Foreground = (Brush)CurrentApp.Resources["SubtleBrush"];
+            }
+        }
+
+        private void SubtaskBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+        }
+
+        private void SubtaskBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            Border border = (Border)sender;
+            Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
+            if (storyboard != null)
+            {
+                storyboard.Begin();
+            }
+            border.Background = new SolidColorBrush(Colors.Transparent);
+
+            double value = e.TotalManipulation.Translation.X;
+            Debug.WriteLine("OMG {0} < {1} = {2}", value, _completeGestureTreshold, value < _completeGestureTreshold);
+            if (_canUseGestures && value < _completeGestureTreshold)
+            {
+                Debug.WriteLine("OOOOKKKK");
+                VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
+                ToggleSubtaskComplete(border);
+            }
+        }
+
+        private void SubtaskBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            Border border = (Border)sender;
+            TranslateTransform t = (TranslateTransform)border.RenderTransform;
+
+            t.X += e.DeltaManipulation.Translation.X;
+            if (t.X > 0)
+            {
+                t.X = 0;
+            }
+
+            if (t.X < _completeGestureTreshold)
+            {
+                border.Background = new SolidColorBrush((Color)CurrentApp.Resources["SubtleColor"]) { Opacity = 0.30 };
+            }
+            else
+            {
+                border.Background = new SolidColorBrush(Colors.Transparent);
             }
         }
         #endregion
@@ -493,6 +557,5 @@ namespace SimpleTasks.Views
             App.Tasks.Update(task);
         }
         #endregion
-
     }
 }

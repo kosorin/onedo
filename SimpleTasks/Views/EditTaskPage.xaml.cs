@@ -7,6 +7,7 @@ using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -49,10 +50,9 @@ namespace SimpleTasks.Views
                 {
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
-                SetTaskData(task);
+                Load(task);
 
                 CreateAppBarItems();
-
                 FirstTimeLoaded();
             }
             else
@@ -81,50 +81,6 @@ namespace SimpleTasks.Views
             }
 
             BuildAppBar();
-        }
-
-        private void SetTaskData(TaskModel task)
-        {
-            Original = task;
-            IsNew = (Original == null);
-
-            DateTime? defaultDate = App.Settings.Tasks.DefaultDate;
-            DateTime defaultTime = App.Settings.Tasks.DefaultTime;
-            if (IsNew)
-            {
-                Original = new TaskModel();
-                IsComplete = false;
-
-                // datum & čas
-                IsSetDueDate = (defaultDate != null);
-                DueDate = defaultDate ?? DateTime.Today;
-                DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
-
-                // připomenutí
-                IsSetReminder = false;
-                Reminder = TimeSpan.Zero;
-            }
-            else
-            {
-                IsComplete = task.IsComplete;
-
-                // text
-                Title = task.Title;
-                Detail = task.Detail;
-                Priority = task.Priority;
-
-                // datum & čas
-                IsSetDueDate = (task.DueDate != null);
-                DueDate = task.DueDate ?? (defaultDate ?? DateTime.Today);
-                if (task.DueDate == null)
-                {
-                    DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
-                }
-
-                // připomenutí
-                IsSetReminder = (task.Reminder != null);
-                Reminder = task.Reminder ?? TimeSpan.Zero;
-            }
         }
 
         private void FirstTimeLoaded()
@@ -162,7 +118,15 @@ namespace SimpleTasks.Views
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            GoBack();
+            if (MainPivot.SelectedIndex != 0)
+            {
+                MainPivot.SelectedIndex = 0;
+            }
+            else
+            {
+                GoBack();
+            }
+            e.Cancel = true;
         }
 
         private void GoBack()
@@ -175,6 +139,11 @@ namespace SimpleTasks.Views
             {
                 NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
             }
+        }
+
+        private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BuildAppBar();
         }
         #endregion
 
@@ -191,6 +160,13 @@ namespace SimpleTasks.Views
         {
             get { return _detail; }
             set { SetProperty(ref _detail, value); }
+        }
+
+        private ObservableCollection<Subtask> _subtasks = new ObservableCollection<Subtask>();
+        public ObservableCollection<Subtask> Subtasks
+        {
+            get { return _subtasks; }
+            set { SetProperty(ref _subtasks, value); }
         }
 
         private TaskPriority _priority = TaskPriority.Normal;
@@ -259,6 +235,64 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Task methods
+        private void Load(TaskModel task)
+        {
+            Original = task;
+            IsNew = (Original == null);
+
+            DateTime? defaultDate = App.Settings.Tasks.DefaultDate;
+            DateTime defaultTime = App.Settings.Tasks.DefaultTime;
+            if (IsNew)
+            {
+                Original = new TaskModel();
+                IsComplete = false;
+
+                // datum & čas
+                IsSetDueDate = (defaultDate != null);
+                DueDate = defaultDate ?? DateTime.Today;
+                DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+
+                // připomenutí
+                IsSetReminder = false;
+                Reminder = TimeSpan.Zero;
+            }
+            else
+            {
+                IsComplete = task.IsComplete;
+
+                // text
+                Title = task.Title;
+                Detail = task.Detail;
+
+                // podúkoly
+                foreach (Subtask subtask in task.Subtasks)
+                {
+                    Subtasks.Add(new Subtask { Text = subtask.Text, IsCompleted = subtask.IsCompleted });
+                }
+
+                // priorita
+                Priority = task.Priority;
+
+                // datum & čas
+                IsSetDueDate = (task.DueDate != null);
+                DueDate = task.DueDate ?? (defaultDate ?? DateTime.Today);
+                if (task.DueDate == null)
+                {
+                    DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+                }
+
+                // připomenutí
+                IsSetReminder = (task.Reminder != null);
+                Reminder = task.Reminder ?? TimeSpan.Zero;
+            }
+
+            //Subtasks.Add(new Subtask("mléko"));
+            //Subtasks.Add(new Subtask("rohlíky rohlíky rohlíky rohlíky rohlíky rohlíky"));
+            //Subtasks.Add(new Subtask("máslo"));
+            //Subtasks.Add(new Subtask("test"));
+            //Subtasks.Add(new Subtask("čokoláda"));
+        }
+
         private bool CanSave()
         {
             if (string.IsNullOrWhiteSpace(TitleTextBox.Text))
@@ -281,6 +315,9 @@ namespace SimpleTasks.Views
 
             // Priority
             Original.Priority = Priority;
+
+            // Subtasks
+            Original.Subtasks = Subtasks;
 
             // Due Date
             if (IsSetDueDate)
@@ -380,6 +417,10 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarAddBulletButton;
 
+        private ApplicationBarIconButton appBarAddSubtaskButton;
+
+        private ApplicationBarIconButton appBarCompleteAllSubtasksButton;
+
         private void CreateAppBarItems()
         {
             appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
@@ -413,9 +454,29 @@ namespace SimpleTasks.Views
             appBarAddBulletButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.add.below.png", UriKind.Relative));
             appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
             appBarAddBulletButton.Click += AddBulletButton;
+
+            appBarAddSubtaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
+            appBarAddSubtaskButton.Text = AppResources.AppBarAddSubtask;
+            appBarAddSubtaskButton.Click += AddSubtask;
+
+            appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.check.png", UriKind.Relative));
+            appBarCompleteAllSubtasksButton.Text = AppResources.AppBarCompleteAllSubtasks;
+            appBarCompleteAllSubtasksButton.Click += CompleteAllSubtasks;
         }
 
         private void BuildAppBar()
+        {
+            if (MainPivot.SelectedIndex == 0)
+            {
+                BuildTaskAppBar();
+            }
+            else if (MainPivot.SelectedIndex == 1)
+            {
+                BuildSubtasksAppBar();
+            }
+        }
+
+        private void BuildTaskAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
@@ -464,6 +525,15 @@ namespace SimpleTasks.Views
             // Ikony
             ApplicationBar.Buttons.Add(appBarAddBulletButton);
             ApplicationBar.Buttons.Add(appBarOkButton);
+        }
+
+        private void BuildSubtasksAppBar()
+        {
+            ApplicationBar = new ApplicationBar();
+
+            // Ikony
+            ApplicationBar.Buttons.Add(appBarAddSubtaskButton);
+            ApplicationBar.Buttons.Add(appBarCompleteAllSubtasksButton);
         }
         #endregion
 
@@ -577,6 +647,26 @@ namespace SimpleTasks.Views
                 }
             };
             messageBox.Show();
+        }
+
+        private void AddSubtask(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
+            {
+                SubtaskTextBox.Focus();
+            }
+            else
+            {
+                AddSubtask();
+            }
+        }
+
+        private void CompleteAllSubtasks(object sender, EventArgs e)
+        {
+            foreach (Subtask subtask in Subtasks)
+            {
+                subtask.IsCompleted = true;
+            }
         }
         #endregion
 
@@ -716,6 +806,66 @@ namespace SimpleTasks.Views
         private void ReminderCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             IsSetReminder = false;
+        }
+        #endregion
+
+        #region Subtasks
+        private VerticalAlignment _subtasksAlignment = VerticalAlignment.Stretch;
+        public VerticalAlignment SubtasksAlignment
+        {
+            get { return _subtasksAlignment; }
+            set { SetProperty(ref _subtasksAlignment, value); }
+        }
+
+        private void AddSubtask()
+        {
+            if (!string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
+            {
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
+                {
+                    Subtasks.Add(new Subtask(SubtaskTextBox.Text));
+                    SubtaskTextBox.Text = "";
+                });
+            }
+        }
+
+        private void DeleteSubtask(Subtask subtask)
+        {
+            if (subtask != null)
+            {
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
+                {
+                    Subtasks.Remove(subtask);
+                });
+            }
+            this.Focus();
+        }
+
+        private void SubtaskListBox_Delete_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ContentControl cc = sender as ContentControl;
+            if (cc != null)
+            {
+                DeleteSubtask(cc.DataContext as Subtask);
+            }
+        }
+
+        private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SubtasksAlignment = VerticalAlignment.Bottom;
+        }
+
+        private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SubtasksAlignment = VerticalAlignment.Stretch;
+        }
+
+        private void SubtaskTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddSubtask();
+            }
         }
         #endregion
     }

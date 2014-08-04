@@ -90,9 +90,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -201,6 +198,7 @@
     <Content Include="Assets\AppBar\appbar.close.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />
     <Content Include="Assets\AppBar\appbar.list.add.below.png" />
+    <Content Include="Assets\AppBar\appbar.list.check.png" />
     <Content Include="Assets\AppBar\appbar.pin.png" />
     <Content Include="Assets\AppBar\appbar.pin.remove.png" />
     <Content Include="Assets\AppBar\appbar.save.png" />
@@ -339,6 +337,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ReorderListBox">
+      <HintPath>..\packages\ReorderListBox.1.2.0.0\lib\wp80\ReorderListBox.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
     </Reference>
@@ -370,13 +371,26 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+    <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
+      <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <XapFilenameWithoutExt>$(XapFilename.Replace('.xap',''))</XapFilenameWithoutExt>
+      <OutputXapFilename>$(XapFilenameWithoutExt)_$(Configuration)_%(MyAssemblyIdentities.Version).xap</OutputXapFilename>
+    </PropertyGroup>
+    <PropertyGroup Label="MultilingualAppToolkit">
+      <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
+    </PropertyGroup>
+    <Message Text="Removing all files matching with '$(XapFilenameWithoutExt)_*.xap'" />
+    <ItemGroup>
+      <OldXapFiles Include="$(OutputPath)\$(XapFilenameWithoutExt)_*.xap" />
+    </ItemGroup>
+    <Delete Files="@(OldXapFiles)" />
+    <Copy SourceFiles="$(OutputPath)\$(XapFilename)" DestinationFiles="$(OutputPath)\$(OutputXapFilename)" />
   </Target>
-  -->
   <ProjectExtensions />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />

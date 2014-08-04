@@ -353,6 +353,30 @@
           <source>{0} months</source>
           <target state="signed-off">{0} měsíce</target>
         </trans-unit>
+        <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
+          <source>add subtask</source>
+          <target state="new">add subtask</target>
+        </trans-unit>
+        <trans-unit id="Resx/TaskText" translate="yes" xml:space="preserve">
+          <source>task</source>
+          <target state="new">task</target>
+        </trans-unit>
+        <trans-unit id="Resx/AppBarCompleteAllSubtasks" translate="yes" xml:space="preserve">
+          <source>complete all subtasks</source>
+          <target state="new">complete all subtasks</target>
+        </trans-unit>
+        <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
+          <source>subtask</source>
+          <target state="new">subtask</target>
+        </trans-unit>
+        <trans-unit id="Resx/SubtasksText" translate="yes" xml:space="preserve">
+          <source>subtasks</source>
+          <target state="new">subtasks</target>
+        </trans-unit>
+        <trans-unit id="Resx/SubtaskAdd" translate="yes" xml:space="preserve">
+          <source>Add a subtask</source>
+          <target state="new">Add a subtask</target>
+        </trans-unit>
         <trans-unit id="Resx/Months1" translate="yes" xml:space="preserve">
           <source>{0} month</source>
           <target state="signed-off">{0} měsíc</target>
