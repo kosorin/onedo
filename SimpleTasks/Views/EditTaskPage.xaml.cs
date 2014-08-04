@@ -821,7 +821,7 @@ namespace SimpleTasks.Views
         {
             if (!string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
             {
-                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
                 {
                     Subtasks.Add(new Subtask(SubtaskTextBox.Text));
                     SubtaskTextBox.Text = "";
@@ -833,7 +833,7 @@ namespace SimpleTasks.Views
         {
             if (subtask != null)
             {
-                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.3), delegate
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
                 {
                     Subtasks.Remove(subtask);
                 });
