@@ -359,7 +359,8 @@
                             </Grid>
 
                             <!--Podúkoly-->
-                            <StackPanel x:Name="SubtasksStackPanel">
+                            <StackPanel x:Name="SubtasksStackPanel"
+                                        Margin="8,-10,0,10">
                                 <ItemsControl ItemsSource="{Binding Task.Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
