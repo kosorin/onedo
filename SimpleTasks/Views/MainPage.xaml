@@ -359,7 +359,8 @@
                             </Grid>
 
                             <!--Podúkoly-->
-                            <StackPanel x:Name="SubtasksStackPanel">
+                            <StackPanel x:Name="SubtasksStackPanel"
+                                        Margin="8,-10,0,10">
                                 <ItemsControl ItemsSource="{Binding Task.Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -531,8 +532,48 @@
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
-                                    HideEmptyGroups="True"
-                                    Loaded="TasksLongListSelector_Loaded" />
+                                    HideEmptyGroups="True">
+                <phone:LongListSelector.Template>
+                    <ControlTemplate TargetType="phone:LongListSelector">
+                        <Grid Background="{TemplateBinding Background}"
+                              d:DesignWidth="480"
+                              d:DesignHeight="800">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ScrollStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="00:00:00.5" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Scrolling">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="VerticalScrollBar" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="NotScrolling" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <ViewportControl x:Name="ViewportControl"
+                                                 HorizontalContentAlignment="Stretch"
+                                                 VerticalAlignment="Top"
+                                                 Padding="0,0,0,10" />
+                                <ScrollBar x:Name="VerticalScrollBar"
+                                           Grid.Column="1"
+                                           Margin="-10,0,0,0"
+                                           Opacity="0"
+                                           Orientation="Vertical" />
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+
+                </phone:LongListSelector.Template>
+            </phone:LongListSelector>
 
             <!--No tasks text-->
             <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"

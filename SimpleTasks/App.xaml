@@ -445,13 +445,11 @@
             <!--Region Checkbox-->
             <Style x:Key="CheckboxStyle"
                    TargetType="ToggleButton">
-                <Setter Property="Background"
-                        Value="Transparent" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
                             <Grid Height="55"
-                                  Background="{TemplateBinding Background}">
+                                  Background="{x:Null}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
                                         <VisualState x:Name="Unchecked">
@@ -546,14 +544,18 @@
 
                                 <!--Text-->
                                 <Grid Margin="50,0,5,0"
+                                      IsHitTestVisible="False"
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Left">
                                     <TextBlock x:Name="Text"
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
                                                TextTrimming="WordEllipsis" />
+                                    
+                                    <!--Přeskrtnutí-->
                                     <Border x:Name="Strike"
-                                            BorderBrush="{StaticResource SlightBrush}"
+                                            BorderBrush="{StaticResource SubtleBrush}"
+                                            Opacity="0.7"
                                             Width="0"
                                             BorderThickness="0,0,0,2"
                                             VerticalAlignment="Center"

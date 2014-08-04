@@ -387,15 +387,6 @@ namespace SimpleTasks.Views
         {
             ToggleSubtaskComplete(sender as Border);
         }
-
-        private void TasksLongListSelector_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Změnění margin scrollbaru. 
-            // Při větším počtu úkolů se automaticky měnila šířka celého LLS.
-            ScrollBar scrollBar = ((FrameworkElement)VisualTreeHelper.GetChild(TasksLongListSelector, 0)).FindName("VerticalScrollBar") as ScrollBar;
-            if (scrollBar != null)
-                scrollBar.Margin = new Thickness(-10, 0, 0, 0);
-        }
         #endregion
 
         #region QuickAddTextBox
