@@ -552,8 +552,10 @@
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
                                                TextTrimming="WordEllipsis" />
+                                    
+                                    <!--Přeskrtnutí-->
                                     <Border x:Name="Strike"
-                                            BorderBrush="{StaticResource SlightBrush}"
+                                            BorderBrush="{StaticResource SubtleBrush}"
                                             Width="0"
                                             BorderThickness="0,0,0,2"
                                             VerticalAlignment="Center"
