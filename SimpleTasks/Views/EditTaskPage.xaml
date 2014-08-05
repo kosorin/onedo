@@ -664,14 +664,28 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-                                        <!--Checkbox-->
-                                        <ToggleButton Grid.Column="0"
-                                                      x:Name="MondayButton"
-                                                      IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                                      Content="{Binding Text}"
-                                                      Margin="10,0,0,0"
-                                                      Style="{StaticResource CheckboxStyle}" />
+                                        <!--Checkbox & Text-->
+                                        <Grid Height="50"
+                                              Margin="5,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
 
+                                            <!--Checkbox-->
+                                            <ToggleButton x:Name="Checkbox"
+                                                          IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                                                          Style="{StaticResource CheckboxStyle}"/>
+
+                                            <!--Text-->
+                                            <controls:MyToggleButton Grid.Column="1"
+                                                                     IsChecked="{Binding IsCompleted}"
+                                                                     Content="{Binding Text}"
+                                                                     Style="{StaticResource CheckboxTextStyle}"
+                                                                     IsHitTestVisible="False"
+                                                                     Margin="5,0,0,0" />
+                                        </Grid>
+                                        
                                         <!--Smazání-->
                                         <ContentControl Grid.Column="1"
                                                         Style="{StaticResource DeleteIconStyle}"

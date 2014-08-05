@@ -445,11 +445,16 @@
             <!--Region Checkbox-->
             <Style x:Key="CheckboxStyle"
                    TargetType="ToggleButton">
+                <Setter Property="Width"
+                        Value="40" />
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="Background"
+                        Value="{x:Null}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
-                            <Grid Height="55"
-                                  Background="{x:Null}">
+                            <Grid Background="{TemplateBinding Background}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
                                         <VisualState x:Name="Unchecked">
@@ -466,18 +471,6 @@
                                                                  To="1"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
                                                                  Storyboard.TargetName="CompleteButtonRectangle" />
-                                                <DoubleAnimation Duration="0:0:0.25"
-                                                                 To="1"
-                                                                 Storyboard.TargetProperty="Opacity"
-                                                                 Storyboard.TargetName="Text" />
-                                                <DoubleAnimation Duration="0:0:0.35"
-                                                                 To="0"
-                                                                 Storyboard.TargetProperty="Width"
-                                                                 Storyboard.TargetName="Strike">
-                                                    <DoubleAnimation.EasingFunction>
-                                                        <CircleEase EasingMode="EaseOut" />
-                                                    </DoubleAnimation.EasingFunction>
-                                                </DoubleAnimation>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Checked">
@@ -494,18 +487,6 @@
                                                                  To="0.6"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
                                                                  Storyboard.TargetName="CompleteButtonRectangle" />
-                                                <DoubleAnimation Duration="0:0:0.25"
-                                                                 To="0.5"
-                                                                 Storyboard.TargetProperty="Opacity"
-                                                                 Storyboard.TargetName="Text" />
-                                                <DoubleAnimation Duration="0:0:0.35"
-                                                                 To="{Binding ActualWidth, ElementName=Text}"
-                                                                 Storyboard.TargetProperty="Width"
-                                                                 Storyboard.TargetName="Strike">
-                                                    <DoubleAnimation.EasingFunction>
-                                                        <CircleEase EasingMode="EaseOut" />
-                                                    </DoubleAnimation.EasingFunction>
-                                                </DoubleAnimation>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Indeterminate" />
@@ -514,8 +495,8 @@
 
                                 <!--Checkbox-->
                                 <Border x:Name="CompleteButtonRectangle"
-                                        Width="40"
-                                        Height="40"
+                                        Width="{TemplateBinding Width}"
+                                        Height="{TemplateBinding Height}"
                                         BorderThickness="1"
                                         HorizontalAlignment="Left">
                                     <Border.Background>
@@ -542,16 +523,67 @@
                                     </ContentControl>
                                 </Border>
 
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CheckboxTextStyle"
+                   TargetType="controls:MyToggleButton">
+                <Setter Property="Background"
+                        Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="controls:MyToggleButton">
+                            <Grid Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualState x:Name="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.25"
+                                                                 To="1"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Storyboard.TargetName="Text" />
+                                                <DoubleAnimation Duration="0:0:0.35"
+                                                                 To="0"
+                                                                 Storyboard.TargetProperty="Width"
+                                                                 Storyboard.TargetName="Strike">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.25"
+                                                                 To="0.5"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Storyboard.TargetName="Text" />
+                                                <DoubleAnimation Duration="0:0:0.35"
+                                                                 To="{Binding ActualWidth, ElementName=Text}"
+                                                                 Storyboard.TargetProperty="Width"
+                                                                 Storyboard.TargetName="Strike">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Indeterminate" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
                                 <!--Text-->
-                                <Grid Margin="50,0,5,0"
-                                      IsHitTestVisible="False"
+                                <Grid IsHitTestVisible="False"
                                       VerticalAlignment="Center"
                                       HorizontalAlignment="Left">
                                     <TextBlock x:Name="Text"
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
                                                TextTrimming="WordEllipsis" />
-                                    
+
                                     <!--Přeskrtnutí-->
                                     <Border x:Name="Strike"
                                             BorderBrush="{StaticResource SubtleBrush}"

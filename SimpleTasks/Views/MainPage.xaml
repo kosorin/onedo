@@ -360,7 +360,7 @@
 
                             <!--Podúkoly-->
                             <StackPanel x:Name="SubtasksStackPanel"
-                                        Margin="8,-10,0,10">
+                                        Margin="3,-10,0,10">
                                 <ItemsControl ItemsSource="{Binding Task.Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -385,25 +385,30 @@
                                                     <TranslateTransform />
                                                 </Border.RenderTransform>
 
-                                                <Grid>
+                                                <Grid Height="50">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="40" />
+                                                        <ColumnDefinition Width="50" />
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
+
                                                     <Border Background="Transparent"
-                                                            Width="40"
-                                                            Height="40"
                                                             Tap="SubtaskCheckbox_Tap" />
 
-                                                    <Border Grid.Column="1"
-                                                            Background="Transparent"
+                                                    <Border Background="Transparent"
+                                                            Grid.Column="1"
                                                             Tap="SubtaskText_Tap" />
+
                                                     <ToggleButton x:Name="Checkbox"
-                                                                  Grid.ColumnSpan="2"
                                                                   IsChecked="{Binding IsCompleted}"
-                                                                  Content="{Binding Text}"
                                                                   Style="{StaticResource CheckboxStyle}"
                                                                   IsHitTestVisible="False" />
+
+                                                    <controls:MyToggleButton Grid.Column="1"
+                                                                             IsChecked="{Binding IsCompleted}"
+                                                                             Content="{Binding Text}"
+                                                                             Style="{StaticResource CheckboxTextStyle}"
+                                                                             IsHitTestVisible="False"
+                                                                             Margin="5,0,0,0" />
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
