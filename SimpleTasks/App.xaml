@@ -501,7 +501,7 @@
                                         HorizontalAlignment="Left">
                                     <Border.Background>
                                         <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
-                                                         Opacity="0.3" />
+                                                         Opacity="0.27" />
                                     </Border.Background>
                                     <Border.BorderBrush>
                                         <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"
