@@ -140,7 +140,7 @@
 
                                     <!--Vysoká/nízká priorita-->
                                     <Grid x:Name="TaskPriorityGrid">
-                                        
+
                                         <!--Vysoká priorita-->
                                         <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
                                             <ContentControl Style="{StaticResource HighPriorityIconStyle}"
@@ -508,15 +508,46 @@
                 </phone:LongListSelector.Template>
             </phone:LongListSelector>
 
-            <!--No tasks text-->
-            <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Style="{StaticResource PhoneTextLargeStyle}"
-                       Foreground="{StaticResource PhoneSubtleBrush}"
-                       Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
-                       TextWrapping="Wrap"
-                       TextAlignment="Center" />
+            <!--No tasks-->
+            <StackPanel Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,20">
+
+                <!--Ikona-->
+                <ContentControl Style="{StaticResource CheckIconStyle}"
+                                Foreground="{StaticResource SubtleBrush}"
+                                Opacity="0.8"
+                                RenderTransformOrigin="0.5,0.5"
+                                Margin="0,0,0,30">
+                    <ContentControl.RenderTransform>
+                        <CompositeTransform ScaleX="3"
+                                            ScaleY="3" />
+                    </ContentControl.RenderTransform>
+                </ContentControl>
+
+                <!--Hlavní text-->
+                <TextBlock Text="{Binding LocalizedResources.NoTasks, Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource SlightTextStyle}"
+                           FontSize="32"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center" />
+
+                <!--Vedlejší text - nápověda-->
+                <TextBlock Style="{StaticResource SubtleTextStyle}"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"
+                           TextAlignment="Center">
+                    <Run Text="{Binding LocalizedResources.NoTasksHelpStart, Source={StaticResource LocalizedStrings}}" />
+                    <Run Text="  &#xe17e;&#xe109;  "
+                         FontSize="20"
+                         FontFamily="Segoe UI Symbol" />
+                    <Run Text="{Binding LocalizedResources.NoTasksHelpEnd, Source={StaticResource LocalizedStrings}}" />
+                </TextBlock>
+
+            </StackPanel>
         </Grid>
 
         <!--Overlay úkolů-->

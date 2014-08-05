@@ -17,9 +17,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/NoTasks" xml:space="preserve">
-          <source>All tasks are completed.</source>
-          <target state="signed-off" state-qualifier="mt-suggestion">Všetky úlohy sú dokončené.</target>
-        </trans-unit>
+          <source>No Tasks</source>
+          <target state="signed-off">Žiadne úlohy</target></trans-unit>
         <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
           <source>tomorrow</source>
           <target state="signed-off" state-qualifier="tm-suggestion">zajtra</target>
@@ -362,6 +361,16 @@
         <trans-unit id="Resx/AppBarCompleteAllSubtasks" translate="yes" xml:space="preserve">
           <source>complete all</source>
           <target state="signed-off">dokončiť všetky</target></trans-unit>
+        <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
+          <source>Tap</source>
+          <target state="signed-off">Pre pridanie úlohy ťuknite na</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
+          </trans-unit>
+        <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
+          <source>or text box bellow to add a task.</source>
+          <target state="signed-off">alebo textové políčko nižšie.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
+          </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
           <source>subtask</source>
           <target state="signed-off">podúloha</target>

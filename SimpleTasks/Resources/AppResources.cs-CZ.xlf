@@ -17,9 +17,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/NoTasks" xml:space="preserve">
-          <source>All tasks are completed.</source>
-          <target state="signed-off">Všechny úkoly byly dokončeny.</target>
-        </trans-unit>
+          <source>No Tasks</source>
+          <target state="signed-off">Žádné úkoly</target></trans-unit>
         <trans-unit translate="yes" id="Resx/DateTomorrow" xml:space="preserve">
           <source>tomorrow</source>
           <target state="signed-off">zítra</target>
@@ -362,17 +361,27 @@
         <trans-unit id="Resx/AppBarCompleteAllSubtasks" translate="yes" xml:space="preserve">
           <source>complete all</source>
           <target state="signed-off">dokončit všechny</target></trans-unit>
+        <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
+          <source>Tap</source>
+          <target state="signed-off">Klepněte na</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
+          </trans-unit>
+        <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
+          <source>or text box bellow to add a task.</source>
+          <target state="signed-off">nebo textové pole níže pro přidání úkolu.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
+          </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
           <source>subtask</source>
-          <target state="translated">podúkol</target>
+          <target state="signed-off">podúkol</target>
         </trans-unit>
         <trans-unit id="Resx/SubtasksText" translate="yes" xml:space="preserve">
           <source>subtasks</source>
-          <target state="translated">podúkoly</target>
+          <target state="signed-off">podúkoly</target>
         </trans-unit>
         <trans-unit id="Resx/SubtaskAdd" translate="yes" xml:space="preserve">
           <source>Add a subtask</source>
-          <target state="translated">Přidat podúkol</target>
+          <target state="signed-off">Přidat podúkol</target>
         </trans-unit>
         <trans-unit id="Resx/Months1" translate="yes" xml:space="preserve">
           <source>{0} month</source>

@@ -719,11 +719,29 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All tasks are completed..
+        ///   Looks up a localized string similar to No Tasks.
         /// </summary>
         public static string NoTasks {
             get {
                 return ResourceManager.GetString("NoTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or text box bellow to add a task..
+        /// </summary>
+        public static string NoTasksHelpEnd {
+            get {
+                return ResourceManager.GetString("NoTasksHelpEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap.
+        /// </summary>
+        public static string NoTasksHelpStart {
+            get {
+                return ResourceManager.GetString("NoTasksHelpStart", resourceCulture);
             }
         }
         

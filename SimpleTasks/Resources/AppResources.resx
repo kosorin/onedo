@@ -170,7 +170,7 @@
     <value>tomorrow</value>
   </data>
   <data name="NoTasks" xml:space="preserve">
-    <value>All tasks are completed.</value>
+    <value>No Tasks</value>
   </data>
   <data name="PriorityHigh" xml:space="preserve">
     <value>high priority</value>
@@ -509,5 +509,13 @@
   </data>
   <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
     <value>complete all</value>
+  </data>
+  <data name="NoTasksHelpEnd" xml:space="preserve">
+    <value>or text box bellow to add a task.</value>
+    <comment>Tap {plus_icon} or text box bellow to add a task.</comment>
+  </data>
+  <data name="NoTasksHelpStart" xml:space="preserve">
+    <value>Tap</value>
+    <comment>Tap {plus_icon} or text box bellow to add a task.</comment>
   </data>
 </root>
