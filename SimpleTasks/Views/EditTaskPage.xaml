@@ -665,8 +665,8 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!--Checkbox & Text-->
-                                        <Grid Height="50"
-                                              Margin="5,0,0,0">
+                                        <Grid Height="55"
+                                              Margin="5,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="50" />
                                                 <ColumnDefinition Width="*" />
