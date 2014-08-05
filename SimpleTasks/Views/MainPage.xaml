@@ -55,33 +55,10 @@
                     </Storyboard>
                 </Border.Resources>
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="54" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
-                    <!--Checkbox-->
-                    <Button>
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border Tap="CompleteButton_Tap"
-                                        Background="Transparent"
-                                        VerticalAlignment="Top"
-                                        Margin="12,15,2,0"
-                                        Width="40"
-                                        Height="40">
-                                    <ToggleButton x:Name="Checkbox"
-                                                  IsChecked="{Binding Task.IsComplete}"
-                                                  Style="{StaticResource CheckboxStyle}"
-                                                  IsHitTestVisible="False" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
 
                     <!--Info + Podúkoly-->
-                    <controls:MyToggleButton Grid.Column="1"
-                                             IsChecked="{Binding Task.IsActive}">
+                    <controls:MyToggleButton IsChecked="{Binding Task.IsActive}"
+                                             Margin="60,0,0,0">
                         <StackPanel>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CheckStates">
@@ -295,7 +272,7 @@
                                                             </ControlTemplate>
                                                         </Button.Template>
                                                     </Button>
-                                                    
+
 
                                                     <Border Background="Transparent"
                                                             Grid.Column="1"
@@ -316,6 +293,26 @@
 
                         </StackPanel>
                     </controls:MyToggleButton>
+
+                    <!--Checkbox-->
+                    <Button>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Tap="CompleteButton_Tap"
+                                        Background="Transparent"
+                                        VerticalAlignment="Top"
+                                        Margin="10,10,0,0"
+                                        Width="50"
+                                        Height="50"
+                                        HorizontalAlignment="Left">
+                                    <ToggleButton x:Name="Checkbox"
+                                                  IsChecked="{Binding Task.IsComplete}"
+                                                  Style="{StaticResource CheckboxStyle}"
+                                                  IsHitTestVisible="False" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                     <!--Gesture Complete icon-->
                     <ContentControl x:Name="CompleteGestureIcon"
