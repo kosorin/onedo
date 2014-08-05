@@ -764,7 +764,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quick add task.
+        ///   Looks up a localized string similar to Add a new task.
         /// </summary>
         public static string QuickAddLabel {
             get {

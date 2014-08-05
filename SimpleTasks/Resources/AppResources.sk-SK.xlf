@@ -326,9 +326,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for days</note>
           </trans-unit>
         <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
-          <source>Quick add task</source>
-          <target state="signed-off">Rýchle pridanie úlohy</target>
-        </trans-unit>
+          <source>Add a new task</source>
+          <target state="signed-off">Pridať novú úlohu</target></trans-unit>
         <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
           <source>before due date</source>
           <target state="signed-off">pred termínom</target>

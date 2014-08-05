@@ -421,7 +421,7 @@
     <comment>1 letter abbreviation for minutes</comment>
   </data>
   <data name="QuickAddLabel" xml:space="preserve">
-    <value>Quick add task</value>
+    <value>Add a new task</value>
   </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>before due date</value>
