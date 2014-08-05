@@ -21,7 +21,7 @@
                            FontSize="32"
                            Opacity="0.75"
                            VerticalAlignment="Bottom"
-                           Margin="10,0,0,15">
+                           Margin="15,0,0,15">
                     <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
                     <Run Text="{Binding Count, StringFormat='( {0} )'}"
                          Foreground="{StaticResource SlightBrush}"
