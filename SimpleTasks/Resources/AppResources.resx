@@ -493,7 +493,7 @@
     <value>{0} months</value>
   </data>
   <data name="AppBarAddSubtask" xml:space="preserve">
-    <value>add subtask</value>
+    <value>add</value>
   </data>
   <data name="SubtaskAdd" xml:space="preserve">
     <value>Add a subtask</value>
@@ -508,6 +508,6 @@
     <value>task</value>
   </data>
   <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
-    <value>complete all subtasks</value>
+    <value>complete all</value>
   </data>
 </root>

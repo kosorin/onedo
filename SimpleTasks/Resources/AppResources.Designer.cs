@@ -124,7 +124,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add subtask.
+        ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AppBarAddSubtask {
             get {
@@ -151,7 +151,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to complete all subtasks.
+        ///   Looks up a localized string similar to complete all.
         /// </summary>
         public static string AppBarCompleteAllSubtasks {
             get {
