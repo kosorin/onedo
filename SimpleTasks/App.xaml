@@ -549,7 +549,7 @@
                                                                  Storyboard.TargetName="Text" />
                                                 <DoubleAnimation Duration="0:0:0.35"
                                                                  To="0"
-                                                                 Storyboard.TargetProperty="Width"
+                                                                 Storyboard.TargetProperty="ScaleX"
                                                                  Storyboard.TargetName="Strike">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CircleEase EasingMode="EaseOut" />
@@ -564,8 +564,8 @@
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Storyboard.TargetName="Text" />
                                                 <DoubleAnimation Duration="0:0:0.35"
-                                                                 To="{Binding ActualWidth, ElementName=Text}"
-                                                                 Storyboard.TargetProperty="Width"
+                                                                 To="1"
+                                                                 Storyboard.TargetProperty="ScaleX"
                                                                  Storyboard.TargetName="Strike">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CircleEase EasingMode="EaseOut" />
@@ -588,14 +588,16 @@
                                                TextTrimming="WordEllipsis" />
 
                                     <!--Přeskrtnutí-->
-                                    <Border x:Name="Strike"
-                                            BorderBrush="{StaticResource SubtleBrush}"
+                                    <Border BorderBrush="{StaticResource SubtleBrush}"
                                             Opacity="0.7"
-                                            Width="0"
                                             BorderThickness="0,0,0,2"
-                                            VerticalAlignment="Center"
-                                            Margin="0,5,0,0"
-                                            HorizontalAlignment="Left" />
+                                            VerticalAlignment="Center">
+                                        <Border.RenderTransform>
+                                            <CompositeTransform x:Name="Strike"
+                                                                TranslateY="4"
+                                                                ScaleX="0" />
+                                        </Border.RenderTransform>
+                                    </Border>
                                 </Grid>
                             </Grid>
                         </ControlTemplate>
