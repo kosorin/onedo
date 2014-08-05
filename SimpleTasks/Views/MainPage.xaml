@@ -64,12 +64,20 @@
                                 <VisualStateGroup x:Name="CheckStates">
                                     <VisualState x:Name="Checked">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="TaskInfoGrid"
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="1"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
                                             <DoubleAnimation Storyboard.TargetName="SubtasksStackPanel"
@@ -77,19 +85,27 @@
                                                              To="1"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                    <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Unchecked">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="TaskInfoGrid"
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="0.45"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.45"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
                                             <DoubleAnimation Storyboard.TargetName="SubtasksStackPanel"
@@ -97,7 +113,7 @@
                                                              To="0.45"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <ExponentialEase EasingMode="EaseIn" />
+                                                    <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
                                         </Storyboard>
@@ -107,8 +123,7 @@
                             </VisualStateManager.VisualStateGroups>
 
                             <!--Horní+spodní Info-->
-                            <Grid x:Name="TaskInfoGrid"
-                                  Background="Transparent"
+                            <Grid Background="Transparent"
                                   Tap="TaskListItem_Tap"
                                   ManipulationStarted="InfoGrid_ManipulationStarted"
                                   ManipulationCompleted="InfoGrid_ManipulationCompleted"
@@ -119,35 +134,38 @@
                                 </Grid.RowDefinitions>
 
                                 <!--Horní info-->
-                                <StackPanel x:Name="TaskTitleAndPriority"
-                                            Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
+                                <StackPanel Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
                                             Orientation="Horizontal"
                                             Height="70">
 
-                                    <!--Vysoká priorita-->
-                                    <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                        Foreground="{StaticResource PhoneAccentBrush}"
-                                                        Opacity="1"
-                                                        Margin="-5,0,-16,50"
-                                                        MaxHeight="0">
-                                        </ContentControl>
-                                    </Border>
+                                    <!--Vysoká/nízká priorita-->
+                                    <Grid x:Name="TaskPriorityGrid">
+                                        
+                                        <!--Vysoká priorita-->
+                                        <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <ContentControl Style="{StaticResource HighPriorityIconStyle}"
+                                                            Foreground="{StaticResource PhoneAccentBrush}"
+                                                            Opacity="1"
+                                                            Margin="-5,0,-16,50"
+                                                            MaxHeight="0">
+                                            </ContentControl>
+                                        </Border>
 
-                                    <!--Nízká priorita-->
-                                    <Border Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <ContentControl Style="{StaticResource LowPriorityIconStyle}"
-                                                        Foreground="{StaticResource SubtleBrush}"
-                                                        Opacity=".6"
-                                                        Margin="-5,0,-16,40"
-                                                        MaxHeight="0"
-                                                        RenderTransformOrigin="0.5,0.5">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.8"
-                                                                    ScaleY="0.8" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
-                                    </Border>
+                                        <!--Nízká priorita-->
+                                        <Border Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <ContentControl Style="{StaticResource LowPriorityIconStyle}"
+                                                            Foreground="{StaticResource SubtleBrush}"
+                                                            Opacity=".6"
+                                                            Margin="-5,0,-16,40"
+                                                            MaxHeight="0"
+                                                            RenderTransformOrigin="0.5,0.5">
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.8"
+                                                                        ScaleY="0.8" />
+                                                </ContentControl.RenderTransform>
+                                            </ContentControl>
+                                        </Border>
+                                    </Grid>
 
                                     <!--Název-->
                                     <controls:MyToggleButton Grid.Column="1"
