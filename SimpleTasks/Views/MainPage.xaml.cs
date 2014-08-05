@@ -496,10 +496,8 @@ namespace SimpleTasks.Views
             border.Background = new SolidColorBrush(Colors.Transparent);
 
             double value = e.TotalManipulation.Translation.X;
-            Debug.WriteLine("OMG {0} < {1} = {2}", value, _completeGestureTreshold, value < _completeGestureTreshold);
             if (_canUseGestures && value < _completeGestureTreshold)
             {
-                Debug.WriteLine("OOOOKKKK");
                 VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
                 ToggleSubtaskComplete(border);
             }

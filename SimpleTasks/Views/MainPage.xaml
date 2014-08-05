@@ -681,6 +681,7 @@
                                 Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}, StringFormat='\{0} &#8230;&#xe104;'}"
                                 GotFocus="QuickAddTextBox_GotFocus"
                                 LostFocus="QuickAddTextBox_LostFocus"
+                                BorderSize="0"
                                 FontSize="30"
                                 FontFamily="Segoe UI Symbol"
                                 Background="{StaticResource QuickAddBackgroundBrush}"

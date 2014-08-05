@@ -224,12 +224,7 @@
                                                 AcceptsReturn="True"
                                                 Mask="{StaticResource DetailMaskBrush}"
                                                 Text="{Binding Detail, Mode=TwoWay}"
-                                                Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}">
-                                <controls:MyTextBox.BorderBrush>
-                                    <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                     Opacity="0.6" />
-                                </controls:MyTextBox.BorderBrush>
-                            </controls:MyTextBox>
+                                                Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}" />
                         </StackPanel>
 
                         <!--Termín & Připomenutí-->
@@ -704,6 +699,7 @@
 
                     <!--TextBox-->
                     <controls:MyTextBox Grid.Row="1"
+                                        BorderSize="0"
                                         x:Name="SubtaskTextBox"
                                         Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, StringFormat='\{0} &#8230;&#xe104;'}"
                                         GotFocus="SubtaskTextBox_GotFocus"

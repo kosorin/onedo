@@ -236,14 +236,14 @@ namespace SimpleTasks.Controls
 
         #endregion
 
-        #region Icon
-        public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(ContentControl), typeof(MyTextBox), null);
+        #region BorderSize
+        public static readonly DependencyProperty BorderSizeProperty =
+            DependencyProperty.Register("BorderSize", typeof(double), typeof(MyTextBox), null);
 
-        public ContentControl Icon
+        public double BorderSize
         {
-            get { return base.GetValue(IconProperty) as ContentControl; }
-            set { base.SetValue(IconProperty, value); }
+            get { return (double)base.GetValue(BorderSizeProperty); }
+            set { base.SetValue(BorderSizeProperty, value); }
         }
         #endregion
 
