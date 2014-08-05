@@ -282,17 +282,24 @@
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Border Background="Transparent"
-                                                            Tap="SubtaskCheckbox_Tap" />
+                                                    <Button>
+                                                        <Button.Template>
+                                                            <ControlTemplate>
+                                                                <Border Background="Transparent"
+                                                                        Tap="SubtaskCheckbox_Tap">
+                                                                    <ToggleButton x:Name="Checkbox"
+                                                                                  IsChecked="{Binding IsCompleted}"
+                                                                                  Style="{StaticResource CheckboxStyle}"
+                                                                                  IsHitTestVisible="False" />
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Button.Template>
+                                                    </Button>
+                                                    
 
                                                     <Border Background="Transparent"
                                                             Grid.Column="1"
                                                             Tap="SubtaskText_Tap" />
-
-                                                    <ToggleButton x:Name="Checkbox"
-                                                                  IsChecked="{Binding IsCompleted}"
-                                                                  Style="{StaticResource CheckboxStyle}"
-                                                                  IsHitTestVisible="False" />
 
                                                     <controls:MyToggleButton Grid.Column="1"
                                                                              IsChecked="{Binding IsCompleted}"
@@ -574,7 +581,7 @@
         <Grid Grid.Row="2">
             <controls:MyTextBox Grid.Row="1"
                                 x:Name="QuickAddTextBox"
-                                Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}, StringFormat='\{0} &#8230;&#xe104;'}"
+                                Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}, StringFormat='\{0}&#8230;&#xe104;'}"
                                 GotFocus="QuickAddTextBox_GotFocus"
                                 LostFocus="QuickAddTextBox_LostFocus"
                                 BorderSize="0"
