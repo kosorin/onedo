@@ -715,7 +715,7 @@
                     <controls:MyTextBox Grid.Row="1"
                                         BorderSize="0"
                                         x:Name="SubtaskTextBox"
-                                        Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, StringFormat='\{0} &#8230;&#xe104;'}"
+                                        Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, StringFormat='\{0}&#8230;&#xe104;'}"
                                         GotFocus="SubtaskTextBox_GotFocus"
                                         LostFocus="SubtaskTextBox_LostFocus"
                                         KeyDown="SubtaskTextBox_KeyDown"
