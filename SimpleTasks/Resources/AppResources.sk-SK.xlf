@@ -370,6 +370,18 @@
           <source>No Subtasks</source>
           <target state="signed-off">Žiadne podúlohy</target>
         </trans-unit>
+        <trans-unit id="Resx/TasksText" translate="yes" xml:space="preserve">
+          <source>tasks</source>
+          <target state="signed-off">úlohy</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteSubtasksDetail" translate="yes" xml:space="preserve">
+          <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
+          <target state="signed-off">Pri dokončení úlohy budú jeho podúlohy automaticky označené ako dokončené.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
+          <source>Automatically complete subtasks</source>
+          <target state="signed-off">Automaticky dokončiť podúlohy</target>
+        </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>or text box bellow to add a task.</source>
           <target state="signed-off">alebo textové políčko nižšie.</target>
@@ -397,7 +409,7 @@
         </trans-unit>
         <trans-unit id="Resx/Minutes2To4" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="translated">{0} minúty</target>
+          <target state="signed-off">{0} minúty</target>
         </trans-unit>
         <trans-unit id="Resx/Minutes1" translate="yes" xml:space="preserve">
           <source>{0} minute</source>

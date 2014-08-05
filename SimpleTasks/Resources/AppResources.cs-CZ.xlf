@@ -370,6 +370,18 @@
           <source>No Subtasks</source>
           <target state="signed-off">Žádné podúkoly</target>
         </trans-unit>
+        <trans-unit id="Resx/TasksText" translate="yes" xml:space="preserve">
+          <source>tasks</source>
+          <target state="signed-off">úkoly</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteSubtasksDetail" translate="yes" xml:space="preserve">
+          <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
+          <target state="signed-off">Při dokončení úkolu budou jeho podúkoly automaticky označeny jako dokončené.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
+          <source>Automatically complete subtasks</source>
+          <target state="signed-off">Automaticky dokončit podúkoly</target>
+        </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>or text box bellow to add a task.</source>
           <target state="signed-off">nebo textové pole níže pro přidání úkolu.</target>

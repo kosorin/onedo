@@ -53,7 +53,7 @@ namespace SimpleTasks.Views
                 Load(task);
 
                 CreateAppBarItems();
-                
+
                 if (this.NavigationContext.QueryString.ContainsKey("Pivot"))
                 {
                     string pivot = this.NavigationContext.QueryString["Pivot"];
@@ -380,6 +380,13 @@ namespace SimpleTasks.Views
                 IsComplete = true;
                 Save();
 
+                if (App.Settings.Tasks.CompleteSubtasks)
+                {
+                    foreach (Subtask subtask in Original.Subtasks)
+                    {
+                        subtask.IsCompleted = true;
+                    }
+                }
                 if (App.Settings.Tiles.UnpinCompleted)
                 {
                     Unpin();

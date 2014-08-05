@@ -346,6 +346,13 @@ namespace SimpleTasks.Views
             {
                 // DOKONČENÍ
                 task.Completed = DateTime.Now;
+                if (App.Settings.Tasks.CompleteSubtasks)
+                {
+                    foreach (Subtask subtask in task.Subtasks)
+                    {
+                        subtask.IsCompleted = true;
+                    }
+                }
                 if (App.Settings.Tiles.UnpinCompleted)
                 {
                     LiveTile.Unpin(task);

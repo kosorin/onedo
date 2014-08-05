@@ -172,12 +172,12 @@ namespace SimpleTasks.Core.Models
                     if (DeleteCompleted < 0)
                     {
                         // nikdy nic nemazat
-                        return DateTime.MinValue; 
+                        return DateTime.MinValue;
                     }
                     else if (DeleteCompleted == 0)
                     {
                         // smazat všechno
-                        return DateTime.MaxValue; 
+                        return DateTime.MaxValue;
                     }
                     else
                     {
@@ -201,6 +201,16 @@ namespace SimpleTasks.Core.Models
                         14
                     };
                 }
+            }
+            #endregion
+
+            #region CompleteSubtasks
+            private bool _completeSubtasks = true;
+            [DataMember(Name = "CompleteSubtasks")]
+            public bool CompleteSubtasks
+            {
+                get { return _completeSubtasks; }
+                set { SetProperty(ref _completeSubtasks, value); }
             }
             #endregion
         }

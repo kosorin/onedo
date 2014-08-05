@@ -521,4 +521,13 @@
   <data name="NoSubtasks" xml:space="preserve">
     <value>No Subtasks</value>
   </data>
+  <data name="TasksText" xml:space="preserve">
+    <value>tasks</value>
+  </data>
+  <data name="SettingsCompleteSubtasks" xml:space="preserve">
+    <value>Automatically complete subtasks</value>
+  </data>
+  <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
+    <value>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</value>
+  </data>
 </root>
