@@ -719,6 +719,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Subtasks.
+        /// </summary>
+        public static string NoSubtasks {
+            get {
+                return ResourceManager.GetString("NoSubtasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Tasks.
         /// </summary>
         public static string NoTasks {

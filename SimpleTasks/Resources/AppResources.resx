@@ -518,4 +518,7 @@
     <value>Tap</value>
     <comment>Tap {plus_icon} or text box bellow to add a task.</comment>
   </data>
+  <data name="NoSubtasks" xml:space="preserve">
+    <value>No Subtasks</value>
+  </data>
 </root>

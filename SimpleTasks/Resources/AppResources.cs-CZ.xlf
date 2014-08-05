@@ -366,6 +366,10 @@
           <target state="signed-off">Klepněte na</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
           </trans-unit>
+        <trans-unit id="Resx/NoSubtasks" translate="yes" xml:space="preserve">
+          <source>No Subtasks</source>
+          <target state="signed-off">Žádné podúkoly</target>
+        </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>or text box bellow to add a task.</source>
           <target state="signed-off">nebo textové pole níže pro přidání úkolu.</target>
