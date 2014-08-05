@@ -23,7 +23,7 @@
                            VerticalAlignment="Bottom"
                            Margin="15,0,0,15">
                     <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
-                    <Run Text="{Binding Count, StringFormat='( {0} )'}"
+                    <Run Text="{Binding Count, StringFormat='({0})'}"
                          Foreground="{StaticResource SlightBrush}"
                          FontSize="24" />
                 </TextBlock>
