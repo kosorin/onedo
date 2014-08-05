@@ -533,6 +533,8 @@
                    TargetType="controls:MyToggleButton">
                 <Setter Property="Background"
                         Value="{x:Null}" />
+                <Setter Property="FontSize"
+                        Value="24" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="controls:MyToggleButton">
@@ -582,6 +584,7 @@
                                     <TextBlock x:Name="Text"
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
+                                               FontSize="{TemplateBinding FontSize}"
                                                TextTrimming="WordEllipsis" />
 
                                     <!--Přeskrtnutí-->

@@ -56,138 +56,28 @@
                 </Border.Resources>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="54" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <!--Check Box-->
-                    <controls:MyToggleButton Margin="12,15,2,0"
-                                             Tap="CompleteButton_Tap"
-                                             IsChecked="{Binding Task.IsComplete}">
-                        <controls:MyToggleButton.Template>
+                    <!--Checkbox-->
+                    <Button>
+                        <Button.Template>
                             <ControlTemplate>
-                                <Grid Width="40"
-                                      Height="40"
-                                      VerticalAlignment="Top">
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup x:Name="CheckStates">
-                                            <VisualStateGroup.Transitions>
-                                                <VisualTransition From="Checked"
-                                                                  To="Unchecked">
-                                                    <Storyboard>
-                                                        <DoubleAnimation Duration="0:0:0.6"
-                                                                         From="1"
-                                                                         To="0"
-                                                                         Storyboard.TargetProperty="Opacity"
-                                                                         Storyboard.TargetName="CheckTransformControl" />
-                                                        <DoubleAnimation Duration="0:0:0.6"
-                                                                         From="0.75"
-                                                                         To="2"
-                                                                         Storyboard.TargetProperty="ScaleX"
-                                                                         Storyboard.TargetName="CheckTransform">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation Duration="0:0:0.6"
-                                                                         From="0.75"
-                                                                         To="2"
-                                                                         Storyboard.TargetProperty="ScaleY"
-                                                                         Storyboard.TargetName="CheckTransform">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation Duration="0:0:0.6"
-                                                                         From="-18"
-                                                                         To="-48"
-                                                                         Storyboard.TargetProperty="TranslateX"
-                                                                         Storyboard.TargetName="CheckTransform">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation Duration="0:0:0.6"
-                                                                         From="-18"
-                                                                         To="-48"
-                                                                         Storyboard.TargetProperty="TranslateY"
-                                                                         Storyboard.TargetName="CheckTransform">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <PowerEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </VisualTransition>
-                                            </VisualStateGroup.Transitions>
-                                            <VisualState x:Name="Checked">
-                                                <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0.4"
-                                                                     To="1"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     Storyboard.TargetName="CompleteIcon" />
-                                                    <ColorAnimation Duration="0:0:0.4"
-                                                                    To="{StaticResource SlightColor}"
-                                                                    Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)"
-                                                                    Storyboard.TargetName="CompleteButtonRectangle" />
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Unchecked">
-                                                <Storyboard>
-                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
-                                                                                   Storyboard.TargetName="CompleteIcon">
-                                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0"
-                                                                                Value="0" />
-                                                    </DoubleAnimationUsingKeyFrames>
-                                                    <ColorAnimation Duration="0:0:0.4"
-                                                                    To="{StaticResource PhoneAccentColor}"
-                                                                    Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)"
-                                                                    Storyboard.TargetName="CompleteButtonRectangle" />
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Indeterminate" />
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <Rectangle x:Name="CompleteButtonRectangle">
-                                        <Rectangle.Fill>
-                                            <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                             Opacity="0.24" />
-                                        </Rectangle.Fill>
-                                        <Rectangle.Stroke>
-                                            <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                             Opacity="0.8" />
-                                        </Rectangle.Stroke>
-                                    </Rectangle>
-                                    <ContentControl x:Name="CompleteIcon"
-                                                    Style="{StaticResource CheckIconStyle}"
-                                                    Foreground="{StaticResource SubtleBrush}"
-                                                    MaxWidth="0"
-                                                    MaxHeight="0">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.75"
-                                                                ScaleY="0.75"
-                                                                TranslateY="-18"
-                                                                TranslateX="-18" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-                                    <ContentControl x:Name="CheckTransformControl"
-                                                    Style="{StaticResource CheckIconStyle}"
-                                                    Opacity="0"
-                                                    Foreground="{StaticResource SubtleBrush}"
-                                                    MaxWidth="0"
-                                                    MaxHeight="0">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform x:Name="CheckTransform"
-                                                                ScaleX="2"
-                                                                ScaleY="2"
-                                                                TranslateX="-50"
-                                                                TranslateY="-50" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-                                </Grid>
+                                <Border Tap="CompleteButton_Tap"
+                                        Background="Transparent"
+                                        VerticalAlignment="Top"
+                                        Margin="12,15,2,0"
+                                        Width="40"
+                                        Height="40">
+                                    <ToggleButton x:Name="Checkbox"
+                                                  IsChecked="{Binding Task.IsComplete}"
+                                                  Style="{StaticResource CheckboxStyle}"
+                                                  IsHitTestVisible="False" />
+                                </Border>
                             </ControlTemplate>
-                        </controls:MyToggleButton.Template>
-
-                    </controls:MyToggleButton>
+                        </Button.Template>
+                    </Button>
 
                     <!--Info + Podúkoly-->
                     <controls:MyToggleButton Grid.Column="1"
@@ -283,12 +173,13 @@
                                     </Border>
 
                                     <!--Název-->
-                                    <TextBlock Text="{Binding Task.Title}"
-                                               Style="{StaticResource NormalTextStyle}"
-                                               FontSize="32"
-                                               TextWrapping="Wrap"
-                                               Margin="8,12,0,12" />
-
+                                    <controls:MyToggleButton Grid.Column="1"
+                                                             IsChecked="{Binding Task.IsComplete}"
+                                                             Content="{Binding Task.Title}"
+                                                             Style="{StaticResource CheckboxTextStyle}"
+                                                             IsHitTestVisible="False"
+                                                             FontSize="32"
+                                                             Margin="8,0,0,4" />
                                 </StackPanel>
 
                                 <!--Spodní info-->

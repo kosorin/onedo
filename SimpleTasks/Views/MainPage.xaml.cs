@@ -331,7 +331,7 @@ namespace SimpleTasks.Views
         {
             this.Focus();
 
-            ToggleComplete((sender as MyToggleButton).DataContext as TaskWrapper);
+            ToggleComplete((sender as FrameworkElement).DataContext as TaskWrapper);
         }
 
         private void ToggleComplete(TaskWrapper wrapper)
