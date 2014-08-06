@@ -211,19 +211,36 @@
                                             <!--Připomenutí-->
                                             <StackPanel Orientation="Horizontal"
                                                         Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                                Foreground="{StaticResource PhoneAccentBrush}"
-                                                                Margin="6,0,-18,26"
-                                                                MaxHeight="0">
-                                                    <ContentControl.RenderTransform>
-                                                        <CompositeTransform ScaleX="0.55"
-                                                                            ScaleY="0.55" />
-                                                    </ContentControl.RenderTransform>
-                                                </ContentControl>
+
+                                                <!--Ikona-->
+                                                <Grid>
+                                                    <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                                    Foreground="{Binding ReminderIconBrush, FallbackValue={StaticResource SubtleBrush}}"
+                                                                    Margin="6,0,-18,26"
+                                                                    MaxHeight="0">
+                                                        <ContentControl.RenderTransform>
+                                                            <CompositeTransform ScaleX="0.55"
+                                                                                ScaleY="0.55" />
+                                                        </ContentControl.RenderTransform>
+                                                    </ContentControl>
+                                                    <ContentControl Style="{StaticResource BoldCloseIconStyle}"
+                                                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                                                    Visibility="{Binding ReminderNotScheduledVisibility, FallbackValue=Visible}"
+                                                                    Height="0"
+                                                                    Width="0">
+                                                        <ContentControl.RenderTransform>
+                                                            <CompositeTransform ScaleX="0.4"
+                                                                                ScaleY="0.4" />
+                                                        </ContentControl.RenderTransform>
+                                                    </ContentControl>
+                                                </Grid>
+
+                                                <!--Text-->
                                                 <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
                                                            Style="{StaticResource SlightTextStyle}"
                                                            FontSize="22"
                                                            Margin="0,1,8,0" />
+
                                             </StackPanel>
 
                                         </StackPanel>

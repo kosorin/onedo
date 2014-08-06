@@ -272,6 +272,48 @@ namespace SimpleTasks.Views
         {
             App.Tasks.DeleteAll();
 
+            // == Zátěžový test ==
+            //Random r = new Random();
+            //for (int i = 0; i < 500; i++)
+            //{
+            //    Debug.WriteLine(i);
+            //    TaskModel task = new TaskModel();
+            //    task.Title = System.IO.Path.GetRandomFileName();
+            //    if (r.Next(2) == 1)
+            //    {
+            //        task.Detail = "";
+            //        for (int j = 0; j < r.Next(10); j++)
+            //        {
+            //            task.Detail += System.IO.Path.GetRandomFileName();
+            //        }
+            //    }
+            //    if (r.Next(4) == 1)
+            //    {
+            //        task.DueDate = new DateTime(2014, 7, 25).AddDays(r.Next(100)).AddHours(r.Next(24)).AddMinutes(r.Next(60));
+            //    }
+            //    if (task.HasDueDate && r.Next(3) == 1)
+            //    {
+            //        task.Reminder = TimeSpan.FromMinutes(r.Next(36000));
+            //    }
+            //    if (r.Next(8) == 1)
+            //    {
+            //        for (int j = 0; j < r.Next(10); j++)
+            //        {
+            //            task.Subtasks.Add(new Subtask(System.IO.Path.GetRandomFileName(), r.Next(3) == 1));
+            //        }
+            //    }
+            //    int priority = r.Next(3);
+            //    switch (priority)
+            //    {
+            //    case 0: task.Priority = TaskPriority.Low; break;
+            //    case 1: task.Priority = TaskPriority.High; break;
+            //    default:
+            //    case 2: task.Priority = TaskPriority.Normal; break;
+            //    }
+            //    App.Tasks.Add(task);
+            //}
+            //return;
+
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Grocery list",
@@ -299,15 +341,22 @@ namespace SimpleTasks.Views
             if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "cs")
             {
                 App.Tasks.Tasks[0].Title = "Seznam potravin";
+                App.Tasks.Tasks[0].Subtasks[0].Text = "mléko";
+                App.Tasks.Tasks[0].Subtasks[1].Text = "jablka";
+                App.Tasks.Tasks[0].Subtasks[2].Text = "brambory";
                 App.Tasks.Tasks[1].Title = "Projekt do matematiky";
                 App.Tasks.Tasks[2].Title = "Zavolat Honzovi";
             }
             else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
             {
                 App.Tasks.Tasks[0].Title = "Zoznam potravín";
+                App.Tasks.Tasks[0].Subtasks[0].Text = "mlieko";
+                App.Tasks.Tasks[0].Subtasks[1].Text = "jablká";
+                App.Tasks.Tasks[0].Subtasks[2].Text = "zemiaky";
                 App.Tasks.Tasks[1].Title = "Projekt z matematiky";
                 App.Tasks.Tasks[2].Title = "Zavolať Danovi";
             }
+
         }
 #endif
 
