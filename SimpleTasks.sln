@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTasks.Core", "SimpleTasks.Core\SimpleTasks.Core.csproj", "{B40DF63D-03CC-4078-A3C7-E18422DA4005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveTile", "LiveTile\LiveTile.csproj", "{5985804F-83EB-4DD7-A92F-8758C93B1FCF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B40DF63D-03CC-4078-A3C7-E18422DA4005} = {B40DF63D-03CC-4078-A3C7-E18422DA4005}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
