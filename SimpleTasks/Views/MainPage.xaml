@@ -134,8 +134,7 @@
                                 </Grid.RowDefinitions>
 
                                 <!--Horní info-->
-                                <StackPanel Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
-                                            Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                             Height="70">
 
                                     <!--Vysoká/nízká priorita-->
