@@ -7,6 +7,14 @@
                     xmlns:controls="clr-namespace:SimpleTasks.Controls"
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
 
+    <Style TargetType="controls:ToggleControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--Region MyTextBox-->
     <SolidColorBrush x:Key="MyTextBoxCaretBrush"
                      Color="{StaticResource PhoneAccentColor}" />

@@ -189,7 +189,7 @@
                 <ScrollViewer Margin="24,0,24,0">
                     <StackPanel>
                         <Border Height="40" />
-                        
+
                         <!--Text-->
                         <StackPanel Margin="0,0,0,20">
                             <!--Název-->
@@ -680,12 +680,12 @@
                                                           Style="{StaticResource CheckboxStyle}" />
 
                                             <!--Text-->
-                                            <controls:MyToggleButton Grid.Column="1"
-                                                                     IsChecked="{Binding IsCompleted}"
-                                                                     Content="{Binding Text}"
-                                                                     Style="{StaticResource CheckboxTextStyle}"
-                                                                     IsHitTestVisible="False"
-                                                                     Margin="5,0,0,0" />
+                                            <controls:ToggleControl Grid.Column="1"
+                                                                    IsChecked="{Binding IsCompleted}"
+                                                                    Content="{Binding Text}"
+                                                                    Style="{StaticResource CheckboxTextStyle}"
+                                                                    IsHitTestVisible="False"
+                                                                    Margin="5,0,0,0" />
                                         </Grid>
 
                                         <!--Smazání-->

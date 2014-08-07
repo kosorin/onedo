@@ -105,6 +105,7 @@
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TaskListMenuItem.cs" />
+    <Compile Include="Controls\ToggleControl.cs" />
     <Compile Include="Conventers\SettingsConverter.cs" />
     <Compile Include="Conventers\StringFormatConverter.cs" />
     <Compile Include="Conventers\ToUpperConverter.cs" />
@@ -371,7 +372,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

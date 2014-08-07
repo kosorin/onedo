@@ -551,14 +551,14 @@
             </Style>
 
             <Style x:Key="CheckboxTextStyle"
-                   TargetType="controls:MyToggleButton">
+                   TargetType="controls:ToggleControl">
                 <Setter Property="Background"
                         Value="{x:Null}" />
                 <Setter Property="FontSize"
                         Value="24" />
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="controls:MyToggleButton">
+                        <ControlTemplate TargetType="controls:ToggleControl">
                             <Grid Background="{TemplateBinding Background}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
