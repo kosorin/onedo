@@ -150,10 +150,10 @@
                      SelectionChanged="MainPivot_SelectionChanged">
             <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <Border>
+                    <Border Margin="5,0,0,0">
                         <TextBlock Style="{StaticResource NormalTextStyle}"
                                    FontSize="42"
-                                   Text="{Binding Converter={StaticResource ToUpperConverter}}" />
+                                   Text="{Binding}" />
                     </Border>
                 </DataTemplate>
             </phone:Pivot.HeaderTemplate>
@@ -173,7 +173,7 @@
                                     <SolidColorBrush Color="{StaticResource SystemTrayBackgroundColor}" />
                                 </Border.Background>
                                 <primitives:PivotHeadersControl x:Name="HeadersListElement"
-                                                                Margin="2,5,0,10" />
+                                                                Margin="0,5,0,10" />
                             </Border>
                             <ItemsPresenter Grid.Row="1"
                                             x:Name="PivotItemPresenter"
@@ -674,7 +674,7 @@
                                             <!--Checkbox-->
                                             <ToggleButton x:Name="Checkbox"
                                                           IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                                          Style="{StaticResource CheckboxStyle}"/>
+                                                          Style="{StaticResource CheckboxStyle}" />
 
                                             <!--Text-->
                                             <controls:MyToggleButton Grid.Column="1"
@@ -684,7 +684,7 @@
                                                                      IsHitTestVisible="False"
                                                                      Margin="5,0,0,0" />
                                         </Grid>
-                                        
+
                                         <!--Smazání-->
                                         <ContentControl Grid.Column="1"
                                                         Style="{StaticResource DeleteIconStyle}"
