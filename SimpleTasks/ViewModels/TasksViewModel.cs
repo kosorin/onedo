@@ -54,7 +54,7 @@ namespace SimpleTasks.ViewModels
             Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
-                Reminder reminder = ReminderHelper.Get(task);
+                Reminder reminder = task.GetSystemReminder();
                 Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null ? reminder.Name : "<false>");
             }
 #endif
@@ -74,32 +74,33 @@ namespace SimpleTasks.ViewModels
             Tasks.Add(task);
             if (task.IsActive && task.HasReminder)
             {
-                ReminderHelper.Add(task);
+                task.SetSystemReminder();
             }
         }
 
         public void Update(TaskModel task)
         {
-            Reminder reminder = ReminderHelper.Get(task);
+            Reminder reminder = task.GetSystemReminder();
             if (reminder != null)
             {
                 if (task.IsComplete || !task.HasReminder || !reminder.IsScheduled || reminder.BeginTime != task.ReminderDate)
                 {
-                    ReminderHelper.Remove(task);
+                    task.RemoveSystemReminder();
                     reminder = null;
                 }
             }
 
             if (reminder == null && task.IsActive && task.HasReminder)
             {
-                ReminderHelper.Add(task);
+                task.SetSystemReminder();
             }
         }
 
         public void Delete(TaskModel task)
         {
             Tasks.Remove(task);
-            ReminderHelper.Remove(task);
+
+            task.RemoveSystemReminder();
             LiveTile.Unpin(task);
         }
 
@@ -127,9 +128,13 @@ namespace SimpleTasks.ViewModels
 
         public void DeleteAll()
         {
+            foreach (Reminder r in ScheduledActionService.GetActions<Reminder>())
+            {
+                ScheduledActionService.Remove(r.Name);
+            }
+
             foreach (TaskModel task in Tasks)
             {
-                ReminderHelper.Remove(task);
                 LiveTile.Unpin(task);
             }
             Tasks.Clear();

@@ -96,13 +96,7 @@ namespace SimpleTasks.Core.Models
 
         public bool IsOverdue
         {
-            get
-            {
-                if (DueDate == null)
-                    return false;
-                else
-                    return (DueDate < DateTime.Now);
-            }
+            get { return DueDate != null && DueDate.Value.Date < DateTime.Today; }
         }
         #endregion
 
@@ -124,9 +118,9 @@ namespace SimpleTasks.Core.Models
         {
             get
             {
-                if (DueDate == null || Reminder == null)
+                if (!HasReminder)
                 {
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
                 }
                 return DueDate.Value - Reminder.Value;
             }

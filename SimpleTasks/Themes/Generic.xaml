@@ -334,4 +334,87 @@
         </Setter>
     </Style>
     <!--EndRegion-->
+
+    <!--Region ListPicker-->
+    <Style TargetType="controls:ListPicker">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ListPicker">
+                    <StackPanel>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="PickerStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         BeginTime="0:0:0.15"
+                                                         Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Highlighted">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsPresenter"
+                                                                       Storyboard.TargetProperty="Margin"
+                                                                       Duration="0">
+                                            <DiscreteObjectKeyFrame Value="0,0,0,0"
+                                                                    KeyTime="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         BeginTime="0:0:0.15"
+                                                         Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Background="{StaticResource BasePickerPageBackgroundBrush}">
+                            <Border x:Name="Border"
+                                    MinHeight="60">
+                                <UserControl x:Name="UserControl">
+                                    <StackPanel>
+                                        <Canvas x:Name="ItemsPresenterHost">
+                                            <ItemsPresenter x:Name="ItemsPresenter"
+                                                            Margin="0,4,0,0">
+                                                <ItemsPresenter.RenderTransform>
+                                                    <TranslateTransform x:Name="ItemsPresenterTranslateTransform" />
+                                                </ItemsPresenter.RenderTransform>
+                                            </ItemsPresenter>
+                                        </Canvas>
+                                    </StackPanel>
+                                </UserControl>
+                            </Border>
+                            <TextBlock x:Name="Arrow"
+                                       Text="&#xe019;"
+                                       Style="{StaticResource ButtonTextStyle}"
+                                       Foreground="{StaticResource SlightBrush}"
+                                       FontFamily="Segoe UI Symbol"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Top"
+                                       Margin="0,7,14,0"
+                                       IsHitTestVisible="False" />
+                        </Grid>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Height="60"
+                            Margin="-8,-10"
+                            Padding="10,0">
+                        <Border.Background>
+                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
+                                             Opacity="{Binding Opacity}" />
+                        </Border.Background>
+                        <TextBlock Text="{Binding Label}"
+                                   Style="{StaticResource ButtonTextStyle}" />
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--EndRegion-->
 </ResourceDictionary>

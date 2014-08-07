@@ -20,36 +20,26 @@ namespace SimpleTasks.Views
 {
     public partial class ReminderPickerPage : BasePickerPage
     {
+        private readonly TimeSpan _defaultReminder = TimeSpan.Zero;
+        private TimeSpan _reminder;
+
         public ReminderPickerPage()
         {
-            initReminder = TimeSpan.Zero;
-            if (PhoneApplicationService.Current.State.ContainsKey("Reminder"))
-            {
-                initReminder = (PhoneApplicationService.Current.State["Reminder"] as TimeSpan?) ?? initReminder;
-                PhoneApplicationService.Current.State.Remove("Reminder");
-            }
+            _reminder = RetrieveAndConfigure<TimeSpan?>("Reminder") ?? _defaultReminder;
 
             InitializeComponent();
-
-            SetTimeSpan(initReminder);
+            SetTimeSpan(_reminder);
             DataContext = this;
         }
 
-        private TimeSpan initReminder;
-
         protected override void Save()
         {
-            PhoneApplicationService.Current.State["Reminder"] = GetTimeSpan();
+            SetValueToSave(GetTimeSpan());
         }
 
-        private void QuickButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetTimeSpan(TimeSpan.Parse((string)((Button)sender).Tag));
-        }
-
+        #region Private methods
         private TimeSpan GetTimeSpan()
         {
-            Debug.WriteLine("LT: {0}", LengthType.Label);
             switch (LengthTypes.FindIndex(t => t == LengthType))
             {
             case 2: return new TimeSpan(ConvertBackDays(ReminderSlider.RoundValue), 0, 0, 0);
@@ -123,6 +113,7 @@ namespace SimpleTasks.Views
             ReminderSlider.SetMaximum(LengthTypes[type].Maximum);
             OnPropertyChanged("ReminderValue");
         }
+        #endregion
 
         public TimeSpan ReminderValue
         {
@@ -134,18 +125,19 @@ namespace SimpleTasks.Views
             }
         }
 
-        private ReminderLengthType _lengthType = null;
-        public ReminderLengthType LengthType
-        {
-            get { return _lengthType; }
-            set { SetProperty(ref _lengthType, value); }
-        }
-
         private Visibility _beforeTextVisibility = Visibility.Collapsed;
         public Visibility BeforeTextVisibility
         {
             get { return _beforeTextVisibility; }
             set { SetProperty(ref _beforeTextVisibility, value); }
+        }
+
+        #region LengthType
+        private ReminderLengthType _lengthType = null;
+        public ReminderLengthType LengthType
+        {
+            get { return _lengthType; }
+            set { SetProperty(ref _lengthType, value); }
         }
 
         private List<ReminderLengthType> _lengthTypes = null;
@@ -166,6 +158,24 @@ namespace SimpleTasks.Views
             }
         }
 
+        public class ReminderLengthType : SimpleTasks.Controls.ListPickerItem
+        {
+            private int _maximum = 0;
+            public int Maximum
+            {
+                get { return _maximum; }
+                set { SetProperty(ref _maximum, value); }
+            }
+
+            public ReminderLengthType(int maximum, string label, double opacity) :
+                base(label, opacity)
+            {
+                Maximum = maximum;
+            }
+        }
+        #endregion
+
+        #region Event handlers
         private void LengthTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ReminderLengthType type = TypePicker.SelectedItem as ReminderLengthType;
@@ -180,14 +190,10 @@ namespace SimpleTasks.Views
             OnPropertyChanged("ReminderValue");
         }
 
-        private void HoursSlider_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+        private void QuickButton_Click(object sender, RoutedEventArgs e)
         {
-            OnPropertyChanged("ReminderValue");
+            SetTimeSpan(TimeSpan.Parse((string)((Button)sender).Tag));
         }
-
-        private void DaysSlider_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
-        {
-            OnPropertyChanged("ReminderValue");
-        }
+        #endregion
     }
 }

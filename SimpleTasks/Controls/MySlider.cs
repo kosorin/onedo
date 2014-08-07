@@ -144,14 +144,12 @@ namespace SimpleTasks.Controls
 
         public void SetMaximum(double maximum)
         {
-            Debug.WriteLine("OLD {0}; {1}", AnimationValue, Maximum);
-            double ratio =  maximum / Maximum;
+            double ratio = maximum / Maximum;
 
             Maximum = maximum;
             AnimationValue = ratio * AnimationValue;
             Value = ratio * Value;
-            Debug.WriteLine("    {0}; {1}", AnimationValue, Maximum);
-            //UpdateThumbPosition(Value);
+
             MySlider_ManipulationStarted(null, null);
             MySlider_ManipulationCompleted(null, null);
         }
