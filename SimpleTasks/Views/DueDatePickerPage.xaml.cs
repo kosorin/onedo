@@ -47,22 +47,24 @@ namespace SimpleTasks.Views
 
     public partial class DueDatePickerPage : BasePickerPage
     {
+        private readonly DateTime _defaultDate = DateTime.Today;
+        private DateTime _date;
+
         public DueDatePickerPage()
         {
+            _date = RetrieveAndConfigure<DateTime?>("DueDate") ?? _defaultDate;
+            if (_date == DateTime.MaxValue)
+            {
+                _date = _defaultDate;
+            }
+
             InitializeComponent();
             DataContext = this;
 
-            initDate = DateTime.Today; 
-            if (PhoneApplicationService.Current.State.ContainsKey("DueDate"))
-            {
-                initDate = (PhoneApplicationService.Current.State["DueDate"] as DateTime?) ?? initDate;
-                PhoneApplicationService.Current.State.Remove("DueDate");
-            }
-
             Calendar.ColorConverter = new CalendarColorConverter();
 
-            Calendar.MinimumDate = (initDate < DateTime.Today ? initDate : DateTime.Today).AddMonths(-1);
-            Calendar.MaximumDate = (initDate > DateTime.Today ? initDate : DateTime.Today).AddYears(2);
+            Calendar.MinimumDate = (_date < DateTime.Today ? _date : DateTime.Today).AddMonths(-1);
+            Calendar.MaximumDate = (_date > DateTime.Today ? _date : DateTime.Today).AddYears(2);
 
             Calendar.Sunday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[0].ToUpper();
             Calendar.Monday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[1].ToUpper();
@@ -73,20 +75,18 @@ namespace SimpleTasks.Views
             Calendar.Saturday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[6].ToUpper();
             Calendar.StartingDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
-            SelectDate(initDate);
+            SelectDate(_date);
         }
-
-        private DateTime initDate;
 
         protected override void Save()
         {
-            PhoneApplicationService.Current.State["DueDate"] = new DateTime(
+            SetValueToSave(new DateTime(
                 Calendar.SelectedDate.Year,
                 Calendar.SelectedDate.Month,
                 Calendar.SelectedDate.Day,
-                initDate.Hour,
-                initDate.Minute,
-                0);
+                _date.Hour,
+                _date.Minute,
+                0));
         }
 
         private void Today_Click(object sender, RoutedEventArgs e)
@@ -98,6 +98,7 @@ namespace SimpleTasks.Views
         {
             SelectDate(DateTimeExtensions.Tomorrow);
         }
+
         private void ThisWeek_Click(object sender, RoutedEventArgs e)
         {
             SelectDate(DateTimeExtensions.LastDayOfActualWeek);

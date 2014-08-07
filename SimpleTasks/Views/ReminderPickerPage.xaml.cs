@@ -20,26 +20,21 @@ namespace SimpleTasks.Views
 {
     public partial class ReminderPickerPage : BasePickerPage
     {
+        private readonly TimeSpan _defaultReminder = TimeSpan.Zero;
+        private TimeSpan _reminder;
+
         public ReminderPickerPage()
         {
-            initReminder = TimeSpan.Zero;
-            if (PhoneApplicationService.Current.State.ContainsKey("Reminder"))
-            {
-                initReminder = (PhoneApplicationService.Current.State["Reminder"] as TimeSpan?) ?? initReminder;
-                PhoneApplicationService.Current.State.Remove("Reminder");
-            }
+            _reminder = RetrieveAndConfigure<TimeSpan?>("Reminder") ?? _defaultReminder;
 
             InitializeComponent();
-
-            SetTimeSpan(initReminder);
+            SetTimeSpan(_reminder);
             DataContext = this;
         }
 
-        private TimeSpan initReminder;
-
         protected override void Save()
         {
-            PhoneApplicationService.Current.State["Reminder"] = GetTimeSpan();
+            SetValueToSave(GetTimeSpan());
         }
 
         #region Private methods

@@ -65,21 +65,15 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
 
-            if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
+            if (BasePickerPage.CanRetrieve("DueTime"))
             {
-                App.Settings.Tasks.DefaultTime = (DateTime)PhoneApplicationService.Current.State["DueTime"];
-                PhoneApplicationService.Current.State.Remove("DueTime");
+                App.Settings.Tasks.DefaultTime = BasePickerPage.Retrieve<DateTime>("DueTime");
             }
         }
 
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-            if (phoneApplicationFrame != null)
-            {
-                PhoneApplicationService.Current.State["DueTime"] = App.Settings.Tasks.DefaultTime;
-                phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
-            }
+            BasePickerPage.Navigate("DueTime", App.Settings.Tasks.DefaultTime);
         }
     }
 }

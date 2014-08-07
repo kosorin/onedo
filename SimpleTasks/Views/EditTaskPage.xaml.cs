@@ -72,24 +72,21 @@ namespace SimpleTasks.Views
             else
             {
                 // Příchod ze stránky výběru datumu.
-                if (PhoneApplicationService.Current.State.ContainsKey("DueDate"))
+                if (BasePickerPage.CanRetrieve("DueDate"))
                 {
-                    DueDate = (DateTime)PhoneApplicationService.Current.State["DueDate"];
-                    PhoneApplicationService.Current.State.Remove("DueDate");
+                    DueDate = BasePickerPage.Retrieve<DateTime>("DueDate");
                 }
 
                 // Příchod ze stránky výběru času.
-                if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
+                if (BasePickerPage.CanRetrieve("DueTime"))
                 {
-                    DueDate = (DateTime)PhoneApplicationService.Current.State["DueTime"];
-                    PhoneApplicationService.Current.State.Remove("DueTime");
+                    DueDate = BasePickerPage.Retrieve<DateTime>("DueTime");
                 }
 
                 // Příchod ze stránky výběru připomenutí.
-                if (PhoneApplicationService.Current.State.ContainsKey("Reminder"))
+                if (BasePickerPage.CanRetrieve("Reminder"))
                 {
-                    Reminder = (TimeSpan)PhoneApplicationService.Current.State["Reminder"];
-                    PhoneApplicationService.Current.State.Remove("Reminder");
+                    Reminder = BasePickerPage.Retrieve<TimeSpan>("Reminder");
                     IsSetReminder = true;
                 }
             }
@@ -773,12 +770,7 @@ namespace SimpleTasks.Views
         {
             if (IsSetDueDate)
             {
-                var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-                if (phoneApplicationFrame != null)
-                {
-                    PhoneApplicationService.Current.State["DueDate"] = DueDate;
-                    phoneApplicationFrame.Navigate(new Uri("/Views/DueDatePickerPage.xaml", UriKind.Relative));
-                }
+                BasePickerPage.Navigate("DueDate", DueDate);
             }
             else
             {
@@ -796,6 +788,7 @@ namespace SimpleTasks.Views
                 PhoneApplicationService.Current.State["DueTime"] = DueDate;
                 phoneApplicationFrame.Navigate(new Uri("/Views/DueTimePickerPage.xaml", UriKind.Relative));
             }
+            BasePickerPage.Navigate("DueTime", DueDate);
         }
         #endregion
 
@@ -816,12 +809,7 @@ namespace SimpleTasks.Views
 
         private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var phoneApplicationFrame = Application.Current.RootVisual as PhoneApplicationFrame;
-            if (phoneApplicationFrame != null)
-            {
-                PhoneApplicationService.Current.State["Reminder"] = Reminder;
-                phoneApplicationFrame.Navigate(new Uri("/Views/ReminderPickerPage.xaml", UriKind.Relative));
-            }
+            BasePickerPage.Navigate("Reminder", Reminder);
         }
 
         private void ReminderCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)

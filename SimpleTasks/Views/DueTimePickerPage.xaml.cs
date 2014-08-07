@@ -15,32 +15,27 @@ namespace SimpleTasks.Views
 {
     public partial class DueTimePickerPage : BasePickerPage
     {
+        private readonly DateTime _defaultTime = DateTime.Now;
+        private DateTime _time;
+
         public DueTimePickerPage()
         {
+            _time = RetrieveAndConfigure<DateTime?>("DueTime") ?? _defaultTime;
+
             InitializeComponent();
-
-            initTime = DateTime.Now; // vychozi cas podle nastaveni
-            if (PhoneApplicationService.Current.State.ContainsKey("DueTime"))
-            {
-                initTime = (PhoneApplicationService.Current.State["DueTime"] as DateTime?) ?? initTime;
-                PhoneApplicationService.Current.State.Remove("DueTime");
-            }
-
-            TimePicker.SetTime(initTime);
+            TimePicker.SetTime(_time);
             DataContext = this;
         }
 
-        private DateTime initTime;
-
         protected override void Save()
         {
-            PhoneApplicationService.Current.State["DueTime"] = new DateTime(
-                initTime.Year,
-                initTime.Month,
-                initTime.Day,
+            SetValueToSave(new DateTime(
+                _time.Year,
+                _time.Month,
+                _time.Day,
                 TimePicker.Hours,
                 TimePicker.Minutes,
-                0);
+                0));
         }
 
         private void Morning_Click(object sender, RoutedEventArgs e)
