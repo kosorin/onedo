@@ -340,7 +340,7 @@ namespace SimpleTasks.Views
                 Original.DueDate = null;
 
             // Reminder Date
-            if (IsSetReminder)
+            if (IsSetDueDate && IsSetReminder)
                 Original.Reminder = Reminder;
             else
                 Original.Reminder = null;

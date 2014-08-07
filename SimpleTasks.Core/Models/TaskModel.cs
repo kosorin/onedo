@@ -118,7 +118,7 @@ namespace SimpleTasks.Core.Models
         {
             get
             {
-                if (DueDate == null || Reminder == null)
+                if (!HasReminder)
                 {
                     throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
                 }
