@@ -96,6 +96,8 @@
     </Compile>
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BasePickerPage.cs" />
+    <Compile Include="Controls\ListPicker.cs" />
+    <Compile Include="Controls\ListPickerItem.cs" />
     <Compile Include="Controls\MySlider.cs" />
     <Compile Include="Controls\MyTextBox.cs" />
     <Compile Include="Controls\IconButton.cs" />
@@ -128,7 +130,6 @@
     <Compile Include="Models\ChangelogList.cs" />
     <Compile Include="Models\ChangelogCategory.cs" />
     <Compile Include="Models\ChangelogItem.cs" />
-    <Compile Include="Models\ReminderLengthType.cs" />
     <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
     <Compile Include="MyUriMapper.cs" />
