@@ -17,6 +17,22 @@
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Grid Height="70"
                   toolkit:TiltEffect.SuppressTilt="True">
+                <!--<Grid.Background>
+                    <LinearGradientBrush EndPoint="20,20"
+                                         Opacity="0.08"
+                                         StartPoint="0,0"
+                                         SpreadMethod="Repeat"
+                                         MappingMode="Absolute">
+                        <GradientStop Color="{StaticResource SubtleColor}"
+                                      Offset="0" />
+                        <GradientStop Color="{StaticResource SubtleColor}"
+                                      Offset="0.5" />
+                        <GradientStop Color="Transparent"
+                                      Offset="0.5" />
+                        <GradientStop Color="Transparent"
+                                      Offset="1" />
+                    </LinearGradientBrush>
+                </Grid.Background>-->
                 <TextBlock Style="{StaticResource NormalTextStyle}"
                            FontSize="32"
                            Opacity="0.75"
@@ -493,9 +509,7 @@
                                     HideEmptyGroups="True">
                 <phone:LongListSelector.Template>
                     <ControlTemplate TargetType="phone:LongListSelector">
-                        <Grid Background="{TemplateBinding Background}"
-                              d:DesignWidth="480"
-                              d:DesignHeight="800">
+                        <Grid Background="{TemplateBinding Background}">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="ScrollStates">
                                     <VisualStateGroup.Transitions>
