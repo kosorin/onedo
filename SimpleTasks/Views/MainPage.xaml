@@ -15,39 +15,45 @@
     <controls:BasePage.Resources>
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Grid Height="70"
-                  toolkit:TiltEffect.SuppressTilt="True">
-                <!--<Grid.Background>
-                    <LinearGradientBrush EndPoint="20,20"
-                                         Opacity="0.08"
-                                         StartPoint="0,0"
-                                         SpreadMethod="Repeat"
-                                         MappingMode="Absolute">
-                        <GradientStop Color="{StaticResource SubtleColor}"
-                                      Offset="0" />
-                        <GradientStop Color="{StaticResource SubtleColor}"
-                                      Offset="0.5" />
-                        <GradientStop Color="Transparent"
-                                      Offset="0.5" />
-                        <GradientStop Color="Transparent"
-                                      Offset="1" />
-                    </LinearGradientBrush>
-                </Grid.Background>-->
-                <TextBlock Style="{StaticResource NormalTextStyle}"
-                           FontSize="32"
-                           Opacity="0.75"
-                           VerticalAlignment="Bottom"
-                           Margin="15,0,0,15">
+            <Border Height="70"
+                    toolkit:TiltEffect.SuppressTilt="True">
+                <Border.Background>
+                    <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}"
+                                     Opacity="0.35" />
+                </Border.Background>
+                
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="10,10"
+                                             StartPoint="0,0"
+                                             SpreadMethod="Repeat"
+                                             MappingMode="Absolute">
+                            <GradientStop Color="{StaticResource TasksListHeaderBackgroundColor}"
+                                          Offset="0" />
+                            <GradientStop Color="{StaticResource TasksListHeaderBackgroundColor}"
+                                          Offset="0.1" />
+                            <GradientStop Color="Transparent"
+                                          Offset="0.1" />
+                            <GradientStop Color="Transparent"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <TextBlock Style="{StaticResource NormalTextStyle}"
+                               FontSize="32"
+                               Opacity="0.75"
+                               VerticalAlignment="Bottom"
+                               Margin="15,0,0,15">
                     <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
                     <Run Text="{Binding Count, StringFormat='({0})'}"
                          Foreground="{StaticResource SlightBrush}"
                          FontSize="24" />
-                </TextBlock>
-                <Border Background="{StaticResource PhoneAccentBrush}"
-                        Height="10"
-                        Opacity="0.6"
-                        VerticalAlignment="Bottom" />
-            </Grid>
+                    </TextBlock>
+                    <Border Background="{StaticResource PhoneAccentBrush}"
+                            Height="10"
+                            Opacity="0.6"
+                            VerticalAlignment="Bottom" />
+                </Grid>
+            </Border>
         </DataTemplate>
 
         <!--List Task-->
