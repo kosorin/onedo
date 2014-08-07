@@ -567,7 +567,7 @@
                     </Grid.RowDefinitions>
 
                     <!--Seznam & oddělení-->
-                    <Grid Background="{StaticResource CalendarWeekdayBackgroundBrush}">
+                    <Grid Background="{StaticResource SubtasksBackgroundBrush}">
                         <!--Seznam-->
                         <rlb:ReorderListBox Grid.Row="0"
                                             x:Name="SubtaskListBox"
