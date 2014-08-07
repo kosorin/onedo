@@ -181,10 +181,10 @@ namespace SimpleTasks.Core.Helpers
         {
             FlipTileData flipTileData = new FlipTileData
             {
-                SmallBackgroundImage = new Uri("/Assets/Tiles/FlipTileSmall.png", UriKind.Relative),
-                BackgroundImage = new Uri("/Assets/Tiles/FlipTileMedium.png", UriKind.Relative),
-                WideBackgroundImage = new Uri("/Assets/Tiles/FlipTileWide.png", UriKind.Relative),
-                Title = "Simple Tasks",
+                SmallBackgroundImage = new Uri("/Assets/Tiles/SmallTile.png", UriKind.Relative),
+                BackgroundImage = new Uri("/Assets/Tiles/MediumTile.png", UriKind.Relative),
+                WideBackgroundImage = new Uri("/Assets/Tiles/WideTile.png", UriKind.Relative),
+                Title = AppInfo.Name,
                 Count = 0,
             };
 

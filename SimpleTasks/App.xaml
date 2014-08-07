@@ -17,7 +17,7 @@
                 <ResourceDictionary  Source="/SimpleTasks;component/Themes/Dark.xaml" />
                 <!--<ResourceDictionary  Source="/SimpleTasks;component/Themes/Light.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
-
+            
             <!--Region Lokalizace-->
             <local:LocalizedStrings x:Key="LocalizedStrings" />
             <!--EndRegion-->
@@ -262,48 +262,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style x:Key="MailIconStyle"
-                   TargetType="ContentControl">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <Canvas Width="50"
-                                    Height="50"
-                                    Opacity="{TemplateBinding Opacity}"
-                                    Background="{TemplateBinding Background}">
-                                <Path Data="F1 M 19,25L 57,25L 38,38L 19,25 Z M 38,42.75L 57,30L 57,51L 19,51L 19,30L 38,42.75 Z"
-                                      Width="38"
-                                      Height="26"
-                                      Canvas.Left="6"
-                                      Canvas.Top="12"
-                                      Stretch="Fill"
-                                      Fill="{TemplateBinding Foreground}" />
-                            </Canvas>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="StarIconStyle"
-                   TargetType="ContentControl">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <Canvas Width="50"
-                                    Height="50"
-                                    Opacity="{TemplateBinding Opacity}"
-                                    Background="{TemplateBinding Background}">
-                                <Path Data="F1 M 17.4167,32.25L 32.9107,32.25L 38,18L 43.0893,32.25L 58.5833,32.25L 45.6798,41.4944L 51.4583,56L 38,48.0833L 26.125,56L 30.5979,41.7104L 17.4167,32.25 Z "
-                                      Width="41.1667"
-                                      Height="38"
-                                      Canvas.Left="4.4"
-                                      Canvas.Top="6"
-                                      Stretch="Fill"
-                                      Fill="{TemplateBinding Foreground}" />
-                            </Canvas>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
             <Style x:Key="CompleteIconStyle"
                    TargetType="ContentControl">
                 <Setter Property="Template">
@@ -409,10 +367,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!--EndRegion-->
-
-            <!--Region Ostatní-->
-            <sys:String x:Key="LogoPathData">M 10,30 L 48,11 L 50,30 L 10,50 Z    M 10,50 L 50,70 L 50,50 L 36,43 Z    M 10,70 L 12,89 L 50,70 L 24,63 Z</sys:String>
             <!--EndRegion-->
 
             <!--Region TextBlock-->

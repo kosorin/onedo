@@ -1,124 +1,149 @@
-﻿<controls:BasePage
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:controls="clr-namespace:SimpleTasks.Controls"
-    xmlns:sample="clr-namespace:Expression.Blend.SampleData.AboutDataSource"
-    x:Class="SimpleTasks.Views.AboutPage"
-    Style="{StaticResource BasePageStyle}"
-    mc:Ignorable="d"
-    d:DataContext="{d:DesignData /SampleData/AboutDataSource/AboutDataSource.xaml}">
+﻿<controls:BasePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                   xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   xmlns:sample="clr-namespace:Expression.Blend.SampleData.AboutDataSource"
+                   x:Class="SimpleTasks.Views.AboutPage"
+                   Style="{StaticResource BasePageStyle}"
+                   mc:Ignorable="d"
+                   d:DataContext="{d:DesignData /SampleData/AboutDataSource/AboutDataSource.xaml}">
 
     <controls:BasePage.Resources>
-        <sample:AboutDataSource x:Key="AboutDataSource" d:IsDataSource="True"/>
+        <sample:AboutDataSource x:Key="AboutDataSource"
+                                d:IsDataSource="True" />
     </controls:BasePage.Resources>
 
-	<Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundBrush}">
-		<ScrollViewer>
-			<StackPanel Margin="0,50,0,0">
-                
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource BackgroundBrush}">
+        <ScrollViewer>
+            <StackPanel Margin="0,50,0,0">
+
                 <!--Logo-->
-				<Grid HorizontalAlignment="Center" >
-					<StackPanel Orientation="Horizontal">
-						<Path Width="60" Height="100"
-                              Fill="{StaticResource PhoneAccentBrush}"
-                              Data="{StaticResource LogoPathData}" RenderTransformOrigin="0.5,0.5">
-							<Path.RenderTransform>
-								<CompositeTransform ScaleX="1.35" ScaleY="1.35"/>
-							</Path.RenderTransform>
-						</Path>
-						<TextBlock Text="imple Tasks"
+                <Grid HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="120">
+                            <Canvas x:Name="Logo"
+                                    Width="0"
+                                    Height="0"
+                                    IsHitTestVisible="False"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top">
+                                <Canvas.RenderTransform>
+                                    <CompositeTransform ScaleX="0.5"
+                                                        ScaleY="0.5"
+                                                        TranslateX="-18"
+                                                        TranslateY="-30" />
+                                </Canvas.RenderTransform>
+
+                                <Path x:Name="LogoRect"
+                                      Data="M146.439,53.4652 L166.806,53.4652 C185.197,53.4652 199.484,55.9897 209.667,61.0385 C219.851,66.0874 224.943,73.0161 224.943,81.8247 C224.943,91.1489 219.808,98.5179 209.539,103.932 C199.269,109.346 185.111,112.053 167.064,112.053 L146.439,112.053 z M104.802,36.514 L104.802,128.94 L170.286,128.94 C200.107,128.94 223.976,124.643 241.894,116.049 C259.812,107.456 268.772,95.9609 268.772,81.5669 C268.772,51.5316 235.943,36.514 170.286,36.514 z M0,0 L320,0 L320,160 L0,160 z"
+                                      Fill="{StaticResource PhoneAccentBrush}"
+                                      Width="320"
+                                      Height="160"
+                                      Canvas.Left="-60"
+                                      Canvas.Top="70"
+                                      UseLayoutRounding="False"
+                                      RenderTransformOrigin="0,0">
+                                    <Path.Projection>
+                                        <PlaneProjection RotationY="70" />
+                                    </Path.Projection>
+                                </Path>
+
+                                <Path x:Name="LogoCheck"
+                                      Fill="{StaticResource PhoneAccentBrush}"
+                                      Data="m173,136.46875l18.985001,17.903l64.202011,-73.372902l17.509979,15.425003l-79.626984,97.137901l-21.070007,-21.093002l0,-36zm0,-50.862503l68.020004,0l-15.799011,15.7985l-52.220993,0l0,100.056007l54.854004,0l0,-34.230011l15.798996,-19.747986l0,69.775986l-70.653,0l0,-131.652496z"
+                                      Canvas.Left="15"
+                                      Canvas.Top="15"
+                                      RenderTransformOrigin="0,0">
+                                    <Path.RenderTransform>
+                                        <CompositeTransform x:Name="LogoCheckTransform"
+                                                            ScaleX="0.9"
+                                                            ScaleY="0.9" />
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Canvas>
+                        </Border>
+                        <TextBlock Text="{Binding AppName, FallbackValue=OneDó}"
                                    Style="{StaticResource NormalTextStyle}"
-                                   FontSize="52"
-                                   FontWeight="Bold"
-                                   VerticalAlignment="Bottom"
-                                   Margin="0,0,12,10"/>
-					</StackPanel>
-					<TextBlock Text="by David Kosorin"
-                               Style="{StaticResource SubtleTextStyle}"
+                                   FontSize="60"
+                                   Margin="10,0,12,10" />
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource SubtleTextStyle}"
                                FontWeight="Normal"
-                               VerticalAlignment="Bottom" 
-                               Margin="160,0,0,-5"/>
-				</Grid>
+                               FontSize="18"
+                               VerticalAlignment="Bottom"
+                               Margin="175,0,0,0">
+                        <Run Text="by " /><Run Text="{Binding Author, FallbackValue='Dávid Kosorin'}" />
+                    </TextBlock>
+                </Grid>
 
-				<!--Version-->
-				<TextBlock Text="{Binding VersionString}"
-                           Style="{StaticResource SubtleTextStyle}" 
-                           HorizontalAlignment="Center" 
-                           Margin="0,40,0,10"/>
+                <!--Version-->
+                <TextBlock Text="{Binding VersionString}"
+                           Style="{StaticResource SubtleTextStyle}"
+                           HorizontalAlignment="Center"
+                           Margin="0,40,0,10" />
 
-				<!--Rate and review-->
-				<controls:IconButton IconStyle="{StaticResource StarIconStyle}" 
-                                     Content="{Binding LocalizedResources.AboutRateReview, Source={StaticResource LocalizedStrings}}"
-                                     Click="Rate_Click"
-                                     Margin="50,20,50,0"/>
-
-				<!--Contact us-->
-				<controls:IconButton IconStyle="{StaticResource MailIconStyle}" 
-                                     Content="{Binding LocalizedResources.AboutContactUs, Source={StaticResource LocalizedStrings}}"
-                                     Click="Contact_Click"
-                                     Margin="50,20,50,0" />
-
-				<!--Changelog header-->
-				<TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
+                <!--Changelog header-->
+                <TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
                            Style="{StaticResource AccentTextStyle}"
                            FontWeight="Normal"
                            FontSize="56"
-                           Margin="20,20,0,-20"/>
-                
+                           Margin="20,20,0,-20" />
+
                 <!--Changelog-->
                 <phone:LongListSelector ItemsSource="{Binding}"
                                         DataContext="{Binding ChangelogList}"
                                         d:DataContext="{d:DesignData /SampleData/AboutDataSource/ChangelogListSampleData.xaml}"
-									    IsGroupingEnabled="True"
-				                        Margin="20,0,0,50"
-				                        LayoutMode="List">
-					<phone:LongListSelector.GroupHeaderTemplate>
-						<DataTemplate>
-							<StackPanel Orientation="Horizontal"  Margin="0,20,0,0">
+                                        IsGroupingEnabled="True"
+                                        Margin="20,0,0,50"
+                                        LayoutMode="List">
+                    <phone:LongListSelector.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,20,0,0">
                                 <!--Číslo verze-->
                                 <TextBlock Text="{Binding Version}"
                                            Style="{StaticResource AccentTextStyle}"
                                            FontWeight="Normal"
-                                           FontSize="42.667"/>
+                                           FontSize="42.667" />
                                 <!--Datum-->
                                 <TextBlock Text="{Binding Date, StringFormat=d}"
                                            Style="{StaticResource SubtleTextStyle}"
                                            FontSize="22.667"
-                                           Margin="5,0,0,4" 
+                                           Margin="5,0,0,4"
                                            VerticalAlignment="Bottom" />
-							</StackPanel>
-						</DataTemplate>
-					</phone:LongListSelector.GroupHeaderTemplate>
-					<phone:LongListSelector.ItemTemplate>
-						<DataTemplate>
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="30"/>
-									<ColumnDefinition Width="*"/>
-								</Grid.ColumnDefinitions>
-								<TextBlock Style="{StaticResource NormalTextStyle}"
-                                           Text="•" 
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.GroupHeaderTemplate>
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource NormalTextStyle}"
+                                           Text="•"
                                            FontSize="20"
                                            HorizontalAlignment="Right"
-                                           Margin="0,0,10,0"/>
+                                           Margin="0,0,10,0" />
                                 <!--Text-->
                                 <TextBlock Grid.Column="1"
                                            Text="{Binding Text}"
                                            Style="{StaticResource NormalTextStyle}"
                                            FontSize="20"
-                                           TextWrapping="Wrap"/>
-							</Grid>
-						</DataTemplate>
-					</phone:LongListSelector.ItemTemplate>
-				</phone:LongListSelector>
-                
-			</StackPanel>
-		</ScrollViewer>
-	</Grid>
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 
 </controls:BasePage>

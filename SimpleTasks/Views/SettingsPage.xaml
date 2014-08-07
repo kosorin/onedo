@@ -202,7 +202,8 @@
                                           IsChecked="{Binding Tiles.Enable, Mode=TwoWay, FallbackValue=True}"
                                           x:Name="EnableLiveTileToggleSwitch"
                                           Margin="0,0,0,12" />
-                    <TextBlock Text="{Binding LocalizedResources.SettingsPinTile, Source={StaticResource LocalizedStrings}}"
+                    <TextBlock x:Name="PinTileTextBox"
+                               Text="{Binding FallbackValue='Pin tile help text.'}"
                                Style="{StaticResource PhoneTextSubtleStyle}"
                                TextWrapping="Wrap"
                                Margin="12,-45,12,0" />

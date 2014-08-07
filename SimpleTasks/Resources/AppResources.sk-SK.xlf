@@ -141,9 +141,8 @@
           <target state="signed-off" state-qualifier="tm-suggestion">kontaktujte nás</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutRateReview" xml:space="preserve">
-          <source>rate application</source>
-          <target state="signed-off">ohodnotiť aplikáciu</target>
-        </trans-unit>
+          <source>rate and review</source>
+          <target state="signed-off">ohodnotiť</target></trans-unit>
         <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
           <source>Default date</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Predvolený dátum</target>
@@ -248,9 +247,10 @@
           <target state="signed-off">nadchádzajúce</target>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsPinTile" xml:space="preserve">
-          <source>In the App list, tap and hold the Simple Tasks app, and then tap Pin to start.</source>
-          <target state="signed-off">V zozname aplikácií ťuknite na aplikáciu Simple Tasks, podržte ju a potom ťuknite na položku Pripnúť na domovskú obrazovku.</target>
-        </trans-unit>
+          <source>In the App list, tap and hold the {0} app, and then tap Pin to start.</source>
+          <target state="signed-off">V zozname aplikácií ťuknite na aplikáciu {0}, podržte ju a potom ťuknite na položku Pripnúť na domovskú obrazovku.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0} is application name</note>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsTile" xml:space="preserve">
           <source>tile</source>
           <target state="signed-off" state-qualifier="tm-suggestion">dlaždice</target>
@@ -287,7 +287,7 @@
         </trans-unit>
         <trans-unit id="Resx/Changelog" translate="yes" xml:space="preserve">
           <source>changelog</source>
-          <target state="signed-off">changelog</target>
+          <target state="signed-off">zoznam zmien</target>
         </trans-unit>
         <trans-unit id="Resx/ChooseTime" translate="yes" xml:space="preserve">
           <source>CHOOSE TIME</source>
@@ -384,7 +384,7 @@
         </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>or text box bellow to add a task.</source>
-          <target state="signed-off">alebo textové políčko nižšie.</target>
+          <target state="signed-off">alebo na textové políčko nižšie.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">

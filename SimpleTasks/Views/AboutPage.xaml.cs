@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using SimpleTasks.Controls;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Views
 {
@@ -27,6 +28,18 @@ namespace SimpleTasks.Views
 
             ChangelogList = LoadChangelog();
             DataContext = this;
+
+            ApplicationBar = new ApplicationBar();
+
+            ApplicationBarIconButton rateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.star.png", UriKind.Relative));
+            rateButton.Text = AppResources.AboutRateReview;
+            rateButton.Click += Rate_Click;
+            ApplicationBar.Buttons.Add(rateButton);
+
+            ApplicationBarIconButton contactButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.email.hardedge.png", UriKind.Relative));
+            contactButton.Text = AppResources.AboutContactUs;
+            contactButton.Click += Contact_Click;
+            ApplicationBar.Buttons.Add(contactButton);
         }
 
         #region Properties
@@ -51,11 +64,15 @@ namespace SimpleTasks.Views
 
         public string VersionString { get { return string.Format(AppResources.AboutVersion, App.Version.ToString()); } }
 
+        public string Author { get { return AppInfo.Author; } }
+
+        public string AppName { get { return AppInfo.Name; } }
+
         public ChangelogList ChangelogList { get; set; }
         #endregion
 
         #region Rate
-        private void Rate_Click(object sender, RoutedEventArgs e)
+        private void Rate_Click(object sender, EventArgs e)
         {
             MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
             marketplaceReviewTask.Show();
@@ -63,12 +80,12 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Email
-        private void Contact_Click(object sender, RoutedEventArgs e)
+        private void Contact_Click(object sender, EventArgs e)
         {
             EmailComposeTask task = new EmailComposeTask
             {
-                To = "kosorin@outlook.com",
-                Subject = string.Format(AppResources.AboutEmailSubject, "Simple Tasks", App.Version.ToString())
+                To = AppInfo.Email,
+                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.Version.ToString())
             };
             task.Show();
         }

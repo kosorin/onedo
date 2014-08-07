@@ -79,7 +79,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to rate application.
+        ///   Looks up a localized string similar to rate and review.
         /// </summary>
         public static string AboutRateReview {
             get {
@@ -998,7 +998,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the App list, tap and hold the Simple Tasks app, and then tap Pin to start..
+        ///   Looks up a localized string similar to In the App list, tap and hold the {0} app, and then tap Pin to start..
         /// </summary>
         public static string SettingsPinTile {
             get {

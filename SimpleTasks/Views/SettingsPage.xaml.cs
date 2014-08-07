@@ -48,7 +48,7 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
             DataContext = App.Settings;
-
+            PinTileTextBox.DataContext = PinTileHelpText;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -70,6 +70,8 @@ namespace SimpleTasks.Views
                 App.Settings.Tasks.DefaultTime = BasePickerPage.Retrieve<DateTime>("DueTime");
             }
         }
+
+        public string PinTileHelpText { get { return string.Format(AppResources.SettingsPinTile, AppInfo.Name); } }
 
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {

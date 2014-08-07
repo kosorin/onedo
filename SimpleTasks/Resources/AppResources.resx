@@ -222,7 +222,7 @@
     <value>contact us</value>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
-    <value>rate application</value>
+    <value>rate and review</value>
   </data>
   <data name="SettingsDefaultDate" xml:space="preserve">
     <value>Default date</value>
@@ -309,7 +309,8 @@
     <value>upcoming</value>
   </data>
   <data name="SettingsPinTile" xml:space="preserve">
-    <value>In the App list, tap and hold the Simple Tasks app, and then tap Pin to start.</value>
+    <value>In the App list, tap and hold the {0} app, and then tap Pin to start.</value>
+    <comment>{0} is application name</comment>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
     <value>cancel</value>

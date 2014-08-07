@@ -200,20 +200,20 @@
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
     <Content Include="Assets\AppBar\appbar.close.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />
+    <Content Include="Assets\AppBar\appbar.email.hardedge.png" />
     <Content Include="Assets\AppBar\appbar.list.add.below.png" />
     <Content Include="Assets\AppBar\appbar.list.check.png" />
     <Content Include="Assets\AppBar\appbar.pin.png" />
     <Content Include="Assets\AppBar\appbar.pin.remove.png" />
     <Content Include="Assets\AppBar\appbar.save.png" />
+    <Content Include="Assets\AppBar\appbar.star.png" />
     <Content Include="Assets\AppBar\appbar.undo.curve.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tiles\FlipTileMedium.png" />
-    <Content Include="Assets\Tiles\FlipTileSmall.png" />
-    <Content Include="Assets\Tiles\FlipTileWide.png" />
-    <Content Include="Assets\Tiles\IconicTileMediumLarge.png" />
-    <Content Include="Assets\Tiles\IconicTileSmall.png" />
+    <Content Include="Assets\Tiles\MediumTile.png" />
+    <Content Include="Assets\Tiles\SmallTile.png" />
+    <Content Include="Assets\Tiles\WideTile.png" />
     <Content Include="Resources\Changelog.cs-CZ.txt" />
     <None Include="Resources\Changelog.txt" />
     <None Include="Resources\Changelog.sk-SK.txt" />
@@ -374,7 +374,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
