@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Phone.Scheduler;
 using System.Windows.Media;
 using System.Windows;
+using System.Diagnostics;
 
 namespace SimpleTasks.Models
 {
@@ -17,30 +18,22 @@ namespace SimpleTasks.Models
         public TaskWrapper(TaskModel task)
         {
             Task = task;
-            UpdateReminderProperties();
+            UpdateIsScheduled();
         }
 
         public TaskModel Task { get; private set; }
 
         #region IsScheduled
-        public void UpdateReminderProperties()
+        public void UpdateIsScheduled()
         {
             if (Task != null && Task.HasReminder)
             {
                 Reminder reminder = ReminderHelper.Get(Task);
-                if (reminder != null && reminder.IsScheduled)
-                {
-                    IsScheduled = true;
-                    ReminderIconBrush = App.Current.Resources["PhoneAccentBrush"] as SolidColorBrush;
-                    ReminderNotScheduledVisibility = Visibility.Collapsed;
-                }
+                IsScheduled = reminder != null && reminder.IsScheduled;
             }
-
-            if (ReminderIconBrush == null)
+            else
             {
                 IsScheduled = false;
-                ReminderIconBrush = App.Current.Resources["SubtleBrush"] as SolidColorBrush;
-                ReminderNotScheduledVisibility = Visibility.Visible;
             }
         }
 
@@ -49,20 +42,6 @@ namespace SimpleTasks.Models
         {
             get { return _isScheduled; }
             set { SetProperty(ref _isScheduled, value); }
-        }
-
-        private SolidColorBrush _reminderIconBrush = null;
-        public SolidColorBrush ReminderIconBrush
-        {
-            get { return _reminderIconBrush; }
-            set { SetProperty(ref _reminderIconBrush, value); }
-        }
-
-        private Visibility _reminderNotScheduledVisibility = Visibility.Visible;
-        public Visibility ReminderNotScheduledVisibility
-        {
-            get { return _reminderNotScheduledVisibility; }
-            set { SetProperty(ref _reminderNotScheduledVisibility, value); }
         }
         #endregion
     }

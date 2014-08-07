@@ -230,39 +230,76 @@
                                                 </StackPanel>
 
                                                 <!--Připomenutí-->
-                                                <StackPanel Orientation="Horizontal"
-                                                            Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                <controls:ToggleControl IsChecked="{Binding IsScheduled}">
+                                                    <controls:ToggleControl.Template>
+                                                        <ControlTemplate>
+                                                            <StackPanel Orientation="Horizontal"
+                                                                        Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                <VisualStateManager.VisualStateGroups>
+                                                                    <VisualStateGroup x:Name="CheckStates">
+                                                                        <VisualState x:Name="Checked">
+                                                                            <Storyboard>
+                                                                                <ColorAnimation Storyboard.TargetName="Color"
+                                                                                                Storyboard.TargetProperty="Color"
+                                                                                                To="{StaticResource PhoneAccentColor}"
+                                                                                                Duration="0:0:0.25" />
+                                                                                <DoubleAnimation Storyboard.TargetName="CrossIcon"
+                                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                                 To="0"
+                                                                                                 Duration="0:0:0.25" />
+                                                                            </Storyboard>
+                                                                        </VisualState>
+                                                                        <VisualState x:Name="Unchecked">
+                                                                            <Storyboard>
+                                                                                <ColorAnimation Storyboard.TargetName="Color"
+                                                                                                Storyboard.TargetProperty="Color"
+                                                                                                To="{StaticResource SubtleColor}"
+                                                                                                Duration="0:0:0.25" />
+                                                                                <DoubleAnimation Storyboard.TargetName="CrossIcon"
+                                                                                                 Storyboard.TargetProperty="Opacity"
+                                                                                                 To="1"
+                                                                                                 Duration="0:0:0.25" />
+                                                                            </Storyboard>
+                                                                        </VisualState>
+                                                                    </VisualStateGroup>
+                                                                </VisualStateManager.VisualStateGroups>
 
-                                                    <!--Ikona-->
-                                                    <Grid>
-                                                        <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                                        Foreground="{Binding ReminderIconBrush, FallbackValue={StaticResource SubtleBrush}}"
-                                                                        Margin="6,0,-18,26"
-                                                                        MaxHeight="0">
-                                                            <ContentControl.RenderTransform>
-                                                                <CompositeTransform ScaleX="0.55"
-                                                                                    ScaleY="0.55" />
-                                                            </ContentControl.RenderTransform>
-                                                        </ContentControl>
-                                                        <ContentControl Style="{StaticResource BoldCloseIconStyle}"
-                                                                        Foreground="{StaticResource PhoneAccentBrush}"
-                                                                        Visibility="{Binding ReminderNotScheduledVisibility, FallbackValue=Visible}"
-                                                                        Height="0"
-                                                                        Width="0">
-                                                            <ContentControl.RenderTransform>
-                                                                <CompositeTransform ScaleX="0.4"
-                                                                                    ScaleY="0.4" />
-                                                            </ContentControl.RenderTransform>
-                                                        </ContentControl>
-                                                    </Grid>
+                                                                <!--Ikona-->
+                                                                <Grid>
+                                                                    <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                                                    Margin="6,0,-18,26"
+                                                                                    MaxHeight="0">
+                                                                        <ContentControl.Foreground>
+                                                                            <SolidColorBrush x:Name="Color"
+                                                                                             Color="{StaticResource PhoneAccentColor}" />
+                                                                        </ContentControl.Foreground>
+                                                                        <ContentControl.RenderTransform>
+                                                                            <CompositeTransform ScaleX="0.55"
+                                                                                                ScaleY="0.55" />
+                                                                        </ContentControl.RenderTransform>
+                                                                    </ContentControl>
+                                                                    <ContentControl x:Name="CrossIcon"
+                                                                                    Style="{StaticResource BoldCloseIconStyle}"
+                                                                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                                                                    Height="0"
+                                                                                    Width="0">
+                                                                        <ContentControl.RenderTransform>
+                                                                            <CompositeTransform ScaleX="0.4"
+                                                                                                ScaleY="0.4" />
+                                                                        </ContentControl.RenderTransform>
+                                                                    </ContentControl>
+                                                                </Grid>
 
-                                                    <!--Text-->
-                                                    <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
-                                                               Style="{StaticResource SlightTextStyle}"
-                                                               FontSize="22"
-                                                               Margin="0,1,8,0" />
+                                                                <!--Text-->
+                                                                <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
+                                                                           Style="{StaticResource SlightTextStyle}"
+                                                                           FontSize="22"
+                                                                           Margin="0,1,8,0" />
 
-                                                </StackPanel>
+                                                            </StackPanel>
+                                                        </ControlTemplate>
+                                                    </controls:ToggleControl.Template>
+                                                </controls:ToggleControl>
 
                                             </StackPanel>
                                         </Grid>
@@ -333,7 +370,7 @@
                                                         <Button.Template>
                                                             <ControlTemplate TargetType="ButtonBase" />
                                                         </Button.Template>
-                                                        
+
                                                         <Border Background="Transparent"
                                                                 Tap="SubtaskText_Tap">
                                                             <controls:ToggleControl IsChecked="{Binding IsCompleted}"

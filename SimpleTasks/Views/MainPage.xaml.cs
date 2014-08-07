@@ -413,6 +413,8 @@ namespace SimpleTasks.Views
                 task.Completed = null;
             }
             App.Tasks.Update(task);
+
+            wrapper.UpdateIsScheduled();
         }
 
         private void ToggleSubtaskComplete(FrameworkElement element)
