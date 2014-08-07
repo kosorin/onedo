@@ -136,8 +136,20 @@ namespace SimpleTasks.Views
             #endregion
 
             #region Menu
-
             appBarMenuItems = new List<ApplicationBarMenuItem>();
+
+#if DEBUG
+            // Reminders
+            ApplicationBarMenuItem appBarRemindersMenuItem = new ApplicationBarMenuItem("seznam připomenutí");
+            appBarRemindersMenuItem.Click += RemindersMenuItem_Click;
+            appBarMenuItems.Add(appBarRemindersMenuItem);
+
+            // Reset
+            ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
+            appBarResetMenuItem.Click += ResetMenuItem_Click;
+            appBarMenuItems.Add(appBarResetMenuItem);
+#endif
+
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
             appBarDeleteCompletedItem.Click += (s, e) => { OverlayAction(App.Tasks.DeleteCompleted); };
@@ -157,23 +169,6 @@ namespace SimpleTasks.Views
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
             appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
             appBarMenuItems.Add(appBarAboutMenuItem);
-
-#if DEBUG
-            // Reminders
-            ApplicationBarMenuItem appBarRemindersMenuItem = new ApplicationBarMenuItem("seznam připomenutí");
-            appBarRemindersMenuItem.Click += RemindersMenuItem_Click;
-            appBarMenuItems.Add(appBarRemindersMenuItem);
-
-            // Reset
-            ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
-            appBarResetMenuItem.Click += ResetMenuItem_Click;
-            appBarMenuItems.Add(appBarResetMenuItem);
-
-            // Clear
-            ApplicationBarMenuItem appBarClearMenuItem = new ApplicationBarMenuItem("smazat data");
-            appBarClearMenuItem.Click += (s, e) => { App.Tasks.DeleteAll(); };
-            appBarMenuItems.Add(appBarClearMenuItem);
-#endif
             #endregion
         }
 

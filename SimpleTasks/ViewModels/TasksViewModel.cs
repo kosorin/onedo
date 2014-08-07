@@ -128,9 +128,13 @@ namespace SimpleTasks.ViewModels
 
         public void DeleteAll()
         {
+            foreach (Reminder r in ScheduledActionService.GetActions<Reminder>())
+            {
+                ScheduledActionService.Remove(r.Name);
+            }
+
             foreach (TaskModel task in Tasks)
             {
-                task.RemoveSystemReminder();
                 LiveTile.Unpin(task);
             }
             Tasks.Clear();
