@@ -186,8 +186,10 @@
             <!--Úkol-->
             <phone:PivotItem Header="{Binding LocalizedResources.TaskText, Source={StaticResource LocalizedStrings}}"
                              Margin="0">
-                <ScrollViewer Margin="24,40,24,0">
+                <ScrollViewer Margin="24,0,24,0">
                     <StackPanel>
+                        <Border Height="40" />
+                        
                         <!--Text-->
                         <StackPanel Margin="0,0,0,20">
                             <!--Název-->
@@ -553,6 +555,7 @@
                             </ToggleButton.Template>
                         </ToggleButton>
 
+                        <Border Height="40" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
