@@ -123,6 +123,7 @@
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
+    <Compile Include="Helpers\TaskModelExtensions.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\ChangelogList.cs" />
     <Compile Include="Models\ChangelogCategory.cs" />

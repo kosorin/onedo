@@ -28,7 +28,7 @@ namespace SimpleTasks.Models
         {
             if (Task != null && Task.HasReminder)
             {
-                Reminder reminder = ReminderHelper.Get(Task);
+                Reminder reminder = Task.GetSystemReminder();
                 IsScheduled = reminder != null && reminder.IsScheduled;
             }
             else

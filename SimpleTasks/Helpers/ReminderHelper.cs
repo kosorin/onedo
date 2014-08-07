@@ -12,46 +12,7 @@ namespace SimpleTasks.Helpers
 {
     public class ReminderHelper
     {
-        #region Public
-        public static void Add(TaskModel task)
-        {
-            if (task.HasReminder)
-            {
-                Add(task.Uid,
-                    task.Title,
-                    task.Detail,
-                    task.ReminderDate,
-                    new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
-            }
-        }
-
-        public static Reminder Get(TaskModel task)
-        {
-            return Get(task.Uid);
-        }
-
-        public static bool Exists(TaskModel task)
-        {
-            return Exists(task.Uid);
-        }
-
-        public static void Remove(TaskModel task)
-        {
-            Remove(task.Uid);
-        }
-
-        public static void RemoveAll()
-        {
-            var remiders = ScheduledActionService.GetActions<Reminder>();
-            foreach (Reminder reminder in remiders)
-            {
-                ScheduledActionService.Remove(reminder.Name);
-            }
-        }
-        #endregion
-
-        #region Private
-        private static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
+        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
         {
             Remove(name);
             if (beginTime <= DateTime.Now)
@@ -80,23 +41,22 @@ namespace SimpleTasks.Helpers
             }
         }
 
-        private static Reminder Get(string name)
+        public static Reminder Get(string name)
         {
             return (Reminder)ScheduledActionService.Find(name);
         }
 
-        private static bool Exists(string name)
+        public static bool Exists(string name)
         {
             return ScheduledActionService.Find(name) != null;
         }
 
-        private static void Remove(string name)
+        public static void Remove(string name)
         {
             if (Exists(name))
             {
                 ScheduledActionService.Remove(name);
             }
         }
-        #endregion
     }
 }
