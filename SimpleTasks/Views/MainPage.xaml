@@ -510,7 +510,7 @@
         <!--Overlay úkolů-->
         <Rectangle x:Name="PageOverlay"
                    Grid.RowSpan="2"
-                   Fill="Black"
+                   Fill="{StaticResource BackgroundBrush}"
                    Opacity="0"
                    Visibility="Collapsed">
             <Rectangle.Resources>
