@@ -85,28 +85,29 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                         Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            
+
                                             <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="1"
-                                                             BeginTime="0:0:0.2"
+                                                             BeginTime="0:0:0.15"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetName="TaskInfoMoreInfo"
-                                                             Storyboard.TargetProperty="MaxHeight"
-                                                             To="32"
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoTransform"
+                                                             Storyboard.TargetProperty="Y"
+                                                             To="0"
+                                                             BeginTime="0:0:0.15"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetName="DetailGridWrapper"
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="MaxHeight"
-                                                             To="120"
-                                                             Duration="0:0:0.35">
+                                                             To="71"
+                                                             Duration="0:0:0.5">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
@@ -134,10 +135,10 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
                                                                            Storyboard.TargetProperty="Visibility">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.6"
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5"
                                                                         Value="Collapsed" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            
+
                                             <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="0"
@@ -146,22 +147,20 @@
                                                     <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetName="TaskInfoMoreInfo"
-                                                             Storyboard.TargetProperty="MaxHeight"
-                                                             To="0"
-                                                             BeginTime="0:0:0.05"
-                                                             Duration="0:0:0.45">
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoTransform"
+                                                             Storyboard.TargetProperty="Y"
+                                                             To="-15"
+                                                             Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <CircleEase EasingMode="EaseOut" />
+                                                    <QuinticEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetName="DetailGridWrapper"
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="MaxHeight"
                                                              To="0"
-                                                             BeginTime="0:0:0.05"
-                                                             Duration="0:0:0.45">
+                                                             Duration="0:0:0.5">
                                                 <DoubleAnimation.EasingFunction>
-                                                    <CircleEase EasingMode="EaseOut" />
+                                                    <CubicEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
 
@@ -237,8 +236,7 @@
                                         </Grid>
 
                                         <!--Název-->
-                                        <controls:ToggleControl Grid.Column="1"
-                                                                IsChecked="{Binding Task.IsComplete}"
+                                        <controls:ToggleControl IsChecked="{Binding Task.IsComplete}"
                                                                 Content="{Binding Task.Title}"
                                                                 Style="{StaticResource CheckboxTextStyle}"
                                                                 IsHitTestVisible="False"
@@ -248,14 +246,19 @@
 
                                     <!--Spodní info-->
                                     <StackPanel x:Name="TaskInfoStackPanel"
-                                                Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
                                                 Orientation="Vertical"
                                                 Grid.Row="1"
-                                                Margin="0,-15,0,0">
+                                                Margin="0,-15,0,0"
+                                                MaxHeight="71"
+                                                RenderTransformOrigin="0.5,0.5">
+                                        <StackPanel.RenderTransform>
+                                            <TranslateTransform x:Name="TaskInfoTransform"
+                                                                Y="0" />
+                                        </StackPanel.RenderTransform>
 
                                         <!--Datum & připomenutí-->
-                                        <Grid MaxHeight="32"
-                                              x:Name="TaskInfoMoreInfo"
+                                        <Grid x:Name="MoreInfo"
+                                              MaxHeight="32"
                                               Margin="0,0,0,10">
                                             <StackPanel Orientation="Horizontal">
 
@@ -328,8 +331,8 @@
                                                                         <ContentControl.RenderTransform>
                                                                             <CompositeTransform ScaleX="0.55"
                                                                                                 ScaleY="0.55"
-                                                                                                TranslateX="0"
-                                                                                                TranslateY="-29" />
+                                                                                                TranslateX="1"
+                                                                                                TranslateY="-28" />
                                                                         </ContentControl.RenderTransform>
                                                                     </ContentControl>
                                                                     <ContentControl x:Name="CrossIcon"
@@ -362,14 +365,14 @@
                                         </Grid>
 
                                         <!--Detail-->
-                                        <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
-                                              Margin="0,-10,0,10"
-                                              MaxHeight="0"
-                                              x:Name="DetailGridWrapper">
+                                        <Grid x:Name="DetailWrapper"
+                                              MaxHeight="30"
+                                              Margin="0,-10,12,10"
+                                              Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
                                             <TextBlock Text="{Binding Task.Detail}"
                                                        Style="{StaticResource SlightTextStyle}"
                                                        FontSize="22"
-                                                       TextWrapping="Wrap"
+                                                       TextWrapping="NoWrap"
                                                        TextTrimming="WordEllipsis"
                                                        Opacity="0.8"
                                                        Margin="8,0,20,0" />
@@ -380,7 +383,8 @@
 
                             <!--Podúkoly-->
                             <StackPanel x:Name="SubtasksStackPanel"
-                                        Margin="3,-10,0,10">
+                                        Margin="3,-5,0,10"
+                                        Visibility="{Binding Task.Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
                                 <ItemsControl ItemsSource="{Binding Task.Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>

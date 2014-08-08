@@ -560,6 +560,7 @@
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
                                                FontSize="{TemplateBinding FontSize}"
+                                               TextWrapping="NoWrap"
                                                TextTrimming="WordEllipsis" />
 
                                     <!--Přeskrtnutí-->

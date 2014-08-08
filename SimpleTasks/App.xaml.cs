@@ -158,21 +158,13 @@ namespace SimpleTasks
 
         public App()
         {
-            // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
-            // Standard XAML initialization
             InitializeComponent();
-
             InitializeTheme();
-
-            // Phone-specific initialization
             InitializePhoneApplication();
-
-            // Language display initialization
             InitializeLanguage();
 
-            // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
