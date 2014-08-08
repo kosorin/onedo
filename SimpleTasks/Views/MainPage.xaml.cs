@@ -374,11 +374,12 @@ namespace SimpleTasks.Views
         {
             this.Focus();
 
-            ToggleComplete((sender as FrameworkElement).DataContext as TaskWrapper);
+            ToggleComplete(sender as FrameworkElement);
         }
 
-        private void ToggleComplete(TaskWrapper wrapper)
+        private void ToggleComplete(FrameworkElement element)
         {
+            TaskWrapper wrapper = element.DataContext as TaskWrapper;
             if (wrapper == null)
                 return;
             TaskModel task = wrapper.Task;
@@ -504,7 +505,7 @@ namespace SimpleTasks.Views
             if (_canUseGestures && value < _completeGestureTreshold)
             {
                 VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
-                ToggleComplete(border.DataContext as TaskWrapper);
+                ToggleComplete(border);
             }
         }
 

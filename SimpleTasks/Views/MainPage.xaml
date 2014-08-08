@@ -16,21 +16,22 @@
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Grid Height="50"
-                    toolkit:TiltEffect.SuppressTilt="True">
-                    <Grid.Background>
+                  toolkit:TiltEffect.SuppressTilt="True">
+                <Grid.Background>
                     <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}" />
-                    </Grid.Background>
-                    <TextBlock Style="{StaticResource NormalTextStyle}"
-                               Opacity="0.75"
+                </Grid.Background>
+                <TextBlock Style="{StaticResource NormalTextStyle}"
+                           Opacity="0.75"
                            VerticalAlignment="Center"
                            Margin="16,0,0,0">
                     <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
                     <Run Text="{Binding Count, StringFormat='({0})'}"
                          Foreground="{StaticResource SlightBrush}" />
-                    </TextBlock>
-                <Border BorderThickness="0,2" BorderBrush="{StaticResource PhoneAccentBrush}"
+                </TextBlock>
+                <Border BorderThickness="0,2"
+                        BorderBrush="{StaticResource PhoneAccentBrush}"
                         Opacity="0.6" />
-                </Grid>
+            </Grid>
         </DataTemplate>
 
         <!--List Task-->
@@ -63,14 +64,38 @@
                                 <VisualStateGroup x:Name="CheckStates">
                                     <VisualState x:Name="Checked">
                                         <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                                           Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            
                                             <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="1"
+                                                             BeginTime="0:0:0.2"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoMoreInfo"
+                                                             Storyboard.TargetProperty="MaxHeight"
+                                                             To="32"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="DetailGridWrapper"
+                                                             Storyboard.TargetProperty="MaxHeight"
+                                                             To="120"
+                                                             Duration="0:0:0.35">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+
                                             <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="1"
@@ -91,14 +116,39 @@
                                     </VisualState>
                                     <VisualState x:Name="Unchecked">
                                         <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                                           Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.6"
+                                                                        Value="Collapsed" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            
                                             <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                                              Storyboard.TargetProperty="Opacity"
-                                                             To="0.45"
+                                                             To="0"
                                                              Duration="0:0:0.35">
                                                 <DoubleAnimation.EasingFunction>
                                                     <CircleEase EasingMode="EaseOut" />
                                                 </DoubleAnimation.EasingFunction>
                                             </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="TaskInfoMoreInfo"
+                                                             Storyboard.TargetProperty="MaxHeight"
+                                                             To="0"
+                                                             BeginTime="0:0:0.05"
+                                                             Duration="0:0:0.45">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="DetailGridWrapper"
+                                                             Storyboard.TargetProperty="MaxHeight"
+                                                             To="0"
+                                                             BeginTime="0:0:0.05"
+                                                             Duration="0:0:0.45">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CircleEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+
                                             <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
                                                              Storyboard.TargetProperty="Opacity"
                                                              To="0.45"
@@ -185,8 +235,7 @@
                                                 Opacity="{Binding Task.IsActive, Mode=OneTime, ConverterParameter='0.45;1', Converter={StaticResource BooleanToNumberConverter}}"
                                                 Orientation="Vertical"
                                                 Grid.Row="1"
-                                                Margin="0,-15,0,0"
-                                                RenderTransformOrigin="0.5,0">
+                                                Margin="0,-15,0,0">
 
                                         <!--Datum & připomenutí-->
                                         <Grid MaxHeight="32"
@@ -199,17 +248,21 @@
                                                             Visibility="{Binding Task.HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ContentControl Style="{StaticResource CalendarIconStyle}"
                                                                     Foreground="{StaticResource PhoneAccentBrush}"
-                                                                    Margin="6,0,-18,26"
+                                                                    Margin="6,0,-18,0"
+                                                                    VerticalAlignment="Bottom"
                                                                     MaxHeight="0">
                                                         <ContentControl.RenderTransform>
                                                             <CompositeTransform ScaleX="0.55"
-                                                                                ScaleY="0.55" />
+                                                                                ScaleY="0.55"
+                                                                                TranslateX="0"
+                                                                                TranslateY="-29" />
                                                         </ContentControl.RenderTransform>
                                                     </ContentControl>
                                                     <TextBlock Text="{Binding Task.DueDate, Converter={StaticResource TaskToDueStringConverter}}"
                                                                Style="{StaticResource SlightTextStyle}"
                                                                FontSize="22"
-                                                               Margin="0,1,8,0" />
+                                                               Margin="0,1,8,0"
+                                                               VerticalAlignment="Bottom" />
                                                 </StackPanel>
 
                                                 <!--Připomenutí-->
@@ -248,9 +301,9 @@
                                                                 </VisualStateManager.VisualStateGroups>
 
                                                                 <!--Ikona-->
-                                                                <Grid>
+                                                                <Grid VerticalAlignment="Bottom">
                                                                     <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                                                    Margin="6,0,-18,26"
+                                                                                    Margin="6,0,-18,0"
                                                                                     MaxHeight="0">
                                                                         <ContentControl.Foreground>
                                                                             <SolidColorBrush x:Name="Color"
@@ -258,7 +311,9 @@
                                                                         </ContentControl.Foreground>
                                                                         <ContentControl.RenderTransform>
                                                                             <CompositeTransform ScaleX="0.55"
-                                                                                                ScaleY="0.55" />
+                                                                                                ScaleY="0.55"
+                                                                                                TranslateX="0"
+                                                                                                TranslateY="-29" />
                                                                         </ContentControl.RenderTransform>
                                                                     </ContentControl>
                                                                     <ContentControl x:Name="CrossIcon"
@@ -268,7 +323,9 @@
                                                                                     Width="0">
                                                                         <ContentControl.RenderTransform>
                                                                             <CompositeTransform ScaleX="0.4"
-                                                                                                ScaleY="0.4" />
+                                                                                                ScaleY="0.4"
+                                                                                                TranslateX="0"
+                                                                                                TranslateY="-15" />
                                                                         </ContentControl.RenderTransform>
                                                                     </ContentControl>
                                                                 </Grid>
@@ -276,6 +333,7 @@
                                                                 <!--Text-->
                                                                 <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
                                                                            Style="{StaticResource SlightTextStyle}"
+                                                                           VerticalAlignment="Bottom"
                                                                            FontSize="22"
                                                                            Margin="0,1,8,0" />
 
@@ -289,12 +347,14 @@
 
                                         <!--Detail-->
                                         <Grid Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
-                                              Margin="0,0,0,10"
+                                              Margin="0,-10,0,10"
+                                              MaxHeight="0"
                                               x:Name="DetailGridWrapper">
                                             <TextBlock Text="{Binding Task.Detail}"
                                                        Style="{StaticResource SlightTextStyle}"
                                                        FontSize="22"
                                                        TextWrapping="Wrap"
+                                                       TextTrimming="WordEllipsis"
                                                        Opacity="0.8"
                                                        Margin="8,0,20,0" />
                                         </Grid>
@@ -376,21 +436,21 @@
                     <!--Checkbox-->
                     <Button>
                         <Button.Template>
-                            <ControlTemplate>
-                                <Border Tap="CompleteButton_Tap"
-                                        Background="Transparent"
-                                        VerticalAlignment="Top"
-                                        Margin="10,10,0,0"
-                                        Width="50"
-                                        Height="50"
-                                        HorizontalAlignment="Left">
-                                    <ToggleButton x:Name="Checkbox"
-                                                  IsChecked="{Binding Task.IsComplete}"
-                                                  Style="{StaticResource CheckboxStyle}"
-                                                  IsHitTestVisible="False" />
-                                </Border>
-                            </ControlTemplate>
+                            <ControlTemplate TargetType="ButtonBase" />
                         </Button.Template>
+
+                        <Border Tap="CompleteButton_Tap"
+                                Background="Transparent"
+                                VerticalAlignment="Top"
+                                Margin="10,10,0,0"
+                                Width="50"
+                                Height="50"
+                                HorizontalAlignment="Left">
+                            <ToggleButton x:Name="Checkbox"
+                                          IsChecked="{Binding Task.IsComplete}"
+                                          Style="{StaticResource CheckboxStyle}"
+                                          IsHitTestVisible="False" />
+                        </Border>
                     </Button>
 
                     <!--Gesture Complete icon-->
@@ -403,7 +463,6 @@
                 </Grid>
             </Border>
         </DataTemplate>
-
     </controls:BasePage.Resources>
 
     <Grid x:Name="TasksRoot"
@@ -575,12 +634,14 @@
             </Rectangle.Resources>
         </Rectangle>
 
-        <!--Quick add-->
+        <!--Oddělovač-->
         <Rectangle Grid.Row="1"
                    Fill="{StaticResource PhoneAccentBrush}"
                    Opacity="0.6"
                    Height="10"
                    VerticalAlignment="Bottom" />
+
+        <!--Quick add-->
         <Grid Grid.Row="2">
             <controls:MyTextBox Grid.Row="1"
                                 x:Name="QuickAddTextBox"
