@@ -65,7 +65,7 @@
     
     <SolidColorBrush x:Key="TasksListDelimiterBrush"
                      Color="{StaticResource SubtleColor}"
-                     Opacity="0.2" />
+                     Opacity="0.3" />
 
     <SolidColorBrush x:Key="QuickAddHintBrush"
                      Color="{StaticResource SlightColor}"
