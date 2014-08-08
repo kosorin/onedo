@@ -90,8 +90,6 @@ namespace SimpleTasks.Views
                     IsSetReminder = true;
                 }
             }
-
-            BuildAppBar();
         }
 
         private void FirstTimeLoaded()
