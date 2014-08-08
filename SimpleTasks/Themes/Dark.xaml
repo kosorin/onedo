@@ -61,11 +61,15 @@
     <!--EndRegion-->
 
     <!--Region MainPage-->
-    <Color x:Key="TasksListHeaderBackgroundColor">#1AFFFFFF</Color>
-    
     <SolidColorBrush x:Key="TasksListDelimiterBrush"
                      Color="{StaticResource SubtleColor}"
                      Opacity="0.3" />
+    
+    <Color x:Key="TasksListHeaderBackgroundColor">#1AFFFFFF</Color>
+    <Color x:Key="TasksListHeaderGradientColor">#05FFFFFF</Color>
+    <SolidColorBrush x:Key="TasksListHeaderBorderBrush"
+                     Color="{StaticResource SubtleColor}"
+                     Opacity="0.18" />
 
     <SolidColorBrush x:Key="QuickAddHintBrush"
                      Color="{StaticResource SlightColor}"
