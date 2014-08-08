@@ -15,45 +15,22 @@
     <controls:BasePage.Resources>
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Border Height="70"
+            <Grid Height="50"
                     toolkit:TiltEffect.SuppressTilt="True">
-                <Border.Background>
-                    <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}"
-                                     Opacity="0.35" />
-                </Border.Background>
-
-                <Grid>
                     <Grid.Background>
-                        <LinearGradientBrush EndPoint="10,10"
-                                             StartPoint="0,0"
-                                             SpreadMethod="Repeat"
-                                             MappingMode="Absolute">
-                            <GradientStop Color="{StaticResource TasksListHeaderBackgroundColor}"
-                                          Offset="0" />
-                            <GradientStop Color="{StaticResource TasksListHeaderBackgroundColor}"
-                                          Offset="0.1" />
-                            <GradientStop Color="Transparent"
-                                          Offset="0.1" />
-                            <GradientStop Color="Transparent"
-                                          Offset="1" />
-                        </LinearGradientBrush>
+                    <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}" />
                     </Grid.Background>
                     <TextBlock Style="{StaticResource NormalTextStyle}"
-                               FontSize="32"
                                Opacity="0.75"
-                               VerticalAlignment="Bottom"
-                               Margin="15,0,0,15">
+                           VerticalAlignment="Center"
+                           Margin="16,0,0,0">
                     <Run Text="{Binding Title, Converter={StaticResource ToUpperConverter}}" />
                     <Run Text="{Binding Count, StringFormat='({0})'}"
-                         Foreground="{StaticResource SlightBrush}"
-                         FontSize="24" />
+                         Foreground="{StaticResource SlightBrush}" />
                     </TextBlock>
-                    <Border Background="{StaticResource PhoneAccentBrush}"
-                            Height="10"
-                            Opacity="0.6"
-                            VerticalAlignment="Bottom" />
+                <Border BorderThickness="0,2" BorderBrush="{StaticResource PhoneAccentBrush}"
+                        Opacity="0.6" />
                 </Grid>
-            </Border>
         </DataTemplate>
 
         <!--List Task-->
