@@ -171,7 +171,7 @@
 
             <wpcontrols:Calendar x:Name="Calendar" 
                                  VerticalAlignment="Top" 
-                                 Margin="-1,120,-1,0" 
+                                 Margin="-1,120,-1,0"
                                  Template="{StaticResource CalendarTemplate}"
                                  CalendarItemStyle="{StaticResource CalendarItemStyle}"/>
 

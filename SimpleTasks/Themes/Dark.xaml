@@ -98,6 +98,8 @@
                      Color="#33FFFFFF" />
     <SolidColorBrush x:Key="CalendarItemBrush"
                      Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="CalendarSelectedItemBrush"
+                     Color="{StaticResource NormalColor}" />
     <SolidColorBrush x:Key="CalendarItemSubtleBrush"
                      Color="#5d5d5d" />
     <SolidColorBrush x:Key="CalendarWeekdayBrush"

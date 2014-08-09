@@ -22,17 +22,32 @@ namespace SimpleTasks.Views
         {
             DefaultForeground = Application.Current.Resources["CalendarItemBrush"] as Brush;
             InactiveForeground = Application.Current.Resources["CalendarItemSubtleBrush"] as Brush;
+
+            SelectedForeground = Application.Current.Resources["CalendarSelectedItemBrush"] as Brush;
+            SelectedBackground = Application.Current.Resources["PhoneAccentBrush"] as Brush;
         }
 
         public Brush DefaultForeground { get; set; }
 
         public Brush InactiveForeground { get; set; }
 
+        public Brush SelectedForeground { get; set; }
+
+        public Brush SelectedBackground { get; set; }
+
         public Brush Convert(DateTime dateTime, bool isSelected, Brush defaultValue, BrushType brushType)
         {
+            if (isSelected)
+            {
+                if (brushType == BrushType.Background)
+                    return SelectedBackground;
+                else if (brushType == BrushType.Foreground)
+                    return SelectedForeground;
+            }
+
             if (brushType == BrushType.Foreground)
             {
-                if (dateTime.Date < DateTime.Today && !isSelected)
+                if (dateTime.Date < DateTime.Today)
                 {
                     return InactiveForeground;
                 }
