@@ -419,7 +419,7 @@
 
             <Style x:Key="LabelTextStyle"
                    TargetType="TextBlock"
-                   BasedOn="{StaticResource SlightTextStyle}">
+                   BasedOn="{StaticResource NormalTextStyle}">
                 <Setter Property="IsHitTestVisible"
                         Value="False" />
                 <Setter Property="FontFamily"
