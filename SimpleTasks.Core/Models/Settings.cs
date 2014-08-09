@@ -21,6 +21,7 @@ namespace SimpleTasks.Core.Models
         {
             Tasks = new TasksSettings(this);
             Tiles = new TilesSettings(this);
+            General = new GeneralSettings(this);
         }
 
         [DataMember(Name = "Tasks")]
@@ -28,6 +29,9 @@ namespace SimpleTasks.Core.Models
 
         [DataMember(Name = "Tiles")]
         public TilesSettings Tiles { get; set; }
+
+        [DataMember(Name = "General")]
+        public GeneralSettings General { get; set; }
 
         public static Settings LoadFromFile(string fileName)
         {
@@ -43,10 +47,10 @@ namespace SimpleTasks.Core.Models
                         using (Stream stream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
                         {
                             StreamReader sr = new StreamReader(stream);
-                            string s = sr.ReadToEnd();
-                            Debug.WriteLine("> Settings: \n{0}", s);
-                            settings = JsonConvert.DeserializeObject<Settings>(s);
+                            settings = JsonConvert.DeserializeObject<Settings>(sr.ReadToEnd());
                             sr.Close();
+
+                            Debug.WriteLine(settings);
                             Debug.WriteLine(": Nahrávání nastavení dokončeno.");
                         }
                     }
@@ -76,6 +80,15 @@ namespace SimpleTasks.Core.Models
                     Debug.WriteLine(": Ukládání nastavení dokončeno.");
                 }
             }
+        }
+
+        public override string ToString()
+        {
+#if DEBUG
+            return string.Format("> Nastavení: \n{0}", JsonConvert.SerializeObject(this, Formatting.Indented));
+#else
+            return "";
+#endif
         }
         #endregion
 
@@ -245,6 +258,24 @@ namespace SimpleTasks.Core.Models
             {
                 get { return _unpinCompleted; }
                 set { SetProperty(ref _unpinCompleted, value); }
+            }
+            #endregion
+        }
+        #endregion
+
+        #region General
+        [DataContract(Name = "GeneralSettings", Namespace = "")]
+        public class GeneralSettings : SettingsCategory
+        {
+            public GeneralSettings(Settings settings) : base(settings) { }
+
+            #region Vibrate
+            private bool _vibrate = true;
+            [DataMember(Name = "Vibrate")]
+            public bool Vibrate
+            {
+                get { return _vibrate; }
+                set { SetProperty(ref _vibrate, value); }
             }
             #endregion
         }

@@ -531,4 +531,7 @@
   <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
     <value>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</value>
   </data>
+  <data name="SettingsVibrate" xml:space="preserve">
+    <value>Vibrate</value>
+  </data>
 </root>

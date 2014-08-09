@@ -184,12 +184,12 @@
 
                         <!--Automatically complete subtasks-->
                         <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}}"
-                                              IsChecked="{Binding Tasks.CompleteSubtasks, Mode=TwoWay, FallbackValue=True}"
+                                              IsChecked="{Binding Tasks.CompleteSubtasks, Mode=TwoWay}"
                                               Margin="0,0,0,12" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource PhoneTextSubtleStyle}"
                                    TextWrapping="Wrap"
-                                   Margin="12,-45,12,0" />
+                                   Margin="12,-45,12,20" />
 
                     </StackPanel>
                 </ScrollViewer>
@@ -199,19 +199,29 @@
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsTile, Source={StaticResource LocalizedStrings}}">
                 <StackPanel Margin="0,0,0,12">
                     <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
-                                          IsChecked="{Binding Tiles.Enable, Mode=TwoWay, FallbackValue=True}"
+                                          IsChecked="{Binding Tiles.Enable, Mode=TwoWay}"
                                           x:Name="EnableLiveTileToggleSwitch"
                                           Margin="0,0,0,12" />
                     <TextBlock x:Name="PinTileTextBox"
                                Text="{Binding FallbackValue='Pin tile help text.'}"
                                Style="{StaticResource PhoneTextSubtleStyle}"
                                TextWrapping="Wrap"
-                               Margin="12,-45,12,0" />
+                               Margin="12,-45,12,20" />
 
                     <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}"
-                                          IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay, FallbackValue=True}"
+                                          IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
                                           x:Name="UnpinCompletedToggleSwitch"
-                                          Margin="0,20,0,-20" />
+                                          Margin="0,0,0,12" />
+
+                </StackPanel>
+            </phone:PivotItem>
+
+            <!--General-->
+            <phone:PivotItem Header="{Binding LocalizedResources.SettingsGeneral, Source={StaticResource LocalizedStrings}}">
+                <StackPanel Margin="0,0,0,12">
+                    <toolkit:ToggleSwitch Header="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}"
+                                          IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
+                                          Margin="0,0,0,12" />
 
                 </StackPanel>
             </phone:PivotItem>

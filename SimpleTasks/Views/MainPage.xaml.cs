@@ -504,7 +504,7 @@ namespace SimpleTasks.Views
             double value = e.TotalManipulation.Translation.X;
             if (_canUseGestures && value < _completeGestureTreshold)
             {
-                VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
+                VibrateHelper.Short();
                 ToggleComplete(border);
             }
         }
@@ -551,7 +551,7 @@ namespace SimpleTasks.Views
             double value = e.TotalManipulation.Translation.X;
             if (_canUseGestures && value < _completeGestureTreshold)
             {
-                VibrateController.Default.Start(TimeSpan.FromSeconds(0.05));
+                VibrateHelper.Short();
                 ToggleSubtaskComplete(border);
             }
         }

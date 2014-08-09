@@ -1034,6 +1034,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vibrate.
+        /// </summary>
+        public static string SettingsVibrate {
+            get {
+                return ResourceManager.GetString("SettingsVibrate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a subtask.
         /// </summary>
         public static string SubtaskAdd {

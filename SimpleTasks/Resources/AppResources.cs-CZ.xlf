@@ -378,6 +378,10 @@
           <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
           <target state="signed-off">Při dokončení úkolu budou jeho podúkoly automaticky označeny jako dokončené.</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsVibrate" translate="yes" xml:space="preserve">
+          <source>Vibrate</source>
+          <target state="signed-off">Vibrace</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
           <target state="signed-off">Automaticky dokončit podúkoly</target>
