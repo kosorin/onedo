@@ -26,6 +26,10 @@
                             Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                             To="{StaticResource PhoneAccentColor}"
                             Duration="0:0:0.4" />
+            <ColorAnimation Storyboard.TargetName="DueDatePicker"
+                            Storyboard.TargetProperty="(ToggleButton.Foreground).(SolidColorBrush.Color)"
+                            To="{StaticResource ButtonDarkForegroundColor}"
+                            Duration="0:0:0.2" />
 
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
@@ -39,16 +43,7 @@
                              Storyboard.TargetProperty="Opacity"
                              To="1"
                              Duration="0:0:0.4" />
-            <!--<DoubleAnimation Storyboard.TargetName="DueTimePicker" 
-                            Storyboard.TargetProperty="Opacity"
-                            To="1"
-                            Duration="0:0:0.3"
-                            BeginTime="0:0:0.15"/>
-            <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
-                            Storyboard.TargetProperty="Opacity"
-                            To="1"
-                            Duration="0:0:0.3"
-                            BeginTime="0:0:0.3"/>-->
+
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0"
@@ -76,6 +71,11 @@
                             Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                             To="{StaticResource ButtonBackgroundColor}"
                             Duration="0:0:0.4" />
+            <ColorAnimation Storyboard.TargetName="DueDatePicker"
+                            Storyboard.TargetProperty="(ToggleButton.Foreground).(SolidColorBrush.Color)"
+                            To="{StaticResource ButtonForegroundColor}"
+                            Duration="0:0:0.2" />
+
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
                              To="60"
@@ -88,15 +88,7 @@
                              Storyboard.TargetProperty="Opacity"
                              To="0"
                              Duration="0:0:0.4" />
-            <!--<DoubleAnimation Storyboard.TargetName="DueTimePicker" 
-                            Storyboard.TargetProperty="Opacity"
-                            To="0"
-                            Duration="0:0:0.3"
-                            BeginTime="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetName="ReminderPickerGrid" 
-                            Storyboard.TargetProperty="Opacity"
-                            To="0"
-                            Duration="0:0:0.3"/>-->
+
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DueDateCloseButton"
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0"
@@ -250,9 +242,11 @@
                                                          Grid.ColumnSpan="2"
                                                          IsChecked="{Binding IsSetDueDate}"
                                                          DoubleTap="DueDatePicker_Tap">
+                                    <controls:MyToggleButton.Foreground>
+                                        <SolidColorBrush Color="{StaticResource ButtonDarkForegroundColor}" />
+                                    </controls:MyToggleButton.Foreground>
                                     <controls:MyToggleButton.Background>
-                                        <SolidColorBrush x:Name="DueDatePickerBackground"
-                                                         Color="{StaticResource PhoneAccentColor}" />
+                                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
                                     </controls:MyToggleButton.Background>
                                     <controls:MyToggleButton.Template>
                                         <ControlTemplate>
@@ -299,12 +293,13 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                                Foreground="{StaticResource ButtonIconBrush}" />
+                                                                Foreground="{TemplateBinding Foreground}" />
                                                 <TextBlock x:Name="DateText"
                                                            Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}"
                                                            Grid.Column="1"
                                                            Text="{Binding DueDate, Converter={StaticResource DateConverter}}"
-                                                           Style="{StaticResource ButtonTextStyle}" />
+                                                           Style="{StaticResource ButtonTextStyle}"
+                                                           Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                                 <TextBlock x:Name="NoDateText"
                                                            Grid.Column="1"
                                                            Text="{Binding LocalizedResources.DateNoDue, Source={StaticResource LocalizedStrings}}"
@@ -351,10 +346,11 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <ContentControl Style="{StaticResource ClockIconStyle}"
-                                                                Foreground="{StaticResource ButtonIconBrush}" />
+                                                                Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                                 <TextBlock Grid.Column="1"
                                                            Text="{Binding DueDate, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
-                                                           Style="{StaticResource ButtonTextStyle}" />
+                                                           Style="{StaticResource ButtonTextStyle}"
+                                                           Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                             </Grid>
                                         </Border>
                                     </ControlTemplate>
@@ -410,15 +406,17 @@
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
                                                     <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                                    Foreground="{StaticResource ButtonIconBrush}" />
+                                                                    Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                                     <TextBlock x:Name="ReminderText"
                                                                Grid.Column="1"
                                                                Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
-                                                               Style="{StaticResource ButtonTextStyle}" />
+                                                               Style="{StaticResource ButtonTextStyle}"
+                                                               Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                                     <TextBlock x:Name="NoReminderText"
                                                                Grid.Column="1"
                                                                Text="{Binding LocalizedResources.NoReminder, Source={StaticResource LocalizedStrings}}"
-                                                               Style="{StaticResource ButtonTextStyle}" />
+                                                               Style="{StaticResource ButtonTextStyle}"
+                                                               Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                                 </Grid>
                                             </Border>
                                         </ControlTemplate>
@@ -447,15 +445,13 @@
                                       IsChecked="{Binding Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
                             <ToggleButton.Template>
                                 <ControlTemplate>
-                                    <Grid Height="60">
+                                    <Grid Height="60"
+                                          Background="{StaticResource ButtonBackgroundBrush}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CheckStates">
+                                                <!--High-->
                                                 <VisualState x:Name="Unchecked">
                                                     <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetName="BackgroundColor"
-                                                                        Storyboard.TargetProperty="Color"
-                                                                        To="{StaticResource PhoneAccentColor}"
-                                                                        Duration="0:0:0.4" />
                                                         <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
                                                                          Storyboard.TargetProperty="Opacity"
                                                                          To="1"
@@ -470,12 +466,9 @@
                                                                          Duration="0:0:0.4" />
                                                     </Storyboard>
                                                 </VisualState>
+                                                <!--Normal-->
                                                 <VisualState x:Name="Indeterminate">
                                                     <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetName="BackgroundColor"
-                                                                        Storyboard.TargetProperty="Color"
-                                                                        To="{StaticResource ButtonBackgroundColor}"
-                                                                        Duration="0:0:0.4" />
                                                         <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
                                                                          Storyboard.TargetProperty="Opacity"
                                                                          To="0"
@@ -490,12 +483,9 @@
                                                                          Duration="0:0:0.4" />
                                                     </Storyboard>
                                                 </VisualState>
+                                                <!--Low-->
                                                 <VisualState x:Name="Checked">
                                                     <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetName="BackgroundColor"
-                                                                        Storyboard.TargetProperty="Color"
-                                                                        To="{StaticResource ButtonBackgroundColor}"
-                                                                        Duration="0:0:0.4" />
                                                         <DoubleAnimation Storyboard.TargetName="HighPriorityGrid"
                                                                          Storyboard.TargetProperty="Opacity"
                                                                          To="0"
@@ -512,10 +502,6 @@
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Grid.Background>
-                                            <SolidColorBrush x:Name="BackgroundColor"
-                                                             Color="{StaticResource ButtonBackgroundColor}" />
-                                        </Grid.Background>
                                         <Grid x:Name="LowPriorityGrid"
                                               Opacity="0">
                                             <Grid.ColumnDefinitions>
@@ -524,7 +510,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <ContentControl Style="{StaticResource LowPriorityIconStyle}"
-                                                            Foreground="{StaticResource ButtonIconBrush}" />
+                                                            Foreground="{StaticResource ButtonForegroundBrush}" />
                                             <TextBlock Grid.Column="1"
                                                        Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"
                                                        Style="{StaticResource ButtonTextStyle}" />
@@ -539,16 +525,18 @@
                                                        Style="{StaticResource ButtonTextStyle}" />
                                         </Grid>
                                         <Grid x:Name="HighPriorityGrid"
-                                              Opacity="0">
+                                              Opacity="0"
+                                              Background="{StaticResource PhoneAccentBrush}">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                            Foreground="{StaticResource ButtonIconBrush}" />
+                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                             <TextBlock Grid.Column="1"
                                                        Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
-                                                       Style="{StaticResource ButtonTextStyle}" />
+                                                       Style="{StaticResource ButtonTextStyle}"
+                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                         </Grid>
                                     </Grid>
                                 </ControlTemplate>
