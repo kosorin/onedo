@@ -25,7 +25,8 @@
                 <!--Logo-->
                 <Grid HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
-                        <Border Width="120">
+                        <Border Width="120"
+                                Height="90">
                             <Canvas x:Name="Logo"
                                     Width="0"
                                     Height="0"
@@ -69,14 +70,15 @@
                         </Border>
                         <TextBlock Text="{Binding AppName, FallbackValue=OneDó}"
                                    Style="{StaticResource NormalTextStyle}"
-                                   FontSize="60"
+                                   FontSize="72"
                                    Margin="10,0,12,10" />
                     </StackPanel>
                     <TextBlock Style="{StaticResource SubtleTextStyle}"
                                FontWeight="Normal"
                                FontSize="18"
                                VerticalAlignment="Bottom"
-                               Margin="175,0,0,0">
+                               Margin="0,0,15,0"
+                               HorizontalAlignment="Right">
                         <Run Text="by " /><Run Text="{Binding Author, FallbackValue='Dávid Kosorin'}" />
                     </TextBlock>
                 </Grid>
@@ -85,7 +87,7 @@
                 <TextBlock Text="{Binding VersionString}"
                            Style="{StaticResource SubtleTextStyle}"
                            HorizontalAlignment="Center"
-                           Margin="0,40,0,10" />
+                           Margin="0,20,0,10" />
 
                 <!--Changelog header-->
                 <TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
