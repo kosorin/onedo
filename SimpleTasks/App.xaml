@@ -28,8 +28,8 @@
             <conv:SettingsConverter x:Key="SettingsConverter" />
 
             <!--To String-->
-            <conv:StringFormatConverter x:Key="StringFormatConverter" />
-            <conv:ToUpperConverter x:Key="ToUpperConverter" />
+            <conv:StringFunctionConverter x:Key="StringFunctionConverter" />
+            <conv:OffOnConverter x:Key="OffOnConverter" />
             <conv:DueConverter x:Key="TaskToDueStringConverter" />
             <conv:ReminderConverter x:Key="ReminderConverter" />
             <conv:DateConverter x:Key="DateConverter" />
@@ -419,7 +419,7 @@
 
             <Style x:Key="LabelTextStyle"
                    TargetType="TextBlock"
-                   BasedOn="{StaticResource NormalTextStyle}">
+                   BasedOn="{StaticResource SlightTextStyle}">
                 <Setter Property="IsHitTestVisible"
                         Value="False" />
                 <Setter Property="FontFamily"
@@ -427,7 +427,9 @@
                 <Setter Property="FontSize"
                         Value="22.667" />
                 <Setter Property="Margin"
-                        Value="0,16,0,8" />
+                        Value="0,24,0,5" />
+                <Setter Property="TextTrimming"
+                        Value="WordEllipsis" />
             </Style>
             <!--EndRegion-->
 
@@ -682,10 +684,8 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0"
-                                            CacheMode="BitmapCache">
-                                        <Border.Background>
-                                            <SolidColorBrush Color="{StaticResource SystemTrayBackgroundColor}" />
-                                        </Border.Background>
+                                            CacheMode="BitmapCache"
+                                            Background="{StaticResource SystemTrayBackgroundBrush}">
 
                                         <StackPanel>
                                             <TextBlock Text="{TemplateBinding Title}"
@@ -699,6 +699,11 @@
                                     <ItemsPresenter Grid.Row="1"
                                                     x:Name="PivotItemPresenter"
                                                     Margin="{TemplateBinding Padding}" />
+                                    <Rectangle Grid.Row="1"
+                                               Fill="{StaticResource PhoneAccentBrush}"
+                                               Opacity="0.6"
+                                               Height="10"
+                                               VerticalAlignment="Top" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>

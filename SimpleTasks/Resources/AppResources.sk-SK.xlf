@@ -252,9 +252,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">{0} is application name</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsTile" xml:space="preserve">
-          <source>tile</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">dlaždice</target>
-        </trans-unit>
+          <source>tiles</source>
+          <target state="signed-off" state-qualifier="tm-suggestion">dlaždice</target></trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsDeleteWhenStarts" xml:space="preserve">
           <source>when application closes</source>
           <target state="signed-off">pri zatvorení aplikácie</target></trans-unit>

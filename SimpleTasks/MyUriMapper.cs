@@ -16,7 +16,6 @@ namespace SimpleTasks
     {
         public override Uri MapUri(Uri uri)
         {
-            //return new Uri("/Views/ReminderPickerPage.xaml", UriKind.Relative);
             if (uri.OriginalString == "/Views/EntryPage.xaml")
             {
                 uri = new Uri("/Views/MainPage.xaml", UriKind.Relative);

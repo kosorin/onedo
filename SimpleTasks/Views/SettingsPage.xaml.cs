@@ -18,37 +18,13 @@ using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Views
 {
-    public partial class SettingsPage : PhoneApplicationPage, INotifyPropertyChanged
+    public partial class SettingsPage : BasePage
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-            storage = value;
-
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-        #endregion
-
         public SettingsPage()
         {
             InitializeComponent();
             DataContext = App.Settings;
-            PinTileTextBox.DataContext = PinTileHelpText;
+            PinTileTextBox.Text = PinTileHelpText;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

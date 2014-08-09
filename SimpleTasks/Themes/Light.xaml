@@ -10,7 +10,12 @@
     <Visibility x:Key="DarkThemeVisibility">Collapsed</Visibility>
 
     <Color x:Key="SystemTrayBackgroundColor">#CCC</Color>
+    <SolidColorBrush x:Key="SystemTrayBackgroundBrush"
+                     Color="{StaticResource SystemTrayBackgroundColor}" />
+
     <Color x:Key="SystemTrayForegroundColor">#DE000000</Color>
+    <SolidColorBrush x:Key="SystemTrayForegroundBrush"
+                     Color="{StaticResource SystemTrayForegroundColor}" />
 
     <!--Region Globální styly-->
     <Color x:Key="BackgroundColor">#ececec</Color>

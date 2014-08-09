@@ -10,7 +10,12 @@
     <Visibility x:Key="DarkThemeVisibility">Visible</Visibility>
 
     <Color x:Key="SystemTrayBackgroundColor">#1F1F1F</Color>
+    <SolidColorBrush x:Key="SystemTrayBackgroundBrush"
+                     Color="{StaticResource SystemTrayBackgroundColor}" />
+
     <Color x:Key="SystemTrayForegroundColor">#FeFeFe</Color>
+    <SolidColorBrush x:Key="SystemTrayForegroundBrush"
+                     Color="{StaticResource SystemTrayForegroundColor}" />
 
     <!--Region Globální styly-->
     <Color x:Key="BackgroundColor">#0c0c0c</Color>
@@ -64,7 +69,7 @@
     <SolidColorBrush x:Key="TasksListDelimiterBrush"
                      Color="{StaticResource SubtleColor}"
                      Opacity="0.3" />
-    
+
     <Color x:Key="TasksListHeaderBackgroundColor">#1AFFFFFF</Color>
     <Color x:Key="TasksListHeaderGradientColor">#05FFFFFF</Color>
     <SolidColorBrush x:Key="TasksListHeaderBorderBrush"

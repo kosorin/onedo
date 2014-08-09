@@ -319,7 +319,7 @@
     <value>Enable tile</value>
   </data>
   <data name="SettingsTile" xml:space="preserve">
-    <value>tile</value>
+    <value>tiles</value>
   </data>
   <data name="SettingsDeleteNever" xml:space="preserve">
     <value>never</value>

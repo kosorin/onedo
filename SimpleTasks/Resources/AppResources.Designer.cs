@@ -1007,7 +1007,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to tile.
+        ///   Looks up a localized string similar to tiles.
         /// </summary>
         public static string SettingsTile {
             get {

@@ -1,4 +1,5 @@
 ﻿using SimpleTasks.Resources;
+using Microsoft.Phone.Controls.LocalizedResources;
 
 namespace SimpleTasks
 {
@@ -10,5 +11,9 @@ namespace SimpleTasks
         private static AppResources _localizedResources = new AppResources();
 
         public AppResources LocalizedResources { get { return _localizedResources; } }
+
+        public string On { get { return ControlResources.On; } }
+
+        public string Off { get { return ControlResources.Off; } }
     }
 }

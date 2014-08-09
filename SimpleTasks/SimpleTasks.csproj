@@ -109,9 +109,9 @@
     </Compile>
     <Compile Include="Controls\TaskListMenuItem.cs" />
     <Compile Include="Controls\ToggleControl.cs" />
+    <Compile Include="Conventers\OffOnConverter.cs" />
     <Compile Include="Conventers\SettingsConverter.cs" />
-    <Compile Include="Conventers\StringFormatConverter.cs" />
-    <Compile Include="Conventers\ToUpperConverter.cs" />
+    <Compile Include="Conventers\StringFunctionConverter.cs" />
     <Compile Include="Conventers\BoolNegationConverter.cs" />
     <Compile Include="Conventers\BoolToNumberConverter.cs" />
     <Compile Include="Conventers\BoolToVisibilityConverter.cs" />

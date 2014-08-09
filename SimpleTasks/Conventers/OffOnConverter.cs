@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using Microsoft.Phone.Controls.LocalizedResources;
 
 namespace SimpleTasks.Conventers
 {
-    public class ToUpperConverter : IValueConverter
+    public class OffOnConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is string))
+            if (value is bool? || value == null)
             {
-                return "";
+                return (bool?)value == true ? ControlResources.On : ControlResources.Off;
             }
-            return ((string)value).ToUpper();
+            return ControlResources.Off;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

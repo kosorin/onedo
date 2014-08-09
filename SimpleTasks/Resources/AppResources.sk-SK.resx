@@ -293,7 +293,7 @@
   <comment>{0} is application name</comment></data>
   <data name="SettingsTile" xml:space="preserve">
     <value>dlaždice</value>
-  </data>
+  <comment></comment></data>
   <data name="SettingsEnableTile" xml:space="preserve">
     <value>Povoliť dlaždice</value>
   </data>
