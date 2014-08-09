@@ -151,32 +151,6 @@
                 <ControlTemplate TargetType="controls:MySlider">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver" />
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="0.1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="HorizontalTrack" />
-                                        <DoubleAnimation Duration="0"
-                                                         To="0.1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="VerticalTrack" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="HorizontalFill">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource PhoneDisabledBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalFill">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource PhoneDisabledBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
                             <VisualStateGroup x:Name="ChangeStates">
                                 <VisualState x:Name="StartedChange">
                                     <Storyboard>
