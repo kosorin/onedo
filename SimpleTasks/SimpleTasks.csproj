@@ -97,6 +97,7 @@
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BasePickerPage.cs" />
     <Compile Include="Controls\ListPicker.cs" />
+    <Compile Include="Controls\ListPickerValueItem.cs" />
     <Compile Include="Controls\ListPickerItem.cs" />
     <Compile Include="Controls\MySlider.cs" />
     <Compile Include="Controls\MyTextBox.cs" />
