@@ -114,17 +114,10 @@
                             </Button.Template>
 
                             <Border Background="{StaticResource ButtonBackgroundBrush}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <ContentControl Style="{StaticResource ClockIconStyle}"
-                                                    Foreground="{StaticResource ButtonIconBrush}" />
-                                    <TextBlock Grid.Column="1"
-                                               Text="{Binding Tasks.DefaultTime, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
-                                               Style="{StaticResource ButtonTextStyle}" />
-                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Tasks.DefaultTime, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
+                                           Style="{StaticResource ButtonTextStyle}"
+                                           Margin="10,0" />
                             </Border>
                         </Button>
 
