@@ -5,7 +5,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                     xmlns:controls="clr-namespace:SimpleTasks.Controls"
-                    xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
+                    xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
 
     <Style TargetType="controls:ToggleControl">
         <Setter Property="Template">

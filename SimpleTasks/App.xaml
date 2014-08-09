@@ -8,7 +8,8 @@
              xmlns:conv="clr-namespace:SimpleTasks.Conventers"
              xmlns:helpcore="clr-namespace:SimpleTasks.Core.Helpers;assembly=SimpleTasks.Core"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-             xmlns:controls="clr-namespace:SimpleTasks.Controls">
+             xmlns:controls="clr-namespace:SimpleTasks.Controls"
+             xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -17,7 +18,7 @@
                 <ResourceDictionary  Source="/SimpleTasks;component/Themes/Dark.xaml" />
                 <!--<ResourceDictionary  Source="/SimpleTasks;component/Themes/Light.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
-            
+
             <!--Region Lokalizace-->
             <local:LocalizedStrings x:Key="LocalizedStrings" />
             <!--EndRegion-->
@@ -415,6 +416,19 @@
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
             </Style>
+
+            <Style x:Key="LabelTextStyle"
+                   TargetType="TextBlock"
+                   BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="IsHitTestVisible"
+                        Value="False" />
+                <Setter Property="FontFamily"
+                        Value="Segoe WP Semibold" />
+                <Setter Property="FontSize"
+                        Value="22.667" />
+                <Setter Property="Margin"
+                        Value="0,16,0,8" />
+            </Style>
             <!--EndRegion-->
 
             <!--Region Checkbox-->
@@ -616,13 +630,8 @@
             </Style>
 
             <Style x:Key="BasePickerPageHeaderStyle"
-                   TargetType="TextBlock">
-                <Setter Property="IsHitTestVisible"
-                        Value="False" />
-                <Setter Property="FontFamily"
-                        Value="Segoe WP Semibold" />
-                <Setter Property="FontSize"
-                        Value="22.667" />
+                   TargetType="TextBlock"
+                   BasedOn="{StaticResource LabelTextStyle}">
                 <Setter Property="Foreground"
                         Value="{StaticResource BasePickerPageForegroundBrush}" />
                 <Setter Property="Margin"
@@ -654,6 +663,94 @@
                             <TextBlock Text="{Binding}"
                                        Style="{StaticResource BasePickerQuickButtonTextStyle}" />
                         </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--EndRegion-->
+
+            <!--Region Pivot-->
+            <Style TargetType="phone:Pivot">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="phone:Pivot">
+                            <Border Background="{TemplateBinding Background}"
+                                    CacheMode="BitmapCache">
+                                <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0"
+                                            CacheMode="BitmapCache">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="{StaticResource SystemTrayBackgroundColor}" />
+                                        </Border.Background>
+
+                                        <StackPanel>
+                                            <TextBlock Text="{TemplateBinding Title}"
+                                                       Style="{StaticResource LabelTextStyle}"
+                                                       FontWeight="SemiBold"
+                                                       Margin="24,16,24,8" />
+                                            <primitives:PivotHeadersControl x:Name="HeadersListElement"
+                                                                            Margin="0,-8,0,10" />
+                                        </StackPanel>
+                                    </Border>
+                                    <ItemsPresenter Grid.Row="1"
+                                                    x:Name="PivotItemPresenter"
+                                                    Margin="{TemplateBinding Padding}" />
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Border Margin="2,0,0,0">
+                                <TextBlock Style="{StaticResource NormalTextStyle}"
+                                           FontSize="42"
+                                           Text="{Binding}" />
+                            </Border>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="phone:PivotItem">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                            <Setter Property="Margin"
+                                    Value="0" />
+                            <Setter Property="Padding"
+                                    Value="0" />
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="phone:PivotItem">
+                                        <Grid Background="{TemplateBinding Background}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="Pivot">
+                                                    <VisualState x:Name="Right" />
+                                                    <VisualState x:Name="Left" />
+                                                    <VisualState x:Name="Center" />
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                              Content="{TemplateBinding Content}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
                     </Setter.Value>
                 </Setter>
             </Style>
