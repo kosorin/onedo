@@ -15,7 +15,8 @@
         <ControlTemplate x:Key="SwitchStyle"
                          TargetType="ToggleButton">
             <Border Height="60"
-                    Background="Transparent">
+                    Background="Transparent"
+                    Margin="0,-5,0,0">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CheckStates">
                         <VisualState x:Name="Checked">
@@ -73,6 +74,19 @@
                 </StackPanel>
             </Border>
         </ControlTemplate>
+
+        <Style x:Key="HelpTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource SubtleTextStyle}">
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource HelpBrush}" />
+        </Style>
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
@@ -143,12 +157,10 @@
                         <!--Automatically complete subtasks-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource PhoneTextSubtleStyle}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,-5,0,0" />
                         <ToggleButton IsChecked="{Binding Tasks.CompleteSubtasks, Mode=TwoWay}"
                                       Template="{StaticResource SwitchStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
@@ -161,20 +173,17 @@
                         <!--Enable tile-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <TextBlock x:Name="PinTileTextBox"
-                                   Text="Pin tile help text."
-                                   Style="{StaticResource PhoneTextSubtleStyle}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,-5,0,0" />
                         <ToggleButton IsChecked="{Binding Tiles.Enable, Mode=TwoWay}"
                                       Template="{StaticResource SwitchStyle}" />
+                        <TextBlock x:Name="PinTileTextBox"
+                                   Text="Pin tile help text."
+                                   Style="{StaticResource HelpTextStyle}" />
 
                         <!--Unpin Completed-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}"
-                                      Margin="0,-5,0,0" />
+                                      Template="{StaticResource SwitchStyle}" />
 
                     </StackPanel>
                 </ScrollViewer>
@@ -188,8 +197,7 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}"
-                                      Margin="0,-5,0,0" />
+                                      Template="{StaticResource SwitchStyle}" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
