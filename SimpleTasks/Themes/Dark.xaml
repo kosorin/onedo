@@ -34,6 +34,9 @@
                      Color="{StaticResource SubtleColor}" />
     <SolidColorBrush x:Key="ChromeBrush"
                      Color="{StaticResource ChromeColor}" />
+
+    <SolidColorBrush x:Key="LabelBrush"
+                     Color="{StaticResource SlightColor}" />
     <!--EndRegion-->
 
     <!--Region Button-->
