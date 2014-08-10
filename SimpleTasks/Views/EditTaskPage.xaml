@@ -524,7 +524,7 @@
                         <TextBlock Grid.Column="2"
                                    Text="{Binding Subtasks.Count}"
                                    Style="{StaticResource ButtonTextStyle}"
-                                   Foreground="{StaticResource SubtleBrush}"
+                                   Foreground="{StaticResource SlightBrush}"
                                    Margin="0,0,15,0" />
                     </Grid>
                 </Button>
