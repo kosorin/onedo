@@ -534,7 +534,4 @@
   <data name="SettingsVibrate" xml:space="preserve">
     <value>Vibrate</value>
   </data>
-  <data name="EditSubtasks" xml:space="preserve">
-    <value>edit subtasks</value>
-  </data>
 </root>

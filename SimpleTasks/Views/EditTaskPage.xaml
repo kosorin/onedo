@@ -519,7 +519,7 @@
                         <ContentControl Style="{StaticResource SubtasksIconStyle}"
                                         Foreground="{StaticResource ButtonForegroundBrush}" />
                         <TextBlock Grid.Column="1"
-                                   Text="{Binding LocalizedResources.EditSubtasks, Source={StaticResource LocalizedStrings}}"
+                                   Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource ButtonTextStyle}" />
                         <TextBlock Grid.Column="2"
                                    Text="{Binding Subtasks.Count}"
