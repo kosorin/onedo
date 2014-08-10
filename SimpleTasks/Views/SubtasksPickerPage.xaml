@@ -136,6 +136,7 @@
                                     </Button.Template>
 
                                     <TextBox x:Name="SubtaskTextBox"
+                                             InputScope="Text"
                                              Text="{Binding Text, Mode=TwoWay}"
                                              toolkit:TiltEffect.IsTiltEnabled="False"
                                              GotFocus="SubtaskTextBox_GotFocus"
