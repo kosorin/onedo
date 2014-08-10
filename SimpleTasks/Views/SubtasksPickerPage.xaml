@@ -226,10 +226,10 @@
                        FontSize="32"
                        TextWrapping="Wrap"
                        Visibility="{Binding Subtasks.Count, ConverterParameter=0, Converter={StaticResource IntegerToVisibilityConverter}}"
-                       HorizontalAlignment="Center"
+                       HorizontalAlignment="Left"
                        TextAlignment="Center"
                        VerticalAlignment="Top"
-                       Margin="0,10,0,0" />
+                       Margin="24,6,0,0" />
         </Grid>
     </Grid>
 
