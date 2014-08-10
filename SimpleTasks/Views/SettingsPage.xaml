@@ -103,14 +103,15 @@
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
                         <controls:ListPicker x:Name="DatePicker"
+                                             Foreground="{StaticResource SlightBrush}"
+                                             Background="{StaticResource ButtonBackgroundBrush}"
                                              ItemsSource="{Binding Tasks.DefaultDatePickerList}"
                                              SelectedItem="{Binding Tasks.DefaultDateType, Mode=TwoWay}">
                             <controls:ListPicker.ItemTemplate>
                                 <DataTemplate>
                                     <Border Height="60"
                                             Margin="-8,-10"
-                                            Padding="10,0"
-                                            Background="{StaticResource ButtonBackgroundBrush}">
+                                            Padding="10,0">
                                         <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DefaultDateType'}"
                                                    Style="{StaticResource ButtonTextStyle}" />
                                     </Border>
@@ -139,14 +140,15 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <controls:ListPicker x:Name="DaysPicker"
+                                             Foreground="{StaticResource SlightBrush}"
+                                             Background="{StaticResource ButtonBackgroundBrush}"
                                              ItemsSource="{Binding Tasks.DeleteCompletedPickerList}"
                                              SelectedItem="{Binding Tasks.DeleteCompleted, Mode=TwoWay}">
                             <controls:ListPicker.ItemTemplate>
                                 <DataTemplate>
                                     <Border Height="60"
                                             Margin="-8,-10"
-                                            Padding="10,0"
-                                            Background="{StaticResource ButtonBackgroundBrush}">
+                                            Padding="10,0">
                                         <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DeleteCompleted'}"
                                                    Style="{StaticResource ButtonTextStyle}" />
                                     </Border>

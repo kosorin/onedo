@@ -201,7 +201,7 @@
                             <Border x:Name="HorizontalTrack"
                                     Background="{TemplateBinding Background}"
                                     Height="50"
-                                    Opacity="0.4"
+                                    Opacity="0.45"
                                     IsHitTestVisible="False"
                                     Margin="0,0,0,60"
                                     VerticalAlignment="Top" />
@@ -311,6 +311,10 @@
 
     <!--Region ListPicker-->
     <Style TargetType="controls:ListPicker">
+        <Setter Property="Foreground"
+                Value="{StaticResource ButtonDarkForegroundBrush}" />
+        <Setter Property="Background"
+                Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ListPicker">
@@ -343,7 +347,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid Background="{StaticResource BasePickerPageBackgroundBrush}">
+                        <Grid Background="{TemplateBinding Background}">
                             <Border x:Name="Border"
                                     MinHeight="60">
                                 <UserControl x:Name="UserControl">
@@ -362,7 +366,7 @@
                             <TextBlock x:Name="Arrow"
                                        Text="&#xe019;"
                                        Style="{StaticResource ButtonTextStyle}"
-                                       Foreground="{StaticResource SlightBrush}"
+                                       Foreground="{TemplateBinding Foreground}"
                                        FontFamily="Segoe UI Symbol"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Top"
@@ -376,16 +380,16 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Border Height="60"
-                            Margin="-8,-10"
-                            Padding="10,0">
-                        <Border.Background>
-                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
-                                             Opacity="{Binding Opacity}" />
-                        </Border.Background>
+                    <Grid Height="60"
+                          Margin="-8,-10"
+                          Background="{StaticResource PhoneAccentBrush}">
+                        <Border Background="Black"
+                                Opacity="{Binding Opacity}" />
                         <TextBlock Text="{Binding Label}"
-                                   Style="{StaticResource ButtonTextStyle}" />
-                    </Border>
+                                   Margin="12,0,0,0"
+                                   Style="{StaticResource ButtonTextStyle}"
+                                   Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

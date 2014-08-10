@@ -149,9 +149,9 @@ namespace SimpleTasks.Views
                 {
                     _lengthTypes = new List<ReminderLengthType>()
                     {
-                        (LengthType = new ReminderLengthType(60, AppResources.MinutesLabel, 0.82)),
-                        new ReminderLengthType(24, AppResources.HoursLabel, 0.70),
-                        new ReminderLengthType(17, AppResources.DaysLabel, 0.58)
+                        (LengthType = new ReminderLengthType(60, AppResources.MinutesLabel, 0.14)),
+                        new ReminderLengthType(24, AppResources.HoursLabel, 0.22),
+                        new ReminderLengthType(17, AppResources.DaysLabel, 0.28)
                     };
                 }
                 return _lengthTypes;
