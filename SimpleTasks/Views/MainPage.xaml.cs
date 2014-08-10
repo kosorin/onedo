@@ -444,6 +444,7 @@ namespace SimpleTasks.Views
         private void SubtaskText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             FrameworkElement element = (FrameworkElement)sender;
+            Subtask subtask = element.DataContext as Subtask;
             while (element != null)
             {
                 element = VisualTreeHelper.GetParent(element) as FrameworkElement;
@@ -456,7 +457,8 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+            BasePickerPage.SetParam("SubtaskToEdit", subtask);
+            BasePickerPage.Navigate("Subtasks", task.Subtasks);
         }
         #endregion
 

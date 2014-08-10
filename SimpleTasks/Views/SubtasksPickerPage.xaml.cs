@@ -32,6 +32,11 @@ namespace SimpleTasks.Views
 
         public SubtasksPickerPage()
         {
+            if (IsSetParam("SubtaskToEdit"))
+            {
+                _subtaskToEdit = GetParam<Subtask>("SubtaskToEdit");
+            }
+
             if (CanRetrieve("Subtasks"))
                 Subtasks = RetrieveAndConfigure<SubtaskCollection>("Subtasks") ?? Subtasks;
 
