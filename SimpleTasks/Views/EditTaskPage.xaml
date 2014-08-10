@@ -181,6 +181,33 @@
                                         Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}" />
                 </StackPanel>
 
+                <!--Upravit podúkoly-->
+                <Button Tap="EditSubtasks_Tap"
+                        Margin="0,0,0,20">
+                    <Button.Template>
+                        <ControlTemplate />
+                    </Button.Template>
+
+                    <Grid Height="60"
+                          Background="{StaticResource ButtonBackgroundBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="60" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Style="{StaticResource SubtasksIconStyle}"
+                                        Foreground="{StaticResource ButtonForegroundBrush}" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource ButtonTextStyle}" />
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Subtasks.Count}"
+                                   Style="{StaticResource ButtonTextStyle}"
+                                   Foreground="{StaticResource SlightBrush}"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Button>
+                
                 <!--Termín & Připomenutí-->
                 <Grid x:Name="DueGrid"
                       Margin="0,0,0,20"
@@ -502,32 +529,6 @@
                         </ControlTemplate>
                     </ToggleButton.Template>
                 </ToggleButton>
-
-                <!--Upravit podúkoly-->
-                <Button Tap="EditSubtasks_Tap">
-                    <Button.Template>
-                        <ControlTemplate />
-                    </Button.Template>
-
-                    <Grid Height="60"
-                          Background="{StaticResource ButtonBackgroundBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ContentControl Style="{StaticResource SubtasksIconStyle}"
-                                        Foreground="{StaticResource ButtonForegroundBrush}" />
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource ButtonTextStyle}" />
-                        <TextBlock Grid.Column="2"
-                                   Text="{Binding Subtasks.Count}"
-                                   Style="{StaticResource ButtonTextStyle}"
-                                   Foreground="{StaticResource SlightBrush}"
-                                   Margin="0,0,15,0" />
-                    </Grid>
-                </Button>
 
                 <Border Height="40" />
             </StackPanel>
