@@ -452,8 +452,8 @@ namespace SimpleTasks.Views
             // Ikony
             if (IsNew)
             {
-                ApplicationBar.Buttons.Add(appBarPinButton);
                 ApplicationBar.Buttons.Add(appBarSaveButton);
+                ApplicationBar.Buttons.Add(appBarPinButton);
             }
             else
             {
@@ -463,6 +463,7 @@ namespace SimpleTasks.Views
                 }
                 else
                 {
+                    ApplicationBar.Buttons.Add(appBarSaveButton);
                     if (IsPinned())
                     {
                         ApplicationBar.Buttons.Add(appBarUnpinButton);
@@ -471,7 +472,6 @@ namespace SimpleTasks.Views
                     {
                         ApplicationBar.Buttons.Add(appBarPinButton);
                     }
-                    ApplicationBar.Buttons.Add(appBarSaveButton);
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
 
