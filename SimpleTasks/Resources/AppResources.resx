@@ -534,4 +534,7 @@
   <data name="SettingsVibrate" xml:space="preserve">
     <value>Vibrate</value>
   </data>
+  <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
+    <value>delete all</value>
+  </data>
 </root>

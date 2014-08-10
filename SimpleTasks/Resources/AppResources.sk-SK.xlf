@@ -381,6 +381,10 @@
           <source>Vibrate</source>
           <target state="signed-off">Vibrovať</target>
         </trans-unit>
+        <trans-unit id="Resx/AppBarDeleteAllSubtasks" translate="yes" xml:space="preserve">
+          <source>delete all</source>
+          <target state="signed-off">odstrániť všetky</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
           <target state="signed-off">Automaticky dokončiť podúlohy</target>

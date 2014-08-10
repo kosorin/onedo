@@ -204,9 +204,11 @@
   <ItemGroup>
     <Content Include="analytics.xml" />
     <Content Include="Assets\AppBar\appbar.add.png" />
+    <Content Include="Assets\AppBar\appbar.check.all.png" />
     <Content Include="Assets\AppBar\appbar.check.png" />
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
     <Content Include="Assets\AppBar\appbar.close.png" />
+    <Content Include="Assets\AppBar\appbar.delete.all.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />
     <Content Include="Assets\AppBar\appbar.email.hardedge.png" />
     <Content Include="Assets\AppBar\appbar.list.add.below.png" />
@@ -393,7 +395,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

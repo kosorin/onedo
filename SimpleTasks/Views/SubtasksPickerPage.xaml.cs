@@ -129,6 +129,8 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton _appBarCompleteAllSubtasksButton = null;
 
+        private ApplicationBarIconButton _appBarDeleteAllSubtasksButton = null;
+
         protected override void BuildAppBar()
         {
             ApplicationBar = new ApplicationBar();
@@ -142,11 +144,18 @@ namespace SimpleTasks.Views
             ApplicationBar.Buttons.Add(_appBarAddSubtaskButton);
             if (_appBarCompleteAllSubtasksButton == null)
             {
-                _appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.check.png", UriKind.Relative));
+                _appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.check.all.png", UriKind.Relative));
                 _appBarCompleteAllSubtasksButton.Text = AppResources.AppBarCompleteAllSubtasks;
                 _appBarCompleteAllSubtasksButton.Click += CompleteAllSubtasks_Click;
             }
             ApplicationBar.Buttons.Add(_appBarCompleteAllSubtasksButton);
+            if (_appBarDeleteAllSubtasksButton == null)
+            {
+                _appBarDeleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.delete.all.png", UriKind.Relative));
+                _appBarDeleteAllSubtasksButton.Text = AppResources.AppBarDeleteAllSubtasks;
+                _appBarDeleteAllSubtasksButton.Click += DeleteAllSubtasks_Click;
+            }
+            ApplicationBar.Buttons.Add(_appBarDeleteAllSubtasksButton);
         }
 
         private void AddSubtask_Click(object sender, EventArgs e)
@@ -160,6 +169,13 @@ namespace SimpleTasks.Views
             {
                 subtask.IsCompleted = true;
             }
+        }
+        private void DeleteAllSubtasks_Click(object sender, EventArgs e)
+        {
+            SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
+            {
+                Subtasks.Clear();
+            });
         }
         #endregion
     }
