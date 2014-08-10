@@ -10,6 +10,7 @@
                          xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SubtasksDataSource"
                          x:Class="SimpleTasks.Views.SubtasksPickerPage"
                          mc:Ignorable="d"
+                         Style="{StaticResource BasePickerPageStyle}"
                          d:DataContext="{d:DesignData /SampleData/SubtasksDataSource/SubtasksDataSource.xaml}">
 
     <controls:BasePickerPage.Resources>
@@ -17,24 +18,14 @@
                                        d:IsDataSource="True" />
     </controls:BasePickerPage.Resources>
 
-    <controls:BasePickerPage.Style>
-        <StaticResource ResourceKey="BasePickerPageStyle" />
-    </controls:BasePickerPage.Style>
-
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
-        <Grid.RowDefinitions>
-            <RowDefinition  Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
                    Text="{Binding LocalizedResources.SubtasksText, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
 
         <!--Seznam & oddělení-->
         <Grid Margin="0,60,0,0">
             <!--Seznam-->
-            <rlb:ReorderListBox Grid.Row="0"
-                                x:Name="SubtaskListBox"
+            <rlb:ReorderListBox x:Name="SubtaskListBox"
                                 ItemsSource="{Binding Subtasks}"
                                 IsReorderEnabled="True"
                                 Margin="24,0">
@@ -52,7 +43,6 @@
                                           Grid.ColumnSpan="2"
                                           Foreground="{TemplateBinding Foreground}"
                                           ManipulationMode="Control"
-                                          VerticalAlignment="{Binding SubtasksAlignment}"
                                           Padding="{TemplateBinding Padding}">
                                 <ItemsPresenter Margin="0,0,0,15" />
                             </ScrollViewer>
@@ -119,7 +109,7 @@
                     </Style>
                 </rlb:ReorderListBox.ItemContainerStyle>
                 <rlb:ReorderListBox.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate toolkit:TiltEffect.SuppressTilt="True">
                         <Grid Background="{x:Null}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -140,11 +130,71 @@
                                               HorizontalAlignment="Left" />
 
                                 <!--Text-->
-                                <controls:ToggleControl Grid.Column="1"
-                                                        IsChecked="{Binding IsCompleted}"
-                                                        Content="{Binding Text}"
-                                                        Style="{StaticResource CheckboxTextStyle}"
-                                                        IsHitTestVisible="False" />
+                                <Button Grid.Column="1">
+                                    <Button.Template>
+                                        <ControlTemplate />
+                                    </Button.Template>
+
+                                    <TextBox x:Name="SubtaskTextBox"
+                                             Text="{Binding Text, Mode=TwoWay}"
+                                             toolkit:TiltEffect.IsTiltEnabled="False"
+                                             GotFocus="SubtaskTextBox_GotFocus"
+                                             LostFocus="SubtaskTextBox_LostFocus"
+                                             KeyDown="SubtaskTextBox_KeyDown"
+                                             Loaded="SubtaskTextBox_Loaded">
+                                        <TextBox.CaretBrush>
+                                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
+                                        </TextBox.CaretBrush>
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Grid Height="50"
+                                                      Margin="0,0,5,0">
+                                                    <Grid.Background>
+                                                        <SolidColorBrush x:Name="Background"
+                                                                         Color="Transparent"
+                                                                         Opacity="0.32" />
+                                                    </Grid.Background>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="FocusStates">
+                                                            <VisualState x:Name="Focused">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Storyboard.TargetProperty="Color"
+                                                                                    Storyboard.TargetName="Background"
+                                                                                    To="{StaticResource SubtleColor}"
+                                                                                    Duration="0:0:0.18">
+                                                                    </ColorAnimation>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Unfocused">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Storyboard.TargetProperty="Color"
+                                                                                    Storyboard.TargetName="Background"
+                                                                                    To="Transparent"
+                                                                                    Duration="0:0:0.18">
+                                                                    </ColorAnimation>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border BorderThickness="0"
+                                                            Background="Transparent"
+                                                            VerticalAlignment="Center"
+                                                            Padding="5,0,0,0"
+                                                            Margin="0">
+                                                        <ContentControl x:Name="ContentElement"
+                                                                        BorderThickness="0"
+                                                                        Foreground="{StaticResource NormalBrush}"
+                                                                        FontFamily="{StaticResource DefaultFontFamily}"
+                                                                        FontWeight="{StaticResource DefaultFontWeight}"
+                                                                        FontSize="24"
+                                                                        HorizontalContentAlignment="Stretch"
+                                                                        VerticalContentAlignment="Stretch" />
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+                                </Button>
                             </Grid>
 
                             <!--Smazání-->
@@ -169,13 +219,6 @@
                 </rlb:ReorderListBox.ItemTemplate>
             </rlb:ReorderListBox>
 
-            <!--Oddělení-->
-            <Rectangle Grid.Row="1"
-                       Fill="{StaticResource PhoneAccentBrush}"
-                       Height="10"
-                       Opacity="0.6"
-                       VerticalAlignment="Bottom" />
-
             <!--Žádné podúkoly-->
             <TextBlock Text="{Binding LocalizedResources.NoSubtasks, Source={StaticResource LocalizedStrings}}"
                        Style="{StaticResource SlightTextStyle}"
@@ -187,23 +230,6 @@
                        VerticalAlignment="Top"
                        Margin="0,10,0,0" />
         </Grid>
-
-        <!--TextBox-->
-        <controls:MyTextBox Grid.Row="1"
-                            BorderSize="0"
-                            x:Name="SubtaskTextBox"
-                            Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, StringFormat=\{0\}…&#xE104;}"
-                            GotFocus="SubtaskTextBox_GotFocus"
-                            LostFocus="SubtaskTextBox_LostFocus"
-                            KeyDown="SubtaskTextBox_KeyDown"
-                            FontFamily="Segoe UI Symbol"
-                            Height="60"
-                            VerticalAlignment="Bottom">
-            <controls:MyTextBox.Background>
-                <SolidColorBrush Color="{StaticResource ButtonBackgroundColor}"
-                                 Opacity="0.78" />
-            </controls:MyTextBox.Background>
-        </controls:MyTextBox>
     </Grid>
 
 

@@ -45,23 +45,15 @@ namespace SimpleTasks.Views
         }
 
         #region Subtasks
-        private VerticalAlignment _subtasksAlignment = VerticalAlignment.Stretch;
-        public VerticalAlignment SubtasksAlignment
-        {
-            get { return _subtasksAlignment; }
-            set { SetProperty(ref _subtasksAlignment, value); }
-        }
+        private Subtask _subtaskToEdit = null;
 
         private void AddSubtask()
         {
-            if (!string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
+            SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
             {
-                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
-                {
-                    Subtasks.Add(new Subtask(SubtaskTextBox.Text));
-                    SubtaskTextBox.Text = "";
-                });
-            }
+                _subtaskToEdit = new Subtask();
+                Subtasks.Add(_subtaskToEdit);
+            });
         }
 
         private void DeleteSubtask(Subtask subtask)
@@ -73,7 +65,6 @@ namespace SimpleTasks.Views
                     Subtasks.Remove(subtask);
                 });
             }
-            this.Focus();
         }
 
         private void SubtaskListBox_Delete_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -87,14 +78,22 @@ namespace SimpleTasks.Views
 
         private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            SubtasksAlignment = VerticalAlignment.Bottom;
-            BuildSubtasksAppBar();
         }
 
         private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            SubtasksAlignment = VerticalAlignment.Stretch;
-            BuildAppBar();
+            TextBox tb = sender as TextBox;
+            if (tb != null)
+            {
+                Subtask subtask = tb.DataContext as Subtask;
+                if (subtask != null)
+                {
+                    if (string.IsNullOrWhiteSpace(tb.Text))
+                    {
+                        DeleteSubtask(subtask);
+                    }
+                }
+            }
         }
 
         private void SubtaskTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -104,54 +103,53 @@ namespace SimpleTasks.Views
                 AddSubtask();
             }
         }
+
+        private void SubtaskTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb != null)
+            {
+                Subtask subtask = tb.DataContext as Subtask;
+                if (subtask != null && _subtaskToEdit == subtask)
+                {
+                    _subtaskToEdit = null;
+                    tb.Focus();
+                }
+            }
+        }
         #endregion
 
         #region AppBar
-        private ApplicationBarIconButton appBarAddSubtaskButton = null;
+        private ApplicationBarIconButton _appBarAddSubtaskButton = null;
 
-        private ApplicationBarIconButton appBarCompleteAllSubtasksButton = null;
+        private ApplicationBarIconButton _appBarCompleteAllSubtasksButton = null;
 
         protected override void BuildAppBar()
         {
-            base.BuildAppBar();
-
-
-            if (appBarCompleteAllSubtasksButton == null)
-            {
-                appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.check.png", UriKind.Relative));
-                appBarCompleteAllSubtasksButton.Text = AppResources.AppBarCompleteAllSubtasks;
-                appBarCompleteAllSubtasksButton.Click += CompleteAllSubtasks;
-            }
-            ApplicationBar.Buttons.Insert(1, appBarCompleteAllSubtasksButton);
-
-        }
-
-        private void BuildSubtasksAppBar()
-        {
             ApplicationBar = new ApplicationBar();
 
-            if (appBarAddSubtaskButton == null)
+            if (_appBarAddSubtaskButton == null)
             {
-                appBarAddSubtaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
-                appBarAddSubtaskButton.Text = AppResources.AppBarAddSubtask;
-                appBarAddSubtaskButton.Click += AddSubtask;
+                _appBarAddSubtaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
+                _appBarAddSubtaskButton.Text = AppResources.AppBarAddSubtask;
+                _appBarAddSubtaskButton.Click += AddSubtask_Click;
             }
-            ApplicationBar.Buttons.Add(appBarAddSubtaskButton);
+            ApplicationBar.Buttons.Add(_appBarAddSubtaskButton);
+            if (_appBarCompleteAllSubtasksButton == null)
+            {
+                _appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.check.png", UriKind.Relative));
+                _appBarCompleteAllSubtasksButton.Text = AppResources.AppBarCompleteAllSubtasks;
+                _appBarCompleteAllSubtasksButton.Click += CompleteAllSubtasks_Click;
+            }
+            ApplicationBar.Buttons.Add(_appBarCompleteAllSubtasksButton);
         }
 
-        private void AddSubtask(object sender, EventArgs e)
+        private void AddSubtask_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
-            {
-                SubtaskTextBox.Focus();
-            }
-            else
-            {
-                AddSubtask();
-            }
+            AddSubtask();
         }
 
-        private void CompleteAllSubtasks(object sender, EventArgs e)
+        private void CompleteAllSubtasks_Click(object sender, EventArgs e)
         {
             foreach (Subtask subtask in Subtasks)
             {

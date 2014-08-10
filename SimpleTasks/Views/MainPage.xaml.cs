@@ -456,7 +456,7 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}&Pivot=Subtasks", task.Uid), UriKind.Relative));
+            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
         }
         #endregion
 
