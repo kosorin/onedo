@@ -1,0 +1,210 @@
+﻿<controls:BasePickerPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                         xmlns:models="clr-namespace:SimpleTasks.Models"
+                         xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                         xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
+                         xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SubtasksDataSource"
+                         x:Class="SimpleTasks.Views.SubtasksPickerPage"
+                         mc:Ignorable="d"
+                         d:DataContext="{d:DesignData /SampleData/SubtasksDataSource/SubtasksDataSource.xaml}">
+
+    <controls:BasePickerPage.Resources>
+        <SampleData:SubtasksDataSource x:Key="SubtasksDataSource"
+                                       d:IsDataSource="True" />
+    </controls:BasePickerPage.Resources>
+
+    <controls:BasePickerPage.Style>
+        <StaticResource ResourceKey="BasePickerPageStyle" />
+    </controls:BasePickerPage.Style>
+
+    <Grid Style="{StaticResource BasePickerPageRootStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
+                   Text="{Binding LocalizedResources.SubtasksText, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
+
+        <!--Seznam & oddělení-->
+        <Grid Margin="0,60,0,0">
+            <!--Seznam-->
+            <rlb:ReorderListBox Grid.Row="0"
+                                x:Name="SubtaskListBox"
+                                ItemsSource="{Binding Subtasks}"
+                                IsReorderEnabled="True"
+                                Margin="24,0">
+                <rlb:ReorderListBox.Template>
+                    <ControlTemplate TargetType="rlb:ReorderListBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="ScrollViewer"
+                                          BorderBrush="Transparent"
+                                          BorderThickness="0"
+                                          Background="{TemplateBinding Background}"
+                                          Grid.ColumnSpan="2"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          ManipulationMode="Control"
+                                          VerticalAlignment="{Binding SubtasksAlignment}"
+                                          Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter Margin="0,0,0,15" />
+                            </ScrollViewer>
+                            <Canvas x:Name="DragInterceptor"
+                                    Background="Transparent"
+                                    Grid.Column="1"
+                                    Margin="{TemplateBinding Padding}"
+                                    VerticalAlignment="Stretch"
+                                    Width="52">
+                                <Image x:Name="DragIndicator"
+                                       Visibility="Collapsed">
+                                    <Image.RenderTransform>
+                                        <TranslateTransform />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Canvas>
+                            <Canvas x:Name="RearrangeCanvas"
+                                    Background="Transparent"
+                                    Grid.ColumnSpan="2"
+                                    Margin="{TemplateBinding Padding}"
+                                    Visibility="Collapsed" />
+                        </Grid>
+                    </ControlTemplate>
+                </rlb:ReorderListBox.Template>
+                <rlb:ReorderListBox.ItemContainerStyle>
+                    <Style TargetType="rlb:ReorderListBoxItem">
+                        <Setter Property="DragHandleTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <Canvas Width="52"
+                                            Height="55"
+                                            Background="Transparent">
+                                        <Canvas.CacheMode>
+                                            <BitmapCache RenderAtScale="1" />
+                                        </Canvas.CacheMode>
+                                        <Border Width="50"
+                                                Height="50"
+                                                Canvas.Top="3"
+                                                RenderTransformOrigin="0.5,0.5">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
+                                                                 Opacity="0.5" />
+                                            </Border.Background>
+
+                                            <ContentControl Style="{StaticResource ReorderIconStyle}"
+                                                            Foreground="{StaticResource NormalBrush}"
+                                                            Opacity="0.9"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Margin="5,5,0,0">
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.8"
+                                                                        ScaleY="0.8" />
+                                                </ContentControl.RenderTransform>
+                                                <ContentControl.CacheMode>
+                                                    <BitmapCache RenderAtScale="0.8" />
+                                                </ContentControl.CacheMode>
+                                            </ContentControl>
+                                        </Border>
+                                    </Canvas>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </rlb:ReorderListBox.ItemContainerStyle>
+                <rlb:ReorderListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="{x:Null}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Checkbox & Text-->
+                            <Grid Height="55">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Checkbox-->
+                                <ToggleButton x:Name="Checkbox"
+                                              IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                                              Style="{StaticResource CheckboxStyle}"
+                                              HorizontalAlignment="Left" />
+
+                                <!--Text-->
+                                <controls:ToggleControl Grid.Column="1"
+                                                        IsChecked="{Binding IsCompleted}"
+                                                        Content="{Binding Text}"
+                                                        Style="{StaticResource CheckboxTextStyle}"
+                                                        IsHitTestVisible="False" />
+                            </Grid>
+
+                            <!--Smazání-->
+                            <Button Tap="SubtaskListBox_Delete_Tap"
+                                    Grid.Column="1"
+                                    Margin="0,0,5,0">
+                                <Button.Template>
+                                    <ControlTemplate />
+                                </Button.Template>
+
+                                <ContentControl Style="{StaticResource DeleteIconStyle}"
+                                                Foreground="{StaticResource SlightBrush}"
+                                                Opacity="0.8">
+                                    <ContentControl.Background>
+                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
+                                                         Opacity="0.3" />
+                                    </ContentControl.Background>
+                                </ContentControl>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </rlb:ReorderListBox.ItemTemplate>
+            </rlb:ReorderListBox>
+
+            <!--Oddělení-->
+            <Rectangle Grid.Row="1"
+                       Fill="{StaticResource PhoneAccentBrush}"
+                       Height="10"
+                       Opacity="0.6"
+                       VerticalAlignment="Bottom" />
+
+            <!--Žádné podúkoly-->
+            <TextBlock Text="{Binding LocalizedResources.NoSubtasks, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource SlightTextStyle}"
+                       FontSize="32"
+                       TextWrapping="Wrap"
+                       Visibility="{Binding Subtasks.Count, ConverterParameter=0, Converter={StaticResource IntegerToVisibilityConverter}}"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0,10,0,0" />
+        </Grid>
+
+        <!--TextBox-->
+        <controls:MyTextBox Grid.Row="1"
+                            BorderSize="0"
+                            x:Name="SubtaskTextBox"
+                            Hint="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}, StringFormat=\{0\}…&#xE104;}"
+                            GotFocus="SubtaskTextBox_GotFocus"
+                            LostFocus="SubtaskTextBox_LostFocus"
+                            KeyDown="SubtaskTextBox_KeyDown"
+                            FontFamily="Segoe UI Symbol"
+                            Height="60"
+                            VerticalAlignment="Bottom">
+            <controls:MyTextBox.Background>
+                <SolidColorBrush Color="{StaticResource ButtonBackgroundColor}"
+                                 Opacity="0.78" />
+            </controls:MyTextBox.Background>
+        </controls:MyTextBox>
+    </Grid>
+
+
+</controls:BasePickerPage>

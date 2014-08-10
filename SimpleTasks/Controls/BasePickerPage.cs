@@ -55,7 +55,7 @@ namespace SimpleTasks.Controls
         }
 
         #region AppBar
-        protected void BuildAppBar()
+        protected virtual void BuildAppBar()
         {
             ApplicationBar = new ApplicationBar();
 

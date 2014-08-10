@@ -54,19 +54,6 @@ namespace SimpleTasks.Views
 
                 CreateAppBarItems();
 
-                if (this.NavigationContext.QueryString.ContainsKey("Pivot"))
-                {
-                    string pivot = this.NavigationContext.QueryString["Pivot"];
-                    if (pivot == "Task")
-                    {
-                        MainPivot.SelectedIndex = 0;
-                    }
-                    else if (pivot == "Subtasks")
-                    {
-                        MainPivot.SelectedIndex = 1;
-                    }
-                }
-
                 FirstTimeLoaded();
             }
             else
@@ -90,6 +77,8 @@ namespace SimpleTasks.Views
                     IsSetReminder = true;
                 }
             }
+
+            BuildAppBar();
         }
 
         private void FirstTimeLoaded()
@@ -127,14 +116,7 @@ namespace SimpleTasks.Views
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MainPivot.SelectedIndex != 0)
-            {
-                MainPivot.SelectedIndex = 0;
-            }
-            else
-            {
-                GoBack();
-            }
+            GoBack();
             e.Cancel = true;
         }
 
@@ -148,11 +130,6 @@ namespace SimpleTasks.Views
             {
                 NavigationService.Navigate(new Uri("/Views/MainPage.xaml", UriKind.Relative));
             }
-        }
-
-        private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BuildAppBar();
         }
         #endregion
 
@@ -433,10 +410,6 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarAddBulletButton;
 
-        private ApplicationBarIconButton appBarAddSubtaskButton;
-
-        private ApplicationBarIconButton appBarCompleteAllSubtasksButton;
-
         private void CreateAppBarItems()
         {
             appBarSaveButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
@@ -470,29 +443,9 @@ namespace SimpleTasks.Views
             appBarAddBulletButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.add.below.png", UriKind.Relative));
             appBarAddBulletButton.Text = AppResources.AppBarAddBullet;
             appBarAddBulletButton.Click += AddBulletButton;
-
-            appBarAddSubtaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
-            appBarAddSubtaskButton.Text = AppResources.AppBarAddSubtask;
-            appBarAddSubtaskButton.Click += AddSubtask;
-
-            appBarCompleteAllSubtasksButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.list.check.png", UriKind.Relative));
-            appBarCompleteAllSubtasksButton.Text = AppResources.AppBarCompleteAllSubtasks;
-            appBarCompleteAllSubtasksButton.Click += CompleteAllSubtasks;
         }
 
         private void BuildAppBar()
-        {
-            if (MainPivot.SelectedIndex == 0)
-            {
-                BuildTaskAppBar();
-            }
-            else if (MainPivot.SelectedIndex == 1)
-            {
-                BuildSubtasksAppBar();
-            }
-        }
-
-        private void BuildTaskAppBar()
         {
             ApplicationBar = new ApplicationBar();
 
@@ -541,15 +494,6 @@ namespace SimpleTasks.Views
             // Ikony
             ApplicationBar.Buttons.Add(appBarAddBulletButton);
             ApplicationBar.Buttons.Add(appBarOkButton);
-        }
-
-        private void BuildSubtasksAppBar()
-        {
-            ApplicationBar = new ApplicationBar();
-
-            // Ikony
-            ApplicationBar.Buttons.Add(appBarAddSubtaskButton);
-            ApplicationBar.Buttons.Add(appBarCompleteAllSubtasksButton);
         }
         #endregion
 
@@ -663,26 +607,6 @@ namespace SimpleTasks.Views
                 }
             };
             messageBox.Show();
-        }
-
-        private void AddSubtask(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
-            {
-                SubtaskTextBox.Focus();
-            }
-            else
-            {
-                AddSubtask();
-            }
-        }
-
-        private void CompleteAllSubtasks(object sender, EventArgs e)
-        {
-            foreach (Subtask subtask in Subtasks)
-            {
-                subtask.IsCompleted = true;
-            }
         }
         #endregion
 
@@ -816,63 +740,10 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        #region Subtasks
-        private VerticalAlignment _subtasksAlignment = VerticalAlignment.Stretch;
-        public VerticalAlignment SubtasksAlignment
+        #region Podúkoly
+        private void EditSubtasks_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            get { return _subtasksAlignment; }
-            set { SetProperty(ref _subtasksAlignment, value); }
-        }
-
-        private void AddSubtask()
-        {
-            if (!string.IsNullOrWhiteSpace(SubtaskTextBox.Text))
-            {
-                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
-                {
-                    Subtasks.Add(new Subtask(SubtaskTextBox.Text));
-                    SubtaskTextBox.Text = "";
-                });
-            }
-        }
-
-        private void DeleteSubtask(Subtask subtask)
-        {
-            if (subtask != null)
-            {
-                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
-                {
-                    Subtasks.Remove(subtask);
-                });
-            }
-            this.Focus();
-        }
-
-        private void SubtaskListBox_Delete_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            ContentControl cc = sender as ContentControl;
-            if (cc != null)
-            {
-                DeleteSubtask(cc.DataContext as Subtask);
-            }
-        }
-
-        private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            SubtasksAlignment = VerticalAlignment.Bottom;
-        }
-
-        private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            SubtasksAlignment = VerticalAlignment.Stretch;
-        }
-
-        private void SubtaskTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                AddSubtask();
-            }
+            BasePickerPage.Navigate("Subtasks", Subtasks);
         }
         #endregion
     }

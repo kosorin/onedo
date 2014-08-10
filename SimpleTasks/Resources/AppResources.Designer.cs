@@ -620,6 +620,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to edit subtasks.
+        /// </summary>
+        public static string EditSubtasks {
+            get {
+                return ResourceManager.GetString("EditSubtasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} hour.
         /// </summary>
         public static string Hours1 {

@@ -381,6 +381,10 @@
           <source>Vibrate</source>
           <target state="signed-off">Vibrace</target>
         </trans-unit>
+        <trans-unit id="Resx/EditSubtasks" translate="yes" xml:space="preserve">
+          <source>edit subtasks</source>
+          <target state="new">edit subtasks</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
           <target state="signed-off">Automaticky dokončit podúkoly</target>
