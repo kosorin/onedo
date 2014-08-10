@@ -66,7 +66,11 @@ namespace SimpleTasks.Core.Models
         public ObservableCollection<Subtask> Subtasks
         {
             get { return _subtasks; }
-            set { SetProperty(ref _subtasks, value); }
+            set
+            {
+                SetProperty(ref _subtasks, value);
+                Modified = DateTime.Now;
+            }
         }
         #endregion
 
