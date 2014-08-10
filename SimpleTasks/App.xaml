@@ -666,6 +666,8 @@
                         Value="24,16,24,24" />
                 <Setter Property="FontWeight"
                         Value="SemiBold" />
+                <Setter Property="VerticalAlignment"
+                        Value="Top" />
             </Style>
 
             <Style x:Key="BasePickerQuickButtonTextStyle"
