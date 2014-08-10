@@ -115,8 +115,6 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarSaveQuickButton;
 
-        private ApplicationBarIconButton appBarCancelQuickButton;
-
         private List<ApplicationBarMenuItem> appBarMenuItems;
 
         private void CreateAppBarItems()
@@ -129,10 +127,6 @@ namespace SimpleTasks.Views
             appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
             appBarSaveQuickButton.Text = AppResources.AppBarSave;
             appBarSaveQuickButton.Click += QuickAddSave;
-
-            appBarCancelQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.close.png", UriKind.Relative));
-            appBarCancelQuickButton.Text = AppResources.AppBarCancel;
-            appBarCancelQuickButton.Click += QuickAddCancel;
             #endregion
 
             #region Menu
@@ -187,7 +181,6 @@ namespace SimpleTasks.Views
         {
             ApplicationBar = new ApplicationBar();
             ApplicationBar.Buttons.Add(appBarSaveQuickButton);
-            ApplicationBar.Buttons.Add(appBarCancelQuickButton);
         }
         #endregion
 
@@ -216,12 +209,6 @@ namespace SimpleTasks.Views
                 QuickAddTextBox.Text = "";
                 this.Focus();
             }
-        }
-
-        void QuickAddCancel(object sender, EventArgs e)
-        {
-            QuickAddTextBox.Text = "";
-            this.Focus();
         }
 
         void DeleteAllItem_Click(object sender, EventArgs e)
