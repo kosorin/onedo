@@ -454,6 +454,8 @@
                         Value="0,24,0,5" />
                 <Setter Property="TextTrimming"
                         Value="WordEllipsis" />
+                <Setter Property="TextWrapping"
+                        Value="Wrap" />
                 <Setter Property="Foreground"
                         Value="{StaticResource LabelBrush}" />
             </Style>
