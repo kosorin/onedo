@@ -109,7 +109,7 @@
                     </Style>
                 </rlb:ReorderListBox.ItemContainerStyle>
                 <rlb:ReorderListBox.ItemTemplate>
-                    <DataTemplate toolkit:TiltEffect.SuppressTilt="True">
+                    <DataTemplate>
                         <Grid Background="{x:Null}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
