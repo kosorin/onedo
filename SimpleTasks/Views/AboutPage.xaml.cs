@@ -62,7 +62,7 @@ namespace SimpleTasks.Views
             return changelog;
         }
 
-        public string VersionString { get { return string.Format(AppResources.AboutVersion, App.Version.ToString()); } }
+        public string VersionString { get { return string.Format(AppResources.AboutVersion, App.VersionString); } }
 
         public string Author { get { return AppInfo.Author; } }
 
@@ -85,7 +85,7 @@ namespace SimpleTasks.Views
             EmailComposeTask task = new EmailComposeTask
             {
                 To = AppInfo.Email,
-                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.Version.ToString())
+                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.VersionString)
             };
             task.Show();
         }

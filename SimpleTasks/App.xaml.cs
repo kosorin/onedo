@@ -33,6 +33,11 @@ namespace SimpleTasks
             }
         }
 
+        public static string VersionString
+        {
+            get { return Version.ToString(3); }
+        }
+
         private static GoogleAnalytics.Core.Tracker _gaTracker = null;
         public static GoogleAnalytics.Core.Tracker Tracker
         {
@@ -75,13 +80,13 @@ namespace SimpleTasks
             {
                 Debug.WriteLine("==== INSTALACE ====");
                 IsFirstStart = true;
-                Settings.Version = Version.ToString();
+                Settings.Version = VersionString;
                 Debug.WriteLine("==== ===== Installed ===== ====");
             }
-            else if (Settings.Version != Version.ToString())
+            else if (Settings.Version != VersionString)
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
-                Settings.Version = Version.ToString();
+                Settings.Version = VersionString;
                 Debug.WriteLine("==== ===== Actualized ===== ====");
             }
 
