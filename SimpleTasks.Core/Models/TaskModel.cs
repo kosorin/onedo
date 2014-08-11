@@ -37,8 +37,10 @@ namespace SimpleTasks.Core.Models
             get { return _title; }
             set
             {
-                SetProperty(ref _title, value);
-                Modified = DateTime.Now;
+                if (SetProperty(ref _title, value))
+                {
+                    Modified = DateTime.Now;
+                }
             }
         }
         #endregion
@@ -54,8 +56,10 @@ namespace SimpleTasks.Core.Models
             }
             set
             {
-                SetProperty(ref _detail, value);
-                Modified = DateTime.Now;
+                if (SetProperty(ref _detail, value))
+                {
+                    Modified = DateTime.Now;
+                }
             }
         }
         #endregion
@@ -68,9 +72,19 @@ namespace SimpleTasks.Core.Models
             get { return _subtasks; }
             set
             {
-                SetProperty(ref _subtasks, value);
-                Modified = DateTime.Now;
+                if (SetProperty(ref _subtasks, value))
+                {
+                    value.CollectionChanged -= Subtasks_CollectionChanged;
+                    value.CollectionChanged += Subtasks_CollectionChanged;
+                    Modified = DateTime.Now;
+                }
             }
+        }
+
+        private void Subtasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            ModifiedSinceStart = true;
+            Modified = DateTime.Now;
         }
         #endregion
 
@@ -86,17 +100,22 @@ namespace SimpleTasks.Core.Models
             }
             set
             {
-                SetProperty(ref _dueDate, value);
-                OnPropertyChanged("HasDueDate");
-                OnPropertyChanged("IsOverdue");
-                OnPropertyChanged("Reminder");
-                OnPropertyChanged("ReminderDate");
-                OnPropertyChanged("HasReminder");
-                Modified = DateTime.Now;
+                if (SetProperty(ref _dueDate, value))
+                {
+                    OnPropertyChanged("HasDueDate");
+                    OnPropertyChanged("IsOverdue");
+                    OnPropertyChanged("Reminder");
+                    OnPropertyChanged("ReminderDate");
+                    OnPropertyChanged("HasReminder");
+                    Modified = DateTime.Now;
+                }
             }
         }
 
-        public bool HasDueDate { get { return DueDate != null; } }
+        public bool HasDueDate
+        {
+            get { return DueDate != null; }
+        }
 
         public bool IsOverdue
         {
@@ -112,9 +131,11 @@ namespace SimpleTasks.Core.Models
             get { return _reminder; }
             set
             {
-                SetProperty(ref _reminder, value);
-                OnPropertyChanged("HasReminder");
-                Modified = DateTime.Now;
+                if (SetProperty(ref _reminder, value))
+                {
+                    OnPropertyChanged("HasReminder");
+                    Modified = DateTime.Now;
+                }
             }
         }
 
@@ -148,11 +169,13 @@ namespace SimpleTasks.Core.Models
             }
             set
             {
-                SetProperty(ref _priority, value);
-                OnPropertyChanged("IsLowPriority");
-                OnPropertyChanged("IsNormalPriority");
-                OnPropertyChanged("IsHighPriority");
-                Modified = DateTime.Now;
+                if (SetProperty(ref _priority, value))
+                {
+                    OnPropertyChanged("IsLowPriority");
+                    OnPropertyChanged("IsNormalPriority");
+                    OnPropertyChanged("IsHighPriority");
+                    Modified = DateTime.Now;
+                }
             }
         }
 
@@ -189,14 +212,8 @@ namespace SimpleTasks.Core.Models
         [DataMember(Order = 100)]
         public DateTime? Created
         {
-            get
-            {
-                return _created;
-            }
-            private set
-            {
-                SetProperty(ref _created, value);
-            }
+            get { return _created; }
+            private set { SetProperty(ref _created, value); }
         }
         #endregion
 
@@ -205,14 +222,8 @@ namespace SimpleTasks.Core.Models
         [DataMember(Order = 101)]
         public DateTime? Modified
         {
-            get
-            {
-                return _modified;
-            }
-            private set
-            {
-                SetProperty(ref _modified, value);
-            }
+            get { return _modified; }
+            private set { SetProperty(ref _modified, value); }
         }
 
         private bool _modifiedSinceStart = false;
@@ -228,16 +239,15 @@ namespace SimpleTasks.Core.Models
         [DataMember(Order = 102)]
         public DateTime? Completed
         {
-            get
-            {
-                return _completed;
-            }
+            get { return _completed; }
             set
             {
-                SetProperty(ref _completed, value);
-                OnPropertyChanged("IsCompleted");
-                OnPropertyChanged("IsActive");
-                Modified = DateTime.Now;
+                if (SetProperty(ref _completed, value))
+                {
+                    OnPropertyChanged("IsCompleted");
+                    OnPropertyChanged("IsActive");
+                    Modified = DateTime.Now;
+                }
             }
         }
 
