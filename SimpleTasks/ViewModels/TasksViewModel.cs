@@ -83,7 +83,7 @@ namespace SimpleTasks.ViewModels
             Reminder reminder = task.GetSystemReminder();
             if (reminder != null)
             {
-                if (task.IsComplete || !task.HasReminder || !reminder.IsScheduled || reminder.BeginTime != task.ReminderDate)
+                if (task.IsCompleted || !task.HasReminder || !reminder.IsScheduled || reminder.BeginTime != task.ReminderDate)
                 {
                     task.RemoveSystemReminder();
                     reminder = null;
@@ -109,7 +109,7 @@ namespace SimpleTasks.ViewModels
             // Odstranění úkolů, které byly odstarněny před více jak 'days' dny.
             var completedTasks = Tasks.Where((t) =>
             {
-                return t.IsComplete && t.Completed.Value < beforeDate;
+                return t.IsCompleted && t.Completed.Value < beforeDate;
             }).ToList();
             foreach (TaskModel task in completedTasks)
             {
@@ -120,7 +120,7 @@ namespace SimpleTasks.ViewModels
         public void DeleteCompleted()
         {
             // Odstranění dokončených úkolů
-            foreach (TaskModel task in Tasks.Where(t => t.IsComplete).ToList())
+            foreach (TaskModel task in Tasks.Where(t => t.IsCompleted).ToList())
             {
                 Delete(task);
             }

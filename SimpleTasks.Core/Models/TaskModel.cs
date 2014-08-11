@@ -134,24 +134,6 @@ namespace SimpleTasks.Core.Models
         {
             get { return DueDate != null && Reminder != null; }
         }
-
-        #region ReminderDateObsolete
-        private DateTime? _reminderDateObsolete = null;
-        [Obsolete("Smazat po několika aktualizacích (dnes je 13.7.2014)")]
-        [DataMember(Order = 5, Name = "ReminderDate")]
-        public DateTime? ReminderDateObsolete
-        {
-            get { return null; }
-            set { SetProperty(ref _reminderDateObsolete, value); }
-        }
-
-        [Obsolete("Smazat po několika aktualizacích (dnes je 13.7.2014)")]
-        public DateTime? ReminderDateObsoleteGet
-        {
-            get { return _reminderDateObsolete; }
-        }
-        #endregion
-
         #endregion
 
 
@@ -253,33 +235,15 @@ namespace SimpleTasks.Core.Models
             set
             {
                 SetProperty(ref _completed, value);
-                OnPropertyChanged("IsComplete");
+                OnPropertyChanged("IsCompleted");
                 OnPropertyChanged("IsActive");
                 Modified = DateTime.Now;
             }
         }
 
-        public bool IsComplete { get { return Completed.HasValue; } }
+        public bool IsCompleted { get { return Completed.HasValue; } }
 
         public bool IsActive { get { return !Completed.HasValue; } }
-
-        #region CompletedDateObsolete
-        private DateTime? _completedDateObsolete = null;
-        [Obsolete("Smazat po několika aktualizacích (dnes je 19.7.2014)")]
-        [DataMember(Order = 6, Name = "CompletedDate")]
-        public DateTime? CompletedDateObsolete
-        {
-            get { return null; }
-            set { SetProperty(ref _completedDateObsolete, value); }
-        }
-
-        [Obsolete("Smazat po několika aktualizacích (dnes je 19.7.2014)")]
-        public DateTime? CompletedDateObsoleteGet
-        {
-            get { return _completedDateObsolete; }
-        }
-        #endregion
-
         #endregion
     }
 }

@@ -212,11 +212,11 @@ namespace SimpleTasks.Views
             }
         }
 
-        private bool _isComplete;
-        public bool IsComplete
+        private bool _isCompleted;
+        public bool IsCompleted
         {
-            get { return _isComplete; }
-            set { SetProperty(ref _isComplete, value); }
+            get { return _isCompleted; }
+            set { SetProperty(ref _isCompleted, value); }
         }
         #endregion
 
@@ -231,7 +231,7 @@ namespace SimpleTasks.Views
             if (IsNew)
             {
                 Original = new TaskModel();
-                IsComplete = false;
+                IsCompleted = false;
 
                 // datum & čas
                 IsSetDueDate = (defaultDate != null);
@@ -244,7 +244,7 @@ namespace SimpleTasks.Views
             }
             else
             {
-                IsComplete = task.IsComplete;
+                IsCompleted = task.IsCompleted;
 
                 // text
                 Title = task.Title;
@@ -318,7 +318,7 @@ namespace SimpleTasks.Views
                 Original.Reminder = null;
 
             // Completed Date
-            if (IsComplete)
+            if (IsCompleted)
                 Original.Completed = DateTime.Now;
             else
                 Original.Completed = null;
@@ -341,7 +341,7 @@ namespace SimpleTasks.Views
         {
             if (!IsNew)
             {
-                IsComplete = false;
+                IsCompleted = false;
             }
         }
 
@@ -349,7 +349,7 @@ namespace SimpleTasks.Views
         {
             if (!IsNew)
             {
-                IsComplete = true;
+                IsCompleted = true;
                 Save();
 
                 if (App.Settings.Tasks.CompleteSubtasks)
@@ -457,7 +457,7 @@ namespace SimpleTasks.Views
             }
             else
             {
-                if (IsComplete)
+                if (IsCompleted)
                 {
                     ApplicationBar.Buttons.Add(appBarActivateButton);
                 }

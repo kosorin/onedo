@@ -39,7 +39,7 @@ namespace SimpleTasks.Models
                 foreach (TaskModel task in items)
                 {
                     TaskWrapper taskWrapper = new TaskWrapper(task);
-                    if (task.IsComplete)
+                    if (task.IsCompleted)
                         completedGroup.Add(taskWrapper);
                     else if (!task.DueDate.HasValue)
                         somedayGroup.Add(taskWrapper);
@@ -116,9 +116,9 @@ namespace SimpleTasks.Models
             // Seřazení úkolů ve skupinách
             Comparison<TaskWrapper> dateComparison = (t1, t2) =>
             {
-                if (t1.Task.IsComplete || t2.Task.IsComplete)
+                if (t1.Task.IsCompleted || t2.Task.IsCompleted)
                 {
-                    return t1.Task.IsComplete && t2.Task.IsComplete ? 0 : (t1.Task.IsComplete ? 1 : -1);
+                    return t1.Task.IsCompleted && t2.Task.IsCompleted ? 0 : (t1.Task.IsCompleted ? 1 : -1);
                 }
                 if (!t1.Task.HasDueDate || !t2.Task.HasDueDate)
                 {

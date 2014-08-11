@@ -236,7 +236,7 @@
                                         </Grid>
 
                                         <!--Název-->
-                                        <controls:ToggleControl IsChecked="{Binding Task.IsComplete}"
+                                        <controls:ToggleControl IsChecked="{Binding Task.IsCompleted}"
                                                                 Content="{Binding Task.Title}"
                                                                 Style="{StaticResource CheckboxTextStyle}"
                                                                 IsHitTestVisible="False"
@@ -467,7 +467,7 @@
                                 Height="50"
                                 HorizontalAlignment="Left">
                             <ToggleButton x:Name="Checkbox"
-                                          IsChecked="{Binding Task.IsComplete}"
+                                          IsChecked="{Binding Task.IsCompleted}"
                                           Style="{StaticResource CheckboxStyle}"
                                           IsHitTestVisible="False" />
                         </Border>

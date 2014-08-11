@@ -75,25 +75,6 @@ namespace SimpleTasks
             {
                 Debug.WriteLine("==== INSTALACE ====");
                 IsFirstStart = true;
-
-                #region Načtení dat se starým formátem
-                Tasks.Load();
-                foreach (TaskModel task in Tasks.Tasks)
-                {
-                    if (task.ReminderDateObsoleteGet != null && task.Reminder == null)
-                    {
-                        task.DueDate = task.ReminderDateObsoleteGet;
-                        task.Reminder = TimeSpan.Zero;
-                    }
-
-                    if (task.CompletedDateObsoleteGet != null && task.Completed == null)
-                    {
-                        task.Completed = task.CompletedDateObsoleteGet;
-                    }
-                }
-                Tasks.Save();
-                #endregion
-
                 Settings.Version = Version.ToString();
                 Debug.WriteLine("==== ===== Installed ===== ====");
             }
