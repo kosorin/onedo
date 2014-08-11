@@ -383,7 +383,7 @@
         </trans-unit>
         <trans-unit id="Resx/AppBarDeleteAllSubtasks" translate="yes" xml:space="preserve">
           <source>delete all</source>
-          <target state="signed-off">odstranit vše</target>
+          <target state="signed-off">odstranit všechny</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
