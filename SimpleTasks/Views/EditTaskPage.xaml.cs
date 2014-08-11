@@ -24,7 +24,7 @@ namespace SimpleTasks.Views
 {
     public partial class EditTaskPage : BasePage
     {
-        private TaskModel Original { get; set; }
+        public TaskModel Original { get; set; }
 
         public bool IsNew { get; private set; }
 

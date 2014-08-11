@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="SimpleTasks.Core.Controls.Icon"
+             x:Name="IconControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="50"
+             d:DesignWidth="50">
+    <Canvas Width="{Binding ElementName=IconControl, Path=Width}"
+            Height="{Binding ElementName=IconControl, Path=Height}"
+            Opacity="{Binding ElementName=IconControl, Path=Opacity}"
+            Background="{Binding ElementName=IconControl, Path=Background}">
+        <Canvas.CacheMode>
+            <BitmapCache RenderAtScale="1" />
+        </Canvas.CacheMode>
+        <Canvas.RenderTransform>
+            <ScaleTransform ScaleX="{Binding ElementName=IconControl, Path=Scale.X}"
+                            ScaleY="{Binding ElementName=IconControl, Path=Scale.Y}"/>
+        </Canvas.RenderTransform>
+        <Path Data="{Binding ElementName=IconControl, Path=Data}"
+              Width="{Binding ElementName=IconControl, Path=Size.X}"
+              Height="{Binding ElementName=IconControl, Path=Size.Y}"
+              Canvas.Left="{Binding ElementName=IconControl, Path=Offset.X}"
+              Canvas.Top="{Binding ElementName=IconControl, Path=Offset.Y}"
+              Stretch="Fill"
+              Fill="{Binding ElementName=IconControl, Path=Foreground}" />
+    </Canvas>
+</UserControl>

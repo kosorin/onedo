@@ -6,11 +6,11 @@
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                    xmlns:controls="clr-namespace:SimpleTasks.Controls"
-                   xmlns:tiles="clr-namespace:SimpleTasks.Tiles"
                    xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                    xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
                    xmlns:sample="clr-namespace:Expression.Blend.SampleData.EditDataSource"
+                   xmlns:tiles="clr-namespace:SimpleTasks.Core.Tiles;assembly=SimpleTasks.Core"
                    x:Class="SimpleTasks.Views.EditTaskPage"
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d"
@@ -142,6 +142,8 @@
             <StackPanel>
                 <Border Height="40" />
 
+                <tiles:MediumTaskTile Task="{Binding Original}"  />
+                
                 <!--Text-->
                 <StackPanel Margin="0,0,0,20">
                     <!--Název-->

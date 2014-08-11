@@ -51,13 +51,13 @@ namespace SimpleTasks.Core.Helpers
             // Vytvoření obrázků dlaždic
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(smallFileName, System.IO.FileMode.Create))
             {
-                TileTemplate tile = new MediumTaskTile();
+                TileTemplate tile = new SimpleTasks.Core.Tiles.DefaultTask.MediumTaskTile();
                 WriteableBitmap wb = tile.Render(task);
                 wb.WritePNG(stream);
             }
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(mediumFileName, System.IO.FileMode.Create))
             {
-                TileTemplate tile = new MediumTaskTile();
+                TileTemplate tile = new SimpleTasks.Core.Tiles.DefaultTask.MediumTaskTile();
                 WriteableBitmap wb = tile.Render(task);
                 wb.WritePNG(stream);
             }
