@@ -39,5 +39,15 @@ namespace SimpleTasks.Core.Models
             set { SetProperty(ref _backgroundOpacity, value); }
         }
         #endregion
+
+        #region UseTwoColumns
+        private bool _useTwoColumns = true;
+        [DataMember(Name = "UseTwoColumns")]
+        public bool UseTwoColumns
+        {
+            get { return _useTwoColumns; }
+            set { SetProperty(ref _useTwoColumns, value); }
+        }
+        #endregion
     }
 }

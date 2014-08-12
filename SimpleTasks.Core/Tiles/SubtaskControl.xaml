@@ -12,7 +12,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/Icons.xaml" />
                 <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -25,7 +24,7 @@
         <Grid HorizontalAlignment="Left">
             <Border Width="80"
                     Height="80"
-                    BorderThickness="2"
+                    BorderThickness="4"
                     Background="#33000000"
                     BorderBrush="#66FFFFFF" />
             <Canvas x:Name="Icon"

@@ -15,7 +15,6 @@
     <tiles:TileControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/Icons.xaml" />
                 <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -33,7 +32,7 @@
 
             <!--Název-->
             <Grid Grid.Row="0"
-                  Background="#40000000">
+                  Background="#55000000">
                 <Viewbox>
                     <TextBlock x:Name="Title"
                                Text="Lorem ipsum"
@@ -47,7 +46,7 @@
             <!--Info-->
             <Grid x:Name="InfoWrapper"
                   Grid.Row="1"
-                  Background="#22000000">
+                  Background="#30000000">
                 <Viewbox x:Name="Info"
                          Height="48"
                          HorizontalAlignment="Left">
