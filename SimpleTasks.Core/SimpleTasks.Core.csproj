@@ -98,6 +98,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SettingsCategory.cs" />
+    <Compile Include="Models\TileSettings.cs" />
     <Compile Include="Models\Subtask.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="PngWriter\ToolStackCRCLib.cs" />

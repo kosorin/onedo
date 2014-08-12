@@ -44,5 +44,40 @@ namespace SimpleTasks.Models
             set { SetProperty(ref _isScheduled, value); }
         }
         #endregion
+
+        #region Color
+        private Color? _color = null;
+        public Color Color
+        {
+            get
+            {
+                if (_color == null)
+                {
+                    if (Task.Color == Colors.Transparent)
+                    {
+                        _color = (Color)App.Current.Resources["PhoneAccentColor"];
+                    }
+                    else
+                    {
+                        _color = Task.Color;
+                    }
+                }
+                return _color.Value;
+            }
+        }
+
+        private SolidColorBrush _colorBrush = null;
+        public SolidColorBrush ColorBrush
+        {
+            get
+            {
+                if (_colorBrush == null)
+                {
+                    _colorBrush = new SolidColorBrush(Color);
+                }
+                return _colorBrush;
+            }
+        }
+        #endregion
     }
 }

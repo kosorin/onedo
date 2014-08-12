@@ -57,7 +57,7 @@ namespace SimpleTasks.Views
                 {
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
-                Tile.Refresh(task, 48, App.Current.Resources["PhoneAccentBrush"] as SolidColorBrush);
+                Tile.Refresh(task);
                 Load(task);
 
                 CreateAppBarItems();

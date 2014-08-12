@@ -1,6 +1,7 @@
 ﻿using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,25 @@ namespace SimpleTasks.Core.Tiles
 
         public static int WideTileSize { get { return 691; } }
 
-        //public abstract WriteableBitmap Render(List<TaskModel> tasks);
+        public void Render(Stream stream)
+        {
+            if (stream != null)
+            {
+                int width = (int)Width;
+                int height = (int)Height;
+                WriteableBitmap wb = new WriteableBitmap(width, height);
 
-        public abstract WriteableBitmap Render();
+                UpdateLayout();
+                Measure(new Size(width, height));
+                Arrange(new Rect(0, 0, width, height));
+                UpdateLayout();
+
+                wb.Render(this, null);
+                wb.Invalidate();
+
+                wb.WritePNG(stream);
+            }
+        }
 
         protected T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
         {

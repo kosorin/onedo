@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:SimpleTasks.Core.Controls"
              mc:Ignorable="d"
              Width="336"
-             Height="48"
+             Height="96"
              Foreground="White">
 
     <UserControl.Resources>
@@ -17,14 +17,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Height="48"
-          Margin="6,0"
+    <Grid Height="96"
+          Margin="12,0"
           VerticalAlignment="Top">
 
         <!--Ikona-->
         <Grid HorizontalAlignment="Left">
-            <Border Width="40"
-                    Height="40"
+            <Border Width="80"
+                    Height="80"
                     BorderThickness="2"
                     Background="#33000000"
                     BorderBrush="#66FFFFFF" />
@@ -41,8 +41,8 @@
                       Canvas.Top="4"
                       RenderTransformOrigin="0.5,0.5">
                     <Path.RenderTransform>
-                        <CompositeTransform ScaleX="0.8"
-                                            ScaleY="0.8" />
+                        <CompositeTransform ScaleX="1.6"
+                                            ScaleY="1.6" />
                     </Path.RenderTransform>
                 </Path>
             </Canvas>
@@ -53,19 +53,19 @@
             <TextBlock x:Name="Text"
                        Text="Walk the dog"
                        Style="{StaticResource BaseTileTextStyle}"
-                       FontSize="28.8"
-                       Margin="48,4,0,0" />
+                       FontSize="57.6"
+                       Margin="96,8,0,0" />
 
             <!--Přeskrtnutí-->
             <Border x:Name="Strike"
                     BorderBrush="White"
                     Opacity="0.7"
-                    BorderThickness="0,0,0,2"
+                    BorderThickness="0,0,0,4"
                     Background="#FFE8FF00"
                     VerticalAlignment="Center"
-                    Margin="48,0,0,0">
+                    Margin="96,8,0,0">
                 <Border.RenderTransform>
-                    <CompositeTransform TranslateY="4" />
+                    <CompositeTransform TranslateY="2" />
                 </Border.RenderTransform>
             </Border>
         </Grid>

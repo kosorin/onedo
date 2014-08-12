@@ -142,8 +142,11 @@
             <StackPanel>
                 <Border Height="40" />
 
-                <tiles:MediumTaskTile x:Name="Tile" />
-                
+                <Border Background="{StaticResource PhoneAccentBrush}"
+                        HorizontalAlignment="Center">
+                    <tiles:MediumTaskTile x:Name="Tile" />
+                </Border>
+
                 <!--Text-->
                 <StackPanel Margin="0,0,0,20">
                     <!--Název-->
@@ -209,7 +212,7 @@
                                    HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
-                
+
                 <!--Termín & Připomenutí-->
                 <Grid x:Name="DueGrid"
                       Margin="0,0,0,20"

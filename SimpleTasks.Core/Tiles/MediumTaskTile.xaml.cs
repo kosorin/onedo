@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using SimpleTasks.Core.Models;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace SimpleTasks.Core.Tiles
 {
@@ -18,35 +19,30 @@ namespace SimpleTasks.Core.Tiles
         public MediumTaskTile()
         {
             InitializeComponent();
-            DataContext = null;
         }
 
-        public void Refresh(TaskModel task, double size, SolidColorBrush background = null)
+        public void Refresh(TaskModel task)
         {
             DataContext = task;
+            TileSettings settings = task.TileSettings ?? TileSettings.Default;
 
             // Title
-            Title.FontSize = size * 0.75;
+            Title.FontSize = settings.LineHeight * 0.75;
             Title.Text = task.Title;
 
             // Detail
             Detail.Visibility = !string.IsNullOrWhiteSpace(task.Detail) ? Visibility.Visible : Visibility.Collapsed;
             if (!string.IsNullOrWhiteSpace(task.Detail))
             {
-                Detail.FontSize = size * 0.65;
+                Detail.FontSize = settings.LineHeight * 0.65;
                 Detail.Text = task.Detail;
             }
 
             // Info
-            bool showInfo = task.HasReminder || task.Priority != TaskPriority.Normal;
-            InfoWrapper.Visibility = showInfo ? Visibility.Visible : Visibility.Collapsed;
-            if (showInfo)
+            InfoWrapper.Visibility = task.HasDueDate ? Visibility.Visible : Visibility.Collapsed;
+            if (task.HasDueDate)
             {
-                Info.Height = size;
-
-                HighPriority.Visibility = task.IsHighPriority ? Visibility.Visible : Visibility.Collapsed;
-                LowPriority.Visibility = task.IsLowPriority ? Visibility.Visible : Visibility.Collapsed;
-                Reminder.Visibility = task.HasReminder ? Visibility.Visible : Visibility.Collapsed;
+                Info.Height = settings.LineHeight;
                 Date.Text = task.DueDate.Value.ToShortDateString();
             }
 
@@ -56,7 +52,7 @@ namespace SimpleTasks.Core.Tiles
             foreach (Subtask subtask in task.Subtasks)
             {
                 Viewbox vb = new Viewbox();
-                vb.Height = size;
+                vb.Height = settings.LineHeight;
                 vb.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
                 SubtaskControl sc = new SubtaskControl();
@@ -74,31 +70,7 @@ namespace SimpleTasks.Core.Tiles
             }
 
             // Pozadí
-            if (background != null)
-            {
-                LayoutRoot.Background = background;
-            }
-            else
-            {
-                LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);
-            }
-        }
-
-        public override WriteableBitmap Render()
-        {
-            int width = (int)Width;
-            int height = (int)Height;
-            WriteableBitmap wb = new WriteableBitmap(width, height);
-
-            UpdateLayout();
-            Measure(new Size(width, height));
-            UpdateLayout();
-            Arrange(new Rect(0, 0, width, height));
-
-            UpdateLayout();
-            wb.Render(this, null);
-            wb.Invalidate();
-            return wb;
+            LayoutRoot.Background = new SolidColorBrush(task.Color) { Opacity = settings.BackgroundOpacity };
         }
     }
 }

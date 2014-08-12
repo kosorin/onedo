@@ -325,7 +325,8 @@ namespace SimpleTasks.Views
                 Title = "Math project",
                 DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
                 Reminder = TimeSpan.FromDays(1),
-                Priority = TaskPriority.High
+                Priority = TaskPriority.High,
+                Color = Color.FromArgb(255, 229, 20, 0)
             });
             App.Tasks.Add(new TaskModel()
             {
