@@ -58,7 +58,7 @@
         <Setter Property="Size"
                 Value="38,38" />
         <Setter Property="Offset"
-                Value="16,16" />
+                Value="6,6" />
     </Style>
     <Style x:Key="LowPriorityIconStyle"
            TargetType="controls:Icon"

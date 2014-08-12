@@ -13,22 +13,30 @@ namespace SimpleTasks.Core.Tiles
 {
     public partial class MediumTaskTile : TileControl
     {
+        public double LineSize
+        {
+            get { return (double)GetValue(LineSizeProperty); }
+            set { SetValue(LineSizeProperty, value); }
+        }
+        public static readonly DependencyProperty LineSizeProperty =
+            DependencyProperty.Register("LineSize", typeof(double), typeof(MediumTaskTile), new PropertyMetadata(48D));
+
         public MediumTaskTile()
         {
             InitializeComponent();
             DataContext = null;
         }
 
-        public TaskModel Task
+        public MediumTaskTile(TaskModel task, double lineSize)
         {
-            get { return (TaskModel)GetValue(TaskProperty); }
-            set
-            {
-                SetValue(TaskProperty, value);
-                DataContext = value;
-            }
+            InitializeComponent();
+            Refresh(task, lineSize);
         }
-        public static readonly DependencyProperty TaskProperty =
-            DependencyProperty.Register("Task", typeof(TaskModel), typeof(MediumTaskTile), null);
+
+        public void Refresh(TaskModel task, double lineSize)
+        {
+            DataContext = task;
+            LineSize = lineSize;
+        }
     }
 }

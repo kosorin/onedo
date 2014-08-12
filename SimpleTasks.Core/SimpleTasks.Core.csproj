@@ -92,6 +92,7 @@
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\NumberMultConverter.cs" />
     <Compile Include="Helpers\AppInfo.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />

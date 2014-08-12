@@ -24,7 +24,14 @@ namespace SimpleTasks.Views
 {
     public partial class EditTaskPage : BasePage
     {
-        public TaskModel Original { get; set; }
+        #region Original
+        private TaskModel _original = null;
+        public TaskModel Original
+        {
+            get { return _original; }
+            set { SetProperty(ref _original, value); }
+        }
+        #endregion
 
         public bool IsNew { get; private set; }
 
@@ -50,6 +57,7 @@ namespace SimpleTasks.Views
                 {
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
+                Tile.Refresh(task, 56);
                 Load(task);
 
                 CreateAppBarItems();
