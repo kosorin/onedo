@@ -8,11 +8,9 @@
                    xmlns:controls="clr-namespace:SimpleTasks.Core.Controls"
                    xmlns:tiles="clr-namespace:SimpleTasks.Core.Tiles"
                    mc:Ignorable="d"
-                   FontFamily="{StaticResource PhoneFontFamilyLight}"
-                   FontSize="{StaticResource PhoneFontSizeNormal}"
-                   Foreground="White"
-                   d:DesignHeight="336"
-                   d:DesignWidth="336">
+                   Width="336"
+                   Height="336"
+                   Foreground="White">
 
     <tiles:TileControl.Resources>
         <ResourceDictionary>
@@ -20,165 +18,156 @@
                 <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/Icons.xaml" />
                 <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <conv:BoolToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <conv:NumberMultConverter x:Key="NumberMultConverter" />
-
-            <ControlTemplate x:Key="SubtaskTemplate"
-                             TargetType="ContentControl">
-                <Grid Height="50"
-                      Margin="8,0"
-                      VerticalAlignment="Top">
-                    <Grid HorizontalAlignment="Left">
-                        <Border Width="40"
-                                Height="40"
-                                BorderThickness="1"
-                                Background="#33000000"
-                                BorderBrush="#66FFFFFF" />
-                        <controls:Icon Style="{StaticResource CheckIconStyle}"
-                                       Scale="0.8,0.8"
-                                       Margin="0"
-                                       Width="40"
-                                       Height="40"
-                                       Visibility="{Binding IsCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    </Grid>
-
-                    <TextBlock Text="{Binding Text, FallbackValue='Walk the dog'}"
-                               TextWrapping="Wrap"
-                               Foreground="White"
-                               FontFamily="Segoe WP"
-                               FontWeight="Light"
-                               FontSize="28"
-                               Margin="48,6,0,0" />
-                </Grid>
-            </ControlTemplate>
         </ResourceDictionary>
     </tiles:TileControl.Resources>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource PhoneAccentBrush}"
-          Width="336"
-          Height="336">
+          Background="{StaticResource PhoneAccentBrush}">
 
         <Grid Background="#10000000">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--Název + priorita-->
-
+            <!--Název-->
             <Grid Grid.Row="0"
-                  Background="#20000000">
+                  Background="#40000000">
                 <Viewbox>
-                    <TextBlock Text="{Binding Title, FallbackValue='Handj jcrafted Pixels LÓL j jMG '}"
+                    <TextBlock x:Name="Title"
+                               Text="Lorem ipsum"
+                               Style="{StaticResource BaseTileTextStyle}"
                                Width="336"
-                               TextWrapping="Wrap"
-                               Foreground="White"
-                               FontFamily="Segoe WP"
-                               FontWeight="Light"
-                               FontSize="{Binding ElementName=Tile, Path=LineSize, ConverterParameter='0.75', Converter={StaticResource NumberMultConverter}, FallbackValue=36}"
-                               Margin="8,0,8,4" />
+                               FontSize="36"
+                               Margin="6,0,4,4" />
                 </Viewbox>
             </Grid>
 
-            <!--Detail nebo Subtasks-->
-            <Grid Grid.Row="1">
-                <TextBlock Text="Handcrafted pixel perfect icons tailored for the Modern UI style. Handcrafted pixel perfect icons tailored for the Modern UI style."
-                           Visibility="Collapsed"
-                           TextWrapping="Wrap"
-                           Foreground="White"
-                           FontFamily="Segoe WP"
-                           FontWeight="Light"
-                           FontSize="32"
-                           Margin="8,0,8,8" />
-
-                <StackPanel>
-                    <Viewbox Height="{Binding ElementName=Tile, Path=LineSize, FallbackValue=48}"
-                             HorizontalAlignment="Left">
-                        <ContentControl Template="{StaticResource SubtaskTemplate}"
-                                        DataContext="{Binding Subtasks[0]}"
-                                        Visibility="{Binding Subtasks[0], Converter={StaticResource NullToVisibilityConverter}}" />
-                    </Viewbox>
-
-                    <Viewbox Height="{Binding ElementName=Tile, Path=LineSize, FallbackValue=48}"
-                             HorizontalAlignment="Left">
-                        <ContentControl Template="{StaticResource SubtaskTemplate}"
-                                        DataContext="{Binding Subtasks[1]}"
-                                        Visibility="{Binding Subtasks[1], Converter={StaticResource NullToVisibilityConverter}}" />
-                    </Viewbox>
-
-                    <Viewbox Height="{Binding ElementName=Tile, Path=LineSize, FallbackValue=48}"
-                             HorizontalAlignment="Left">
-                        <ContentControl Template="{StaticResource SubtaskTemplate}"
-                                        DataContext="{Binding Subtasks[2]}"
-                                        Visibility="{Binding Subtasks[2], Converter={StaticResource NullToVisibilityConverter}}" />
-                    </Viewbox>
-
-                    <Viewbox Height="{Binding ElementName=Tile, Path=LineSize, FallbackValue=48}"
-                             HorizontalAlignment="Left">
-                        <ContentControl Template="{StaticResource SubtaskTemplate}"
-                                        DataContext="{Binding Subtasks[3]}"
-                                        Visibility="{Binding Subtasks[3], Converter={StaticResource NullToVisibilityConverter}}" />
-                    </Viewbox>
-
-                    <Viewbox Height="{Binding ElementName=Tile, Path=LineSize, FallbackValue=48}"
-                             HorizontalAlignment="Left">
-                        <ContentControl Template="{StaticResource SubtaskTemplate}"
-                                        DataContext="{Binding Subtasks[4]}"
-                                        Visibility="{Binding Subtasks[4], Converter={StaticResource NullToVisibilityConverter}}" />
-                    </Viewbox>
-
-                </StackPanel>
-
-            </Grid>
-
-            <!--Datum + připomenutí-->
-            <Grid Grid.Row="2"
-                  Background="#20000000"
-                  Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Viewbox Height="{Binding ElementName=Tile, Path=LineSize, FallbackValue=48}"
+            <!--Info-->
+            <Grid x:Name="InfoWrapper"
+                  Grid.Row="1"
+                  Background="#22000000">
+                <Viewbox x:Name="Info"
+                         Height="48"
                          HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <controls:Icon x:Name="DateIcon"
-                                           Style="{StaticResource CalendarIconStyle}"
-                                           VerticalAlignment="Bottom"
-                                           Margin="4,4,0,4"
-                                           HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="4,0,4,0">
 
-                            <TextBlock x:Name="DateText"
-                                       Text="{Binding DueDate, StringFormat='\{0:d}', FallbackValue='23.12.2014'}"
-                                       TextWrapping="Wrap"
-                                       Foreground="White"
-                                       FontFamily="Segoe WP"
-                                       FontWeight="Light"
-                                       FontSize="42"
-                                       Margin="56,2,0,0"
-                                       VerticalAlignment="Center" />
+                        <!--Vysoká priorita-->
+                        <Grid x:Name="HighPriority">
+                            <Canvas Width="16"
+                                    Height="40"
+                                    Margin="4,4,0,4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <Path Data="F1 m37.999275,44.509476c-1.797794,0 -3.255135,1.457344 -3.255135,3.255135c0,1.797794 1.45734,3.255131 3.255135,3.255131c1.797653,0 3.255131,-1.457336 3.255131,-3.255131c0,-1.797791 -1.457478,-3.255135 -3.255131,-3.255135zm-3.255135,-19.530794l1.084953,17.36062l4.340225,0l1.085087,-17.36062l-6.510265,0z"
+                                      Fill="White"
+                                      Stretch="Fill"
+                                      Width="8"
+                                      Height="33.8"
+                                      Canvas.Left="8"
+                                      Canvas.Top="3">
+                                </Path>
+                            </Canvas>
                         </Grid>
 
-                        <Grid Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
-                              Margin="8,0,0,0">
-                            <controls:Icon x:Name="ReminderIcon"
-                                           Style="{StaticResource ReminderIconStyle}"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Left"
-                                           Margin="4,4,0,0" />
+                        <!--Nízká priorita-->
+                        <Grid x:Name="LowPriority"
+                              Opacity="0.45">
+                            <Canvas Width="32"
+                                    Height="40"
+                                    Margin="4,4,0,4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <Path Data="F1 M 42,19.0002L 34,19.0002L 34,43.7502L 24,33.7502L 24,44.2502L 38,58.2502L 52,44.2502L 52,33.7502L 42,43.7502L 42,19.0002 Z"
+                                      Fill="White"
+                                      Stretch="Fill"
+                                      Width="28"
+                                      Height="39.25"
+                                      Canvas.Left="4"
+                                      Canvas.Top="0">
+                                </Path>
+                            </Canvas>
+                        </Grid>
 
-                            <TextBlock x:Name="ReminderText"
-                                       Text="{Binding Reminder, FallbackValue='na začátku'}"
-                                       TextWrapping="Wrap"
-                                       Foreground="White"
-                                       FontFamily="Segoe WP"
-                                       FontWeight="Light"
-                                       FontSize="42"
-                                       Margin="56,2,4,0" />
+                        <!--Připomenutí-->
+                        <Grid x:Name="Reminder"
+                              Opacity="0.75">
+                            <Canvas Width="40"
+                                    Height="40"
+                                    Margin="4,4,0,4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <Path Data="F1 M310.489,117.73c-11.175-6.415-18.095-18.365-18.072-31.25c0-0.021,0-0.042,0-0.063	C292.417,66.304,276.111,50,256,50c-20.113,0-36.417,16.304-36.417,36.417c0,0.021,0,0.042,0,0.064	c0.022,12.901-6.883,24.828-18.072,31.25C120.429,164.271,167.02,318.832,82.3,346.149v36.101h347.4v-36.101	C344.979,318.831,391.571,164.27,310.489,117.73z M256,71.642c8.147,0,14.775,6.627,14.775,14.775	c0,8.147-6.628,14.775-14.775,14.775c-8.147,0-14.775-6.628-14.775-14.775C241.225,78.27,247.853,71.642,256,71.642z M306.167,412.333c0,27.431-22.236,49.667-49.667,49.667c-27.43,0-49.667-22.236-49.667-49.667H306.167z"
+                                      Fill="White"
+                                      Stretch="Fill"
+                                      Width="34"
+                                      Height="34"
+                                      Canvas.Left="6"
+                                      Canvas.Top="3">
+                                </Path>
+                            </Canvas>
+                        </Grid>
+
+                        <!--Datum-->
+                        <Grid>
+                            <Canvas Width="50"
+                                    Opacity="0.75"
+                                    Height="50"
+                                    Margin="4,4,0,4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <Path Data="F1 M 18.0025,57.0081L 18.0025,23.0032L 23.0032,23.0032L 23.0032,20.0028C 23.0033,18.898 23.8988,18.0025 25.0035,18.0025L 29.004,18.0025C 30.1087,18.0025 31.0042,18.898 31.0043,20.0026L 31.0043,23.0032L 45.0063,23.0032L 45.0062,20.0026C 45.0062,18.8978 45.9018,18.0023 47.0065,18.0023L 51.0071,18.0023C 52.1118,18.0023 53.0074,18.8978 53.0074,20.0026L 53.0074,23.0032L 58.0081,23.0032L 58.0081,57.0081L 18.0025,57.0081 Z M 21.0029,54.0077L 55.0076,54.0077L 55.0076,31.0044L 21.0029,31.0044L 21.0029,54.0077 Z M 23.0032,47.0066L 29.004,47.0066L 29.004,52.0073L 23.0032,52.0073L 23.0032,47.0066 Z M 31.0043,47.0066L 37.0051,47.0066L 37.0051,52.0073L 31.0043,52.0073L 31.0043,47.0066 Z M 39.0054,47.0066L 45.0062,47.0066L 45.0062,52.0073L 39.0054,52.0073L 39.0054,47.0066 Z M 47.0065,47.0066L 53.0074,47.0066L 53.0074,52.0073L 47.0065,52.0073L 47.0065,47.0066 Z M 23.0032,40.0056L 29.004,40.0056L 29.004,45.0063L 23.0032,45.0063L 23.0032,40.0056 Z M 31.0043,40.0056L 37.0051,40.0056L 37.0051,45.0063L 31.0043,45.0063L 31.0043,40.0056 Z M 39.0054,40.0056L 45.0062,40.0056L 45.0062,45.0063L 39.0054,45.0063L 39.0054,40.0056 Z M 47.0065,40.0056L 53.0074,40.0056L 53.0074,45.0063L 47.0065,45.0063L 47.0065,40.0056 Z M 31.0043,33.0048L 37.0051,33.0048L 37.0051,38.0055L 31.0043,38.0055L 31.0043,33.0048 Z M 39.0054,33.0048L 45.0062,33.0048L 45.0062,38.0055L 39.0054,38.0055L 39.0054,33.0048 Z M 47.0065,33.0048L 53.0074,33.0048L 53.0074,38.0055L 47.0065,38.0055L 47.0065,33.0048 Z M 48.5067,20.0029C 47.6782,20.0029 47.0065,20.6745 47.0065,21.5031L 47.0065,24.5035C 47.0065,25.332 47.6782,26.0037 48.5067,26.0037L 49.5068,26.0037C 50.3354,26.0037 51.0071,25.332 51.0071,24.5035L 51.0071,21.5031C 51.0071,20.6745 50.3354,20.0029 49.5068,20.0029L 48.5067,20.0029 Z M 26.5037,20.0028C 25.6751,20.0028 25.0035,20.6745 25.0035,21.503L 25.0035,24.5035C 25.0035,25.332 25.6751,26.0037 26.5037,26.0037L 27.5038,26.0037C 28.3324,26.0037 29.004,25.332 29.004,24.5035L 29.004,21.503C 29.004,20.6745 28.3324,20.0028 27.5038,20.0028L 26.5037,20.0028 Z M 32.0045,41.0057L 32.0045,44.0061L 36.005,44.0061L 36.005,41.0057L 32.0045,41.0057 Z"
+                                      Fill="White"
+                                      Stretch="Fill"
+                                      Width="40.0056"
+                                      Height="39.0058"
+                                      Canvas.Left="5"
+                                      Canvas.Top="5.5">
+                                </Path>
+                            </Canvas>
+
+                            <TextBlock x:Name="Date"
+                                       Opacity="0.85"
+                                       Text="23.12.2014"
+                                       Style="{StaticResource BaseTileTextStyle}"
+                                       FontSize="36"
+                                       Margin="56,6,0,0" />
                         </Grid>
 
                     </StackPanel>
                 </Viewbox>
+            </Grid>
+
+            <!--Podúkoly + detail-->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--Podúkoly-->
+                <StackPanel x:Name="Subtasks"
+                            Margin="0,0,0,-4">
+                    <Viewbox Height="48"
+                             HorizontalAlignment="Left">
+                        <tiles:SubtaskControl />
+                    </Viewbox>
+
+                    <Viewbox Height="48"
+                             HorizontalAlignment="Left">
+                        <tiles:SubtaskControl />
+                    </Viewbox>
+                </StackPanel>
+
+                <!--Detail-->
+                <TextBlock x:Name="Detail"
+                           Grid.Row="1"
+                           Text="LÓrem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed."
+                           Style="{StaticResource BaseTileTextStyle}"
+                           FontSize="28.8"
+                           Margin="6,0" />
             </Grid>
         </Grid>
 

@@ -91,8 +91,6 @@
     <Compile Include="Controls\Icon.xaml.cs">
       <DependentUpon>Icon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\NumberMultConverter.cs" />
     <Compile Include="Helpers\AppInfo.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
@@ -121,6 +119,9 @@
     <Compile Include="Tiles\DefaultTask\WideTaskTile.cs" />
     <Compile Include="Tiles\MediumTaskTile.xaml.cs">
       <DependentUpon>MediumTaskTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\SubtaskControl.xaml.cs">
+      <DependentUpon>SubtaskControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tiles\TileControl.cs" />
     <Compile Include="Tiles\TileTemplate.cs" />
@@ -187,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tiles\MediumTaskTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tiles\SubtaskControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

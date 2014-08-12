@@ -57,7 +57,7 @@ namespace SimpleTasks.Views
                 {
                     task = App.Tasks.Tasks.FirstOrDefault((t) => { return t.Uid == this.NavigationContext.QueryString["Task"]; });
                 }
-                Tile.Refresh(task, 56);
+                Tile.Refresh(task, 48, App.Current.Resources["PhoneAccentBrush"] as SolidColorBrush);
                 Load(task);
 
                 CreateAppBarItems();
@@ -565,8 +565,8 @@ namespace SimpleTasks.Views
         {
             Unpin();
 
-            ApplicationBar.Buttons.RemoveAt(0);
-            ApplicationBar.Buttons.Insert(0, appBarPinButton);
+            ApplicationBar.Buttons.RemoveAt(1);
+            ApplicationBar.Buttons.Insert(1, appBarPinButton);
         }
 
         private void ActivateButton(object sender, EventArgs e)

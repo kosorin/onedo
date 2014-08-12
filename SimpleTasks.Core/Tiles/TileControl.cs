@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SimpleTasks.Core.Tiles
@@ -19,6 +21,35 @@ namespace SimpleTasks.Core.Tiles
 
         //public abstract WriteableBitmap Render(List<TaskModel> tasks);
 
-        //public abstract WriteableBitmap Render(TaskModel task);
+        public abstract WriteableBitmap Render();
+
+        protected T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
+        {
+            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+            var children = new FrameworkElement[childrenCount];
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
+                children[i] = child;
+                if (child is T)
+                {
+                    if (name == null || child.Name == name)
+                        return (T)child;
+                }
+            }
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                if (children[i] != null)
+                {
+                    var subChild = FindFirstChild<T>(children[i]);
+                    if (subChild != null)
+                        return subChild;
+                }
+            }
+
+            return null;
+        }
     }
 }
