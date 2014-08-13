@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,19 @@ namespace SimpleTasks.Core.Tiles
 {
     public abstract class TileControl : UserControl
     {
+        public object Data
+        {
+            get { return (object)GetValue(DataProperty); }
+            set { SetValue(DataProperty, value); }
+        }
+        public static readonly DependencyProperty DataProperty =
+            DependencyProperty.Register("Data", typeof(object), typeof(TileControl), null);
+
+        public TileControl(object data)
+        {
+            Data = data;
+        }
+
         public static int SmallTileSize { get { return 159; } }
 
         public static int MediumTileSize { get { return 336; } }
@@ -40,33 +54,15 @@ namespace SimpleTasks.Core.Tiles
             }
         }
 
-        protected T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
+        public abstract void Refresh();
+
+        public void ToPng(string fileName)
         {
-            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
-            var children = new FrameworkElement[childrenCount];
-
-            for (int i = 0; i < childrenCount; i++)
+            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(fileName, System.IO.FileMode.Create))
             {
-                var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-                children[i] = child;
-                if (child is T)
-                {
-                    if (name == null || child.Name == name)
-                        return (T)child;
-                }
+                Refresh();
+                Render(stream);
             }
-
-            for (int i = 0; i < childrenCount; i++)
-            {
-                if (children[i] != null)
-                {
-                    var subChild = FindFirstChild<T>(children[i]);
-                    if (subChild != null)
-                        return subChild;
-                }
-            }
-
-            return null;
         }
     }
 }

@@ -55,12 +55,7 @@ namespace SimpleTasks.Core.Helpers
                 WriteableBitmap wb = tile.Render(task);
                 wb.WritePNG(stream);
             }
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(mediumFileName, System.IO.FileMode.Create))
-            {
-                SimpleTasks.Core.Tiles.MediumTaskTile tile = new SimpleTasks.Core.Tiles.MediumTaskTile();
-                tile.Refresh(task);
-                tile.Render(stream);
-            }
+            new SimpleTasks.Core.Tiles.MediumTaskTile(task).ToPng(mediumFileName);
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(wideFileName, System.IO.FileMode.Create))
             {
                 TileTemplate tile = new WideTaskTile();

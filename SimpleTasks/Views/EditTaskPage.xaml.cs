@@ -404,6 +404,8 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton appBarOkButton;
 
+        private ApplicationBarMenuItem appBarEditTileItem;
+
         private ApplicationBarIconButton appBarPinButton;
 
         private ApplicationBarIconButton appBarUnpinButton;
@@ -432,6 +434,9 @@ namespace SimpleTasks.Views
             appBarOkButton.Text = AppResources.AppBarOk;
             appBarOkButton.Click += OkButton;
 
+            appBarEditTileItem = new ApplicationBarMenuItem("edit tile");
+            appBarEditTileItem.Click += EditTileItem_Click;
+
             appBarPinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.png", UriKind.Relative));
             appBarPinButton.Text = AppResources.AppBarPin;
             appBarPinButton.Click += PinButton;
@@ -449,7 +454,6 @@ namespace SimpleTasks.Views
         {
             ApplicationBar = new ApplicationBar();
 
-            // Ikony
             if (IsNew)
             {
                 ApplicationBar.Buttons.Add(appBarSaveButton);
@@ -474,9 +478,10 @@ namespace SimpleTasks.Views
                     }
                     ApplicationBar.Buttons.Add(appBarCompleteButton);
                 }
-
                 ApplicationBar.Buttons.Add(appBarDeleteButton);
             }
+
+            ApplicationBar.MenuItems.Add(appBarEditTileItem);
         }
 
         private void BuildTitleTextAppBar()
@@ -540,6 +545,10 @@ namespace SimpleTasks.Views
             DetailTextBox.Text = string.Join(newLine, lines);
             DetailTextBox.SelectionStart = newSelectionStart + bullet.Length;
             DetailTextBox.SelectionLength = bulletText.Length;
+        }
+
+        private void EditTileItem_Click(object sender, EventArgs e)
+        {
         }
 
         private void PinButton(object sender, EventArgs e)

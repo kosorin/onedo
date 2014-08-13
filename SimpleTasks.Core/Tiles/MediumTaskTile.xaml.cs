@@ -16,13 +16,18 @@ namespace SimpleTasks.Core.Tiles
 {
     public partial class MediumTaskTile : TileControl
     {
-        public MediumTaskTile()
+        public MediumTaskTile(TaskModel task)
+            : base(task as object)
         {
             InitializeComponent();
         }
 
-        public void Refresh(TaskModel task)
+        public override void Refresh()
         {
+            TaskModel task = Data as TaskModel;
+            if (task == null)
+                return;
+
             DataContext = task;
             TileSettings settings = task.TileSettings ?? TileSettings.Default;
 
