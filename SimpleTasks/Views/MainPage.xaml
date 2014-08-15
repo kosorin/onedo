@@ -186,7 +186,7 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
 
-                            <!--Horní+spodní Info-->
+                            <!--Horní + spodní Info-->
                             <Button>
                                 <Button.Template>
                                     <ControlTemplate TargetType="ButtonBase" />

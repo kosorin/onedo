@@ -20,6 +20,31 @@
         <sample:EditDataSource x:Key="EditDataSource"
                                d:IsDataSource="True" />
 
+        <Style x:Key="CloseButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ButtonCloseIconBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}"
+                              Margin="5">
+                            <ContentControl Style="{StaticResource BoldCloseIconStyle}"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            RenderTransformOrigin="0.5,0.5">
+                                <ContentControl.RenderTransform>
+                                    <CompositeTransform ScaleX="0.75"
+                                                        ScaleY="0.75" />
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Storyboard x:Name="ShowDueStoryboard">
             <ColorAnimation Storyboard.TargetName="DueDatePicker"
                             Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
@@ -206,7 +231,7 @@
                                    HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
-                
+
                 <!--Termín & Připomenutí-->
                 <Grid x:Name="DueGrid"
                       Margin="0,0,0,20"
@@ -306,16 +331,8 @@
                         </controls:MyToggleButton>
                         <Button x:Name="DueDateCloseButton"
                                 Grid.Column="1"
-                                Background="{StaticResource PhoneAccentBrush}"
+                                Style="{StaticResource CloseButtonStyle}"
                                 Tap="DueDateCloseButton_Tap">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Grid Background="#70000000">
-                                        <ContentControl Style="{StaticResource CloseIconStyle}"
-                                                        Foreground="{StaticResource ButtonCloseIconBrush}" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Button.Template>
                         </Button>
                     </Grid>
 
@@ -393,11 +410,22 @@
                                             </Grid.ColumnDefinitions>
                                             <ContentControl Style="{StaticResource ReminderIconStyle}"
                                                             Foreground="{StaticResource ButtonDarkForegroundBrush}" />
-                                            <TextBlock x:Name="ReminderText"
-                                                       Grid.Column="1"
-                                                       Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
-                                                       Style="{StaticResource ButtonTextStyle}"
-                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+
+                                            <Grid x:Name="ReminderText"
+                                                  Grid.Column="1">
+                                                <TextBlock Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
+                                                           Style="{StaticResource ButtonTextStyle}"
+                                                           FontSize="28"
+                                                           Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                           VerticalAlignment="Top" />
+                                                <TextBlock Text="{Binding ReminderDate, Converter={StaticResource TaskToDueStringConverter}}"
+                                                           Style="{StaticResource ButtonTextStyle}"
+                                                           FontSize="18"
+                                                           Opacity="0.6"
+                                                           Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                           VerticalAlignment="Bottom"
+                                                           Margin="0,0,0,2" />
+                                            </Grid>
                                             <TextBlock x:Name="NoReminderText"
                                                        Grid.Column="1"
                                                        Text="{Binding LocalizedResources.NoReminder, Source={StaticResource LocalizedStrings}}"
@@ -411,16 +439,7 @@
                         <Button x:Name="ReminderCloseButton"
                                 Tap="ReminderCloseButton_Tap"
                                 Grid.Column="1"
-                                Background="{StaticResource PhoneAccentBrush}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Grid Background="#70000000">
-                                        <ContentControl Style="{StaticResource CloseIconStyle}"
-                                                        Foreground="{StaticResource ButtonCloseIconBrush}" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
+                                Style="{StaticResource CloseButtonStyle}" />
                     </Grid>
                 </Grid>
 

@@ -28,6 +28,8 @@ namespace SimpleTasks.Views
 
         public bool IsNew { get; private set; }
 
+        public bool IsOld { get { return !IsNew; } }
+
         public EditTaskPage()
         {
             InitializeComponent();
@@ -105,6 +107,25 @@ namespace SimpleTasks.Views
             this.Loaded += firstTimeLoadHandler;
         }
 
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            Debug.WriteLine("Leaving...");
+            if (IsOld)
+            {
+                if (e.IsNavigationInitiator || e.NavigationMode == NavigationMode.Back)
+                {
+                    Debug.WriteLine("SAVE...");
+                    Save();
+                }
+                else if (e.NavigationMode == NavigationMode.New)
+                {
+                    Debug.WriteLine("UPDATE...");
+                    UpdateOriginal();
+                }
+            }
+        }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
@@ -166,7 +187,13 @@ namespace SimpleTasks.Views
         public DateTime DueDate
         {
             get { return _dueDate; }
-            set { SetProperty(ref _dueDate, value); }
+            set
+            {
+                if (SetProperty(ref _dueDate, value))
+                {
+                    OnPropertyChanged("ReminderDate");
+                }
+            }
         }
 
         private bool _isSetDueDate = false;
@@ -191,7 +218,23 @@ namespace SimpleTasks.Views
         public TimeSpan? Reminder
         {
             get { return _reminder; }
-            set { SetProperty(ref _reminder, value); }
+            set
+            {
+                if (SetProperty(ref _reminder, value))
+                {
+                    OnPropertyChanged("ReminderDate");
+                }
+            }
+        }
+
+        public DateTime? ReminderDate
+        {
+            get
+            {
+                if (Reminder == null)
+                    return null;
+                return DueDate - Reminder.Value;
+            }
         }
 
         private bool _isSetReminderDate = false;
@@ -297,7 +340,7 @@ namespace SimpleTasks.Views
 
         public void Save()
         {
-            SaveToTask(Original);
+            UpdateOriginal();
 
             // ULOŽENÍ
             Original.ModifiedSinceStart = true;
@@ -309,56 +352,47 @@ namespace SimpleTasks.Views
             {
                 App.Tasks.Update(Original);
             }
-
-            IsNew = false;
         }
 
-        public void SaveToTask(TaskModel task)
+        public void UpdateOriginal()
         {
             // Title
-            task.Title = Title;
+            Original.Title = Title;
 
             // Detail
-            task.Detail = Detail;
+            Original.Detail = Detail;
 
             // Priority
-            task.Priority = Priority;
+            Original.Priority = Priority;
 
             // Subtasks
-            task.Subtasks = Subtasks;
+            Original.Subtasks = Subtasks;
 
             // TileSettings
-            task.TileSettings = TileSettings;
+            Original.TileSettings = TileSettings;
 
             // Due Date
             if (IsSetDueDate)
-                task.DueDate = DueDate;
+                Original.DueDate = DueDate;
             else
-                task.DueDate = null;
+                Original.DueDate = null;
 
             // Reminder Date
             if (IsSetDueDate && IsSetReminder)
-                task.Reminder = Reminder;
+                Original.Reminder = Reminder;
             else
-                task.Reminder = null;
+                Original.Reminder = null;
 
             // Completed Date
             if (IsCompleted)
-                task.Completed = DateTime.Now;
+                Original.Completed = DateTime.Now;
             else
-                task.Completed = null;
-        }
-
-        public TaskModel GetTask()
-        {
-            TaskModel task = new TaskModel();
-            SaveToTask(task);
-            return task;
+                Original.Completed = null;
         }
 
         public void Activate()
         {
-            if (!IsNew)
+            if (IsOld)
             {
                 IsCompleted = false;
             }
@@ -366,7 +400,7 @@ namespace SimpleTasks.Views
 
         public void Complete()
         {
-            if (!IsNew)
+            if (IsOld)
             {
                 IsCompleted = true;
                 Save();
@@ -398,7 +432,7 @@ namespace SimpleTasks.Views
 
         public void Unpin()
         {
-            if (!IsNew)
+            if (IsOld)
             {
                 LiveTile.Unpin(Original);
             }
@@ -486,7 +520,6 @@ namespace SimpleTasks.Views
                 }
                 else
                 {
-                    ApplicationBar.Buttons.Add(appBarSaveButton);
                     if (IsPinned())
                     {
                         ApplicationBar.Buttons.Add(appBarUnpinButton);
@@ -568,7 +601,8 @@ namespace SimpleTasks.Views
 
         private void EditTileItem_Click(object sender, EventArgs e)
         {
-            SetParam("EditTileTask", GetTask());
+            UpdateOriginal();
+            SetParam("EditTileTask", Original);
             NavigationService.Navigate(new Uri("/Views/EditTaskTilePage.xaml", UriKind.Relative));
         }
 
@@ -587,8 +621,8 @@ namespace SimpleTasks.Views
         {
             Unpin();
 
-            ApplicationBar.Buttons.RemoveAt(1);
-            ApplicationBar.Buttons.Insert(1, appBarPinButton);
+            ApplicationBar.Buttons.RemoveAt(0);
+            ApplicationBar.Buttons.Insert(0, appBarPinButton);
         }
 
         private void ActivateButton(object sender, EventArgs e)
