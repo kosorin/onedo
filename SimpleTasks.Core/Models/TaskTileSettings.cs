@@ -21,7 +21,7 @@ namespace SimpleTasks.Core.Models
         public TaskTileSettings() { }
 
         #region LineHeight
-        private double _lineHeight = 42;
+        private double _lineHeight = 48;
         [DataMember()]
         public double LineHeight
         {

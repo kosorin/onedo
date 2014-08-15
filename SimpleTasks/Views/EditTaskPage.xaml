@@ -418,13 +418,15 @@
                                                            FontSize="28"
                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                            VerticalAlignment="Top" />
-                                                <TextBlock Text="{Binding ReminderDate, Converter={StaticResource TaskToDueStringConverter}}"
-                                                           Style="{StaticResource ButtonTextStyle}"
+                                                <TextBlock Style="{StaticResource ButtonTextStyle}"
                                                            FontSize="18"
                                                            Opacity="0.6"
                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                            VerticalAlignment="Bottom"
-                                                           Margin="0,0,0,2" />
+                                                           Margin="0,0,0,2">
+                                                    <Run Text="{Binding ReminderDate, Converter={StaticResource DateConverter}}" />,
+                                                    <Run Text="{Binding ReminderDate, Converter={StaticResource TimeToStringConverter}}" />
+                                                </TextBlock>
                                             </Grid>
                                             <TextBlock x:Name="NoReminderText"
                                                        Grid.Column="1"

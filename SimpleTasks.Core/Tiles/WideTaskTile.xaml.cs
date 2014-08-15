@@ -108,6 +108,7 @@ namespace SimpleTasks.Core.Tiles
                 Subtasks1.Visibility = Visibility.Collapsed;
                 Subtasks2.Visibility = Visibility.Collapsed;
 
+                Detail1.Visibility = Visibility.Visible;
                 Detail1.FontSize = settings.LineHeight * 0.65;
                 Detail1.Text = task.Detail;
                 HideSecondColumn();
