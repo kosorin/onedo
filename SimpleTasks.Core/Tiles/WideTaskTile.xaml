@@ -35,7 +35,7 @@
                   Grid.Row="0"
                   Background="#55000000">
                 <TextBlock x:Name="Title"
-                           Text="LÓrem ipsum and very very long"
+                           Text="LÓrem"
                            Style="{StaticResource BaseTileTextStyle}"
                            TextWrapping="NoWrap"
                            Width="691"
@@ -74,7 +74,7 @@
 
                             <TextBlock x:Name="Date"
                                        Opacity="0.85"
-                                       Text="23/12.2014"
+                                       Text="15.12.2014"
                                        Style="{StaticResource BaseTileTextStyle}"
                                        FontSize="36"
                                        Margin="60,2,0,0" />
@@ -160,17 +160,13 @@
 
                     <!--Podúkoly-->
                     <StackPanel x:Name="Subtasks1">
-                        <tiles:SubtaskControl />
-                        <tiles:SubtaskControl />
-                        <tiles:SubtaskControl />
-                        <tiles:SubtaskControl />
-                        <tiles:SubtaskControl />
+                        <!--<tiles:SubtaskControl />-->
                     </StackPanel>
 
                     <!--Detail-->
                     <TextBlock x:Name="Detail1"
                                Grid.Row="1"
-                               Text="LÓrem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed."
+                               Text=""
                                Style="{StaticResource BaseTileTextStyle}"
                                FontSize="28.8"
                                Margin="6,0,6,6" />
@@ -190,14 +186,14 @@
 
                     <!--Podúkoly-->
                     <StackPanel x:Name="Subtasks2">
-                        <tiles:SubtaskControl />
-                        <tiles:SubtaskControl />
+                        <!--<tiles:SubtaskControl />
+                        <tiles:SubtaskControl />-->
                     </StackPanel>
 
                     <!--Detail-->
                     <TextBlock x:Name="Detail2"
                                Grid.Row="1"
-                               Text="LÓrem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed."
+                               Text=""
                                Style="{StaticResource BaseTileTextStyle}"
                                FontSize="28.8"
                                Margin="6,0,6,6" />

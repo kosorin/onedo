@@ -146,6 +146,8 @@
                 Value="#00000000" />
         <Setter Property="Background"
                 Value="{StaticResource PhoneAccentBrush}" />
+        <Setter Property="Foreground"
+                Value="{StaticResource ButtonDarkForegroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:MySlider">
@@ -201,7 +203,7 @@
                             <Border x:Name="HorizontalTrack"
                                     Background="{TemplateBinding Background}"
                                     Height="50"
-                                    Opacity="0.45"
+                                    Opacity="0.65"
                                     IsHitTestVisible="False"
                                     Margin="0,0,0,60"
                                     VerticalAlignment="Top" />
@@ -271,6 +273,7 @@
                                     Visibility="{TemplateBinding ValueTextVisibility}">
                                 <TextBlock Style="{StaticResource NormalTextStyle}"
                                            Text="{Binding RoundValue, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Foreground="{TemplateBinding Foreground}"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
                             </Border>

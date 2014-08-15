@@ -32,14 +32,12 @@ namespace SimpleTasks.Views
             SmallTile.Task = _task;
             MediumTile.Task = _task;
             WideTile.Task = _task;
+
             Refresh();
         }
 
         private void Refresh()
         {
-            SmallTile.Refresh();
-            MediumTile.Refresh();
-            WideTile.Refresh();
             SmallTile.Refresh();
             MediumTile.Refresh();
             WideTile.Refresh();

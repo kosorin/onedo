@@ -24,7 +24,7 @@
           Background="{StaticResource PhoneAccentBrush}">
         <Grid Background="#10000000">
             <TextBlock x:Name="Title"
-                       Text="Lorem ipsum and very very long"
+                       Text="Lorem"
                        Style="{StaticResource BaseTileTextStyle}"
                        FontSize="34.56"
                        Height="159"

@@ -218,6 +218,13 @@ namespace SimpleTasks.Views
             get { return _isCompleted; }
             set { SetProperty(ref _isCompleted, value); }
         }
+
+        private TaskTileSettings _tileSettings = null;
+        public TaskTileSettings TileSettings
+        {
+            get { return _tileSettings; }
+            set { SetProperty(ref _tileSettings, value); }
+        }
         #endregion
 
         #region Task methods
@@ -270,13 +277,10 @@ namespace SimpleTasks.Views
                 // připomenutí
                 IsSetReminder = (task.Reminder != null);
                 Reminder = task.Reminder ?? TimeSpan.Zero;
-            }
 
-            //Subtasks.Add(new Subtask("mléko"));
-            //Subtasks.Add(new Subtask("rohlíky rohlíky rohlíky rohlíky rohlíky rohlíky"));
-            //Subtasks.Add(new Subtask("máslo"));
-            //Subtasks.Add(new Subtask("test"));
-            //Subtasks.Add(new Subtask("čokoláda"));
+                // nastavení dlaždice
+                TileSettings = task.TileSettings;
+            }
         }
 
         private bool CanSave()
@@ -322,6 +326,9 @@ namespace SimpleTasks.Views
 
             // Subtasks
             task.Subtasks = Subtasks;
+
+            // TileSettings
+            task.TileSettings = TileSettings;
 
             // Due Date
             if (IsSetDueDate)
