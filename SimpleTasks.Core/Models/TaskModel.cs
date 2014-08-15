@@ -83,11 +83,19 @@ namespace SimpleTasks.Core.Models
             }
         }
 
+        public bool HasSubtasks
+        {
+            get
+            {
+                return Subtasks.Count > 0;
+            }
+        }
+
         private void Subtasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             ModifiedSinceStart = true;
             Modified = DateTime.Now;
-            Debug.WriteLine("MODIFIED...");
+            OnPropertyChanged("HasSubtasks");
         }
         #endregion
 
