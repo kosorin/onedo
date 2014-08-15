@@ -38,9 +38,7 @@ namespace SimpleTasks.Controls
         private string _page;
 
         private const string _pagePrefix = "Picker_";
-
-        private const string _paramPrefix = "PickerParam_";
-
+        
         private const string _pageUriFormat = "/Views/{0}PickerPage.xaml";
 
         private object _valueToSave;
@@ -92,23 +90,6 @@ namespace SimpleTasks.Controls
         #endregion
 
         #region Navigace z venku
-        public static void SetParam(string param, object value)
-        {
-            PhoneApplicationService.Current.State[_paramPrefix + param] = value;
-        }
-
-        public static T GetParam<T>(string param)
-        {
-            T value = (T)PhoneApplicationService.Current.State[_paramPrefix + param];
-            PhoneApplicationService.Current.State.Remove(_paramPrefix + param);
-            return value;
-        }
-
-        public static bool IsSetParam(string param)
-        {
-            return PhoneApplicationService.Current.State.ContainsKey(_paramPrefix + param);
-        }
-
         public static void Navigate(string page, object value)
         {
             PhoneApplicationFrame frame = App.Current.RootVisual as PhoneApplicationFrame;

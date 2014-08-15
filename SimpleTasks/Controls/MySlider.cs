@@ -77,15 +77,14 @@ namespace SimpleTasks.Controls
         }
         #endregion
 
-        #region Label
-        public static readonly DependencyProperty LabelProperty =
-            DependencyProperty.Register("Label", typeof(string), typeof(MySlider), null);
-
-        public string Label
+        #region ValueTextVisibility
+        public Visibility ValueTextVisibility
         {
-            get { return base.GetValue(LabelProperty) as string; }
-            set { base.SetValue(LabelProperty, value); }
+            get { return (Visibility)GetValue(ValueTextVisibilityProperty); }
+            set { SetValue(ValueTextVisibilityProperty, value); }
         }
+        public static readonly DependencyProperty ValueTextVisibilityProperty =
+            DependencyProperty.Register("ValueTextVisibility", typeof(Visibility), typeof(MySlider), new PropertyMetadata(Visibility.Collapsed));
         #endregion
 
         #endregion
@@ -132,9 +131,13 @@ namespace SimpleTasks.Controls
         public void SetSliderValue(int value)
         {
             double dv = (double)value;
-            if (dv < Minimum || dv > Maximum)
+            if (dv < Minimum)
             {
-                throw new ArgumentOutOfRangeException();
+                dv = Minimum;
+            }
+            if (dv > Maximum)
+            {
+                dv = Maximum;
             }
 
             Value = dv;
@@ -169,7 +172,14 @@ namespace SimpleTasks.Controls
             // Popredi
             RectangleGeometry geometry = (RectangleGeometry)GetTemplateChild("HorizontalFillGeometry");
             Rect rect = geometry.Rect;
-            geometry.Rect = new Rect(rect.X, rect.Y, position, rect.Height);
+            try
+            {
+                geometry.Rect = new Rect(rect.X, rect.Y, position, rect.Height);
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
 
             // Tahatko
             TranslateTransform thumb = (TranslateTransform)GetTemplateChild("HorizontalThumb");

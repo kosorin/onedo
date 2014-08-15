@@ -1,0 +1,36 @@
+﻿<tiles:TaskTileControl x:Class="SimpleTasks.Core.Tiles.SmallTaskTile"
+                       x:Name="Tile"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:conv="clr-namespace:SimpleTasks.Core.Conventers"
+                       xmlns:controls="clr-namespace:SimpleTasks.Core.Controls"
+                       xmlns:tiles="clr-namespace:SimpleTasks.Core.Tiles"
+                       mc:Ignorable="d"
+                       Width="159"
+                       Height="159"
+                       Foreground="White">
+
+    <tiles:TaskTileControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </tiles:TaskTileControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource PhoneAccentBrush}">
+        <Grid Background="#10000000">
+            <TextBlock x:Name="Title"
+                       Text="Lorem"
+                       Style="{StaticResource BaseTileTextStyle}"
+                       FontSize="34.56"
+                       Height="159"
+                       Width="159"
+                       Padding="6,2,0,0"
+                       VerticalAlignment="Center" />
+        </Grid>
+    </Grid>
+</tiles:TaskTileControl>

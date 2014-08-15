@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Runtime.Serialization;
+using System.Windows.Media;
 
 namespace SimpleTasks.Core.Models
 {
@@ -85,6 +87,7 @@ namespace SimpleTasks.Core.Models
         {
             ModifiedSinceStart = true;
             Modified = DateTime.Now;
+            Debug.WriteLine("MODIFIED...");
         }
         #endregion
 
@@ -203,6 +206,33 @@ namespace SimpleTasks.Core.Models
         {
             get { return _tags; }
             set { SetProperty(ref _tags, value); }
+        }
+        #endregion
+
+
+        #region TileSettings 40
+        private TaskTileSettings _tileSettings = null;
+        [DataMember(Order = 40)]
+        public TaskTileSettings TileSettings
+        {
+            get { return _tileSettings; }
+            set { SetProperty(ref _tileSettings, value); }
+        }
+        #endregion
+
+
+        #region Color 50
+        private Color _color = Colors.Transparent;
+        [DataMember(Order = 50)]
+        public Color Color
+        {
+            get { return _color; }
+            set { SetProperty(ref _color, value); }
+        }
+
+        public bool HasColor
+        {
+            get { return Color != Colors.Transparent; }
         }
         #endregion
 

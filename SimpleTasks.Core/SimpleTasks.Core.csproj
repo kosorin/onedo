@@ -88,6 +88,9 @@
     <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\Icon.xaml.cs">
+      <DependentUpon>Icon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\AppInfo.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SettingsCategory.cs" />
+    <Compile Include="Models\TaskTileSettings.cs" />
     <Compile Include="Models\Subtask.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="PngWriter\ToolStackCRCLib.cs" />
@@ -111,9 +115,19 @@
     </Compile>
     <Compile Include="Tiles\DefaultList\MediumListTile.cs" />
     <Compile Include="Tiles\DefaultList\SmallListTile.cs" />
-    <Compile Include="Tiles\DefaultTask\MediumTaskTile.cs" />
-    <Compile Include="Tiles\DefaultTask\SmallTaskTile.cs" />
-    <Compile Include="Tiles\DefaultTask\WideTaskTile.cs" />
+    <Compile Include="Tiles\SmallTaskTile.xaml.cs">
+      <DependentUpon>SmallTaskTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\WideTaskTile.xaml.cs">
+      <DependentUpon>WideTaskTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\MediumTaskTile.xaml.cs">
+      <DependentUpon>MediumTaskTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\SubtaskControl.xaml.cs">
+      <DependentUpon>SubtaskControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\TaskTileControl.cs" />
     <Compile Include="Tiles\TileTemplate.cs" />
     <Compile Include="Tiles\DefaultList\WideListTile.cs" />
   </ItemGroup>
@@ -162,6 +176,37 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Controls\Icon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TileStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tiles\SmallTaskTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tiles\WideTaskTile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Tiles\MediumTaskTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tiles\SubtaskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

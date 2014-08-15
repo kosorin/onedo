@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:SimpleTasks.Core.Controls">
+
+    <Style x:Key="BaseTileTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="FontFamily"
+                Value="Segoe WP" />
+    </Style>
+</ResourceDictionary>
