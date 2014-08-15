@@ -11,41 +11,50 @@ using SimpleTasks.Core.Models;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Diagnostics;
 
 namespace SimpleTasks.Core.Tiles
 {
-    public partial class MediumTaskTile : TileControl
+    public partial class MediumTaskTile : TaskTileControl
     {
+        public MediumTaskTile()
+        {
+            InitializeComponent();
+        }
+
         public MediumTaskTile(TaskModel task)
-            : base(task as object)
+            : base(task)
         {
             InitializeComponent();
         }
 
         public override void Refresh()
         {
-            TaskModel task = Data as TaskModel;
+            TaskModel task = Task;
             if (task == null)
                 return;
 
             DataContext = task;
-            TileSettings settings = task.TileSettings ?? TileSettings.Default;
+            TaskTileSettings settings = task.TileSettings ?? TaskTileSettings.Default;
 
-            // Title
-            Title.FontSize = settings.LineHeight * 0.75;
-            Title.Text = task.Title;
-
-            // Detail
-            Detail.Visibility = !string.IsNullOrWhiteSpace(task.Detail) ? Visibility.Visible : Visibility.Collapsed;
-            if (!string.IsNullOrWhiteSpace(task.Detail))
+            // Název
+            if (settings.HideTitle)
             {
-                Detail.FontSize = settings.LineHeight * 0.65;
-                Detail.Text = task.Detail;
+                TitleWrapper.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TitleWrapper.Visibility = Visibility.Visible;
+                Title.FontSize = settings.LineHeight * 0.72;
+                Title.LineHeight = settings.LineHeight;
+                Title.Text = task.Title;
+                Title.TextWrapping = settings.TitleOnOneLine ? TextWrapping.NoWrap : TextWrapping.Wrap;
             }
 
-            // Info
-            InfoWrapper.Visibility = task.HasDueDate ? Visibility.Visible : Visibility.Collapsed;
-            if (task.HasDueDate)
+            // Date
+            bool hideDate = settings.HideDate || !task.HasDueDate;
+            InfoWrapper.Visibility = hideDate ? Visibility.Collapsed : Visibility.Visible;
+            if (!hideDate)
             {
                 Info.Height = settings.LineHeight;
                 Date.Text = task.DueDate.Value.ToShortDateString();
@@ -53,25 +62,21 @@ namespace SimpleTasks.Core.Tiles
 
             // Podúkoly
             Subtasks.Children.Clear();
-            Subtasks.Visibility = task.Subtasks.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
-            foreach (Subtask subtask in task.Subtasks)
+            List<Subtask> subtasks = new List<Subtask>(task.Subtasks.Where(s => settings.ShowCompletedSubtasks || !s.IsCompleted));
+            Subtasks.Visibility = subtasks.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+            foreach (Subtask subtask in subtasks.Take((336 / (int)settings.LineHeight) + 1))
             {
-                Viewbox vb = new Viewbox();
-                vb.Height = settings.LineHeight;
-                vb.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                SubtaskControl sc = new SubtaskControl(subtask);
+                sc.Refresh(settings.LineHeight);
+                Subtasks.Children.Add(sc);
+            }
 
-                SubtaskControl sc = new SubtaskControl();
-
-                sc.Icon.Visibility = subtask.IsCompleted ? Visibility.Visible : Visibility.Collapsed;
-                sc.Text.Text = subtask.Text;
-                sc.Strike.Visibility = subtask.IsCompleted ? Visibility.Visible : Visibility.Collapsed;
-                if (subtask.IsCompleted)
-                {
-                    sc.Text.Opacity = 0.45;
-                }
-
-                vb.Child = sc;
-                Subtasks.Children.Add(vb);
+            // Detail
+            Detail.Visibility = !string.IsNullOrWhiteSpace(task.Detail) ? Visibility.Visible : Visibility.Collapsed;
+            if (!string.IsNullOrWhiteSpace(task.Detail))
+            {
+                Detail.FontSize = settings.LineHeight * 0.65;
+                Detail.Text = task.Detail;
             }
 
             // Pozadí

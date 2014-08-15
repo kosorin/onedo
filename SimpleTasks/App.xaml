@@ -394,7 +394,7 @@
             <!--Region TextBlock-->
             <FontFamily x:Key="DefaultFontFamily">Segoe WP</FontFamily>
             <FontWeight x:Key="DefaultFontWeight">Light</FontWeight>
-            
+
             <Style x:Key="NormalTextStyle"
                    TargetType="TextBlock">
                 <Setter Property="Foreground"
@@ -624,6 +624,91 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <!--EndRegion-->
+
+            <!--Region Switch-->
+            <ControlTemplate x:Key="SwitchStyle"
+                             TargetType="ToggleButton">
+                <Border x:Name="Root"
+                        Height="60"
+                        Background="Transparent"
+                        Margin="0,-5,0,0"
+                        Opacity="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="Root"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.25" />
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="Root"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.38"
+                                                     Duration="0:0:0.25" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                        <VisualStateGroup x:Name="CheckStates">
+                            <VisualState x:Name="Checked">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="OnText"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.25" />
+                                    <DoubleAnimation Storyboard.TargetName="OffText"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.25" />
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="OnText"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.25" />
+                                    <DoubleAnimation Storyboard.TargetName="OffText"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.25" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <StackPanel Orientation="Horizontal"
+                                IsHitTestVisible="False">
+                        <Grid Width="50"
+                              Height="50">
+                            <ToggleButton x:Name="Checkbox"
+                                          IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Style="{StaticResource CheckboxStyle}"
+                                          Width="50"
+                                          Height="50" />
+                            <Border BorderThickness="2"
+                                    BorderBrush="{StaticResource PhoneAccentBrush}" />
+                        </Grid>
+
+                        <Grid Margin="10,0,0,0"
+                              VerticalAlignment="Center">
+
+                            <TextBlock x:Name="OnText"
+                                       Text="{Binding On, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       FontSize="32" />
+
+                            <TextBlock x:Name="OffText"
+                                       Text="{Binding Off, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
+                                       Style="{StaticResource SubtleTextStyle}"
+                                       FontSize="32" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
             <!--EndRegion-->
 
             <!--Region BasePage-->

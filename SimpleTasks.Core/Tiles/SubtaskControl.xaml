@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:SimpleTasks.Core.Controls"
              mc:Ignorable="d"
-             Width="336"
-             Height="96"
+             Height="48"
              Foreground="White">
 
     <UserControl.Resources>
@@ -16,55 +15,52 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Height="96"
-          Margin="12,0"
+
+    <Grid x:Name="Root"
+          Height="48"
+          Margin="6,0"
           VerticalAlignment="Top">
 
         <!--Ikona-->
         <Grid HorizontalAlignment="Left">
-            <Border Width="80"
-                    Height="80"
-                    BorderThickness="4"
+            <Border x:Name="IconBorder"
+                    Width="40"
+                    Height="40"
+                    BorderThickness="2"
                     Background="#33000000"
                     BorderBrush="#66FFFFFF" />
             <Canvas x:Name="Icon"
                     Opacity="0.85"
                     Width="40"
                     Height="40">
-                <Path Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z"
+                <Path x:Name="IconPath" Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z"
                       Fill="White"
                       Stretch="Fill"
-                      Width="37.9998"
-                      Height="31.6665"
-                      Canvas.Left="1"
-                      Canvas.Top="4"
-                      RenderTransformOrigin="0.5,0.5">
-                    <Path.RenderTransform>
-                        <CompositeTransform ScaleX="1.6"
-                                            ScaleY="1.6" />
-                    </Path.RenderTransform>
-                </Path>
+                      Width="30.39984"
+                      Height="25.3332"
+                      Canvas.Left="5"
+                      Canvas.Top="8" />
             </Canvas>
         </Grid>
 
         <Grid HorizontalAlignment="Left">
             <!--Text-->
             <TextBlock x:Name="Text"
-                       Text="Walk the dog"
+                       Text="Walk the dog and very very long"
                        Style="{StaticResource BaseTileTextStyle}"
-                       FontSize="57.6"
-                       Margin="96,8,0,0" />
+                       FontSize="28.8"
+                       Margin="48,4,0,0" />
 
             <!--Přeskrtnutí-->
             <Border x:Name="Strike"
                     BorderBrush="White"
                     Opacity="0.7"
-                    BorderThickness="0,0,0,4"
+                    BorderThickness="0,0,0,2"
                     Background="#FFE8FF00"
                     VerticalAlignment="Center"
-                    Margin="96,8,0,0">
+                    Margin="48,4,0,0">
                 <Border.RenderTransform>
-                    <CompositeTransform TranslateY="2" />
+                    <CompositeTransform TranslateY="1" />
                 </Border.RenderTransform>
             </Border>
         </Grid>

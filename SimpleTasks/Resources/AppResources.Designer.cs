@@ -259,6 +259,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tile settings.
+        /// </summary>
+        public static string AppBarTileSettings {
+            get {
+                return ResourceManager.GetString("AppBarTileSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to unpin.
         /// </summary>
         public static string AppBarUnpin {
@@ -1093,6 +1102,69 @@ namespace SimpleTasks.Resources {
         public static string TaskText {
             get {
                 return ResourceManager.GetString("TaskText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to background opacity.
+        /// </summary>
+        public static string TileSettingsBackgroundOpacity {
+            get {
+                return ResourceManager.GetString("TileSettingsBackgroundOpacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hide date.
+        /// </summary>
+        public static string TileSettingsHideDate {
+            get {
+                return ResourceManager.GetString("TileSettingsHideDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hide title.
+        /// </summary>
+        public static string TileSettingsHideTitle {
+            get {
+                return ResourceManager.GetString("TileSettingsHideTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to text size.
+        /// </summary>
+        public static string TileSettingsLineHeight {
+            get {
+                return ResourceManager.GetString("TileSettingsLineHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to preview.
+        /// </summary>
+        public static string TileSettingsPreview {
+            get {
+                return ResourceManager.GetString("TileSettingsPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to show completed subtasks.
+        /// </summary>
+        public static string TileSettingsShowCompletedSubtasks {
+            get {
+                return ResourceManager.GetString("TileSettingsShowCompletedSubtasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to title on one line.
+        /// </summary>
+        public static string TileSettingsTitleOnOneLine {
+            get {
+                return ResourceManager.GetString("TileSettingsTitleOnOneLine", resourceCulture);
             }
         }
         

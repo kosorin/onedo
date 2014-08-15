@@ -537,4 +537,28 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>delete all</value>
   </data>
+  <data name="TileSettingsHideDate" xml:space="preserve">
+    <value>hide date</value>
+  </data>
+  <data name="TileSettingsHideTitle" xml:space="preserve">
+    <value>hide title</value>
+  </data>
+  <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
+    <value>show completed subtasks</value>
+  </data>
+  <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
+    <value>title on one line</value>
+  </data>
+  <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
+    <value>background opacity</value>
+  </data>
+  <data name="TileSettingsLineHeight" xml:space="preserve">
+    <value>text size</value>
+  </data>
+  <data name="TileSettingsPreview" xml:space="preserve">
+    <value>preview</value>
+  </data>
+  <data name="AppBarTileSettings" xml:space="preserve">
+    <value>tile settings</value>
+  </data>
 </root>

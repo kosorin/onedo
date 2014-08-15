@@ -2,7 +2,6 @@
 using SimpleTasks.Core.Models;
 using SimpleTasks.Core.Tiles;
 using SimpleTasks.Core.Tiles.DefaultList;
-using SimpleTasks.Core.Tiles.DefaultTask;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,19 +48,9 @@ namespace SimpleTasks.Core.Helpers
             string wideFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, WideTileFileName);
 
             // Vytvoření obrázků dlaždic
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(smallFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new SimpleTasks.Core.Tiles.DefaultTask.MediumTaskTile();
-                WriteableBitmap wb = tile.Render(task);
-                wb.WritePNG(stream);
-            }
-            new SimpleTasks.Core.Tiles.MediumTaskTile(task).ToPng(mediumFileName);
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(wideFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new WideTaskTile();
-                WriteableBitmap wb = tile.Render(task);
-                wb.WritePNG(stream);
-            }
+            new SimpleTasks.Core.Tiles.SmallTaskTile(task).SaveToPng(smallFileName);
+            new SimpleTasks.Core.Tiles.MediumTaskTile(task).SaveToPng(mediumFileName);
+            new SimpleTasks.Core.Tiles.WideTaskTile(task).SaveToPng(wideFileName);
 
             FlipTileData flipTileData = new FlipTileData
             {

@@ -68,5 +68,26 @@ namespace SimpleTasks.Controls
             return true;
         }
         #endregion
+
+        #region Parametry
+        private const string _paramPrefix = "PageParam_";
+
+        public static void SetParam(string param, object value)
+        {
+            PhoneApplicationService.Current.State[_paramPrefix + param] = value;
+        }
+
+        public static T GetParam<T>(string param)
+        {
+            T value = (T)PhoneApplicationService.Current.State[_paramPrefix + param];
+            PhoneApplicationService.Current.State.Remove(_paramPrefix + param);
+            return value;
+        }
+
+        public static bool IsSetParam(string param)
+        {
+            return PhoneApplicationService.Current.State.ContainsKey(_paramPrefix + param);
+        }
+        #endregion
     }
 }

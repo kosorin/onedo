@@ -13,28 +13,26 @@ using System.Windows.Media.Imaging;
 
 namespace SimpleTasks.Core.Tiles
 {
-    public abstract class TileControl : UserControl
+    public abstract class TaskTileControl : UserControl
     {
-        public object Data
+        public TaskModel Task
         {
-            get { return (object)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
+            get { return (TaskModel)GetValue(TaskProperty); }
+            set { SetValue(TaskProperty, value); }
         }
-        public static readonly DependencyProperty DataProperty =
-            DependencyProperty.Register("Data", typeof(object), typeof(TileControl), null);
+        public static readonly DependencyProperty TaskProperty =
+            DependencyProperty.Register("Task", typeof(TaskModel), typeof(TaskTileControl), null);
 
-        public TileControl(object data)
+        public TaskTileControl() { }
+
+        public TaskTileControl(TaskModel task)
         {
-            Data = data;
+            Task = task;
         }
 
-        public static int SmallTileSize { get { return 159; } }
+        public abstract void Refresh();
 
-        public static int MediumTileSize { get { return 336; } }
-
-        public static int WideTileSize { get { return 691; } }
-
-        public void Render(Stream stream)
+        public void RenderToStream(Stream stream)
         {
             if (stream != null)
             {
@@ -54,14 +52,12 @@ namespace SimpleTasks.Core.Tiles
             }
         }
 
-        public abstract void Refresh();
-
-        public void ToPng(string fileName)
+        public void SaveToPng(string fileName)
         {
             using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(fileName, System.IO.FileMode.Create))
             {
                 Refresh();
-                Render(stream);
+                RenderToStream(stream);
             }
         }
     }

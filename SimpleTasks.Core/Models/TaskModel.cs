@@ -211,9 +211,9 @@ namespace SimpleTasks.Core.Models
 
 
         #region TileSettings 40
-        private TileSettings _tileSettings = null;
+        private TaskTileSettings _tileSettings = null;
         [DataMember(Order = 40)]
-        public TileSettings TileSettings
+        public TaskTileSettings TileSettings
         {
             get { return _tileSettings; }
             set { SetProperty(ref _tileSettings, value); }

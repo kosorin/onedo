@@ -160,6 +160,9 @@
     <Compile Include="Views\DueDatePickerPage.xaml.cs">
       <DependentUpon>DueDatePickerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditTaskTilePage.xaml.cs">
+      <DependentUpon>EditTaskTilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SubtasksPickerPage.xaml.cs">
       <DependentUpon>SubtasksPickerPage.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditTaskTilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SubtasksPickerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -388,8 +395,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild">
-  </Target>
+  <Target Name="BeforeBuild"></Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

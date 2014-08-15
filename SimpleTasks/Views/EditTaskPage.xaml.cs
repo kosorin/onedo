@@ -293,35 +293,7 @@ namespace SimpleTasks.Views
 
         public void Save()
         {
-            // Title
-            Original.Title = Title;
-
-            // Detail
-            Original.Detail = Detail;
-
-            // Priority
-            Original.Priority = Priority;
-
-            // Subtasks
-            Original.Subtasks = Subtasks;
-
-            // Due Date
-            if (IsSetDueDate)
-                Original.DueDate = DueDate;
-            else
-                Original.DueDate = null;
-
-            // Reminder Date
-            if (IsSetDueDate && IsSetReminder)
-                Original.Reminder = Reminder;
-            else
-                Original.Reminder = null;
-
-            // Completed Date
-            if (IsCompleted)
-                Original.Completed = DateTime.Now;
-            else
-                Original.Completed = null;
+            SaveToTask(Original);
 
             // ULOŽENÍ
             Original.ModifiedSinceStart = true;
@@ -335,6 +307,46 @@ namespace SimpleTasks.Views
             }
 
             IsNew = false;
+        }
+
+        public void SaveToTask(TaskModel task)
+        {
+            // Title
+            task.Title = Title;
+
+            // Detail
+            task.Detail = Detail;
+
+            // Priority
+            task.Priority = Priority;
+
+            // Subtasks
+            task.Subtasks = Subtasks;
+
+            // Due Date
+            if (IsSetDueDate)
+                task.DueDate = DueDate;
+            else
+                task.DueDate = null;
+
+            // Reminder Date
+            if (IsSetDueDate && IsSetReminder)
+                task.Reminder = Reminder;
+            else
+                task.Reminder = null;
+
+            // Completed Date
+            if (IsCompleted)
+                task.Completed = DateTime.Now;
+            else
+                task.Completed = null;
+        }
+
+        public TaskModel GetTask()
+        {
+            TaskModel task = new TaskModel();
+            SaveToTask(task);
+            return task;
         }
 
         public void Activate()
@@ -434,7 +446,7 @@ namespace SimpleTasks.Views
             appBarOkButton.Text = AppResources.AppBarOk;
             appBarOkButton.Click += OkButton;
 
-            appBarEditTileItem = new ApplicationBarMenuItem("edit tile");
+            appBarEditTileItem = new ApplicationBarMenuItem(AppResources.AppBarTileSettings);
             appBarEditTileItem.Click += EditTileItem_Click;
 
             appBarPinButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.pin.png", UriKind.Relative));
@@ -549,6 +561,8 @@ namespace SimpleTasks.Views
 
         private void EditTileItem_Click(object sender, EventArgs e)
         {
+            SetParam("EditTileTask", GetTask());
+            NavigationService.Navigate(new Uri("/Views/EditTaskTilePage.xaml", UriKind.Relative));
         }
 
         private void PinButton(object sender, EventArgs e)
