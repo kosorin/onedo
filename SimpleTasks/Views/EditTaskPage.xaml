@@ -29,8 +29,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid Background="{TemplateBinding Background}"
-                              Margin="5">
+                        <Grid Background="{TemplateBinding Background}">
                             <ContentControl Style="{StaticResource BoldCloseIconStyle}"
                                             Foreground="{TemplateBinding Foreground}"
                                             RenderTransformOrigin="0.5,0.5">
