@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using SimpleTasks.Controls.Transitions;
 
 namespace SimpleTasks.Controls
 {
@@ -24,16 +25,15 @@ namespace SimpleTasks.Controls
         {
             TransitionService.SetNavigationInTransition(this, new NavigationInTransition()
             {
-                Backward = new SlideTransition() { Mode = SlideTransitionMode.SlideDownFadeIn },
-                Forward = new SlideTransition() { Mode = SlideTransitionMode.SlideUpFadeIn }
+                Backward = new OneTransition() { Mode = OneTransitionMode.BackwardIn },
+                Forward = new OneTransition() { Mode = OneTransitionMode.ForwardIn }
             });
             TransitionService.SetNavigationOutTransition(this, new NavigationOutTransition()
             {
-                Backward = new SlideTransition() { Mode = SlideTransitionMode.SlideDownFadeOut },
-                Forward = new SlideTransition() { Mode = SlideTransitionMode.SlideUpFadeOut }
+                Backward = new OneTransition() { Mode = OneTransitionMode.BackwardOut },
+                Forward = new OneTransition() { Mode = OneTransitionMode.ForwardOut }
             });
 
-            // WP Toolkit
             TiltEffect.SetIsTiltEnabled(this, true);
         }
 

@@ -109,6 +109,12 @@
     </Compile>
     <Compile Include="Controls\TaskListMenuItem.cs" />
     <Compile Include="Controls\ToggleControl.cs" />
+    <Resource Include="Controls\Transitions\OneBackwardIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Compile Include="Controls\Transitions\OneTransition.cs" />
+    <Compile Include="Controls\Transitions\OneTransitionMode.cs" />
     <Compile Include="Conventers\OffOnConverter.cs" />
     <Compile Include="Conventers\SettingsConverter.cs" />
     <Compile Include="Conventers\StringFunctionConverter.cs" />
@@ -291,6 +297,18 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </DesignTimeOnly>
+    <Resource Include="Controls\Transitions\OneForwardIn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Controls\Transitions\OneForwardOut.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Resource Include="Controls\Transitions\OneBackwardOut.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
     <Page Include="Themes\Light.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
