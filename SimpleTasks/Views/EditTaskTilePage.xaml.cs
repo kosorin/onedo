@@ -56,5 +56,10 @@ namespace SimpleTasks.Views
         {
             Refresh();
         }
+
+        private void ResetLineHeight_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            LineHeightSlider.SetSliderValue((int)TaskTileSettings.Default.LineHeight);
+        }
     }
 }

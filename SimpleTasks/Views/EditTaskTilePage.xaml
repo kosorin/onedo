@@ -79,13 +79,85 @@
                     <!--LineHeight-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsLineHeight, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                Style="{StaticResource LabelStyle}" />
-                    <controls:MySlider x:Name="LineHeightSlider"
-                                       Minimum="30"
-                                       ValueTextVisibility="Visible"
-                                       Maximum="56"
-                                       RoundValue="{Binding LineHeight, Mode=OneWay}"
-                                       RoundValueChanged="LineHeight_RoundValueChanged"
-                                       Margin="0,0,0,-15" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <controls:MySlider x:Name="LineHeightSlider"
+                                           Minimum="30"
+                                           ValueTextVisibility="Visible"
+                                           Maximum="56"
+                                           RoundValue="{Binding LineHeight, Mode=OneWay}"
+                                           RoundValueChanged="LineHeight_RoundValueChanged"
+                                           Margin="0,0,0,-15" />
+                        <Button Grid.Column="1"
+                                Margin="10,0,0,0"
+                                Content="&#xe149;"
+                                VerticalAlignment="Top"
+                                Tap="ResetLineHeight_Tap">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background"
+                                            Value="Transparent" />
+                                    <Setter Property="BorderBrush"
+                                            Value="{StaticResource PhoneForegroundBrush}" />
+                                    <Setter Property="Foreground"
+                                            Value="{StaticResource PhoneForegroundBrush}" />
+                                    <Setter Property="BorderThickness"
+                                            Value="{StaticResource PhoneBorderThickness}" />
+                                    <Setter Property="FontFamily"
+                                            Value="Segoe UI Symbol" />
+                                    <Setter Property="FontSize"
+                                            Value="24" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Grid Background="Transparent">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal" />
+                                                            <VisualState x:Name="Pressed">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                                                   Storyboard.TargetName="ContentContainer">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                                Value="{StaticResource PhoneButtonBasePressedForegroundBrush}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                                                   Storyboard.TargetName="ButtonBackground">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                                Value="{StaticResource PhoneAccentBrush}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border x:Name="ButtonBackground"
+                                                            Width="50"
+                                                            Height="50"
+                                                            CornerRadius="25"
+                                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                                            Background="{TemplateBinding Background}">
+                                                        <ContentControl x:Name="ContentContainer"
+                                                                        Width="50"
+                                                                        Height="50"
+                                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                                        Content="{TemplateBinding Content}"
+                                                                        FontFamily="{TemplateBinding FontFamily}"
+                                                                        Foreground="{TemplateBinding Foreground}"
+                                                                        HorizontalAlignment="Center"
+                                                                        VerticalAlignment="Center" />
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
 
                     <!--ShowCompletedSubtasks-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsShowCompletedSubtasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
