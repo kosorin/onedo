@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace SimpleTasks.Models
 {
-    public class TaskGroup : List<TaskWrapper>
+    public class TaskGroup : ObservableCollection<TaskModel>
     {
         public string Title { get; private set; }
 
@@ -16,123 +16,51 @@ namespace SimpleTasks.Models
             Title = title;
         }
 
-        public static List<TaskGroup> CreateOrderByDate(IEnumerable<TaskModel> items)
+        public void AddSorted<T>(TaskModel task, Func<TaskModel, T> getValue, Func<int, bool> compare = null)
         {
-            List<TaskGroup> groups = new List<TaskGroup>();
-            TaskGroup overdueGroup = new TaskGroup(AppResources.DateOverdue);
-            TaskGroup todayGroup = new TaskGroup(AppResources.DateToday);
-            TaskGroup tomorrowGroup = new TaskGroup(AppResources.DateTomorrow);
-            TaskGroup upcomingGroup = new TaskGroup(AppResources.DateUpcoming);
-            TaskGroup somedayGroup = new TaskGroup(AppResources.DateSomeday);
-            TaskGroup completedGroup = new TaskGroup(AppResources.DateCompleted);
+            IComparer<T> comparer = Comparer<T>.Default;
+            T value = getValue(task);
+            if (compare == null)
+                compare = v => v < 0;
 
-            groups.Add(overdueGroup);
-            groups.Add(todayGroup);
-            groups.Add(tomorrowGroup);
-            groups.Add(upcomingGroup);
-            groups.Add(somedayGroup);
-            groups.Add(completedGroup);
-
-            // Přidání úkolů do jednotlivých skupin
-            if (items != null)
+            int i = 0;
+            while (i < Count && compare(comparer.Compare(getValue(this[i]), value)))
             {
-                foreach (TaskModel task in items)
-                {
-                    TaskWrapper taskWrapper = new TaskWrapper(task);
-                    if (task.IsCompleted)
-                        completedGroup.Add(taskWrapper);
-                    else if (!task.DueDate.HasValue)
-                        somedayGroup.Add(taskWrapper);
-                    else if (task.DueDate.Value.Date < DateTimeExtensions.Today)
-                        overdueGroup.Add(taskWrapper);
-                    else if (task.DueDate.Value.Date == DateTimeExtensions.Today)
-                        todayGroup.Add(taskWrapper);
-                    else if (task.DueDate.Value.Date == DateTimeExtensions.Tomorrow)
-                        tomorrowGroup.Add(taskWrapper);
-                    else
-                        upcomingGroup.Add(taskWrapper);
-                }
+                i++;
             }
-
-            // Seřazení úkolů ve skupinách
-            overdueGroup.Sort((t1, t2) =>
-            {
-                return DateTime.Compare(t1.Task.DueDate.Value.Date, t2.Task.DueDate.Value.Date);
-            });
-
-            todayGroup.Sort((t1, t2) =>
-            {
-                return t2.Task.Priority.CompareTo(t1.Task.Priority);
-            });
-
-            tomorrowGroup.Sort((t1, t2) =>
-            {
-                return t2.Task.Priority.CompareTo(t1.Task.Priority);
-            });
-
-            upcomingGroup.Sort((t1, t2) =>
-            {
-                return DateTime.Compare(t1.Task.DueDate.Value.Date, t2.Task.DueDate.Value.Date);
-            });
-
-            somedayGroup.Sort((t1, t2) =>
-            {
-                return t2.Task.Priority.CompareTo(t1.Task.Priority);
-            });
-
-            completedGroup.Sort((t1, t2) =>
-            {
-                return DateTime.Compare(t2.Task.Completed.Value.Date, t1.Task.Completed.Value.Date);
-            });
-
-            return groups;
-        }
-        public static List<TaskGroup> CreateOrderByPriority(IEnumerable<TaskModel> items)
-        {
-            List<TaskGroup> groups = new List<TaskGroup>();
-            TaskGroup lowGroup = new TaskGroup(AppResources.PriorityLow);
-            TaskGroup normalGroup = new TaskGroup(AppResources.PriorityNormal);
-            TaskGroup highGroup = new TaskGroup(AppResources.PriorityHigh);
-
-            groups.Add(highGroup);
-            groups.Add(normalGroup);
-            groups.Add(lowGroup);
-
-            // Přidání úkolů do jednotlivých skupin
-            if (items != null)
-            {
-                foreach (TaskModel task in items)
-                {
-                    TaskWrapper taskWrapper = new TaskWrapper(task);
-                    if (task.IsHighPriority)
-                        highGroup.Add(taskWrapper);
-                    else if (task.IsLowPriority)
-                        lowGroup.Add(taskWrapper);
-                    else
-                        normalGroup.Add(taskWrapper);
-                }
-            }
-
-            // Seřazení úkolů ve skupinách
-            Comparison<TaskWrapper> dateComparison = (t1, t2) =>
-            {
-                if (t1.Task.IsCompleted || t2.Task.IsCompleted)
-                {
-                    return t1.Task.IsCompleted && t2.Task.IsCompleted ? 0 : (t1.Task.IsCompleted ? 1 : -1);
-                }
-                if (!t1.Task.HasDueDate || !t2.Task.HasDueDate)
-                {
-                    return !t1.Task.HasDueDate && !t2.Task.HasDueDate ? 0 : (t1.Task.HasDueDate ? -1 : 1);
-                }
-                return DateTime.Compare(t1.Task.DueDate.Value.Date, t2.Task.DueDate.Value.Date);
-            };
-
-            lowGroup.Sort(dateComparison);
-            normalGroup.Sort(dateComparison);
-            highGroup.Sort(dateComparison);
-
-            return groups;
+            Insert(i, task);
         }
 
+        public void AddSorted<T, U>(TaskModel task, Func<TaskModel, T> getValue1, Func<TaskModel, U> getValue2, Func<int, bool> compare1 = null, Func<int, bool> compare2 = null)
+        {
+            IComparer<T> comparer1 = Comparer<T>.Default;
+            IComparer<U> comparer2 = Comparer<U>.Default;
+            if (compare1 == null)
+                compare1 = v => v < 0;
+            if (compare2 == null)
+                compare2 = v => v < 0;
+
+            T value1 = getValue1(task);
+            U value2 = getValue2(task);
+
+            int i = 0;
+            while (i < Count)
+            {
+                int result = comparer1.Compare(getValue1(this[i]), value1);
+                if (compare1(result))
+                {
+                    i++;
+                }
+                else if (result == 0 && compare2(comparer2.Compare(getValue2(this[i]), value2)))
+                {
+                    i++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            Insert(i, task);
+        }
     }
 }

@@ -27,15 +27,32 @@ namespace SimpleTasks.ViewModels
 
                 if (_tasks != null)
                 {
-                    _tasks.CollectionChanged += (s, e) => { OnPropertyChanged(GroupedTasksPropertyString); };
+                    _tasks.CollectionChanged += Tasks_CollectionChanged;
                 }
             }
         }
 
-        public string GroupedTasksPropertyString = "GroupedTasks";
-        public List<TaskGroup> GroupedTasks
+        private void Tasks_CollectionChanged(object sender, object e)
         {
-            get { return TaskGroup.CreateOrderByDate(Tasks); }
+            OnPropertyChanged(GroupedTasksPropertyString);
+        }
+
+        public readonly string GroupedTasksPropertyString = "GroupedTasks";
+        private TaskGroupCollection _groupedTasks = null;
+        public TaskGroupCollection GroupedTasks
+        {
+            get
+            {
+                if (_groupedTasks == null)
+                {
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    _groupedTasks = new DateTaskGroupCollection(Tasks);
+                    sw.Stop();
+                    Debug.WriteLine("MERENI: {0}", sw.ElapsedMilliseconds);
+                }
+                return _groupedTasks;
+            }
         }
 
         public TasksViewModel()

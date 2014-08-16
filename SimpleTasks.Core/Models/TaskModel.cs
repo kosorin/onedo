@@ -17,6 +17,16 @@ namespace SimpleTasks.Core.Models
             Created = DateTime.Now;
         }
 
+        #region Wrapper
+        private object _wrapper = null;
+        public object Wrapper
+        {
+            get { return _wrapper; }
+            set { SetProperty(ref _wrapper, value); }
+        }
+        #endregion
+
+
         #region Uid 0
         private string _uid = "";
         [DataMember(Order = 0)]

@@ -5,117 +5,99 @@
     <ViewModels:TasksViewModel.GroupedTasks>
         <Models:TaskGroup Capacity="76"
                           Title="Penatibus euismod vestibulum porttitor tincidunt">
-            <Models:TaskWrapper IsScheduled="True">
-                <Models:TaskWrapper.Task>
-                    <Models1:TaskModel Detail="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                                       DueDate="2014/12/12 11:30"
-                                       HasReminder="True"
-                                       HasDueDate="True"
-                                       IsHighPriority="False"
-                                       IsLowPriority="False"
-                                       IsCompleted="False"
-                                       Color="Red"
-                                       IsNormalPriority="True"
-                                       IsActive="True"
-                                       IsOverdue="False"
-                                       ModifiedSinceStart="False"
-                                       Priority="Low"
-                                       ReminderDate="07/17/2014 23:15:56"
-                                       Title="Erat feugiat tristique nam gravida"
-                                       Uid="Turpis vestibulum" />
-                </Models:TaskWrapper.Task>
-            </Models:TaskWrapper>
-            <Models:TaskWrapper IsScheduled="False">
-                <Models:TaskWrapper.Task>
-                    <Models1:TaskModel Detail=""
-                                       HasReminder="False"
-                                       HasDueDate="False"
-                                       IsHighPriority="True"
-                                       IsLowPriority="False"
-                                       IsCompleted="False"
-                                       IsNormalPriority="False"
-                                       IsActive="True"
-                                       IsOverdue="True"
-                                       ModifiedSinceStart="True"
-                                       Priority="Low"
-                                       ReminderDate="07/17/2014 23:15:56"
-                                       Title="Laoreet vitae sociosqu"
-                                       Uid="Risus aenean velit">
-                        <Models1:TaskModel.Subtasks>
-                            <Models1:Subtask Text="chleba"
-                                             IsCompleted="False" />
-                            <Models1:Subtask Text="máslo" />
-                            <Models1:Subtask Text="maso"
-                                             IsCompleted="True" />
-                            <Models1:Subtask Text="mléko" />
-                            <Models1:Subtask Text="banány" />
-                        </Models1:TaskModel.Subtasks>
-                    </Models1:TaskModel>
 
-                </Models:TaskWrapper.Task>
-            </Models:TaskWrapper>
+            <Models1:TaskModel Detail="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                               DueDate="2014/12/12 11:30"
+                               HasReminder="True"
+                               HasDueDate="True"
+                               IsHighPriority="False"
+                               IsLowPriority="False"
+                               IsCompleted="False"
+                               Color="Red"
+                               IsNormalPriority="True"
+                               IsActive="True"
+                               IsOverdue="False"
+                               ModifiedSinceStart="False"
+                               Priority="Low"
+                               ReminderDate="07/17/2014 23:15:56"
+                               Title="Erat feugiat tristique nam gravida"
+                               Uid="Turpis vestibulum" />
+
+            <Models1:TaskModel Detail=""
+                               HasReminder="False"
+                               HasDueDate="False"
+                               IsHighPriority="True"
+                               IsLowPriority="False"
+                               IsCompleted="False"
+                               IsNormalPriority="False"
+                               IsActive="True"
+                               IsOverdue="True"
+                               ModifiedSinceStart="True"
+                               Priority="Low"
+                               ReminderDate="07/17/2014 23:15:56"
+                               Title="Laoreet vitae sociosqu"
+                               Uid="Risus aenean velit">
+                <Models1:TaskModel.Subtasks>
+                    <Models1:Subtask Text="chleba"
+                                     IsCompleted="False" />
+                    <Models1:Subtask Text="máslo" />
+                    <Models1:Subtask Text="maso"
+                                     IsCompleted="True" />
+                    <Models1:Subtask Text="banány" />
+                </Models1:TaskModel.Subtasks>
+            </Models1:TaskModel>
         </Models:TaskGroup>
         <Models:TaskGroup Capacity="16"
                           Title="Lorem est vehicula">
-            <Models:TaskWrapper>
-                <Models:TaskWrapper.Task>
-                    <Models1:TaskModel HasReminder="False"
-                                       HasDueDate="False"
-                                       IsHighPriority="True"
-                                       IsLowPriority="True"
-                                       IsCompleted="True"
-                                       IsNormalPriority="False"
-                                       IsActive="False"
-                                       IsOverdue="True"
-                                       ModifiedSinceStart="True"
-                                       Priority="Low"
-                                       ReminderDate="07/17/2014 23:15:56"
-                                       Title="Phasellus leo mus nulla"
-                                       Uid="Litora morbi hac luctus volutpat">
-                        <Models1:TaskModel.Detail>
-                            Maecenas nec non
+            <Models1:TaskModel HasReminder="False"
+                               HasDueDate="False"
+                               IsHighPriority="True"
+                               IsLowPriority="True"
+                               IsCompleted="True"
+                               IsNormalPriority="False"
+                               IsActive="False"
+                               IsOverdue="True"
+                               ModifiedSinceStart="True"
+                               Priority="Low"
+                               ReminderDate="07/17/2014 23:15:56"
+                               Title="Phasellus leo mus nulla"
+                               Uid="Litora morbi hac luctus volutpat">
+                <Models1:TaskModel.Detail>
+                    Maecenas nec non
                             delší text
-                        </Models1:TaskModel.Detail>
-                    </Models1:TaskModel>
-                </Models:TaskWrapper.Task>
-            </Models:TaskWrapper>
+                </Models1:TaskModel.Detail>
+            </Models1:TaskModel>
         </Models:TaskGroup>
         <Models:TaskGroup Capacity="39"
                           Title="Conubia vel felis">
-            <Models:TaskWrapper>
-                <Models:TaskWrapper.Task>
-                    <Models1:TaskModel HasReminder="False"
-                                       HasDueDate="False"
-                                       IsHighPriority="True"
-                                       IsLowPriority="True"
-                                       IsCompleted="False"
-                                       IsNormalPriority="True"
-                                       IsActive="True"
-                                       IsOverdue="False"
-                                       ModifiedSinceStart="False"
-                                       Priority="High"
-                                       ReminderDate="07/17/2014 23:15:56"
-                                       Title="Ipsum inceptos cubilia"
-                                       Uid="Montes vestibulum habitant orci" />
-                </Models:TaskWrapper.Task>
-            </Models:TaskWrapper>
-            <Models:TaskWrapper>
-                <Models:TaskWrapper.Task>
-                    <Models1:TaskModel HasReminder="False"
-                                       HasDueDate="False"
-                                       IsHighPriority="False"
-                                       IsLowPriority="True"
-                                       IsCompleted="True"
-                                       IsNormalPriority="False"
-                                       IsActive="False"
-                                       IsOverdue="True"
-                                       ModifiedSinceStart="True"
-                                       Priority="Low"
-                                       ReminderDate="07/17/2014 23:15:56"
-                                       Title="Nostra ornare"
-                                       Uid="Nam lobortis sed fringilla egestas" />
-                </Models:TaskWrapper.Task>
-            </Models:TaskWrapper>
+            <Models1:TaskModel HasReminder="False"
+                               HasDueDate="False"
+                               IsHighPriority="True"
+                               IsLowPriority="True"
+                               IsCompleted="False"
+                               IsNormalPriority="True"
+                               IsActive="True"
+                               IsOverdue="False"
+                               ModifiedSinceStart="False"
+                               Priority="High"
+                               ReminderDate="07/17/2014 23:15:56"
+                               Title="Ipsum inceptos cubilia"
+                               Uid="Montes vestibulum habitant orci" />
+
+            <Models1:TaskModel HasReminder="False"
+                               HasDueDate="False"
+                               IsHighPriority="False"
+                               IsLowPriority="True"
+                               IsCompleted="True"
+                               IsNormalPriority="False"
+                               IsActive="False"
+                               IsOverdue="True"
+                               ModifiedSinceStart="True"
+                               Priority="Low"
+                               ReminderDate="07/17/2014 23:15:56"
+                               Title="Nostra ornare"
+                               Uid="Nam lobortis sed fringilla egestas" />
+
         </Models:TaskGroup>
     </ViewModels:TasksViewModel.GroupedTasks>
     <ViewModels:TasksViewModel.Tasks>

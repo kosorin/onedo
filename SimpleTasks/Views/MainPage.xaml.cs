@@ -64,7 +64,10 @@ namespace SimpleTasks.Views
             base.OnNavigatedTo(e);
             NavigationService.RemoveBackEntry();
 
-            App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
+            }
 
             App.Tracker.SendView("MainPage");
         }
@@ -364,10 +367,7 @@ namespace SimpleTasks.Views
 
         private void ToggleComplete(FrameworkElement element)
         {
-            TaskWrapper wrapper = element.DataContext as TaskWrapper;
-            if (wrapper == null)
-                return;
-            TaskModel task = wrapper.Task;
+            TaskModel task = element.DataContext as TaskModel;
             if (task == null)
                 return;
 
@@ -394,7 +394,11 @@ namespace SimpleTasks.Views
             }
             App.Tasks.Update(task);
 
-            wrapper.UpdateIsScheduled();
+            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
+            if (wrapper != null)
+            {
+                wrapper.UpdateIsScheduled();
+            }
         }
 
         private void ToggleSubtaskComplete(FrameworkElement element)
@@ -412,8 +416,7 @@ namespace SimpleTasks.Views
         private void TaskListItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Grid grid = (Grid)sender;
-            TaskWrapper wrapper = (TaskWrapper)grid.DataContext;
-            TaskModel task = wrapper.Task;
+            TaskModel task = (TaskModel)grid.DataContext;
             if (task == null)
                 return;
 
@@ -437,12 +440,11 @@ namespace SimpleTasks.Views
                     break;
             }
             ItemsControl itemsControl = element as ItemsControl;
-            TaskWrapper wrapper = (TaskWrapper)itemsControl.DataContext;
-            TaskModel task = wrapper.Task;
-            if (task == null)
-                return;
-
-            Navigate("SubtasksPage", task);
+            TaskModel task = (TaskModel)itemsControl.DataContext;
+            if (task != null)
+            {
+                Navigate("SubtasksPage", task);
+            }
         }
         #endregion
 

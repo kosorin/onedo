@@ -73,7 +73,7 @@
                 <Grid>
 
                     <!--Info + Podúkoly-->
-                    <controls:ToggleControl IsChecked="{Binding Task.IsActive}"
+                    <controls:ToggleControl IsChecked="{Binding IsActive}"
                                             Margin="60,0,0,0">
                         <StackPanel>
                             <VisualStateManager.VisualStateGroups>
@@ -210,7 +210,7 @@
                                         <Grid x:Name="TaskPriorityGrid">
 
                                             <!--Vysoká priorita-->
-                                            <Border Visibility="{Binding Task.IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Border Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                 <ContentControl Style="{StaticResource HighPriorityIconStyle}"
                                                                 Foreground="{StaticResource PhoneAccentBrush}"
                                                                 Opacity="1"
@@ -220,7 +220,7 @@
                                             </Border>
 
                                             <!--Nízká priorita-->
-                                            <Border Visibility="{Binding Task.IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <Border Visibility="{Binding IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                 <ContentControl Style="{StaticResource LowPriorityIconStyle}"
                                                                 Foreground="{StaticResource SubtleBrush}"
                                                                 Opacity=".6"
@@ -236,8 +236,8 @@
                                         </Grid>
 
                                         <!--Název-->
-                                        <controls:ToggleControl IsChecked="{Binding Task.IsCompleted}"
-                                                                Content="{Binding Task.Title}"
+                                        <controls:ToggleControl IsChecked="{Binding IsCompleted}"
+                                                                Content="{Binding Title}"
                                                                 Style="{StaticResource CheckboxTextStyle}"
                                                                 IsHitTestVisible="False"
                                                                 FontSize="32"
@@ -264,7 +264,7 @@
 
                                                 <!--Datum-->
                                                 <StackPanel Orientation="Horizontal"
-                                                            Visibility="{Binding Task.HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                            Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ContentControl Style="{StaticResource CalendarIconStyle}"
                                                                     Foreground="{StaticResource PhoneAccentBrush}"
                                                                     Margin="6,0,-18,0"
@@ -277,7 +277,7 @@
                                                                                 TranslateY="-29" />
                                                         </ContentControl.RenderTransform>
                                                     </ContentControl>
-                                                    <TextBlock Text="{Binding Task.DueDate, Converter={StaticResource TaskToDueStringConverter}}"
+                                                    <TextBlock Text="{Binding DueDate, Converter={StaticResource TaskToDueStringConverter}}"
                                                                Style="{StaticResource SlightTextStyle}"
                                                                FontSize="22"
                                                                Margin="0,1,8,0"
@@ -285,11 +285,11 @@
                                                 </StackPanel>
 
                                                 <!--Připomenutí-->
-                                                <controls:ToggleControl IsChecked="{Binding IsScheduled}">
+                                                <controls:ToggleControl IsChecked="{Binding Wrapper.IsScheduled}">
                                                     <controls:ToggleControl.Template>
                                                         <ControlTemplate>
                                                             <StackPanel Orientation="Horizontal"
-                                                                        Visibility="{Binding Task.HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                        Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                                 <VisualStateManager.VisualStateGroups>
                                                                     <VisualStateGroup x:Name="CheckStates">
                                                                         <VisualState x:Name="Checked">
@@ -350,7 +350,7 @@
                                                                 </Grid>
 
                                                                 <!--Text-->
-                                                                <TextBlock Text="{Binding Task.Reminder, Converter={StaticResource ReminderConverter}}"
+                                                                <TextBlock Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
                                                                            Style="{StaticResource SlightTextStyle}"
                                                                            VerticalAlignment="Bottom"
                                                                            FontSize="22"
@@ -368,8 +368,8 @@
                                         <Grid x:Name="DetailWrapper"
                                               MaxHeight="30"
                                               Margin="0,-10,12,10"
-                                              Visibility="{Binding Task.Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
-                                            <TextBlock Text="{Binding Task.Detail}"
+                                              Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
+                                            <TextBlock Text="{Binding Detail}"
                                                        Style="{StaticResource SlightTextStyle}"
                                                        FontSize="22"
                                                        TextWrapping="NoWrap"
@@ -384,8 +384,8 @@
                             <!--Podúkoly-->
                             <StackPanel x:Name="SubtasksStackPanel"
                                         Margin="3,-5,0,10"
-                                        Visibility="{Binding Task.Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
-                                <ItemsControl ItemsSource="{Binding Task.Subtasks}">
+                                        Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
+                                <ItemsControl ItemsSource="{Binding Subtasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Border x:Name="RootBorder"
@@ -467,7 +467,7 @@
                                 Height="50"
                                 HorizontalAlignment="Left">
                             <ToggleButton x:Name="Checkbox"
-                                          IsChecked="{Binding Task.IsCompleted}"
+                                          IsChecked="{Binding IsCompleted}"
                                           Style="{StaticResource CheckboxStyle}"
                                           IsHitTestVisible="False" />
                         </Border>
@@ -544,7 +544,8 @@
             </phone:LongListSelector>
 
             <!--No tasks-->
-            <StackPanel Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
+            <StackPanel x:Name="NoTasksPanel"
+                        Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,20">

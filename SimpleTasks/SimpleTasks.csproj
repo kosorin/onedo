@@ -139,6 +139,7 @@
     <Compile Include="Models\ChangelogCategory.cs" />
     <Compile Include="Models\ChangelogItem.cs" />
     <Compile Include="Models\TaskGroup.cs" />
+    <Compile Include="Models\TaskGroupCollection.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
     <Compile Include="MyUriMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

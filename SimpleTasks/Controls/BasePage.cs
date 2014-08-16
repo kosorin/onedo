@@ -21,6 +21,8 @@ namespace SimpleTasks.Controls
     {
         public BasePage()
         {
+            Debug.WriteLine("CTOR {0}", this);
+
             TransitionService.SetNavigationInTransition(this, new NavigationInTransition()
             {
                 Backward = new OneTransition() { Mode = OneTransitionMode.BackwardIn },
@@ -37,6 +39,8 @@ namespace SimpleTasks.Controls
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Debug.WriteLine("NAV TO {0} ({1})", this, e.NavigationMode);
+
             base.OnNavigatedTo(e);
 
             SystemTray.ForegroundColor = (Color)App.Current.Resources["SystemTrayForegroundColor"];
