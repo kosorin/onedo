@@ -84,7 +84,7 @@
                                                 RenderTransformOrigin="0.5,0.5">
                                             <Border.Background>
                                                 <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
-                                                                 Opacity="0.5" />
+                                                                 Opacity="0.7" />
                                             </Border.Background>
 
                                             <ContentControl Style="{StaticResource ReorderIconStyle}"
@@ -208,10 +208,10 @@
 
                                 <ContentControl Style="{StaticResource DeleteIconStyle}"
                                                 Foreground="{StaticResource SlightBrush}"
-                                                Opacity="0.8">
+                                                Opacity="0.9">
                                     <ContentControl.Background>
                                         <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                         Opacity="0.3" />
+                                                         Opacity="0.35" />
                                     </ContentControl.Background>
                                 </ContentControl>
                             </Button>

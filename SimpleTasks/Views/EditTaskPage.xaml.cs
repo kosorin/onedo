@@ -59,22 +59,21 @@ namespace SimpleTasks.Views
             else
             {
                 // Příchod ze stránky výběru datumu.
-                if (BasePickerPage.CanRetrieve("DueDate"))
+                if (IsSetNavigationParameter("DatePicker"))
                 {
-                    DueDate = BasePickerPage.Retrieve<DateTime>("DueDate");
+                    DueDate = NavigationParameter<DateTime>("DatePicker");
                 }
 
                 // Příchod ze stránky výběru času.
-                if (BasePickerPage.CanRetrieve("DueTime"))
+                if (IsSetNavigationParameter("TimePicker"))
                 {
-                    DueDate = BasePickerPage.Retrieve<DateTime>("DueTime");
+                    DueDate = NavigationParameter<DateTime>("TimePicker");
                 }
 
                 // Příchod ze stránky výběru připomenutí.
-                if (BasePickerPage.CanRetrieve("Reminder"))
+                if (IsSetNavigationParameter("ReminderPicker"))
                 {
-                    Reminder = BasePickerPage.Retrieve<TimeSpan>("Reminder");
-                    IsSetReminder = true;
+                    Reminder = NavigationParameter<TimeSpan>("ReminderPicker");
                 }
             }
 
@@ -114,10 +113,7 @@ namespace SimpleTasks.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            if (!e.IsNavigationInitiator)
-            {
-                App.UpdateAllLiveTiles();
-            }
+             App.UpdateAllLiveTiles(e);
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
@@ -600,7 +596,7 @@ namespace SimpleTasks.Views
         {
             if (IsSetDueDate)
             {
-                BasePickerPage.Navigate("DueDate", DueDate);
+                Navigate("DatePickerPage", DueDate, "DatePicker");
             }
             else
             {
@@ -612,7 +608,7 @@ namespace SimpleTasks.Views
         #region Čas
         private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BasePickerPage.Navigate("DueTime", DueDate);
+            Navigate("TimePickerPage", DueDate, "TimePicker");
         }
         #endregion
 
@@ -633,7 +629,14 @@ namespace SimpleTasks.Views
 
         private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BasePickerPage.Navigate("Reminder", Reminder);
+            if (IsSetReminder)
+            {
+                Navigate("ReminderPickerPage", Reminder, "ReminderPicker");
+            }
+            else
+            {
+                IsSetReminder = true;
+            }
         }
 
         private void ReminderCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)

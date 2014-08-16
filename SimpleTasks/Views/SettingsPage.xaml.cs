@@ -30,20 +30,16 @@ namespace SimpleTasks.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-
-            if (!e.IsNavigationInitiator)
-            {
-                App.UpdateAllLiveTiles();
-            }
+            App.UpdateAllLiveTiles(e);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (BasePickerPage.CanRetrieve("DueTime"))
+            if (IsSetNavigationParameter("TimePicker"))
             {
-                App.Settings.Tasks.DefaultTime = BasePickerPage.Retrieve<DateTime>("DueTime");
+                App.Settings.Tasks.DefaultTime = NavigationParameter<DateTime>("TimePicker");
             }
         }
 
@@ -51,7 +47,7 @@ namespace SimpleTasks.Views
 
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BasePickerPage.Navigate("DueTime", App.Settings.Tasks.DefaultTime);
+            Navigate("TimePickerPage", App.Settings.Tasks.DefaultTime, "TimePicker");
         }
     }
 }

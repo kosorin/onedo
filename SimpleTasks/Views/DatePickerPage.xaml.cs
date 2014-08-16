@@ -18,22 +18,49 @@ namespace SimpleTasks.Views
 {
     public class CalendarColorConverter : IDateToBrushConverter
     {
-        public CalendarColorConverter()
+        private static Brush _defaultForeground = null;
+        public static Brush DefaultForeground
         {
-            DefaultForeground = Application.Current.Resources["CalendarItemBrush"] as Brush;
-            InactiveForeground = Application.Current.Resources["CalendarItemSubtleBrush"] as Brush;
-
-            SelectedForeground = Application.Current.Resources["CalendarSelectedItemBrush"] as Brush;
-            SelectedBackground = Application.Current.Resources["PhoneAccentBrush"] as Brush;
+            get
+            {
+                if (_defaultForeground == null)
+                    _defaultForeground = Application.Current.Resources["CalendarItemBrush"] as Brush;
+                return _defaultForeground;
+            }
         }
 
-        public Brush DefaultForeground { get; set; }
+        private static Brush _inactiveForeground = null;
+        public static Brush InactiveForeground
+        {
+            get
+            {
+                if (_inactiveForeground == null)
+                    _inactiveForeground = Application.Current.Resources["CalendarItemSubtleBrush"] as Brush;
+                return _inactiveForeground;
+            }
+        }
 
-        public Brush InactiveForeground { get; set; }
+        private static Brush _selectedForeground = null;
+        public static Brush SelectedForeground
+        {
+            get
+            {
+                if (_selectedForeground == null)
+                    _selectedForeground = Application.Current.Resources["CalendarSelectedItemBrush"] as Brush;
+                return _selectedForeground;
+            }
+        }
 
-        public Brush SelectedForeground { get; set; }
-
-        public Brush SelectedBackground { get; set; }
+        private static Brush _selectedBackground = null;
+        public static Brush SelectedBackground
+        {
+            get
+            {
+                if (_selectedBackground == null)
+                    _selectedBackground = Application.Current.Resources["PhoneAccentBrush"] as Brush;
+                return _selectedBackground;
+            }
+        }
 
         public Brush Convert(DateTime dateTime, bool isSelected, Brush defaultValue, BrushType brushType)
         {
@@ -60,14 +87,15 @@ namespace SimpleTasks.Views
         }
     }
 
-    public partial class DueDatePickerPage : BasePickerPage
+    public partial class DatePickerPage : BasePickerPage
     {
         private readonly DateTime _defaultDate = DateTime.Today;
         private DateTime _date;
 
-        public DueDatePickerPage()
+        public DatePickerPage()
+            : base("DatePicker")
         {
-            _date = RetrieveAndConfigure<DateTime?>("DueDate") ?? _defaultDate;
+            _date = NavigationParameter<DateTime?>(_name) ?? _defaultDate;
             if (_date == DateTime.MaxValue)
             {
                 _date = _defaultDate;
@@ -93,15 +121,15 @@ namespace SimpleTasks.Views
             SelectDate(_date);
         }
 
-        protected override void Save()
+        protected override object Save()
         {
-            SetValueToSave(new DateTime(
+            return new DateTime(
                 Calendar.SelectedDate.Year,
                 Calendar.SelectedDate.Month,
                 Calendar.SelectedDate.Day,
                 _date.Hour,
                 _date.Minute,
-                0));
+                0);
         }
 
         private void Today_Click(object sender, RoutedEventArgs e)

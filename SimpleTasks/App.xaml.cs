@@ -138,6 +138,14 @@ namespace SimpleTasks
             }
         }
 
+        public static void UpdateAllLiveTiles(NavigationEventArgs e)
+        {
+            if (!e.IsNavigationInitiator)
+            {
+                UpdateAllLiveTiles();
+            }
+        }
+
         #region Phone application initialization
 
         public static PhoneApplicationFrame RootFrame { get; private set; }

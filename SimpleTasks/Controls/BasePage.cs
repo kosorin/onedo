@@ -19,8 +19,6 @@ namespace SimpleTasks.Controls
 {
     public abstract class BasePage : PhoneApplicationPage, INotifyPropertyChanged
     {
-        public App CurrentApp { get { return (App)Application.Current; } }
-
         public BasePage()
         {
             TransitionService.SetNavigationInTransition(this, new NavigationInTransition()
@@ -41,8 +39,8 @@ namespace SimpleTasks.Controls
         {
             base.OnNavigatedTo(e);
 
-            SystemTray.ForegroundColor = (Color)CurrentApp.Resources["SystemTrayForegroundColor"];
-            SystemTray.BackgroundColor = (Color)CurrentApp.Resources["SystemTrayBackgroundColor"];
+            SystemTray.ForegroundColor = (Color)App.Current.Resources["SystemTrayForegroundColor"];
+            SystemTray.BackgroundColor = (Color)App.Current.Resources["SystemTrayBackgroundColor"];
         }
 
         #region INotifyPropertyChanged
@@ -70,30 +68,60 @@ namespace SimpleTasks.Controls
         #endregion
 
         #region Navigace
-        private const string _navigationKey = "_NavigationParameter";
+        private const string _navigationKey = "NavigationParameter";
 
         public void Navigate(string page)
         {
-            PhoneApplicationService.Current.State.Remove(_navigationKey);
             NavigationService.Navigate(new Uri("/Views/" + page + ".xaml", UriKind.Relative));
         }
 
-        public void Navigate(string page, object parameter)
+        public void NavigateQuery(string page, string query)
         {
-            PhoneApplicationService.Current.State[_navigationKey] = parameter;
+            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml" + query, UriKind.Relative));
+        }
+
+        public void NavigateQuery(string page, string queryFormat, params object[] queryParams)
+        {
+            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml" + string.Format(queryFormat, queryParams), UriKind.Relative));
+        }
+
+        public void Navigate(string page, object parameter, string parameterKey = "")
+        {
+            PhoneApplicationService.Current.State[_navigationKey + parameterKey] = parameter;
             NavigationService.Navigate(new Uri("/Views/" + page + ".xaml", UriKind.Relative));
         }
 
-        public static T NavigationParameter<T>()
+        public bool NavigateBack()
         {
-            T param = (T)PhoneApplicationService.Current.State[_navigationKey];
-            PhoneApplicationService.Current.State.Remove(_navigationKey);
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                return true;
+            }
+            return false;
+        }
+
+        public bool NavigateBack(object parameter, string parameterKey = "")
+        {
+            if (NavigationService.CanGoBack)
+            {
+                PhoneApplicationService.Current.State[_navigationKey + parameterKey] = parameter;
+                NavigationService.GoBack();
+                return true;
+            }
+            return false;
+        }
+
+        public static T NavigationParameter<T>(string parameterKey = "")
+        {
+            T param = (T)PhoneApplicationService.Current.State[_navigationKey + parameterKey];
+            PhoneApplicationService.Current.State.Remove(_navigationKey + parameterKey);
             return param;
         }
 
-        public static bool IsSetNavigationParameter()
+        public static bool IsSetNavigationParameter(string parameterKey = "")
         {
-            return PhoneApplicationService.Current.State.ContainsKey(_navigationKey);
+            return PhoneApplicationService.Current.State.ContainsKey(_navigationKey + parameterKey);
         }
         #endregion
     }

@@ -13,29 +13,30 @@ using SimpleTasks.Controls;
 
 namespace SimpleTasks.Views
 {
-    public partial class DueTimePickerPage : BasePickerPage
+    public partial class TimePickerPage : BasePickerPage
     {
         private readonly DateTime _defaultTime = DateTime.Now;
         private DateTime _time;
 
-        public DueTimePickerPage()
+        public TimePickerPage()
+            : base("TimePicker")
         {
-            _time = RetrieveAndConfigure<DateTime?>("DueTime") ?? _defaultTime;
+            _time = NavigationParameter<DateTime?>(_name) ?? _defaultTime;
 
             InitializeComponent();
             TimePicker.SetTime(_time);
             DataContext = this;
         }
 
-        protected override void Save()
+        protected override object Save()
         {
-            SetValueToSave(new DateTime(
+            return new DateTime(
                 _time.Year,
                 _time.Month,
                 _time.Day,
                 TimePicker.Hours,
                 TimePicker.Minutes,
-                0));
+                0);
         }
 
         private void Morning_Click(object sender, RoutedEventArgs e)

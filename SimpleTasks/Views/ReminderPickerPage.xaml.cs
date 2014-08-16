@@ -24,17 +24,18 @@ namespace SimpleTasks.Views
         private TimeSpan _reminder;
 
         public ReminderPickerPage()
+            : base("ReminderPicker")
         {
-            _reminder = RetrieveAndConfigure<TimeSpan?>("Reminder") ?? _defaultReminder;
+            _reminder = NavigationParameter<TimeSpan?>(_name) ?? _defaultReminder;
 
             InitializeComponent();
             SetTimeSpan(_reminder);
             DataContext = this;
         }
 
-        protected override void Save()
+        protected override object Save()
         {
-            SetValueToSave(GetTimeSpan());
+            return GetTimeSpan();
         }
 
         #region Private methods

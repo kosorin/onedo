@@ -72,10 +72,7 @@ namespace SimpleTasks.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            if (!e.IsNavigationInitiator)
-            {
-                App.UpdateAllLiveTiles();
-            }
+            App.UpdateAllLiveTiles(e);
         }
 
         #region Other
@@ -156,12 +153,12 @@ namespace SimpleTasks.Views
 
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
-            appBarSettingsMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/SettingsPage.xaml", UriKind.Relative)); };
+            appBarSettingsMenuItem.Click += (s, e) => { Navigate("SettingsPage"); };
             appBarMenuItems.Add(appBarSettingsMenuItem);
 
             // O aplikaci
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
-            appBarAboutMenuItem.Click += (s, e) => { NavigationService.Navigate(new Uri("/Views/AboutPage.xaml", UriKind.Relative)); };
+            appBarAboutMenuItem.Click += (s, e) => { Navigate("AboutPage"); };
             appBarMenuItems.Add(appBarAboutMenuItem);
             #endregion
         }
@@ -186,7 +183,7 @@ namespace SimpleTasks.Views
 
         private void AddNewTask_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative));
+            Navigate("EditTaskPage");
         }
 
         void QuickAddSave(object sender, EventArgs e)
@@ -421,7 +418,7 @@ namespace SimpleTasks.Views
                 return;
 
             App.Tracker.SendEvent("EvCategory", "EvAction", "task edit", task.GetHashCode());
-            NavigationService.Navigate(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+            NavigateQuery("EditTaskPage", "?Task={0}", task.Uid);
         }
 
         private void SubtaskCheckbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -513,13 +510,13 @@ namespace SimpleTasks.Views
 
             if (t.X < _completeGestureTreshold)
             {
-                border.Background = new SolidColorBrush((Color)CurrentApp.Resources["SubtleColor"]) { Opacity = 0.30 };
-                icon.Foreground = (Brush)CurrentApp.Resources["PhoneAccentBrush"];
+                border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
+                icon.Foreground = (Brush)App.Current.Resources["PhoneAccentBrush"];
             }
             else
             {
                 border.Background = null;
-                icon.Foreground = (Brush)CurrentApp.Resources["SubtleBrush"];
+                icon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
             }
         }
 
@@ -558,7 +555,7 @@ namespace SimpleTasks.Views
 
             if (t.X < _completeGestureTreshold)
             {
-                border.Background = new SolidColorBrush((Color)CurrentApp.Resources["SubtleColor"]) { Opacity = 0.30 };
+                border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
             }
             else
             {
