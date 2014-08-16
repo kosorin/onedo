@@ -16,11 +16,11 @@ namespace SimpleTasks.Core.Helpers
 {
     public class LiveTile
     {
-        private static string SmallTileFileName { get { return "SmallTile.jpg"; } }
+        private static string SmallTileFileName { get { return "SmallTile.png"; } }
 
-        private static string MediumTileFileName { get { return "MediumTile.jpg"; } }
+        private static string MediumTileFileName { get { return "MediumTile.png"; } }
 
-        private static string WideTileFileName { get { return "WideTile.jpg"; } }
+        private static string WideTileFileName { get { return "WideTile.png"; } }
 
         private static string TileImageDirectory { get { return "/Shared/ShellContent/"; } }
 

@@ -21,7 +21,7 @@ using SubtaskCollection = System.Collections.ObjectModel.ObservableCollection<Si
 
 namespace SimpleTasks.Views
 {
-    public partial class SubtasksPickerPage : BasePickerPage
+    public partial class SubtasksPage : BasePage
     {
         private SubtaskCollection _subtasks = new SubtaskCollection();
         public SubtaskCollection Subtasks
@@ -30,23 +30,14 @@ namespace SimpleTasks.Views
             set { SetProperty(ref _subtasks, value); }
         }
 
-        public SubtasksPickerPage()
+        public SubtasksPage()
         {
-            if (IsSetParam("SubtaskToEdit"))
-            {
-                _subtaskToEdit = GetParam<Subtask>("SubtaskToEdit");
-            }
-
-            if (CanRetrieve("Subtasks"))
-                Subtasks = RetrieveAndConfigure<SubtaskCollection>("Subtasks") ?? Subtasks;
+            if (IsSetNavigationParameter())
+                Subtasks = NavigationParameter<TaskModel>().Subtasks;
 
             InitializeComponent();
             DataContext = this;
-        }
-
-        protected override void Save()
-        {
-            SetValueToSave(Subtasks);
+            BuildAppBar();
         }
 
         #region Subtasks
@@ -131,7 +122,7 @@ namespace SimpleTasks.Views
 
         private ApplicationBarIconButton _appBarDeleteAllSubtasksButton = null;
 
-        protected override void BuildAppBar()
+        private void BuildAppBar()
         {
             ApplicationBar = new ApplicationBar();
 

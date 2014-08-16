@@ -90,7 +90,7 @@ namespace SimpleTasks.Controls
         #endregion
 
         #region Navigace z venku
-        public static void Navigate(string page, object value)
+        public new static void Navigate(string page, object value)
         {
             PhoneApplicationFrame frame = App.Current.RootVisual as PhoneApplicationFrame;
             if (frame != null)

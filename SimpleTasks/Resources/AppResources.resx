@@ -561,4 +561,7 @@
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>tile settings</value>
   </data>
+  <data name="TitleUntitled" xml:space="preserve">
+    <value>Untitled</value>
+  </data>
 </root>

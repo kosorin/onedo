@@ -1,24 +1,24 @@
-﻿<controls:BasePickerPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                         xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                         xmlns:controls="clr-namespace:SimpleTasks.Controls"
-                         xmlns:models="clr-namespace:SimpleTasks.Models"
-                         xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                         xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
-                         xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SubtasksDataSource"
-                         x:Class="SimpleTasks.Views.SubtasksPickerPage"
-                         mc:Ignorable="d"
-                         Style="{StaticResource BasePickerPageStyle}"
-                         d:DataContext="{d:DesignData /SampleData/SubtasksDataSource/SubtasksDataSource.xaml}">
+﻿<controls:BasePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   xmlns:models="clr-namespace:SimpleTasks.Models"
+                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                   xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
+                   xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SubtasksDataSource"
+                   x:Class="SimpleTasks.Views.SubtasksPage"
+                   mc:Ignorable="d"
+                   Style="{StaticResource BasePageStyle}"
+                   d:DataContext="{d:DesignData /SampleData/SubtasksDataSource/SubtasksDataSource.xaml}">
 
-    <controls:BasePickerPage.Resources>
+    <controls:BasePage.Resources>
         <SampleData:SubtasksDataSource x:Key="SubtasksDataSource"
                                        d:IsDataSource="True" />
-    </controls:BasePickerPage.Resources>
+    </controls:BasePage.Resources>
 
-    <Grid Style="{StaticResource BasePickerPageRootStyle}">
+    <Grid Background="{StaticResource BackgroundBrush}">
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
                    Text="{Binding LocalizedResources.SubtasksText, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
 
@@ -233,5 +233,4 @@
         </Grid>
     </Grid>
 
-
-</controls:BasePickerPage>
+</controls:BasePage>

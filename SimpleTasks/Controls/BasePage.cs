@@ -69,24 +69,31 @@ namespace SimpleTasks.Controls
         }
         #endregion
 
-        #region Parametry
-        private const string _paramPrefix = "PageParam_";
+        #region Navigace
+        private const string _navigationKey = "_NavigationParameter";
 
-        public static void SetParam(string param, object value)
+        public void Navigate(string page)
         {
-            PhoneApplicationService.Current.State[_paramPrefix + param] = value;
+            PhoneApplicationService.Current.State.Remove(_navigationKey);
+            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml", UriKind.Relative));
         }
 
-        public static T GetParam<T>(string param)
+        public void Navigate(string page, object parameter)
         {
-            T value = (T)PhoneApplicationService.Current.State[_paramPrefix + param];
-            PhoneApplicationService.Current.State.Remove(_paramPrefix + param);
-            return value;
+            PhoneApplicationService.Current.State[_navigationKey] = parameter;
+            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml", UriKind.Relative));
         }
 
-        public static bool IsSetParam(string param)
+        public static T NavigationParameter<T>()
         {
-            return PhoneApplicationService.Current.State.ContainsKey(_paramPrefix + param);
+            T param = (T)PhoneApplicationService.Current.State[_navigationKey];
+            PhoneApplicationService.Current.State.Remove(_navigationKey);
+            return param;
+        }
+
+        public static bool IsSetNavigationParameter()
+        {
+            return PhoneApplicationService.Current.State.ContainsKey(_navigationKey);
         }
         #endregion
     }

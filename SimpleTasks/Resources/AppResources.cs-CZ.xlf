@@ -401,6 +401,10 @@
           <source>tile settings</source>
           <target state="new">tile settings</target>
         </trans-unit>
+        <trans-unit id="Resx/TitleUntitled" translate="yes" xml:space="preserve">
+          <source>Untitled</source>
+          <target state="new">Untitled</target>
+        </trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
           <target state="new">background opacity</target>

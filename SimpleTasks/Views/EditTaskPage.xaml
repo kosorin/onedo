@@ -13,8 +13,7 @@
                    x:Class="SimpleTasks.Views.EditTaskPage"
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d"
-                   d:DataContext="{d:DesignData /SampleData/EditDataSource/EditDataSource.xaml}"
-                   BackKeyPress="PhoneApplicationPage_BackKeyPress">
+                   d:DataContext="{d:DesignData /SampleData/EditDataSource/EditDataSource.xaml}">
 
     <controls:BasePage.Resources>
         <sample:EditDataSource x:Key="EditDataSource"
@@ -173,7 +172,7 @@
                                         KeyDown="TitleTextBox_KeyDown"
                                         GotFocus="TitleTextBox_GotFocus"
                                         LostFocus="TitleTextBox_LostFocus"
-                                        Text="{Binding Title, Mode=TwoWay}"
+                                        Text="{Binding Task.Title, Mode=TwoWay}"
                                         Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}">
                         <controls:MyTextBox.Resources>
                             <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
@@ -200,7 +199,7 @@
                                         LostFocus="DetailTextBox_LostFocus"
                                         AcceptsReturn="True"
                                         Mask="{StaticResource DetailMaskBrush}"
-                                        Text="{Binding Detail, Mode=TwoWay}"
+                                        Text="{Binding Task.Detail, Mode=TwoWay}"
                                         Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}" />
                 </StackPanel>
 
@@ -224,7 +223,7 @@
                                    Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource ButtonTextStyle}" />
                         <TextBlock Grid.Column="2"
-                                   Text="{Binding Subtasks.Count}"
+                                   Text="{Binding Task.Subtasks.Count}"
                                    Style="{StaticResource ButtonTextStyle}"
                                    Foreground="{StaticResource SlightBrush}"
                                    HorizontalAlignment="Center" />
@@ -448,7 +447,7 @@
                 <ToggleButton x:Name="PriorityButton"
                               Margin="0,0,0,20"
                               IsThreeState="True"
-                              IsChecked="{Binding Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
+                              IsChecked="{Binding Task.Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
                     <ToggleButton.Template>
                         <ControlTemplate>
                             <Grid Height="60"

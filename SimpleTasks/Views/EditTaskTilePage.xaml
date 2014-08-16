@@ -15,13 +15,27 @@
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d">
 
+    <controls:BasePage.Resources>
+        <Style x:Key="LabelStyle"
+               BasedOn="{StaticResource LabelTextStyle}"
+               TargetType="TextBlock">
+            <Setter Property="Margin"
+                    Value="0,10,0,0" />
+        </Style>
+    </controls:BasePage.Resources>
+
     <Grid Background="{StaticResource BackgroundBrush}">
         <ScrollViewer>
             <Grid Margin="24,0,24,40">
                 <!--Dlaždice-->
+                <TextBlock Text="{Binding LocalizedResources.AppBarTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                           Style="{StaticResource BasePickerPageHeaderStyle}"
+                           FontWeight="SemiBold"
+                           Margin="0,16,0,0" />
                 <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                           Style="{StaticResource LabelTextStyle}" />
-                <Grid Margin="0,32,0,0">
+                           Style="{StaticResource LabelStyle}"
+                           Margin="0,40,0,5" />
+                <Grid Margin="0,20,0,0">
                     <StackPanel Orientation="Horizontal">
                         <Border Background="{StaticResource PhoneAccentBrush}"
                                 HorizontalAlignment="Left"
@@ -61,28 +75,28 @@
                 </Grid>
 
                 <!--Nastavení-->
-                <StackPanel Margin="0,462,0,0">
+                <StackPanel Margin="0,460,0,0">
                     <!--LineHeight-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsLineHeight, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelTextStyle}" />
+                               Style="{StaticResource LabelStyle}" />
                     <controls:MySlider x:Name="LineHeightSlider"
                                        Minimum="30"
                                        ValueTextVisibility="Visible"
                                        Maximum="56"
                                        RoundValue="{Binding LineHeight, Mode=OneWay}"
                                        RoundValueChanged="LineHeight_RoundValueChanged"
-                                       Margin="0,0,0,-20" />
+                                       Margin="0,0,0,-15" />
 
                     <!--ShowCompletedSubtasks-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsShowCompletedSubtasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelTextStyle}" />
+                               Style="{StaticResource LabelStyle}" />
                     <ToggleButton IsChecked="{Binding ShowCompletedSubtasks, Mode=TwoWay}"
                                   Template="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />
 
                     <!--HideTitle-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsHideTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelTextStyle}" />
+                               Style="{StaticResource LabelStyle}" />
                     <ToggleButton IsChecked="{Binding HideTitle, Mode=TwoWay}"
                                   Template="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />
@@ -90,7 +104,7 @@
 
                     <!--TitleOnOneLine-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsTitleOnOneLine, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelTextStyle}" />
+                               Style="{StaticResource LabelStyle}" />
                     <ToggleButton IsChecked="{Binding TitleOnOneLine, Mode=TwoWay}"
                                   Template="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged"
@@ -98,7 +112,7 @@
 
                     <!--HideDate-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsHideDate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelTextStyle}" />
+                               Style="{StaticResource LabelStyle}" />
                     <ToggleButton IsChecked="{Binding HideDate, Mode=TwoWay}"
                                   Template="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />

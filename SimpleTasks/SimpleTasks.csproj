@@ -163,8 +163,8 @@
     <Compile Include="Views\EditTaskTilePage.xaml.cs">
       <DependentUpon>EditTaskTilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SubtasksPickerPage.xaml.cs">
-      <DependentUpon>SubtasksPickerPage.xaml</DependentUpon>
+    <Compile Include="Views\SubtasksPage.xaml.cs">
+      <DependentUpon>SubtasksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReminderPickerPage.xaml.cs">
       <DependentUpon>ReminderPickerPage.xaml</DependentUpon>
@@ -216,6 +216,7 @@
     <Content Include="Assets\AppBar\appbar.pin.png" />
     <Content Include="Assets\AppBar\appbar.pin.remove.png" />
     <Content Include="Assets\AppBar\appbar.save.png" />
+    <Content Include="Assets\AppBar\appbar.settings.png" />
     <Content Include="Assets\AppBar\appbar.star.png" />
     <Content Include="Assets\AppBar\appbar.undo.curve.png" />
     <Content Include="Assets\ApplicationIcon.png">
@@ -314,7 +315,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SubtasksPickerPage.xaml">
+    <Page Include="Views\SubtasksPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -395,7 +396,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

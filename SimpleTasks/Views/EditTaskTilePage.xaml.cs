@@ -21,7 +21,7 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            SetTask(GetParam<TaskModel>("EditTileTask"));
+            SetTask(NavigationParameter<TaskModel>());
         }
 
         private void SetTask(TaskModel task)
@@ -45,7 +45,6 @@ namespace SimpleTasks.Views
 
         private void LineHeight_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
         {
-            Debug.WriteLine(">>> {0}  <<<< {1}", e.OldValue, e.NewValue);
             if (_task != null)
             {
                 _task.TileSettings.LineHeight = e.NewValue;

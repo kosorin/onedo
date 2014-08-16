@@ -445,7 +445,7 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            BasePickerPage.Navigate("Subtasks", task.Subtasks);
+            Navigate("SubtasksPage", task);
         }
         #endregion
 

@@ -1304,6 +1304,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Untitled.
+        /// </summary>
+        public static string TitleUntitled {
+            get {
+                return ResourceManager.GetString("TitleUntitled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} week.
         /// </summary>
         public static string Weeks1 {
