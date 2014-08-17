@@ -41,7 +41,8 @@ namespace SimpleTasks.Core.Tiles
             Title.FontSize = settings.LineHeight * 0.72;
             Title.Text = task.Title;
 
-            LayoutRoot.Background = new SolidColorBrush(task.Color) { Opacity = settings.BackgroundOpacity };
+            LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);
+            //LayoutRoot.Background = new SolidColorBrush(task.Color) { Opacity = settings.BackgroundOpacity };
         }
     }
 }

@@ -41,12 +41,12 @@ namespace SimpleTasks.Core.Models
 
         public Tag(ReadOnlyCollection<TaskModel> tasks)
         {
-            _tasks = tasks;
+            //_tasks = tasks;
 
-            Predicate = (task) =>
-            {
-                return task.Tags.Contains(Name);
-            };
+            //Predicate = (task) =>
+            //{
+            //    return task.Tags.Contains(Name);
+            //};
         }
     }
 }

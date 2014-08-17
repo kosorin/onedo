@@ -166,26 +166,7 @@ namespace SimpleTasks.Views
 
         void QuickAddSave(object sender, EventArgs e)
         {
-            string title = QuickAddTextBox.Text;
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                TaskModel task = new TaskModel()
-                {
-                    Title = title,
-                    DueDate = App.Settings.Tasks.DefaultDate
-                };
-                if (task.DueDate != null)
-                {
-                    DateTime defaultTime = App.Settings.Tasks.DefaultTime;
-                    task.DueDate = task.DueDate.Value.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
-                }
-
-                App.Tasks.Add(task);
-                QuickAddTextBox.Text = "";
-                this.Focus();
-
-                TasksLongListSelector.ScrollTo(task);
-            }
+            QuickAdd(QuickAddTextBox.Text);
         }
 
         void DeleteAllItem_Click(object sender, EventArgs e)
@@ -303,7 +284,7 @@ namespace SimpleTasks.Views
                 DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
                 Reminder = TimeSpan.FromDays(1),
                 Priority = TaskPriority.High,
-                Color = Color.FromArgb(255, 229, 20, 0)
+                //Color = Color.FromArgb(255, 229, 20, 0)
             });
             App.Tasks.Add(new TaskModel()
             {
@@ -419,7 +400,7 @@ namespace SimpleTasks.Views
             FrameworkElement element = (FrameworkElement)sender;
             ToggleSubtaskComplete(element);
             TaskModel task = SubtaskElementFindTask(element);
-            if (task !=null)
+            if (task != null)
             {
                 task.ModifiedSinceStart = true;
             }
@@ -451,6 +432,29 @@ namespace SimpleTasks.Views
         #endregion
 
         #region QuickAddTextBox
+        private void QuickAdd(string title)
+        {
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                TaskModel task = new TaskModel()
+                {
+                    Title = title,
+                    DueDate = App.Settings.Tasks.DefaultDate
+                };
+                if (task.DueDate != null)
+                {
+                    DateTime defaultTime = App.Settings.Tasks.DefaultTime;
+                    task.DueDate = task.DueDate.Value.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+                }
+
+                App.Tasks.Add(task);
+                QuickAddTextBox.Text = "";
+                this.Focus();
+
+                TasksLongListSelector.ScrollTo(task);
+            }
+        }
+
         SupportedPageOrientation orientation;
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -468,6 +472,14 @@ namespace SimpleTasks.Views
 
             orientation = SupportedOrientations;
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
+        }
+
+        private void QuickAddTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                QuickAdd(QuickAddTextBox.Text);
+            }
         }
         #endregion
 

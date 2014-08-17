@@ -214,15 +214,15 @@ namespace SimpleTasks.Core.Models
         #endregion
 
 
-        #region Tags 30
-        private List<string> _tags = new List<string>();
-        [DataMember(Name = "Tags", Order = 30)]
-        public List<string> Tags
-        {
-            get { return _tags; }
-            set { SetProperty(ref _tags, value); }
-        }
-        #endregion
+        //#region Tags 30
+        //private List<string> _tags = new List<string>();
+        //[DataMember(Name = "Tags", Order = 30)]
+        //public List<string> Tags
+        //{
+        //    get { return _tags; }
+        //    set { SetProperty(ref _tags, value); }
+        //}
+        //#endregion
 
 
         #region TileSettings 40
@@ -236,20 +236,20 @@ namespace SimpleTasks.Core.Models
         #endregion
 
 
-        #region Color 50
-        private Color _color = Colors.Transparent;
-        [DataMember(Order = 50)]
-        public Color Color
-        {
-            get { return _color; }
-            set { SetProperty(ref _color, value); }
-        }
+        //#region Color 50
+        //private Color _color = Colors.Transparent;
+        //[DataMember(Order = 50)]
+        //public Color Color
+        //{
+        //    get { return _color; }
+        //    set { SetProperty(ref _color, value); }
+        //}
 
-        public bool HasColor
-        {
-            get { return Color != Colors.Transparent; }
-        }
-        #endregion
+        //public bool HasColor
+        //{
+        //    get { return Color != Colors.Transparent; }
+        //}
+        //#endregion
 
 
         #region Created 100
