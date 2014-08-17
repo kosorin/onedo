@@ -387,39 +387,39 @@
         </trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
           <source>title on one line</source>
-          <target state="new">title on one line</target>
+          <target state="final">názov na jeden riadok</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
           <source>text size</source>
-          <target state="new">text size</target>
+          <target state="final">veľkosť písma</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>preview</source>
-          <target state="new">preview</target>
+          <target state="final">náhľad</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarTileSettings" translate="yes" xml:space="preserve">
           <source>tile settings</source>
-          <target state="new">tile settings</target>
+          <target state="final">nastavenie dlaždice</target>
         </trans-unit>
         <trans-unit id="Resx/TitleUntitled" translate="yes" xml:space="preserve">
           <source>Untitled</source>
-          <target state="new">Untitled</target>
+          <target state="final">Bez názvu</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
-          <target state="new">background opacity</target>
+          <target state="final">priehľadnosť pozadia</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
           <source>show completed subtasks</source>
-          <target state="new">show completed subtasks</target>
+          <target state="final">zobraziť dokončené podúlohy</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideTitle" translate="yes" xml:space="preserve">
           <source>hide title</source>
-          <target state="new">hide title</target>
+          <target state="final">skryť názov</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideDate" translate="yes" xml:space="preserve">
-          <source>hide date</source>
-          <target state="new">hide date</target>
+          <source>hide due date</source>
+          <target state="final">skryť termín</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>

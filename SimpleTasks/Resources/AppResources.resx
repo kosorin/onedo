@@ -538,7 +538,7 @@
     <value>delete all</value>
   </data>
   <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>hide date</value>
+    <value>hide due date</value>
   </data>
   <data name="TileSettingsHideTitle" xml:space="preserve">
     <value>hide title</value>

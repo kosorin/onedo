@@ -1115,7 +1115,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hide date.
+        ///   Looks up a localized string similar to hide due date.
         /// </summary>
         public static string TileSettingsHideDate {
             get {
