@@ -86,6 +86,7 @@ namespace SimpleTasks.Core.Models
             {
                 if (SetProperty(ref _subtasks, value))
                 {
+                    OnPropertyChanged("HasSubtasks");
                     value.CollectionChanged -= Subtasks_CollectionChanged;
                     value.CollectionChanged += Subtasks_CollectionChanged;
                     Modified = DateTime.Now;
@@ -95,15 +96,11 @@ namespace SimpleTasks.Core.Models
 
         public bool HasSubtasks
         {
-            get
-            {
-                return Subtasks.Count > 0;
-            }
+            get { return Subtasks.Count > 0; }
         }
 
         private void Subtasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            ModifiedSinceStart = true;
             Modified = DateTime.Now;
             OnPropertyChanged("HasSubtasks");
         }

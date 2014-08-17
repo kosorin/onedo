@@ -6,6 +6,8 @@ using SimpleTasks.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -16,47 +18,8 @@ namespace SimpleTasks.ViewModels
         private TaskCollection _tasks = new TaskCollection();
         public TaskCollection Tasks
         {
-            get
-            {
-                return _tasks;
-            }
-            private set
-            {
-                SetProperty(ref _tasks, value);
-                OnPropertyChanged(GroupedTasksPropertyString);
-
-                if (_tasks != null)
-                {
-                    _tasks.CollectionChanged += Tasks_CollectionChanged;
-                }
-            }
-        }
-
-        private void Tasks_CollectionChanged(object sender, object e)
-        {
-            OnPropertyChanged(GroupedTasksPropertyString);
-        }
-
-        public readonly string GroupedTasksPropertyString = "GroupedTasks";
-        private TaskGroupCollection _groupedTasks = null;
-        public TaskGroupCollection GroupedTasks
-        {
-            get
-            {
-                if (_groupedTasks == null)
-                {
-                    Stopwatch sw = new Stopwatch();
-                    sw.Start();
-                    _groupedTasks = new DateTaskGroupCollection(Tasks);
-                    sw.Stop();
-                    Debug.WriteLine("MERENI: {0}", sw.ElapsedMilliseconds);
-                }
-                return _groupedTasks;
-            }
-        }
-
-        public TasksViewModel()
-        {
+            get { return _tasks; }
+            private set { SetProperty(ref _tasks, value); }
         }
 
         public void Load()

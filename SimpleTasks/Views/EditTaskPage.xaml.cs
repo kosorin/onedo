@@ -77,6 +77,10 @@ namespace SimpleTasks.Views
                 }
             }
 
+            if (Task != null)
+            {
+                Task.ModifiedSinceStart = true;
+            }
             BuildAppBar();
         }
 
@@ -108,12 +112,6 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatingFrom(e);
             Save();
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-             App.UpdateAllLiveTiles(e);
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
@@ -231,9 +229,13 @@ namespace SimpleTasks.Views
             }
             else
             {
-                IsSetDueDate = defaultDate != null;
                 DueDate = (defaultDate ?? DateTime.Today);
                 DueDate = DueDate.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+
+                if (IsNew)
+                {
+                    IsSetDueDate = defaultDate != null;
+                }
             }
 
             // Připomenutí
@@ -268,7 +270,6 @@ namespace SimpleTasks.Views
                 Task.Reminder = null;
 
             // ULOŽENÍ
-            Task.ModifiedSinceStart = true;
             App.Tasks.Update(Task);
         }
 

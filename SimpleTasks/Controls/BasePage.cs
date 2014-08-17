@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using SimpleTasks.Controls.Transitions;
+using SimpleTasks.Views;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Controls
 {
@@ -39,12 +42,30 @@ namespace SimpleTasks.Controls
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Debug.WriteLine("NAV TO {0} ({1})", this, e.NavigationMode);
-
+            Debug.WriteLine("NAV TO: {0} ({1})", this, e.NavigationMode);
             base.OnNavigatedTo(e);
 
             SystemTray.ForegroundColor = (Color)App.Current.Resources["SystemTrayForegroundColor"];
             SystemTray.BackgroundColor = (Color)App.Current.Resources["SystemTrayBackgroundColor"];
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Debug.WriteLine("NAV FROM: {0} ({1})", this, e.NavigationMode);
+            base.OnNavigatedFrom(e);
+
+            if (!e.IsNavigationInitiator)
+            {
+                LiveTile.UpdateOrReset(App.Settings.Tiles.Enable, App.Tasks.Tasks);
+                foreach (TaskModel task in App.Tasks.Tasks)
+                {
+                    if (task.ModifiedSinceStart)
+                    {
+                        task.ModifiedSinceStart = false;
+                        LiveTile.Update(task);
+                    }
+                }
+            }
         }
 
         #region INotifyPropertyChanged
@@ -126,6 +147,37 @@ namespace SimpleTasks.Controls
         public static bool IsSetNavigationParameter(string parameterKey = "")
         {
             return PhoneApplicationService.Current.State.ContainsKey(_navigationKey + parameterKey);
+        }
+        #endregion
+
+        #region Other
+        T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
+        {
+            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+            var children = new FrameworkElement[childrenCount];
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
+                children[i] = child;
+                if (child is T)
+                {
+                    if (name == null || child.Name == name)
+                        return (T)child;
+                }
+            }
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                if (children[i] != null)
+                {
+                    var subChild = FindFirstChild<T>(children[i]);
+                    if (subChild != null)
+                        return subChild;
+                }
+            }
+
+            return null;
         }
         #endregion
     }

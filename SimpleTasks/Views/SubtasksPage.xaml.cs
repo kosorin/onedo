@@ -30,14 +30,28 @@ namespace SimpleTasks.Views
             set { SetProperty(ref _subtasks, value); }
         }
 
+        private TaskModel _task = null;
+
         public SubtasksPage()
         {
             if (IsSetNavigationParameter())
-                Subtasks = NavigationParameter<TaskModel>().Subtasks;
+            {
+                _task = NavigationParameter<TaskModel>();
+                Subtasks = _task.Subtasks;
+            }
 
             InitializeComponent();
             DataContext = this;
             BuildAppBar();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (_task != null)
+            {
+                _task.ModifiedSinceStart = true;
+            }
         }
 
         #region Subtasks

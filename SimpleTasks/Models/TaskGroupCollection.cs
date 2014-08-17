@@ -3,8 +3,11 @@ using SimpleTasks.Core.Models;
 using SimpleTasks.Resources;
 using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,28 +15,28 @@ using System.Threading.Tasks;
 
 namespace SimpleTasks.Models
 {
-    public abstract class TaskGroupCollection : ObservableCollection<TaskGroup>, INotifyPropertyChanged
+    public abstract class TaskGroupCollection : ObservableCollection<TaskGroup>
     {
-        private TaskCollection _tasks = null;
-        public TaskCollection Tasks
-        {
-            get { return _tasks; }
-            set { SetProperty(ref _tasks, value); }
-        }
+        public TaskCollection Tasks { get; private set; }
 
         public TaskGroupCollection(TaskCollection tasks)
         {
             Tasks = tasks;
-            CreateGroups();
-            foreach (TaskModel task in Tasks)
-            {
-                AddTask(task);
-            }
         }
 
-        protected abstract void CreateGroups();
+        protected abstract TaskGroup GetGroup(TaskModel task);
 
-        public abstract void AddTask(TaskModel task);
+        public void AddTask(TaskModel task)
+        {
+            task.Wrapper = new TaskWrapper(task);
+            GetGroup(task).Add(task);
+        }
+
+        public void AddSortedTask(TaskModel task)
+        {
+            task.Wrapper = new TaskWrapper(task);
+            GetGroup(task).AddSorted(task);
+        }
 
         public void RemoveTask(TaskModel task)
         {
@@ -42,55 +45,51 @@ namespace SimpleTasks.Models
                 group.Remove(task);
             }
         }
-
-        public void UpdateTask(TaskModel task)
-        {
-            RemoveTask(task);
-            AddTask(task);
-        }
-
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChangedNew;
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChangedNew != null)
-            {
-                PropertyChangedNew(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(storage, value))
-            {
-                return false;
-            }
-            storage = value;
-
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-        #endregion
     }
 
     public class DateTaskGroupCollection : TaskGroupCollection
     {
+        private TaskGroup _overdueGroup = null;
+        private TaskGroup _todayGroup = null;
+        private TaskGroup _tomorrowGroup = null;
+        private TaskGroup _upcomingGroup = null;
+        private TaskGroup _somedayGroup = null;
+        private TaskGroup _completedGroup = null;
+
         public DateTaskGroupCollection(TaskCollection tasks)
             : base(tasks)
         {
-        }
+            Comparer<TaskModel> completedComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Completed.Value.CompareTo(t1.Completed.Value));
+            Comparer<TaskModel> somedayComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Priority.CompareTo(t1.Priority));
+            Comparer<TaskModel> dateComparer = Comparer<TaskModel>.Create((t1, t2) =>
+            {
+                int cmp = t1.DueDate.Value.CompareTo(t2.DueDate.Value);
+                if (cmp == 0)
+                {
+                    return t2.Priority.CompareTo(t1.Priority);
+                }
+                return cmp;
+            });
 
-        private TaskGroup _overdueGroup = new TaskGroup(AppResources.DateOverdue);
-        private TaskGroup _todayGroup = new TaskGroup(AppResources.DateToday);
-        private TaskGroup _tomorrowGroup = new TaskGroup(AppResources.DateTomorrow);
-        private TaskGroup _upcomingGroup = new TaskGroup(AppResources.DateUpcoming);
-        private TaskGroup _somedayGroup = new TaskGroup(AppResources.DateSomeday);
-        private TaskGroup _completedGroup = new TaskGroup(AppResources.DateCompleted);
+            _completedGroup = new TaskGroup(AppResources.DateCompleted, completedComparer);
+            _somedayGroup = new TaskGroup(AppResources.DateSomeday, somedayComparer);
+            _overdueGroup = new TaskGroup(AppResources.DateOverdue, dateComparer);
+            _todayGroup = new TaskGroup(AppResources.DateToday, dateComparer);
+            _tomorrowGroup = new TaskGroup(AppResources.DateTomorrow, dateComparer);
+            _upcomingGroup = new TaskGroup(AppResources.DateUpcoming, dateComparer);
 
-        protected override void CreateGroups()
-        {
+            foreach (TaskModel task in tasks)
+            {
+                AddTask(task);
+            }
+
+            _completedGroup.Sort();
+            _somedayGroup.Sort();
+            _overdueGroup.Sort();
+            _todayGroup.Sort();
+            _tomorrowGroup.Sort();
+            _upcomingGroup.Sort();
+
             Add(_overdueGroup);
             Add(_todayGroup);
             Add(_tomorrowGroup);
@@ -99,32 +98,31 @@ namespace SimpleTasks.Models
             Add(_completedGroup);
         }
 
-        public override void AddTask(TaskModel task)
+        protected override TaskGroup GetGroup(TaskModel task)
         {
-            task.Wrapper = new TaskWrapper(task);
             if (task.IsCompleted)
             {
-                _completedGroup.AddSorted<DateTime>(task, t => t.Completed.Value);
+                return _completedGroup;
             }
             else if (!task.HasDueDate)
             {
-                _somedayGroup.AddSorted<TaskPriority>(task, t => t.Priority);
+                return _somedayGroup;
             }
-            else if (task.DueDate.Value.Date < DateTimeExtensions.Today)
+            else if (task.DueDate.Value >= DateTimeExtensions.Tomorrow.AddDays(1))
             {
-                _overdueGroup.AddSorted<DateTime>(task, t => t.DueDate.Value);
+                return _upcomingGroup;
             }
-            else if (task.DueDate.Value.Date == DateTimeExtensions.Today)
+            else if (task.DueDate.Value >= DateTimeExtensions.Tomorrow)
             {
-                _todayGroup.AddSorted<DateTime, TaskPriority>(task, t => t.DueDate.Value, t => t.Priority, null, v => v > 0);
+                return _tomorrowGroup;
             }
-            else if (task.DueDate.Value.Date == DateTimeExtensions.Tomorrow)
+            else if (task.DueDate.Value >= DateTimeExtensions.Today)
             {
-                _tomorrowGroup.AddSorted<DateTime>(task, t => t.DueDate.Value);
+                return _todayGroup;
             }
             else
             {
-                _upcomingGroup.AddSorted<DateTime>(task, t => t.DueDate.Value);
+                return _overdueGroup;
             }
         }
     }

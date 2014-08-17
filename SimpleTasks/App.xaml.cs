@@ -44,9 +44,7 @@ namespace SimpleTasks
             get
             {
                 if (_gaTracker == null)
-                {
                     _gaTracker = GoogleAnalytics.EasyTracker.GetTracker();
-                }
                 return _gaTracker;
             }
         }
@@ -123,27 +121,6 @@ namespace SimpleTasks
             Settings.SaveToFile(SettingsFileName, Settings);
             Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
-        }
-
-        public static void UpdateAllLiveTiles()
-        {
-            LiveTile.UpdateOrReset(Settings.Tiles.Enable, Tasks.Tasks);
-            foreach (TaskModel task in Tasks.Tasks)
-            {
-                if (task.ModifiedSinceStart)
-                {
-                    task.ModifiedSinceStart = false;
-                    LiveTile.Update(task);
-                }
-            }
-        }
-
-        public static void UpdateAllLiveTiles(NavigationEventArgs e)
-        {
-            if (!e.IsNavigationInitiator)
-            {
-                UpdateAllLiveTiles();
-            }
         }
 
         #region Phone application initialization

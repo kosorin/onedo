@@ -23,6 +23,7 @@ using SimpleTasks.Controls;
 using Microsoft.Phone.Tasks;
 using System.Globalization;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace SimpleTasks.Views
 {
@@ -31,7 +32,8 @@ namespace SimpleTasks.Views
         public MainPage()
         {
             InitializeComponent();
-            DataContext = App.Tasks;
+            NoTasksPanel.DataContext = App.Tasks;
+            DataContext = this;
 
             CreateAppBarItems();
             BuildTasksdAppBar();
@@ -42,6 +44,7 @@ namespace SimpleTasks.Views
             }
         }
 
+        #region Page
         void FirstStart_Loaded(object sender, RoutedEventArgs e)
         {
             Loaded -= FirstStart_Loaded;
@@ -64,48 +67,20 @@ namespace SimpleTasks.Views
             base.OnNavigatedTo(e);
             NavigationService.RemoveBackEntry();
 
+            App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
+            App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;
             if (e.NavigationMode == NavigationMode.Back)
             {
-                App.Tasks.OnPropertyChanged(App.Tasks.GroupedTasksPropertyString);
+                OnPropertyChanged(GroupedTasksProperty);
             }
 
             App.Tracker.SendView("MainPage");
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            base.OnNavigatedFrom(e);
-            App.UpdateAllLiveTiles(e);
-        }
-
-        #region Other
-        T FindFirstChild<T>(FrameworkElement element, string name = null) where T : FrameworkElement
-        {
-            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
-            var children = new FrameworkElement[childrenCount];
-
-            for (int i = 0; i < childrenCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-                children[i] = child;
-                if (child is T)
-                {
-                    if (name == null || child.Name == name)
-                        return (T)child;
-                }
-            }
-
-            for (int i = 0; i < childrenCount; i++)
-            {
-                if (children[i] != null)
-                {
-                    var subChild = FindFirstChild<T>(children[i]);
-                    if (subChild != null)
-                        return subChild;
-                }
-            }
-
-            return null;
+            base.OnNavigatingFrom(e);
+            App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
         }
         #endregion
 
@@ -208,6 +183,8 @@ namespace SimpleTasks.Views
                 App.Tasks.Add(task);
                 QuickAddTextBox.Text = "";
                 this.Focus();
+
+                TasksLongListSelector.ScrollTo(task);
             }
         }
 
@@ -375,7 +352,8 @@ namespace SimpleTasks.Views
             {
                 // DOKONČENÍ
                 task.Completed = DateTime.Now;
-                if (App.Settings.Tasks.CompleteSubtasks)
+                task.ModifiedSinceStart = true;
+                if (App.Settings.Tasks.CompleteSubtasks && task.HasSubtasks)
                 {
                     foreach (Subtask subtask in task.Subtasks)
                     {
@@ -424,15 +402,8 @@ namespace SimpleTasks.Views
             NavigateQuery("EditTaskPage", "?Task={0}", task.Uid);
         }
 
-        private void SubtaskCheckbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private TaskModel SubtaskElementFindTask(FrameworkElement element)
         {
-            ToggleSubtaskComplete(sender as FrameworkElement);
-        }
-
-        private void SubtaskText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            FrameworkElement element = (FrameworkElement)sender;
-            Subtask subtask = element.DataContext as Subtask;
             while (element != null)
             {
                 element = VisualTreeHelper.GetParent(element) as FrameworkElement;
@@ -440,11 +411,42 @@ namespace SimpleTasks.Views
                     break;
             }
             ItemsControl itemsControl = element as ItemsControl;
-            TaskModel task = (TaskModel)itemsControl.DataContext;
+            return (TaskModel)itemsControl.DataContext;
+        }
+
+        private void SubtaskCheckbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)sender;
+            ToggleSubtaskComplete(element);
+            TaskModel task = SubtaskElementFindTask(element);
+            if (task !=null)
+            {
+                task.ModifiedSinceStart = true;
+            }
+        }
+
+        private void SubtaskText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)sender;
+            Subtask subtask = element.DataContext as Subtask;
+            TaskModel task = SubtaskElementFindTask(element);
             if (task != null)
             {
                 Navigate("SubtasksPage", task);
             }
+        }
+        #endregion
+
+        #region GroupedTasks
+        private void Tasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(GroupedTasksProperty);
+        }
+
+        public readonly string GroupedTasksProperty = "GroupedTasks";
+        public TaskGroupCollection GroupedTasks
+        {
+            get { return new DateTaskGroupCollection(App.Tasks.Tasks); }
         }
         #endregion
 

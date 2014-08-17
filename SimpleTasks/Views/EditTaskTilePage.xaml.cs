@@ -24,6 +24,15 @@ namespace SimpleTasks.Views
             SetTask(NavigationParameter<TaskModel>());
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (_task != null)
+            {
+                _task.ModifiedSinceStart = true;
+            }
+        }
+
         private void SetTask(TaskModel task)
         {
             _task = task;

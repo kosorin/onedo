@@ -16,7 +16,7 @@
         <EasingDoubleKeyFrame KeyTime="0:0:0.22"
                               Value="1">
             <EasingDoubleKeyFrame.EasingFunction>
-                <QuarticEase EasingMode="EaseOut" />
+                <CircleEase EasingMode="EaseOut" />
             </EasingDoubleKeyFrame.EasingFunction>
         </EasingDoubleKeyFrame>
     </DoubleAnimationUsingKeyFrames>
