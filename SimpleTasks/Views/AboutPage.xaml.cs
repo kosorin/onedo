@@ -29,6 +29,11 @@ namespace SimpleTasks.Views
             ChangelogList = LoadChangelog();
             DataContext = this;
 
+            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+            marketplaceDetailTask.ContentIdentifier = "INSERT_APP_ID";
+            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+            marketplaceDetailTask.Show();
+
             ApplicationBar = new ApplicationBar();
 
             ApplicationBarIconButton rateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.star.png", UriKind.Relative));
@@ -40,6 +45,10 @@ namespace SimpleTasks.Views
             contactButton.Text = AppResources.AboutContactUs;
             contactButton.Click += Contact_Click;
             ApplicationBar.Buttons.Add(contactButton);
+
+            ApplicationBarMenuItem storeItem = new ApplicationBarMenuItem("store");
+            storeItem.Click += StoreItem_Click;
+            ApplicationBar.MenuItems.Add(storeItem);
         }
 
         #region Properties
@@ -88,6 +97,16 @@ namespace SimpleTasks.Views
                 Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.VersionString)
             };
             task.Show();
+        }
+        #endregion
+
+        #region Store
+        private void StoreItem_Click(object sender, EventArgs e)
+        {
+            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
+            marketplaceDetailTask.ContentIdentifier = "e21e7ce7-e536-4788-86c1-b6f72625ce2b";
+            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
+            marketplaceDetailTask.Show();
         }
         #endregion
     }
