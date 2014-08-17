@@ -1,4 +1,24 @@
 {
+  "4.0.0 ": {
+    "date": "2014-08-17",
+    "items": [
+      "new application name \"OneDo\" and new logo",
+      "removed save button - tasks are saved automatically",
+      "subtasks (gesture support for task completion on main page and are also shown on a tile with task)",
+      "ability to set appearance of tiles (font size, hide due date, …)"
+    ]
+  },
+  "4.0.0": {
+    "date": "2014-08-17",
+    "items": [
+      "new application name \"OneDo\" and new logo",
+      "removed save button - tasks are saved automatically",
+      "subtasks (gesture support for task completion on main page and are also shown on a tile with task)",
+      "ability to set appearance of tiles (font size, hide due date, …)",
+      "yet another design changes",
+      "better readability of text on a light theme"
+    ]
+  },
   "3.0.1": {
     "date": "2014-07-23",
     "items": [

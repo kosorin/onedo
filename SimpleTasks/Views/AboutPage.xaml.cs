@@ -46,7 +46,6 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(storeItem);
         }
 
-        #region Properties
         public static ChangelogCategory LoadWhatsNew()
         {
             foreach (var version in JObject.Parse(AppResources.ChangelogFile))
@@ -78,10 +77,14 @@ namespace SimpleTasks.Views
                 }
                 changelog.AddCategory(category);
             }
+
+            // První záznam je pro zobrazení zprávy "What's new" po aktualizaci/instalaci.
             changelog.RemoveAt(0);
+
             return changelog;
         }
 
+        #region Propertie
         public string VersionString { get { return string.Format(AppResources.AboutVersion, App.VersionString); } }
 
         public string Author { get { return AppInfo.Author; } }

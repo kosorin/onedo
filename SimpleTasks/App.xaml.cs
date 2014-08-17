@@ -21,7 +21,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        public static string ForceDebugCulture = "cs-CZ";
+        public static string ForceDebugCulture = "en-US";
 
         #region Properties
         public static Version Version
@@ -84,6 +84,7 @@ namespace SimpleTasks
             else if (Settings.Version != VersionString)
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
+                IsFirstStart = true;
                 Settings.Version = VersionString;
                 Debug.WriteLine("==== ===== Actualized ===== ====");
             }

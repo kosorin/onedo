@@ -1,4 +1,24 @@
 {  
+  "4.0.0 ": {
+    "date": "2014-08-17",
+    "items": [
+      "nové jméno aplikace \"OneDo\" a nové logo",
+      "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
+      "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
+      "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
+    ]
+  },
+  "4.0.0": {
+    "date": "2014-08-17",
+    "items": [
+      "nové meno aplikácie \"OneDo\" a nové logo",
+      "odstránené tlačidlo pre uloženie - úlohy sa ukladajú automaticky",
+      "podúlohy (podporujú gesto pre dokončenie na hlavnej stránke a sú tiež zobrazené na dlaždici s úlohou)",
+      "možnosť nastaviť vzhľad dlaždíc (veľkosť písma, skryť termín, …)",
+      "ďalšie zmeny vzhľadu",
+      "lepšia čitateľnosť niektorých textov pri svetlej téme"
+    ]
+  },
   "3.0.1": {
     "date": "2014-07-23",
     "items": [

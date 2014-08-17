@@ -1,4 +1,24 @@
 ﻿{
+  "4.0.0 ": {
+    "date": "2014-08-17",
+    "items": [
+      "nové jméno aplikace \"OneDo\" a nové logo",
+      "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
+      "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
+      "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
+    ]
+  },
+  "4.0.0": {
+    "date": "2014-08-17",
+    "items": [
+      "nové jméno aplikace \"OneDo\" a nové logo",
+      "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
+      "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
+      "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)",
+      "další změny vzhledu",
+      "lepší čitelnost některého textu na světlém motivu"
+    ]
+  },
   "3.0.1": {
     "date": "2014-07-23",
     "items": [
@@ -10,8 +30,8 @@
     "items": [
       "gesto táhnutí úkolu doleva pro dokončení úkolu",
       "změny vzhledu",
-	  "připomenutí se nyní zadává jako doba před termínem (není tedy potřeba zadávat dvakrát datum pro termín a připomenutí)",
-	  "opravena chyba při mazání dokončených úkolů"
+      "připomenutí se nyní zadává jako doba před termínem (není tedy potřeba zadávat dvakrát datum pro termín a připomenutí)",
+      "opravena chyba při mazání dokončených úkolů"
     ]
   },
   "2.0.0": {
@@ -23,8 +43,8 @@
       "nový vzhled výběru času připomenutí",
       "oprava menších chyb",
       "drobné změny v designu a animacích",
-	  "výchozí termín nastaven na \"dnes\"",
-	  "changelog na stránce \"o aplikaci\""
+      "výchozí termín nastaven na \"dnes\"",
+      "changelog na stránce \"o aplikaci\""
     ]
   },
   "1.9.7": {

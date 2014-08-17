@@ -94,14 +94,14 @@
                            Style="{StaticResource AccentTextStyle}"
                            FontWeight="Normal"
                            FontSize="56"
-                           Margin="20,20,0,-20" />
+                           Margin="24,20,0,-20" />
 
                 <!--Changelog-->
                 <phone:LongListSelector ItemsSource="{Binding}"
                                         DataContext="{Binding ChangelogList}"
                                         d:DataContext="{d:DesignData /SampleData/AboutDataSource/ChangelogListSampleData.xaml}"
                                         IsGroupingEnabled="True"
-                                        Margin="20,0,0,50"
+                                        Margin="24,0,24,50"
                                         LayoutMode="List">
                     <phone:LongListSelector.GroupHeaderTemplate>
                         <DataTemplate>
