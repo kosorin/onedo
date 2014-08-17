@@ -29,11 +29,6 @@ namespace SimpleTasks.Views
             ChangelogList = LoadChangelog();
             DataContext = this;
 
-            MarketplaceDetailTask marketplaceDetailTask = new MarketplaceDetailTask();
-            marketplaceDetailTask.ContentIdentifier = "INSERT_APP_ID";
-            marketplaceDetailTask.ContentType = MarketplaceContentType.Applications;
-            marketplaceDetailTask.Show();
-
             ApplicationBar = new ApplicationBar();
 
             ApplicationBarIconButton rateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.star.png", UriKind.Relative));
@@ -52,6 +47,22 @@ namespace SimpleTasks.Views
         }
 
         #region Properties
+        public static ChangelogCategory LoadWhatsNew()
+        {
+            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
+            {
+                JObject categoryData = (JObject)version.Value;
+
+                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
+                foreach (JToken item in (JArray)categoryData["items"])
+                {
+                    category.AddItem(item.ToString());
+                }
+                return category;
+            }
+            return null;
+        }
+
         public static ChangelogList LoadChangelog()
         {
             ChangelogList changelog = new ChangelogList();
@@ -67,7 +78,7 @@ namespace SimpleTasks.Views
                 }
                 changelog.AddCategory(category);
             }
-
+            changelog.RemoveAt(0);
             return changelog;
         }
 

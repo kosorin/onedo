@@ -51,14 +51,17 @@ namespace SimpleTasks.Views
             if (App.IsFirstStart)
             {
                 App.IsFirstStart = false;
-                ChangelogCategory changelog = AboutPage.LoadChangelog()[1];
-                string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
-                foreach (ChangelogItem item in changelog)
-                {
-                    text += "  • " + item.Text + System.Environment.NewLine;
-                }
 
-                MessageBox.Show(text, AppResources.WhatsNew, MessageBoxButton.OK);
+                ChangelogCategory changelog = AboutPage.LoadWhatsNew();
+                if (changelog != null)
+                {
+                    string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
+                    foreach (ChangelogItem item in changelog)
+                    {
+                        text += "  • " + item.Text + System.Environment.NewLine;
+                    }
+                    MessageBox.Show(text, AppResources.WhatsNew, MessageBoxButton.OK);
+                }
             }
         }
 
