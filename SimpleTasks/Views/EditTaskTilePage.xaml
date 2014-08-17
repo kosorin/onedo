@@ -22,60 +22,256 @@
             <Setter Property="Margin"
                     Value="0,10,0,0" />
         </Style>
+
+        <Style x:Key="RoundButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="{StaticResource PhoneBorderThickness}" />
+            <Setter Property="FontFamily"
+                    Value="Segoe UI Symbol" />
+            <Setter Property="FontSize"
+                    Value="24" />
+            <Setter Property="Width"
+                    Value="50" />
+            <Setter Property="Height"
+                    Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneButtonBasePressedForegroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource PhoneAccentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="ButtonBackground"
+                                    Width="{TemplateBinding Width}"
+                                    Height="{TemplateBinding Height}"
+                                    CornerRadius="50"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}">
+                                <ContentControl x:Name="ContentContainer"
+                                                Width="{TemplateBinding Width}"
+                                                Height="{TemplateBinding Height}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                Content="{TemplateBinding Content}"
+                                                FontFamily="{TemplateBinding FontFamily}"
+                                                Foreground="{TemplateBinding Foreground}"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Storyboard x:Name="ToSmall">
+            <DoubleAnimation Storyboard.TargetName="TilesGrid"
+                             Storyboard.TargetProperty="Width"
+                             To="100"
+                             Duration="0:0:0.22">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="TilesGrid"
+                             Storyboard.TargetProperty="Height"
+                             To="100"
+                             Duration="0:0:0.22">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChangeSizeButton"
+                                           Storyboard.TargetProperty="Content">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.15"
+                                        Value="&#xe2bd;" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="SmallTileViewBox"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="MediumTileViewBox"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="ToMedium">
+            <DoubleAnimation Storyboard.TargetName="TilesGrid"
+                             Storyboard.TargetProperty="Width"
+                             To="210"
+                             Duration="0:0:0.22">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="TilesGrid"
+                             Storyboard.TargetProperty="Height"
+                             To="210"
+                             Duration="0:0:0.22">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChangeSizeButton"
+                                           Storyboard.TargetProperty="Content">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.15"
+                                        Value="&#xe2b9;" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="MediumTileViewBox"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="WideTileViewBox"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="ToWide">
+            <DoubleAnimation Storyboard.TargetName="TilesGrid"
+                             Storyboard.TargetProperty="Width"
+                             To="432"
+                             Duration="0:0:0.22">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="TilesGrid"
+                             Storyboard.TargetProperty="Height"
+                             To="210"
+                             Duration="0:0:0.22">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChangeSizeButton"
+                                           Storyboard.TargetProperty="Content">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.15"
+                                        Value="&#xe2b6;" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="WideTileViewBox"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="SmallTileViewBox"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </controls:BasePage.Resources>
 
     <Grid Background="{StaticResource BackgroundBrush}">
         <ScrollViewer>
             <Grid Margin="24,0,24,40">
-                <!--Dlaždice-->
-                <TextBlock Text="{Binding LocalizedResources.AppBarTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                           Style="{StaticResource BasePickerPageHeaderStyle}"
-                           FontWeight="SemiBold"
-                           Margin="0,16,0,0" />
-                <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                           Style="{StaticResource LabelStyle}"
-                           Margin="0,40,0,5" />
-                <Grid Margin="0,20,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <Border Background="{StaticResource PhoneAccentBrush}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Margin="0,222,0,0">
-                            <Border.RenderTransform>
-                                <CompositeTransform ScaleX="0.625"
-                                                    ScaleY="0.625" />
-                            </Border.RenderTransform>
-                            <tiles:WideTaskTile x:Name="WideTile" />
-                        </Border>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <Border Background="{StaticResource PhoneAccentBrush}"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Margin="222,0,0,0">
-                                <Border.RenderTransform>
-                                    <CompositeTransform ScaleX="0.625"
-                                                        ScaleY="0.625" />
-                                </Border.RenderTransform>
+                <StackPanel>
+                    <!--Nadpis-->
+                    <TextBlock Text="{Binding LocalizedResources.AppBarTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                               Style="{StaticResource BasePickerPageHeaderStyle}"
+                               FontWeight="SemiBold"
+                               Margin="0,16,0,0" />
+
+                    <!--Náhled-->
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                               Style="{StaticResource LabelStyle}"
+                               Margin="0"/>
+                    <Grid x:Name="TilesGrid"
+                          Width="432"
+                          Height="210"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Margin="0,0,0,10">
+                        <!--432 210 100-->
+                        <Viewbox x:Name="WideTileViewBox"
+                                 Opacity="1">
+                            <Border Background="{StaticResource PhoneAccentBrush}">
+                                <tiles:WideTaskTile x:Name="WideTile" />
+                            </Border>
+                        </Viewbox>
+                        <Viewbox x:Name="MediumTileViewBox"
+                                 Opacity="0">
+                            <Border Background="{StaticResource PhoneAccentBrush}">
                                 <tiles:MediumTaskTile x:Name="MediumTile" />
                             </Border>
-                            <Border Background="{StaticResource PhoneAccentBrush}"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Margin="111,111,0,0">
-                                <Border.RenderTransform>
-                                    <CompositeTransform ScaleX="0.625"
-                                                        ScaleY="0.625" />
-                                </Border.RenderTransform>
+                        </Viewbox>
+                        <Viewbox x:Name="SmallTileViewBox"
+                                 Opacity="0">
+                            <Border Background="{StaticResource PhoneAccentBrush}">
                                 <tiles:SmallTaskTile x:Name="SmallTile" />
                             </Border>
-                        </Grid>
-                    </StackPanel>
-                </Grid>
+                        </Viewbox>
+                        <Button Tap="ChangeSizeButton_Tap"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right"
+                                RenderTransformOrigin="0,0">
+                            <Button.RenderTransform>
+                                <TranslateTransform X="24"
+                                                    Y="28" />
+                            </Button.RenderTransform>
+                            <Button.Template>
+                                <ControlTemplate />
+                            </Button.Template>
+                            <Border Background="Transparent"
+                                    Width="50"
+                                    Height="50">
+                                <Button x:Name="ChangeSizeButton"
+                                        Style="{StaticResource RoundButtonStyle}"
+                                        Background="{StaticResource BackgroundBrush}"
+                                        Content="&#xe2b6;"
+                                        Width="38"
+                                        Height="38"
+                                        FontSize="24" />
+                            </Border>
+                        </Button>
+                    </Grid>
 
-                <!--Nastavení-->
-                <StackPanel Margin="0,460,0,0">
                     <!--LineHeight-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsLineHeight, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                Style="{StaticResource LabelStyle}" />
@@ -92,71 +288,11 @@
                                            RoundValueChanged="LineHeight_RoundValueChanged"
                                            Margin="0,0,0,-15" />
                         <Button Grid.Column="1"
+                                Style="{StaticResource RoundButtonStyle}"
                                 Margin="10,0,0,0"
                                 Content="&#xe149;"
                                 VerticalAlignment="Top"
-                                Tap="ResetLineHeight_Tap">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="Background"
-                                            Value="Transparent" />
-                                    <Setter Property="BorderBrush"
-                                            Value="{StaticResource PhoneForegroundBrush}" />
-                                    <Setter Property="Foreground"
-                                            Value="{StaticResource PhoneForegroundBrush}" />
-                                    <Setter Property="BorderThickness"
-                                            Value="{StaticResource PhoneBorderThickness}" />
-                                    <Setter Property="FontFamily"
-                                            Value="Segoe UI Symbol" />
-                                    <Setter Property="FontSize"
-                                            Value="24" />
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Grid Background="Transparent">
-                                                    <VisualStateManager.VisualStateGroups>
-                                                        <VisualStateGroup x:Name="CommonStates">
-                                                            <VisualState x:Name="Normal" />
-                                                            <VisualState x:Name="Pressed">
-                                                                <Storyboard>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-                                                                                                   Storyboard.TargetName="ContentContainer">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                                Value="{StaticResource PhoneButtonBasePressedForegroundBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-                                                                                                   Storyboard.TargetName="ButtonBackground">
-                                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                                Value="{StaticResource PhoneAccentBrush}" />
-                                                                    </ObjectAnimationUsingKeyFrames>
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
-                                                    <Border x:Name="ButtonBackground"
-                                                            Width="50"
-                                                            Height="50"
-                                                            CornerRadius="25"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            Background="{TemplateBinding Background}">
-                                                        <ContentControl x:Name="ContentContainer"
-                                                                        Width="50"
-                                                                        Height="50"
-                                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                                        Content="{TemplateBinding Content}"
-                                                                        FontFamily="{TemplateBinding FontFamily}"
-                                                                        Foreground="{TemplateBinding Foreground}"
-                                                                        HorizontalAlignment="Center"
-                                                                        VerticalAlignment="Center" />
-                                                    </Border>
-                                                </Grid>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                                Tap="ResetLineHeight_Tap" />
                     </Grid>
 
                     <!--ShowCompletedSubtasks-->

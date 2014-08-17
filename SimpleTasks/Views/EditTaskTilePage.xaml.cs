@@ -17,6 +17,13 @@ namespace SimpleTasks.Views
     {
         private TaskModel _task = null;
 
+        /// <summary>
+        /// 0 - small
+        /// 1 - medium
+        /// 2 - wide
+        /// </summary>
+        private int _currentSize = 0;
+
         public EditTaskTilePage()
         {
             InitializeComponent();
@@ -42,14 +49,18 @@ namespace SimpleTasks.Views
             MediumTile.Task = _task;
             WideTile.Task = _task;
 
-            Refresh();
+            ChangeTileSize();
         }
 
         private void Refresh()
         {
-            SmallTile.Refresh();
-            MediumTile.Refresh();
-            WideTile.Refresh();
+            switch (_currentSize)
+            {
+            case 2: WideTile.Refresh(); break;
+            case 1: MediumTile.Refresh(); break;
+            case 0:
+            default: SmallTile.Refresh(); break;
+            }
         }
 
         private void LineHeight_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
@@ -69,6 +80,23 @@ namespace SimpleTasks.Views
         private void ResetLineHeight_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             LineHeightSlider.SetSliderValue((int)TaskTileSettings.Default.LineHeight);
+        }
+
+        private void ChangeTileSize()
+        {
+            switch (_currentSize)
+            {
+            case 2: _currentSize = 1; ToMedium.Begin(); break;
+            case 1: _currentSize = 0; ToSmall.Begin(); break;
+            case 0:
+            default: _currentSize = 2; ToWide.Begin(); break;
+            }
+            Refresh();
+        }
+
+        private void ChangeSizeButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ChangeTileSize();
         }
     }
 }
