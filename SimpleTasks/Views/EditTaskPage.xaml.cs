@@ -82,6 +82,11 @@ namespace SimpleTasks.Views
                 Task.ModifiedSinceStart = true;
             }
             BuildAppBar();
+
+            // Ošetření chyby, kdy po návratu na stránku byl zobrazen hint, 
+            // ikdyž byl vložen text
+            StopNoTextAnimation();
+            TitleTextBox.UpdateHintVisibility();
         }
 
         private void FirstTimeLoaded()
@@ -518,6 +523,12 @@ namespace SimpleTasks.Views
         #region Název
         SupportedPageOrientation orientation;
 
+        private void StopNoTextAnimation()
+        {
+            TitleTextBoxNoTextStoryboard.Stop();
+            TitleTextBox.Opacity = 1;
+        }
+
         private void TitleTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -529,8 +540,7 @@ namespace SimpleTasks.Views
         private void TitleTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             BuildTitleTextAppBar();
-            TitleTextBoxNoTextStoryboard.Stop();
-            TitleTextBox.Opacity = 1;
+            StopNoTextAnimation();
 
             orientation = SupportedOrientations;
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
