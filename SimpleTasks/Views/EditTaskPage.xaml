@@ -168,7 +168,7 @@
                 <StackPanel Margin="0,0,0,20">
                     <!--Název-->
                     <controls:MyTextBox x:Name="TitleTextBox"
-                                        Height="55"
+                                        MinHeight="55"
                                         KeyDown="TitleTextBox_KeyDown"
                                         GotFocus="TitleTextBox_GotFocus"
                                         LostFocus="TitleTextBox_LostFocus"
