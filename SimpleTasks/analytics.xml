@@ -2,6 +2,7 @@
 <!--More info at https://developers.google.com/analytics/devguides/collection/android/v2/parameters-->
 <analytics xmlns="http://googleanalyticssdk.codeplex.com/ns/easytracker">
   <!--Replace placeholder ID with your tracking ID-->
+  <!--Debug 5, Release 6-->
   <trackingId>UA-53112174-5</trackingId>
   
   <!--Replace placeholder name with your app name. If you leave this empty your WMAppManifest.xml Title will be used-->

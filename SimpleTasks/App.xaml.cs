@@ -44,7 +44,9 @@ namespace SimpleTasks
             get
             {
                 if (_gaTracker == null)
+                {
                     _gaTracker = GoogleAnalytics.EasyTracker.GetTracker();
+                }
                 return _gaTracker;
             }
         }

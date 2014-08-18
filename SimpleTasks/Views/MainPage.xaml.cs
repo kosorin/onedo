@@ -76,8 +76,6 @@ namespace SimpleTasks.Views
             {
                 OnPropertyChanged(GroupedTasksProperty);
             }
-
-            App.Tracker.SendView("MainPage");
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -382,7 +380,6 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            App.Tracker.SendEvent("EvCategory", "EvAction", "task edit", task.GetHashCode());
             NavigateQuery("EditTaskPage", "?Task={0}", task.Uid);
         }
 

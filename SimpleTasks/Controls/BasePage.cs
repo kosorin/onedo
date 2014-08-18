@@ -47,6 +47,20 @@ namespace SimpleTasks.Controls
 
             SystemTray.ForegroundColor = (Color)App.Current.Resources["SystemTrayForegroundColor"];
             SystemTray.BackgroundColor = (Color)App.Current.Resources["SystemTrayBackgroundColor"];
+
+            try
+            {
+                string view = this.ToString();
+                if (view.StartsWith("SimpleTasks.Views."))
+                {
+                    view = view.Substring("SimpleTasks.Views.".Length);
+                }
+                App.Tracker.SendView(view);
+            }
+            catch (Exception)
+            {
+                // Nic neděláme...
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
