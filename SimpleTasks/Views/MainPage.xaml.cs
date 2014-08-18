@@ -38,20 +38,18 @@ namespace SimpleTasks.Views
             CreateAppBarItems();
             BuildTasksdAppBar();
 
-            if (App.IsFirstStart)
+            if (App.IsInstalled || App.IsActualized)
             {
-                Loaded += FirstStart_Loaded;
+                Loaded += InstalledActualized;
             }
         }
 
         #region Page
-        void FirstStart_Loaded(object sender, RoutedEventArgs e)
+        void InstalledActualized(object sender, RoutedEventArgs e)
         {
-            Loaded -= FirstStart_Loaded;
-            if (App.IsFirstStart)
+            Loaded -= InstalledActualized;
+            if (App.IsActualized)
             {
-                App.IsFirstStart = false;
-
                 ChangelogCategory changelog = AboutPage.LoadWhatsNew();
                 if (changelog != null)
                 {
@@ -63,6 +61,8 @@ namespace SimpleTasks.Views
                     MessageBox.Show(text, AppResources.WhatsNew, MessageBoxButton.OK);
                 }
             }
+            App.IsInstalled = false;
+            App.IsActualized = false;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

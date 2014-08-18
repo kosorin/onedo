@@ -49,7 +49,9 @@ namespace SimpleTasks
             }
         }
 
-        public static bool IsFirstStart { get; set; }
+        public static bool IsInstalled = false;
+
+        public static bool IsActualized = false;
 
         public static readonly string SettingsFileName = "Settings.json";
         public static Settings Settings { get; private set; }
@@ -77,14 +79,14 @@ namespace SimpleTasks
             if (Settings.Version == null)
             {
                 Debug.WriteLine("==== INSTALACE ====");
-                IsFirstStart = true;
+                IsInstalled = true;
                 Settings.Version = VersionString;
                 Debug.WriteLine("==== ===== Installed ===== ====");
             }
             else if (Settings.Version != VersionString)
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
-                IsFirstStart = true;
+                IsActualized = true;
                 Settings.Version = VersionString;
                 Debug.WriteLine("==== ===== Actualized ===== ====");
             }
