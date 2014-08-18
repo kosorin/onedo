@@ -38,31 +38,21 @@ namespace SimpleTasks.Views
             CreateAppBarItems();
             BuildTasksdAppBar();
 
-            if (App.IsInstalled || App.IsActualized)
+            if (App.MessageAfterStart != null)
             {
-                Loaded += InstalledActualized;
+                Loaded += MainPage_Loaded;
             }
         }
 
         #region Page
-        void InstalledActualized(object sender, RoutedEventArgs e)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            Loaded -= InstalledActualized;
-            if (App.IsActualized)
+            Loaded -= MainPage_Loaded;
+            if (App.MessageAfterStart != null)
             {
-                ChangelogCategory changelog = AboutPage.LoadWhatsNew();
-                if (changelog != null)
-                {
-                    string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
-                    foreach (ChangelogItem item in changelog)
-                    {
-                        text += "  • " + item.Text + System.Environment.NewLine;
-                    }
-                    MessageBox.Show(text, AppResources.WhatsNew, MessageBoxButton.OK);
-                }
+                MessageBox.Show(App.MessageAfterStart.Item1, App.MessageAfterStart.Item2, App.MessageAfterStart.Item3);
+                App.MessageAfterStart = null;
             }
-            App.IsInstalled = false;
-            App.IsActualized = false;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

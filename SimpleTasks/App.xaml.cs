@@ -50,10 +50,7 @@ namespace SimpleTasks
                 return _gaTracker;
             }
         }
-
-        public static bool IsInstalled = false;
-
-        public static bool IsActualized = false;
+        public static Tuple<string, string, MessageBoxButton> MessageAfterStart = null;
 
         public static readonly string SettingsFileName = "Settings.json";
         public static Settings Settings { get; private set; }
@@ -81,15 +78,24 @@ namespace SimpleTasks
             if (Settings.Version == null)
             {
                 Debug.WriteLine("==== INSTALACE ====");
-                IsInstalled = true;
                 Settings.Version = VersionString;
                 Debug.WriteLine("==== ===== Installed ===== ====");
             }
             else if (Settings.Version != VersionString)
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
-                IsActualized = true;
                 Settings.Version = VersionString;
+
+                SimpleTasks.Models.ChangelogCategory changelog = SimpleTasks.Views.AboutPage.LoadWhatsNew();
+                if (changelog != null)
+                {
+                    string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
+                    foreach (SimpleTasks.Models.ChangelogItem item in changelog)
+                    {
+                        text += "  • " + item.Text + System.Environment.NewLine;
+                    }
+                    MessageAfterStart = new Tuple<string, string, MessageBoxButton>(text, AppResources.WhatsNew, MessageBoxButton.OK);
+                }
                 Debug.WriteLine("==== ===== Actualized ===== ====");
             }
 
