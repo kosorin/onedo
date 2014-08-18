@@ -104,11 +104,10 @@
                     <QuarticEase EasingMode="EaseInOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChangeSizeButton"
-                                           Storyboard.TargetProperty="Content">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.15"
-                                        Value="&#xe2bd;" />
-            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="ChangeSizeButtonTransform"
+                             Storyboard.TargetProperty="Rotation"
+                             To="45"
+                             Duration="0:0:0.35" />
             <DoubleAnimation Storyboard.TargetName="SmallTileViewBox"
                              Storyboard.TargetProperty="Opacity"
                              To="1"
@@ -144,11 +143,10 @@
                     <QuarticEase EasingMode="EaseInOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChangeSizeButton"
-                                           Storyboard.TargetProperty="Content">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.15"
-                                        Value="&#xe2b9;" />
-            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="ChangeSizeButtonTransform"
+                             Storyboard.TargetProperty="Rotation"
+                             To="225"
+                             Duration="0:0:0.35" />
             <DoubleAnimation Storyboard.TargetName="MediumTileViewBox"
                              Storyboard.TargetProperty="Opacity"
                              To="1"
@@ -184,11 +182,10 @@
                     <QuarticEase EasingMode="EaseInOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChangeSizeButton"
-                                           Storyboard.TargetProperty="Content">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.15"
-                                        Value="&#xe2b6;" />
-            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="ChangeSizeButtonTransform"
+                             Storyboard.TargetProperty="Rotation"
+                             To="180"
+                             Duration="0:0:0.35" />
             <DoubleAnimation Storyboard.TargetName="WideTileViewBox"
                              Storyboard.TargetProperty="Opacity"
                              To="1"
@@ -221,7 +218,7 @@
                     <!--Náhled-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                Style="{StaticResource LabelStyle}"
-                               Margin="0"/>
+                               Margin="0" />
                     <Grid x:Name="TilesGrid"
                           Width="432"
                           Height="210"
@@ -264,10 +261,16 @@
                                 <Button x:Name="ChangeSizeButton"
                                         Style="{StaticResource RoundButtonStyle}"
                                         Background="{StaticResource BackgroundBrush}"
-                                        Content="&#xe2b6;"
+                                        Content="&#xe111;"
                                         Width="38"
                                         Height="38"
-                                        FontSize="24" />
+                                        FontSize="20"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Button.RenderTransform>
+                                        <CompositeTransform x:Name="ChangeSizeButtonTransform"
+                                                            Rotation="180" />
+                                    </Button.RenderTransform>
+                                </Button>
                             </Border>
                         </Button>
                     </Grid>
