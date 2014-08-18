@@ -442,7 +442,7 @@
                                 Style="{StaticResource CloseButtonStyle}" />
                     </Grid>
                 </Grid>
-                <TextBlock Style="{StaticResource AccentTextStyle}"
+                <!--<TextBlock Style="{StaticResource AccentTextStyle}"
                            Margin="0,-15,0,20"
                            TextWrapping="Wrap"
                            FontWeight="SemiBold"
@@ -452,7 +452,7 @@
                     <Run Text="Reminder will not be set up." />
                     <LineBreak />
                     <Run Text="Please change due date/time or reminder value to set valid reminder time." />
-                </TextBlock>
+                </TextBlock>-->
 
                 <!--Priorita-->
                 <ToggleButton x:Name="PriorityButton"
