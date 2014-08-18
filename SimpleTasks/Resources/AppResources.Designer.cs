@@ -305,25 +305,20 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;3.0.1&quot;: {
-        ///    &quot;date&quot;: &quot;2014-07-23&quot;,
+        ///  &quot;4.0.0 &quot;: {
+        ///    &quot;date&quot;: &quot;2014-08-17&quot;,
         ///    &quot;items&quot;: [
-        ///      &quot;minor bug fix&quot;
+        ///      &quot;new application name \&quot;OneDo\&quot; and new logo&quot;,
+        ///      &quot;removed save button - tasks are saved automatically&quot;,
+        ///      &quot;subtasks (gesture support for task completion on main page and are also shown on a tile with task)&quot;,
+        ///      &quot;ability to set appearance of tiles (font size, hide due date, …)&quot;
         ///    ]
         ///  },
-        ///  &quot;3.0.0&quot;: {
-        ///    &quot;date&quot;: &quot;2014-07-22&quot;,
+        ///  &quot;4.0.0&quot;: {
+        ///    &quot;date&quot;: &quot;2014-08-17&quot;,
         ///    &quot;items&quot;: [
-        ///      &quot;swipe left gesture for task completion&quot;,
-        ///      &quot;redesigned UI&quot;,
-        ///      &quot;reminder is now entered as a time before the due date (it is not necessary to specify two dates - due date and reminder date)&quot;,
-        ///      &quot;fixed bug when deleting completed tasks&quot;
-        ///    ]
-        ///  },
-        ///  &quot;2.0.0&quot;: {
-        ///    &quot;date&quot;: &quot;2014-06-17&quot;,
-        ///    &quot;items&quot;: [
-        ///      &quot;pin a separate tile of t [rest of string was truncated]&quot;;.
+        ///      &quot;new application name \&quot;OneDo\&quot; and new logo&quot;,
+        ///      &quot;removed save button - tasks are sa [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -1133,7 +1128,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to text size.
+        ///   Looks up a localized string similar to font size.
         /// </summary>
         public static string TileSettingsLineHeight {
             get {

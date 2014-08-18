@@ -553,7 +553,7 @@
     <value>background opacity</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>text size</value>
+    <value>font size</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>preview</value>

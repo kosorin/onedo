@@ -390,9 +390,8 @@
           <target state="final">názov na jeden riadok</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
-          <source>text size</source>
-          <target state="final">veľkosť písma</target>
-        </trans-unit>
+          <source>font size</source>
+          <target state="signed-off">veľkosť písma</target></trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>preview</source>
           <target state="final">náhľad</target>
