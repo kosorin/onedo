@@ -179,7 +179,7 @@ namespace SimpleTasks.Controls
         /// <summary>
         /// Determines if the Hint should be shown or not based on if there is content in the TextBox.
         /// </summary>
-        private void UpdateHintVisibility()
+        public void UpdateHintVisibility()
         {
             if (_hintContent != null)
             {
