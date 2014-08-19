@@ -270,12 +270,13 @@ namespace SimpleTasks.Views
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Grocery list",
-                DueDate = DateTimeExtensions.Tomorrow.AddHours(10).AddMinutes(30),
                 Subtasks = new ObservableCollection<Subtask>
                 { 
                     new Subtask("milk"), 
                     new Subtask("apples", true),
-                    new Subtask("potatoes"),
+                    new Subtask("potatoes", true),
+                    new Subtask("ham"),
+                    new Subtask("cookies"),
                 }
             });
             App.Tasks.Add(new TaskModel()
