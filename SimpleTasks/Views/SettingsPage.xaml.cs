@@ -61,5 +61,10 @@ namespace SimpleTasks.Views
             App.Settings.General.Feedback = false;
         }
         #endregion
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            App.FeedbackEmail();
+        }
     }
 }

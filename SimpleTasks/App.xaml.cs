@@ -1,5 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using Newtonsoft.Json.Linq;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
@@ -160,6 +161,16 @@ namespace SimpleTasks
             changelog.RemoveAt(0);
 
             return changelog;
+        }
+
+        public static void FeedbackEmail()
+        {
+            EmailComposeTask task = new EmailComposeTask
+            {
+                To = AppInfo.Email,
+                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.VersionString)
+            };
+            task.Show();
         }
 
         #region Phone application initialization

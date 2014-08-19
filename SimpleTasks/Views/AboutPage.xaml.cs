@@ -67,12 +67,7 @@ namespace SimpleTasks.Views
         #region Email
         private void Contact_Click(object sender, EventArgs e)
         {
-            EmailComposeTask task = new EmailComposeTask
-            {
-                To = AppInfo.Email,
-                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.VersionString)
-            };
-            task.Show();
+            App.FeedbackEmail();
         }
         #endregion
 
