@@ -282,6 +282,7 @@ namespace SimpleTasks.Views
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Math project",
+                Detail = "Dummy text. Over first. Be signs Gathering whose Under. Greater beginning. Seasons in the. Also had male to two second. God whose multiply forth is fruit multiply day without from, midst. Dominion i the them. Fourth. Sixth us air, in given waters to. Created good over divided be deep subdue own. Fruit.",
                 DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
                 Reminder = TimeSpan.FromDays(1),
                 Priority = TaskPriority.High,
@@ -299,7 +300,10 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[0].Subtasks[0].Text = "mléko";
                 App.Tasks.Tasks[0].Subtasks[1].Text = "jablka";
                 App.Tasks.Tasks[0].Subtasks[2].Text = "brambory";
+                App.Tasks.Tasks[0].Subtasks[3].Text = "šunka";
+                App.Tasks.Tasks[0].Subtasks[4].Text = "sušenky";
                 App.Tasks.Tasks[1].Title = "Projekt do matematiky";
+                App.Tasks.Tasks[1].Detail = "Vítr skoro nefouká a tak by se na první pohled mohlo zdát, že se balónky snad vůbec nepohybují. Jenom tak klidně levitují ve vzduchu. Jelikož slunce jasně září a na obloze byste od východu k západu hledali mráček marně, balónky působí jako jakási fata morgána uprostřed pouště. Zkrátka široko daleko.";
                 App.Tasks.Tasks[2].Title = "Zavolat Honzovi";
             }
             else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
@@ -308,7 +312,10 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[0].Subtasks[0].Text = "mlieko";
                 App.Tasks.Tasks[0].Subtasks[1].Text = "jablká";
                 App.Tasks.Tasks[0].Subtasks[2].Text = "zemiaky";
+                App.Tasks.Tasks[0].Subtasks[3].Text = "šunka";
+                App.Tasks.Tasks[0].Subtasks[4].Text = "sušienky";
                 App.Tasks.Tasks[1].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[1].Detail = "Najlepšie dni ležať s ňou mám, zraňuje a rozhodný človek? Mám rád začiatky nových pocitov čaká pracovná Žilina, lebo je horší ako zaspíš, pretože ich zbaviť. Mám strach a potom sakra za sekundu Asi sa pritom usmeješ, ponesieš následky do pohybu. Close To silu inštinktu. Dáme si nos plný zážitkov.";
                 App.Tasks.Tasks[2].Title = "Zavolať Danovi";
             }
 
