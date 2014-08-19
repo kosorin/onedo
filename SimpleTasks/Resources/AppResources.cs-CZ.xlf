@@ -387,38 +387,49 @@
         </trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
           <source>title on one line</source>
-          <target state="final">nadpis na jeden řádek</target>
+          <target state="signed-off">nadpis na jeden řádek</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
           <source>font size</source>
           <target state="signed-off">velikost písma</target></trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>preview</source>
-          <target state="final">náhled</target>
+          <target state="signed-off">náhled</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarTileSettings" translate="yes" xml:space="preserve">
           <source>tile settings</source>
-          <target state="final">nastavení dlaždice</target>
+          <target state="signed-off">nastavení dlaždice</target>
         </trans-unit>
         <trans-unit id="Resx/TitleUntitled" translate="yes" xml:space="preserve">
           <source>Untitled</source>
-          <target state="final">Bez názvu</target>
+          <target state="signed-off">Bez názvu</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsFeedback" translate="yes" xml:space="preserve">
+          <source>feedback</source>
+          <target state="signed-off">zpětná vazba</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
+          <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
+No personal data is being collected.
+You can also contact us via email.</source>
+          <target state="signed-off">Odesílat anonymní data o používání pro zlepšení této aplikace. Statistiky pomáhají vývojáři identifikovat a zaměřovat se na často používané funkce.
+Nejsou shromažďovány žádné osobní údaje.
+Můžete nás také kontaktovat pomocí emailu.</target></trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
-          <target state="final">průhlednost pozadí</target>
+          <target state="signed-off">průhlednost pozadí</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
           <source>show completed subtasks</source>
-          <target state="final">zobrazit dokončené podúkoly</target>
+          <target state="signed-off">zobrazit dokončené podúkoly</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideTitle" translate="yes" xml:space="preserve">
           <source>hide title</source>
-          <target state="final">skrýt název</target>
+          <target state="signed-off">skrýt název</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideDate" translate="yes" xml:space="preserve">
           <source>hide due date</source>
-          <target state="final">skrýt termín</target>
+          <target state="signed-off">skrýt termín</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>

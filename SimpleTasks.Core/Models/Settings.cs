@@ -278,6 +278,16 @@ namespace SimpleTasks.Core.Models
                 set { SetProperty(ref _vibrate, value); }
             }
             #endregion
+
+            #region Feedback
+            private bool _feedback = true;
+            [DataMember(Name = "Feedback")]
+            public bool Feedback
+            {
+                get { return _feedback; }
+                set { SetProperty(ref _feedback, value); }
+            }
+            #endregion
         }
         #endregion
     }

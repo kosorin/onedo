@@ -132,11 +132,23 @@
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsGeneral, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
                     <StackPanel Margin="24,24,24,0">
+
                         <!--Unpin Completed-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
                                       Template="{StaticResource SwitchStyle}" />
+
+                        <!--Enable tile-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <ToggleButton IsChecked="{Binding General.Feedback, Mode=OneTime}"
+                                      Template="{StaticResource SwitchStyle}"
+                                      Checked="ToggleButton_Checked"
+                                      Unchecked="ToggleButton_Unchecked" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsFeedbackHelp, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
+
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>

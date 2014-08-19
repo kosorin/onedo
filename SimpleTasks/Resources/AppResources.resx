@@ -564,4 +564,12 @@
   <data name="TitleUntitled" xml:space="preserve">
     <value>Untitled</value>
   </data>
+  <data name="SettingsFeedback" xml:space="preserve">
+    <value>feedback</value>
+  </data>
+  <data name="SettingsFeedbackHelp" xml:space="preserve">
+    <value>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
+No personal data is being collected.
+You can also contact us via email.</value>
+  </data>
 </root>

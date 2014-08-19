@@ -12,5 +12,6 @@ namespace SimpleTasks.Helpers.Analytics
         TaskTime = 2,
         TaskReminder = 3,
         TaskTileLineHeight = 4,
+        Feedback = 5,
     }
 }

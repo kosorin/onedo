@@ -34,6 +34,9 @@ namespace SimpleTasks.Helpers.Analytics
 
         public static void SendPage(BasePage page)
         {
+            if (!App.Settings.General.Feedback)
+                return;
+
             try
             {
                 if (page != null)
@@ -54,6 +57,9 @@ namespace SimpleTasks.Helpers.Analytics
 
         public static void SendEvent(EventCategory category, EventAction action, string label = "<Label>", long value = 0)
         {
+            if (!App.Settings.General.Feedback)
+                return;
+
             try
             {
                 if (ShowDebugMessages)
@@ -69,6 +75,9 @@ namespace SimpleTasks.Helpers.Analytics
 
         public static void SetDimension(CustomDimension type, string value)
         {
+            if (!App.Settings.General.Feedback)
+                return;
+
             try
             {
                 int index = (int)type;

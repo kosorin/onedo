@@ -305,20 +305,19 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;4.0.0 &quot;: {
-        ///    &quot;date&quot;: &quot;2014-08-17&quot;,
-        ///    &quot;items&quot;: [
-        ///      &quot;new application name \&quot;OneDo\&quot; and new logo&quot;,
-        ///      &quot;removed save button - tasks are saved automatically&quot;,
-        ///      &quot;subtasks (gesture support for task completion on main page and are also shown on a tile with task)&quot;,
-        ///      &quot;ability to set appearance of tiles (font size, hide due date, …)&quot;
-        ///    ]
-        ///  },
-        ///  &quot;4.0.0&quot;: {
-        ///    &quot;date&quot;: &quot;2014-08-17&quot;,
-        ///    &quot;items&quot;: [
-        ///      &quot;new application name \&quot;OneDo\&quot; and new logo&quot;,
-        ///      &quot;removed save button - tasks are sa [rest of string was truncated]&quot;;.
+        ///    &quot;4.0.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-08-17&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;new application name \&quot;OneDo\&quot; and new logo&quot;,
+        ///            &quot;removed save button - tasks are saved automatically&quot;,
+        ///            &quot;subtasks (gesture support for task completion on main page and are also shown on a tile with task)&quot;,
+        ///            &quot;ability to set appearance of tiles (font size, hide due date, …)&quot;
+        ///        ]
+        ///    },
+        ///    &quot;4.0.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-08-17&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;new application nam [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -980,6 +979,26 @@ namespace SimpleTasks.Resources {
         public static string SettingsEnableTile {
             get {
                 return ResourceManager.GetString("SettingsEnableTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to feedback.
+        /// </summary>
+        public static string SettingsFeedback {
+            get {
+                return ResourceManager.GetString("SettingsFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
+        ///No personal data is being collected.
+        ///You can also contact us via email..
+        /// </summary>
+        public static string SettingsFeedbackHelp {
+            get {
+                return ResourceManager.GetString("SettingsFeedbackHelp", resourceCulture);
             }
         }
         

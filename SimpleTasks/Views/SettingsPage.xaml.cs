@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
+using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Views
 {
@@ -43,5 +44,22 @@ namespace SimpleTasks.Views
         {
             Navigate(typeof(TimePickerPage), App.Settings.Tasks.DefaultTime, "TimePicker");
         }
+
+        #region Feedback
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            App.Settings.General.Feedback = true;
+            GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "True");
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            App.Settings.General.Feedback = true; // Aby šla odeslat následující zpráva.
+            GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
+            App.Settings.General.Feedback = false;
+        }
+        #endregion
     }
 }
