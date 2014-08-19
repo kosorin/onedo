@@ -625,6 +625,7 @@ namespace SimpleTasks.Views
         #region Čas
         private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            PhoneApplicationService.Current.State["GA_TimePicker"] = 0;
             Navigate(typeof(TimePickerPage), DueDate, "TimePicker");
         }
         #endregion

@@ -131,6 +131,7 @@
     <Compile Include="Conventers\DateConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Analytics\CustomDimension.cs" />
     <Compile Include="Helpers\Analytics\EventAction.cs" />
     <Compile Include="Helpers\Analytics\EventCategory.cs" />
     <Compile Include="Helpers\Analytics\GoogleAnalyticsHelper.cs" />

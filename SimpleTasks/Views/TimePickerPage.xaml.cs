@@ -10,6 +10,7 @@ using SimpleTasks.ViewModels;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Resources;
 using SimpleTasks.Controls;
+using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Views
 {
@@ -30,13 +31,28 @@ namespace SimpleTasks.Views
 
         protected override object Save()
         {
-            return new DateTime(
+            DateTime time = new DateTime(
                 _time.Year,
                 _time.Month,
                 _time.Day,
                 TimePicker.Hours,
                 TimePicker.Minutes,
                 0);
+
+            if (PhoneApplicationService.Current.State.ContainsKey("GA_TimePicker"))
+            {
+                // 0 - task time
+                // 1 - default task time (zatím nepoužito)
+                int type = (int)PhoneApplicationService.Current.State["GA_TimePicker"];
+                PhoneApplicationService.Current.State.Remove("GA_TimePicker");
+                if (type == 0)
+                {
+                    GoogleAnalyticsHelper.SetDimension(CustomDimension.TaskTime, string.Format("{0}:{1:00}", time.Hour, time.Minute));
+                    GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "edit task time");
+                }
+            }
+
+            return time;
         }
 
         private void Morning_Click(object sender, RoutedEventArgs e)

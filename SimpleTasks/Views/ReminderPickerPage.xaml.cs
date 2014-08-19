@@ -15,6 +15,7 @@ using System.Diagnostics;
 using SimpleTasks.Models;
 using System.Collections.Generic;
 using System.Windows.Media.Animation;
+using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Views
 {
@@ -35,7 +36,12 @@ namespace SimpleTasks.Views
 
         protected override object Save()
         {
-            return GetTimeSpan();
+            TimeSpan reminder = GetTimeSpan();
+
+            GoogleAnalyticsHelper.SetDimension(CustomDimension.TaskReminder, reminder.ToString("d'd, 'h'h, 'm'm'"));
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "edit task reminder");
+
+            return reminder;
         }
 
         #region Private methods

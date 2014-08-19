@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleTasks.Helpers.Analytics
 {
-    public enum EventCategory
+    public enum CustomDimension
     {
-        Tasks,
-        Folders,
-        Settings,
-        Tiles
+        TaskRelativeDate = 1,
+        TaskTime = 2,
+        TaskReminder = 3,
+        TaskTileLineHeight = 4,
     }
 }

@@ -13,6 +13,7 @@ using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
 using WPControls;
 using System.Windows.Media;
+using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Views
 {
@@ -123,13 +124,21 @@ namespace SimpleTasks.Views
 
         protected override object Save()
         {
-            return new DateTime(
+            DateTime date = new DateTime(
                 Calendar.SelectedDate.Year,
                 Calendar.SelectedDate.Month,
                 Calendar.SelectedDate.Day,
                 _date.Hour,
                 _date.Minute,
                 0);
+
+            int days = (int)(date.Date - DateTime.Today).TotalDays;
+            if (days > 0)
+            {
+                GoogleAnalyticsHelper.SetDimension(CustomDimension.TaskRelativeDate, days.ToString());
+                GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "edit task date");
+            }
+            return date;
         }
 
         private void Today_Click(object sender, RoutedEventArgs e)

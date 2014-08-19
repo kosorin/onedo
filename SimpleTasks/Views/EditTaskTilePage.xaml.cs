@@ -45,7 +45,8 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedFrom(e);
 
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Tiles, EventAction.Edit, "line height", (long)_task.TileSettings.LineHeight);
+            GoogleAnalyticsHelper.SetDimension(CustomDimension.TaskTileLineHeight, ((int)_task.TileSettings.LineHeight).ToString());
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "edit task tile line height");
         }
 
         private void SetTask(TaskModel task)
