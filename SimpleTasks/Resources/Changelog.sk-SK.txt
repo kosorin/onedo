@@ -1,95 +1,95 @@
-{  
-  "4.0.0 ": {
-    "date": "2014-08-17",
-    "items": [
-      "nové jméno aplikace \"OneDo\" a nové logo",
-      "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
-      "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
-      "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
-    ]
-  },
-  "4.0.0": {
-    "date": "2014-08-17",
-    "items": [
-      "nové meno aplikácie \"OneDo\" a nové logo",
-      "odstránené tlačidlo pre uloženie - úlohy sa ukladajú automaticky",
-      "podúlohy (podporujú gesto pre dokončenie na hlavnej stránke a sú tiež zobrazené na dlaždici s úlohou)",
-      "možnosť nastaviť vzhľad dlaždíc (veľkosť písma, skryť termín, …)",
-      "ďalšie zmeny vzhľadu",
-      "lepšia čitateľnosť niektorých textov pri svetlej téme"
-    ]
-  },
-  "3.0.1": {
-    "date": "2014-07-23",
-    "items": [
-      "oprava menšie chyby"
-    ]
-  },
-  "3.0.0": {
-    "date": "2014-07-22",
-    "items": [
-	  "gesto tiahnutie úlohy doľava pre dokončenie úlohy",
-      "zmeny vzhľadu",
-      "pripomenutie sa teraz zadáva ako čas pred termínom (nie je teda potrebné zadávať dvakrát dátum pre termín a pripomenutie)",
-      "opravená chyba pri mazaní dokončených úloh"
-    ]
-  },
-  "2.0.0": {
-    "date": "2014-06-17",
-    "items": [
-      "pripnúť samostatnú úlohu na úvodnú obrazovku",
-      "jednoduchý zoznam v detaile úlohy",
-      "rýchle dokončenie úlohy",
-      "nový vzhľad výberu času pripomenutia",
-      "oprava chýb",
-      "drobné zmeny v dizajne a animácii",
-	  "predvolený termín nastavený na \"dnes\"",
-	  "changelog na stránce \"o aplikácii\""
-    ]
-  },
-  "1.9.7": {
-    "date": "2014-05-23",
-    "items": [
-      "oprava chyby (predvolený termín)"
-    ]
-  },
-  "1.9.6": {
-    "date": "2014-04-28",
-    "items": [
-      "textové pole pre rýchle pridávanie úlohy",
-      "oprava prekladu",
-      "oprava chýb",
-      "ďalšie drobné zmeny a optimalizácia kódu"
-    ]
-  },
-  "1.9.5": {
-    "date": "2014-04-24",
-    "items": [
-      "oprava prekladu",
-      "oprava chýb"
-    ]
-  },
-  "1.9.2": {
-    "date": "2014-04-24",
-    "items": [
-      "oprava chýb"
-    ]
-  },
-  "1.9.1": {
-    "date": "2014-04-23",
-    "items": [
-      "redesign úvodného zoznamu úloh",
-      "možnosť pridať detail k úlohe",
-      "priehľadná dlaždice (len pre Windows Phone 8.1)",
-      "opravy chýb",
-      "ďalšie drobné zmeny a optimalizácia kódu"
-    ]
-  },
-  "1.2.0": {
-    "date": "2013-11-12",
-    "items": [
-      "pripomenutie úlohy",
-      "nízka priorita úlohy"
-    ]
-  }
+{
+    "4.0.0 ": {
+        "date": "2014-08-17",
+        "items": [
+            "nové jméno aplikace \"OneDo\" a nové logo",
+            "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
+            "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
+            "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
+        ]
+    },
+    "4.0.0": {
+        "date": "2014-08-17",
+        "items": [
+            "nové meno aplikácie \"OneDo\" a nové logo",
+            "odstránené tlačidlo pre uloženie - úlohy sa ukladajú automaticky",
+            "podúlohy (podporujú gesto pre dokončenie na hlavnej stránke a sú tiež zobrazené na dlaždici s úlohou)",
+            "možnosť nastaviť vzhľad dlaždíc (veľkosť písma, skryť termín, …)",
+            "ďalšie zmeny vzhľadu",
+            "lepšia čitateľnosť niektorých textov pri svetlej téme"
+        ]
+    },
+    "3.0.1": {
+        "date": "2014-07-23",
+        "items": [
+            "oprava menšie chyby"
+        ]
+    },
+    "3.0.0": {
+        "date": "2014-07-22",
+        "items": [
+            "gesto tiahnutie úlohy doľava pre dokončenie úlohy",
+            "zmeny vzhľadu",
+            "pripomenutie sa teraz zadáva ako čas pred termínom (nie je teda potrebné zadávať dvakrát dátum pre termín a pripomenutie)",
+            "opravená chyba pri mazaní dokončených úloh"
+        ]
+    },
+    "2.0.0": {
+        "date": "2014-06-17",
+        "items": [
+            "pripnúť samostatnú úlohu na úvodnú obrazovku",
+            "jednoduchý zoznam v detaile úlohy",
+            "rýchle dokončenie úlohy",
+            "nový vzhľad výberu času pripomenutia",
+            "oprava chýb",
+            "drobné zmeny v dizajne a animácii",
+            "predvolený termín nastavený na \"dnes\"",
+            "changelog na stránce \"o aplikácii\""
+        ]
+    },
+    "1.9.7": {
+        "date": "2014-05-23",
+        "items": [
+            "oprava chyby (predvolený termín)"
+        ]
+    },
+    "1.9.6": {
+        "date": "2014-04-28",
+        "items": [
+            "textové pole pre rýchle pridávanie úlohy",
+            "oprava prekladu",
+            "oprava chýb",
+            "ďalšie drobné zmeny a optimalizácia kódu"
+        ]
+    },
+    "1.9.5": {
+        "date": "2014-04-24",
+        "items": [
+            "oprava prekladu",
+            "oprava chýb"
+        ]
+    },
+    "1.9.2": {
+        "date": "2014-04-24",
+        "items": [
+            "oprava chýb"
+        ]
+    },
+    "1.9.1": {
+        "date": "2014-04-23",
+        "items": [
+            "redesign úvodného zoznamu úloh",
+            "možnosť pridať detail k úlohe",
+            "priehľadná dlaždice (len pre Windows Phone 8.1)",
+            "opravy chýb",
+            "ďalšie drobné zmeny a optimalizácia kódu"
+        ]
+    },
+    "1.2.0": {
+        "date": "2013-11-12",
+        "items": [
+            "pripomenutie úlohy",
+            "nízka priorita úlohy"
+        ]
+    }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Newtonsoft.Json.Linq;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
+using SimpleTasks.Models;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using System;
@@ -74,7 +76,7 @@ namespace SimpleTasks
                 Debug.WriteLine("==== AKTUALIZACE ====");
                 Settings.Version = VersionString;
 
-                SimpleTasks.Models.ChangelogCategory changelog = SimpleTasks.Views.AboutPage.LoadWhatsNew();
+                SimpleTasks.Models.ChangelogCategory changelog = App.LoadWhatsNew();
                 if (changelog != null)
                 {
                     string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
@@ -120,6 +122,44 @@ namespace SimpleTasks
             Settings.SaveToFile(SettingsFileName, Settings);
             Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
+        }
+
+        public static ChangelogCategory LoadWhatsNew()
+        {
+            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
+            {
+                JObject categoryData = (JObject)version.Value;
+
+                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
+                foreach (JToken item in (JArray)categoryData["items"])
+                {
+                    category.AddItem(item.ToString());
+                }
+                return category;
+            }
+            return null;
+        }
+
+        public static ChangelogList LoadChangelog()
+        {
+            ChangelogList changelog = new ChangelogList();
+
+            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
+            {
+                JObject categoryData = (JObject)version.Value;
+
+                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
+                foreach (JToken item in (JArray)categoryData["items"])
+                {
+                    category.AddItem(item.ToString());
+                }
+                changelog.AddCategory(category);
+            }
+
+            // První záznam je pro zobrazení zprávy "What's new" po aktualizaci/instalaci.
+            changelog.RemoveAt(0);
+
+            return changelog;
         }
 
         #region Phone application initialization

@@ -1,95 +1,95 @@
 ﻿{
-  "4.0.0 ": {
-    "date": "2014-08-17",
-    "items": [
-      "nové jméno aplikace \"OneDo\" a nové logo",
-      "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
-      "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
-      "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
-    ]
-  },
-  "4.0.0": {
-    "date": "2014-08-17",
-    "items": [
-      "nové jméno aplikace \"OneDo\" a nové logo",
-      "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
-      "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
-      "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)",
-      "další změny vzhledu",
-      "lepší čitelnost některého textu na světlém motivu"
-    ]
-  },
-  "3.0.1": {
-    "date": "2014-07-23",
-    "items": [
-      "oprava menší chyby"
-    ]
-  },
-  "3.0.0": {
-    "date": "2014-07-22",
-    "items": [
-      "gesto táhnutí úkolu doleva pro dokončení úkolu",
-      "změny vzhledu",
-      "připomenutí se nyní zadává jako doba před termínem (není tedy potřeba zadávat dvakrát datum pro termín a připomenutí)",
-      "opravena chyba při mazání dokončených úkolů"
-    ]
-  },
-  "2.0.0": {
-    "date": "2014-06-17",
-    "items": [
-      "připnutí samostatného úkolu na úvodní obrazovku",
-      "jednoduchý seznam v detailu úkolu",
-      "rychlé dokončení úkolu",
-      "nový vzhled výběru času připomenutí",
-      "oprava menších chyb",
-      "drobné změny v designu a animacích",
-      "výchozí termín nastaven na \"dnes\"",
-      "changelog na stránce \"o aplikaci\""
-    ]
-  },
-  "1.9.7": {
-    "date": "2014-05-23",
-    "items": [
-      "oprava chyby (výchozí termín splnění)"
-    ]
-  },
-  "1.9.6": {
-    "date": "2014-04-28",
-    "items": [
-      "textové pole pro rychlé přidávání úkolu",
-      "oprava překladu",
-      "oprava chyb",
-      "další drobné změny a optimalizace kódu"
-    ]
-  },
-  "1.9.5": {
-    "date": "2014-04-24",
-    "items": [
-      "oprava překladu",
-      "oprava chyb"
-    ]
-  },
-  "1.9.2": {
-    "date": "2014-04-24",
-    "items": [
-      "oprava chyb"
-    ]
-  },
-  "1.9.1": {
-    "date": "2014-04-23",
-    "items": [
-      "redesign úvodního seznamu úkolů",
-      "možnost přidat detail k úkolu",
-      "průhledná dlaždice (jenom pro Windows Phone 8.1)",
-      "opravy chyb",
-      "další drobné změny a optimalizace kódu"
-    ]
-  },
-  "1.2.0": {
-    "date": "2013-11-12",
-    "items": [
-      "připomenutí úkolu",
-      "nízká priorita úkolu"
-    ]
-  }
+    "4.0.0 ": {
+        "date": "2014-08-17",
+        "items": [
+            "nové jméno aplikace \"OneDo\" a nové logo",
+            "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
+            "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
+            "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
+        ]
+    },
+    "4.0.0": {
+        "date": "2014-08-17",
+        "items": [
+            "nové jméno aplikace \"OneDo\" a nové logo",
+            "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
+            "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
+            "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)",
+            "další změny vzhledu",
+            "lepší čitelnost některého textu na světlém motivu"
+        ]
+    },
+    "3.0.1": {
+        "date": "2014-07-23",
+        "items": [
+            "oprava menší chyby"
+        ]
+    },
+    "3.0.0": {
+        "date": "2014-07-22",
+        "items": [
+            "gesto táhnutí úkolu doleva pro dokončení úkolu",
+            "změny vzhledu",
+            "připomenutí se nyní zadává jako doba před termínem (není tedy potřeba zadávat dvakrát datum pro termín a připomenutí)",
+            "opravena chyba při mazání dokončených úkolů"
+        ]
+    },
+    "2.0.0": {
+        "date": "2014-06-17",
+        "items": [
+            "připnutí samostatného úkolu na úvodní obrazovku",
+            "jednoduchý seznam v detailu úkolu",
+            "rychlé dokončení úkolu",
+            "nový vzhled výběru času připomenutí",
+            "oprava menších chyb",
+            "drobné změny v designu a animacích",
+            "výchozí termín nastaven na \"dnes\"",
+            "changelog na stránce \"o aplikaci\""
+        ]
+    },
+    "1.9.7": {
+        "date": "2014-05-23",
+        "items": [
+            "oprava chyby (výchozí termín splnění)"
+        ]
+    },
+    "1.9.6": {
+        "date": "2014-04-28",
+        "items": [
+            "textové pole pro rychlé přidávání úkolu",
+            "oprava překladu",
+            "oprava chyb",
+            "další drobné změny a optimalizace kódu"
+        ]
+    },
+    "1.9.5": {
+        "date": "2014-04-24",
+        "items": [
+            "oprava překladu",
+            "oprava chyb"
+        ]
+    },
+    "1.9.2": {
+        "date": "2014-04-24",
+        "items": [
+            "oprava chyb"
+        ]
+    },
+    "1.9.1": {
+        "date": "2014-04-23",
+        "items": [
+            "redesign úvodního seznamu úkolů",
+            "možnost přidat detail k úkolu",
+            "průhledná dlaždice (jenom pro Windows Phone 8.1)",
+            "opravy chyb",
+            "další drobné změny a optimalizace kódu"
+        ]
+    },
+    "1.2.0": {
+        "date": "2013-11-12",
+        "items": [
+            "připomenutí úkolu",
+            "nízká priorita úkolu"
+        ]
+    }
 }

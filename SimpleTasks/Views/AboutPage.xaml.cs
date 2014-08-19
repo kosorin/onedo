@@ -26,7 +26,7 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            ChangelogList = LoadChangelog();
+            ChangelogList = App.LoadChangelog();
             DataContext = this;
 
             ApplicationBar = new ApplicationBar();
@@ -44,44 +44,6 @@ namespace SimpleTasks.Views
             ApplicationBarMenuItem storeItem = new ApplicationBarMenuItem("store");
             storeItem.Click += StoreItem_Click;
             ApplicationBar.MenuItems.Add(storeItem);
-        }
-
-        public static ChangelogCategory LoadWhatsNew()
-        {
-            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
-            {
-                JObject categoryData = (JObject)version.Value;
-
-                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
-                foreach (JToken item in (JArray)categoryData["items"])
-                {
-                    category.AddItem(item.ToString());
-                }
-                return category;
-            }
-            return null;
-        }
-
-        public static ChangelogList LoadChangelog()
-        {
-            ChangelogList changelog = new ChangelogList();
-
-            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
-            {
-                JObject categoryData = (JObject)version.Value;
-
-                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
-                foreach (JToken item in (JArray)categoryData["items"])
-                {
-                    category.AddItem(item.ToString());
-                }
-                changelog.AddCategory(category);
-            }
-
-            // První záznam je pro zobrazení zprávy "What's new" po aktualizaci/instalaci.
-            changelog.RemoveAt(0);
-
-            return changelog;
         }
 
         #region Propertie

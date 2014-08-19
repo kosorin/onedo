@@ -236,8 +236,8 @@
     <Content Include="Assets\Tiles\SmallTile.png" />
     <Content Include="Assets\Tiles\WideTile.png" />
     <Content Include="Resources\Changelog.cs-CZ.txt" />
-    <None Include="Resources\Changelog.txt" />
-    <None Include="Resources\Changelog.sk-SK.txt" />
+    <Content Include="Resources\Changelog.sk-SK.txt" />
+    <Content Include="Resources\Changelog.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
