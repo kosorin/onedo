@@ -134,7 +134,7 @@ namespace SimpleTasks.Views
             }
             else
             {
-                Navigate("MainPage");
+                Navigate(typeof(MainPage));
             }
         }
         #endregion
@@ -461,7 +461,7 @@ namespace SimpleTasks.Views
 
         private void TileSettingsButton_Click(object sender, EventArgs e)
         {
-            Navigate("EditTaskTilePage", Task);
+            Navigate(typeof(EditTaskTilePage), Task);
         }
 
         private void PinButton(object sender, EventArgs e)
@@ -613,7 +613,7 @@ namespace SimpleTasks.Views
         {
             if (IsSetDueDate)
             {
-                Navigate("DatePickerPage", DueDate, "DatePicker");
+                Navigate(typeof(DatePickerPage), DueDate, "DatePicker");
             }
             else
             {
@@ -625,7 +625,7 @@ namespace SimpleTasks.Views
         #region Čas
         private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Navigate("TimePickerPage", DueDate, "TimePicker");
+            Navigate(typeof(TimePickerPage), DueDate, "TimePicker");
         }
         #endregion
 
@@ -648,7 +648,7 @@ namespace SimpleTasks.Views
         {
             if (IsSetReminder)
             {
-                Navigate("ReminderPickerPage", Reminder, "ReminderPicker");
+                Navigate(typeof(ReminderPickerPage), Reminder, "ReminderPicker");
             }
             else
             {
@@ -665,7 +665,7 @@ namespace SimpleTasks.Views
         #region Podúkoly
         private void EditSubtasks_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Navigate("SubtasksPage", Task);
+            Navigate(typeof(SubtasksPage), Task);
         }
         #endregion
     }

@@ -99,25 +99,33 @@ namespace SimpleTasks.Controls
         #region Navigace
         private const string _navigationKey = "NavigationParameter";
 
-        public void Navigate(string page)
+        public void Navigate(Type pageType)
         {
-            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml", UriKind.Relative));
+            if (pageType == null || !pageType.IsSubclassOf(typeof(BasePage)))
+                return;
+            NavigationService.Navigate(new Uri("/Views/" + pageType.Name + ".xaml", UriKind.Relative));
         }
 
-        public void NavigateQuery(string page, string query)
+        public void NavigateQuery(Type pageType, string query)
         {
-            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml" + query, UriKind.Relative));
+            if (pageType == null || !pageType.IsSubclassOf(typeof(BasePage)))
+                return;
+            NavigationService.Navigate(new Uri("/Views/" + pageType.Name + ".xaml" + query, UriKind.Relative));
         }
 
-        public void NavigateQuery(string page, string queryFormat, params object[] queryParams)
+        public void NavigateQuery(Type pageType, string queryFormat, params object[] queryParams)
         {
-            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml" + string.Format(queryFormat, queryParams), UriKind.Relative));
+            if (pageType == null || !pageType.IsSubclassOf(typeof(BasePage)))
+                return;
+            NavigationService.Navigate(new Uri("/Views/" + pageType.Name + ".xaml" + string.Format(queryFormat, queryParams), UriKind.Relative));
         }
 
-        public void Navigate(string page, object parameter, string parameterKey = "")
+        public void Navigate(Type pageType, object parameter, string parameterKey = "")
         {
+            if (pageType == null || !pageType.IsSubclassOf(typeof(BasePage)))
+                return;
             PhoneApplicationService.Current.State[_navigationKey + parameterKey] = parameter;
-            NavigationService.Navigate(new Uri("/Views/" + page + ".xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/" + pageType.Name + ".xaml", UriKind.Relative));
         }
 
         public bool NavigateBack()

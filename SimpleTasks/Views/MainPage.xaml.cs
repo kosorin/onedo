@@ -123,12 +123,12 @@ namespace SimpleTasks.Views
 
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
-            appBarSettingsMenuItem.Click += (s, e) => { Navigate("SettingsPage"); };
+            appBarSettingsMenuItem.Click += (s, e) => { Navigate(typeof(SettingsPage)); };
             appBarMenuItems.Add(appBarSettingsMenuItem);
 
             // O aplikaci
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
-            appBarAboutMenuItem.Click += (s, e) => { Navigate("AboutPage"); };
+            appBarAboutMenuItem.Click += (s, e) => { Navigate(typeof(AboutPage)); };
             appBarMenuItems.Add(appBarAboutMenuItem);
             #endregion
         }
@@ -153,7 +153,7 @@ namespace SimpleTasks.Views
 
         private void AddNewTask_Click(object sender, EventArgs e)
         {
-            Navigate("EditTaskPage");
+            Navigate(typeof(EditTaskPage));
             GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Add, "add task");
         }
 
@@ -380,7 +380,7 @@ namespace SimpleTasks.Views
             if (task == null)
                 return;
 
-            NavigateQuery("EditTaskPage", "?Task={0}", task.Uid);
+            NavigateQuery(typeof(EditTaskPage), "?Task={0}", task.Uid);
         }
 
         private TaskModel SubtaskElementFindTask(FrameworkElement element)
@@ -414,7 +414,7 @@ namespace SimpleTasks.Views
             TaskModel task = SubtaskElementFindTask(element);
             if (task != null)
             {
-                Navigate("SubtasksPage", task);
+                Navigate(typeof(SubtasksPage), task);
             }
         }
         #endregion

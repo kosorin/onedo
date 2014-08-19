@@ -41,7 +41,7 @@ namespace SimpleTasks.Views
 
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Navigate("TimePickerPage", App.Settings.Tasks.DefaultTime, "TimePicker");
+            Navigate(typeof(TimePickerPage), App.Settings.Tasks.DefaultTime, "TimePicker");
         }
     }
 }
