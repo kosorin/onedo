@@ -36,9 +36,9 @@ namespace SimpleTasks.Helpers
                 }
 
                 // Maximum je 256 znaků
-                if (content.Length > 256)
+                if (content.Length > 255)
                 {
-                    content = content.Substring(0, 256 - 3) + "...";
+                    content = content.Substring(0, 255 - 3) + "...";
                 }
 
                 ScheduledActionService.Add(new Reminder(name)
