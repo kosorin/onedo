@@ -16,7 +16,8 @@
             "podúlohy (podporujú gesto pre dokončenie na hlavnej stránke a sú tiež zobrazené na dlaždici s úlohou)",
             "možnosť nastaviť vzhľad dlaždíc (veľkosť písma, skryť termín, …)",
             "ďalšie zmeny vzhľadu",
-            "lepšia čitateľnosť niektorých textov pri svetlej téme"
+            "lepšia čitateľnosť niektorých textov pri svetlej téme",
+            "oprava chýb"
         ]
     },
     "3.0.1": {

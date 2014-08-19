@@ -16,7 +16,8 @@
             "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
             "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)",
             "další změny vzhledu",
-            "lepší čitelnost některého textu na světlém motivu"
+            "lepší čitelnost některého textu na světlém motivu",
+            "oprava chyb"
         ]
     },
     "3.0.1": {

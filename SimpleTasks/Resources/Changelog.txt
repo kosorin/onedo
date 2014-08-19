@@ -16,7 +16,8 @@
             "subtasks (gesture support for task completion on main page and are also shown on a tile with task)",
             "ability to set appearance of tiles (font size, hide due date, …)",
             "yet another design changes",
-            "better readability of text on a light theme"
+            "better readability of text on a light theme",
+            "bug fixes"
         ]
     },
     "3.0.1": {
