@@ -38,18 +38,6 @@ namespace SimpleTasks
             get { return Version.ToString(3); }
         }
 
-        private static GoogleAnalytics.Core.Tracker _gaTracker = null;
-        public static GoogleAnalytics.Core.Tracker Tracker
-        {
-            get
-            {
-                if (_gaTracker == null)
-                {
-                    _gaTracker = GoogleAnalytics.EasyTracker.GetTracker();
-                }
-                return _gaTracker;
-            }
-        }
         public static Tuple<string, string, MessageBoxButton> MessageAfterStart = null;
 
         public static readonly string SettingsFileName = "Settings.json";

@@ -24,6 +24,7 @@ using Microsoft.Phone.Tasks;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Views
 {
@@ -112,7 +113,7 @@ namespace SimpleTasks.Views
 
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
-            appBarDeleteCompletedItem.Click += (s, e) => { OverlayAction(App.Tasks.DeleteCompleted); };
+            appBarDeleteCompletedItem.Click += DeleteCompletedItem_Click;
             appBarMenuItems.Add(appBarDeleteCompletedItem);
 
             // Smazat všechny úkoly
@@ -153,11 +154,18 @@ namespace SimpleTasks.Views
         private void AddNewTask_Click(object sender, EventArgs e)
         {
             Navigate("EditTaskPage");
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Add, "add task");
         }
 
         void QuickAddSave(object sender, EventArgs e)
         {
             QuickAdd(QuickAddTextBox.Text);
+        }
+
+        private void DeleteCompletedItem_Click(object sender, EventArgs e)
+        {
+            OverlayAction(App.Tasks.DeleteCompleted);
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Delete, "delete completed");
         }
 
         void DeleteAllItem_Click(object sender, EventArgs e)
@@ -176,6 +184,7 @@ namespace SimpleTasks.Views
                 {
                 case CustomMessageBoxResult.LeftButton:
                     OverlayAction(App.Tasks.DeleteAll);
+                    GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Delete, "delete all");
                     break;
                 case CustomMessageBoxResult.RightButton:
                 case CustomMessageBoxResult.None:
@@ -312,6 +321,7 @@ namespace SimpleTasks.Views
             this.Focus();
 
             ToggleComplete(sender as FrameworkElement);
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "complete task");
         }
 
         private void ToggleComplete(FrameworkElement element)
@@ -389,6 +399,7 @@ namespace SimpleTasks.Views
         {
             FrameworkElement element = (FrameworkElement)sender;
             ToggleSubtaskComplete(element);
+            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "complete subtask");
             TaskModel task = SubtaskElementFindTask(element);
             if (task != null)
             {
@@ -442,6 +453,7 @@ namespace SimpleTasks.Views
                 this.Focus();
 
                 TasksLongListSelector.ScrollTo(task);
+                GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Add, "add quick task");
             }
         }
 
@@ -498,6 +510,7 @@ namespace SimpleTasks.Views
             {
                 VibrateHelper.Short();
                 ToggleComplete(border);
+                GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "complete task using gesture");
             }
         }
 
@@ -545,6 +558,7 @@ namespace SimpleTasks.Views
             {
                 VibrateHelper.Short();
                 ToggleSubtaskComplete(border);
+                GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "complete subtask using gesture");
             }
         }
 

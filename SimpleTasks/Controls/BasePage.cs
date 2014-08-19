@@ -17,6 +17,8 @@ using SimpleTasks.Controls.Transitions;
 using SimpleTasks.Views;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
+using SimpleTasks.Helpers;
+using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Controls
 {
@@ -48,19 +50,7 @@ namespace SimpleTasks.Controls
             SystemTray.ForegroundColor = (Color)App.Current.Resources["SystemTrayForegroundColor"];
             SystemTray.BackgroundColor = (Color)App.Current.Resources["SystemTrayBackgroundColor"];
 
-            try
-            {
-                string view = this.ToString();
-                if (view.StartsWith("SimpleTasks.Views."))
-                {
-                    view = view.Substring("SimpleTasks.Views.".Length);
-                }
-                App.Tracker.SendView(view);
-            }
-            catch (Exception)
-            {
-                // Nic neděláme...
-            }
+            GoogleAnalyticsHelper.SendPage(this);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
