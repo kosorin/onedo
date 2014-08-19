@@ -1,6 +1,7 @@
 ﻿using Microsoft.Phone.Shell;
 using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Models;
+using SimpleTasks.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,6 +24,23 @@ namespace SimpleTasks.Helpers
 
             try
             {
+                // Není povolena nulová délka
+                if (string.IsNullOrWhiteSpace(title))
+                {
+                    title = AppResources.TitleUntitled;
+                }
+                // Maximum je 63 znaků
+                if (title.Length > 63)
+                {
+                    title = title.Substring(0, 63 - 3) + "...";
+                }
+
+                // Maximum je 256 znaků
+                if (content.Length > 256)
+                {
+                    content = content.Substring(0, 256 - 3) + "...";
+                }
+
                 ScheduledActionService.Add(new Reminder(name)
                 {
                     BeginTime = beginTime,
@@ -33,11 +51,15 @@ namespace SimpleTasks.Helpers
             }
             catch (InvalidOperationException e)
             {
-                Debug.WriteLine("Chyba při přidání připomínky: {0}", e.Message);
+                Debug.WriteLine("> Add Reminder (InvalidOperationException): {0}", e.Message);
             }
             catch (SchedulerServiceException e)
             {
-                Debug.WriteLine("Chyba při přidání připomínky: {0}", e.Message);
+                Debug.WriteLine("> Add Reminder (SchedulerServiceException): {0}", e.Message);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("> Add Reminder (Exception): {0}", e.Message);
             }
         }
 
