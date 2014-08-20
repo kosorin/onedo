@@ -9,8 +9,7 @@
                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                    xmlns:controls="clr-namespace:SimpleTasks.Controls"
                    Style="{StaticResource BasePageStyle}"
-                   mc:Ignorable="d"
-                   d:DataContext="{d:DesignData /SampleData/TasksViewModelSampleData.xaml}">
+                   mc:Ignorable="d">
 
     <controls:BasePage.Resources>
         <!--List Header-->
