@@ -55,10 +55,12 @@ namespace SimpleTasks.Views
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            App.Settings.General.Feedback = true; // Aby šla odeslat následující zpráva.
-            GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
-            App.Settings.General.Feedback = false;
+            if (!App.Settings.General.Feedback)
+            {
+                GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
+                GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
+                App.Settings.General.Feedback = false;
+            }
         }
         #endregion
 
