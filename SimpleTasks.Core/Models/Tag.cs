@@ -33,7 +33,7 @@ namespace SimpleTasks.Core.Models
 
         public Func<TaskModel, bool> Predicate { get; set; }
 
-        private ReadOnlyCollection<TaskModel> _tasks;
+        //private ReadOnlyCollection<TaskModel> _tasks;
 
         public Tag()
         { 

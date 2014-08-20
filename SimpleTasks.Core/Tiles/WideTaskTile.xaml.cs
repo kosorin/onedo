@@ -115,8 +115,7 @@ namespace SimpleTasks.Core.Tiles
             }
 
             // Pozadí
-            LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);
-            //LayoutRoot.Background = new SolidColorBrush(task.Color) { Opacity = settings.BackgroundOpacity };
+            LayoutRoot.Background = new SolidColorBrush(task.Color) { Opacity = settings.BackgroundOpacity };
         }
 
         private void ShowSecondColumn()

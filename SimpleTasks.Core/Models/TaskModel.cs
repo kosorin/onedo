@@ -236,20 +236,22 @@ namespace SimpleTasks.Core.Models
         #endregion
 
 
-        //#region Color 50
-        //private Color _color = Colors.Transparent;
-        //[DataMember(Order = 50)]
-        //public Color Color
-        //{
-        //    get { return _color; }
-        //    set { SetProperty(ref _color, value); }
-        //}
+        #region Color 50
+        public static readonly Color DefaultColor = Colors.Transparent;
 
-        //public bool HasColor
-        //{
-        //    get { return Color != Colors.Transparent; }
-        //}
-        //#endregion
+        private Color _color = DefaultColor;
+        [DataMember(Order = 50)]
+        public Color Color
+        {
+            get { return _color; }
+            set { SetProperty(ref _color, value); }
+        }
+
+        public bool HasColor
+        {
+            get { return Color != DefaultColor; }
+        }
+        #endregion
 
 
         #region Created 100
