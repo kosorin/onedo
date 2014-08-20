@@ -470,42 +470,36 @@
                         Value="40" />
                 <Setter Property="Background"
                         Value="{x:Null}" />
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
+                                         Opacity="1" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
                             <Grid Background="{TemplateBinding Background}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
-                                        <VisualState x:Name="Unchecked">
-                                            <Storyboard>
-                                                <DoubleAnimation Duration="0:0:0.25"
-                                                                 To="0"
-                                                                 Storyboard.TargetProperty="Opacity"
-                                                                 Storyboard.TargetName="CheckIcon" />
-                                                <ColorAnimation Duration="0:0:0.25"
-                                                                To="{StaticResource PhoneAccentColor}"
-                                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                Storyboard.TargetName="CompleteButtonRectangle" />
-                                                <DoubleAnimation Duration="0:0:0.25"
-                                                                 To="1"
-                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
-                                                                 Storyboard.TargetName="CompleteButtonRectangle" />
-                                            </Storyboard>
-                                        </VisualState>
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Unchecked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Checked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Unchecked" />
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
-                                                <DoubleAnimation Duration="0:0:0.25"
-                                                                 To="1"
+                                                <DoubleAnimation Storyboard.TargetName="CheckIcon"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 Storyboard.TargetName="CheckIcon" />
-                                                <ColorAnimation Duration="0:0:0.25"
-                                                                To="{StaticResource PhoneForegroundColor}"
+                                                                 To="1" />
+                                                <ColorAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                Storyboard.TargetName="CompleteButtonRectangle" />
-                                                <DoubleAnimation Duration="0:0:0.25"
-                                                                 To="0.45"
+                                                                To="{StaticResource PhoneForegroundColor}" />
+                                                <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
-                                                                 Storyboard.TargetName="CompleteButtonRectangle" />
+                                                                 To="0.45" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Indeterminate" />
@@ -517,15 +511,12 @@
                                         Width="{TemplateBinding Width}"
                                         Height="{TemplateBinding Height}"
                                         BorderThickness="2"
-                                        HorizontalAlignment="Left">
+                                        HorizontalAlignment="Left"
+                                        BorderBrush="{TemplateBinding BorderBrush}">
                                     <Border.Background>
                                         <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
                                                          Opacity="0.27" />
                                     </Border.Background>
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"
-                                                         Opacity="0.6" />
-                                    </Border.BorderBrush>
 
                                     <ContentControl x:Name="CheckIcon"
                                                     Style="{StaticResource CheckIconStyle}"
