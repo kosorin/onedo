@@ -35,51 +35,14 @@ namespace SimpleTasks.Core.Models
 
         public static Settings LoadFromFile(string fileName)
         {
-            Debug.WriteLine(string.Format("> Nahrávám nastavení ze souboru {0}...", fileName));
-
-            Settings settings = new Settings();
-            try
-            {
-                using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-                {
-                    if (isf.FileExists(fileName))
-                    {
-                        using (Stream stream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
-                        {
-                            StreamReader sr = new StreamReader(stream);
-                            settings = JsonConvert.DeserializeObject<Settings>(sr.ReadToEnd());
-                            sr.Close();
-
-                            Debug.WriteLine(settings);
-                            Debug.WriteLine(": Nahrávání nastavení dokončeno.");
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(": Chyba při nahrávání nastavení: {0}", e.Message);
-            }
-
+            Settings settings = FileHelper.LoadFromJson<Settings>(fileName);
+            Debug.WriteLine(settings);
             return settings;
         }
 
         public static void SaveToFile(string fileName, Settings settings)
         {
-            Debug.WriteLine(string.Format("> Ukládám nastavení do souboru {0}...", fileName));
-
-            string data = JsonConvert.SerializeObject(settings, Formatting.Indented);
-            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (Stream stream = isf.OpenFile(fileName, FileMode.Create, FileAccess.Write))
-                {
-                    StreamWriter sw = new StreamWriter(stream);
-                    sw.Write(data);
-                    sw.Flush();
-                    sw.Close();
-                    Debug.WriteLine(": Ukládání nastavení dokončeno.");
-                }
-            }
+            FileHelper.SaveToJson(fileName, settings);
         }
 
         public override string ToString()

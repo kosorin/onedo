@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SimpleTasks.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,49 +20,12 @@ namespace SimpleTasks.Core.Models
 
         public static TaskCollection LoadFromFile(string fileName)
         {
-            Debug.WriteLine(string.Format("> Nahrávám data ze souboru {0}...", fileName));
-
-            TaskCollection tasks = new TaskCollection();
-            try
-            {
-                using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-                {
-                    if (isf.FileExists(fileName))
-                    {
-                        using (Stream stream = isf.OpenFile(fileName, FileMode.Open, FileAccess.Read))
-                        {
-                            StreamReader sr = new StreamReader(stream);
-                            tasks = JsonConvert.DeserializeObject<TaskCollection>(sr.ReadToEnd());
-                            sr.Close();
-                            Debug.WriteLine(": Nahrávání dat dokončeno.");
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(": Chyba při nahrávání dat: {0}", e.Message);
-            }
-
-            return tasks;
+            return FileHelper.LoadFromJson<TaskCollection>(fileName);
         }
 
         public static void SaveToFile(string fileName, TaskCollection tasks)
         {
-            Debug.WriteLine(string.Format("> Ukládám data do souboru {0}...", fileName));
-
-            string data = JsonConvert.SerializeObject(tasks, Formatting.Indented);
-            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (Stream stream = isf.OpenFile(fileName, FileMode.Create, FileAccess.Write))
-                {
-                    StreamWriter sw = new StreamWriter(stream);
-                    sw.Write(data);
-                    sw.Flush();
-                    sw.Close();
-                    Debug.WriteLine(": Ukládání dat dokončeno.");
-                }
-            }
+            FileHelper.SaveToJson(fileName, tasks);
         }
     }
 }

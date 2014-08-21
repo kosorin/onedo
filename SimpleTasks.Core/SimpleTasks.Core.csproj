@@ -94,6 +94,7 @@
     <Compile Include="Helpers\AppInfo.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\LiveTile.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\Settings.cs" />
