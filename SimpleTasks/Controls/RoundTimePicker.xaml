@@ -1,79 +1,118 @@
-﻿<UserControl
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:SimpleTasks.Controls"
-    xmlns:converters="clr-namespace:SimpleTasks.Conventers"
-    xmlns:sample="clr-namespace:Expression.Blend.SampleData.RoundTimePickerDataSource" 
-    x:Class="SimpleTasks.Controls.RoundTimePicker"
-    mc:Ignorable="d"
-    d:DesignHeight="460" d:DesignWidth="460" 
-    d:DataContext="{d:DesignData /SampleData/RoundTimePickerDataSource/RoundTimePickerDataSource.xaml}">
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:SimpleTasks.Controls"
+             xmlns:converters="clr-namespace:SimpleTasks.Conventers"
+             xmlns:sample="clr-namespace:Expression.Blend.SampleData.RoundTimePickerDataSource"
+             x:Class="SimpleTasks.Controls.RoundTimePicker"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}"
+             d:DesignHeight="460"
+             d:DesignWidth="460"
+             d:DataContext="{d:DesignData /SampleData/RoundTimePickerDataSource/RoundTimePickerDataSource.xaml}">
 
     <UserControl.Resources>
-        <sample:RoundTimePickerDataSource x:Key="RoundTimePickerDataSource" d:IsDataSource="True"/>
+        <sample:RoundTimePickerDataSource x:Key="RoundTimePickerDataSource"
+                                          d:IsDataSource="True" />
 
-        <SolidColorBrush x:Key="HoursAmBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.3"/>
-        <SolidColorBrush x:Key="HoursAmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.71"/>
-        <SolidColorBrush x:Key="HoursPmBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.8"/>
-        <SolidColorBrush x:Key="HoursPmForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="1.0"/>
-        <SolidColorBrush x:Key="MinutesBackgroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.2"/>
-        <SolidColorBrush x:Key="MinutesForegroundBrush" Color="{StaticResource PhoneAccentColor}" Opacity="0.5"/>
+        <controls:AngleConverter x:Key="AngleConverter" />
 
-        <Storyboard x:Name="HoursAngleAnimation" Completed="HoursAngleAnimation_Completed">
+        <SolidColorBrush x:Key="HoursAmBackgroundBrush"
+                         Color="{StaticResource PhoneForegroundColor}"
+                         Opacity="0.15" />
+        <SolidColorBrush x:Key="HoursAmForegroundBrush"
+                         Color="{StaticResource PhoneAccentColor}"
+                         Opacity="0.72" />
+        <SolidColorBrush x:Key="HoursPmBackgroundBrush"
+                         Color="{StaticResource PhoneAccentColor}"
+                         Opacity="0.72" />
+        <SolidColorBrush x:Key="HoursPmForegroundBrush"
+                         Color="{StaticResource PhoneAccentColor}"
+                         Opacity="1.00" />
+
+        <SolidColorBrush x:Key="MinutesBackgroundBrush"
+                         Color="{StaticResource PhoneForegroundColor}"
+                         Opacity="0.09" />
+        <SolidColorBrush x:Key="MinutesForegroundBrush"
+                         Color="{StaticResource PhoneAccentColor}"
+                         Opacity="0.50" />
+
+        <Storyboard x:Name="HoursAngleAnimation"
+                    Completed="HoursAngleAnimation_Completed">
             <DoubleAnimation Storyboard.TargetName="AngleHoursGrabberCompositeTransform"
-        		Storyboard.TargetProperty="Rotation"
-        		From="{Binding HoursAngleAnimateFrom}"
-        		To="{Binding HoursAngleAnimateTo}"
-        		Duration="{Binding CurrentHoursAnimationDuration}">
+                             Storyboard.TargetProperty="Rotation"
+                             From="{Binding HoursAngleAnimateFrom}"
+                             To="{Binding HoursAngleAnimateTo}"
+                             Duration="{Binding CurrentHoursAnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleHoursCompositeTransform"
-        		Storyboard.TargetProperty="Rotation"
-        		From="{Binding HoursAngleAnimateFrom}"
-        		To="{Binding HoursAngleAnimateTo}"
-        		Duration="{Binding CurrentHoursAnimationDuration}">
+                             Storyboard.TargetProperty="Rotation"
+                             From="{Binding HoursAngleAnimateFrom}"
+                             To="{Binding HoursAngleAnimateTo}"
+                             Duration="{Binding CurrentHoursAnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="AngleHoursRingSlice"
-        		Storyboard.TargetProperty="EndAngle"
-        		From="{Binding HoursAngleAnimateFrom}"
-        		To="{Binding HoursAngleAnimateTo}"
-        		Duration="{Binding CurrentHoursAnimationDuration}">
+            <DoubleAnimation Storyboard.TargetName="AngleHoursForegroundRingSlice"
+                             Storyboard.TargetProperty="EndAngle"
+                             From="{Binding HoursAngleAnimateFrom}"
+                             To="{Binding HoursAngleAnimateTo}"
+                             Duration="{Binding CurrentHoursAnimationDuration}">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="AngleHoursBackgroundRingSlice"
+                             Storyboard.TargetProperty="StartAngle"
+                             From="{Binding HoursAngleAnimateFrom}"
+                             To="{Binding HoursAngleAnimateTo}"
+                             Duration="{Binding CurrentHoursAnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-        <Storyboard x:Name="MinutesAngleAnimation" Completed="MinutesAngleAnimation_Completed">
+        <Storyboard x:Name="MinutesAngleAnimation"
+                    Completed="MinutesAngleAnimation_Completed">
             <DoubleAnimation Storyboard.TargetName="AngleMinutesGrabberCompositeTransform"
-        		Storyboard.TargetProperty="Rotation"
-        		From="{Binding MinutesAngleAnimateFrom}"
-        		To="{Binding MinutesAngleAnimateTo}"
-        		Duration="{Binding CurrentMinutesAnimationDuration}">
+                             Storyboard.TargetProperty="Rotation"
+                             From="{Binding MinutesAngleAnimateFrom}"
+                             To="{Binding MinutesAngleAnimateTo}"
+                             Duration="{Binding CurrentMinutesAnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="AngleMinutesCompositeTransform"
-        		Storyboard.TargetProperty="Rotation"
-        		From="{Binding MinutesAngleAnimateFrom}"
-        		To="{Binding MinutesAngleAnimateTo}"
-        		Duration="{Binding CurrentMinutesAnimationDuration}">
+                             Storyboard.TargetProperty="Rotation"
+                             From="{Binding MinutesAngleAnimateFrom}"
+                             To="{Binding MinutesAngleAnimateTo}"
+                             Duration="{Binding CurrentMinutesAnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="AngleMinutesRingSlice"
-        		Storyboard.TargetProperty="EndAngle"
-        		From="{Binding MinutesAngleAnimateFrom}"
-        		To="{Binding MinutesAngleAnimateTo}"
-        		Duration="{Binding CurrentMinutesAnimationDuration}">
+            <DoubleAnimation Storyboard.TargetName="AngleMinutesForegroundRingSlice"
+                             Storyboard.TargetProperty="EndAngle"
+                             From="{Binding MinutesAngleAnimateFrom}"
+                             To="{Binding MinutesAngleAnimateTo}"
+                             Duration="{Binding CurrentMinutesAnimationDuration}">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="AngleMinutesBackgroundRingSlice"
+                             Storyboard.TargetProperty="StartAngle"
+                             From="{Binding MinutesAngleAnimateFrom}"
+                             To="{Binding MinutesAngleAnimateTo}"
+                             Duration="{Binding CurrentMinutesAnimationDuration}">
                 <DoubleAnimation.EasingFunction>
                     <SineEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
@@ -81,47 +120,86 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <UserControl.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-    </UserControl.FontFamily>
-    <UserControl.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
-    </UserControl.FontSize>
-    <UserControl.Foreground>
-        <StaticResource ResourceKey="PhoneForegroundBrush"/>
-    </UserControl.Foreground>
-
-    <Grid Width="460" Height="460">
+    <Grid Width="460"
+          Height="460">
 
         <!--kolečka-->
         <Grid>
             <!-- ring -->
-            <controls:RingSlice IsHitTestVisible="False" InnerRadius="130" Radius="180" Fill="{StaticResource MinutesBackgroundBrush}" StartAngle="0" EndAngle="359.99"/>
-            <controls:RingSlice x:Name="AngleMinutesRingSlice" InnerRadius="130" Radius="180" Fill="{StaticResource MinutesForegroundBrush}" StartAngle="0" EndAngle="{Binding MinutesAngle}"/>
+            <controls:RingSlice x:Name="AngleMinutesBackgroundRingSlice"
+                                IsHitTestVisible="False"
+                                InnerRadius="130"
+                                Radius="180"
+                                Fill="{StaticResource MinutesBackgroundBrush}"
+                                StartAngle="{Binding MinutesAngle}"
+                                EndAngle="359.99" />
+            <controls:RingSlice x:Name="AngleMinutesForegroundRingSlice"
+                                InnerRadius="130"
+                                Radius="180"
+                                Fill="{StaticResource MinutesForegroundBrush}"
+                                StartAngle="0"
+                                EndAngle="{Binding MinutesAngle}" />
 
-            <controls:RingSlice IsHitTestVisible="False" InnerRadius="80" Radius="132" Fill="{Binding CurrentHoursBackgroundBrush}" StartAngle="0" EndAngle="359.99"/>
-            <controls:RingSlice x:Name="AngleHoursRingSlice" InnerRadius="80" Radius="132" Fill="{Binding CurrentHoursForegroundBrush}" StartAngle="0" EndAngle="{Binding HoursAngle}"/>
+            <controls:RingSlice x:Name="AngleHoursBackgroundRingSlice"
+                                IsHitTestVisible="False"
+                                InnerRadius="80"
+                                Radius="131.5"
+                                Fill="{Binding CurrentHoursBackgroundBrush, FallbackValue=Green}"
+                                StartAngle="{Binding HoursAngle}"
+                                EndAngle="359.99" />
+            <controls:RingSlice x:Name="AngleHoursForegroundRingSlice"
+                                InnerRadius="80"
+                                Radius="131.5"
+                                Fill="{Binding CurrentHoursForegroundBrush, FallbackValue=Yellow}"
+                                StartAngle="0"
+                                EndAngle="{Binding HoursAngle}" />
 
             <!-- grabber minutes -->
             <Grid RenderTransformOrigin="0.5,0.5">
                 <Grid.RenderTransform>
-                    <CompositeTransform x:Name="AngleMinutesGrabberCompositeTransform" Rotation="{Binding MinutesAngle}"/>
+                    <CompositeTransform x:Name="AngleMinutesGrabberCompositeTransform"
+                                        Rotation="{Binding MinutesAngle}" />
                 </Grid.RenderTransform>
-                <Canvas Width="50" Height="55" Margin="0,-403,0,0">
+                <Canvas Width="50"
+                        Height="55"
+                        Margin="0,-403,0,0">
                     <Canvas.CacheMode>
-                        <BitmapCache RenderAtScale="1"/>
+                        <BitmapCache RenderAtScale="1" />
                     </Canvas.CacheMode>
-                    <Ellipse x:Name="GrabberMinutes" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource NormalBrush}" StrokeThickness="4" Fill="{StaticResource BackgroundBrush}"/>
-                    <Path Width="14.25" Height="8" Canvas.Left="17.9312" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource NormalBrush}" Fill="{StaticResource NormalBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
+                    <Ellipse x:Name="GrabberMinutes"
+                             Width="50"
+                             Height="50"
+                             Canvas.Left="0"
+                             Canvas.Top="0"
+                             Stretch="Fill"
+                             StrokeLineJoin="Round"
+                             Stroke="{StaticResource NormalBrush}"
+                             StrokeThickness="4"
+                             Fill="{StaticResource BackgroundBrush}" />
+                    <Path Width="14.25"
+                          Height="8"
+                          Canvas.Left="17.9312"
+                          Canvas.Top="47.0"
+                          Stretch="Fill"
+                          StrokeLineJoin="Miter"
+                          Stroke="{StaticResource NormalBrush}"
+                          Fill="{StaticResource NormalBrush}"
+                          Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z " />
                 </Canvas>
             </Grid>
 
             <!-- touch grid minutes -->
-            <Grid Background="Transparent" ManipulationStarted="OnManipulationStartedMinutes" ManipulationDelta="OnManipulationDeltaMinutes" ManipulationCompleted="OnManipulationCompletedMinutes">
+            <Grid Background="Transparent"
+                  ManipulationStarted="OnManipulationStartedMinutes"
+                  ManipulationDelta="OnManipulationDeltaMinutes"
+                  ManipulationCompleted="OnManipulationCompletedMinutes">
                 <Grid.Clip>
                     <RectangleGeometry Rect="190,0,80,80">
                         <RectangleGeometry.Transform>
-                            <CompositeTransform x:Name="AngleMinutesCompositeTransform" Rotation="{Binding MinutesAngle}" CenterX="230" CenterY="230" />
+                            <CompositeTransform x:Name="AngleMinutesCompositeTransform"
+                                                Rotation="{Binding MinutesAngle}"
+                                                CenterX="230"
+                                                CenterY="230" />
                         </RectangleGeometry.Transform>
                     </RectangleGeometry>
                 </Grid.Clip>
@@ -130,23 +208,49 @@
             <!-- grabber hours -->
             <Grid RenderTransformOrigin="0.5,0.5">
                 <Grid.RenderTransform>
-                    <CompositeTransform x:Name="AngleHoursGrabberCompositeTransform" Rotation="{Binding HoursAngle}"/>
+                    <CompositeTransform x:Name="AngleHoursGrabberCompositeTransform"
+                                        Rotation="{Binding HoursAngle}" />
                 </Grid.RenderTransform>
-                <Canvas Width="50" Height="55" Margin="0,-308,0,0">
+                <Canvas Width="50"
+                        Height="55"
+                        Margin="0,-308,0,0">
                     <Canvas.CacheMode>
-                        <BitmapCache RenderAtScale="1"/>
+                        <BitmapCache RenderAtScale="1" />
                     </Canvas.CacheMode>
-                    <Ellipse x:Name="GrabberHours" Width="50" Height="50" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="{StaticResource NormalBrush}" StrokeThickness="4" Fill="{StaticResource BackgroundBrush}"/>
-                    <Path Width="14.25" Height="8" Canvas.Left="17.9312" Canvas.Top="47.0" Stretch="Fill" StrokeLineJoin="Miter" Stroke="{StaticResource NormalBrush}" Fill="{StaticResource NormalBrush}" Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z "/>
+                    <Ellipse x:Name="GrabberHours"
+                             Width="50"
+                             Height="50"
+                             Canvas.Left="0"
+                             Canvas.Top="0"
+                             Stretch="Fill"
+                             StrokeLineJoin="Round"
+                             Stroke="{StaticResource NormalBrush}"
+                             StrokeThickness="4"
+                             Fill="{StaticResource BackgroundBrush}" />
+                    <Path Width="14.25"
+                          Height="8"
+                          Canvas.Left="17.9312"
+                          Canvas.Top="47.0"
+                          Stretch="Fill"
+                          StrokeLineJoin="Miter"
+                          Stroke="{StaticResource NormalBrush}"
+                          Fill="{StaticResource NormalBrush}"
+                          Data="F1 M 33.0313,48.0417L 18.2,48.0417L 25.5,55.6354L 33.0313,48.0417 Z " />
                 </Canvas>
             </Grid>
 
             <!-- touch grid hours -->
-            <Grid Background="Transparent" ManipulationStarted="OnManipulationStartedHours" ManipulationDelta="OnManipulationDeltaHours" ManipulationCompleted="OnManipulationCompletedHours">
+            <Grid Background="Transparent"
+                  ManipulationStarted="OnManipulationStartedHours"
+                  ManipulationDelta="OnManipulationDeltaHours"
+                  ManipulationCompleted="OnManipulationCompletedHours">
                 <Grid.Clip>
                     <RectangleGeometry Rect="190,50,80,80">
                         <RectangleGeometry.Transform>
-                            <CompositeTransform x:Name="AngleHoursCompositeTransform" Rotation="{Binding HoursAngle}" CenterX="230" CenterY="230" />
+                            <CompositeTransform x:Name="AngleHoursCompositeTransform"
+                                                Rotation="{Binding HoursAngle}"
+                                                CenterX="230"
+                                                CenterY="230" />
                         </RectangleGeometry.Transform>
                     </RectangleGeometry>
                 </Grid.Clip>
@@ -156,20 +260,33 @@
 
         <!--<StackPanel IsHitTestVisible="False">
             <TextBlock Text="{Binding Time}" />
+            <TextBlock Text="{Binding HoursAngle}" />
             <TextBlock Text="{Binding Hours}" />
             <TextBlock Text="{Binding Hours12}" />
+            <TextBlock Text="{Binding MinutesAngle}" />
             <TextBlock Text="{Binding Minutes}" />
             <TextBlock Text="{Binding IsAm}" />
+            <TextBlock Text="{Binding IsAmUI}" />
+            <TextBlock>
+                Minuty Background<LineBreak />
+                  Start: <Run Text="{Binding ElementName=AngleMinutesBackgroundRingSlice, Path=StartAngle}" /><LineBreak />
+                  End: <Run Text="{Binding ElementName=AngleMinutesBackgroundRingSlice, Path=EndAngle}" /><LineBreak />
+                Minuty Foreground<LineBreak />
+                  Start: <Run Text="{Binding ElementName=AngleMinutesForegroundRingSlice, Path=StartAngle}" /><LineBreak />
+                  End: <Run Text="{Binding ElementName=AngleMinutesForegroundRingSlice, Path=EndAngle}" /><LineBreak />
+            </TextBlock>
         </StackPanel>-->
 
         <!--čas-->
         <TextBlock Style="{StaticResource NormalTextStyle}"
                    Foreground="{StaticResource TimeForegroundSubtleBrush}"
-                   FontSize="42.667" 
+                   FontSize="42.667"
                    Margin="0,15,0,15"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
-			<Run Text="{Binding HoursText}" Foreground="{StaticResource TimeForegroundBrush}"/>:<Run Text="{Binding Minutes, StringFormat=D2}" Foreground="{StaticResource TimeForegroundBrush}"/><Run Text="{Binding AmPmText}" />
+			<Run Text="{Binding HoursText}"
+                 Foreground="{StaticResource TimeForegroundBrush}" />:<Run Text="{Binding Minutes, StringFormat=D2}"
+                                                                           Foreground="{StaticResource TimeForegroundBrush}" /><Run Text="{Binding AmPmText}" />
         </TextBlock>
     </Grid>
 </UserControl>

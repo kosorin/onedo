@@ -33,8 +33,8 @@ namespace SimpleTasks.Controls
         /// </value>
         public double StartAngle
         {
-            get { return (double)GetValue(StartAngleProperty); }
-            set { SetValue(StartAngleProperty, value); }
+            get { return (double)GetValue(StartAngleProperty) % 360; }
+            set { SetValue(StartAngleProperty, value % 360); }
         }
 
         private static void OnStartAngleChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
