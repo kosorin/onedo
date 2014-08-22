@@ -55,8 +55,10 @@ namespace SimpleTasks.Views
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (!App.Settings.General.Feedback)
+            if (App.Settings.General.Feedback)
             {
+                // Pokud už byl feedback nastavený na false a check box se změní na unchecked,
+                // tak se znovu neposílá info o změně.
                 GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
                 GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
                 App.Settings.General.Feedback = false;
