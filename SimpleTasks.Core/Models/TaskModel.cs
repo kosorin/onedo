@@ -214,17 +214,6 @@ namespace SimpleTasks.Core.Models
         #endregion
 
 
-        //#region Tags 30
-        //private List<string> _tags = new List<string>();
-        //[DataMember(Name = "Tags", Order = 30)]
-        //public List<string> Tags
-        //{
-        //    get { return _tags; }
-        //    set { SetProperty(ref _tags, value); }
-        //}
-        //#endregion
-
-
         #region TileSettings 40
         private TaskTileSettings _tileSettings = null;
         [DataMember(Order = 40)]
