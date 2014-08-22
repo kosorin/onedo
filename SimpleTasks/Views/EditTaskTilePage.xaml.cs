@@ -88,7 +88,7 @@ namespace SimpleTasks.Views
 
         private void ResetLineHeight_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            LineHeightSlider.SetSliderValue((int)TaskTileSettings.Default.LineHeight);
+            LineHeightSlider.SetSliderValue((int)Settings.Current.Tiles.DefaultTaskTileSettings.LineHeight);
         }
 
         private void ChangeTileSize()

@@ -1,6 +1,7 @@
 ﻿using GoogleAnalytics;
 using GoogleAnalytics.Core;
 using SimpleTasks.Controls;
+using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,7 +35,7 @@ namespace SimpleTasks.Helpers.Analytics
 
         public static void SendPage(BasePage page)
         {
-            if (!App.Settings.General.Feedback)
+            if (!Settings.Current.General.Feedback)
                 return;
 
             try
@@ -57,7 +58,7 @@ namespace SimpleTasks.Helpers.Analytics
 
         public static void SendEvent(EventCategory category, EventAction action, string label = "<Label>", long value = 0)
         {
-            if (!App.Settings.General.Feedback)
+            if (!Settings.Current.General.Feedback)
                 return;
 
             try
@@ -75,7 +76,7 @@ namespace SimpleTasks.Helpers.Analytics
 
         public static void SetDimension(CustomDimension type, string value)
         {
-            if (!App.Settings.General.Feedback)
+            if (!Settings.Current.General.Feedback)
                 return;
 
             try

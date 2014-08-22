@@ -58,7 +58,7 @@ namespace SimpleTasks.Controls
 
             if (!e.IsNavigationInitiator)
             {
-                LiveTile.UpdateOrReset(App.Settings.Tiles.Enable, App.Tasks.Tasks);
+                LiveTile.UpdateOrReset(Settings.Current.Tiles.Enable, App.Tasks.Tasks);
                 foreach (TaskModel task in App.Tasks.Tasks)
                 {
                     if (task.ModifiedSinceStart)

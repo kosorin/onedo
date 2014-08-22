@@ -17,6 +17,13 @@ namespace SimpleTasks.Core.Models
     public class Settings : BindableBase
     {
         #region Settings
+        private static Settings _current = null;
+        public static Settings Current
+        {
+            get { return _current ?? (_current = new Settings()); }
+            set { _current = value; }
+        }
+
         public Settings()
         {
             Tasks = new TasksSettings(this);

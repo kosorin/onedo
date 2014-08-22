@@ -224,8 +224,8 @@ namespace SimpleTasks.Views
             }
 
             // Výchozí hodnoty
-            DateTime? defaultDate = App.Settings.Tasks.DefaultDate;
-            DateTime defaultTime = App.Settings.Tasks.DefaultTime;
+            DateTime? defaultDate = Settings.Current.Tasks.DefaultDate;
+            DateTime defaultTime = Settings.Current.Tasks.DefaultTime;
 
             // Datum & čas
             IsSetDueDate = Task.HasDueDate;
@@ -288,14 +288,14 @@ namespace SimpleTasks.Views
         {
             Task.Completed = DateTime.Now;
 
-            if (App.Settings.Tasks.CompleteSubtasks)
+            if (Settings.Current.Tasks.CompleteSubtasks)
             {
                 foreach (Subtask subtask in Task.Subtasks)
                 {
                     subtask.IsCompleted = true;
                 }
             }
-            if (App.Settings.Tiles.UnpinCompleted)
+            if (Settings.Current.Tiles.UnpinCompleted)
             {
                 Unpin();
             }

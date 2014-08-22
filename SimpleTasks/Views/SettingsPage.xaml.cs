@@ -16,6 +16,8 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Helpers.Analytics;
+using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace SimpleTasks.Views
 {
@@ -24,7 +26,7 @@ namespace SimpleTasks.Views
         public SettingsPage()
         {
             InitializeComponent();
-            DataContext = App.Settings;
+            DataContext = Settings.Current;
             PinTileTextBox.Text = PinTileHelpText;
         }
 
@@ -34,7 +36,7 @@ namespace SimpleTasks.Views
 
             if (IsSetNavigationParameter("TimePicker"))
             {
-                App.Settings.Tasks.DefaultTime = NavigationParameter<DateTime>("TimePicker");
+                Settings.Current.Tasks.DefaultTime = NavigationParameter<DateTime>("TimePicker");
             }
         }
 
@@ -42,26 +44,26 @@ namespace SimpleTasks.Views
 
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Navigate(typeof(TimePickerPage), App.Settings.Tasks.DefaultTime, "TimePicker");
+            Navigate(typeof(TimePickerPage), Settings.Current.Tasks.DefaultTime, "TimePicker");
         }
 
         #region Feedback
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            App.Settings.General.Feedback = true;
+            Settings.Current.General.Feedback = true;
             GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "True");
             GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (App.Settings.General.Feedback)
+            if (Settings.Current.General.Feedback)
             {
                 // Pokud už byl feedback nastavený na false a check box se změní na unchecked,
                 // tak se znovu neposílá info o změně.
                 GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
                 GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
-                App.Settings.General.Feedback = false;
+                Settings.Current.General.Feedback = false;
             }
         }
         #endregion

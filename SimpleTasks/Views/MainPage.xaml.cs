@@ -343,14 +343,14 @@ namespace SimpleTasks.Views
                 // DOKONČENÍ
                 task.Completed = DateTime.Now;
                 task.ModifiedSinceStart = true;
-                if (App.Settings.Tasks.CompleteSubtasks && task.HasSubtasks)
+                if (Settings.Current.Tasks.CompleteSubtasks && task.HasSubtasks)
                 {
                     foreach (Subtask subtask in task.Subtasks)
                     {
                         subtask.IsCompleted = true;
                     }
                 }
-                if (App.Settings.Tiles.UnpinCompleted)
+                if (Settings.Current.Tiles.UnpinCompleted)
                 {
                     LiveTile.Unpin(task);
                 }
@@ -448,11 +448,11 @@ namespace SimpleTasks.Views
                 TaskModel task = new TaskModel()
                 {
                     Title = title,
-                    DueDate = App.Settings.Tasks.DefaultDate
+                    DueDate = Settings.Current.Tasks.DefaultDate
                 };
                 if (task.DueDate != null)
                 {
-                    DateTime defaultTime = App.Settings.Tasks.DefaultTime;
+                    DateTime defaultTime = Settings.Current.Tasks.DefaultTime;
                     task.DueDate = task.DueDate.Value.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
                 }
 

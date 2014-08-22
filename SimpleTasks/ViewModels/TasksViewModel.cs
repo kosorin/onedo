@@ -25,9 +25,9 @@ namespace SimpleTasks.ViewModels
         public void Load()
         {
             Tasks = TaskCollection.LoadFromFile(App.TasksFileName);
-            if (App.Settings.Tasks.DeleteCompleted > 0)
+            if (Settings.Current.Tasks.DeleteCompleted > 0)
             {
-                DeleteCompleted(App.Settings.Tasks.DeleteCompletedBefore);
+                DeleteCompleted(Settings.Current.Tasks.DeleteCompletedBefore);
             }
 
 #if DEBUG
@@ -42,7 +42,7 @@ namespace SimpleTasks.ViewModels
 
         public void Save()
         {
-            if (App.Settings.Tasks.DeleteCompleted == 0)
+            if (Settings.Current.Tasks.DeleteCompleted == 0)
             {
                 DeleteCompleted();
             }

@@ -44,7 +44,6 @@ namespace SimpleTasks
         public static Tuple<string, string, MessageBoxButton> MessageAfterStart = null;
 
         public static readonly string SettingsFileName = "Settings.json";
-        public static Settings Settings { get; private set; }
 
         public static readonly string TasksFileName = "Tasks.json";
         public static TasksViewModel Tasks { get; private set; }
@@ -54,7 +53,6 @@ namespace SimpleTasks
         {
             Debug.WriteLine("===== Application Constructor =====");
 
-            Settings = new Settings();
             Tasks = new TasksViewModel();
         }
 
@@ -64,18 +62,18 @@ namespace SimpleTasks
             Debug.WriteLine("> OS VERSION {0}", Environment.OSVersion.Version);
             Debug.WriteLine("> APP VERSION {0}", Version);
 
-            Settings = Settings.LoadFromFile(SettingsFileName);
+            Settings.Current = Settings.LoadFromFile(SettingsFileName);
 
-            if (Settings.Version == null)
+            if (Settings.Current.Version == null)
             {
                 Debug.WriteLine("==== INSTALACE ====");
-                Settings.Version = VersionString;
+                Settings.Current.Version = VersionString;
                 Debug.WriteLine("==== ===== Installed ===== ====");
             }
-            else if (Settings.Version != VersionString)
+            else if (Settings.Current.Version != VersionString)
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
-                Settings.Version = VersionString;
+                Settings.Current.Version = VersionString;
 
                 SimpleTasks.Models.ChangelogCategory changelog = App.LoadWhatsNew();
                 if (changelog != null)
@@ -101,7 +99,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
-                Settings = Settings.LoadFromFile(SettingsFileName);
+                Settings.Current = Settings.LoadFromFile(SettingsFileName);
                 Tasks.Load();
 
                 RootFrame.UriMapper = new MyUriMapper();
@@ -112,7 +110,7 @@ namespace SimpleTasks
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
-            Settings.SaveToFile(SettingsFileName, Settings);
+            Settings.SaveToFile(SettingsFileName, Settings.Current);
             Tasks.Save();
             Debug.WriteLine("===== ===== DEACTIVATED ===== =====");
         }
@@ -120,7 +118,7 @@ namespace SimpleTasks
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
-            Settings.SaveToFile(SettingsFileName, Settings);
+            Settings.SaveToFile(SettingsFileName, Settings.Current);
             Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }

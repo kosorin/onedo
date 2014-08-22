@@ -1,4 +1,5 @@
 ﻿using Microsoft.Devices;
+using SimpleTasks.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace SimpleTasks.Helpers
 
         public static void Start(double seconds)
         {
-            if (App.Settings.General.Vibrate)
+            if (Settings.Current.General.Vibrate)
             {
                 VibrateController.Default.Start(TimeSpan.FromSeconds(seconds));
             }
