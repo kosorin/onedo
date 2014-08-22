@@ -130,72 +130,66 @@
                                               HorizontalAlignment="Left" />
 
                                 <!--Text-->
-                                <Button Grid.Column="1">
-                                    <Button.Template>
-                                        <ControlTemplate />
-                                    </Button.Template>
-
-                                    <TextBox x:Name="SubtaskTextBox"
-                                             InputScope="Text"
-                                             Text="{Binding Text, Mode=TwoWay}"
-                                             toolkit:TiltEffect.IsTiltEnabled="False"
-                                             GotFocus="SubtaskTextBox_GotFocus"
-                                             LostFocus="SubtaskTextBox_LostFocus"
-                                             KeyDown="SubtaskTextBox_KeyDown"
-                                             Loaded="SubtaskTextBox_Loaded">
-                                        <TextBox.CaretBrush>
-                                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
-                                        </TextBox.CaretBrush>
-                                        <TextBox.Template>
-                                            <ControlTemplate TargetType="TextBox">
-                                                <Grid Height="50"
-                                                      Margin="0,0,5,0">
-                                                    <Grid.Background>
-                                                        <SolidColorBrush x:Name="Background"
-                                                                         Color="Transparent"
-                                                                         Opacity="0.32" />
-                                                    </Grid.Background>
-                                                    <VisualStateManager.VisualStateGroups>
-                                                        <VisualStateGroup x:Name="FocusStates">
-                                                            <VisualState x:Name="Focused">
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Color"
-                                                                                    Storyboard.TargetName="Background"
-                                                                                    To="{StaticResource SubtleColor}"
-                                                                                    Duration="0:0:0.18">
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="Unfocused">
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Color"
-                                                                                    Storyboard.TargetName="Background"
-                                                                                    To="Transparent"
-                                                                                    Duration="0:0:0.18">
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
-                                                    <Border BorderThickness="0"
-                                                            Background="Transparent"
-                                                            VerticalAlignment="Center"
-                                                            Padding="5,0,0,0"
-                                                            Margin="0">
-                                                        <ContentControl x:Name="ContentElement"
-                                                                        BorderThickness="0"
-                                                                        Foreground="{StaticResource NormalBrush}"
-                                                                        FontFamily="{StaticResource DefaultFontFamily}"
-                                                                        FontWeight="{StaticResource DefaultFontWeight}"
-                                                                        FontSize="24"
-                                                                        HorizontalContentAlignment="Stretch"
-                                                                        VerticalContentAlignment="Stretch" />
-                                                    </Border>
-                                                </Grid>
-                                            </ControlTemplate>
-                                        </TextBox.Template>
-                                    </TextBox>
-                                </Button>
+                                <TextBox x:Name="SubtaskTextBox"
+                                         Grid.Column="1"
+                                         InputScope="Text"
+                                         Text="{Binding Text, Mode=TwoWay}"
+                                         GotFocus="SubtaskTextBox_GotFocus"
+                                         LostFocus="SubtaskTextBox_LostFocus"
+                                         KeyDown="SubtaskTextBox_KeyDown"
+                                         Loaded="SubtaskTextBox_Loaded">
+                                    <TextBox.CaretBrush>
+                                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
+                                    </TextBox.CaretBrush>
+                                    <TextBox.Template>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Grid Height="50"
+                                                  Margin="0,0,5,0">
+                                                <Grid.Background>
+                                                    <SolidColorBrush x:Name="Background"
+                                                                     Color="Transparent"
+                                                                     Opacity="0.32" />
+                                                </Grid.Background>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="FocusStates">
+                                                        <VisualState x:Name="Focused">
+                                                            <Storyboard>
+                                                                <ColorAnimation Storyboard.TargetProperty="Color"
+                                                                                Storyboard.TargetName="Background"
+                                                                                To="{StaticResource SubtleColor}"
+                                                                                Duration="0:0:0.18">
+                                                                </ColorAnimation>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unfocused">
+                                                            <Storyboard>
+                                                                <ColorAnimation Storyboard.TargetProperty="Color"
+                                                                                Storyboard.TargetName="Background"
+                                                                                To="Transparent"
+                                                                                Duration="0:0:0.18">
+                                                                </ColorAnimation>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Border BorderThickness="0"
+                                                        Background="Transparent"
+                                                        VerticalAlignment="Center"
+                                                        Padding="5,0,0,0"
+                                                        Margin="0">
+                                                    <ContentControl x:Name="ContentElement"
+                                                                    BorderThickness="0"
+                                                                    Foreground="{StaticResource NormalBrush}"
+                                                                    FontFamily="{StaticResource DefaultFontFamily}"
+                                                                    FontWeight="{StaticResource DefaultFontWeight}"
+                                                                    FontSize="24"
+                                                                    HorizontalContentAlignment="Stretch"
+                                                                    VerticalContentAlignment="Stretch" />
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
                             </Grid>
 
                             <!--Smazání-->
