@@ -47,11 +47,19 @@ namespace SimpleTasks.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            TiltEffect.TiltableItems.Remove(typeof(ListBoxItem));
             base.OnNavigatedTo(e);
+
             if (_task != null)
             {
                 _task.ModifiedSinceStart = true;
             }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            TiltEffect.TiltableItems.Add(typeof(ListBoxItem));
+            base.OnNavigatedFrom(e);
         }
 
         #region Subtasks

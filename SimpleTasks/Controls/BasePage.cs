@@ -38,8 +38,6 @@ namespace SimpleTasks.Controls
                 Backward = new OneTransition() { Mode = OneTransitionMode.BackwardOut },
                 Forward = new OneTransition() { Mode = OneTransitionMode.ForwardOut }
             });
-
-            TiltEffect.SetIsTiltEnabled(this, true);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
