@@ -284,9 +284,9 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <controls:MySlider x:Name="LineHeightSlider"
-                                           Minimum="30"
+                                           Minimum="37"
                                            ValueTextVisibility="Visible"
-                                           Maximum="56"
+                                           Maximum="67"
                                            RoundValue="{Binding LineHeight, Mode=OneWay}"
                                            RoundValueChanged="LineHeight_RoundValueChanged"
                                            Margin="0,0,0,-15" />
