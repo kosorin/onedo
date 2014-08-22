@@ -415,6 +415,13 @@ You can also contact us via email.</source>
           <target state="signed-off">Odesílat anonymní data o používání pro zlepšení této aplikace. Statistiky pomáhají vývojáři identifikovat a zaměřovat se na často používané funkce.
 Nejsou shromažďovány žádné osobní údaje.
 Můžete nás také kontaktovat pomocí emailu.</target></trans-unit>
+        <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
+          <source>Edit</source>
+          <target state="signed-off">Upravit</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsDefaultTaskTileSettings" translate="yes" xml:space="preserve">
+          <source>Default settings for task tile</source>
+          <target state="signed-off">Výchozí nastavení pro dlaždice úkolů</target></trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
           <target state="signed-off">průhlednost pozadí</target>

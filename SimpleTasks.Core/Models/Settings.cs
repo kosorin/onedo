@@ -230,6 +230,16 @@ namespace SimpleTasks.Core.Models
                 set { SetProperty(ref _unpinCompleted, value); }
             }
             #endregion
+
+            #region DefaultTaskTileSettings
+            private TaskTileSettings _defaultTaskTileSettings = new TaskTileSettings();
+            [DataMember(Name = "DefaultTaskTileSettings")]
+            public TaskTileSettings DefaultTaskTileSettings
+            {
+                get { return _defaultTaskTileSettings; }
+                set { SetProperty(ref _defaultTaskTileSettings, value); }
+            }
+            #endregion
         }
         #endregion
 

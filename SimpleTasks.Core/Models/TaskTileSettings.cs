@@ -11,14 +11,21 @@ namespace SimpleTasks.Core.Models
     [DataContract(Name = "TaskTileSettings", Namespace = "")]
     public class TaskTileSettings : BindableBase
     {
-        static TaskTileSettings()
-        {
-            Default = new TaskTileSettings();
-        }
-
-        public static TaskTileSettings Default { get; private set; }
-
         public TaskTileSettings() { }
+
+        public TaskTileSettings Clone()
+        {
+            TaskTileSettings newSettings = new TaskTileSettings();
+
+            newSettings.LineHeight = LineHeight;
+            newSettings.BackgroundOpacity = BackgroundOpacity;
+            newSettings.TitleOnOneLine = TitleOnOneLine;
+            newSettings.ShowCompletedSubtasks = ShowCompletedSubtasks;
+            newSettings.HideTitle = HideTitle;
+            newSettings.HideDate = HideDate;
+
+            return newSettings;
+        }
 
         #region LineHeight
         private double _lineHeight = 48;

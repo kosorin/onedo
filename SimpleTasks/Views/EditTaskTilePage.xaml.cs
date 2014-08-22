@@ -52,7 +52,7 @@ namespace SimpleTasks.Views
         private void SetTask(TaskModel task)
         {
             _task = task;
-            DataContext = _task.TileSettings ?? (_task.TileSettings = new TaskTileSettings());
+            DataContext = _task.TileSettings ?? (_task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings.Clone());
 
             SmallTile.Task = _task;
             MediumTile.Task = _task;

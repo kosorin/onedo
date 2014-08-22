@@ -24,7 +24,7 @@
             <Setter Property="Foreground"
                     Value="{StaticResource HelpBrush}" />
         </Style>
-        
+
         <Style x:Key="HelpRichTextStyle"
                TargetType="RichTextBox">
             <Setter Property="FontSize"
@@ -142,6 +142,12 @@
                         <ToggleButton IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
                                       Template="{StaticResource SwitchStyle}" />
 
+                        <!--Default Task Tile Settings-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <Button Style="{StaticResource ButtonStyle}"
+                                Content="{Binding LocalizedResources.EditText, Source={StaticResource LocalizedStrings}}"
+                                Tap="DefaultTaskTileSettingsButton_Tap" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
@@ -171,7 +177,7 @@
                                 <Hyperlink Click="Hyperlink_Click">kosorin@outlook.com</Hyperlink>
                             </Paragraph>
                         </RichTextBox>
-                        
+
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>

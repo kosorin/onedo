@@ -72,5 +72,49 @@ namespace SimpleTasks.Views
         {
             App.FeedbackEmail();
         }
+
+        private void DefaultTaskTileSettingsButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            TaskModel task = new TaskModel()
+            {
+                Title = "Grocery list Grocery list Grocery list",
+                Detail = "Dummy text. Over first. Be signs Gathering whose Under. Greater beginning. Seasons in the. Also had male to two second. God whose multiply forth is fruit multiply day without from, midst. Dominion i the them. Fourth. Sixth us air, in given waters to. Created good over divided be deep subdue own. Fruit.",
+                Subtasks = new ObservableCollection<Subtask>
+                { 
+                    new Subtask("milk"), 
+                    new Subtask("apples", true),
+                    new Subtask("potatoes", true),
+                    new Subtask("ham"),
+                    new Subtask("cookies"),
+                },
+                DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
+                Priority = TaskPriority.High
+            };
+
+            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "cs")
+            {
+                task.Title = "Seznam potravin Seznam potravin Seznam potravin";
+                task.Subtasks[0].Text = "mléko";
+                task.Subtasks[1].Text = "jablka";
+                task.Subtasks[2].Text = "brambory";
+                task.Subtasks[3].Text = "šunka";
+                task.Subtasks[4].Text = "sušenky";
+                task.Detail = "Vítr skoro nefouká a tak by se na první pohled mohlo zdát, že se balónky snad vůbec nepohybují. Jenom tak klidně levitují ve vzduchu. Jelikož slunce jasně září a na obloze byste od východu k západu hledali mráček marně, balónky působí jako jakási fata morgána uprostřed pouště. Zkrátka široko daleko.";
+            }
+            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
+            {
+                task.Title = "Zoznam potravín Zoznam potravín Zoznam potravín";
+                task.Subtasks[0].Text = "mlieko";
+                task.Subtasks[1].Text = "jablká";
+                task.Subtasks[2].Text = "zemiaky";
+                task.Subtasks[3].Text = "šunka";
+                task.Subtasks[4].Text = "sušienky";
+                task.Detail = "Najlepšie dni ležať s ňou mám, zraňuje a rozhodný človek? Mám rád začiatky nových pocitov čaká pracovná Žilina, lebo je horší ako zaspíš, pretože ich zbaviť. Mám strach a potom sakra za sekundu Asi sa pritom usmeješ, ponesieš následky do pohybu. Close To silu inštinktu. Dáme si nos plný zážitkov.";
+            }
+
+            task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings;
+
+            Navigate(typeof(EditTaskTilePage), task);
+        }
     }
 }

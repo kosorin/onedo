@@ -461,6 +461,54 @@
             </Style>
             <!--EndRegion-->
 
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button">
+                <Setter Property="Height"
+                        Value="50" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Left" />
+                <Setter Property="Background"
+                        Value="{StaticResource ButtonBackgroundBrush}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Root"
+                                    Height="{TemplateBinding Height}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                    Background="{TemplateBinding Background}"
+                                    Padding="25,0">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="MouseOver" />
+                                        <VisualState x:Name="Disabled" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                               Storyboard.TargetProperty="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource PhoneAccentBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
+                                                                               Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource ButtonDarkForegroundBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <TextBlock x:Name="Text"
+                                           Text="{TemplateBinding Content}"
+                                           Style="{StaticResource ButtonTextStyle}"
+                                           FontSize="24"
+                                           HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!--Region Checkbox-->
             <Style x:Key="CheckboxStyle"
                    TargetType="ToggleButton">

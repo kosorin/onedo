@@ -632,6 +632,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditText {
+            get {
+                return ResourceManager.GetString("EditText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} hour.
         /// </summary>
         public static string Hours1 {
@@ -871,6 +880,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsDefaultDate {
             get {
                 return ResourceManager.GetString("SettingsDefaultDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default settings for task tile.
+        /// </summary>
+        public static string SettingsDefaultTaskTileSettings {
+            get {
+                return ResourceManager.GetString("SettingsDefaultTaskTileSettings", resourceCulture);
             }
         }
         
