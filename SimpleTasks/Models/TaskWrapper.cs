@@ -45,39 +45,39 @@ namespace SimpleTasks.Models
         }
         #endregion
 
-        #region Color
-        private Color? _color = null;
-        public Color Color
-        {
-            get
-            {
-                if (_color == null)
-                {
-                    if (Task.Color == TaskModel.DefaultColor)
-                    {
-                        _color = (Color)App.Current.Resources["PhoneAccentColor"];
-                    }
-                    else
-                    {
-                        _color = Task.Color;
-                    }
-                }
-                return _color.Value;
-            }
-        }
+        //#region Color
+        //private Color? _color = null;
+        //public Color Color
+        //{
+        //    get
+        //    {
+        //        if (_color == null)
+        //        {
+        //            if (Task.Color == TaskModel.DefaultColor)
+        //            {
+        //                _color = (Color)App.Current.Resources["PhoneAccentColor"];
+        //            }
+        //            else
+        //            {
+        //                _color = Task.Color;
+        //            }
+        //        }
+        //        return _color.Value;
+        //    }
+        //}
 
-        private SolidColorBrush _colorBrush = null;
-        public SolidColorBrush ColorBrush
-        {
-            get
-            {
-                if (_colorBrush == null)
-                {
-                    _colorBrush = new SolidColorBrush(Color);
-                }
-                return _colorBrush;
-            }
-        }
-        #endregion
+        //private SolidColorBrush _colorBrush = null;
+        //public SolidColorBrush ColorBrush
+        //{
+        //    get
+        //    {
+        //        if (_colorBrush == null)
+        //        {
+        //            _colorBrush = new SolidColorBrush(Color);
+        //        }
+        //        return _colorBrush;
+        //    }
+        //}
+        //#endregion
     }
 }
