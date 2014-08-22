@@ -20,12 +20,12 @@ namespace SimpleTasks.Core.Models
 
         public static TaskCollection LoadFromFile(string fileName)
         {
-            return FileHelper.LoadFromJson<TaskCollection>(fileName);
+            return FileHelper.ReadFromJson<TaskCollection>(fileName);
         }
 
         public static void SaveToFile(string fileName, TaskCollection tasks)
         {
-            FileHelper.SaveToJson(fileName, tasks);
+            FileHelper.WriteToJson(fileName, tasks);
         }
     }
 }

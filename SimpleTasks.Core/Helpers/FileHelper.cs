@@ -15,7 +15,7 @@ namespace SimpleTasks.Core.Helpers
 {
     public static class FileHelper
     {
-        public static T LoadFromJson<T>(string fileName) where T : class, new()
+        public static T ReadFromJson<T>(string fileName) where T : class, new()
         {
             Debug.WriteLine(string.Format("> Nahrávám '{1}' ze souboru '{0}'...", fileName, typeof(T).Name));
 
@@ -44,7 +44,7 @@ namespace SimpleTasks.Core.Helpers
             return collection;
         }
 
-        public static void SaveToJson<T>(string fileName, T collection) where T : class
+        public static void WriteToJson<T>(string fileName, T collection) where T : class
         {
             Debug.WriteLine(string.Format("> Ukládám '{1}' do souboru '{0}'...", fileName, typeof(T).Name));
 

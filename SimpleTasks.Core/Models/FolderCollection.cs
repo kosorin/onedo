@@ -22,12 +22,12 @@ namespace SimpleTasks.Core.Models
 
         public static FolderCollection LoadFromFile(string fileName)
         {
-            return FileHelper.LoadFromJson<FolderCollection>(fileName);
+            return FileHelper.ReadFromJson<FolderCollection>(fileName);
         }
 
         public static void SaveToFile(string fileName, FolderCollection folders)
         {
-            FileHelper.SaveToJson(fileName, folders);
+            FileHelper.WriteToJson(fileName, folders);
         }
     }
 }

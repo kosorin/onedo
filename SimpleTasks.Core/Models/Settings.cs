@@ -35,14 +35,14 @@ namespace SimpleTasks.Core.Models
 
         public static Settings LoadFromFile(string fileName)
         {
-            Settings settings = FileHelper.LoadFromJson<Settings>(fileName);
+            Settings settings = FileHelper.ReadFromJson<Settings>(fileName);
             Debug.WriteLine(settings);
             return settings;
         }
 
         public static void SaveToFile(string fileName, Settings settings)
         {
-            FileHelper.SaveToJson(fileName, settings);
+            FileHelper.WriteToJson(fileName, settings);
         }
 
         public override string ToString()
