@@ -1,4 +1,21 @@
 {
+    "4.1.0 ": {
+        "date": "2014-08-23",
+        "items": [
+            "možnosť nastaviť predvolené hodnoty pre nastavenie dlaždice úlohy",
+            "možnosť skryť zaškrtávacie políčko na hlavnej stránke",
+            "oprava vkladanie medzier v podúlohe"
+        ]
+    },
+    "4.1.0": {
+        "date": "2014-08-23",
+        "items": [
+            "možnosť nastaviť predvolené hodnoty pre nastavenie dlaždice úlohy",
+            "možnosť skryť zaškrtávacie políčko na hlavnej stránke",
+            "oprava vkladanie medzier v podúlohe",
+            "úprava farieb na stránke pre výber času"
+        ]
+    },
     "4.0.0 ": {
         "date": "2014-08-17",
         "items": [

@@ -1,4 +1,21 @@
 ﻿{
+    "4.1.0 ": {
+        "date": "2014-08-23",
+        "items": [
+            "možnost nastavit výchozí hodnoty pro nastavení dlaždice úkolu",
+            "možnost skrýt zaškrtávací políčko na hlavní stránce",
+            "oprava vkládání mezer v podúkolu"
+        ]
+    },
+    "4.1.0": {
+        "date": "2014-08-23",
+        "items": [
+            "možnost nastavit výchozí hodnoty pro nastavení dlaždice úkolu",
+            "možnost skrýt zaškrtávací políčko na hlavní stránce",
+            "oprava vkládání mezer v podúkolu",
+            "úprava barev na stránce pro výběr času"
+        ]
+    },
     "4.0.0 ": {
         "date": "2014-08-17",
         "items": [

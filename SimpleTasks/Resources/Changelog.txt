@@ -1,4 +1,20 @@
 {
+    "4.1.0 ": {
+        "date": "2014-08-23",
+        "items": [
+            "option to set default settings for task tile",
+            "option to hide the check box on the main page ",
+            "bug fix: inserting spaces in subtask"
+        ]
+    },
+    "4.1.0": {
+        "date": "2014-08-23",
+        "items": [
+            "option to set default settings for task tile",
+            "option to hide the check box on the main page ",
+            "bug fix: inserting spaces in subtask"
+        ]
+    },
     "4.0.0 ": {
         "date": "2014-08-17",
         "items": [
