@@ -66,12 +66,12 @@ namespace SimpleTasks.Views
                 Settings.Current.General.Feedback = false;
             }
         }
-        #endregion
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             App.FeedbackEmail();
         }
+        #endregion
 
         private void DefaultTaskTileSettingsButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
