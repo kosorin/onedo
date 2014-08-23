@@ -259,6 +259,16 @@ namespace SimpleTasks.Core.Models
             }
             #endregion
 
+            #region HideTaskCheckBox
+            private bool _hideTaskCheckBox = false;
+            [DataMember(Name = "HideTaskCheckBox")]
+            public bool HideTaskCheckBox
+            {
+                get { return _hideTaskCheckBox; }
+                set { SetProperty(ref _hideTaskCheckBox, value); }
+            }
+            #endregion
+
             #region Feedback
             private bool _feedback = true;
             [DataMember(Name = "Feedback")]

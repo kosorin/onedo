@@ -422,6 +422,14 @@ Můžete nás také kontaktovat pomocí emailu.</target></trans-unit>
         <trans-unit id="Resx/SettingsDefaultTaskTileSettings" translate="yes" xml:space="preserve">
           <source>Default settings for task tile</source>
           <target state="signed-off">Výchozí nastavení pro dlaždice úkolů</target></trans-unit>
+        <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
+          <source>You can use right to left swipe gesture instead to complete task.</source>
+          <target state="signed-off">Místo toho můžete pro dokončení úkolu použít gesto tažení zprava doleva.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsHideTaskCheckBox" translate="yes" xml:space="preserve">
+          <source>Hide task check box</source>
+          <target state="signed-off">Skrýt zaškrtávací políčko</target>
+        </trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
           <target state="signed-off">průhlednost pozadí</target>

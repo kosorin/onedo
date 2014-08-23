@@ -1048,6 +1048,24 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide task check box.
+        /// </summary>
+        public static string SettingsHideTaskCheckBox {
+            get {
+                return ResourceManager.GetString("SettingsHideTaskCheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use right to left swipe gesture instead to complete task..
+        /// </summary>
+        public static string SettingsHideTaskCheckBoxHelp {
+            get {
+                return ResourceManager.GetString("SettingsHideTaskCheckBoxHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In the App list, tap and hold the {0} app, and then tap Pin to start..
         /// </summary>
         public static string SettingsPinTile {

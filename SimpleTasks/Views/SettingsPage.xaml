@@ -163,6 +163,14 @@
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
                                       Template="{StaticResource SwitchStyle}" />
 
+                        <!--Hide Task CheckBox-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <ToggleButton IsChecked="{Binding General.HideTaskCheckBox, Mode=TwoWay}"
+                                      Template="{StaticResource SwitchStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBoxHelp, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
+
                         <!--Feedback-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />

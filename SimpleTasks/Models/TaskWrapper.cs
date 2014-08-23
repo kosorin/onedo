@@ -45,6 +45,13 @@ namespace SimpleTasks.Models
         }
         #endregion
 
+        #region CheckBoxVisibility
+        public static Visibility CheckBoxVisibility
+        {
+            get { return Settings.Current.General.HideTaskCheckBox ? Visibility.Collapsed : Visibility.Visible; }
+        }
+        #endregion
+
         //#region Color
         //private Color? _color = null;
         //public Color Color

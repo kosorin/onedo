@@ -70,10 +70,15 @@
                     </Storyboard>
                 </Border.Resources>
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"
+                                          MinWidth="8" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
                     <!--Info + Podúkoly-->
-                    <controls:ToggleControl IsChecked="{Binding IsActive}"
-                                            Margin="60,0,0,0">
+                    <controls:ToggleControl Grid.Column="1"
+                                            IsChecked="{Binding IsActive}">
                         <StackPanel>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CheckStates">
@@ -453,7 +458,9 @@
                     </controls:ToggleControl>
 
                     <!--Checkbox-->
-                    <Button>
+                    <Button Grid.Column="0"
+                            Width="60"
+                            Visibility="{Binding Wrapper.CheckBoxVisibility, FallbackValue=Visible}">
                         <Button.Template>
                             <ControlTemplate TargetType="ButtonBase" />
                         </Button.Template>
@@ -473,7 +480,8 @@
                     </Button>
 
                     <!--Gesture Complete icon-->
-                    <ContentControl x:Name="CompleteGestureIcon"
+                    <ContentControl Grid.ColumnSpan="2"
+                                    x:Name="CompleteGestureIcon"
                                     Margin="-105"
                                     Grid.Column="1"
                                     Style="{StaticResource CompleteIconStyle}"

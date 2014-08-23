@@ -578,4 +578,10 @@ You can also contact us via email.</value>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Default settings for task tile</value>
   </data>
+  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
+    <value>Hide task check box</value>
+  </data>
+  <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
+    <value>You can use right to left swipe gesture instead to complete task.</value>
+  </data>
 </root>
