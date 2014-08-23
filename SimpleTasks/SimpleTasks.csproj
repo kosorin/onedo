@@ -103,6 +103,7 @@
     <Compile Include="Controls\MyTextBox.cs" />
     <Compile Include="Controls\IconButton.cs" />
     <Compile Include="Controls\MyToggleButton.cs" />
+    <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\RingSlice.cs" />
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
