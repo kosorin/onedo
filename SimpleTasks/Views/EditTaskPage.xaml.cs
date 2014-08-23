@@ -88,6 +88,8 @@ namespace SimpleTasks.Views
             // ikdyž byl vložen text
             StopNoTextAnimation();
             TitleTextBox.UpdateHintVisibility();
+
+            UpdateSubtasksAngle();
         }
 
         private void FirstTimeLoaded()
@@ -667,6 +669,24 @@ namespace SimpleTasks.Views
         private void EditSubtasks_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Navigate(typeof(SubtasksPage), Task);
+        }
+
+        private double _subtasksAngle = 0;
+        public double SubtasksAngle
+        {
+            get { return _subtasksAngle; }
+            set { SetProperty(ref _subtasksAngle, value); }
+        }
+
+        private void UpdateSubtasksAngle()
+        {
+            if (Task != null && Task.Subtasks != null && Task.Subtasks.Count > 0)
+            {
+                double ratio = (double)Task.Subtasks.Count(s => s.IsCompleted) / (double)Task.Subtasks.Count;
+                SubtasksAngle = 359.99 * ratio; // není 360 kvůli chování kontrolu RingSlice.
+                return;
+            }
+            SubtasksAngle = 0;
         }
         #endregion
     }
