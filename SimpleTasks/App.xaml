@@ -462,26 +462,36 @@
             <!--EndRegion-->
 
             <Style x:Key="ButtonStyle"
-                   TargetType="Button">
+                   TargetType="ButtonBase">
                 <Setter Property="Height"
                         Value="50" />
+                <Setter Property="Padding"
+                        Value="32,0" />
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
                 <Setter Property="Background"
                         Value="{StaticResource ButtonBackgroundBrush}" />
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="ButtonBase">
                             <Border x:Name="Root"
                                     Height="{TemplateBinding Height}"
                                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                     Background="{TemplateBinding Background}"
-                                    Padding="25,0">
+                                    Padding="{TemplateBinding Padding}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal" />
                                         <VisualState x:Name="MouseOver" />
-                                        <VisualState x:Name="Disabled" />
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                               Storyboard.TargetProperty="Opacity">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="0.5" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
