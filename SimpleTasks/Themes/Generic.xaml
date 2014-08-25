@@ -318,6 +318,18 @@
                 Value="{StaticResource ButtonDarkForegroundBrush}" />
         <Setter Property="Background"
                 Value="Transparent" />
+        <Setter Property="PickerPageUri"
+                Value="/Microsoft.Phone.Controls.Toolkit;component/ListPicker/ListPickerPage.xaml" />
+        <Setter Property="FullModeItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Style="{StaticResource NormalTextStyle}"
+                               FontSize="34"
+                               Text="{Binding}"
+                               Margin="0,0,0,10" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ListPicker">

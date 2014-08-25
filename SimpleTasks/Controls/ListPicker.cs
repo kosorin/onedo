@@ -12,7 +12,7 @@ namespace SimpleTasks.Controls
         public ListPicker()
         {
             DefaultStyleKey = typeof(ListPicker);
-            SetValue(ItemCountThresholdProperty, 10);
+            SetValue(ItemCountThresholdProperty, 9);
         }
 
         public override void OnApplyTemplate()
