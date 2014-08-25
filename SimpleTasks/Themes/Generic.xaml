@@ -333,6 +333,15 @@
                                                          Duration="0:0:0.2" />
                                     </Storyboard>
                                 </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="0.5" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="Highlighted">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ItemsPresenter"
@@ -350,7 +359,8 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid Background="{TemplateBinding Background}">
+                        <Grid x:Name="Root"
+                              Background="{TemplateBinding Background}">
                             <Border x:Name="Border"
                                     MinHeight="60">
                                 <UserControl x:Name="UserControl">
@@ -398,7 +408,7 @@
         </Setter>
     </Style>
     <!--EndRegion-->
-    
+
     <!--Region ProgressRing-->
     <Style TargetType="controls:ProgressRing">
         <Setter Property="Foreground"
