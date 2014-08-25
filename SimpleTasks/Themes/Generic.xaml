@@ -324,7 +324,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock Style="{StaticResource NormalTextStyle}"
-                               FontSize="34"
+                               FontSize="30"
                                Text="{Binding}"
                                Margin="0,0,0,10" />
                 </DataTemplate>
@@ -336,17 +336,20 @@
                     <StackPanel>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="PickerStates">
-                                <VisualState x:Name="Normal">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="Arrow"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         BeginTime="0:0:0.15"
-                                                         Duration="0:0:0.2" />
-                                    </Storyboard>
-                                </VisualState>
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Highlighted">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="Arrow"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1"
+                                                             BeginTime="0:0:0.15"
+                                                             Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Disabled">
-                                    <Storyboard>
+                                        <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
                                                                        Storyboard.TargetProperty="Opacity">
                                             <DiscreteObjectKeyFrame KeyTime="0"
