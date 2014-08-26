@@ -795,6 +795,39 @@
             </Style>
             <!--EndRegion-->
 
+            <!--Region ProgressRing-->
+            <!--BorderBrush jako barva progress ringu-->
+            <Style x:Key="ProgressRingWithLabelStyle"
+                   TargetType="controls:ProgressRing">
+                <Setter Property="Foreground"
+                        Value="{StaticResource SlightBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource PhoneAccentBrush}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Grid Height="50"
+                                  Visibility="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <controls:ProgressRing Width="50"
+                                                       IsActive="{TemplateBinding IsEnabled}"
+                                                       Foreground="{TemplateBinding BorderBrush}" />
+                                <TextBlock Style="{StaticResource NormalTextStyle}"
+                                           Text="{TemplateBinding Content}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Grid.Column="1"
+                                           Margin="5,0"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--EndRegion-->
+
             <!--Region BasePickerPage-->
             <Style x:Key="BasePickerPageStyle"
                    TargetType="controls:BasePickerPage">
