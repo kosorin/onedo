@@ -331,15 +331,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are trying to restore from old backup. We recommend you first make backup, then restore..
-        /// </summary>
-        public static string BackupVersion {
-            get {
-                return ResourceManager.GetString("BackupVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to bullet.
         /// </summary>
         public static string BulletText {
@@ -789,7 +780,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No backups.
+        ///   Looks up a localized string similar to no backups yet.
         /// </summary>
         public static string NoBackups {
             get {
@@ -1480,15 +1471,6 @@ namespace SimpleTasks.Resources {
         public static string TitleUntitled {
             get {
                 return ResourceManager.GetString("TitleUntitled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unknown error.
-        /// </summary>
-        public static string UnknownError {
-            get {
-                return ResourceManager.GetString("UnknownError", resourceCulture);
             }
         }
         

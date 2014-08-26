@@ -1,0 +1,179 @@
+﻿<controls:BasePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   x:Class="SimpleTasks.Views.BackupPage"
+                   mc:Ignorable="d"
+                   Style="{StaticResource BasePageStyle}">
+
+    <controls:BasePage.Resources>
+        <ControlTemplate x:Key="ProgressRingWithLabelTemplate"
+                         TargetType="ContentControl">
+            <Grid Height="50"
+                  Visibility="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:ProgressRing Width="50"
+                                       IsActive="{TemplateBinding IsEnabled}" />
+                <TextBlock Style="{StaticResource SlightTextStyle}"
+                           Text="{TemplateBinding Content}"
+                           Grid.Column="1"
+                           Margin="5,0"
+                           VerticalAlignment="Center" />
+            </Grid>
+        </ControlTemplate>
+    </controls:BasePage.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
+                   Text="{Binding LocalizedResources.BackupAndRestoreTitle, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
+        <ScrollViewer Margin="24,60,24,0">
+            <StackPanel>
+
+                <!--Sign-->
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="SignButton"
+                            IsEnabled="{Binding NotPerformingAction}"
+                            Style="{StaticResource ButtonStyle}"
+                            Content="{Binding LocalizedResources.SignIn, Source={StaticResource LocalizedStrings}}"
+                            Tap="SignButton_Tap" />
+                    <ContentControl IsEnabled="{Binding IsSigning}"
+                                    Template="{StaticResource ProgressRingWithLabelTemplate}"
+                                    Content="{Binding LocalizedResources.SigningIn, Source={StaticResource LocalizedStrings}}"
+                                    Margin="5,0" />
+                </StackPanel>
+
+                <!--Backup & Restore-->
+                <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                    <!--Výběr zálohy-->
+                    <TextBlock Style="{StaticResource LabelTextStyle}"
+                               Text="{Binding LocalizedResources.SelectBackup, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="60" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Restore list-->
+                        <controls:ListPicker x:Name="RestorePicker"
+                                             IsEnabled="{Binding NotPerformingAction, FallbackValue=False}"
+                                             Foreground="{StaticResource SlightBrush}"
+                                             Background="{StaticResource ButtonBackgroundBrush}"
+                                             ItemsSource="{Binding BackupList}"
+                                             Margin="0,0,0,10"
+                                             Header="{Binding LocalizedResources.SelectBackup, Source={StaticResource LocalizedStrings}}">
+                            <controls:ListPicker.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Height="50"
+                                            Margin="-8,-5,-8,-10"
+                                            Padding="10,0">
+                                        <TextBlock Text="{Binding}"
+                                                   Style="{StaticResource ButtonTextStyle}"
+                                                   FontSize="22" />
+                                    </Border>
+                                </DataTemplate>
+                            </controls:ListPicker.ItemTemplate>
+                        </controls:ListPicker>
+
+                        <!--Refresh backup list-->
+                        <Button Grid.Column="1"
+                                IsEnabled="{Binding NotPerformingAction}"
+                                VerticalAlignment="Top"
+                                Height="60"
+                                Width="60"
+                                Opacity="0.6"
+                                Tap="RefreshListButton_Tap">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border x:Name="Root"
+                                            Background="{StaticResource ButtonBackgroundBrush}">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal" />
+                                                <VisualState x:Name="MouseOver" />
+                                                <VisualState x:Name="Pressed" />
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                                       Storyboard.TargetProperty="Opacity">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="0.5" />
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <ContentControl Style="{StaticResource RefreshIconStyle}"
+                                                        RenderTransformOrigin="0.5,0.5">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.8"
+                                                                    ScaleY="0.8" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+
+                    <!--Co použít pro obnovení-->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,10">
+                        <ToggleButton IsChecked="{Binding UseTasks, Mode=TwoWay}"
+                                      IsEnabled="{Binding NotPerformingAction}"
+                                      Style="{StaticResource CheckBoxStyle}"
+                                      Content="{Binding LocalizedResources.TasksText, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,10">
+                        <ToggleButton IsChecked="{Binding UseSettings, Mode=TwoWay}"
+                                      IsEnabled="{Binding NotPerformingAction}"
+                                      Style="{StaticResource CheckBoxStyle}"
+                                      Content="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+                    </StackPanel>
+
+                    <!--Tlačítka akce-->
+                    <Grid Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Backup-->
+                        <Button x:Name="BackupButton"
+                                IsEnabled="{Binding NotPerformingAction}"
+                                Grid.Column="0"
+                                Style="{StaticResource ButtonStyle}"
+                                Content="{Binding LocalizedResources.BackupText, Source={StaticResource LocalizedStrings}}"
+                                HorizontalAlignment="Stretch"
+                                Tap="BackupButton_Tap" />
+
+                        <!--Restore-->
+                        <Button x:Name="RestoreButton"
+                                IsEnabled="{Binding IsEnabledRestoreButton}"
+                                Grid.Column="2"
+                                Style="{StaticResource ButtonStyle}"
+                                Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
+                                HorizontalAlignment="Stretch"
+                                Tap="RestoreButton_Tap" />
+                    </Grid>
+
+                    <!--Action Progress Ring-->
+                    <ContentControl x:Name="BackupRestoreProgressRing"
+                                    IsEnabled="{Binding NotPerformingAction, Converter={StaticResource BoolNegationConverter}}"
+                                    Template="{StaticResource ProgressRingWithLabelTemplate}"
+                                    Content="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}" />
+
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</controls:BasePage>

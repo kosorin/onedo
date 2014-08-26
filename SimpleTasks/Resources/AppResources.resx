@@ -584,4 +584,46 @@ You can also contact us via email.</value>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>You can use right to left swipe gesture instead to complete task.</value>
   </data>
+  <data name="BackupAndRestoreTitle" xml:space="preserve">
+    <value>backup &amp; restore</value>
+  </data>
+  <data name="BackupText" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="RestoreText" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="SigningIn" xml:space="preserve">
+    <value>Signing in</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Backing up</value>
+  </data>
+  <data name="Restoring" xml:space="preserve">
+    <value>Restoring</value>
+  </data>
+  <data name="SelectBackup" xml:space="preserve">
+    <value>select backup to restore</value>
+  </data>
+  <data name="BackupDownloadingList" xml:space="preserve">
+    <value>Downloading list of backups</value>
+  </data>
+  <data name="BackupLatest" xml:space="preserve">
+    <value>latest</value>
+  </data>
+  <data name="NoBackups" xml:space="preserve">
+    <value>No backups</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="BackupVersion" xml:space="preserve">
+    <value>You are trying to restore from old backup. We recommend you first make backup, then restore.</value>
+  </data>
 </root>

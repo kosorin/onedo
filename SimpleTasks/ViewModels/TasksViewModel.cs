@@ -24,7 +24,12 @@ namespace SimpleTasks.ViewModels
 
         public void Load()
         {
-            Tasks = TaskCollection.LoadFromFile(App.TasksFileName);
+            Load(TaskCollection.LoadFromFile(App.TasksFileName));
+        }
+
+        public void Load(TaskCollection tasks)
+        {
+            Tasks = tasks;
             if (Settings.Current.Tasks.DeleteCompleted > 0)
             {
                 DeleteCompleted(Settings.Current.Tasks.DeleteCompletedBefore);

@@ -121,6 +121,11 @@ namespace SimpleTasks.Views
             appBarDeleteAllItem.Click += DeleteAllItem_Click;
             appBarMenuItems.Add(appBarDeleteAllItem);
 
+            // Záloha
+            ApplicationBarMenuItem appBarBackupMenuItem = new ApplicationBarMenuItem(AppResources.BackupAndRestoreTitle);
+            appBarBackupMenuItem.Click += (s, e) => { Navigate(typeof(BackupPage)); };
+            appBarMenuItems.Add(appBarBackupMenuItem);
+
             // Nastavení
             ApplicationBarMenuItem appBarSettingsMenuItem = new ApplicationBarMenuItem(AppResources.AppBarSettings);
             appBarSettingsMenuItem.Click += (s, e) => { Navigate(typeof(SettingsPage)); };
