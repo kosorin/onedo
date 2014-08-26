@@ -242,7 +242,7 @@
                                         <!--Název-->
                                         <controls:ToggleControl IsChecked="{Binding IsCompleted}"
                                                                 Content="{Binding Title}"
-                                                                Style="{StaticResource CheckboxTextStyle}"
+                                                                Style="{StaticResource TaskCheckBoxTextStyle}"
                                                                 IsHitTestVisible="False"
                                                                 FontSize="32"
                                                                 Margin="8,0,0,4" />
@@ -428,7 +428,7 @@
                                                                 Tap="SubtaskCheckbox_Tap">
                                                             <ToggleButton x:Name="Checkbox"
                                                                           IsChecked="{Binding IsCompleted}"
-                                                                          Style="{StaticResource CheckboxStyle}"
+                                                                          Style="{StaticResource TaskCheckBoxStyle}"
                                                                           IsHitTestVisible="False" />
                                                         </Border>
                                                     </Button>
@@ -442,7 +442,7 @@
                                                                 Tap="SubtaskText_Tap">
                                                             <controls:ToggleControl IsChecked="{Binding IsCompleted}"
                                                                                     Content="{Binding Text}"
-                                                                                    Style="{StaticResource CheckboxTextStyle}"
+                                                                                    Style="{StaticResource TaskCheckBoxTextStyle}"
                                                                                     IsHitTestVisible="False"
                                                                                     Margin="5,0,0,0" />
                                                         </Border>
@@ -474,7 +474,7 @@
                                 HorizontalAlignment="Left">
                             <ToggleButton x:Name="Checkbox"
                                           IsChecked="{Binding IsCompleted}"
-                                          Style="{StaticResource CheckboxStyle}"
+                                          Style="{StaticResource TaskCheckBoxStyle}"
                                           IsHitTestVisible="False" />
                         </Border>
                     </Button>

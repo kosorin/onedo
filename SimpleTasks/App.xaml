@@ -482,6 +482,7 @@
             </Style>
             <!--EndRegion-->
 
+            <!--Region Button-->
             <Style x:Key="ButtonStyle"
                    TargetType="ButtonBase">
                 <Setter Property="Height"
@@ -539,9 +540,10 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <!--EndRegion-->
 
             <!--Region Checkbox-->
-            <Style x:Key="CheckboxStyle"
+            <Style x:Key="TaskCheckBoxStyle"
                    TargetType="ToggleButton">
                 <Setter Property="Width"
                         Value="40" />
@@ -549,6 +551,8 @@
                         Value="40" />
                 <Setter Property="Background"
                         Value="{x:Null}" />
+                <Setter Property="BorderThickness"
+                        Value="2" />
                 <Setter Property="BorderBrush">
                     <Setter.Value>
                         <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
@@ -589,7 +593,7 @@
                                 <Border x:Name="CompleteButtonRectangle"
                                         Width="{TemplateBinding Width}"
                                         Height="{TemplateBinding Height}"
-                                        BorderThickness="2"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
                                         HorizontalAlignment="Left"
                                         BorderBrush="{TemplateBinding BorderBrush}">
                                     <Border.Background>
@@ -618,7 +622,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="CheckboxTextStyle"
+            <Style x:Key="TaskCheckBoxTextStyle"
                    TargetType="controls:ToggleControl">
                 <Setter Property="Background"
                         Value="{x:Null}" />
@@ -694,91 +698,223 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!--EndRegion-->
 
-            <!--Region Switch-->
-            <ControlTemplate x:Key="SwitchStyle"
-                             TargetType="ToggleButton">
-                <Border x:Name="Root"
-                        Height="60"
-                        Background="Transparent"
-                        Margin="0,-5,0,0"
-                        Opacity="1">
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="Root"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="1"
-                                                     Duration="0:0:0.25" />
-                                </Storyboard>
-                            </VisualState>
-                            <VisualState x:Name="Disabled">
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="Root"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.38"
-                                                     Duration="0:0:0.25" />
-                                </Storyboard>
-                            </VisualState>
-                        </VisualStateGroup>
-                        <VisualStateGroup x:Name="CheckStates">
-                            <VisualState x:Name="Checked">
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="OnText"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="1"
-                                                     Duration="0:0:0.25" />
-                                    <DoubleAnimation Storyboard.TargetName="OffText"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0"
-                                                     Duration="0:0:0.25" />
-                                </Storyboard>
-                            </VisualState>
-                            <VisualState x:Name="Unchecked">
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="OnText"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0"
-                                                     Duration="0:0:0.25" />
-                                    <DoubleAnimation Storyboard.TargetName="OffText"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="1"
-                                                     Duration="0:0:0.25" />
-                                </Storyboard>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
-                    <StackPanel Orientation="Horizontal"
-                                IsHitTestVisible="False">
-                        <Grid Width="50"
-                              Height="50">
-                            <ToggleButton x:Name="Checkbox"
-                                          IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Style="{StaticResource CheckboxStyle}"
-                                          Width="50"
-                                          Height="50" />
-                            <Border BorderThickness="2"
-                                    BorderBrush="{StaticResource PhoneAccentBrush}" />
-                        </Grid>
+            <Style x:Key="CheckBoxStyle"
+                   TargetType="ToggleButton">
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="BorderThickness"
+                        Value="2" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource SlightBrush}" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <StackPanel x:Name="Root"
+                                        Orientation="Horizontal"
+                                        Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Normal"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Disabled"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Root"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.38" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Unchecked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Checked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Unchecked" />
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckIcon"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1" />
+                                                <ColorAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                                To="{StaticResource PhoneAccentColor}" />
+                                                <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 To="1" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Indeterminate" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
 
-                        <Grid Margin="10,0,0,0"
-                              VerticalAlignment="Center">
+                                <!--CheckBox-->
+                                <Border x:Name="CheckBoxBorder"
+                                        Width="{TemplateBinding Height}"
+                                        Height="{TemplateBinding Height}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        HorizontalAlignment="Left">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"
+                                                         Opacity="0.45" />
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                                         Opacity="0.27" />
+                                    </Border.Background>
 
-                            <TextBlock x:Name="OnText"
-                                       Text="{Binding On, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
-                                       Style="{StaticResource NormalTextStyle}"
-                                       FontSize="32" />
+                                    <ContentControl x:Name="CheckIcon"
+                                                    Style="{StaticResource CheckIconStyle}"
+                                                    Foreground="{StaticResource SubtleBrush}"
+                                                    Opacity="0"
+                                                    MaxWidth="0"
+                                                    MaxHeight="0">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.75"
+                                                                ScaleY="0.75"
+                                                                TranslateY="-18"
+                                                                TranslateX="-18" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                </Border>
 
-                            <TextBlock x:Name="OffText"
-                                       Text="{Binding Off, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
-                                       Style="{StaticResource SubtleTextStyle}"
-                                       FontSize="32" />
-                        </Grid>
-                    </StackPanel>
-                </Border>
-            </ControlTemplate>
+                                <!--Text-->
+                                <Viewbox>
+                                    <TextBlock Text="{TemplateBinding Content}"
+                                               Style="{StaticResource NormalTextStyle}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Margin="10,4,0,4"
+                                               VerticalAlignment="Center" />
+                                </Viewbox>
+
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="SwitchStyle"
+                   TargetType="ToggleButton">
+                <Setter Property="BorderThickness"
+                        Value="3" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Margin"
+                        Value="0,-5,0,0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <StackPanel x:Name="Root"
+                                        Orientation="Horizontal"
+                                        Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Normal"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Disabled"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Root"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.38" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Unchecked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Checked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Unchecked" />
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckIcon"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1" />
+                                                <ColorAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                                To="{StaticResource PhoneAccentColor}" />
+                                                <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 To="1" />
+
+                                                <DoubleAnimation Storyboard.TargetName="OnText"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1" />
+                                                <DoubleAnimation Storyboard.TargetName="OffText"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Indeterminate" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <!--CheckBox-->
+                                <Border x:Name="CheckBoxBorder"
+                                        Width="50"
+                                        Height="50"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        HorizontalAlignment="Left">
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"
+                                                         Opacity="0.45" />
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                                         Opacity="0.27" />
+                                    </Border.Background>
+
+                                    <ContentControl x:Name="CheckIcon"
+                                                    Style="{StaticResource CheckIconStyle}"
+                                                    Foreground="{StaticResource SubtleBrush}"
+                                                    Opacity="0"
+                                                    MaxWidth="0"
+                                                    MaxHeight="0">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.85"
+                                                                ScaleY="0.85"
+                                                                TranslateY="-20.4"
+                                                                TranslateX="-20.4" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                </Border>
+
+                                <!--Text-->
+                                <Grid Margin="10,4,0,4"
+                                      VerticalAlignment="Center">
+
+                                    <TextBlock x:Name="OnText"
+                                               Opacity="0"
+                                               Text="{Binding On, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
+                                               Style="{StaticResource NormalTextStyle}"
+                                               FontSize="32" />
+
+                                    <TextBlock x:Name="OffText"
+                                               Text="{Binding Off, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
+                                               Style="{StaticResource SubtleTextStyle}"
+                                               FontSize="32" />
+                                </Grid>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <!--EndRegion-->
 
             <!--Region BasePage-->

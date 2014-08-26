@@ -126,7 +126,7 @@
                                 <!--Checkbox-->
                                 <ToggleButton x:Name="Checkbox"
                                               IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                              Style="{StaticResource CheckboxStyle}"
+                                              Style="{StaticResource TaskCheckBoxStyle}"
                                               HorizontalAlignment="Left" />
 
                                 <!--Text-->

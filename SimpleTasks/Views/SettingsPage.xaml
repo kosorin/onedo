@@ -115,7 +115,7 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tasks.CompleteSubtasks, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}" />
+                                      Style="{StaticResource SwitchStyle}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
                     </StackPanel>
@@ -131,7 +131,7 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.Enable, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}" />
+                                      Style="{StaticResource SwitchStyle}" />
                         <TextBlock x:Name="PinTileTextBox"
                                    Text="Pin tile help text."
                                    Style="{StaticResource HelpTextStyle}" />
@@ -140,7 +140,7 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}" />
+                                      Style="{StaticResource SwitchStyle}" />
 
                         <!--Default Task Tile Settings-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
@@ -161,13 +161,13 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}" />
+                                      Style="{StaticResource SwitchStyle}" />
 
                         <!--Hide Task CheckBox-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.HideTaskCheckBox, Mode=TwoWay}"
-                                      Template="{StaticResource SwitchStyle}" />
+                                      Style="{StaticResource SwitchStyle}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBoxHelp, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
 
@@ -175,7 +175,7 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Feedback, Mode=OneTime}"
-                                      Template="{StaticResource SwitchStyle}"
+                                      Style="{StaticResource SwitchStyle}"
                                       Checked="ToggleButton_Checked"
                                       Unchecked="ToggleButton_Unchecked" />
                         <RichTextBox Style="{StaticResource HelpRichTextStyle}">
