@@ -25,8 +25,16 @@ namespace SimpleTasks.Conventers
                 return str.TrimStart();
             if (function == "TrimEnd")
                 return str.TrimEnd();
-            else
+            if (function == "FirstUpper")
+            {
+                if (str.Length > 0)
+                {
+                    return str.Substring(0, 1).ToUpper() + str.Substring(1);
+                }
                 return "";
+            }
+
+            return str;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
