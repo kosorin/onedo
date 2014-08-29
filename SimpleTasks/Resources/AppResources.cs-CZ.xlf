@@ -428,77 +428,77 @@ Můžete nás také kontaktovat pomocí emailu.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SignOut" translate="yes" xml:space="preserve">
           <source>Sign out</source>
-          <target state="final">Odhlásit se</target>
+          <target state="signed-off">Odhlásit se</target>
         </trans-unit>
         <trans-unit id="Resx/SigningIn" translate="yes" xml:space="preserve">
           <source>Signing in</source>
-          <target state="final">Přihlašování</target>
+          <target state="signed-off">Přihlašování</target>
         </trans-unit>
         <trans-unit id="Resx/Restoring" translate="yes" xml:space="preserve">
           <source>Restoring</source>
-          <target state="final">Obnovování</target>
+          <target state="signed-off">Obnovování</target>
         </trans-unit>
         <trans-unit id="Resx/SelectBackup" translate="yes" xml:space="preserve">
           <source>select backup to restore</source>
-          <target state="final">vyberte zálohu k obnovení</target>
+          <target state="signed-off">vyberte zálohu k obnovení</target>
         </trans-unit>
         <trans-unit id="Resx/BackupDownloadingList" translate="yes" xml:space="preserve">
           <source>Downloading list of backups</source>
-          <target state="final">Stahování seznamu záloh</target>
+          <target state="signed-off">Stahování seznamu záloh</target>
         </trans-unit>
         <trans-unit id="Resx/NoBackups" translate="yes" xml:space="preserve">
           <source>No backups</source>
-          <target state="final">Žádné zálohy</target>
+          <target state="signed-off">Žádné zálohy</target>
         </trans-unit>
         <trans-unit id="Resx/UnknownError" translate="yes" xml:space="preserve">
           <source>Unknown error.</source>
-          <target state="final">Neznámá chyba.</target></trans-unit>
+          <target state="signed-off">Neznámá chyba.</target></trans-unit>
         <trans-unit id="Resx/SignedInYes" translate="yes" xml:space="preserve">
           <source>You're signed in as {0}.</source>
-          <target state="final">Jste přihlášeni jako {0}.</target>
+          <target state="signed-off">Jste přihlášeni jako {0}.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupLatest" translate="yes" xml:space="preserve">
           <source>latest</source>
-          <target state="final">nejnovější</target>
+          <target state="signed-off">nejnovější</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreWhatText" translate="yes" xml:space="preserve">
           <source>select items to restore</source>
-          <target state="final">vyberte položky k obnovení</target>
+          <target state="signed-off">vyberte položky k obnovení</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
           <source>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
 It's still in beta. If you have any problem, send us email.</source>
-          <target state="final">Během zálohování se vytvoří složka "{0}". Tuto složku můžete přesouvat, ale nepřejmenovávejte ji. Soubory uvnitř složky taky nijak neupravujte.
-Tato funkce je pořád ve fázi vývoje. Pokud máte nějaký problém, můžete nám poslat email.</target></trans-unit>
+          <target state="signed-off">Během zálohování se vytvoří složka "{0}". Tuto složku můžete přesouvat, ale nepřejmenovávejte ji. Soubory uvnitř složky taky nijak neupravujte.
+Tato funkce je pořád v beta verzi. Pokud máte nějaký problém, můžete nám poslat email.</target></trans-unit>
         <trans-unit id="Resx/BackupOk" translate="yes" xml:space="preserve">
           <source>Successful backup.</source>
-          <target state="final">Zálohování proběhlo úspěšně.</target></trans-unit>
+          <target state="signed-off">Zálohování proběhlo úspěšně.</target></trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
-          <target state="final">Obnovení proběhlo úspěšně.</target></trans-unit>
+          <target state="signed-off">Obnovení proběhlo úspěšně.</target></trans-unit>
         <trans-unit id="Resx/SignedInNo" translate="yes" xml:space="preserve">
           <source>You're not signed in.</source>
-          <target state="final">Nejste přihlášeni.</target>
+          <target state="signed-off">Nejste přihlášeni.</target>
         </trans-unit>
         <trans-unit id="Resx/BackingUp" translate="yes" xml:space="preserve">
           <source>Backing up</source>
-          <target state="final">Vytváření zálohy</target>
+          <target state="signed-off">Vytváření zálohy</target>
         </trans-unit>
         <trans-unit id="Resx/SignIn" translate="yes" xml:space="preserve">
           <source>Sign in</source>
-          <target state="final">Přihlásit se</target>
+          <target state="signed-off">Přihlásit se</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreText" translate="yes" xml:space="preserve">
           <source>Restore</source>
-          <target state="final">Obnovit</target>
+          <target state="signed-off">Obnovit</target>
         </trans-unit>
         <trans-unit id="Resx/BackupText" translate="yes" xml:space="preserve">
           <source>Backup</source>
-          <target state="final">Zálohovat</target>
+          <target state="signed-off">Zálohovat</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreTitle" translate="yes" xml:space="preserve">
           <source>backup %%amp; restore</source>
-          <target state="final">záloha %%amp; obnovení</target>
+          <target state="signed-off">záloha %%amp; obnovení</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBox" translate="yes" xml:space="preserve">
           <source>Hide task check box</source>
