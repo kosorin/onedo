@@ -28,6 +28,27 @@ namespace SimpleTasks.Core.Helpers
             return unixEpoch.AddSeconds(timestamp);
         }
 
+        private const string _fileNameFormat = "yyyy'-'MM'-'dd HH'-'mm'-'ss";
+
+        public static string ToFileName(this DateTime dateTime)
+        {
+            return dateTime.ToString(_fileNameFormat, CultureInfo.InvariantCulture);
+        }
+
+        public static DateTime FromFileName(string fileName)
+        {
+            DateTime dateTime;
+            try
+            {
+                dateTime = DateTime.ParseExact(fileName, _fileNameFormat, CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                dateTime = DateTime.MinValue;
+            }
+            return dateTime;
+        }
+
         public static DayOfWeek FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
         public static string DateFormat { get { return "{0:ddd}, {0:d}"; } }
