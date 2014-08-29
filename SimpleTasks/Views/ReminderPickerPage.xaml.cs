@@ -117,7 +117,7 @@ namespace SimpleTasks.Views
         private void SetSliders(int type)
         {
             LengthType = LengthTypes[type];
-            ReminderSlider.SetMaximum(LengthTypes[type].Maximum);
+            ReminderSlider.SetMaximum(LengthTypes[type].Value);
             OnPropertyChanged("ReminderValue");
         }
         #endregion
@@ -140,44 +140,28 @@ namespace SimpleTasks.Views
         }
 
         #region LengthType
-        private ReminderLengthType _lengthType = null;
-        public ReminderLengthType LengthType
+        private SimpleTasks.Controls.ListPickerItem<int> _lengthType = null;
+        public SimpleTasks.Controls.ListPickerItem<int> LengthType
         {
             get { return _lengthType; }
             set { SetProperty(ref _lengthType, value); }
         }
 
-        private List<ReminderLengthType> _lengthTypes = null;
-        public List<ReminderLengthType> LengthTypes
+        private List<SimpleTasks.Controls.ListPickerItem<int>> _lengthTypes = null;
+        public List<SimpleTasks.Controls.ListPickerItem<int>> LengthTypes
         {
             get
             {
                 if (_lengthTypes == null)
                 {
-                    _lengthTypes = new List<ReminderLengthType>()
+                    _lengthTypes = new List<SimpleTasks.Controls.ListPickerItem<int>>()
                     {
-                        (LengthType = new ReminderLengthType(60, AppResources.MinutesLabel, 0.14)),
-                        new ReminderLengthType(24, AppResources.HoursLabel, 0.22),
-                        new ReminderLengthType(17, AppResources.DaysLabel, 0.28)
+                        (LengthType = new SimpleTasks.Controls.ListPickerItem<int>(60, AppResources.MinutesLabel, 0.14)),
+                        new SimpleTasks.Controls.ListPickerItem<int>(24, AppResources.HoursLabel, 0.22),
+                        new SimpleTasks.Controls.ListPickerItem<int>(17, AppResources.DaysLabel, 0.28)
                     };
                 }
                 return _lengthTypes;
-            }
-        }
-
-        public class ReminderLengthType : SimpleTasks.Controls.ListPickerItem
-        {
-            private int _maximum = 0;
-            public int Maximum
-            {
-                get { return _maximum; }
-                set { SetProperty(ref _maximum, value); }
-            }
-
-            public ReminderLengthType(int maximum, string label, double opacity) :
-                base(label, opacity)
-            {
-                Maximum = maximum;
             }
         }
         #endregion
@@ -185,7 +169,7 @@ namespace SimpleTasks.Views
         #region Event handlers
         private void LengthTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ReminderLengthType type = TypePicker.SelectedItem as ReminderLengthType;
+            SimpleTasks.Controls.ListPickerItem<int> type = TypePicker.SelectedItem as SimpleTasks.Controls.ListPickerItem<int>;
             if (type != null)
             {
                 SetSliders(TypePicker.SelectedIndex);
