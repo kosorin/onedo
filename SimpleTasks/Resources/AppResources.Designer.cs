@@ -1205,6 +1205,24 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You&apos;re not signed in..
+        /// </summary>
+        public static string SignedInNo {
+            get {
+                return ResourceManager.GetString("SignedInNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re signed in as {0}..
+        /// </summary>
+        public static string SignedInYes {
+            get {
+                return ResourceManager.GetString("SignedInYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign in.
         /// </summary>
         public static string SignIn {

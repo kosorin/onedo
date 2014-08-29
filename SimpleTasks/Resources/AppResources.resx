@@ -614,9 +614,6 @@ You can also contact us via email.</value>
   <data name="BackupDownloadingList" xml:space="preserve">
     <value>Downloading list of backups</value>
   </data>
-  <data name="BackupLatest" xml:space="preserve">
-    <value>latest</value>
-  </data>
   <data name="NoBackups" xml:space="preserve">
     <value>No backups</value>
   </data>
@@ -625,5 +622,14 @@ You can also contact us via email.</value>
   </data>
   <data name="BackupVersion" xml:space="preserve">
     <value>You are trying to restore from old backup. We recommend you first make backup, then restore.</value>
+  </data>
+  <data name="SignedInNo" xml:space="preserve">
+    <value>You're not signed in.</value>
+  </data>
+  <data name="SignedInYes" xml:space="preserve">
+    <value>You're signed in as {0}.</value>
+  </data>
+  <data name="BackupLatest" xml:space="preserve">
+    <value>latest</value>
   </data>
 </root>

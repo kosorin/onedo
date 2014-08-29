@@ -446,10 +446,6 @@ Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
           <source>Downloading list of backups</source>
           <target state="new">Downloading list of backups</target>
         </trans-unit>
-        <trans-unit id="Resx/BackupLatest" translate="yes" xml:space="preserve">
-          <source>latest</source>
-          <target state="new">latest</target>
-        </trans-unit>
         <trans-unit id="Resx/NoBackups" translate="yes" xml:space="preserve">
           <source>No backups</source>
           <target state="new">No backups</target>
@@ -461,6 +457,18 @@ Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
         <trans-unit id="Resx/BackupVersion" translate="yes" xml:space="preserve">
           <source>You are trying to restore from old backup. We recommend you first make backup, then restore.</source>
           <target state="new">You are trying to restore from old backup. We recommend you first make backup, then restore.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SignedInYes" translate="yes" xml:space="preserve">
+          <source>You're signed in as {0}.</source>
+          <target state="new">You're signed in as {0}.</target>
+        </trans-unit>
+        <trans-unit id="Resx/BackupLatest" translate="yes" xml:space="preserve">
+          <source>latest</source>
+          <target state="new">latest</target>
+        </trans-unit>
+        <trans-unit id="Resx/SignedInNo" translate="yes" xml:space="preserve">
+          <source>You're not signed in.</source>
+          <target state="new">You're not signed in.</target>
         </trans-unit>
         <trans-unit id="Resx/BackingUp" translate="yes" xml:space="preserve">
           <source>Backing up</source>

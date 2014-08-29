@@ -1,32 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+﻿using Newtonsoft.Json;
 using SimpleTasks.Controls;
-using Microsoft.Live;
-using System.Diagnostics;
-using SimpleTasks.Helpers;
-using System.Globalization;
-using SimpleTasks.Resources;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
-using System.Collections.ObjectModel;
+using SimpleTasks.Helpers;
 using SimpleTasks.Models;
+using SimpleTasks.Resources;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Navigation;
+using RestoreListPickerItem = SimpleTasks.Controls.ListPickerItem<SimpleTasks.Core.Models.OneDriveFileInfo, System.DateTime>;
 
 namespace SimpleTasks.Views
 {
     public partial class BackupPage : BasePage
     {
         #region Public Fields
-        public const string BackupFolderName = "OneDo Backup";
+        public const string BackupFolderName = "OneDo Data";
 
-        public const string BackupFileExtension = ".onedo";
+        public const string BackupFileExtension = ".onedo.backup";
+        #endregion
+
+        #region Private Fields
+        private string _userName = "";
         #endregion
 
         #region Constructor
@@ -43,14 +41,15 @@ namespace SimpleTasks.Views
             if (e.NavigationMode == NavigationMode.New || !e.IsNavigationInitiator)
             {
                 IsLoggedIn = false;
-
                 NotPerformingAction = false;
+
                 IsSigning = true;
                 IsLoggedIn = await OneDriveHelper.SilentLoginAsync();
                 IsSigning = false;
 
-                BackupRestoreProgressRing.Content = AppResources.BackupDownloadingList;
+                BackupRestoreProgressRing.Text = AppResources.BackupDownloadingList;
                 await RefreshBackupList();
+
                 NotPerformingAction = true;
             }
         }
@@ -65,6 +64,7 @@ namespace SimpleTasks.Views
             {
                 SetProperty(ref _isLoggedIn, value);
                 SignButton.Content = value ? AppResources.SignOut : AppResources.SignIn;
+                OnPropertyChanged("SignedInText");
             }
         }
 
@@ -73,6 +73,11 @@ namespace SimpleTasks.Views
         {
             get { return _isSigning; }
             set { SetProperty(ref _isSigning, value); }
+        }
+
+        public string SignedInText
+        {
+            get { return IsLoggedIn ? string.Format(AppResources.SignedInYes, OneDriveHelper.CurrentUserName) : AppResources.SignedInNo; }
         }
 
         private bool _notPerformingAction = true;
@@ -86,15 +91,15 @@ namespace SimpleTasks.Views
             }
         }
 
-        private ObservableCollection<ValueToString<OneDriveFileInfo>> _backupList = new ObservableCollection<ValueToString<OneDriveFileInfo>>();
-        public ObservableCollection<ValueToString<OneDriveFileInfo>> BackupList
+        private ObservableCollection<RestoreListPickerItem> _backupList = new ObservableCollection<RestoreListPickerItem>();
+        public ObservableCollection<RestoreListPickerItem> BackupList
         {
             get { return _backupList; }
             set
             {
                 if (value == null)
                 {
-                    value = new ObservableCollection<ValueToString<OneDriveFileInfo>>();
+                    value = new ObservableCollection<RestoreListPickerItem>();
                 }
                 SetProperty(ref _backupList, value);
                 value.CollectionChanged -= BackupList_CollectionChanged;
@@ -110,7 +115,7 @@ namespace SimpleTasks.Views
 
         public bool IsEnabledRestoreButton
         {
-            get { return NotPerformingAction && (UseTasks || UseSettings) && BackupList.Count > 0; }
+            get { return NotPerformingAction && (UseTasks || UseSettings) && (BackupList.Count > 0 && BackupList[0].Value1 != null); }
         }
 
         private bool _useTasks = true;
@@ -153,39 +158,44 @@ namespace SimpleTasks.Views
                 }
             }
 
-            // Seřazení podle vytvoření
-            files.Sort((f1, f2) =>
+            // Vytvoření seznamu
+            List<RestoreListPickerItem> list = new List<RestoreListPickerItem>();
+            foreach (OneDriveFileInfo fileInfo in files)
             {
-                return f2.Created.CompareTo(f1.Created);
-            });
+                string fileName = fileInfo.Name.Replace(BackupFileExtension, "");
 
-            // Naplnění pickeru
-            BackupList.Clear();
-            bool first = true;
-            foreach (OneDriveFileInfo file in files)
-            {
-                string label = file.Name.Replace(BackupFileExtension, "");
-                if (label.StartsWith("__"))
+                try
                 {
-                    label = file.Created.ToString();
+                    DateTime createdDate = DateTimeExtensions.FromFileName(fileName);
+                    list.Add(new RestoreListPickerItem(createdDate.ToString(), fileInfo, createdDate));
+                }
+                catch (FormatException)
+                {
+                    // Při parsování datumu, takže
                 }
 
-                if (first)
-                {
-                    label += string.Format(" ({0})", AppResources.BackupLatest);
-                    first = false;
-                }
-                BackupList.Add(new ValueToString<OneDriveFileInfo>(file, label));
-
-                if (BackupList.Count >= 8)
+                if (list.Count >= 8)
                 {
                     break;
                 }
             }
 
-            if (BackupList.Count == 0)
+            // Seřazení podle vytvoření
+            list.Sort((f1, f2) =>
             {
-                BackupList.Add(new ValueToString<OneDriveFileInfo>(null, AppResources.NoBackups));
+                return f2.Value2.CompareTo(f1.Value2);
+            });
+
+            // Naplnění pickeru
+            if (list.Count > 0)
+            {
+                list[0].Label += string.Format(" ({0})", AppResources.BackupLatest);
+                BackupList = new ObservableCollection<RestoreListPickerItem>(list);
+            }
+            else
+            {
+                BackupList.Clear();
+                BackupList.Add(new RestoreListPickerItem(AppResources.NoBackups, null, DateTime.MinValue));
             }
         }
 
@@ -198,24 +208,25 @@ namespace SimpleTasks.Views
                 folderId = await OneDriveHelper.CreateFolderAsync(OneDriveHelper.Root, BackupFolderName);
             }
 
-            // Získání id nahraného souboru (pokud máme složku)
+            // Nahrajeme soubor a získáme jeho id
             string fileId = null;
             if (folderId != null)
             {
-                string fileName = string.Format("__{0}{1}", Guid.NewGuid(), BackupFileExtension);
-
+                // Vytvoření dat
                 BackupData backupData = new BackupData();
-                backupData.Info.Version = App.VersionString;
-                backupData.Info.UtcDateTime = DateTime.UtcNow;
+                backupData.Version = App.VersionString;
+                backupData.Created = DateTime.UtcNow;
                 backupData.Settings = Settings.Current;
                 backupData.Tasks = App.Tasks.Tasks;
-
 #if DEBUG
                 Formatting formatting = Formatting.Indented;
 #else
                 Formatting formatting = Formatting.None;
 #endif
                 string json = JsonConvert.SerializeObject(backupData, formatting);
+
+                // Nahrání
+                string fileName = string.Format("{0}{1}", DateTime.Now.ToFileName(), BackupFileExtension);
                 fileId = await OneDriveHelper.UploadAsync(folderId, fileName, json);
             }
 
@@ -224,21 +235,19 @@ namespace SimpleTasks.Views
 
         private async Task<bool> Restore()
         {
-            // Získání souboru
-            string folderId = await OneDriveHelper.SearchFolderIdAsync(BackupFolderName);
-
-            // Získání seznamu souborů se zálohami
             BackupData backupData = null;
-            if (folderId != null)
-            {
-                ValueToString<OneDriveFileInfo> selectedItem = RestorePicker.SelectedItem as ValueToString<OneDriveFileInfo>;
-                if (selectedItem != null && selectedItem.Value !=null)
-                {
-                    OneDriveFileInfo fileInfo = selectedItem.Value;
-                    string fileDate = await OneDriveHelper.DownloadAsync(fileInfo.Id);
-                    backupData = JsonConvert.DeserializeObject<BackupData>(fileDate, new JsonSerializerSettings());
 
-                    if (backupData.Info.Version != App.VersionString)
+            RestoreListPickerItem selectedItem = RestorePicker.SelectedItem as RestoreListPickerItem;
+            if (selectedItem != null && selectedItem.Value1 != null)
+            {
+                // Stáhnutí souboru
+                string data = await OneDriveHelper.DownloadAsync(selectedItem.Value1.Id);
+                if (data != null)
+                {
+                    backupData = JsonConvert.DeserializeObject<BackupData>(data, new JsonSerializerSettings());
+
+                    // Zpracování dat
+                    if (backupData.Version != App.VersionString)
                     {
 
                     }
@@ -267,7 +276,7 @@ namespace SimpleTasks.Views
 
                 if (IsLoggedIn)
                 {
-                    BackupRestoreProgressRing.Content = AppResources.BackupDownloadingList;
+                    BackupRestoreProgressRing.Text = AppResources.BackupDownloadingList;
                     await RefreshBackupList();
                 }
                 else
@@ -281,7 +290,7 @@ namespace SimpleTasks.Views
 
         private async void BackupButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BackupRestoreProgressRing.Content = AppResources.BackingUp;
+            BackupRestoreProgressRing.Text = AppResources.BackingUp;
             NotPerformingAction = false;
 
             if (await Backup())
@@ -298,7 +307,7 @@ namespace SimpleTasks.Views
 
         private async void RestoreButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BackupRestoreProgressRing.Content = AppResources.Restoring;
+            BackupRestoreProgressRing.Text = AppResources.Restoring;
             NotPerformingAction = false;
 
             if (await Restore())
@@ -315,7 +324,7 @@ namespace SimpleTasks.Views
 
         private async void RefreshListButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BackupRestoreProgressRing.Content = AppResources.BackupDownloadingList;
+            BackupRestoreProgressRing.Text = AppResources.BackupDownloadingList;
             NotPerformingAction = false;
 
             await RefreshBackupList();
