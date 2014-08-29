@@ -286,7 +286,7 @@ namespace SimpleTasks.Views
                 }
                 else
                 {
-                    MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.SignIn, MessageBoxButton.OK);
+                    MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.SigningIn, MessageBoxButton.OK);
                 }
 
                 PerformingAction = false;
@@ -301,11 +301,11 @@ namespace SimpleTasks.Views
             if (await Backup())
             {
                 await RefreshBackupList();
-                MessageBox.Show(string.Format(AppResources.BackupOk), AppResources.BackupText, MessageBoxButton.OK);
+                MessageBox.Show(string.Format(AppResources.BackupOk), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
             }
             else
             {
-                MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupText, MessageBoxButton.OK);
+                MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
             }
 
             PerformingAction = false;
@@ -318,11 +318,11 @@ namespace SimpleTasks.Views
             ActionTextBlock.Text = AppResources.Restoring;
             if (await Restore())
             {
-                MessageBox.Show(string.Format(AppResources.RestoreOk), AppResources.RestoreText, MessageBoxButton.OK);
+                MessageBox.Show(string.Format(AppResources.RestoreOk), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
             }
             else
             {
-                MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.RestoreText, MessageBoxButton.OK);
+                MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
             }
 
             PerformingAction = false;
