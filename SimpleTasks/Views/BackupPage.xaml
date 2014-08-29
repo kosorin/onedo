@@ -189,16 +189,30 @@
 
         <!--Action Progress Ring-->
         <Border Grid.RowSpan="3"
-                Visibility="{Binding PerformingAction, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                Visibility="{Binding PerformingAction, FallbackValue=Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border.Background>
                 <SolidColorBrush Color="{StaticResource BackgroundColor}"
                                  Opacity="0.8" />
             </Border.Background>
-            <controls:ProgressRing x:Name="ActionProgressRing"
-                                   Style="{StaticResource ProgressRingWithLabelStyle}"
-                                   Text="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+
+            <Grid Height="50"
+                  Visibility="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:ProgressRing IsActive="{Binding PerformingAction, FallbackValue=True}"
+                                       Width="50" />
+                <TextBlock x:Name="ActionTextBlock"
+                           Style="{StaticResource NormalTextStyle}"
+                           Text="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}"
+                           Foreground="{StaticResource NormalBrush}"
+                           Grid.Column="1"
+                           Margin="5,0"
+                           VerticalAlignment="Center" />
+            </Grid>
         </Border>
     </Grid>
 

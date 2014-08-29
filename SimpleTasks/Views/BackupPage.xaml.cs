@@ -41,10 +41,10 @@ namespace SimpleTasks.Views
 
                 PerformingAction = true;
 
-                ActionProgressRing.Text = AppResources.SigningIn;
+                ActionTextBlock.Text = AppResources.SigningIn;
                 IsLoggedIn = await OneDriveHelper.SilentLoginAsync();
 
-                ActionProgressRing.Text = AppResources.BackupDownloadingList;
+                ActionTextBlock.Text = AppResources.BackupDownloadingList;
                 await RefreshBackupList();
 
                 PerformingAction = false;
@@ -276,12 +276,12 @@ namespace SimpleTasks.Views
             {
                 PerformingAction = true;
 
-                ActionProgressRing.Text = AppResources.SigningIn;
+                ActionTextBlock.Text = AppResources.SigningIn;
                 IsLoggedIn = await OneDriveHelper.LoginAsync();
 
                 if (IsLoggedIn)
                 {
-                    ActionProgressRing.Text = AppResources.BackupDownloadingList;
+                    ActionTextBlock.Text = AppResources.BackupDownloadingList;
                     await RefreshBackupList();
                 }
                 else
@@ -297,7 +297,7 @@ namespace SimpleTasks.Views
         {
             PerformingAction = true;
 
-            ActionProgressRing.Text = AppResources.BackingUp;
+            ActionTextBlock.Text = AppResources.BackingUp;
             if (await Backup())
             {
                 await RefreshBackupList();
@@ -315,7 +315,7 @@ namespace SimpleTasks.Views
         {
             PerformingAction = true;
 
-            ActionProgressRing.Text = AppResources.Restoring;
+            ActionTextBlock.Text = AppResources.Restoring;
             if (await Restore())
             {
                 MessageBox.Show(string.Format(AppResources.RestoreOk), AppResources.RestoreText, MessageBoxButton.OK);
@@ -332,7 +332,7 @@ namespace SimpleTasks.Views
         {
             PerformingAction = true;
 
-            ActionProgressRing.Text = AppResources.BackupDownloadingList;
+            ActionTextBlock.Text = AppResources.BackupDownloadingList;
             await RefreshBackupList();
 
             PerformingAction = false;

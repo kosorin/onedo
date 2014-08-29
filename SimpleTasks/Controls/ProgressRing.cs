@@ -43,14 +43,6 @@ namespace SimpleTasks.Controls
             return base.MeasureOverride(availableSize);
         }
 
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(ProgressRing), new PropertyMetadata(""));
-
         public bool IsActive
         {
             get { return (bool)GetValue(IsActiveProperty); }
@@ -72,7 +64,6 @@ namespace SimpleTasks.Controls
         }
         public static readonly DependencyProperty TemplateSettingsProperty =
             DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(ProgressRing), new PropertyMetadata(new TemplateSettingValues(100)));
-
 
         public class TemplateSettingValues : System.Windows.DependencyObject
         {
