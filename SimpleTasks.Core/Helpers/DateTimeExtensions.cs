@@ -37,16 +37,7 @@ namespace SimpleTasks.Core.Helpers
 
         public static DateTime FromFileName(string fileName)
         {
-            DateTime dateTime;
-            try
-            {
-                dateTime = DateTime.ParseExact(fileName, _fileNameFormat, CultureInfo.InvariantCulture);
-            }
-            catch
-            {
-                dateTime = DateTime.MinValue;
-            }
-            return dateTime;
+            return DateTime.ParseExact(fileName ?? "", _fileNameFormat, CultureInfo.InvariantCulture);
         }
 
         public static DayOfWeek FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
