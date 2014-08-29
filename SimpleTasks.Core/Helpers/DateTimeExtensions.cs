@@ -16,6 +16,18 @@ namespace SimpleTasks.Core.Helpers
             return new DateTime(date.Year, date.Month, date.Day, dt.Hour, dt.Minute, dt.Second);
         }
 
+        public static long ToUnixTimestamp(this DateTime dateTime)
+        {
+            DateTime unixEpoch = new DateTime(1970, 1, 1);
+            return (long)(dateTime - unixEpoch).TotalSeconds;
+        }
+
+        public static DateTime FromUnixTimestamp(long timestamp)
+        {
+            DateTime unixEpoch = new DateTime(1970, 1, 1);
+            return unixEpoch.AddSeconds(timestamp);
+        }
+
         public static DayOfWeek FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
         public static string DateFormat { get { return "{0:ddd}, {0:d}"; } }
