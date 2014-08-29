@@ -14,7 +14,7 @@ namespace SimpleTasks.Helpers
 {
     public static class OneDriveHelper
     {
-        #region Public fields
+        #region Public fields/properties
         public const string ClientId = "0000000048122FFF";
 
         public const string Root = "me/skydrive";
@@ -23,15 +23,24 @@ namespace SimpleTasks.Helpers
         { 
             "wl.signin", 
             "wl.skydrive_update", 
-            "wl.offline_access",
-            "wl.basic"
+            "wl.offline_access"
         };
+
+        private const string DefaultUserName = "???";
+
+        private static string _currentUserName = DefaultUserName;
+        public static string CurrentUserName
+        {
+            get { return _currentUserName; }
+            set { _currentUserName = value; }
+        }
         #endregion
 
         #region Private fields
         private static LiveConnectClient _client = null;
 
         private static LiveAuthClient _auth = null;
+
         #endregion
 
         #region Login/Logout, User
@@ -48,6 +57,7 @@ namespace SimpleTasks.Helpers
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
                     _client = new LiveConnectClient(result.Session);
+                    CurrentUserName = await GetUserNameAsync();
                     return true;
                 }
             }
@@ -66,6 +76,7 @@ namespace SimpleTasks.Helpers
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
                     _client = new LiveConnectClient(result.Session);
+                    CurrentUserName = await GetUserNameAsync();
                     return true;
                 }
             }
@@ -86,9 +97,9 @@ namespace SimpleTasks.Helpers
             _auth = null;
         }
 
-        public async static Task<string> GetUserNameAsync()
+        private async static Task<string> GetUserNameAsync()
         {
-            string userName = null;
+            string userName = DefaultUserName;
             try
             {
                 LiveOperationResult operationResult = await _client.GetAsync("me");
