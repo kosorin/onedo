@@ -169,27 +169,27 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!--Restore-->
-            <Button x:Name="RestoreButton"
-                    IsEnabled="{Binding IsEnabledRestoreButton}"
-                    Grid.Column="0"
-                    Style="{StaticResource ButtonStyle}"
-                    Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
-                    HorizontalAlignment="Stretch"
-                    Tap="RestoreButton_Tap" />
-
             <!--Backup-->
             <Button x:Name="BackupButton"
-                    Grid.Column="2"
+                    Grid.Column="0"
                     Style="{StaticResource ButtonStyle}"
                     Content="{Binding LocalizedResources.BackupText, Source={StaticResource LocalizedStrings}}"
                     HorizontalAlignment="Stretch"
                     Tap="BackupButton_Tap" />
+
+            <!--Restore-->
+            <Button x:Name="RestoreButton"
+                    IsEnabled="{Binding IsEnabledRestoreButton}"
+                    Grid.Column="2"
+                    Style="{StaticResource ButtonStyle}"
+                    Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
+                    HorizontalAlignment="Stretch"
+                    Tap="RestoreButton_Tap" />
         </Grid>
 
         <!--Action Progress Ring-->
         <Grid Grid.RowSpan="3"
-                Visibility="{Binding PerformingAction, FallbackValue=Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                Visibility="{Binding PerformingAction, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.Background>
                 <SolidColorBrush Color="{StaticResource BackgroundColor}"
                                  Opacity="0.8" />
