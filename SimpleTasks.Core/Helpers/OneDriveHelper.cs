@@ -18,31 +18,32 @@ namespace SimpleTasks.Helpers
         public const string ClientId = "0000000048122FFF";
 
         public const string Root = "me/skydrive";
+
+        public static readonly List<string> Scopes = new List<string> 
+        { 
+            "wl.signin", 
+            "wl.skydrive_update", 
+            "wl.offline_access",
+            "wl.basic"
+        };
         #endregion
 
         #region Private fields
         private static LiveConnectClient _client = null;
 
         private static LiveAuthClient _auth = null;
-
-        private static readonly List<string> _scopes = new List<string> 
-        { 
-            "wl.signin", 
-            "wl.skydrive_update", 
-            "wl.offline_access"
-        };
         #endregion
 
-        #region Login/Logout
+        #region Login/Logout, User
         public async static Task<bool> LoginAsync()
         {
             try
             {
                 _auth = new LiveAuthClient(ClientId);
-                LiveLoginResult result = await _auth.InitializeAsync(_scopes);
+                LiveLoginResult result = await _auth.InitializeAsync(Scopes);
                 if (result.Status != LiveConnectSessionStatus.Connected)
                 {
-                    result = await _auth.LoginAsync(_scopes);
+                    result = await _auth.LoginAsync(Scopes);
                 }
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
@@ -61,7 +62,7 @@ namespace SimpleTasks.Helpers
             try
             {
                 _auth = new LiveAuthClient(ClientId);
-                LiveLoginResult result = await _auth.InitializeAsync(_scopes);
+                LiveLoginResult result = await _auth.InitializeAsync(Scopes);
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
                     _client = new LiveConnectClient(result.Session);
@@ -83,6 +84,19 @@ namespace SimpleTasks.Helpers
             }
             _client = null;
             _auth = null;
+        }
+
+        public async static Task<string> GetUserNameAsync()
+        {
+            string userName = null;
+            try
+            {
+                LiveOperationResult operationResult = await _client.GetAsync("me");
+                dynamic result = operationResult.Result;
+                userName = result.name;
+            }
+            catch (Exception) { }
+            return userName;
         }
         #endregion
 
