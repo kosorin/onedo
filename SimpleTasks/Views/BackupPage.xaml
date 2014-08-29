@@ -189,9 +189,11 @@
 
         <!--Action Progress Ring-->
         <Border Grid.RowSpan="3"
-                Background="{StaticResource BackgroundBrush}"
-                Visibility="{Binding PerformingAction, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
-                Opacity="0.82">
+                Visibility="{Binding PerformingAction, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource BackgroundColor}"
+                                 Opacity="0.8" />
+            </Border.Background>
             <controls:ProgressRing x:Name="ActionProgressRing"
                                    Style="{StaticResource ProgressRingWithLabelStyle}"
                                    Text="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}"
