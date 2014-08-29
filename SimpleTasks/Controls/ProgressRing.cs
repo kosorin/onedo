@@ -43,16 +43,21 @@ namespace SimpleTasks.Controls
             return base.MeasureOverride(availableSize);
         }
 
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(ProgressRing), new PropertyMetadata(""));
+
         public bool IsActive
         {
             get { return (bool)GetValue(IsActiveProperty); }
             set { SetValue(IsActiveProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for IsActive.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsActiveProperty =
             DependencyProperty.Register("IsActive", typeof(bool), typeof(ProgressRing), new PropertyMetadata(false, new PropertyChangedCallback(IsActiveChanged)));
-
         private static void IsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
             var pr = (ProgressRing)d;
@@ -65,8 +70,6 @@ namespace SimpleTasks.Controls
             get { return (TemplateSettingValues)GetValue(TemplateSettingsProperty); }
             set { SetValue(TemplateSettingsProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for TemplateSettings.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TemplateSettingsProperty =
             DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(ProgressRing), new PropertyMetadata(new TemplateSettingValues(100)));
 
@@ -85,8 +88,6 @@ namespace SimpleTasks.Controls
                 get { return (double)GetValue(MaxSideLengthProperty); }
                 set { SetValue(MaxSideLengthProperty, value); }
             }
-
-            // Using a DependencyProperty as the backing store for MaxSideLength.  This enables animation, styling, binding, etc...
             public static readonly DependencyProperty MaxSideLengthProperty =
                 DependencyProperty.Register("MaxSideLength", typeof(double), typeof(TemplateSettingValues), new PropertyMetadata(0D));
 
@@ -95,8 +96,6 @@ namespace SimpleTasks.Controls
                 get { return (double)GetValue(EllipseDiameterProperty); }
                 set { SetValue(EllipseDiameterProperty, value); }
             }
-
-            // Using a DependencyProperty as the backing store for EllipseDiameter.  This enables animation, styling, binding, etc...
             public static readonly DependencyProperty EllipseDiameterProperty =
                 DependencyProperty.Register("EllipseDiameter", typeof(double), typeof(TemplateSettingValues), new PropertyMetadata(0D));
 
@@ -105,8 +104,6 @@ namespace SimpleTasks.Controls
                 get { return (Thickness)GetValue(EllipseOffsetProperty); }
                 set { SetValue(EllipseOffsetProperty, value); }
             }
-
-            // Using a DependencyProperty as the backing store for EllipseOffset.  This enables animation, styling, binding, etc...
             public static readonly DependencyProperty EllipseOffsetProperty =
                 DependencyProperty.Register("EllipseOffset", typeof(Thickness), typeof(TemplateSettingValues), new PropertyMetadata(new Thickness()));
         }
