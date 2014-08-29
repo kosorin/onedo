@@ -107,7 +107,22 @@
                                      VerticalContentAlignment="Bottom"
                                      SelectionChanged="LengthTypes_SelectionChanged"
                                      VerticalAlignment="Top"
-                                     Margin="0,60,0,0" />
+                                     Margin="0,60,0,0">
+                    <controls:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="60"
+                                  Margin="-8,-10"
+                                  Background="{StaticResource PhoneAccentBrush}">
+                                <Border Background="Black"
+                                        Opacity="{Binding Value2}" />
+                                <TextBlock Text="{Binding}"
+                                           Margin="12,0,0,0"
+                                           Style="{StaticResource ButtonTextStyle}"
+                                           Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                            </Grid>
+                        </DataTemplate>
+                    </controls:ListPicker.ItemTemplate>
+                </controls:ListPicker>
             </Grid>
 
         </StackPanel>

@@ -349,7 +349,7 @@
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Disabled">
-                                        <Storyboard>
+                                    <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
                                                                        Storyboard.TargetProperty="Opacity">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -408,16 +408,12 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Grid Height="60"
-                          Margin="-8,-10"
-                          Background="{StaticResource PhoneAccentBrush}">
-                        <Border Background="Black"
-                                Opacity="{Binding Opacity}" />
+                    <Border Height="60"
+                            Margin="-8,-10"
+                            Padding="10,0">
                         <TextBlock Text="{Binding}"
-                                   Margin="12,0,0,0"
-                                   Style="{StaticResource ButtonTextStyle}"
-                                   Foreground="{StaticResource ButtonDarkForegroundBrush}" />
-                    </Grid>
+                                   Style="{StaticResource ButtonTextStyle}" />
+                    </Border>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

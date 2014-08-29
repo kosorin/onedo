@@ -16,17 +16,9 @@ namespace SimpleTasks.Controls
             set { SetProperty(ref _label, value); }
         }
 
-        private double _opacity = 0;
-        public double Opacity
-        {
-            get { return _opacity; }
-            set { SetProperty(ref _opacity, value); }
-        }
-
-        public ListPickerItem(string label, double opacity = 0)
+        public ListPickerItem(string label)
         {
             Label = label;
-            Opacity = opacity;
         }
 
         public override string ToString()
@@ -44,8 +36,8 @@ namespace SimpleTasks.Controls
             set { SetProperty(ref _value, value); }
         }
 
-        public ListPickerItem(T value, string label, double opacity = 0) :
-            base(label, opacity)
+        public ListPickerItem(string label, T value) :
+            base(label)
         {
             Value = value;
         }
@@ -67,8 +59,8 @@ namespace SimpleTasks.Controls
             set { SetProperty(ref _value2, value); }
         }
 
-        public ListPickerItem(T1 value1, T2 value2, string label, double opacity = 0) :
-            base(label, opacity)
+        public ListPickerItem(string label, T1 value1, T2 value2) :
+            base(label)
         {
             Value1 = value1;
             Value2 = value2;
