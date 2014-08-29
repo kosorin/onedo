@@ -9,7 +9,7 @@
         <trans-unit id="Resx/ResourceFlowDirection" translate="yes" xml:space="preserve">
           <source>LeftToRight</source>
           <target state="translated" state-qualifier="tm-suggestion">LeftToRight</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</note>
           </trans-unit>
         <trans-unit id="Resx/ResourceLanguage" translate="yes" xml:space="preserve">
           <source>en-US</source>
@@ -451,12 +451,8 @@ Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
           <target state="new">No backups</target>
         </trans-unit>
         <trans-unit id="Resx/UnknownError" translate="yes" xml:space="preserve">
-          <source>Unknown error</source>
-          <target state="new">Unknown error</target>
-        </trans-unit>
-        <trans-unit id="Resx/BackupVersion" translate="yes" xml:space="preserve">
-          <source>You are trying to restore from old backup. We recommend you first make backup, then restore.</source>
-          <target state="new">You are trying to restore from old backup. We recommend you first make backup, then restore.</target>
+          <source>Unknown error.</source>
+          <target state="new">Unknown error.</target>
         </trans-unit>
         <trans-unit id="Resx/SignedInYes" translate="yes" xml:space="preserve">
           <source>You're signed in as {0}.</source>
@@ -471,20 +467,18 @@ Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
           <target state="new">select items to restore</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
-          <source>Backup and restore your tasks and settings on your OneDrive.
-Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
+          <source>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
 It's still in beta. If you have any problem, send us email.</source>
-          <target state="new">Backup and restore your tasks and settings on your OneDrive.
-Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
+          <target state="new">Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
 It's still in beta. If you have any problem, send us email.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupOk" translate="yes" xml:space="preserve">
-          <source>Successful backup</source>
-          <target state="new">Successful backup</target>
+          <source>Successful backup.</source>
+          <target state="new">Successful backup.</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
-          <source>Successful restore</source>
-          <target state="new">Successful restore</target>
+          <source>Successful restore.</source>
+          <target state="new">Successful restore.</target>
         </trans-unit>
         <trans-unit id="Resx/SignedInNo" translate="yes" xml:space="preserve">
           <source>You're not signed in.</source>
