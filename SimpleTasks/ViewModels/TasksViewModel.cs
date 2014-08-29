@@ -54,6 +54,31 @@ namespace SimpleTasks.ViewModels
             TaskCollection.SaveToFile(App.TasksFileName, Tasks);
         }
 
+        public void Restore(TaskCollection tasks)
+        {
+            Debug.WriteLine("> Obnova úkolů");
+            DeleteAll();
+
+            foreach (TaskModel task in tasks)
+            {
+                Add(task);
+            }
+
+            if (Settings.Current.Tasks.DeleteCompleted > 0)
+            {
+                DeleteCompleted(Settings.Current.Tasks.DeleteCompletedBefore);
+            }
+
+#if DEBUG
+            Debug.WriteLine(": Obnovené úkoly({0}):", Tasks.Count);
+            foreach (TaskModel task in Tasks)
+            {
+                Reminder reminder = task.GetSystemReminder();
+                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null ? reminder.Name : "<false>");
+            }
+#endif
+        }
+
         public void Add(TaskModel task)
         {
             Tasks.Add(task);

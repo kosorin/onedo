@@ -24,10 +24,6 @@ namespace SimpleTasks.Views
         public const string BackupFileExtension = ".onedo.backup";
         #endregion
 
-        #region Private Fields
-        private string _userName = "";
-        #endregion
-
         #region Constructor
         public BackupPage()
         {
@@ -42,16 +38,16 @@ namespace SimpleTasks.Views
             if (e.NavigationMode == NavigationMode.New || !e.IsNavigationInitiator)
             {
                 IsLoggedIn = false;
-                NotPerformingAction = false;
 
-                IsSigning = true;
+                PerformingAction = true;
+
+                ActionProgressRing.Text = AppResources.SigningIn;
                 IsLoggedIn = await OneDriveHelper.SilentLoginAsync();
-                IsSigning = false;
 
-                BackupRestoreProgressRing.Text = AppResources.BackupDownloadingList;
+                ActionProgressRing.Text = AppResources.BackupDownloadingList;
                 await RefreshBackupList();
 
-                NotPerformingAction = true;
+                PerformingAction = false;
             }
         }
         #endregion
@@ -69,27 +65,16 @@ namespace SimpleTasks.Views
             }
         }
 
-        private bool _isSigning = false;
-        public bool IsSigning
-        {
-            get { return _isSigning; }
-            set { SetProperty(ref _isSigning, value); }
-        }
-
         public string SignedInText
         {
             get { return IsLoggedIn ? string.Format(AppResources.SignedInYes, OneDriveHelper.CurrentUserName) : AppResources.SignedInNo; }
         }
 
-        private bool _notPerformingAction = true;
-        public bool NotPerformingAction
+        private bool _performingAction = false;
+        public bool PerformingAction
         {
-            get { return _notPerformingAction; }
-            set
-            {
-                SetProperty(ref _notPerformingAction, value);
-                OnPropertyChanged("IsEnabledRestoreButton");
-            }
+            get { return _performingAction; }
+            set { SetProperty(ref _performingAction, value); }
         }
 
         private ObservableCollection<RestoreListPickerItem> _backupList = new ObservableCollection<RestoreListPickerItem>();
@@ -116,7 +101,7 @@ namespace SimpleTasks.Views
 
         public bool IsEnabledRestoreButton
         {
-            get { return NotPerformingAction && (UseTasks || UseSettings) && (BackupList.Count > 0 && BackupList[0].Value1 != null); }
+            get { return (UseTasks || UseSettings) && (BackupList.Count > 0 && BackupList[0].Value1 != null); }
         }
 
         private bool _useTasks = true;
@@ -138,6 +123,14 @@ namespace SimpleTasks.Views
             {
                 SetProperty(ref _useSettings, value);
                 OnPropertyChanged("IsEnabledRestoreButton");
+            }
+        }
+
+        public string BackupAndRestoreHelpText
+        {
+            get
+            {
+                return string.Format(AppResources.BackupAndRestoreHelpText, BackupFolderName);
             }
         }
         #endregion
@@ -245,12 +238,24 @@ namespace SimpleTasks.Views
                 string data = await OneDriveHelper.DownloadAsync(selectedItem.Value1.Id);
                 if (data != null)
                 {
-                    backupData = JsonConvert.DeserializeObject<BackupData>(data, new JsonSerializerSettings());
-
-                    // Zpracování dat
-                    if (backupData.Version != App.VersionString)
+                    try
                     {
+                        backupData = JsonConvert.DeserializeObject<BackupData>(data, new JsonSerializerSettings());
 
+                        // Zpracování dat
+                        if (UseSettings && backupData.Settings != null)
+                        {
+                            backupData.Settings.Version = App.VersionString;
+                            Settings.Current = backupData.Settings;
+                        }
+                        if (UseTasks && backupData.Tasks != null)
+                        {
+                            App.Tasks.Restore(backupData.Tasks);
+                        }
+                    }
+                    catch
+                    {
+                        backupData = null;
                     }
                 }
             }
@@ -269,15 +274,14 @@ namespace SimpleTasks.Views
             }
             else
             {
-                NotPerformingAction = false;
+                PerformingAction = true;
 
-                IsSigning = true;
+                ActionProgressRing.Text = AppResources.SigningIn;
                 IsLoggedIn = await OneDriveHelper.LoginAsync();
-                IsSigning = false;
 
                 if (IsLoggedIn)
                 {
-                    BackupRestoreProgressRing.Text = AppResources.BackupDownloadingList;
+                    ActionProgressRing.Text = AppResources.BackupDownloadingList;
                     await RefreshBackupList();
                 }
                 else
@@ -285,52 +289,53 @@ namespace SimpleTasks.Views
                     MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.SignIn, MessageBoxButton.OK);
                 }
 
-                NotPerformingAction = true;
+                PerformingAction = false;
             }
         }
 
         private async void BackupButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BackupRestoreProgressRing.Text = AppResources.BackingUp;
-            NotPerformingAction = false;
+            PerformingAction = true;
 
+            ActionProgressRing.Text = AppResources.BackingUp;
             if (await Backup())
             {
                 await RefreshBackupList();
+                MessageBox.Show(string.Format(AppResources.BackupOk), AppResources.BackupText, MessageBoxButton.OK);
             }
             else
             {
                 MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupText, MessageBoxButton.OK);
             }
 
-            NotPerformingAction = true;
+            PerformingAction = false;
         }
 
         private async void RestoreButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BackupRestoreProgressRing.Text = AppResources.Restoring;
-            NotPerformingAction = false;
+            PerformingAction = true;
 
+            ActionProgressRing.Text = AppResources.Restoring;
             if (await Restore())
             {
-                // OK
+                MessageBox.Show(string.Format(AppResources.RestoreOk), AppResources.RestoreText, MessageBoxButton.OK);
             }
             else
             {
                 MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.RestoreText, MessageBoxButton.OK);
             }
 
-            NotPerformingAction = true;
+            PerformingAction = false;
         }
 
         private async void RefreshListButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            BackupRestoreProgressRing.Text = AppResources.BackupDownloadingList;
-            NotPerformingAction = false;
+            PerformingAction = true;
 
+            ActionProgressRing.Text = AppResources.BackupDownloadingList;
             await RefreshBackupList();
 
-            NotPerformingAction = true;
+            PerformingAction = false;
         }
         #endregion
     }

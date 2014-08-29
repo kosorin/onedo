@@ -632,4 +632,18 @@ You can also contact us via email.</value>
   <data name="BackupLatest" xml:space="preserve">
     <value>latest</value>
   </data>
+  <data name="RestoreWhatText" xml:space="preserve">
+    <value>select items to restore</value>
+  </data>
+  <data name="BackupAndRestoreHelpText" xml:space="preserve">
+    <value>Backup and restore your tasks and settings on your OneDrive.
+Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
+It's still in beta. If you have any problem, send us email.</value>
+  </data>
+  <data name="RestoreOk" xml:space="preserve">
+    <value>Successful restore</value>
+  </data>
+  <data name="BackupOk" xml:space="preserve">
+    <value>Successful backup</value>
+  </data>
 </root>

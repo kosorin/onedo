@@ -295,6 +295,17 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup and restore your tasks and settings on your OneDrive.
+        ///Backup will create new folder &quot;{0}&quot;. You can move this folder to your location, but please, do not rename it. Also don&apos;t modify files inside.
+        ///It&apos;s still in beta. If you have any problem, send us email..
+        /// </summary>
+        public static string BackupAndRestoreHelpText {
+            get {
+                return ResourceManager.GetString("BackupAndRestoreHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to backup &amp; restore.
         /// </summary>
         public static string BackupAndRestoreTitle {
@@ -318,6 +329,15 @@ namespace SimpleTasks.Resources {
         public static string BackupLatest {
             get {
                 return ResourceManager.GetString("BackupLatest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful backup.
+        /// </summary>
+        public static string BackupOk {
+            get {
+                return ResourceManager.GetString("BackupOk", resourceCulture);
             }
         }
         
@@ -924,11 +944,29 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Successful restore.
+        /// </summary>
+        public static string RestoreOk {
+            get {
+                return ResourceManager.GetString("RestoreOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore.
         /// </summary>
         public static string RestoreText {
             get {
                 return ResourceManager.GetString("RestoreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select items to restore.
+        /// </summary>
+        public static string RestoreWhatText {
+            get {
+                return ResourceManager.GetString("RestoreWhatText", resourceCulture);
             }
         }
         

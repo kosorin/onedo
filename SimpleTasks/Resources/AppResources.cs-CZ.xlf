@@ -466,6 +466,26 @@ Můžete nás také kontaktovat pomocí emailu.</target></trans-unit>
           <source>latest</source>
           <target state="new">latest</target>
         </trans-unit>
+        <trans-unit id="Resx/RestoreWhatText" translate="yes" xml:space="preserve">
+          <source>select items to restore</source>
+          <target state="new">select items to restore</target>
+        </trans-unit>
+        <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
+          <source>Backup and restore your tasks and settings on your OneDrive.
+Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
+It's still in beta. If you have any problem, send us email.</source>
+          <target state="new">Backup and restore your tasks and settings on your OneDrive.
+Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
+It's still in beta. If you have any problem, send us email.</target>
+        </trans-unit>
+        <trans-unit id="Resx/BackupOk" translate="yes" xml:space="preserve">
+          <source>Successful backup</source>
+          <target state="new">Successful backup</target>
+        </trans-unit>
+        <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
+          <source>Successful restore</source>
+          <target state="new">Successful restore</target>
+        </trans-unit>
         <trans-unit id="Resx/SignedInNo" translate="yes" xml:space="preserve">
           <source>You're not signed in.</source>
           <target state="new">You're not signed in.</target>

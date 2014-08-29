@@ -9,24 +9,45 @@
                    Style="{StaticResource BasePageStyle}">
 
     <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--Nadpis-->
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
                    Text="{Binding LocalizedResources.BackupAndRestoreTitle, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
                    Text="BETA"
                    Foreground="{StaticResource PhoneAccentBrush}"
-                   HorizontalAlignment="Right" />
-        <ScrollViewer Margin="24,60,24,0">
-            <StackPanel>
+                   HorizontalAlignment="Right"
+                   FontFamily="Segoe WP Black"
+                   FontWeight="Black" />
 
-                <!--OneDrive Logo-->
-                <Viewbox Margin="0,0,0,20">
-                    <Border Background="#094AB2"
-                            Padding="80,100">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+        <!--Hlavní obsah-->
+        <ScrollViewer Grid.Row="1"
+                      Margin="24,0">
+            <StackPanel>
+                <!--Nápověda-->
+                <TextBlock Style="{StaticResource NormalTextStyle}"
+                           Text="{Binding BackupAndRestoreHelpText, FallbackValue='Lorem ipsum Help Text.'}"
+                           TextWrapping="Wrap"
+                           FontSize="20"
+                           Margin="0,0,0,10" />
+
+                <!--Přihlašování-->
+                <TextBlock Style="{StaticResource SubtleTextStyle}"
+                           Text="{Binding SignedInText, FallbackValue='You are signed in as David Kosorin.'}"
+                           Margin="0,0,0,5"
+                           TextWrapping="Wrap"
+                           FontSize="20" />
+                <StackPanel Orientation="Horizontal">
+                    <!--OneDrive Logo-->
+                    <Viewbox Height="50"
+                             HorizontalAlignment="Left">
+                        <Border Background="#094AB2"
+                                Padding="80">
                             <Canvas Width="305"
                                     Height="181">
                                 <Path Fill="White"
@@ -34,40 +55,17 @@
                                 <Path Fill="White"
                                       Data="M30.781433,166.98024C19.993408,164.416397 8.562408,154.888016 3.202118,143.991348 0.161529999999999,137.810165 -3.00000000015288E-05,136.901046 -3.00000000015288E-05,125.965866 -3.00000000015288E-05,115.564865 0.259490999999998,113.896225 2.680085,108.731796 7.782868,97.84465 17.559785,89.978012 29.826875,86.889145 32.415803,86.237228 34.848512,85.196701 35.232881,84.576859 35.61728,83.957016 36.044282,80.580338 36.181764,77.073166 37.035646,55.291256 51.327333,36.098843 71.283204,29.935085 82.064485,26.605098 95.609132,27.424236 107.335725,32.115429 111.054933,33.603298 110.63614,33.922299 118.500032,23.610897 123.150636,17.512798 132.547731,9.92867700000002 140.239717,6.06535000000002 148.541322,1.89588600000002 157.175142,-0.0250429999999833 167.500032,0.000256000000016243 196.357332,0.0710570000000162 221.227541,18.120937 230.424043,45.6683 233.362336,54.469859 233.215822,56.934856 229.750032,57.007503 228.23752,57.039196 223.903841,57.872142 220.119539,58.85847L213.239046,60.651805 206.960726,54.373591C189.258944,36.671778 160.369326,32.845637 135.810244,44.950419 125.998751,49.786357 118.114443,56.728983 112.159029,65.776702 107.913332,72.227065 102.500032,84.26036 102.500032,87.24797 102.500032,89.367477 100.783845,90.426589 93.454439,92.830245 70.762331,100.272109 57.517488,117.45848 57.526674,139.449874 57.529665,147.454055 59.591188,157.248122 62.452913,162.857528 63.531679,164.972091 64.133608,166.982955 63.790498,167.326034 62.913057,168.203506 34.684266,167.90776 30.781434,166.980239z" />
                             </Canvas>
-                            <TextBlock Grid.Column="1"
-                                       FontFamily="Segoe WP"
-                                       Foreground="White"
-                                       Text="OneDrive"
-                                       FontSize="188"
-                                       FontWeight="Normal"
-                                       Margin="30,0,0,0" />
-                        </Grid>
-                    </Border>
-                </Viewbox>
+                        </Border>
+                    </Viewbox>
 
-                <!--Nápověda-->
-                <TextBlock Style="{StaticResource NormalTextStyle}"
-                           Text="Lorem ipsum"
-                           Margin="0,-15,0,10" />
-
-                <!--Sign-->
-                <TextBlock Style="{StaticResource SubtleTextStyle}"
-                           Text="{Binding SignedInText, FallbackValue='You are signed in as David Kosorin.'}"
-                           Margin="0,0,0,5"
-                           FontSize="20" />
-                <StackPanel Orientation="Horizontal">
+                    <!--Sign tlačítko-->
                     <Button x:Name="SignButton"
-                            IsEnabled="{Binding NotPerformingAction}"
                             Style="{StaticResource ButtonStyle}"
                             Content="{Binding LocalizedResources.SignIn, Source={StaticResource LocalizedStrings}}"
                             Tap="SignButton_Tap" />
-                    <controls:ProgressRing IsEnabled="{Binding IsSigning}"
-                                           Style="{StaticResource ProgressRingWithLabelStyle}"
-                                           Text="{Binding LocalizedResources.SigningIn, Source={StaticResource LocalizedStrings}}"
-                                           Margin="5,0" />
                 </StackPanel>
 
-                <!--Backup & Restore-->
+                <!--Výběr pro obnovu-->
                 <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <!--Výběr zálohy-->
@@ -81,7 +79,6 @@
 
                         <!--Restore list-->
                         <controls:ListPicker x:Name="RestorePicker"
-                                             IsEnabled="{Binding NotPerformingAction}"
                                              Foreground="{StaticResource SlightBrush}"
                                              Background="{StaticResource ButtonBackgroundBrush}"
                                              ItemsSource="{Binding BackupList}"
@@ -102,7 +99,6 @@
 
                         <!--Refresh backup list-->
                         <Button Grid.Column="1"
-                                IsEnabled="{Binding NotPerformingAction}"
                                 VerticalAlignment="Top"
                                 Height="60"
                                 Width="60"
@@ -142,59 +138,66 @@
                     </Grid>
 
                     <!--Co použít pro obnovení-->
+                    <TextBlock Style="{StaticResource LabelTextStyle}"
+                               Text="{Binding LocalizedResources.RestoreWhatText, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                               Margin="0,10,0,5" />
                     <StackPanel Orientation="Horizontal"
                                 Margin="0,0,0,10">
                         <ToggleButton IsChecked="{Binding UseTasks, Mode=TwoWay}"
-                                      IsEnabled="{Binding NotPerformingAction}"
                                       Style="{StaticResource CheckBoxStyle}"
                                       Content="{Binding LocalizedResources.TasksText, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 Margin="0,0,0,10">
                         <ToggleButton IsChecked="{Binding UseSettings, Mode=TwoWay}"
-                                      IsEnabled="{Binding NotPerformingAction}"
                                       Style="{StaticResource CheckBoxStyle}"
                                       Content="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
                     </StackPanel>
 
-                    <!--Tlačítka akce-->
-                    <Grid Margin="0,0,0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--Backup-->
-                        <Button x:Name="BackupButton"
-                                IsEnabled="{Binding NotPerformingAction}"
-                                Grid.Column="0"
-                                Style="{StaticResource ButtonStyle}"
-                                Content="{Binding LocalizedResources.BackupText, Source={StaticResource LocalizedStrings}}"
-                                HorizontalAlignment="Stretch"
-                                Tap="BackupButton_Tap" />
-
-                        <!--Restore-->
-                        <Button x:Name="RestoreButton"
-                                IsEnabled="{Binding IsEnabledRestoreButton}"
-                                Grid.Column="2"
-                                Style="{StaticResource ButtonStyle}"
-                                Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
-                                HorizontalAlignment="Stretch"
-                                Tap="RestoreButton_Tap" />
-                    </Grid>
-
-                    <!--Action Progress Ring-->
-                    <controls:ProgressRing x:Name="BackupRestoreProgressRing"
-                                           IsEnabled="{Binding NotPerformingAction, Converter={StaticResource BoolNegationConverter}}"
-                                           Style="{StaticResource ProgressRingWithLabelStyle}"
-                                           Text="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}"
-                                           HorizontalAlignment="Left" />
-
                 </StackPanel>
-
             </StackPanel>
         </ScrollViewer>
+
+        <!--Tlačítka akce-->
+        <Grid Grid.Row="2"
+              Margin="10"
+              Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
+              VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Restore-->
+            <Button x:Name="RestoreButton"
+                    IsEnabled="{Binding IsEnabledRestoreButton}"
+                    Grid.Column="0"
+                    Style="{StaticResource ButtonStyle}"
+                    Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
+                    HorizontalAlignment="Stretch"
+                    Tap="RestoreButton_Tap" />
+
+            <!--Backup-->
+            <Button x:Name="BackupButton"
+                    Grid.Column="2"
+                    Style="{StaticResource ButtonStyle}"
+                    Content="{Binding LocalizedResources.BackupText, Source={StaticResource LocalizedStrings}}"
+                    HorizontalAlignment="Stretch"
+                    Tap="BackupButton_Tap" />
+        </Grid>
+
+        <!--Action Progress Ring-->
+        <Border Grid.RowSpan="3"
+                Background="{StaticResource BackgroundBrush}"
+                Visibility="{Binding PerformingAction, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Opacity="0.82">
+            <controls:ProgressRing x:Name="ActionProgressRing"
+                                   Style="{StaticResource ProgressRingWithLabelStyle}"
+                                   Text="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+        </Border>
     </Grid>
 
 </controls:BasePage>
