@@ -932,16 +932,16 @@
             <!--EndRegion-->
 
             <!--Region ProgressRing-->
-            <!--BorderBrush jako barva progress ringu-->
             <Style x:Key="ProgressRingWithLabelStyle"
                    TargetType="controls:ProgressRing">
                 <Setter Property="Foreground"
                         Value="{StaticResource SlightBrush}" />
+                <!--BorderBrush jako barva progress ringu-->
                 <Setter Property="BorderBrush"
                         Value="{StaticResource PhoneAccentBrush}" />
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="ContentControl">
+                        <ControlTemplate TargetType="controls:ProgressRing">
                             <Grid Height="50"
                                   Visibility="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.ColumnDefinitions>
@@ -952,7 +952,7 @@
                                                        IsActive="{TemplateBinding IsEnabled}"
                                                        Foreground="{TemplateBinding BorderBrush}" />
                                 <TextBlock Style="{StaticResource NormalTextStyle}"
-                                           Text="{TemplateBinding Content}"
+                                           Text="{TemplateBinding Text}"
                                            Foreground="{TemplateBinding Foreground}"
                                            Grid.Column="1"
                                            Margin="5,0"
