@@ -1,10 +1,14 @@
 ﻿{
-    "4.1.0 ": {
-        "date": "2014-08-23",
+    "4.2.0 ": {
+        "date": "2014-08-30",
         "items": [
-            "možnost nastavit výchozí hodnoty pro nastavení dlaždice úkolu",
-            "možnost skrýt zaškrtávací políčko na hlavní stránce",
-            "oprava vkládání mezer v podúkolu"
+            "záloha a obnovení (BETA)"
+        ]
+    },
+    "4.2.0": {
+        "date": "2014-08-30",
+        "items": [
+            "záloha a obnovení (BETA)"
         ]
     },
     "4.1.0": {
@@ -14,15 +18,6 @@
             "možnost skrýt zaškrtávací políčko na hlavní stránce",
             "oprava vkládání mezer v podúkolu",
             "úprava barev na stránce pro výběr času"
-        ]
-    },
-    "4.0.0 ": {
-        "date": "2014-08-17",
-        "items": [
-            "nové jméno aplikace \"OneDo\" a nové logo",
-            "odstraněno tlačítko pro ukládání - úkoly se ukládájí automaticky",
-            "podúkoly (podporují gesto pro dokončení na hlavní stránce a jsou také zobrazeny na dlaždici s úkolem)",
-            "možnost nastavit vzhled dlaždic (velikost písma, skrýt termín, …)"
         ]
     },
     "4.0.0": {
