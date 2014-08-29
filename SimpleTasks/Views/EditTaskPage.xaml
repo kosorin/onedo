@@ -222,34 +222,34 @@
                         <TextBlock Grid.Column="1"
                                    Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource ButtonTextStyle}" />
-                        <TextBlock Grid.Column="2"
-                                   Text="{Binding Task.Subtasks.Count, FallbackValue=4}"
-                                   Style="{StaticResource ButtonTextStyle}"
-                                   FontSize="22"
-                                   Foreground="{StaticResource SlightBrush}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,0,0,2" />
-                        <controls:RingSlice Grid.Column="2"
-                                            InnerRadius="18"
-                                            Radius="26"
-                                            Fill="{StaticResource SubtleBrush}"
-                                            StartAngle="{Binding SubtasksAngle, FallbackValue=225}"
-                                            EndAngle="359.99"
-                                            Opacity="0.22" />
-                        <controls:RingSlice Grid.Column="2"
-                                            InnerRadius="18"
-                                            Radius="26"
-                                            Fill="{StaticResource PhoneAccentBrush}"
-                                            StartAngle="0"
-                                            EndAngle="{Binding SubtasksAngle, FallbackValue=225}"
-                                            Opacity="1" />
-                        <controls:RingSlice Grid.Column="2"
-                                            InnerRadius="18"
-                                            Radius="26"
-                                            Fill="{StaticResource NormalBrush}"
-                                            StartAngle="0"
-                                            EndAngle="{Binding SubtasksAngle, FallbackValue=225}"
-                                            Opacity="0.2" />
+                        <Grid Grid.Column="2"
+                              Visibility="{Binding Task.Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
+
+                            <Ellipse Fill="{StaticResource SubtleBrush}"
+                                     Opacity="0.22"
+                                     Width="50"
+                                     Height="50" />
+
+                            <controls:RingSlice InnerRadius="18"
+                                                Radius="26"
+                                                Fill="{StaticResource PhoneAccentBrush}"
+                                                StartAngle="0"
+                                                EndAngle="{Binding SubtasksAngle, FallbackValue=225}"
+                                                Opacity="1" />
+                            <controls:RingSlice InnerRadius="18"
+                                                Radius="26"
+                                                Fill="{StaticResource NormalBrush}"
+                                                StartAngle="0"
+                                                EndAngle="359.99"
+                                                Opacity="0.12" />
+
+                            <TextBlock Text="{Binding Task.Subtasks.Count, FallbackValue=4}"
+                                       Style="{StaticResource ButtonTextStyle}"
+                                       FontSize="22"
+                                       Foreground="{StaticResource SlightBrush}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,2" />
+                        </Grid>
                     </Grid>
                 </Button>
 
