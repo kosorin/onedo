@@ -10,23 +10,11 @@ namespace SimpleTasks.Core.Models
     [DataContract()]
     public class BackupData
     {
-        public BackupData()
-        {
-            Info = new BackupDataInfo();
-        }
+        [DataMember(Name = "Version")]
+        public string Version { get; set; }
 
-        [DataMember(Name = "Info", Order = 1)]
-        public BackupDataInfo Info { get; set; }
-
-        [DataContract()]
-        public class BackupDataInfo
-        {
-            [DataMember(Name = "Version")]
-            public string Version { get; set; }
-
-            [DataMember(Name = "UtcDateTime")]
-            public DateTime UtcDateTime { get; set; }
-        }
+        [DataMember(Name = "Created")]
+        public DateTime Created { get; set; }
 
         [DataMember(Name = "Settings", Order = 2)]
         public Settings Settings { get; set; }
