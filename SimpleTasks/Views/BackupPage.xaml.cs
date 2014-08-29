@@ -24,6 +24,10 @@ namespace SimpleTasks.Views
         public const string BackupFileExtension = ".onedo.backup";
         #endregion
 
+        #region Private Fields
+        private const int _maxBackupsInList = 5;
+        #endregion
+
         #region Constructor
         public BackupPage()
         {
@@ -168,7 +172,7 @@ namespace SimpleTasks.Views
                     // Při parsování datumu, takže
                 }
 
-                if (list.Count >= 8)
+                if (list.Count >= _maxBackupsInList)
                 {
                     break;
                 }
