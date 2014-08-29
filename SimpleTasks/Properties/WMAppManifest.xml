@@ -5,7 +5,7 @@
     <Language code="cs-CZ" />
     <Language code="sk-SK" />
   </Languages>
-  <App xmlns="" ProductID="{b6fc44e1-bbd2-48d3-b564-bac3c06d408e}" Title="OneDo" RuntimeType="Silverlight" Version="4.1.0.0" Genre="apps.normal" Author="David Kosorin" Description="Practical application with ease of use and elegant design for scheduling your tasks and easier organize your life." Publisher="David Kosorin" PublisherID="{d4ad868c-9b87-4972-ab52-6aed9646acc1}">
+  <App xmlns="" ProductID="{b6fc44e1-bbd2-48d3-b564-bac3c06d408e}" Title="OneDo" RuntimeType="Silverlight" Version="4.2.0.0" Genre="apps.normal" Author="David Kosorin" Description="Practical application with ease of use and elegant design for scheduling your tasks and easier organize your life." Publisher="David Kosorin" PublisherID="{d4ad868c-9b87-4972-ab52-6aed9646acc1}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
