@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Conventers
 {
@@ -26,13 +27,7 @@ namespace SimpleTasks.Conventers
             if (function == "TrimEnd")
                 return str.TrimEnd();
             if (function == "FirstUpper")
-            {
-                if (str.Length > 0)
-                {
-                    return str.Substring(0, 1).ToUpper() + str.Substring(1);
-                }
-                return "";
-            }
+                return str.FirstUpper();
 
             return str;
         }

@@ -31,6 +31,15 @@ namespace SimpleTasks.Core.Helpers
             return Regex.Split(s, "\r\n|\r|\n");
         }
 
+        public static string FirstUpper(this string s)
+        {
+            if (s.Length > 0)
+            {
+                return s.Substring(0, 1).ToUpper() + s.Substring(1);
+            }
+            return "";
+        }
+
         public static int LineNumberAtPosition(this string s, int lastPosition)
         {
             int count = 0;
