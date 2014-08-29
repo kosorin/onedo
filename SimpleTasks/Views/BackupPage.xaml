@@ -188,17 +188,22 @@
         </Grid>
 
         <!--Action Progress Ring-->
-        <Border Grid.RowSpan="3"
+        <Grid Grid.RowSpan="3"
                 Visibility="{Binding PerformingAction, FallbackValue=Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Border.Background>
+            <Grid.Background>
                 <SolidColorBrush Color="{StaticResource BackgroundColor}"
                                  Opacity="0.8" />
-            </Border.Background>
+            </Grid.Background>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="1.2*" />
+            </Grid.RowDefinitions>
 
             <Grid Height="50"
                   Visibility="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
                   HorizontalAlignment="Center"
-                  VerticalAlignment="Center">
+                  VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -213,7 +218,7 @@
                            Margin="5,0"
                            VerticalAlignment="Center" />
             </Grid>
-        </Border>
+        </Grid>
     </Grid>
 
 </controls:BasePage>
