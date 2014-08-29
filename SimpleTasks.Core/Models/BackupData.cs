@@ -17,9 +17,9 @@ namespace SimpleTasks.Core.Models
         public DateTime Created { get; set; }
 
         [DataMember(Name = "Settings", Order = 2)]
-        public Settings Settings { get; set; }
+        public object Settings { get; set; }
 
         [DataMember(Name = "Tasks", Order = 3)]
-        public TaskCollection Tasks { get; set; }
+        public object Tasks { get; set; }
     }
 }
