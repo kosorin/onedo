@@ -22,7 +22,7 @@ namespace SimpleTasks.Views
         public TimePickerPage()
             : base("TimePicker")
         {
-            _time = NavigationParameter<DateTime?>(_name) ?? _defaultTime;
+            _time = NavigationParameter<DateTime?>(_name, null) ?? _defaultTime;
 
             InitializeComponent();
             TimePicker.SetTime(_time);

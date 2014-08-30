@@ -28,7 +28,7 @@ namespace SimpleTasks.Views
         public ReminderPickerPage()
             : base("ReminderPicker")
         {
-            _reminder = NavigationParameter<TimeSpan?>(_name) ?? _defaultReminder;
+            _reminder = NavigationParameter<TimeSpan?>(_name, null) ?? _defaultReminder;
 
             InitializeComponent();
             SetTimeSpan(_reminder);

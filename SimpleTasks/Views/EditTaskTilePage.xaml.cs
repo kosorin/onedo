@@ -29,7 +29,7 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            SetTask(NavigationParameter<TaskModel>());
+            SetTask(NavigationParameter<TaskModel>("", new TaskModel()));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -96,7 +96,7 @@ namespace SimpleTasks.Views
         public DatePickerPage()
             : base("DatePicker")
         {
-            _date = NavigationParameter<DateTime?>(_name) ?? _defaultDate;
+            _date = NavigationParameter<DateTime?>(_name, null) ?? _defaultDate;
             if (_date == DateTime.MaxValue)
             {
                 _date = _defaultDate;

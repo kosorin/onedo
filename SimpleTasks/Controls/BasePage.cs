@@ -147,11 +147,16 @@ namespace SimpleTasks.Controls
             return false;
         }
 
-        public static T NavigationParameter<T>(string parameterKey = "")
+        public static T NavigationParameter<T>(string parameterKey = "", T defaultValue = default(T))
         {
-            T param = (T)PhoneApplicationService.Current.State[_navigationKey + parameterKey];
-            PhoneApplicationService.Current.State.Remove(_navigationKey + parameterKey);
-            return param;
+            string key = _navigationKey + parameterKey;
+            if (PhoneApplicationService.Current.State.ContainsKey(key))
+            {
+                T param = (T)PhoneApplicationService.Current.State[key];
+                PhoneApplicationService.Current.State.Remove(key);
+                return param;
+            }
+            return defaultValue;
         }
 
         public static bool IsSetNavigationParameter(string parameterKey = "")
