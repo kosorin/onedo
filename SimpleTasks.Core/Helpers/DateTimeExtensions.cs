@@ -1,5 +1,4 @@
-﻿using SimpleTasks.Core.Resources;
-using System;
+﻿using System;
 using System.Globalization;
 
 namespace SimpleTasks.Core.Helpers
