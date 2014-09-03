@@ -1,8 +1,16 @@
 {
-    "4.2.0 ": {
-        "date": "2014-08-30",
+    "4.3.0 ": {
+        "date": "2014-09-04",
         "items": [
-            "záloha a obnovenie (BETA)"
+            "počet úloh na hlavnej dlaždici (môžete skryť v nastavení)",
+            "možnosť prehodiť názov s dátumom na veľkej dlaždici"
+        ]
+    },
+    "4.3.0": {
+        "date": "2014-09-04",
+        "items": [
+            "počet úloh na hlavnej dlaždici",
+            "možnosť prehodiť názov s dátumom na veľkej dlaždici"
         ]
     },
     "4.2.0": {

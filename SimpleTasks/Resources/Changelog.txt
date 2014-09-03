@@ -1,8 +1,16 @@
 {
-    "4.2.0 ": {
-        "date": "2014-08-30",
+    "4.3.0 ": {
+        "date": "2014-09-04",
         "items": [
-            "backup and restore (BETA)"
+            "task count on main tile (you can hide it in settings)",
+            "option to swap date and title on wide tile"
+        ]
+    },
+    "4.3.0": {
+        "date": "2014-09-04",
+        "items": [
+            "task count on main tile",
+            "option to swap date and title on wide tile"
         ]
     },
     "4.2.0": {
