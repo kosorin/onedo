@@ -140,19 +140,11 @@ namespace SimpleTasks.Core.Helpers
         #endregion
 
         #region Hlavní dlaždice
-
-        public static void UpdateOrReset(bool update, TaskCollection tasksSource = null, bool updateUI = false)
+        public static void UpdateOrReset(bool update, TaskCollection tasksSource = null)
         {
             if (update)
             {
-                if (updateUI)
-                {
-                    UpdateUI(tasksSource);
-                }
-                else
-                {
-                    Update(tasksSource);
-                }
+                Update(tasksSource);
             }
             else
             {
@@ -180,7 +172,7 @@ namespace SimpleTasks.Core.Helpers
                     Debug.WriteLine("> Reset primární dlaždice dokončena.");
                 }
             }
-            catch (Exception)
+            catch
             {
                 Debug.WriteLine("Chyba při resetu primární dlaždice.");
             }
@@ -237,15 +229,6 @@ namespace SimpleTasks.Core.Helpers
                 Debug.WriteLine(": Chyba při aktualizaci živé dlaždice: {0}", e.Message);
             }
         }
-
-        public static void UpdateUI(TaskCollection tasksSource)
-        {
-            Deployment.Current.Dispatcher.BeginInvoke(delegate
-            {
-                Update(tasksSource);
-            });
-        }
-
         #endregion
     }
 }
