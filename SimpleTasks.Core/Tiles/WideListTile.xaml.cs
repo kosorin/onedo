@@ -70,7 +70,8 @@ namespace SimpleTasks.Core.Tiles
                 SolidColorBrush borderBrush = new SolidColorBrush(Color.FromArgb(102, 0, 0, 0));
                 SolidColorBrush background = new SolidColorBrush(Color.FromArgb(48, 0, 0, 0));
 
-                foreach (TaskModel task in tasks.Take((int)(336 / lineHeight) + 1))
+                int maxTasks = (int)Math.Round(336 / lineHeight) + (Settings.Current.Tiles.ShowTaskCount ? -2 : 0);
+                foreach (TaskModel task in tasks.Take(maxTasks))
                 {
                     Border border = new Border()
                     {

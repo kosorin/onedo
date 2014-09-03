@@ -64,8 +64,10 @@ namespace SimpleTasks.Core.Tiles
             {
                 TasksStackPanel.Children.Clear();
                 Style taskItemStyle = (Style)Resources["TaskItemStyle"];
-                SolidColorBrush lowPriorityBrush = new SolidColorBrush(Colors.White) { Opacity = 0.5 }; ;
-                foreach (TaskModel task in tasks.Take((int)(336 / lineHeight) + 1))
+                SolidColorBrush lowPriorityBrush = new SolidColorBrush(Colors.White) { Opacity = 0.75 }; ;
+
+                int maxTasks = (int)Math.Round(336 / lineHeight) + (Settings.Current.Tiles.ShowTaskCount ? -2 : 0);
+                foreach (TaskModel task in tasks.Take(maxTasks))
                 {
                     ContentControl cc = new ContentControl();
                     cc.Style = taskItemStyle;
