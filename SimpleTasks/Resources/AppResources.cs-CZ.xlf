@@ -475,11 +475,11 @@ Tato funkce je pořád v beta verzi. Pokud máte nějaký problém, můžete ná
           <target state="signed-off">Zálohování proběhlo úspěšně.</target></trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>swap title and date on wide tile</source>
-          <target state="new">swap title and date on wide tile</target>
+          <target state="signed-off">prohodit název a datum na široké dlaždici</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>show task count</source>
-          <target state="new">show task count</target>
+          <target state="signed-off">zobrazit počet úkolů</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>

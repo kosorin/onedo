@@ -478,11 +478,11 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
         </trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>swap title and date on wide tile</source>
-          <target state="new">swap title and date on wide tile</target>
+          <target state="signed-off">prehodiť názov s dátumom na veľkej dlaždici</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>show task count</source>
-          <target state="new">show task count</target>
+          <target state="signed-off">zobraziť počet úloh</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
