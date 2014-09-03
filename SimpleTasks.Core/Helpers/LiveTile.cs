@@ -1,7 +1,6 @@
 ﻿using Microsoft.Phone.Shell;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Core.Tiles;
-using SimpleTasks.Core.Tiles.DefaultList;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -189,11 +188,13 @@ namespace SimpleTasks.Core.Helpers
 
         public static void Update(TaskCollection tasksSource)
         {
+#if DEBUG
             Debug.WriteLine("> Aktualizuji živé dlaždice...");
             foreach (TaskModel task in tasksSource)
             {
                 Debug.WriteLine(": '" + task.Title + "'");
             }
+#endif
 
             // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
             // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
@@ -208,28 +209,10 @@ namespace SimpleTasks.Core.Helpers
                 .Where((t) => { return t.IsActive && t.DueDate == null; })
                 .OrderByDescending(t => t.Priority));
 
-            // Počet dnešních úkolů (včetně zmeškaných)
-            int todayTaskCount = Math.Min(tasks.Count((t) => { return t.DueDate <= DateTimeExtensions.Today; }), 99);
-
             // Vytvoření obrázků dlaždic
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + SmallTileFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new SmallListTile();
-                WriteableBitmap wb = tile.Render(tasks);
-                wb.WritePNG(stream);
-            }
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + MediumTileFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new MediumListTile();
-                WriteableBitmap wb = tile.Render(tasks);
-                wb.WritePNG(stream);
-            }
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(TileImageDirectory + WideTileFileName, System.IO.FileMode.Create))
-            {
-                TileTemplate tile = new WideListTile();
-                WriteableBitmap wb = tile.Render(tasks);
-                wb.WritePNG(stream);
-            }
+            new SmallListTile(tasks).SaveToPng(TileImageDirectory + SmallTileFileName);
+            new MediumListTile(tasks).SaveToPng(TileImageDirectory + MediumTileFileName);
+            new WideListTile(tasks).SaveToPng(TileImageDirectory + WideTileFileName);
 
             FlipTileData flipTileData = new FlipTileData
             {

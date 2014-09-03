@@ -1,0 +1,48 @@
+﻿<tiles:ListTileControl x:Class="SimpleTasks.Core.Tiles.SmallListTile"
+                       x:Name="Tile"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:conv="clr-namespace:SimpleTasks.Core.Conventers"
+                       xmlns:controls="clr-namespace:SimpleTasks.Core.Controls"
+                       xmlns:tiles="clr-namespace:SimpleTasks.Core.Tiles"
+                       mc:Ignorable="d"
+                       Width="159"
+                       Height="159"
+                       Foreground="White">
+    <tiles:ListTileControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </tiles:ListTileControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource PhoneAccentBrush}">
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <!--Icon-->
+            <Image Source="/Tiles/TileLogo.png"
+                   HorizontalAlignment="Center"
+                   Width="90"
+                   Margin="-10,4,0,0">
+                <Image.CacheMode>
+                    <BitmapCache RenderAtScale="1" />
+                </Image.CacheMode>
+            </Image>
+
+            <!--Count-->
+            <Border>
+                <TextBlock x:Name="CountText"
+                           Text="0"
+                           Style="{StaticResource BaseTileTextStyle}"
+                           FontSize="56"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+            </Border>
+
+        </StackPanel>
+    </Grid>
+</tiles:ListTileControl>

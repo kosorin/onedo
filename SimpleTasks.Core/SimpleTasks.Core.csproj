@@ -118,10 +118,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tiles\DefaultList\MediumListTile.cs" />
-    <Compile Include="Tiles\DefaultList\SmallListTile.cs" />
+    <Compile Include="Tiles\ListTileControl.cs" />
+    <Compile Include="Tiles\MediumListTile.xaml.cs">
+      <DependentUpon>MediumListTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\SmallListTile.xaml.cs">
+      <DependentUpon>SmallListTile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tiles\SmallTaskTile.xaml.cs">
       <DependentUpon>SmallTaskTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tiles\TileControl.cs" />
+    <Compile Include="Tiles\WideListTile.xaml.cs">
+      <DependentUpon>WideListTile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tiles\WideTaskTile.xaml.cs">
       <DependentUpon>WideTaskTile.xaml</DependentUpon>
@@ -134,7 +143,6 @@
     </Compile>
     <Compile Include="Tiles\TaskTileControl.cs" />
     <Compile Include="Tiles\TileTemplate.cs" />
-    <Compile Include="Tiles\DefaultList\WideListTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx">
@@ -183,7 +191,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Tiles\TileLogo.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\Icon.xaml">
       <SubType>Designer</SubType>
@@ -197,7 +207,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Tiles\MediumListTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tiles\SmallListTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tiles\SmallTaskTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tiles\WideListTile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

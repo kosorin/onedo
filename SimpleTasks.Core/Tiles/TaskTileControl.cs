@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 
 namespace SimpleTasks.Core.Tiles
 {
-    public abstract class TaskTileControl : UserControl
+    public abstract class TaskTileControl : TileControl
     {
         public TaskModel Task
         {
@@ -28,37 +28,6 @@ namespace SimpleTasks.Core.Tiles
         public TaskTileControl(TaskModel task)
         {
             Task = task;
-        }
-
-        public abstract void Refresh();
-
-        public void RenderToStream(Stream stream)
-        {
-            if (stream != null)
-            {
-                int width = (int)Width;
-                int height = (int)Height;
-                WriteableBitmap wb = new WriteableBitmap(width, height);
-
-                UpdateLayout();
-                Measure(new Size(width, height));
-                Arrange(new Rect(0, 0, width, height));
-                UpdateLayout();
-
-                wb.Render(this, null);
-                wb.Invalidate();
-
-                wb.WritePNG(stream);
-            }
-        }
-
-        public void SaveToPng(string fileName)
-        {
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(fileName, System.IO.FileMode.Create))
-            {
-                Refresh();
-                RenderToStream(stream);
-            }
         }
     }
 }

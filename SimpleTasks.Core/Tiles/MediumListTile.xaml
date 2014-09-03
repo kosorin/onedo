@@ -1,0 +1,142 @@
+﻿<tiles:ListTileControl x:Class="SimpleTasks.Core.Tiles.MediumListTile"
+                       x:Name="Tile"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:conv="clr-namespace:SimpleTasks.Core.Conventers"
+                       xmlns:controls="clr-namespace:SimpleTasks.Core.Controls"
+                       xmlns:tiles="clr-namespace:SimpleTasks.Core.Tiles"
+                       mc:Ignorable="d"
+                       Width="336"
+                       Height="336"
+                       Foreground="White">
+
+    <tiles:ListTileControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="LineTextStyle"
+                   TargetType="TextBlock"
+                   BasedOn="{StaticResource BaseTileTextStyle}">
+                <Setter Property="TextWrapping"
+                        Value="NoWrap" />
+                <Setter Property="Padding"
+                        Value="6,0,4,0" />
+                <Setter Property="Width"
+                        Value="336" />
+            </Style>
+
+            <Style x:Key="TaskItemStyle"
+                   TargetType="ContentControl">
+                <Setter Property="FontSize"
+                        Value="34.56" />
+                <Setter Property="Height"
+                        Value="48" />
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="White"
+                                         Opacity="1" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Border BorderThickness="0,0,0,1"
+                                    BorderBrush="#59000000"
+                                    Background="#1E000000"
+                                    Height="{TemplateBinding Height}">
+                                <TextBlock Text="{TemplateBinding Content}"
+                                           Style="{StaticResource LineTextStyle}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           LineHeight="{TemplateBinding Height}"
+                                           Foreground="{TemplateBinding Foreground}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </tiles:ListTileControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource PhoneAccentBrush}">
+
+        <Grid Background="#10000000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <!--Úkoly-->
+            <StackPanel Grid.Row="0"
+                        x:Name="TasksStackPanel">
+                <!--<ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Test" />
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Task" />
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Grocery list" />
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Grocery list" />
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Grocery list" />
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Grocery list" />-->
+            </StackPanel>
+
+            <Path x:Name="NoTasksIcon"
+                  Grid.Row="0"
+                  Visibility="Collapsed"
+                  Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z"
+                  Stretch="Uniform"
+                  Fill="#99ffffff"
+                  Margin="0,60,0,40" />
+
+            <!--Název-->
+            <Border x:Name="InfoWrapper"
+                    Grid.Row="1"
+                    Background="#45000000"
+                    BorderThickness="0,1,0,0"
+                    BorderBrush="#88000000"
+                    Height="96"
+                    VerticalAlignment="Bottom">
+                <Grid>
+
+                    <!--Icon-->
+                    <Border x:Name="IconBorder"
+                            Width="96"
+                            HorizontalAlignment="Left">
+                        <Image x:Name="Icon"
+                               Source="/Tiles/TileLogo.png"
+                               HorizontalAlignment="Center"
+                               Width="80">
+                            <Image.CacheMode>
+                                <BitmapCache RenderAtScale="1" />
+                            </Image.CacheMode>
+                        </Image>
+                    </Border>
+
+                    <!--Count-->
+                    <Border x:Name="CountBorder"
+                            Width="96"
+                            HorizontalAlignment="Right">
+                        <TextBlock x:Name="CountText"
+                                   Text="123"
+                                   Style="{StaticResource BaseTileTextStyle}"
+                                   FontSize="48"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Padding="0" />
+                    </Border>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+
+</tiles:ListTileControl>
