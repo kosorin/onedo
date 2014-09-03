@@ -38,11 +38,7 @@ namespace SimpleTasks.Core.Tiles
             int count = tasks.Count;
 
             // Info
-            if (false)
-            {
-                InfoWrapper.Visibility = Visibility.Collapsed;
-            }
-            else
+            if (Settings.Current.Tiles.ShowTaskCount)
             {
                 InfoWrapper.Visibility = Visibility.Visible;
                 InfoWrapper.Height = lineHeight * 2;
@@ -55,6 +51,10 @@ namespace SimpleTasks.Core.Tiles
                 CountBorder.Width = lineHeight * 2;
                 CountText.FontSize = lineHeight;
                 CountText.Text = count.ToString();
+            }
+            else
+            {
+                InfoWrapper.Visibility = Visibility.Collapsed;
             }
 
             // Podúkoly
@@ -109,7 +109,7 @@ namespace SimpleTasks.Core.Tiles
                         titleTextBlock.Opacity = 0.5;
                     }
 
-                    if (false)
+                    if (Settings.Current.Tiles.SwapDateAndTitleOnWide)
                     {
                         StackPanel content = new StackPanel() { Orientation = Orientation.Horizontal };
                         if (dateTextBlock != null)

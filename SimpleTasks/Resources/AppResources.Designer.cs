@@ -369,12 +369,16 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.1.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-08-23&quot;,
+        ///    &quot;4.2.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-08-30&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;option to set default settings for task tile&quot;,
-        ///            &quot;option to hide the check box on the main page&quot;,
-        ///            &quot;bug fix: inserting spaces in subtask&quot;
+        ///            &quot;backup and restore (BETA)&quot;
+        ///        ]
+        ///    },
+        ///    &quot;4.2.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-08-30&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;backup and restore (BETA)&quot;
         ///        ]
         ///    },
         ///    &quot;4.1.0&quot;: {
@@ -384,8 +388,7 @@ namespace SimpleTasks.Resources {
         ///            &quot;option to hide the check box on the main page&quot;,
         ///            &quot;bug fix: inserting spaces in subtask&quot;
         ///        ]
-        ///    },
-        ///    [rest of string was truncated]&quot;;.
+        ///  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -1193,6 +1196,24 @@ namespace SimpleTasks.Resources {
         public static string SettingsPinTile {
             get {
                 return ResourceManager.GetString("SettingsPinTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to show task count.
+        /// </summary>
+        public static string SettingsShowTaskCount {
+            get {
+                return ResourceManager.GetString("SettingsShowTaskCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to swap title and date on wide tile.
+        /// </summary>
+        public static string SettingsSwapDateAndTitle {
+            get {
+                return ResourceManager.GetString("SettingsSwapDateAndTitle", resourceCulture);
             }
         }
         

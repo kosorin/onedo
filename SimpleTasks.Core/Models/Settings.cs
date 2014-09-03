@@ -231,6 +231,26 @@ namespace SimpleTasks.Core.Models
             }
             #endregion
 
+            #region ShowTaskCount
+            private bool _showTaskCount = true;
+            [DataMember(Name = "ShowTaskCount")]
+            public bool ShowTaskCount
+            {
+                get { return _showTaskCount; }
+                set { SetProperty(ref _showTaskCount, value); }
+            }
+            #endregion
+
+            #region SwapDateAndTitleOnWide
+            private bool _swapDateAndTitleOnWide = false;
+            [DataMember(Name = "SwapDateAndTitleOnWide")]
+            public bool SwapDateAndTitleOnWide
+            {
+                get { return _swapDateAndTitleOnWide; }
+                set { SetProperty(ref _swapDateAndTitleOnWide, value); }
+            }
+            #endregion
+
             #region DefaultTaskTileSettings
             private TaskTileSettings _defaultTaskTileSettings = new TaskTileSettings();
             [DataMember(Name = "DefaultTaskTileSettings")]

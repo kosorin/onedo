@@ -642,4 +642,10 @@ It's still in beta. If you have any problem, send us email.</value>
   <data name="BackupOk" xml:space="preserve">
     <value>Successful backup.</value>
   </data>
+  <data name="SettingsShowTaskCount" xml:space="preserve">
+    <value>show task count</value>
+  </data>
+  <data name="SettingsSwapDateAndTitle" xml:space="preserve">
+    <value>swap title and date on wide tile</value>
+  </data>
 </root>

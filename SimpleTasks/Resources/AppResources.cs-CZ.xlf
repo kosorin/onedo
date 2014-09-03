@@ -473,6 +473,14 @@ Tato funkce je pořád v beta verzi. Pokud máte nějaký problém, můžete ná
         <trans-unit id="Resx/BackupOk" translate="yes" xml:space="preserve">
           <source>Successful backup.</source>
           <target state="signed-off">Zálohování proběhlo úspěšně.</target></trans-unit>
+        <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
+          <source>swap title and date on wide tile</source>
+          <target state="new">swap title and date on wide tile</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
+          <source>show task count</source>
+          <target state="new">show task count</target>
+        </trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
           <target state="signed-off">Obnovení proběhlo úspěšně.</target></trans-unit>

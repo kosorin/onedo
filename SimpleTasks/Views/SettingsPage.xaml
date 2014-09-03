@@ -142,6 +142,18 @@
                         <ToggleButton IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
+                        <!--show task count-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCount, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <ToggleButton IsChecked="{Binding Tiles.ShowTaskCount, Mode=TwoWay}"
+                                      Style="{StaticResource SwitchStyle}" />
+
+                        <!--Swap title and date on wide tile-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <ToggleButton IsChecked="{Binding Tiles.SwapDateAndTitleOnWide, Mode=TwoWay}"
+                                      Style="{StaticResource SwitchStyle}" />
+
                         <!--Default Task Tile Settings-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
