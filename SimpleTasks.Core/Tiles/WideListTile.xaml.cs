@@ -67,8 +67,8 @@ namespace SimpleTasks.Core.Tiles
                 SolidColorBrush lowPriorityBrush = new SolidColorBrush(Colors.White) { Opacity = 0.5 };
 
                 Thickness borderThickness = new Thickness(0, 0, 0, 1);
-                SolidColorBrush borderBrush = new SolidColorBrush(Color.FromArgb(89, 0, 0, 0));
-                SolidColorBrush background = new SolidColorBrush(Color.FromArgb(30, 0, 0, 0));
+                SolidColorBrush borderBrush = new SolidColorBrush(Color.FromArgb(102, 0, 0, 0));
+                SolidColorBrush background = new SolidColorBrush(Color.FromArgb(48, 0, 0, 0));
 
                 foreach (TaskModel task in tasks.Take((int)(336 / lineHeight) + 1))
                 {
@@ -89,7 +89,7 @@ namespace SimpleTasks.Core.Tiles
                             Style = (Style)Resources["LineTextStyle"],
                             FontSize = lineHeight * 0.72,
                             LineHeight = lineHeight,
-                            Opacity = 0.5
+                            Opacity = 0.8
                         };
                     }
                     TextBlock titleTextBlock = new TextBlock()
@@ -104,9 +104,9 @@ namespace SimpleTasks.Core.Tiles
                     {
                         if (dateTextBlock != null)
                         {
-                            dateTextBlock.Opacity = 0.25;
+                            dateTextBlock.Opacity = 0.6;
                         }
-                        titleTextBlock.Opacity = 0.5;
+                        titleTextBlock.Opacity = 0.75;
                     }
 
                     if (Settings.Current.Tiles.SwapDateAndTitleOnWide)

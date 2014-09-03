@@ -45,8 +45,8 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="ContentControl">
                             <Border BorderThickness="0,0,0,1"
-                                    BorderBrush="#59000000"
-                                    Background="#1E000000"
+                                    BorderBrush="#66000000"
+                                    Background="#30000000"
                                     Height="{TemplateBinding Height}">
                                 <TextBlock Text="{TemplateBinding Content}"
                                            Style="{StaticResource LineTextStyle}"
@@ -70,7 +70,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-
             <!--Úkoly-->
             <StackPanel Grid.Row="0"
                         x:Name="TasksStackPanel">
@@ -88,20 +87,21 @@
                                 Content="Grocery list" />-->
             </StackPanel>
 
+            <!--No tasks-->
             <Path x:Name="NoTasksIcon"
                   Grid.Row="0"
                   Visibility="Collapsed"
                   Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z"
                   Stretch="Uniform"
-                  Fill="#99ffffff"
+                  Fill="#ccffffff"
                   Margin="0,60,0,40" />
 
-            <!--Název-->
+            <!--Info-->
             <Border x:Name="InfoWrapper"
                     Grid.Row="1"
-                    Background="#45000000"
+                    Background="#60000000"
                     BorderThickness="0,1,0,0"
-                    BorderBrush="#88000000"
+                    BorderBrush="#99000000"
                     Height="96"
                     VerticalAlignment="Bottom">
                 <Grid>
