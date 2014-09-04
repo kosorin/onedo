@@ -38,6 +38,9 @@ namespace SimpleTasks.Views
             {
                 _task = NavigationParameter<TaskModel>();
                 Subtasks = _task.Subtasks;
+
+                _subtaskToEdit = new Subtask();
+                Subtasks.Add(_subtaskToEdit);
             }
 
             InitializeComponent();
@@ -65,23 +68,46 @@ namespace SimpleTasks.Views
         #region Subtasks
         private Subtask _subtaskToEdit = null;
 
-        private void AddSubtask()
+        private TextBox _currentTextBox = null;
+
+        private const double _defaultAnimateDuration = 0.22;
+
+        private void AddSubtask(double duration = _defaultAnimateDuration)
         {
-            SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
+            if (_currentTextBox != null && string.IsNullOrWhiteSpace(_currentTextBox.Text))
             {
-                _subtaskToEdit = new Subtask();
-                Subtasks.Add(_subtaskToEdit);
-            });
+                Subtask currentSubtask = _currentTextBox.DataContext as Subtask;
+                if (currentSubtask.Text != null)
+                {
+                    currentSubtask.Text = "";
+                    currentSubtask.IsCompleted = false;
+                }
+            }
+            else
+            {
+                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(duration), delegate
+                {
+                    _subtaskToEdit = new Subtask();
+                    Subtasks.Add(_subtaskToEdit);
+                });
+            }
         }
 
-        private void DeleteSubtask(Subtask subtask)
+        private void DeleteSubtask(Subtask subtask, double duration = _defaultAnimateDuration)
         {
             if (subtask != null)
             {
-                SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
+                if (duration > 0)
+                {
+                    SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(duration), delegate
+                    {
+                        Subtasks.Remove(subtask);
+                    });
+                }
+                else
                 {
                     Subtasks.Remove(subtask);
-                });
+                }
             }
         }
 
@@ -96,10 +122,12 @@ namespace SimpleTasks.Views
 
         private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            _currentTextBox = sender as TextBox;
         }
 
         private void SubtaskTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
+            _currentTextBox = null;
             TextBox tb = sender as TextBox;
             if (tb != null)
             {
@@ -108,7 +136,15 @@ namespace SimpleTasks.Views
                 {
                     if (string.IsNullOrWhiteSpace(tb.Text))
                     {
-                        DeleteSubtask(subtask);
+                        double deleteDuration = _defaultAnimateDuration;
+                        if (null != (FocusManager.GetFocusedElement() as TextBox))
+                        {
+                            // Pokud přepínáme na jiný text box (subtask), tak to při mazání dělá problémy
+                            // Proto mažeme bez animace.
+                            deleteDuration = 0;
+                        }
+
+                        DeleteSubtask(subtask, deleteDuration);
                     }
                 }
             }
@@ -183,6 +219,7 @@ namespace SimpleTasks.Views
                 subtask.IsCompleted = true;
             }
         }
+
         private void DeleteAllSubtasks_Click(object sender, EventArgs e)
         {
             SubtaskListBox.AnimateRearrange(TimeSpan.FromSeconds(0.22), delegate
