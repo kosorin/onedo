@@ -30,6 +30,7 @@ namespace SimpleTasks.Views
 {
     public partial class MainPage : BasePage
     {
+        #region Page
         public MainPage()
         {
             InitializeComponent();
@@ -45,7 +46,6 @@ namespace SimpleTasks.Views
             }
         }
 
-        #region Page
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             Loaded -= MainPage_Loaded;
@@ -60,6 +60,8 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
             NavigationService.RemoveBackEntry();
+
+            QuickAddGrid.Visibility = Settings.Current.General.ShowQuickAddTextBox ? Visibility.Visible : Visibility.Collapsed;
 
             App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
             App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;

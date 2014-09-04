@@ -369,26 +369,25 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.2.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-08-30&quot;,
+        ///    &quot;4.3.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-09-04&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;backup and restore (BETA)&quot;
+        ///            &quot;task count on main tile (you can hide it in settings)&quot;,
+        ///            &quot;option to swap date and title on wide tile&quot;
+        ///        ]
+        ///    },
+        ///    &quot;4.3.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-09-04&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;task count on main tile&quot;,
+        ///            &quot;option to swap date and title on wide tile&quot;
         ///        ]
         ///    },
         ///    &quot;4.2.0&quot;: {
         ///        &quot;date&quot;: &quot;2014-08-30&quot;,
         ///        &quot;items&quot;: [
         ///            &quot;backup and restore (BETA)&quot;
-        ///        ]
-        ///    },
-        ///    &quot;4.1.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-08-23&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;option to set default settings for task tile&quot;,
-        ///            &quot;option to hide the check box on the main page&quot;,
-        ///            &quot;bug fix: inserting spaces in subtask&quot;
-        ///        ]
-        ///  [rest of string was truncated]&quot;;.
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -1196,6 +1195,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsPinTile {
             get {
                 return ResourceManager.GetString("SettingsPinTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to show &quot;add task&quot; text box on main page.
+        /// </summary>
+        public static string SettingsShowQuickAddTextBox {
+            get {
+                return ResourceManager.GetString("SettingsShowQuickAddTextBox", resourceCulture);
             }
         }
         

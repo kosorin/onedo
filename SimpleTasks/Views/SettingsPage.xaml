@@ -175,6 +175,12 @@
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
+                        <!--Show Quick Add-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsShowQuickAddTextBox, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <ToggleButton IsChecked="{Binding General.ShowQuickAddTextBox, Mode=TwoWay}"
+                                      Style="{StaticResource SwitchStyle}" />
+
                         <!--Hide Task CheckBox-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />

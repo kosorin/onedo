@@ -670,7 +670,7 @@
                    VerticalAlignment="Bottom" />
 
         <!--Quick add-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" x:Name="QuickAddGrid">
             <controls:MyTextBox Grid.Row="1"
                                 x:Name="QuickAddTextBox"
                                 Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}, StringFormat='\{0}&#8230;&#xe104;'}"

@@ -279,6 +279,16 @@ namespace SimpleTasks.Core.Models
             }
             #endregion
 
+            #region ShowQuickAddTextBox
+            private bool _showQuickAddTextBox = true;
+            [DataMember(Name = "ShowQuickAddTextBox")]
+            public bool ShowQuickAddTextBox
+            {
+                get { return _showQuickAddTextBox; }
+                set { SetProperty(ref _showQuickAddTextBox, value); }
+            }
+            #endregion
+
             #region HideTaskCheckBox
             private bool _hideTaskCheckBox = false;
             [DataMember(Name = "HideTaskCheckBox")]

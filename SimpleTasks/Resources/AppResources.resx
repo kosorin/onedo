@@ -648,4 +648,7 @@ It's still in beta. If you have any problem, send us email.</value>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>swap title and date on wide tile</value>
   </data>
+  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
+    <value>show "add task" text box on main page</value>
+  </data>
 </root>

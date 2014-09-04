@@ -477,6 +477,10 @@ Tato funkce je pořád v beta verzi. Pokud máte nějaký problém, můžete ná
           <source>swap title and date on wide tile</source>
           <target state="signed-off">prohodit název a datum na široké dlaždici</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsShowQuickAddTextBox" translate="yes" xml:space="preserve">
+          <source>show "add task" text box on main page</source>
+          <target state="new">show "add task" text box on main page</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>show task count</source>
           <target state="signed-off">zobrazit počet úkolů</target>
