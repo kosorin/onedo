@@ -576,12 +576,15 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckIcon"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="1" />
                                                 <ColorAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                                Duration="0"
                                                                 To="{StaticResource PhoneForegroundColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Duration="0"
                                                                  To="0.45" />
                                             </Storyboard>
                                         </VisualState>
@@ -728,6 +731,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="Root"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="0.38" />
                                             </Storyboard>
                                         </VisualState>
@@ -744,12 +748,15 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckIcon"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="1" />
                                                 <ColorAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                                Duration="0"
                                                                 To="{StaticResource PhoneAccentColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Duration="0"
                                                                  To="1" />
                                             </Storyboard>
                                         </VisualState>
@@ -829,6 +836,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="Root"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="0.38" />
                                             </Storyboard>
                                         </VisualState>
@@ -845,19 +853,24 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckIcon"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="1" />
                                                 <ColorAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                                Duration="0"
                                                                 To="{StaticResource PhoneAccentColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Duration="0"
                                                                  To="1" />
 
                                                 <DoubleAnimation Storyboard.TargetName="OnText"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="1" />
                                                 <DoubleAnimation Storyboard.TargetName="OffText"
                                                                  Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
                                                                  To="0" />
                                             </Storyboard>
                                         </VisualState>
