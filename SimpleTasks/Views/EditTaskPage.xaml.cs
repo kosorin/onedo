@@ -17,6 +17,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -257,12 +258,22 @@ namespace SimpleTasks.Views
         public void Save()
         {
             // Název
+            try
+            {
+                TitleTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            }
+            catch { }
             if (string.IsNullOrWhiteSpace(Task.Title))
                 Task.Title = AppResources.TitleUntitled;
             else
                 Task.Title = Task.Title.Trim();
 
             // Detail
+            try
+            {
+                DetailTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            }
+            catch { }
             Task.Detail = Task.Detail.Trim();
 
             // Datum & čas
