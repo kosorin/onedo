@@ -663,4 +663,7 @@ It's still in beta. If you have any problem, send us email.</value>
   <data name="QuickAddTileTitle" xml:space="preserve">
     <value>New task</value>
   </data>
+  <data name="SettingsShowTaskCountHelp" xml:space="preserve">
+    <value>If unchecked, show task list on small tile instead of number of tasks.</value>
+  </data>
 </root>

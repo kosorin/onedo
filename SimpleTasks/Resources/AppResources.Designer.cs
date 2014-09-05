@@ -1226,6 +1226,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If unchecked, show task list on small tile instead of number of tasks..
+        /// </summary>
+        public static string SettingsShowTaskCountHelp {
+            get {
+                return ResourceManager.GetString("SettingsShowTaskCountHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to swap title and date on wide tile.
         /// </summary>
         public static string SettingsSwapDateAndTitle {

@@ -155,6 +155,8 @@
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.ShowTaskCount, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCountHelp, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
 
                         <!--Swap title and date on wide tile-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"

@@ -493,6 +493,10 @@ Tato funkce je pořád v beta verzi. Pokud máte nějaký problém, můžete ná
           <source>New task</source>
           <target state="new">New task</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsShowTaskCountHelp" translate="yes" xml:space="preserve">
+          <source>If unchecked, show task list on small tile instead of number of tasks.</source>
+          <target state="new">If unchecked, show task list on small tile instead of number of tasks.</target>
+        </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
           <source>pin to start</source>
           <target state="new">pin to start</target>
