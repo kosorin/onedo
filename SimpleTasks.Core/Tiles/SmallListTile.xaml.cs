@@ -31,7 +31,45 @@ namespace SimpleTasks.Core.Tiles
             if (tasks == null)
                 return;
 
-            CountText.Text = tasks.Count.ToString();
+            int count = tasks.Count;
+            if (Settings.Current.Tiles.ShowTaskCount)
+            {
+                CountWrapper.Visibility = Visibility.Visible;
+
+                CountText.Text = count.ToString();
+            }
+            else
+            {
+                ListWrapper.Visibility = Visibility.Visible;
+
+                // Podúkoly
+                NoTasksIcon.Visibility = count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                TasksStackPanel.Visibility = count > 0 ? Visibility.Visible : Visibility.Collapsed;
+
+                if (count > 0)
+                {
+                    TasksStackPanel.Children.Clear();
+                    Style taskItemStyle = (Style)Resources["TaskItemStyle"];
+                    SolidColorBrush lowPriorityBrush = new SolidColorBrush(Colors.White) { Opacity = 0.75 };
+
+                    double lineHeight = 40;
+                    int maxTasks = (int)Math.Round(159 / lineHeight);
+                    foreach (TaskModel task in tasks.Take(maxTasks))
+                    {
+                        ContentControl cc = new ContentControl();
+                        cc.Style = taskItemStyle;
+                        if (task.IsLowPriority)
+                        {
+                            cc.Foreground = lowPriorityBrush;
+                        }
+                        cc.Content = task.Title;
+
+                        cc.FontSize = lineHeight * 0.72;
+                        cc.Height = lineHeight;
+                        TasksStackPanel.Children.Add(cc);
+                    }
+                }
+            }
 
             // Pozadí
             LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);

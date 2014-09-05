@@ -16,13 +16,48 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary  Source="/SimpleTasks.Core;component/Themes/TileStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="TaskItemStyle"
+                   TargetType="ContentControl">
+                <Setter Property="FontSize"
+                        Value="28.8" />
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="Padding"
+                        Value="5,0,2,0" />
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="White"
+                                         Opacity="1" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <Border BorderThickness="0,0,0,1"
+                                    BorderBrush="#66000000"
+                                    Background="#30000000"
+                                    Height="{TemplateBinding Height}"
+                                    Padding="{TemplateBinding Padding}">
+                                <TextBlock Text="{TemplateBinding Content}"
+                                           Style="{StaticResource BaseTileTextStyle}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           LineHeight="{TemplateBinding Height}"
+                                           Foreground="{TemplateBinding Foreground}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </tiles:ListTileControl.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource PhoneAccentBrush}">
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center">
+        <StackPanel x:Name="CountWrapper"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Visibility="Collapsed">
             <!--Icon-->
             <Image Source="/Tiles/TileLogo.png"
                    HorizontalAlignment="Center"
@@ -44,5 +79,27 @@
             </Border>
 
         </StackPanel>
+
+        <Grid x:Name="ListWrapper"
+              Background="#10000000"
+              Visibility="Collapsed">
+            
+            <!--Úkoly-->
+            <StackPanel x:Name="TasksStackPanel">
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Test" />
+                <ContentControl Style="{StaticResource TaskItemStyle}"
+                                Content="Task" />
+            </StackPanel>
+
+            <!--No tasks-->
+            <Path x:Name="NoTasksIcon"
+                  Grid.Row="0"
+                  Visibility="Collapsed"
+                  Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z"
+                  Stretch="Uniform"
+                  Fill="#ccffffff"
+                  Margin="0,50,0,40" />
+        </Grid>
     </Grid>
 </tiles:ListTileControl>

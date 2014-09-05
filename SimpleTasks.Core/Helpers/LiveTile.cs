@@ -202,9 +202,13 @@ namespace SimpleTasks.Core.Helpers
                 .OrderByDescending(t => t.Priority));
 
             // Vytvoření obrázků dlaždic
+            Debug.WriteLine("> START");
+            var sw = Stopwatch.StartNew();
             new SmallListTile(tasks).SaveToPng(TileImageDirectory + SmallTileFileName);
             new MediumListTile(tasks).SaveToPng(TileImageDirectory + MediumTileFileName);
             new WideListTile(tasks).SaveToPng(TileImageDirectory + WideTileFileName);
+            sw.Stop();
+            Debug.WriteLine(": {0}", sw.ElapsedMilliseconds);
 
             FlipTileData flipTileData = new FlipTileData
             {
