@@ -230,5 +230,56 @@ namespace SimpleTasks.Core.Helpers
             }
         }
         #endregion
+
+        #region Dlaždice pro rychlé přidání
+        public static void PinQuickAdd()
+        {
+            FlipTileData flipTileData = new FlipTileData
+            {
+                SmallBackgroundImage = new Uri("/Assets/Tiles/NewTaskSmallTile.png", UriKind.Relative),
+                BackgroundImage = new Uri("/Assets/Tiles/NewTaskMediumTile.png", UriKind.Relative),
+                Title = AppInfo.Name,
+                Count = 0,
+            };
+
+            try
+            {
+                ShellTile.Create(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative), flipTileData, false);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při vytváření živé dlaždice pro rychlé přidání: {0}", e.Message);
+            }
+        }
+
+        public static ShellTile PinnedQuickAddTile()
+        {
+            return ShellTile.ActiveTiles.FirstOrDefault((t) =>
+            {
+                return t.NavigationUri.OriginalString == "/Views/EditTaskPage.xaml";
+            });
+        }
+
+        public static bool IsPinnedQuickAdd()
+        {
+            return PinnedQuickAddTile() != null;
+        }
+
+        public static void UnpinQuickAdd()
+        {
+            try
+            {
+                ShellTile tile = PinnedQuickAddTile();
+                if (tile != null)
+                {
+                    tile.Delete();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(": Chyba při mazání živé dlaždice pro rychlé přidání: {0}", e.Message);
+            }
+        }
+        #endregion
     }
 }

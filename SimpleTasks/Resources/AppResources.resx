@@ -651,4 +651,13 @@ It's still in beta. If you have any problem, send us email.</value>
   <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
     <value>show "add task" text box on main page</value>
   </data>
+  <data name="TileForQuickAddLabel" xml:space="preserve">
+    <value>quick add tile</value>
+  </data>
+  <data name="TileForQuickAddPinButton" xml:space="preserve">
+    <value>pin to start</value>
+  </data>
+  <data name="TileForQuickAddUnpinButton" xml:space="preserve">
+    <value>unpin</value>
+  </data>
 </root>

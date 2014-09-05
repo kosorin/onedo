@@ -484,6 +484,18 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
           <source>show "add task" text box on main page</source>
           <target state="new">show "add task" text box on main page</target>
         </trans-unit>
+        <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
+          <source>quick add tile</source>
+          <target state="new">quick add tile</target>
+        </trans-unit>
+        <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
+          <source>unpin</source>
+          <target state="new">unpin</target>
+        </trans-unit>
+        <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
+          <source>pin to start</source>
+          <target state="new">pin to start</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>show task count</source>
           <target state="signed-off">zobraziť počet úloh</target>

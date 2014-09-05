@@ -127,6 +127,14 @@
                 <ScrollViewer>
                     <StackPanel Margin="24,24,24,0">
 
+                        <!--Quick add tile-->
+                        <TextBlock Text="{Binding LocalizedResources.TileForQuickAddLabel, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <Button x:Name="QuickAddTileButton"
+                                Style="{StaticResource ButtonStyle}"
+                                Content="{Binding LocalizedResources.TileForQuickAddPinButton, Source={StaticResource LocalizedStrings}}"
+                                Tap="QuickAddTileButton_Tap" />
+
                         <!--Enable tile-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />

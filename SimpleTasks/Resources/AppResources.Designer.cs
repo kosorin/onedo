@@ -1352,6 +1352,33 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to quick add tile.
+        /// </summary>
+        public static string TileForQuickAddLabel {
+            get {
+                return ResourceManager.GetString("TileForQuickAddLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pin to start.
+        /// </summary>
+        public static string TileForQuickAddPinButton {
+            get {
+                return ResourceManager.GetString("TileForQuickAddPinButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unpin.
+        /// </summary>
+        public static string TileForQuickAddUnpinButton {
+            get {
+                return ResourceManager.GetString("TileForQuickAddUnpinButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to background opacity.
         /// </summary>
         public static string TileSettingsBackgroundOpacity {

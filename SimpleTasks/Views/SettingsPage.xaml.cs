@@ -38,6 +38,16 @@ namespace SimpleTasks.Views
             {
                 Settings.Current.Tasks.DefaultTime = NavigationParameter<DateTime>("TimePicker");
             }
+
+            _isPinnedQuickAdd = LiveTile.IsPinnedQuickAdd();
+            if (_isPinnedQuickAdd)
+            {
+                QuickAddTileButton.Content = AppResources.TileForQuickAddUnpinButton;
+            }
+            else
+            {
+                QuickAddTileButton.Content = AppResources.TileForQuickAddPinButton;
+            }
         }
 
         public string PinTileHelpText { get { return string.Format(AppResources.SettingsPinTile, AppInfo.Name); } }
@@ -116,5 +126,24 @@ namespace SimpleTasks.Views
 
             Navigate(typeof(EditTaskTilePage), task);
         }
+
+        #region Quick Add Tile
+        private bool _isPinnedQuickAdd = false;
+
+        private void QuickAddTileButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (_isPinnedQuickAdd)
+            {
+                LiveTile.UnpinQuickAdd();
+                QuickAddTileButton.Content = AppResources.TileForQuickAddPinButton;
+            }
+            else
+            {
+                LiveTile.PinQuickAdd();
+                QuickAddTileButton.Content = AppResources.TileForQuickAddUnpinButton;
+            }
+            _isPinnedQuickAdd = !_isPinnedQuickAdd;
+        }
+        #endregion
     }
 }

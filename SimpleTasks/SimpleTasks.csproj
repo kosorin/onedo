@@ -238,6 +238,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Tiles\MediumTile.png" />
+    <Content Include="Assets\Tiles\NewTaskMediumTile.png" />
+    <Content Include="Assets\Tiles\NewTaskSmallTile.png" />
     <Content Include="Assets\Tiles\SmallTile.png" />
     <Content Include="Assets\Tiles\WideTile.png" />
     <Content Include="Resources\Changelog.cs-CZ.txt" />
@@ -425,7 +427,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
