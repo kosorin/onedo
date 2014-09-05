@@ -52,7 +52,7 @@
             <!--Tasks-->
             <phone:PivotItem Header="{Binding LocalizedResources.TasksText, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
-                    <StackPanel Margin="24,24,24,0">
+                    <StackPanel Margin="24,24,24,40">
 
                         <!--Default date-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
@@ -125,7 +125,7 @@
             <!--Live Tile-->
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsTile, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
-                    <StackPanel Margin="24,24,24,0">
+                    <StackPanel Margin="24,24,24,40">
 
                         <!--Quick add tile-->
                         <TextBlock Text="{Binding LocalizedResources.TileForQuickAddLabel, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
@@ -175,7 +175,7 @@
             <!--General-->
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsGeneral, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
-                    <StackPanel Margin="24,24,24,0">
+                    <StackPanel Margin="24,24,24,40">
 
                         <!--Unpin Completed-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
