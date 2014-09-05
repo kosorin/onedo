@@ -492,6 +492,10 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
           <source>unpin</source>
           <target state="new">unpin</target>
         </trans-unit>
+        <trans-unit id="Resx/QuickAddTileTitle" translate="yes" xml:space="preserve">
+          <source>New task</source>
+          <target state="new">New task</target>
+        </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
           <source>pin to start</source>
           <target state="new">pin to start</target>

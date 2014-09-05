@@ -232,13 +232,13 @@ namespace SimpleTasks.Core.Helpers
         #endregion
 
         #region Dlaždice pro rychlé přidání
-        public static void PinQuickAdd()
+        public static void PinQuickAdd(string tileTitle)
         {
             FlipTileData flipTileData = new FlipTileData
             {
                 SmallBackgroundImage = new Uri("/Assets/Tiles/NewTaskSmallTile.png", UriKind.Relative),
                 BackgroundImage = new Uri("/Assets/Tiles/NewTaskMediumTile.png", UriKind.Relative),
-                Title = AppInfo.Name,
+                Title = tileTitle,
                 Count = 0,
             };
 

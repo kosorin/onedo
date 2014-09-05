@@ -139,7 +139,7 @@ namespace SimpleTasks.Views
             }
             else
             {
-                LiveTile.PinQuickAdd();
+                LiveTile.PinQuickAdd(AppResources.QuickAddTileTitle);
                 QuickAddTileButton.Content = AppResources.TileForQuickAddUnpinButton;
             }
             _isPinnedQuickAdd = !_isPinnedQuickAdd;

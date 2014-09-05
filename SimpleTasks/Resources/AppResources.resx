@@ -660,4 +660,7 @@ It's still in beta. If you have any problem, send us email.</value>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>unpin</value>
   </data>
+  <data name="QuickAddTileTitle" xml:space="preserve">
+    <value>New task</value>
+  </data>
 </root>

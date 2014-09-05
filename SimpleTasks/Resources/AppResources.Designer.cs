@@ -900,6 +900,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New task.
+        /// </summary>
+        public static string QuickAddTileTitle {
+            get {
+                return ResourceManager.GetString("QuickAddTileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to reminder.
         /// </summary>
         public static string Reminder {
