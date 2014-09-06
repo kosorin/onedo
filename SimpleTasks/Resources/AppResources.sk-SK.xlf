@@ -138,11 +138,11 @@
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">kontaktujte nás</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">kontaktujte nás</target><note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutRateReview" xml:space="preserve">
           <source>rate and review</source>
-          <target state="signed-off">ohodnotiť</target></trans-unit>
+          <target state="signed-off">ohodnotiť</target><note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note></trans-unit>
         <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
           <source>Default date</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Predvolený dátum</target>
@@ -336,11 +336,11 @@
         </trans-unit>
         <trans-unit id="Resx/Minutes5AndMore" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="signed-off">{0} minút</target>
+          <target state="signed-off">{0} minút</target><note from="MultilingualBuild" annotates="source" priority="2">5+ minutes</note>
         </trans-unit>
         <trans-unit id="Resx/Weeks2To4" translate="yes" xml:space="preserve">
           <source>{0} weeks</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">{0} týždne</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} týždne</target><note from="MultilingualBuild" annotates="source" priority="2">2-4 weeks</note>
         </trans-unit>
         <trans-unit id="Resx/WhatsNew" translate="yes" xml:space="preserve">
           <source>What's new</source>
@@ -348,7 +348,7 @@
         </trans-unit>
         <trans-unit id="Resx/Months2To4" translate="yes" xml:space="preserve">
           <source>{0} months</source>
-          <target state="signed-off">{0} mesiace</target>
+          <target state="signed-off">{0} mesiace</target><note from="MultilingualBuild" annotates="source" priority="2">2-4 months</note>
         </trans-unit>
         <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
           <source>add</source>
@@ -363,7 +363,7 @@
         <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
           <source>Tap</source>
           <target state="signed-off">Pre pridanie úlohy ťuknite na</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is first part of: Tap {plus_icon} or text box bellow to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/NoSubtasks" translate="yes" xml:space="preserve">
           <source>No Subtasks</source>
@@ -456,7 +456,7 @@ Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SignedInYes" translate="yes" xml:space="preserve">
           <source>You're signed in as {0}.</source>
-          <target state="signed-off">Ste prihlásení ako {0}.</target>
+          <target state="signed-off">Ste prihlásení ako {0}.</target><note from="MultilingualBuild" annotates="source" priority="2">{0} is user name</note>
         </trans-unit>
         <trans-unit id="Resx/BackupLatest" translate="yes" xml:space="preserve">
           <source>latest</source>
@@ -563,7 +563,7 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>or text box bellow to add a task.</source>
           <target state="signed-off">alebo na textové políčko nižšie.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Tap {plus_icon} or text box bellow to add a task.</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} or text box bellow to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
           <source>subtask</source>
@@ -579,43 +579,43 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
         </trans-unit>
         <trans-unit id="Resx/Months1" translate="yes" xml:space="preserve">
           <source>{0} month</source>
-          <target state="signed-off">{0} mesiac</target>
+          <target state="signed-off">{0} mesiac</target><note from="MultilingualBuild" annotates="source" priority="2">1 month</note>
         </trans-unit>
         <trans-unit id="Resx/Weeks1" translate="yes" xml:space="preserve">
           <source>{0} week</source>
-          <target state="signed-off">{0} týždeň</target>
+          <target state="signed-off">{0} týždeň</target><note from="MultilingualBuild" annotates="source" priority="2">1 week</note>
         </trans-unit>
         <trans-unit id="Resx/Minutes2To4" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="signed-off">{0} minúty</target>
+          <target state="signed-off">{0} minúty</target><note from="MultilingualBuild" annotates="source" priority="2">2-4 minutes</note>
         </trans-unit>
         <trans-unit id="Resx/Minutes1" translate="yes" xml:space="preserve">
           <source>{0} minute</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">{0} minúta</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} minúta</target><note from="MultilingualBuild" annotates="source" priority="2">1 minute</note>
         </trans-unit>
         <trans-unit id="Resx/Hours5AndMore" translate="yes" xml:space="preserve">
           <source>{0} hours</source>
-          <target state="signed-off">{0} hodín</target>
+          <target state="signed-off">{0} hodín</target><note from="MultilingualBuild" annotates="source" priority="2">5+ hours</note>
         </trans-unit>
         <trans-unit id="Resx/Hours2To4" translate="yes" xml:space="preserve">
           <source>{0} hours</source>
-          <target state="signed-off">{0} hodiny</target>
+          <target state="signed-off">{0} hodiny</target><note from="MultilingualBuild" annotates="source" priority="2">2-4 hours</note>
         </trans-unit>
         <trans-unit id="Resx/Hours1" translate="yes" xml:space="preserve">
           <source>{0} hour</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">{0} hodina</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} hodina</target><note from="MultilingualBuild" annotates="source" priority="2">1 hour</note>
         </trans-unit>
         <trans-unit id="Resx/Days5AndMore" translate="yes" xml:space="preserve">
           <source>{0} days</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">{0} dní</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} dní</target><note from="MultilingualBuild" annotates="source" priority="2">5+ days</note>
         </trans-unit>
         <trans-unit id="Resx/Days2To4" translate="yes" xml:space="preserve">
           <source>{0} days</source>
-          <target state="signed-off">{0} dni</target>
+          <target state="signed-off">{0} dni</target><note from="MultilingualBuild" annotates="source" priority="2">2-4 days</note>
         </trans-unit>
         <trans-unit id="Resx/Days1" translate="yes" xml:space="preserve">
           <source>{0} day</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">{0} deň</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">{0} deň</target><note from="MultilingualBuild" annotates="source" priority="2">1 day</note>
         </trans-unit>
         <trans-unit id="Resx/Time5mins" translate="yes" xml:space="preserve">
           <source>5 minutes</source>

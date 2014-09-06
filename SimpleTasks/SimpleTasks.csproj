@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>cs-CZ;sk-SK</SupportedCultures>
+    <SupportedCultures>cs-CZ;de-DE;sk-SK</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SimpleTasks_$(Configuration)_$(Platform).xap</XapFilename>
@@ -259,6 +259,12 @@
       <culture>cs-CZ</culture>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.de-DE.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.de-DE.xlf</DependentUpon>
+      <culture>de-DE</culture>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -275,6 +281,10 @@
     <XliffResource Include="Resources\AppResources.cs-CZ.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.cs-CZ.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Resources\AppResources.de-DE.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.de-DE.resx</LastGenOutput>
     </XliffResource>
     <XliffResource Include="Resources\AppResources.sk-SK.xlf">
       <Generator>XliffResxGenerator</Generator>
@@ -427,7 +437,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

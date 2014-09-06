@@ -220,9 +220,11 @@
   </data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>contact us</value>
+    <comment>AboutPage; AppBar</comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
     <value>rate and review</value>
+    <comment>AboutPage; AppBar</comment>
   </data>
   <data name="SettingsDefaultDate" xml:space="preserve">
     <value>Default date</value>
@@ -453,45 +455,58 @@
   </data>
   <data name="Days1" xml:space="preserve">
     <value>{0} day</value>
+    <comment>1 day</comment>
   </data>
   <data name="Days2To4" xml:space="preserve">
     <value>{0} days</value>
+    <comment>2-4 days</comment>
   </data>
   <data name="Days5AndMore" xml:space="preserve">
     <value>{0} days</value>
+    <comment>5+ days</comment>
   </data>
   <data name="Hours1" xml:space="preserve">
     <value>{0} hour</value>
+    <comment>1 hour</comment>
   </data>
   <data name="Hours2To4" xml:space="preserve">
     <value>{0} hours</value>
+    <comment>2-4 hours</comment>
   </data>
   <data name="Hours5AndMore" xml:space="preserve">
     <value>{0} hours</value>
+    <comment>5+ hours</comment>
   </data>
   <data name="Minutes1" xml:space="preserve">
     <value>{0} minute</value>
+    <comment>1 minute</comment>
   </data>
   <data name="Minutes2To4" xml:space="preserve">
     <value>{0} minutes</value>
+    <comment>2-4 minutes</comment>
   </data>
   <data name="Minutes5AndMore" xml:space="preserve">
     <value>{0} minutes</value>
+    <comment>5+ minutes</comment>
   </data>
   <data name="Weeks1" xml:space="preserve">
     <value>{0} week</value>
+    <comment>1 week</comment>
   </data>
   <data name="Weeks2To4" xml:space="preserve">
     <value>{0} weeks</value>
+    <comment>2-4 weeks</comment>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>What's new</value>
   </data>
   <data name="Months1" xml:space="preserve">
     <value>{0} month</value>
+    <comment>1 month</comment>
   </data>
   <data name="Months2To4" xml:space="preserve">
     <value>{0} months</value>
+    <comment>2-4 months</comment>
   </data>
   <data name="AppBarAddSubtask" xml:space="preserve">
     <value>add</value>
@@ -513,11 +528,11 @@
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
     <value>or text box bellow to add a task.</value>
-    <comment>Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Tap</value>
-    <comment>Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>No Subtasks</value>
@@ -625,6 +640,7 @@ You can also contact us via email.</value>
   </data>
   <data name="SignedInYes" xml:space="preserve">
     <value>You're signed in as {0}.</value>
+    <comment>{0} is user name</comment>
   </data>
   <data name="BackupLatest" xml:space="preserve">
     <value>latest</value>
