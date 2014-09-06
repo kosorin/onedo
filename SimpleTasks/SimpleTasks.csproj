@@ -242,6 +242,7 @@
     <Content Include="Assets\Tiles\NewTaskSmallTile.png" />
     <Content Include="Assets\Tiles\SmallTile.png" />
     <Content Include="Assets\Tiles\WideTile.png" />
+    <Content Include="Resources\Changelog.de-DE.txt" />
     <Content Include="Resources\Changelog.cs-CZ.txt" />
     <Content Include="Resources\Changelog.sk-SK.txt" />
     <Content Include="Resources\Changelog.txt" />
