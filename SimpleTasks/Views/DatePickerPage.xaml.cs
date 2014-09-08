@@ -11,9 +11,9 @@ using SimpleTasks.Controls;
 using System.Globalization;
 using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
-using WPControls;
 using System.Windows.Media;
 using SimpleTasks.Helpers.Analytics;
+using SimpleTasks.Controls.Calendar;
 
 namespace SimpleTasks.Views
 {
@@ -110,15 +110,6 @@ namespace SimpleTasks.Views
             Calendar.MinimumDate = (_date < DateTime.Today ? _date : DateTime.Today).AddMonths(-1);
             Calendar.MaximumDate = (_date > DateTime.Today ? _date : DateTime.Today).AddYears(2);
 
-            Calendar.Sunday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[0].ToUpper();
-            Calendar.Monday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[1].ToUpper();
-            Calendar.Tuesday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[2].ToUpper();
-            Calendar.Wednesday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[3].ToUpper();
-            Calendar.Thursday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[4].ToUpper();
-            Calendar.Friday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[5].ToUpper();
-            Calendar.Saturday = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames[6].ToUpper();
-            Calendar.StartingDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-
             SelectDate(_date);
         }
 
@@ -169,9 +160,7 @@ namespace SimpleTasks.Views
         public void SelectDate(int year, int month, int day)
         {
             Calendar.SelectedDate = new DateTime(year, month, day);
-            Calendar.SelectedMonth = month;
-            Calendar.SelectedYear = year;
-            Calendar.Refresh();
+            Calendar.GoTo(year, month);
         }
     }
 }
