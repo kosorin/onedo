@@ -208,7 +208,7 @@ namespace SimpleTasks.Controls.Calendar
         }
         #endregion // end of SelectedDate
 
-        #region SelectedYear
+        #region SelectedYear/Month
         /// <summary>
         /// Currently selected year
         /// </summary>
@@ -224,22 +224,6 @@ namespace SimpleTasks.Controls.Calendar
         public static readonly DependencyProperty SelectedYearProperty =
             DependencyProperty.Register("SelectedYear", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Year, OnSelectedYearMonthChanged));
 
-        private static void OnSelectedYearMonthChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var calendar = sender as Calendar;
-            if (calendar != null && (calendar._year != calendar.SelectedYear || calendar._month != calendar.SelectedMonth))
-            {
-                if (!calendar._ignoreMonthChange)
-                {
-                    calendar._year = calendar.SelectedYear;
-                    calendar._month = calendar.SelectedMonth;
-                    calendar.SetYearMonthLabel();
-                }
-            }
-        }
-        #endregion // end of SelectedYear
-
-        #region SelectedMonth
         /// <summary>
         /// Currently selected month
         /// </summary>
@@ -254,7 +238,21 @@ namespace SimpleTasks.Controls.Calendar
         /// </summary>
         public static readonly DependencyProperty SelectedMonthProperty =
             DependencyProperty.Register("SelectedMonth", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Month, OnSelectedYearMonthChanged));
-        #endregion // end of SelectedMonth
+
+        private static void OnSelectedYearMonthChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var calendar = sender as Calendar;
+            if (calendar != null && (calendar._year != calendar.SelectedYear || calendar._month != calendar.SelectedMonth))
+            {
+                if (!calendar._ignoreMonthChange)
+                {
+                    calendar._year = calendar.SelectedYear;
+                    calendar._month = calendar.SelectedMonth;
+                    calendar.SetYearMonthLabel();
+                }
+            }
+        }
+        #endregion // end of SelectedMonth/Month
 
         #region ColorConverter
         /// <summary>
