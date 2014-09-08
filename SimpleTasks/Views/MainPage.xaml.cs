@@ -325,6 +325,18 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[1].Detail = "Najlepšie dni ležať s ňou mám, zraňuje a rozhodný človek? Mám rád začiatky nových pocitov čaká pracovná Žilina, lebo je horší ako zaspíš, pretože ich zbaviť. Mám strach a potom sakra za sekundu Asi sa pritom usmeješ, ponesieš následky do pohybu. Close To silu inštinktu. Dáme si nos plný zážitkov.";
                 App.Tasks.Tasks[2].Title = "Zavolať Danovi";
             }
+            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "de")
+            {
+                App.Tasks.Tasks[0].Title = "Zoznam potravín";
+                App.Tasks.Tasks[0].Subtasks[0].Text = "mlieko";
+                App.Tasks.Tasks[0].Subtasks[1].Text = "jablká";
+                App.Tasks.Tasks[0].Subtasks[2].Text = "zemiaky";
+                App.Tasks.Tasks[0].Subtasks[3].Text = "šunka";
+                App.Tasks.Tasks[0].Subtasks[4].Text = "sušienky";
+                App.Tasks.Tasks[1].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[1].Detail = "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.";
+                App.Tasks.Tasks[2].Title = "Zavolať Danovi";
+            }
 
         }
 #endif
