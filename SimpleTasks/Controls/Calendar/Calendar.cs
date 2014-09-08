@@ -26,13 +26,6 @@ namespace SimpleTasks.Controls.Calendar
         {
             DefaultStyleKey = typeof(Calendar);
 
-            DatesAssigned = new List<DateTime>();
-
-            var binding = new Binding();
-            SetBinding(PrivateDataContextPropertyProperty, binding);
-
-            WireUpDataSource(DataContext, DataContext);
-
             _dateTimeFormatInfo = CultureInfo.CurrentCulture.DateTimeFormat;
             FirstDayOfWeek = _dateTimeFormatInfo.FirstDayOfWeek;
             SetupDaysOfWeekLabels();
@@ -40,10 +33,9 @@ namespace SimpleTasks.Controls.Calendar
         #endregion
 
         #region Fields/Constants
-        internal List<DateTime> DatesAssigned;
         private Grid _itemsGrid;
         private CalendarItem _lastItem;
-        private bool _addedItems;
+        private bool _addedDefaultItems;
         private int _month = DateTime.Today.Month;
         private int _year = DateTime.Today.Year;
         private readonly DateTimeFormatInfo _dateTimeFormatInfo;
@@ -126,67 +118,6 @@ namespace SimpleTasks.Controls.Calendar
         #endregion
 
         #region Properties
-
-        #region PrivateDataContextProperty
-        internal object PrivateDataContextProperty
-        {
-            get { return GetValue(PrivateDataContextPropertyProperty); }
-            set { SetValue(PrivateDataContextPropertyProperty, value); }
-        }
-
-        internal static readonly DependencyProperty PrivateDataContextPropertyProperty =
-            DependencyProperty.Register("PrivateDataContextProperty", typeof(object), typeof(Calendar), new PropertyMetadata(null, OnPrivateDataContextChanged));
-
-        private static void OnPrivateDataContextChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var calendar = sender as Calendar;
-            if (calendar != null)
-            {
-                calendar.WireUpDataSource(e.OldValue, e.NewValue);
-                calendar.Refresh();
-            }
-        }
-        #endregion // end of PrivateDataContextProperty
-
-        #region DatesSource
-        /// <summary>
-        /// Collection of objects containing dates
-        /// </summary>
-        public IEnumerable<ISupportCalendarItem> DatesSource
-        {
-            get { return (IEnumerable<ISupportCalendarItem>)GetValue(DatesSourceProperty); }
-            set { SetValue(DatesSourceProperty, value); }
-        }
-
-        /// <summary>
-        /// Collection of objects containing dates
-        /// </summary>
-        public static readonly DependencyProperty DatesSourceProperty =
-            DependencyProperty.Register("DatesSource", typeof(IEnumerable<ISupportCalendarItem>), typeof(Calendar), new PropertyMetadata(null, OnDatesSourceChanged));
-
-        private static void OnDatesSourceChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            var calendar = sender as Calendar;
-            if (calendar != null)
-            {
-                calendar.BuildDates();
-                calendar.BuildItems();
-                if (e.OldValue is INotifyCollectionChanged)
-                {
-                    ((INotifyCollectionChanged)e.NewValue).CollectionChanged -= calendar.DatesSourceChanged;
-                }
-                if (e.NewValue is INotifyCollectionChanged)
-                {
-                    (e.NewValue as INotifyCollectionChanged).CollectionChanged += calendar.DatesSourceChanged;
-                }
-            }
-        }
-
-        private void DatesSourceChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Refresh();
-        }
-        #endregion // end of DatesSource
 
         #region CalendarItemStyle
         /// <summary>
@@ -632,7 +563,6 @@ namespace SimpleTasks.Controls.Calendar
             if (nextButton != null) nextButton.Click += NextButtonClick;
             _itemsGrid = GetTemplateChild("ItemsGrid") as Grid;
             SetupDayLabels();
-            BuildDates();
             SetYearMonthLabel();
         }
         #endregion
@@ -671,7 +601,6 @@ namespace SimpleTasks.Controls.Calendar
         /// </summary>
         public void Refresh()
         {
-            BuildDates();
             BuildItems();
         }
 
@@ -857,7 +786,7 @@ namespace SimpleTasks.Controls.Calendar
 
         private void AddDefaultItems()
         {
-            if (!_addedItems && _itemsGrid != null)
+            if (!_addedDefaultItems && _itemsGrid != null)
             {
                 for (int row = 1; row <= _rowCount; row++)
                 {
@@ -890,7 +819,7 @@ namespace SimpleTasks.Controls.Calendar
                         _itemsGrid.Children.Add(item);
                     }
                 }
-                _addedItems = true;
+                _addedDefaultItems = true;
             }
         }
 
@@ -999,50 +928,6 @@ namespace SimpleTasks.Controls.Calendar
                             }
                         }
                     }
-                }
-            }
-        }
-
-        private void BuildDates()
-        {
-            Debug.WriteLine("> BuildDates ({0})", DatesSource);
-            if (DatesSource != null)
-            {
-                DatesAssigned.Clear();
-                DatesSource.ToList().ForEach(one => DatesAssigned.Add(one.CalendarItemDate));
-            }
-        }
-
-        private void WireUpDataSource(object oldValue, object newValue)
-        {
-            Debug.WriteLine("> WireUpDataSource {0} --- {1}", oldValue, newValue);
-            if (newValue != null)
-            {
-                var source = newValue as INotifyPropertyChanged;
-                if (source != null)
-                {
-                    source.PropertyChanged += SourcePropertyChanged;
-                }
-            }
-            if (oldValue != null)
-            {
-                var source = newValue as INotifyPropertyChanged;
-                if (source != null)
-                {
-                    source.PropertyChanged -= SourcePropertyChanged;
-                }
-            }
-        }
-
-        private void SourcePropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Debug.WriteLine("> SourcePropertyChanged");
-            var expression = GetBindingExpression(DatesSourceProperty);
-            if (expression != null)
-            {
-                if (expression.ParentBinding.Path.Path.EndsWith(e.PropertyName))
-                {
-                    Refresh();
                 }
             }
         }

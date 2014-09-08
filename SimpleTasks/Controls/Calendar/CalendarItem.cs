@@ -117,16 +117,11 @@ namespace SimpleTasks.Controls.Calendar
             SetForegroundColor();
         }
 
-        private bool IsConverterNeeded()
-        {
-            return _owningCalendar.DatesSource == null || _owningCalendar.DatesAssigned.Contains(Date);
-        }
-
         internal void SetBackgroundColor()
         {
             Brush defaultSelectedBrush = new SolidColorBrush(Colors.Transparent);
             Brush defaultBrush = Application.Current.Resources["PhoneAccentBrush"] as Brush;
-            if (_owningCalendar.ColorConverter != null && IsConverterNeeded())
+            if (_owningCalendar.ColorConverter != null)
             {
                 Background = _owningCalendar.ColorConverter.Convert(Date, IsSelected, IsSelected ? defaultBrush : defaultSelectedBrush, BrushType.Background);
             }
@@ -139,7 +134,7 @@ namespace SimpleTasks.Controls.Calendar
         internal void SetForegroundColor()
         {
             Brush defaultBrush = Application.Current.Resources["PhoneForegroundBrush"] as Brush;
-            if (_owningCalendar.ColorConverter != null && IsConverterNeeded())
+            if (_owningCalendar.ColorConverter != null)
             {
                 Foreground = _owningCalendar.ColorConverter.Convert(Date, IsSelected, defaultBrush, BrushType.Foreground);
             }

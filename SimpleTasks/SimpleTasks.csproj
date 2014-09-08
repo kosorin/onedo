@@ -101,7 +101,6 @@
     <Compile Include="Controls\Calendar\CalendarItem.cs" />
     <Compile Include="Controls\Calendar\CalendarWeekItem.cs" />
     <Compile Include="Controls\Calendar\IDateToBrushConverter.cs" />
-    <Compile Include="Controls\Calendar\ISupportCalendarItem.cs" />
     <Compile Include="Controls\Calendar\MonthChangedEventArgs.cs" />
     <Compile Include="Controls\Calendar\SelectionChangedEventArgs.cs" />
     <Compile Include="Controls\Calendar\WeekNumberDisplayOption.cs" />
@@ -444,7 +443,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
