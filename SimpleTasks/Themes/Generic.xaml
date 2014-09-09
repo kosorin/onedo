@@ -5,6 +5,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                     xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                    xmlns:calendar="clr-namespace:SimpleTasks.Controls.Calendar"
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
 
     <Style TargetType="controls:ToggleControl">
@@ -775,6 +776,43 @@
                             </Canvas>
                         </Grid>
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--EndRegion-->
+
+    <!--Region Calendar-->
+    <Style TargetType="calendar:Calendar">
+
+    </Style>
+
+    <Style TargetType="calendar:CalendarItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="calendar:CalendarItem">
+                    <Grid Background="{TemplateBinding Background}">
+                        <TextBlock x:Name="DayNumberBlock"
+                                   Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Style="{StaticResource NormalTextStyle}"
+                                   FontSize="28"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="calendar:CalendarDayOfWeekItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="calendar:CalendarDayOfWeekItem">
+                    <TextBlock Text="{TemplateBinding Text}"
+                               Style="{StaticResource SubtleTextStyle}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

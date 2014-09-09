@@ -6,7 +6,6 @@
                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                          xmlns:controls="clr-namespace:SimpleTasks.Controls"
                          xmlns:calendar="clr-namespace:SimpleTasks.Controls.Calendar"
-                         xmlns:wpcontrols="clr-namespace:WPControls;assembly=WPControls"
                          mc:Ignorable="d"
                          Style="{StaticResource BasePickerPageStyle}">
     <controls:BasePickerPage.Resources>
@@ -113,7 +112,6 @@
                                   Grid.Column="0"
                                   Grid.ColumnSpan="3">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
@@ -132,24 +130,11 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <!--Region Okraje pro názvy dnů-->
-                                <Border Grid.Column="1"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <Border Grid.Column="2"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <Border Grid.Column="3"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <Border Grid.Column="4"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <Border Grid.Column="5"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <Border Grid.Column="6"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <Border Grid.Column="7"
-                                        Style="{StaticResource WeekdayBorderStyle}" />
-                                <!--EndRegion-->
-
                                 <!--Region Okraje pro jednotlivé dny a celý kalendář-->
+                                <Border Grid.Column="0"
+                                        Grid.Row="1"
+                                        Grid.RowSpan="6"
+                                        Style="{StaticResource BorderStyle}" />
                                 <Border Grid.Column="1"
                                         Grid.Row="1"
                                         Grid.RowSpan="6"
@@ -171,52 +156,24 @@
                                         Grid.RowSpan="6"
                                         Style="{StaticResource BorderStyle}" />
                                 <Border Grid.Column="6"
-                                        Grid.Row="1"
-                                        Grid.RowSpan="6"
-                                        Style="{StaticResource BorderStyle}" />
-                                <Border Grid.Column="7"
                                         Grid.Row="1"
                                         Grid.RowSpan="6"
                                         Style="{StaticResource BorderStyle}" />
                                 <Border Grid.Row="1"
                                         Grid.RowSpan="6"
-                                        Grid.Column="1"
+                                        Grid.Column="0"
                                         Grid.ColumnSpan="7"
                                         Margin="-1,-1,0,0"
                                         BorderThickness="1"
                                         BorderBrush="{StaticResource CalendarBorderBrush}" />
                                 <!--EndRegion-->
-                                
-                                <!--Region Day Names-->
-                                <TextBlock Grid.Column="1"
-                                           Text="{TemplateBinding Sunday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <TextBlock Grid.Column="2"
-                                           Text="{TemplateBinding Monday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <TextBlock Grid.Column="3"
-                                           Text="{TemplateBinding Tuesday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <TextBlock Grid.Column="4"
-                                           Text="{TemplateBinding Wednesday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <TextBlock Grid.Column="5"
-                                           Text="{TemplateBinding Thursday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <TextBlock Grid.Column="6"
-                                           Text="{TemplateBinding Friday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <TextBlock Grid.Column="7"
-                                           Text="{TemplateBinding Saturday}"
-                                           Style="{StaticResource WeekdayNameStyle}" />
-                                <!--EndRegion-->
-                                
+                               
                             </Grid>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="CalendarItemStyle">
+            <Setter Property="ItemStyle">
                 <Setter.Value>
                     <Style TargetType="calendar:CalendarItem">
                         <Setter Property="Template">
@@ -242,6 +199,22 @@
                                             </Grid>
                                         </Border>
                                     </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="DayOfWeekItemStyle">
+                <Setter.Value>
+                    <Style TargetType="calendar:CalendarDayOfWeekItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="calendar:CalendarDayOfWeekItem">
+                                    <Border Style="{StaticResource WeekdayBorderStyle}">
+                                        <TextBlock Text="{TemplateBinding Text}"
+                                                   Style="{StaticResource WeekdayNameStyle}" />
+                                    </Border>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>

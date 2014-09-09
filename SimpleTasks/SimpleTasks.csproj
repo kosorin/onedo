@@ -98,12 +98,11 @@
     <Compile Include="Controls\BasePickerPage.cs" />
     <Compile Include="Controls\Calendar\BrushType.cs" />
     <Compile Include="Controls\Calendar\Calendar.cs" />
+    <Compile Include="Controls\Calendar\CalendarDayOfWeekItem.cs" />
     <Compile Include="Controls\Calendar\CalendarItem.cs" />
-    <Compile Include="Controls\Calendar\CalendarWeekItem.cs" />
     <Compile Include="Controls\Calendar\IDateToBrushConverter.cs" />
     <Compile Include="Controls\Calendar\MonthChangedEventArgs.cs" />
     <Compile Include="Controls\Calendar\SelectionChangedEventArgs.cs" />
-    <Compile Include="Controls\Calendar\WeekNumberDisplayOption.cs" />
     <Compile Include="Controls\ListPicker.cs" />
     <Compile Include="Controls\ListPickerItem.cs" />
     <Compile Include="Controls\MySlider.cs" />

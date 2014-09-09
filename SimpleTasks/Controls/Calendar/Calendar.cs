@@ -28,21 +28,23 @@ namespace SimpleTasks.Controls.Calendar
 
             _dateTimeFormatInfo = CultureInfo.CurrentCulture.DateTimeFormat;
             FirstDayOfWeek = _dateTimeFormatInfo.FirstDayOfWeek;
-            SetupDaysOfWeekLabels();
+
+            SetDefaultDayOfWeekLabels();
         }
         #endregion
 
-        #region Fields/Constants
+        #region Private Fields/Constants
         private Grid _itemsGrid;
         private CalendarItem _lastItem;
-        private bool _addedDefaultItems;
         private int _month = DateTime.Today.Month;
         private int _year = DateTime.Today.Year;
         private readonly DateTimeFormatInfo _dateTimeFormatInfo;
         private bool _ignoreMonthChange;
 
+        private const short _columnCount = 7;
         private const short _rowCount = 6;
-        private const short _columnCount = 8;
+        private CalendarDayOfWeekItem[] _calendarDayOfWeekItems = new CalendarDayOfWeekItem[_columnCount];
+        private CalendarItem[,] _calendarItems = new CalendarItem[_rowCount, _columnCount];
         #endregion
 
         #region Events
@@ -119,38 +121,26 @@ namespace SimpleTasks.Controls.Calendar
 
         #region Properties
 
-        #region CalendarItemStyle
-        /// <summary>
-        /// Style for the calendar item
-        /// </summary>
-        public Style CalendarItemStyle
+        #region ItemStyle
+        public Style ItemStyle
         {
-            get { return (Style)GetValue(CalendarItemStyleProperty); }
-            set { SetValue(CalendarItemStyleProperty, value); }
+            get { return (Style)GetValue(ItemStyleProperty); }
+            set { SetValue(ItemStyleProperty, value); }
         }
 
-        /// <summary>
-        /// Style for the calendar item
-        /// </summary>
-        public static readonly DependencyProperty CalendarItemStyleProperty =
-            DependencyProperty.Register("CalendarItemStyle", typeof(Style), typeof(Calendar), new PropertyMetadata(null));
-        #endregion // end of CalendarItemStyle
+        public static readonly DependencyProperty ItemStyleProperty =
+            DependencyProperty.Register("ItemStyle", typeof(Style), typeof(Calendar), new PropertyMetadata(null));
+        #endregion // end of ItemStyle
 
-        #region CalendarWeekItemStyle
-        /// <summary>
-        /// Style for the calendar item
-        /// </summary>
-        public Style CalendarWeekItemStyle
+        #region DayOfWeekItemStyle
+        public Style DayOfWeekItemStyle
         {
-            get { return (Style)GetValue(CalendarWeekItemStyleStyleProperty); }
-            set { SetValue(CalendarWeekItemStyleStyleProperty, value); }
+            get { return (Style)GetValue(DayOfWeekItemStyleProperty); }
+            set { SetValue(DayOfWeekItemStyleProperty, value); }
         }
 
-        /// <summary>
-        /// Style for the calendar item
-        /// </summary>
-        public static readonly DependencyProperty CalendarWeekItemStyleStyleProperty =
-            DependencyProperty.Register("CalendarWeekItemStyle", typeof(Style), typeof(Calendar), new PropertyMetadata(null));
+        public static readonly DependencyProperty DayOfWeekItemStyleProperty =
+            DependencyProperty.Register("DayOfWeekItemStyle", typeof(Style), typeof(Calendar), null);
         #endregion // end of CalendarWeekItemStyle
 
         #region YearMonthLabel
@@ -196,63 +186,64 @@ namespace SimpleTasks.Controls.Calendar
                 var newValue = (DateTime)e.NewValue;
                 if (calendar._itemsGrid != null)
                 {
-                    var query = from oneChild in calendar._itemsGrid.Children
-                                where
-                                    oneChild is CalendarItem && ((CalendarItem)oneChild).IsSelected &&
-                                    ((CalendarItem)oneChild).Date != newValue
-                                select (CalendarItem)oneChild;
-                    query.ToList().ForEach(one => one.IsSelected = false);
+                    foreach (CalendarItem item in calendar.ItemValues())
+                    {
+                        if (item.IsSelected && item.Date != newValue)
+                        {
+                            item.IsSelected = false;
+                        }
+                    }
                 }
                 calendar.OnSelectionChanged(newValue);
             }
         }
         #endregion // end of SelectedDate
 
-        #region SelectedYear/Month
+        #region Current Year/Month
         /// <summary>
         /// Currently selected year
         /// </summary>
-        public int SelectedYear
+        public int CurrentYear
         {
-            get { return (int)GetValue(SelectedYearProperty); }
-            set { SetValue(SelectedYearProperty, value); }
+            get { return (int)GetValue(CurrentYearProperty); }
+            set { SetValue(CurrentYearProperty, value); }
         }
 
         /// <summary>
         /// Currently selected year
         /// </summary>
-        public static readonly DependencyProperty SelectedYearProperty =
-            DependencyProperty.Register("SelectedYear", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Year, OnSelectedYearMonthChanged));
+        public static readonly DependencyProperty CurrentYearProperty =
+            DependencyProperty.Register("CurrentYear", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Year, OnCurrentYearMonthChanged));
 
         /// <summary>
         /// Currently selected month
         /// </summary>
-        public int SelectedMonth
+        public int CurrentMonth
         {
-            get { return (int)GetValue(SelectedMonthProperty); }
-            set { SetValue(SelectedMonthProperty, value); }
+            get { return (int)GetValue(CurrentMonthProperty); }
+            set { SetValue(CurrentMonthProperty, value); }
         }
 
         /// <summary>
         /// Currently selected month
         /// </summary>
-        public static readonly DependencyProperty SelectedMonthProperty =
-            DependencyProperty.Register("SelectedMonth", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Month, OnSelectedYearMonthChanged));
+        public static readonly DependencyProperty CurrentMonthProperty =
+            DependencyProperty.Register("CurrentMonth", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Month, OnCurrentYearMonthChanged));
 
-        private static void OnSelectedYearMonthChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnCurrentYearMonthChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var calendar = sender as Calendar;
-            if (calendar != null && (calendar._year != calendar.SelectedYear || calendar._month != calendar.SelectedMonth))
+            if (calendar != null && (calendar._year != calendar.CurrentYear || calendar._month != calendar.CurrentMonth))
             {
                 if (!calendar._ignoreMonthChange)
                 {
-                    calendar._year = calendar.SelectedYear;
-                    calendar._month = calendar.SelectedMonth;
+                    calendar._year = calendar.CurrentYear;
+                    calendar._month = calendar.CurrentMonth;
                     calendar.SetYearMonthLabel();
                 }
             }
         }
-        #endregion // end of SelectedMonth/Month
+        #endregion // end of CurrentMonth/Month
 
         #region ColorConverter
         /// <summary>
@@ -306,34 +297,6 @@ namespace SimpleTasks.Controls.Calendar
         public static readonly DependencyProperty ShowSelectedDateProperty =
             DependencyProperty.Register("ShowSelectedDate", typeof(bool), typeof(Calendar), new PropertyMetadata(true));
         #endregion // end of ShowSelectedDate
-
-        #region WeekNumberDisplay
-        /// <summary>
-        /// Sets an option of how to display week number
-        /// </summary>
-        public WeekNumberDisplayOption WeekNumberDisplay
-        {
-            get { return (WeekNumberDisplayOption)GetValue(WeekNumberDisplayProperty); }
-            set { SetValue(WeekNumberDisplayProperty, value); }
-        }
-
-        /// <summary>
-        /// If set to false, selected date is not highlighted
-        /// </summary>
-        public static readonly DependencyProperty WeekNumberDisplayProperty =
-            DependencyProperty.Register("WeekNumberDisplay", typeof(WeekNumberDisplayOption), typeof(Calendar),
-            new PropertyMetadata(WeekNumberDisplayOption.None, OnWeekNumberDisplayChanged));
-
-        /// <summary>
-        /// Update calendar display when display option changes
-        /// </summary>
-        /// <param name="sender">Calendar control</param>
-        /// <param name="e">Event arguments</param>
-        public static void OnWeekNumberDisplayChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            ((Calendar)sender).BuildItems();
-        }
-        #endregion // end of WeekNumberDisplay
 
         #region DayNames
         /// <summary>
@@ -541,7 +504,7 @@ namespace SimpleTasks.Controls.Calendar
 
         private static void OnFirstDayOfWeekChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            ((Calendar)sender).SetupDayLabels();
+            ((Calendar)sender).BuildDayOfWeekItems();
             ((Calendar)sender).BuildItems();
         }
         #endregion // end of FirstDayOfWeek
@@ -555,12 +518,17 @@ namespace SimpleTasks.Controls.Calendar
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
             var previousButton = GetTemplateChild("PreviousMonthButton") as Button;
             if (previousButton != null) previousButton.Click += PreviousButtonClick;
             var nextButton = GetTemplateChild("NextMonthButton") as Button;
             if (nextButton != null) nextButton.Click += NextButtonClick;
             _itemsGrid = GetTemplateChild("ItemsGrid") as Grid;
-            SetupDayLabels();
+
+            CreateDayOfWeekItems();
+            CreateItems();
+
+            BuildDayOfWeekItems();
             SetYearMonthLabel();
         }
         #endregion
@@ -604,8 +572,8 @@ namespace SimpleTasks.Controls.Calendar
 
         public void GoTo(int year, int month)
         {
-            SelectedMonth = month;
-            SelectedYear = year;
+            CurrentMonth = month;
+            CurrentYear = year;
             Refresh();
         }
         #endregion // end of Public Methods
@@ -660,106 +628,29 @@ namespace SimpleTasks.Controls.Calendar
             return returnValue;
         }
 
-        private int DayColumnOffsetFromSunday()
+        private void SetYearMonthLabel()
         {
-            switch (FirstDayOfWeek)
-            {
-            case DayOfWeek.Monday:
-                return -1;
-            case DayOfWeek.Tuesday:
-                return -2;
-            case DayOfWeek.Wednesday:
-                return -3;
-            case DayOfWeek.Thursday:
-                return -4;
-            case DayOfWeek.Friday:
-                return -5;
-            case DayOfWeek.Saturday:
-                return -6;
-            case DayOfWeek.Sunday:
-                return 0;
-            default:
-                throw new ArgumentOutOfRangeException();
-            }
+            OnMonthChanging(_year, _month);
+            YearMonthLabel = new DateTime(_year, _month, 1).ToString("Y", _dateTimeFormatInfo);
+            _ignoreMonthChange = true;
+            CurrentMonth = _month;
+            CurrentYear = _year;
+            _ignoreMonthChange = false;
+            BuildItems();
+            OnMonthChanged(_year, _month);
         }
 
-        private int DefaultDayColumnIndex(DayOfWeek dayOfWeek)
+        private int ColumnFromDayOfWeek(DayOfWeek dayOfWeek)
         {
-            switch (dayOfWeek)
-            {
-            case DayOfWeek.Sunday:
-                return 1;
-            case DayOfWeek.Monday:
-                return 2;
-            case DayOfWeek.Tuesday:
-                return 3;
-            case DayOfWeek.Wednesday:
-                return 4;
-            case DayOfWeek.Thursday:
-                return 5;
-            case DayOfWeek.Friday:
-                return 6;
-            case DayOfWeek.Saturday:
-                return 7;
-            default:
-                throw new ArgumentOutOfRangeException();
-            }
+            return ((int)dayOfWeek - (int)FirstDayOfWeek + 7) % 7;
         }
 
-        private void SetupDayLabels()
+        private DayOfWeek DayOfWeekFromColumn(int column)
         {
-            if (FirstDayOfWeek != DayOfWeek.Sunday && _itemsGrid != null)
-            {
-                var offset = DayColumnOffsetFromSunday();
-                var labels = _itemsGrid.Children.Where(one => one.GetValue(Grid.RowProperty).Equals(0));
-                foreach (var label in labels)
-                {
-                    var textBlock = label as TextBlock;
-                    if (textBlock != null)
-                    {
-                        if (!string.IsNullOrEmpty(textBlock.Text))
-                        {
-                            int column = 0;
-                            if (textBlock.Text == Sunday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Sunday) + offset;
-                            }
-                            if (textBlock.Text == Monday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Monday) + offset;
-                            }
-                            if (textBlock.Text == Tuesday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Tuesday) + offset;
-                            }
-                            if (textBlock.Text == Wednesday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Wednesday) + offset;
-                            }
-                            if (textBlock.Text == Thursday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Thursday) + offset;
-                            }
-                            if (textBlock.Text == Friday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Friday) + offset;
-                            }
-                            if (textBlock.Text == Saturday)
-                            {
-                                column = DefaultDayColumnIndex(DayOfWeek.Saturday) + offset;
-                            }
-                            if (column <= 0)
-                            {
-                                column = column + 7;
-                            }
-                            textBlock.SetValue(Grid.ColumnProperty, column);
-                        }
-                    }
-                }
-            }
+            return (DayOfWeek)(((int)FirstDayOfWeek + column) % 7);
         }
 
-        private void SetupDaysOfWeekLabels()
+        private void SetDefaultDayOfWeekLabels()
         {
             Sunday = _dateTimeFormatInfo.AbbreviatedDayNames[0].ToUpper();
             Monday = _dateTimeFormatInfo.AbbreviatedDayNames[1].ToUpper();
@@ -770,162 +661,104 @@ namespace SimpleTasks.Controls.Calendar
             Saturday = _dateTimeFormatInfo.AbbreviatedDayNames[6].ToUpper();
         }
 
-        private void SetYearMonthLabel()
+        private IEnumerable<CalendarItem> ItemValues()
         {
-            OnMonthChanging(_year, _month);
-            YearMonthLabel = new DateTime(_year, _month, 1).ToString("Y", _dateTimeFormatInfo);
-            _ignoreMonthChange = true;
-            SelectedMonth = _month;
-            SelectedYear = _year;
-            _ignoreMonthChange = false;
-            BuildItems();
-            OnMonthChanged(_year, _month);
-        }
-
-        private void AddDefaultItems()
-        {
-            if (!_addedDefaultItems && _itemsGrid != null)
+            for (int row = 0; row < _rowCount; row++)
             {
-                for (int row = 1; row <= _rowCount; row++)
+                for (var column = 0; column < _columnCount; column++)
                 {
-                    for (int column = 1; column < _columnCount; column++)
-                    {
-                        var item = new CalendarItem(this);
-                        item.SetValue(Grid.RowProperty, row);
-                        item.SetValue(Grid.ColumnProperty, column);
-                        item.Visibility = Visibility.Collapsed;
-                        item.Tag = string.Concat(row.ToString(CultureInfo.InvariantCulture), ":", column.ToString(CultureInfo.InvariantCulture));
-                        item.Click += ItemClick;
-                        if (CalendarItemStyle != null)
-                        {
-                            item.Style = CalendarItemStyle;
-                        }
-                        _itemsGrid.Children.Add(item);
-                    }
-                    if (WeekNumberDisplay != WeekNumberDisplayOption.None)
-                    {
-                        const int columnCount = 0;
-                        var item = new CalendarWeekItem();
-                        item.SetValue(Grid.RowProperty, row);
-                        item.SetValue(Grid.ColumnProperty, columnCount);
-                        item.Visibility = Visibility.Collapsed;
-                        item.Tag = string.Concat(row.ToString(CultureInfo.InvariantCulture), ":", columnCount.ToString(CultureInfo.InvariantCulture));
-                        if (CalendarWeekItemStyle != null)
-                        {
-                            item.Style = CalendarWeekItemStyle;
-                        }
-                        _itemsGrid.Children.Add(item);
-                    }
+                    yield return _calendarItems[row, column];
                 }
-                _addedDefaultItems = true;
             }
         }
 
-        private void BuildItems()
+        private void CreateDayOfWeekItems()
         {
-            Debug.WriteLine("> BuildItems ({0})", _itemsGrid);
             if (_itemsGrid != null)
             {
-                AddDefaultItems();
-                var startOfMonth = new DateTime(_year, _month, 1);
-                DayOfWeek dayOfWeek = startOfMonth.DayOfWeek;
-                int startColumn = DefaultDayColumnIndex(dayOfWeek);
-                if (FirstDayOfWeek != DayOfWeek.Sunday)
+                for (int column = 0; column < _columnCount; column++)
                 {
-                    startColumn = startColumn + DayColumnOffsetFromSunday();
-                    if (startColumn <= 0)
+                    CalendarDayOfWeekItem item = new CalendarDayOfWeekItem();
+                    item.SetValue(Grid.RowProperty, 0);
+                    item.SetValue(Grid.ColumnProperty, column);
+                    if (DayOfWeekItemStyle != null)
                     {
-                        startColumn += 7;
+                        item.Style = DayOfWeekItemStyle;
+                    }
+
+                    _itemsGrid.Children.Add(item);
+                    _calendarDayOfWeekItems[column] = item;
+                }
+            }
+        }
+
+        private void CreateItems()
+        {
+            if (_itemsGrid != null)
+            {
+                for (int row = 0; row < _rowCount; row++)
+                {
+                    for (int column = 0; column < _columnCount; column++)
+                    {
+                        CalendarItem item = new CalendarItem(this);
+                        item.SetValue(Grid.RowProperty, row + 1); // +1, protože 0 zabírá řádek pro názvy dnů
+                        item.SetValue(Grid.ColumnProperty, column);
+                        if (ItemStyle != null)
+                        {
+                            item.Style = ItemStyle;
+                        }
+                        item.Click += ItemClick;
+
+                        _itemsGrid.Children.Add(item);
+                        _calendarItems[row, column] = item;
                     }
                 }
-                var daysInMonth = (int)Math.Floor(startOfMonth.AddMonths(1).Subtract(startOfMonth).TotalDays);
-                var addedDays = 0;
-                int lastWeekNumber = 0;
-                for (int rowCount = 1; rowCount <= _rowCount; rowCount++)
+            }
+        }
+
+        private void BuildDayOfWeekItems()
+        {
+            if (_itemsGrid != null)
+            {
+                for (var column = 0; column < _columnCount; column++)
                 {
-                    for (var columnCount = 1; columnCount < _columnCount; columnCount++)
+                    CalendarDayOfWeekItem item = _calendarDayOfWeekItems[column];
+
+                    item.DayOfWeek = DayOfWeekFromColumn(column);
+                    switch (item.DayOfWeek)
                     {
-                        var item = (CalendarItem)(from oneChild in _itemsGrid.Children
-                                                  where oneChild is CalendarItem &&
-                                                  ((CalendarItem)oneChild).Tag.ToString() == string.Concat(rowCount.ToString(CultureInfo.InvariantCulture), ":", columnCount.ToString(CultureInfo.InvariantCulture))
-                                                  select oneChild).First();
-                        if (rowCount == 1 && columnCount < startColumn)
-                        {
-                            item.Visibility = Visibility.Collapsed;
-                        }
-                        else if (addedDays < daysInMonth)
-                        {
-                            item.Visibility = Visibility.Visible;
-                        }
-                        else
-                        {
-                            item.Visibility = Visibility.Collapsed;
-                        }
-
-                        var weekItem = (CalendarWeekItem)(from oneChild in _itemsGrid.Children
-                                                          where oneChild is CalendarWeekItem &&
-                                                          ((CalendarWeekItem)oneChild).Tag.ToString() == string.Concat(rowCount.ToString(CultureInfo.InvariantCulture), ":0")
-                                                          select oneChild).FirstOrDefault();
-
-                        if (item.Visibility == Visibility.Visible)
-                        {
-                            item.Date = startOfMonth.AddDays(addedDays);
-                            if (SelectedDate == DateTime.MinValue && item.Date == DateTime.Today)
-                            {
-                                SelectedDate = item.Date;
-                                if (ShowSelectedDate)
-                                    item.IsSelected = true;
-                                _lastItem = item;
-                            }
-                            else
-                            {
-                                if (item.Date == SelectedDate)
-                                {
-                                    if (ShowSelectedDate)
-                                        item.IsSelected = true;
-                                }
-                                else
-                                {
-                                    item.IsSelected = false;
-                                }
-                            }
-                            addedDays += 1;
-                            item.DayNumber = addedDays;
-                            item.SetBackgroundColor();
-                            item.SetForegroundColor();
-
-                            if (WeekNumberDisplay != WeekNumberDisplayOption.None)
-                            {
-                                int weekNumber;
-
-                                if (WeekNumberDisplay == WeekNumberDisplayOption.WeekOfYear)
-                                {
-                                    var systemCalendar = System.Threading.Thread.CurrentThread.CurrentCulture.Calendar;
-                                    weekNumber = systemCalendar.GetWeekOfYear(
-                                        item.Date,
-                                        System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.CalendarWeekRule,
-                                        System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek);
-                                }
-                                else
-                                {
-                                    weekNumber = rowCount;
-                                }
-                                if (weekItem != null)
-                                {
-                                    weekItem.WeekNumber = weekNumber;
-                                    lastWeekNumber = weekNumber;
-                                    weekItem.Visibility = Visibility.Visible;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (WeekNumberDisplay != WeekNumberDisplayOption.None && weekItem != null && weekItem.WeekNumber != lastWeekNumber)
-                            {
-                                weekItem.Visibility = Visibility.Collapsed;
-                            }
-                        }
+                    case DayOfWeek.Monday: item.Text = Monday; break;
+                    case DayOfWeek.Tuesday: item.Text = Tuesday; break;
+                    case DayOfWeek.Wednesday: item.Text = Wednesday; break;
+                    case DayOfWeek.Thursday: item.Text = Thursday; break;
+                    case DayOfWeek.Friday: item.Text = Friday; break;
+                    case DayOfWeek.Saturday: item.Text = Saturday; break;
+                    case DayOfWeek.Sunday: item.Text = Sunday; break;
+                    default: break;
                     }
+                }
+            }
+        }
+        
+        private void BuildItems()
+        {
+            if (_itemsGrid != null)
+            {
+                DateTime currentMonth = new DateTime(_year, _month, 1);
+                DateTime currentDate = currentMonth.AddDays(-ColumnFromDayOfWeek(currentMonth.DayOfWeek));
+                if (currentDate.Day == 1)
+                {
+                    currentDate = currentDate.AddDays(-7);
+                }
+
+                foreach (CalendarItem item in ItemValues())
+                {
+                    item.Date = currentDate;
+                    item.DayNumber = currentDate.Day;
+                    item.IsSelected = ShowSelectedDate && SelectedDate == currentDate;
+                    item.Opacity = (currentDate.Month == currentMonth.Month) ? 1.0 : 0.3;
+
+                    currentDate = currentDate.AddDays(1);
                 }
             }
         }
