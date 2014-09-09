@@ -24,7 +24,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        public static string ForceDebugCulture = "en-US";
+        public static string ForceDebugCulture = "cs-CZ";
 
         #region Properties
         public static Version Version

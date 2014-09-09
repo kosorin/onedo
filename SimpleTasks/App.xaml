@@ -44,7 +44,6 @@
 
             <!--To Bool-->
             <conv:BoolNegationConverter x:Key="BoolNegationConverter" />
-            <conv:DateToBoolConverter x:Key="DateToBoolConverter" />
             <conv:PriorityToBoolConverter x:Key="TaskPriorityToBooleanConverter" />
 
             <!--To Number-->

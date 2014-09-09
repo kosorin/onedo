@@ -96,13 +96,11 @@
     </Compile>
     <Compile Include="Controls\BasePage.cs" />
     <Compile Include="Controls\BasePickerPage.cs" />
-    <Compile Include="Controls\Calendar\BrushType.cs" />
     <Compile Include="Controls\Calendar\Calendar.cs" />
     <Compile Include="Controls\Calendar\CalendarDayOfWeekItem.cs" />
     <Compile Include="Controls\Calendar\CalendarItem.cs" />
-    <Compile Include="Controls\Calendar\IDateToBrushConverter.cs" />
-    <Compile Include="Controls\Calendar\MonthChangedEventArgs.cs" />
-    <Compile Include="Controls\Calendar\SelectionChangedEventArgs.cs" />
+    <Compile Include="Controls\Calendar\CurrentDateChangedEventArgs.cs" />
+    <Compile Include="Controls\Calendar\SelectedDateChangedEventArgs.cs" />
     <Compile Include="Controls\ListPicker.cs" />
     <Compile Include="Controls\ListPickerItem.cs" />
     <Compile Include="Controls\MySlider.cs" />
@@ -128,7 +126,6 @@
     <Compile Include="Conventers\BoolNegationConverter.cs" />
     <Compile Include="Conventers\BoolToNumberConverter.cs" />
     <Compile Include="Conventers\BoolToVisibilityConverter.cs" />
-    <Compile Include="Conventers\DateToBoolConverter.cs" />
     <Compile Include="Conventers\ReminderConverter.cs" />
     <Compile Include="Conventers\TimeConverter.cs" />
     <Compile Include="Conventers\NullOrEmptyToVisibilityConverter.cs" />

@@ -298,6 +298,7 @@ namespace SimpleTasks.Views
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Call Chuck",
+                DueDate = DateTimeExtensions.Today.AddDays(-5),
                 Completed = DateTime.Now
             });
 

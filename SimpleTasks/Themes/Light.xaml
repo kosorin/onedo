@@ -98,16 +98,15 @@
     <!--EndRegion-->
 
     <!--Region DatePicker-->
+    <Color x:Key="CalendarBorderColor">#FFB2B2B2</Color>
     <SolidColorBrush x:Key="CalendarBorderBrush"
-                     Color="#FFB2B2B2" />
+                     Color="{StaticResource CalendarBorderColor}" />
     <SolidColorBrush x:Key="CalendarItemBackgroundBrush"
                      Color="#5D9C9C9C" />
     <SolidColorBrush x:Key="CalendarItemBrush"
                      Color="{StaticResource NormalColor}" />
     <SolidColorBrush x:Key="CalendarSelectedItemBrush"
                      Color="#FFF" />
-    <SolidColorBrush x:Key="CalendarItemSubtleBrush"
-                     Color="#a3a3a3" />
     <SolidColorBrush x:Key="CalendarWeekdayBrush"
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush"

@@ -5,13 +5,11 @@ namespace SimpleTasks.Controls.Calendar
     /// <summary>
     /// Event arguments for SelectionChanged event of the calendar
     /// </summary>
-    public class SelectionChangedEventArgs : EventArgs
+    public class SelectedDateChangedEventArgs : EventArgs
     {
-        // ReSharper disable UnusedMember.Local
-        private SelectionChangedEventArgs() { }
-        // ReSharper restore UnusedMember.Local
+        private SelectedDateChangedEventArgs() { }
 
-        internal SelectionChangedEventArgs(DateTime dateTime)
+        public SelectedDateChangedEventArgs(DateTime dateTime)
         {
             SelectedDate = dateTime;
         }

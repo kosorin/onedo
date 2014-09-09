@@ -35,11 +35,8 @@ namespace SimpleTasks.Controls.Calendar
 
         #region Private Fields/Constants
         private Grid _itemsGrid;
-        private CalendarItem _lastItem;
-        private int _month = DateTime.Today.Month;
-        private int _year = DateTime.Today.Year;
+        private Grid _dayOfWeekItemsGrid;
         private readonly DateTimeFormatInfo _dateTimeFormatInfo;
-        private bool _ignoreMonthChange;
 
         private const short _columnCount = 7;
         private const short _rowCount = 6;
@@ -48,49 +45,23 @@ namespace SimpleTasks.Controls.Calendar
         #endregion
 
         #region Events
-        /// <summary>
-        /// Event that occurs before month/year combination is changed
-        /// </summary>
-        public event EventHandler<MonthChangedEventArgs> MonthChanging;
-
-        /// <summary>
-        /// Event that occurs after month/year combination is changed
-        /// </summary>
-        public event EventHandler<MonthChangedEventArgs> MonthChanged;
+        public event EventHandler<CurrentDateChangedEventArgs> CurrentDateChanged;
 
         /// <summary>
         /// Event that occurs after a date is selected on the calendar
         /// </summary>
-        public event EventHandler<SelectionChangedEventArgs> SelectionChanged;
+        public event EventHandler<SelectedDateChangedEventArgs> SelectedDateChanged;
 
         /// <summary>
         /// Event that occurs after a date is clicked on
         /// </summary>
-        public event EventHandler<SelectionChangedEventArgs> DateClicked;
+        public event EventHandler<SelectedDateChangedEventArgs> DateClicked;
 
-        /// <summary>
-        /// Raises MonthChanging event
-        /// </summary>
-        /// <param name="year">Year for event arguments</param>
-        /// <param name="month">Month for event arguments</param>
-        protected void OnMonthChanging(int year, int month)
+        protected void OnCurrentDateChanged(DateTime date)
         {
-            if (MonthChanging != null)
+            if (CurrentDateChanged != null)
             {
-                MonthChanging(this, new MonthChangedEventArgs(year, month));
-            }
-        }
-
-        /// <summary>
-        /// Raises MonthChanged event
-        /// </summary>
-        /// <param name="year">Year for event arguments</param>
-        /// <param name="month">Month for event arguments</param>
-        protected void OnMonthChanged(int year, int month)
-        {
-            if (MonthChanged != null)
-            {
-                MonthChanged(this, new MonthChangedEventArgs(year, month));
+                CurrentDateChanged(this, new CurrentDateChangedEventArgs(date));
             }
         }
 
@@ -98,11 +69,11 @@ namespace SimpleTasks.Controls.Calendar
         /// Raises SelectedChanged event
         /// </summary>
         /// <param name="dateTime">Selected date</param>
-        protected void OnSelectionChanged(DateTime dateTime)
+        protected void OnSelectedDateChanged(DateTime dateTime)
         {
-            if (SelectionChanged != null)
+            if (SelectedDateChanged != null)
             {
-                SelectionChanged(this, new SelectionChangedEventArgs(dateTime));
+                SelectedDateChanged(this, new SelectedDateChangedEventArgs(dateTime));
             }
         }
 
@@ -114,53 +85,36 @@ namespace SimpleTasks.Controls.Calendar
         {
             if (DateClicked != null)
             {
-                DateClicked(this, new SelectionChangedEventArgs(dateTime));
+                DateClicked(this, new SelectedDateChangedEventArgs(dateTime));
             }
         }
         #endregion
 
         #region Properties
 
-        #region ItemStyle
-        public Style ItemStyle
+        #region ItemTemplate
+        public ControlTemplate ItemTemplate
         {
-            get { return (Style)GetValue(ItemStyleProperty); }
-            set { SetValue(ItemStyleProperty, value); }
+            get { return (ControlTemplate)GetValue(ItemTemplateProperty); }
+            set { SetValue(ItemTemplateProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemStyleProperty =
-            DependencyProperty.Register("ItemStyle", typeof(Style), typeof(Calendar), new PropertyMetadata(null));
-        #endregion // end of ItemStyle
+        public static readonly DependencyProperty ItemTemplateProperty =
+            DependencyProperty.Register("ItemTemplate", typeof(ControlTemplate), typeof(Calendar), new PropertyMetadata(null));
+        #endregion // end of ItemTemplate
 
-        #region DayOfWeekItemStyle
-        public Style DayOfWeekItemStyle
+        #region DayOfWeekItemTemplate
+        public ControlTemplate DayOfWeekItemTemplate
         {
-            get { return (Style)GetValue(DayOfWeekItemStyleProperty); }
-            set { SetValue(DayOfWeekItemStyleProperty, value); }
+            get { return (ControlTemplate)GetValue(DayOfWeekItemTemplateProperty); }
+            set { SetValue(DayOfWeekItemTemplateProperty, value); }
         }
 
-        public static readonly DependencyProperty DayOfWeekItemStyleProperty =
-            DependencyProperty.Register("DayOfWeekItemStyle", typeof(Style), typeof(Calendar), null);
-        #endregion // end of CalendarWeekItemStyle
+        public static readonly DependencyProperty DayOfWeekItemTemplateProperty =
+            DependencyProperty.Register("DayOfWeekItemTemplate", typeof(ControlTemplate), typeof(Calendar), null);
+        #endregion // end of DayOfWeekItemTemplate
 
-        #region YearMonthLabel
-        /// <summary>
-        /// This value is shown in calendar header and includes month and year
-        /// </summary>
-        public string YearMonthLabel
-        {
-            get { return (string)GetValue(YearMonthLabelProperty); }
-            internal set { SetValue(YearMonthLabelProperty, value); }
-        }
-
-        /// <summary>
-        /// This value is shown in calendar header and includes month and year
-        /// </summary>
-        public static readonly DependencyProperty YearMonthLabelProperty =
-            DependencyProperty.Register("YearMonthLabel", typeof(string), typeof(Calendar), new PropertyMetadata(""));
-        #endregion // end of YearMonthLabel
-
-        #region SelectedDate
+        #region SelectedDate +
         /// <summary>
         /// This value currently selected date on the calendar
         /// This property can be bound to
@@ -183,86 +137,64 @@ namespace SimpleTasks.Controls.Calendar
             var calendar = sender as Calendar;
             if (calendar != null)
             {
-                var newValue = (DateTime)e.NewValue;
-                if (calendar._itemsGrid != null)
+                DateTime date = (DateTime)e.NewValue;
+                if (date == calendar.CurrentDate)
                 {
-                    foreach (CalendarItem item in calendar.ItemValues())
+                    if (calendar._itemsGrid != null)
                     {
-                        if (item.IsSelected && item.Date != newValue)
+                        foreach (CalendarItem item in calendar.GetItems())
                         {
-                            item.IsSelected = false;
+                            item.IsSelected = item.Date == date;
                         }
                     }
                 }
-                calendar.OnSelectionChanged(newValue);
+                else
+                {
+                    calendar.CurrentDate = date;
+                }
+                calendar.OnSelectedDateChanged(date);
             }
         }
         #endregion // end of SelectedDate
 
-        #region Current Year/Month
-        /// <summary>
-        /// Currently selected year
-        /// </summary>
-        public int CurrentYear
+        #region CurrentDate +
+        public DateTime CurrentDate
         {
-            get { return (int)GetValue(CurrentYearProperty); }
-            set { SetValue(CurrentYearProperty, value); }
+            get { return (DateTime)GetValue(CurrentDateProperty); }
+            set { SetValue(CurrentDateProperty, value); }
         }
+        public static readonly DependencyProperty CurrentDateProperty =
+            DependencyProperty.Register("CurrentDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(DateTime.Today, OnCurrentDateChanged));
 
-        /// <summary>
-        /// Currently selected year
-        /// </summary>
-        public static readonly DependencyProperty CurrentYearProperty =
-            DependencyProperty.Register("CurrentYear", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Year, OnCurrentYearMonthChanged));
-
-        /// <summary>
-        /// Currently selected month
-        /// </summary>
-        public int CurrentMonth
-        {
-            get { return (int)GetValue(CurrentMonthProperty); }
-            set { SetValue(CurrentMonthProperty, value); }
-        }
-
-        /// <summary>
-        /// Currently selected month
-        /// </summary>
-        public static readonly DependencyProperty CurrentMonthProperty =
-            DependencyProperty.Register("CurrentMonth", typeof(int), typeof(Calendar), new PropertyMetadata(DateTime.Today.Month, OnCurrentYearMonthChanged));
-
-        private static void OnCurrentYearMonthChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnCurrentDateChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var calendar = sender as Calendar;
-            if (calendar != null && (calendar._year != calendar.CurrentYear || calendar._month != calendar.CurrentMonth))
+            if (calendar != null)
             {
-                if (!calendar._ignoreMonthChange)
-                {
-                    calendar._year = calendar.CurrentYear;
-                    calendar._month = calendar.CurrentMonth;
-                    calendar.SetYearMonthLabel();
-                }
+                DateTime currentDate = (DateTime)e.NewValue;
+                calendar.UpdateYearMonthLabel();
+                calendar.BuildItems();
+                calendar.OnCurrentDateChanged(currentDate);
             }
         }
-        #endregion // end of CurrentMonth/Month
+        #endregion // end of CurrentDate
 
-        #region ColorConverter
+        #region YearMonthLabel
         /// <summary>
-        /// This converter is used to dynamically color the background or day number of a calendar cell
-        /// based on date and the fact that a date is selected and type of conversion
+        /// This value is shown in calendar header and includes month and year
         /// </summary>
-        public IDateToBrushConverter ColorConverter
+        public string YearMonthLabel
         {
-            get { return (IDateToBrushConverter)GetValue(ColorConverterProperty); }
-            set { SetValue(ColorConverterProperty, value); }
+            get { return (string)GetValue(YearMonthLabelProperty); }
+            private set { SetValue(YearMonthLabelProperty, value); }
         }
 
         /// <summary>
-        /// This converter is used to dynamically color the background of a calendar cell
-        /// based on date and the fact that a date is selected
+        /// This value is shown in calendar header and includes month and year
         /// </summary>
-        public static readonly DependencyProperty ColorConverterProperty =
-            DependencyProperty.Register("ColorConverter", typeof(IDateToBrushConverter), typeof(Calendar), new PropertyMetadata(null));
-        #endregion // end of ColorConverter
+        public static readonly DependencyProperty YearMonthLabelProperty =
+            DependencyProperty.Register("YearMonthLabel", typeof(string), typeof(Calendar), new PropertyMetadata(""));
+        #endregion // end of YearMonthLabel
 
         #region ShowNavigationButtons
         /// <summary>
@@ -280,23 +212,6 @@ namespace SimpleTasks.Controls.Calendar
         public static readonly DependencyProperty ShowNavigationButtonsProperty =
             DependencyProperty.Register("ShowNavigationButtons", typeof(bool), typeof(Calendar), new PropertyMetadata(true));
         #endregion // end of ShowNavigationButtons
-
-        #region ShowSelectedDate
-        /// <summary>
-        /// If set to false, selected date is not highlighted
-        /// </summary>
-        public bool ShowSelectedDate
-        {
-            get { return (bool)GetValue(ShowSelectedDateProperty); }
-            set { SetValue(ShowSelectedDateProperty, value); }
-        }
-
-        /// <summary>
-        /// If set to false, selected date is not highlighted
-        /// </summary>
-        public static readonly DependencyProperty ShowSelectedDateProperty =
-            DependencyProperty.Register("ShowSelectedDate", typeof(bool), typeof(Calendar), new PropertyMetadata(true));
-        #endregion // end of ShowSelectedDate
 
         #region DayNames
         /// <summary>
@@ -467,7 +382,6 @@ namespace SimpleTasks.Controls.Calendar
         public static readonly DependencyProperty MinimumDateProperty =
             DependencyProperty.Register("MinimumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(1753, 1, 1)));
 
-
         /// <summary>
         /// Maximum Date that calendar navigation supports
         /// </summary>
@@ -483,7 +397,7 @@ namespace SimpleTasks.Controls.Calendar
             DependencyProperty.Register("MaximumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(2499, 12, 31)));
         #endregion // end of Minimum/Maximum Date
 
-        #region FirstDayOfWeek
+        #region FirstDayOfWeek +
         /// <summary>
         /// Gets or sets the first day of week.
         /// </summary>
@@ -519,17 +433,23 @@ namespace SimpleTasks.Controls.Calendar
         {
             base.OnApplyTemplate();
 
+            // Tlačítka
             var previousButton = GetTemplateChild("PreviousMonthButton") as Button;
             if (previousButton != null) previousButton.Click += PreviousButtonClick;
             var nextButton = GetTemplateChild("NextMonthButton") as Button;
             if (nextButton != null) nextButton.Click += NextButtonClick;
+
+            // Items Grid 
+            _dayOfWeekItemsGrid = GetTemplateChild("DayOfWeekItemsGrid") as Grid;
             _itemsGrid = GetTemplateChild("ItemsGrid") as Grid;
 
+            CreateGrids();
             CreateDayOfWeekItems();
             CreateItems();
 
+            UpdateYearMonthLabel();
             BuildDayOfWeekItems();
-            SetYearMonthLabel();
+            BuildItems();
         }
         #endregion
 
@@ -546,17 +466,11 @@ namespace SimpleTasks.Controls.Calendar
 
         private void ItemClick(object sender, RoutedEventArgs e)
         {
-            if (_lastItem != null)
+            CalendarItem item = (sender as CalendarItem);
+            if (item != null)
             {
-                _lastItem.IsSelected = false;
-            }
-            _lastItem = (sender as CalendarItem);
-            if (_lastItem != null)
-            {
-                if (ShowSelectedDate)
-                    _lastItem.IsSelected = true;
-                SelectedDate = _lastItem.Date;
-                OnDateClicked(_lastItem.Date);
+                SelectedDate = item.Date;
+                OnDateClicked(item.Date);
             }
         }
         #endregion
@@ -569,75 +483,49 @@ namespace SimpleTasks.Controls.Calendar
         {
             BuildItems();
         }
-
-        public void GoTo(int year, int month)
-        {
-            CurrentMonth = month;
-            CurrentYear = year;
-            Refresh();
-        }
         #endregion // end of Public Methods
 
         #region Private Methods
         private void IncrementMonth()
         {
-            if (CanMoveToMonthYear(_year, _month + 1))
+            DateTime next = NextMonth(CurrentDate);
+            if (next <= MaximumDate)
             {
-                _month += 1;
-                if (_month == 13)
-                {
-                    _month = 1;
-                    _year += 1;
-                }
-                SetYearMonthLabel();
+                CurrentDate = next;
             }
         }
 
         private void DecrementMonth()
         {
-            if (CanMoveToMonthYear(_year, _month - 1))
+            DateTime previous = PreviousMonth(CurrentDate);
+            if (previous >= MinimumDate)
             {
-                _month -= 1;
-                if (_month == 0)
-                {
-                    _month = 12;
-                    _year -= 1;
-                }
-                SetYearMonthLabel();
+                CurrentDate = previous;
             }
         }
 
-        private bool CanMoveToMonthYear(int year, int month)
+        private DateTime NextMonth(DateTime date)
         {
-            var returnValue = false;
+            int year = date.Year;
+            int month = date.Month + 1;
+            if (month == 13)
+            {
+                year++;
+                month = 1;
+            }
+            return new DateTime(year, month, 1);
+        }
+
+        private DateTime PreviousMonth(DateTime date)
+        {
+            int year = date.Year;
+            int month = date.Month - 1;
             if (month == 0)
             {
-                year = year - 1;
+                year--;
                 month = 12;
             }
-            else if (month == 13)
-            {
-                month = 1;
-                year = year + 1;
-            }
-            var testDate = new DateTime(year, month, 1);
-            if (testDate >= MinimumDate && testDate <= MaximumDate)
-            {
-                returnValue = true;
-            }
-            return returnValue;
-        }
-
-        private void SetYearMonthLabel()
-        {
-            OnMonthChanging(_year, _month);
-            YearMonthLabel = new DateTime(_year, _month, 1).ToString("Y", _dateTimeFormatInfo);
-            _ignoreMonthChange = true;
-            CurrentMonth = _month;
-            CurrentYear = _year;
-            _ignoreMonthChange = false;
-            BuildItems();
-            OnMonthChanged(_year, _month);
+            return new DateTime(year, month, DateTime.DaysInMonth(year, month));
         }
 
         private int ColumnFromDayOfWeek(DayOfWeek dayOfWeek)
@@ -661,7 +549,7 @@ namespace SimpleTasks.Controls.Calendar
             Saturday = _dateTimeFormatInfo.AbbreviatedDayNames[6].ToUpper();
         }
 
-        private IEnumerable<CalendarItem> ItemValues()
+        private IEnumerable<CalendarItem> GetItems()
         {
             for (int row = 0; row < _rowCount; row++)
             {
@@ -672,21 +560,44 @@ namespace SimpleTasks.Controls.Calendar
             }
         }
 
-        private void CreateDayOfWeekItems()
+        private void CreateGrids()
         {
+            if (_dayOfWeekItemsGrid != null)
+            {
+                for (int column = 0; column < _columnCount; column++)
+                {
+                    _dayOfWeekItemsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                }
+            }
+
             if (_itemsGrid != null)
             {
                 for (int column = 0; column < _columnCount; column++)
                 {
+                    _itemsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                }
+
+                for (int row = 0; row < _rowCount; row++)
+                {
+                    _itemsGrid.RowDefinitions.Add(new RowDefinition());
+                }
+            }
+        }
+
+        private void CreateDayOfWeekItems()
+        {
+            if (_dayOfWeekItemsGrid != null)
+            {
+                for (int column = 0; column < _columnCount; column++)
+                {
                     CalendarDayOfWeekItem item = new CalendarDayOfWeekItem();
-                    item.SetValue(Grid.RowProperty, 0);
                     item.SetValue(Grid.ColumnProperty, column);
-                    if (DayOfWeekItemStyle != null)
+                    if (DayOfWeekItemTemplate != null)
                     {
-                        item.Style = DayOfWeekItemStyle;
+                        item.Template = DayOfWeekItemTemplate;
                     }
 
-                    _itemsGrid.Children.Add(item);
+                    _dayOfWeekItemsGrid.Children.Add(item);
                     _calendarDayOfWeekItems[column] = item;
                 }
             }
@@ -701,11 +612,11 @@ namespace SimpleTasks.Controls.Calendar
                     for (int column = 0; column < _columnCount; column++)
                     {
                         CalendarItem item = new CalendarItem(this);
-                        item.SetValue(Grid.RowProperty, row + 1); // +1, protože 0 zabírá řádek pro názvy dnů
+                        item.SetValue(Grid.RowProperty, row);
                         item.SetValue(Grid.ColumnProperty, column);
-                        if (ItemStyle != null)
+                        if (ItemTemplate != null)
                         {
-                            item.Style = ItemStyle;
+                            item.Template = ItemTemplate;
                         }
                         item.Click += ItemClick;
 
@@ -716,9 +627,14 @@ namespace SimpleTasks.Controls.Calendar
             }
         }
 
+        private void UpdateYearMonthLabel()
+        {
+            YearMonthLabel = CurrentDate.ToString("Y", _dateTimeFormatInfo);
+        }
+
         private void BuildDayOfWeekItems()
         {
-            if (_itemsGrid != null)
+            if (_dayOfWeekItemsGrid != null)
             {
                 for (var column = 0; column < _columnCount; column++)
                 {
@@ -739,26 +655,26 @@ namespace SimpleTasks.Controls.Calendar
                 }
             }
         }
-        
+
         private void BuildItems()
         {
             if (_itemsGrid != null)
             {
-                DateTime currentMonth = new DateTime(_year, _month, 1);
-                DateTime currentDate = currentMonth.AddDays(-ColumnFromDayOfWeek(currentMonth.DayOfWeek));
-                if (currentDate.Day == 1)
+                DateTime currentMonthDate = new DateTime(CurrentDate.Year, CurrentDate.Month, 1);
+                DateTime date = currentMonthDate.AddDays(-ColumnFromDayOfWeek(currentMonthDate.DayOfWeek));
+                if (date.Day == 1)
                 {
-                    currentDate = currentDate.AddDays(-7);
+                    date = date.AddDays(-7);
                 }
 
-                foreach (CalendarItem item in ItemValues())
+                foreach (CalendarItem item in GetItems())
                 {
-                    item.Date = currentDate;
-                    item.DayNumber = currentDate.Day;
-                    item.IsSelected = ShowSelectedDate && SelectedDate == currentDate;
-                    item.Opacity = (currentDate.Month == currentMonth.Month) ? 1.0 : 0.3;
+                    item.Date = date;
+                    item.IsSelected = SelectedDate == date;
+                    item.IsCurrentMonth = date.Month == currentMonthDate.Month;
+                    item.IsEnabled = date >= MinimumDate && date <= MaximumDate;
 
-                    currentDate = currentDate.AddDays(1);
+                    date = date.AddDays(1);
                 }
             }
         }

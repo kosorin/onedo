@@ -784,7 +784,79 @@
 
     <!--Region Calendar-->
     <Style TargetType="calendar:Calendar">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="calendar:Calendar">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
+                        <!--YearMonthLabel-->
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="{TemplateBinding YearMonthLabel}"
+                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       FontSize="32"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0,0,0,8">
+                            </TextBlock>
+                        </Grid>
+
+                        <!--Previous Button-->
+                        <Button Grid.Column="0"
+                                x:Name="PreviousMonthButton"
+                                Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border Margin="0,8"
+                                            Width="60"
+                                            Height="40">
+                                        <TextBlock Foreground="{StaticResource PhoneForegroundBrush}"
+                                                   FontFamily="Segoe UI Symbol"
+                                                   FontSize="72"
+                                                   Margin="0,-32,0,0"
+                                                   Text="&#xE0A6;" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!--Next Button-->
+                        <Button Grid.Column="2"
+                                x:Name="NextMonthButton"
+                                Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border Margin="0,8"
+                                            Width="60"
+                                            Height="40">
+                                        <TextBlock Foreground="{StaticResource PhoneForegroundBrush}"
+                                                   FontFamily="Segoe UI Symbol"
+                                                   FontSize="72"
+                                                   Margin="0,-32,0,0"
+                                                   Text="&#xE0AB;" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!--Calendar Grid-->
+                        <Grid Grid.Row="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="3"
+                              x:Name="ItemsGrid" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="calendar:CalendarItem">

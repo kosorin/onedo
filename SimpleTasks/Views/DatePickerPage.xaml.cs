@@ -17,77 +17,6 @@ using SimpleTasks.Controls.Calendar;
 
 namespace SimpleTasks.Views
 {
-    public class CalendarColorConverter : IDateToBrushConverter
-    {
-        private static Brush _defaultForeground = null;
-        public static Brush DefaultForeground
-        {
-            get
-            {
-                if (_defaultForeground == null)
-                    _defaultForeground = Application.Current.Resources["CalendarItemBrush"] as Brush;
-                return _defaultForeground;
-            }
-        }
-
-        private static Brush _inactiveForeground = null;
-        public static Brush InactiveForeground
-        {
-            get
-            {
-                if (_inactiveForeground == null)
-                    _inactiveForeground = Application.Current.Resources["CalendarItemSubtleBrush"] as Brush;
-                return _inactiveForeground;
-            }
-        }
-
-        private static Brush _selectedForeground = null;
-        public static Brush SelectedForeground
-        {
-            get
-            {
-                if (_selectedForeground == null)
-                    _selectedForeground = Application.Current.Resources["CalendarSelectedItemBrush"] as Brush;
-                return _selectedForeground;
-            }
-        }
-
-        private static Brush _selectedBackground = null;
-        public static Brush SelectedBackground
-        {
-            get
-            {
-                if (_selectedBackground == null)
-                    _selectedBackground = Application.Current.Resources["PhoneAccentBrush"] as Brush;
-                return _selectedBackground;
-            }
-        }
-
-        public Brush Convert(DateTime dateTime, bool isSelected, Brush defaultValue, BrushType brushType)
-        {
-            if (isSelected)
-            {
-                if (brushType == BrushType.Background)
-                    return SelectedBackground;
-                else if (brushType == BrushType.Foreground)
-                    return SelectedForeground;
-            }
-
-            if (brushType == BrushType.Foreground)
-            {
-                if (dateTime.Date < DateTime.Today)
-                {
-                    return InactiveForeground;
-                }
-                else
-                {
-                    return DefaultForeground;
-                }
-            }
-            return defaultValue;
-        }
-    }
-
     public partial class DatePickerPage : BasePickerPage
     {
         private readonly DateTime _defaultDate = DateTime.Today;
@@ -105,10 +34,8 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = this;
 
-            Calendar.ColorConverter = new CalendarColorConverter();
-
-            Calendar.MinimumDate = (_date < DateTime.Today ? _date : DateTime.Today).AddMonths(-1);
-            Calendar.MaximumDate = (_date > DateTime.Today ? _date : DateTime.Today).AddYears(2);
+            Calendar.MinimumDate = DateTime.Today;
+            Calendar.MaximumDate = DateTime.Today.AddYears(2);
 
             SelectDate(_date);
         }
@@ -160,7 +87,7 @@ namespace SimpleTasks.Views
         public void SelectDate(int year, int month, int day)
         {
             Calendar.SelectedDate = new DateTime(year, month, day);
-            Calendar.GoTo(year, month);
+            Calendar.CurrentDate = Calendar.SelectedDate;
         }
     }
 }
