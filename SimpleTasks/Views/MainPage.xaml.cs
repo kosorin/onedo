@@ -328,15 +328,15 @@ namespace SimpleTasks.Views
             }
             else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "de")
             {
-                App.Tasks.Tasks[0].Title = "Zoznam potravín";
-                App.Tasks.Tasks[0].Subtasks[0].Text = "mlieko";
-                App.Tasks.Tasks[0].Subtasks[1].Text = "jablká";
-                App.Tasks.Tasks[0].Subtasks[2].Text = "zemiaky";
-                App.Tasks.Tasks[0].Subtasks[3].Text = "šunka";
-                App.Tasks.Tasks[0].Subtasks[4].Text = "sušienky";
-                App.Tasks.Tasks[1].Title = "Projekt z matematiky";
+                App.Tasks.Tasks[0].Title = "Einkaufsliste";
+                App.Tasks.Tasks[0].Subtasks[0].Text = "Milch";
+                App.Tasks.Tasks[0].Subtasks[1].Text = "Äpfel";
+                App.Tasks.Tasks[0].Subtasks[2].Text = "Kartoffeln";
+                App.Tasks.Tasks[0].Subtasks[3].Text = "Schinken";
+                App.Tasks.Tasks[0].Subtasks[4].Text = "Kekse";
+                App.Tasks.Tasks[1].Title = "Mathe-Projekt";
                 App.Tasks.Tasks[1].Detail = "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.";
-                App.Tasks.Tasks[2].Title = "Zavolať Danovi";
+                App.Tasks.Tasks[2].Title = "Thomas anrufen";
             }
 
         }
