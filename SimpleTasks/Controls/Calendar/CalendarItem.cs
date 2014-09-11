@@ -119,7 +119,10 @@ namespace SimpleTasks.Controls.Calendar
             var item = source as CalendarItem;
             if (item != null)
             {
-                item.DayNumber = ((DateTime)e.NewValue).Day;
+                DateTime date = (DateTime)e.NewValue;
+
+                item.DayNumber = date.Day;
+                item.UpdateTodayBorder();
             }
         }
         #endregion
@@ -134,6 +137,16 @@ namespace SimpleTasks.Controls.Calendar
         {
             base.OnApplyTemplate();
             UpdateVisualStates();
+            UpdateTodayBorder();
+        }
+
+        private void UpdateTodayBorder()
+        {
+            Border todayBorder = GetTemplateChild("TodayBorder") as Border;
+            if (todayBorder != null)
+            {
+                todayBorder.Visibility = (Date == DateTime.Today) ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
         #endregion
     }

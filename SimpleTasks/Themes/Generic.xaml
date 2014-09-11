@@ -865,12 +865,10 @@
                               x:Name="DayOfWeekItemsGrid" />
 
                         <!--Calendar Items-->
-                        <ScrollViewer Grid.Row="2"
-                                      Grid.Column="0"
-                                      Grid.ColumnSpan="3"
-                                      Height="294">
-                            <Grid x:Name="ItemsGrid" />
-                        </ScrollViewer>
+                        <Grid x:Name="ItemsGrid"
+                              Grid.Row="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="3" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -972,6 +970,9 @@
                             </Border.Background>
                             <Grid x:Name="OuterGrid"
                                   Background="Transparent">
+                                <Border x:Name="TodayBorder"
+                                        BorderThickness="3"
+                                        BorderBrush="{StaticResource PhoneAccentBrush}" />
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />
                                 <TextBlock x:Name="DayNumberBlock"
@@ -980,7 +981,8 @@
                                            FontSize="28"
                                            Foreground="{StaticResource CalendarItemBrush}"
                                            VerticalAlignment="Center"
-                                           HorizontalAlignment="Center" />
+                                           HorizontalAlignment="Center"
+                                           Margin="0,8" />
                             </Grid>
                         </Border>
                     </Grid>

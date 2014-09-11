@@ -11,12 +11,17 @@ using System.Windows.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using SimpleTasks.Core.Helpers;
 using System.Diagnostics;
+using SimpleTasks.Helpers;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Controls.Calendar
 {
-    /// <summary>
-    /// Calendar control for Windows Phone 7
-    /// </summary>
+    [TemplatePart(Name = PreviousMonthButtonName, Type = typeof(Button))]
+    [TemplatePart(Name = NextMonthButtonName, Type = typeof(Button))]
+    [TemplatePart(Name = DayOfWeekItemsGridName, Type = typeof(Grid))]
+    [TemplatePart(Name = ItemsGridName, Type = typeof(Grid))]
     public class Calendar : Control
     {
         #region Constructor
@@ -29,15 +34,16 @@ namespace SimpleTasks.Controls.Calendar
 
             _dateTimeFormatInfo = CultureInfo.CurrentCulture.DateTimeFormat;
             FirstDayOfWeek = _dateTimeFormatInfo.FirstDayOfWeek;
-
             SetDefaultDayOfWeekLabels();
         }
         #endregion
 
         #region Private Fields/Constants
-        private Grid _itemsGrid;
-        private Grid _dayOfWeekItemsGrid;
+        private Grid _itemsGrid = null;
+        private Grid _dayOfWeekItemsGrid = null;
         private readonly DateTimeFormatInfo _dateTimeFormatInfo;
+
+        private const double _flickTreshold = 1000;
 
         private const short _columnCount = 7;
         private const short _rowCount = 6;
@@ -427,6 +433,11 @@ namespace SimpleTasks.Controls.Calendar
         #endregion
 
         #region Template
+        private const string PreviousMonthButtonName = "PreviousMonthButton";
+        private const string NextMonthButtonName = "NextMonthButton";
+        private const string DayOfWeekItemsGridName = "DayOfWeekItemsGrid";
+        private const string ItemsGridName = "ItemsGrid";
+
         /// <summary>
         /// Apply default template and perform initialization
         /// </summary>
@@ -435,14 +446,26 @@ namespace SimpleTasks.Controls.Calendar
             base.OnApplyTemplate();
 
             // Tlačítka
-            var previousButton = GetTemplateChild("PreviousMonthButton") as Button;
-            if (previousButton != null) previousButton.Click += PreviousButtonClick;
-            var nextButton = GetTemplateChild("NextMonthButton") as Button;
-            if (nextButton != null) nextButton.Click += NextButtonClick;
+            Button previousButton = GetTemplateChild(PreviousMonthButtonName) as Button;
+            if (previousButton != null)
+            {
+                previousButton.Click += PreviousButtonClick;
+            }
+            Button nextButton = GetTemplateChild(NextMonthButtonName) as Button;
+            if (nextButton != null)
+            {
+                nextButton.Click += NextButtonClick;
+            }
 
             // Items Grid 
-            _dayOfWeekItemsGrid = GetTemplateChild("DayOfWeekItemsGrid") as Grid;
-            _itemsGrid = GetTemplateChild("ItemsGrid") as Grid;
+            _dayOfWeekItemsGrid = GetTemplateChild(DayOfWeekItemsGridName) as Grid;
+            _itemsGrid = GetTemplateChild(ItemsGridName) as Grid;
+            if (_itemsGrid != null)
+            {
+                _itemsGrid.ManipulationStarted += CalendarManipulationStarted;
+                _itemsGrid.ManipulationDelta += CalendarManipulationDelta;
+                _itemsGrid.ManipulationCompleted += CalendarManipulationCompleted;
+            }
 
             CreateGrids();
             CreateDayOfWeekItems();
@@ -465,13 +488,42 @@ namespace SimpleTasks.Controls.Calendar
             DecrementMonth();
         }
 
-        private void ItemClick(object sender, RoutedEventArgs e)
+        private void ItemTap(object sender, EventArgs e)
         {
             CalendarItem item = (sender as CalendarItem);
             if (item != null)
             {
                 SelectedDate = item.Date;
                 OnDateClicked(item.Date);
+            }
+        }
+
+        private void CalendarManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+        }
+
+        private void CalendarManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+        }
+
+        private void CalendarManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            if (e.IsInertial)
+            {
+                double horizontal = e.TotalManipulation.Translation.X;
+                double vertical = e.TotalManipulation.Translation.Y;
+                if (Math.Abs(e.FinalVelocities.LinearVelocity.X) >= _flickTreshold && Math.Abs(horizontal) >= Math.Abs(vertical))
+                {
+                    if (horizontal > 0)
+                    {
+                        DecrementMonth();
+                    }
+                    else
+                    {
+                        IncrementMonth();
+                    }
+                    VibrateHelper.Short();
+                }
             }
         }
         #endregion
@@ -619,7 +671,7 @@ namespace SimpleTasks.Controls.Calendar
                         {
                             item.Template = ItemTemplate;
                         }
-                        item.Click += ItemClick;
+                        item.Tap += ItemTap;
 
                         _itemsGrid.Children.Add(item);
                         _calendarItems[row, column] = item;
