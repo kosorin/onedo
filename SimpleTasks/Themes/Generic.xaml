@@ -798,35 +798,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:Calendar">
                     <Grid>
-
-                        <VisualStateManager.VisualStateGroups>
-
-                            <!--Month States-->
-                            <VisualStateGroup x:Name="MonthStates">
-                                <VisualState x:Name="ChangingMonth">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="ItemsGrid"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         From="0.2"
-                                                         Duration="0:0:2.1">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="ChangedMonth">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="ItemsGrid"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         From="0.4"
-                                                         To="1"
-                                                         Duration="0:0:2.1">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-
-                        </VisualStateManager.VisualStateGroups>
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -916,18 +887,21 @@
 
                             <!--Selection States-->
                             <VisualStateGroup x:Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Selected"
+                                                      GeneratedDuration="0:0:0.15" />
+                                    <VisualTransition To="Unselected"
+                                                      GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterGrid"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource PhoneAccentBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DayNumberBlock"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource CalendarSelectedItemBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="OuterGrid"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PhoneAccentColor}" />
+                                        <ColorAnimation Storyboard.TargetName="DayNumberBlock"
+                                                        Storyboard.TargetProperty="(Grid.Foreground).(SolidColorBrush.Color)"
+                                                        To="{StaticResource CalendarSelectedItemColor}" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unselected" />
@@ -935,13 +909,18 @@
 
                             <!--Month States-->
                             <VisualStateGroup x:Name="MonthStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="OtherMonth"
+                                                      GeneratedDuration="0:0:0.15" />
+                                    <VisualTransition To="CurrentMonth"
+                                                      GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+
                                 <VisualState x:Name="OtherMonth">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0.35" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="OuterBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.35" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="CurrentMonth" />
@@ -949,18 +928,21 @@
 
                             <!--Enabled States-->
                             <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Disabled"
+                                                      GeneratedDuration="0:0:0.35" />
+                                    <VisualTransition To="Normal"
+                                                      GeneratedDuration="0:0:0.35" />
+                                </VisualStateGroup.Transitions>
+
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DisabledBrush"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="1" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DayNumberBlock"
-                                                                       Storyboard.TargetProperty="Opacity">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0.45" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="DisabledBrush"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="DayNumberBlock"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.45" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Normal" />

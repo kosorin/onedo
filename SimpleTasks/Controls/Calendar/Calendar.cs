@@ -17,8 +17,6 @@ namespace SimpleTasks.Controls.Calendar
     /// <summary>
     /// Calendar control for Windows Phone 7
     /// </summary>
-    [TemplateVisualState(Name = ChangingMonthState, GroupName = MonthStates)]
-    [TemplateVisualState(Name = ChangedMonthState, GroupName = MonthStates)]
     public class Calendar : Control
     {
         #region Constructor
@@ -435,7 +433,6 @@ namespace SimpleTasks.Controls.Calendar
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            VisualStateManager.GoToState(this, ChangedMonthState, true);
 
             // Tlačítka
             var previousButton = GetTemplateChild("PreviousMonthButton") as Button;
@@ -454,18 +451,6 @@ namespace SimpleTasks.Controls.Calendar
             UpdateYearMonthLabel();
             BuildDayOfWeekItems();
             BuildItems();
-        }
-        #endregion
-
-        #region Visual States
-        private const string MonthStates = "MonthStates";
-        private const string ChangingMonthState = "ChangingMonth";
-        private const string ChangedMonthState = "ChangedMonth";
-
-        private void UpdateVisualStates()
-        {
-            //VisualStateManager.GoToState(this, IsSelected ? SelectedState : UnselectedState, true);
-            //VisualStateManager.GoToState(this, IsCurrentMonth ? CurrentMonthState : OtherMonthState, true);
         }
         #endregion
 

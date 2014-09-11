@@ -98,20 +98,21 @@
     <!--EndRegion-->
 
     <!--Region Calendar-->
-    <Color x:Key="CalendarDisabledColor">#AcAcAc</Color>
-    <Color x:Key="CalendarBorderColor">#FFB2B2B2</Color>
+    <Color x:Key="CalendarDisabledColor">#8a8a8a</Color>
+    <Color x:Key="CalendarBorderColor">#FFa0a0a0</Color>
+    <Color x:Key="CalendarSelectedItemColor">#FFF</Color>
     <SolidColorBrush x:Key="CalendarBorderBrush"
                      Color="{StaticResource CalendarBorderColor}" />
     <SolidColorBrush x:Key="CalendarItemBackgroundBrush"
-                     Color="#5D9C9C9C" />
+                     Color="#a09C9C9C" />
     <SolidColorBrush x:Key="CalendarItemBrush"
                      Color="{StaticResource NormalColor}" />
     <SolidColorBrush x:Key="CalendarSelectedItemBrush"
-                     Color="#FFF" />
+                     Color="{StaticResource CalendarSelectedItemColor}" />
     <SolidColorBrush x:Key="CalendarWeekdayBrush"
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush"
-                     Color="#FFC6C6C6" />
+                     Color="#FFbababa" />
     <!--EndRegion-->
 
     <!--Region ReminderPicker-->
