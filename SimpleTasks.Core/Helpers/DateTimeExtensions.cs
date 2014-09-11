@@ -68,5 +68,10 @@ namespace SimpleTasks.Core.Helpers
         public static DateTime FirstDayOfActualMonth { get { return new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1); } }
 
         public static DateTime FirstDayOfPreviousMonth { get { return FirstDayOfActualMonth.AddMonths(-1); } }
+
+        public static bool IsSameMonth(this DateTime thisDate, DateTime date)
+        {
+            return thisDate.Year == date.Year && thisDate.Month == date.Month;
+        }
     }
 }
