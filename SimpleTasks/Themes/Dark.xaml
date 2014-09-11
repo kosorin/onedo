@@ -97,7 +97,8 @@
                      Color="#252525" />
     <!--EndRegion-->
 
-    <!--Region DatePicker-->
+    <!--Region Calendar-->
+    <Color x:Key="CalendarDisabledColor">#1f1f1f</Color>
     <Color x:Key="CalendarBorderColor">#5d5d5d</Color>
     <SolidColorBrush x:Key="CalendarBorderBrush"
                      Color="{StaticResource CalendarBorderColor}" />

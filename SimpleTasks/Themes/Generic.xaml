@@ -788,6 +788,35 @@
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:Calendar">
                     <Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+
+                            <!--Month States-->
+                            <VisualStateGroup x:Name="MonthStates">
+                                <VisualState x:Name="ChangingMonth">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ItemsGrid"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         From="0.2"
+                                                         Duration="0:0:2.1">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="ChangedMonth">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ItemsGrid"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         From="0.4"
+                                                         To="1"
+                                                         Duration="0:0:2.1">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -802,7 +831,7 @@
                         <!--YearMonthLabel-->
                         <Grid Grid.Column="1">
                             <TextBlock Text="{TemplateBinding YearMonthLabel}"
-                                       Style="{StaticResource PhoneTextLargeStyle}"
+                                       Style="{StaticResource NormalTextStyle}"
                                        FontSize="32"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Bottom"
@@ -819,7 +848,7 @@
                                     <Border Margin="0,8"
                                             Width="60"
                                             Height="40">
-                                        <TextBlock Foreground="{StaticResource PhoneForegroundBrush}"
+                                        <TextBlock Foreground="{StaticResource NormalBrush}"
                                                    FontFamily="Segoe UI Symbol"
                                                    FontSize="72"
                                                    Margin="0,-32,0,0"
@@ -838,7 +867,7 @@
                                     <Border Margin="0,8"
                                             Width="60"
                                             Height="40">
-                                        <TextBlock Foreground="{StaticResource PhoneForegroundBrush}"
+                                        <TextBlock Foreground="{StaticResource NormalBrush}"
                                                    FontFamily="Segoe UI Symbol"
                                                    FontSize="72"
                                                    Margin="0,-32,0,0"
@@ -848,29 +877,132 @@
                             </Button.Template>
                         </Button>
 
-                        <!--Calendar Grid-->
-                        <Grid Grid.Row="2"
+                        <!--Calendar DayOfWeek Items-->
+                        <Grid Grid.Row="1"
                               Grid.Column="0"
                               Grid.ColumnSpan="3"
-                              x:Name="ItemsGrid" />
+                              x:Name="DayOfWeekItemsGrid" />
+
+                        <!--Calendar Items-->
+                        <ScrollViewer Grid.Row="2"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="3"
+                                      Height="294">
+                            <Grid x:Name="ItemsGrid" />
+                        </ScrollViewer>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <Style x:Key="CalendarBorderStyle"
+           TargetType="Border">
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource CalendarBorderBrush}" />
+        <Setter Property="Margin"
+                Value="-1,-1,0,0" />
+    </Style>
+
     <Style TargetType="calendar:CalendarItem">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:CalendarItem">
-                    <Grid Background="{TemplateBinding Background}">
-                        <TextBlock x:Name="DayNumberBlock"
-                                   Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}"
-                                   Style="{StaticResource NormalTextStyle}"
-                                   FontSize="28"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" />
+                    <Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+
+                            <!--Selection States-->
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterGrid"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{StaticResource PhoneAccentBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DayNumberBlock"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{StaticResource CalendarSelectedItemBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unselected" />
+                            </VisualStateGroup>
+
+                            <!--Month States-->
+                            <VisualStateGroup x:Name="MonthStates">
+                                <VisualState x:Name="OtherMonth">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="0.35" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CurrentMonth" />
+                            </VisualStateGroup>
+
+                            <!--Enabled States-->
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DisabledBrush"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="1" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DayNumberBlock"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="0.45" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" />
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="OuterBorder"
+                                Style="{StaticResource CalendarBorderStyle}"
+                                BorderThickness="1">
+                            <Border.Background>
+                                <LinearGradientBrush x:Name="DisabledBrush"
+                                                     EndPoint="0,0"
+                                                     StartPoint="5,5"
+                                                     SpreadMethod="Repeat"
+                                                     MappingMode="Absolute"
+                                                     Opacity="0.0">
+                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                                  Offset="0" />
+                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                                  Offset="0.2" />
+                                    <GradientStop Color="Transparent"
+                                                  Offset="0.2" />
+                                    <GradientStop Color="Transparent"
+                                                  Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid x:Name="OuterGrid"
+                                  Width="68"
+                                  Height="48"
+                                  Background="Transparent">
+                                <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
+                                           Opacity="0.45" />
+                                <TextBlock x:Name="DayNumberBlock"
+                                           Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           FontSize="28"
+                                           Foreground="{StaticResource CalendarItemBrush}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                            </Grid>
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -881,10 +1013,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:CalendarDayOfWeekItem">
-                    <TextBlock Text="{TemplateBinding Text}"
-                               Style="{StaticResource SubtleTextStyle}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center" />
+                    <Border Style="{StaticResource CalendarBorderStyle}"
+                            Background="{StaticResource CalendarWeekdayBackgroundBrush}">
+                        <TextBlock Text="{TemplateBinding Text}"
+                                   Style="{StaticResource NormalTextStyle}"
+                                   Foreground="{StaticResource CalendarWeekdayBrush}"
+                                   FontSize="18.667"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5" />
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
