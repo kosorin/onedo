@@ -25,11 +25,18 @@ namespace SimpleTasks.Views
         /// </summary>
         private int _currentSize = 0;
 
+        private bool _useDefaultLineHeight = false;
+
         public EditTaskTilePage()
         {
             InitializeComponent();
 
             SetTask(NavigationParameter<TaskModel>(DefaultParameterKey, new TaskModel()));
+            try
+            {
+                _useDefaultLineHeight = (_task == null || _task.TileSettings == Settings.Current.Tiles.DefaultTaskTileSettings);
+            }
+            catch { }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -88,7 +95,8 @@ namespace SimpleTasks.Views
 
         private void ResetLineHeight_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            LineHeightSlider.SetSliderValue((int)Settings.Current.Tiles.DefaultTaskTileSettings.LineHeight);
+            double newLineHeight = _useDefaultLineHeight ? TaskTileSettings.DefaultLineHeight : Settings.Current.Tiles.DefaultTaskTileSettings.LineHeight;
+            LineHeightSlider.SetSliderValue((int)newLineHeight);
         }
 
         private void ChangeTileSize()

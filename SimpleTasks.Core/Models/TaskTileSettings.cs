@@ -28,7 +28,9 @@ namespace SimpleTasks.Core.Models
         }
 
         #region LineHeight
-        private double _lineHeight = 48;
+        public const double DefaultLineHeight = 48;
+
+        private double _lineHeight = DefaultLineHeight;
         [DataMember()]
         public double LineHeight
         {
