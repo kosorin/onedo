@@ -95,6 +95,8 @@ namespace SimpleTasks.Controls
         #endregion
 
         #region Navigace
+        public const string DefaultParameterKey = "";
+
         private const string _navigationKey = "NavigationParameter";
 
         public void Navigate(Type pageType)
@@ -118,7 +120,7 @@ namespace SimpleTasks.Controls
             NavigationService.Navigate(new Uri("/Views/" + pageType.Name + ".xaml" + string.Format(queryFormat, queryParams), UriKind.Relative));
         }
 
-        public void Navigate(Type pageType, object parameter, string parameterKey = "")
+        public void Navigate(Type pageType, object parameter, string parameterKey = DefaultParameterKey)
         {
             if (pageType == null || !pageType.IsSubclassOf(typeof(BasePage)))
                 return;
@@ -136,7 +138,7 @@ namespace SimpleTasks.Controls
             return false;
         }
 
-        public bool NavigateBack(object parameter, string parameterKey = "")
+        public bool NavigateBack(object parameter, string parameterKey = DefaultParameterKey)
         {
             if (NavigationService.CanGoBack)
             {
@@ -147,7 +149,7 @@ namespace SimpleTasks.Controls
             return false;
         }
 
-        public static T NavigationParameter<T>(string parameterKey = "", T defaultValue = default(T))
+        public static T NavigationParameter<T>(string parameterKey = DefaultParameterKey, T defaultValue = default(T))
         {
             string key = _navigationKey + parameterKey;
             if (PhoneApplicationService.Current.State.ContainsKey(key))
@@ -159,7 +161,7 @@ namespace SimpleTasks.Controls
             return defaultValue;
         }
 
-        public static bool IsSetNavigationParameter(string parameterKey = "")
+        public static bool IsSetNavigationParameter(string parameterKey = DefaultParameterKey)
         {
             return PhoneApplicationService.Current.State.ContainsKey(_navigationKey + parameterKey);
         }
