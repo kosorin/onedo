@@ -121,6 +121,16 @@ namespace SimpleTasks.Views
                 task.Subtasks[4].Text = "sušienky";
                 task.Detail = "Najlepšie dni ležať s ňou mám, zraňuje a rozhodný človek? Mám rád začiatky nových pocitov čaká pracovná Žilina, lebo je horší ako zaspíš, pretože ich zbaviť. Mám strach a potom sakra za sekundu Asi sa pritom usmeješ, ponesieš následky do pohybu. Close To silu inštinktu. Dáme si nos plný zážitkov.";
             }
+            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "de")
+            {
+                task.Title = "Einkaufsliste Einkaufsliste Einkaufsliste";
+                task.Subtasks[0].Text = "Milch";
+                task.Subtasks[1].Text = "Äpfel";
+                task.Subtasks[2].Text = "Kartoffeln";
+                task.Subtasks[3].Text = "Schinken";
+                task.Subtasks[4].Text = "Kekse";
+                task.Detail = "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.";
+            }
 
             task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings;
 
