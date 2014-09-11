@@ -783,6 +783,16 @@
     <!--EndRegion-->
 
     <!--Region Calendar-->
+    <Style x:Key="CalendarBorderStyle"
+           TargetType="Border">
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource CalendarBorderBrush}" />
+        <Setter Property="Margin"
+                Value="-1,-1,0,0" />
+    </Style>
+
     <Style TargetType="calendar:Calendar">
         <Setter Property="Template">
             <Setter.Value>
@@ -896,16 +906,6 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CalendarBorderStyle"
-           TargetType="Border">
-        <Setter Property="BorderThickness"
-                Value="1" />
-        <Setter Property="BorderBrush"
-                Value="{StaticResource CalendarBorderBrush}" />
-        <Setter Property="Margin"
-                Value="-1,-1,0,0" />
-    </Style>
-
     <Style TargetType="calendar:CalendarItem">
         <Setter Property="Template">
             <Setter.Value>
@@ -989,8 +989,6 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Grid x:Name="OuterGrid"
-                                  Width="68"
-                                  Height="48"
                                   Background="Transparent">
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />
