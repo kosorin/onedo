@@ -288,6 +288,12 @@ namespace SimpleTasks.Views
             else
                 Task.Reminder = null;
 
+            // Nastavení dlaždice
+            if (Task.TileSettings == null)
+            {
+                Task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings.Clone();
+            }
+
             // ULOŽENÍ
             App.Tasks.Update(Task);
         }
