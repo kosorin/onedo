@@ -804,15 +804,15 @@
                             <VisualStateGroup x:Name="DisplayStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition To="MonthsMode"
-                                                      GeneratedDuration="0:0:0.35">
+                                                      GeneratedDuration="0:0:0.4">
                                         <VisualTransition.GeneratedEasingFunction>
-                                            <SineEase EasingMode="EaseInOut" />
+                                            <CubicEase EasingMode="EaseInOut" />
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                     <VisualTransition To="DaysMode"
-                                                      GeneratedDuration="0:0:0.35">
+                                                      GeneratedDuration="0:0:0.4">
                                         <VisualTransition.GeneratedEasingFunction>
-                                            <SineEase EasingMode="EaseInOut" />
+                                            <CubicEase EasingMode="EaseIn" />
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -828,10 +828,16 @@
                                                                     Value="True" />
                                         </ObjectAnimationUsingKeyFrames>
 
+                                        <DoubleAnimation Storyboard.TargetName="MonthItemsGridTransform"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="MonthItemsGridTransform"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="1" />
+
                                         <DoubleAnimation Storyboard.TargetName="YearBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1" />
-
                                         <DoubleAnimation Storyboard.TargetName="YearMonthBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0" />
@@ -876,10 +882,10 @@
                                 x:Name="YearMonthBorder">
                             <TextBlock Text="{TemplateBinding YearMonthLabel}"
                                        Style="{StaticResource NormalTextStyle}"
-                                       FontSize="32"
+                                       FontSize="42"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Bottom"
-                                       Margin="0,0,0,8">
+                                       Margin="0,0,0,6">
                             </TextBlock>
                         </Border>
 
@@ -890,49 +896,61 @@
                                 Opacity="0">
                             <TextBlock Text="{TemplateBinding YearLabel}"
                                        Style="{StaticResource NormalTextStyle}"
-                                       FontSize="32"
+                                       FontSize="54"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Bottom"
-                                       Margin="0,0,0,8">
+                                       Margin="0,0,0,0">
                             </TextBlock>
                         </Border>
 
                         <!--Previous Button-->
                         <Button Grid.Column="0"
                                 x:Name="PreviousButton"
-                                Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="Bottom">
                             <Button.Template>
-                                <ControlTemplate>
-                                    <Border Margin="0,8"
-                                            Width="60"
-                                            Height="40">
-                                        <TextBlock Foreground="{StaticResource NormalBrush}"
-                                                   FontFamily="Segoe UI Symbol"
-                                                   FontSize="72"
-                                                   Margin="0,-32,0,0"
-                                                   Text="&#xE0A6;" />
-                                    </Border>
-                                </ControlTemplate>
+                                <ControlTemplate />
                             </Button.Template>
+                            
+                            <Canvas Width="76"
+                                    Height="60"
+                                    Background="Transparent">
+                                <Canvas.CacheMode>
+                                    <BitmapCache RenderAtScale="1" />
+                                </Canvas.CacheMode>
+                                <Path Width="43.175"
+                                      Height="30.8"
+                                      Canvas.Left="16.4125"
+                                      Canvas.Top="14.6"
+                                      Stretch="Fill"
+                                      Fill="{StaticResource NormalBrush}"
+                                      Data="F1 M 57,42L 57,34L 32.25,34L 42.25,24L 31.75,24L 17.75,38L 31.75,52L 42.25,52L 32.25,42L 57,42 Z " />
+                            </Canvas>
                         </Button>
 
                         <!--Next Button-->
                         <Button Grid.Column="2"
                                 x:Name="NextButton"
-                                Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
+                                Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="Bottom">
                             <Button.Template>
-                                <ControlTemplate>
-                                    <Border Margin="0,8"
-                                            Width="60"
-                                            Height="40">
-                                        <TextBlock Foreground="{StaticResource NormalBrush}"
-                                                   FontFamily="Segoe UI Symbol"
-                                                   FontSize="72"
-                                                   Margin="0,-32,0,0"
-                                                   Text="&#xE0AB;" />
-                                    </Border>
-                                </ControlTemplate>
+                                <ControlTemplate />
                             </Button.Template>
+
+                            <Canvas Width="76"
+                                    Height="60"
+                                    Background="Transparent">
+                                <Canvas.CacheMode>
+                                    <BitmapCache RenderAtScale="1" />
+                                </Canvas.CacheMode>
+                                <Path Width="43.175"
+                                      Height="30.8"
+                                      Canvas.Left="16.4125"
+                                      Canvas.Top="14.6"
+                                      Stretch="Fill"
+                                      Fill="{StaticResource NormalBrush}"
+                                      Data="F1 M 19.0002,34L 19.0002,42L 43.7502,42L 33.7502,52L 44.2502,52L 58.2502,38L 44.2502,24L 33.7502,24L 43.7502,34L 19.0002,34 Z " />
+                            </Canvas>
                         </Button>
 
                         <!--Calendar DayOfWeek Items-->
@@ -955,7 +973,14 @@
                               Opacity="0"
                               IsHitTestVisible="False"
                               x:Name="MonthItemsGrid"
-                              Background="{StaticResource CalendarMonthBackgroundBrush}" />
+                              Background="{StaticResource CalendarMonthBackgroundBrush}"
+                              RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <CompositeTransform x:Name="MonthItemsGridTransform"
+                                                    ScaleX="1.5"
+                                                    ScaleY="1.5" />
+                            </Grid.RenderTransform>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

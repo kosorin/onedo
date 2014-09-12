@@ -660,17 +660,11 @@ namespace SimpleTasks.Controls.Calendar
 
             if (type == GestureType.FlickRightToLeft)
             {
-                if (IncrementMonth())
-                {
-                    VibrateHelper.Short();
-                }
+                IncrementMonth();
             }
             else if (type == GestureType.FlickLeftToRight)
             {
-                if (DecrementMonth())
-                {
-                    VibrateHelper.Short();
-                }
+                DecrementMonth();
             }
         }
 
@@ -680,17 +674,11 @@ namespace SimpleTasks.Controls.Calendar
 
             if (type == GestureType.FlickRightToLeft)
             {
-                if (IncrementYear())
-                {
-                    VibrateHelper.Short();
-                }
+                IncrementYear();
             }
             else if (type == GestureType.FlickLeftToRight)
             {
-                if (DecrementYear())
-                {
-                    VibrateHelper.Short();
-                }
+                DecrementYear();
             }
         }
         #endregion
