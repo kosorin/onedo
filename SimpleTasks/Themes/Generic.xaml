@@ -946,6 +946,25 @@
                                 <VisualState x:Name="Normal" />
                             </VisualStateGroup>
 
+                            <!--Today States-->
+                            <VisualStateGroup x:Name="TodayStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="IsToday"
+                                                      GeneratedDuration="0:0:0.35" />
+                                    <VisualTransition To="NotToday"
+                                                      GeneratedDuration="0:0:0.35" />
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="IsToday">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="TodayBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NotToday" />
+                            </VisualStateGroup>
+
                         </VisualStateManager.VisualStateGroups>
 
                         <Border x:Name="OuterBorder"
@@ -971,7 +990,8 @@
                             <Grid x:Name="OuterGrid"
                                   Background="Transparent">
                                 <Border x:Name="TodayBorder"
-                                        BorderThickness="3"
+                                        Opacity="0"
+                                        BorderThickness="{StaticResource PhoneBorderThickness}"
                                         BorderBrush="{StaticResource PhoneAccentBrush}" />
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />

@@ -12,24 +12,10 @@ namespace SimpleTasks.Controls.Calendar
     [TemplateVisualState(Name = UnselectedState, GroupName = SelectionStates)]
     [TemplateVisualState(Name = CurrentMonthState, GroupName = MonthStates)]
     [TemplateVisualState(Name = OtherMonthState, GroupName = MonthStates)]
+    [TemplateVisualState(Name = IsTodayState, GroupName = TodayStates)]
+    [TemplateVisualState(Name = NotTodayState, GroupName = MonthStates)]
     public class CalendarItem : Button
     {
-        #region Visual States
-        private const string SelectionStates = "SelectionStates";
-        private const string SelectedState = "Selected";
-        private const string UnselectedState = "Unselected";
-
-        private const string MonthStates = "MonthStates";
-        private const string CurrentMonthState = "CurrentMonth";
-        private const string OtherMonthState = "OtherMonth";
-
-        private void UpdateVisualStates()
-        {
-            VisualStateManager.GoToState(this, IsSelected ? SelectedState : UnselectedState, true);
-            VisualStateManager.GoToState(this, IsCurrentMonth ? CurrentMonthState : OtherMonthState, true);
-        }
-        #endregion
-
         #region Fields
         private readonly Calendar _owningCalendar;
         #endregion
@@ -120,9 +106,9 @@ namespace SimpleTasks.Controls.Calendar
             if (item != null)
             {
                 DateTime date = (DateTime)e.NewValue;
-
                 item.DayNumber = date.Day;
-                item.UpdateTodayBorder();
+
+                item.UpdateVisualStates();
             }
         }
         #endregion
@@ -137,16 +123,27 @@ namespace SimpleTasks.Controls.Calendar
         {
             base.OnApplyTemplate();
             UpdateVisualStates();
-            UpdateTodayBorder();
         }
+        #endregion
 
-        private void UpdateTodayBorder()
+        #region Visual States
+        private const string SelectionStates = "SelectionStates";
+        private const string SelectedState = "Selected";
+        private const string UnselectedState = "Unselected";
+
+        private const string MonthStates = "MonthStates";
+        private const string CurrentMonthState = "CurrentMonth";
+        private const string OtherMonthState = "OtherMonth";
+
+        private const string TodayStates = "TodayStates";
+        private const string IsTodayState = "IsToday";
+        private const string NotTodayState = "NotToday";
+
+        private void UpdateVisualStates()
         {
-            Border todayBorder = GetTemplateChild("TodayBorder") as Border;
-            if (todayBorder != null)
-            {
-                todayBorder.Visibility = (Date == DateTime.Today) ? Visibility.Visible : Visibility.Collapsed;
-            }
+            VisualStateManager.GoToState(this, IsSelected ? SelectedState : UnselectedState, true);
+            VisualStateManager.GoToState(this, IsCurrentMonth ? CurrentMonthState : OtherMonthState, true);
+            VisualStateManager.GoToState(this, (Date == DateTime.Today) ? IsTodayState : NotTodayState, true);
         }
         #endregion
     }
