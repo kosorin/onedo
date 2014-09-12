@@ -658,14 +658,14 @@ namespace SimpleTasks.Controls.Calendar
         {
             GestureType type = GetGestureType(e);
 
-            if (type == GestureType.FlickLeft)
+            if (type == GestureType.FlickRightToLeft)
             {
                 if (IncrementMonth())
                 {
                     VibrateHelper.Short();
                 }
             }
-            else if (type == GestureType.FlickRight)
+            else if (type == GestureType.FlickLeftToRight)
             {
                 if (DecrementMonth())
                 {
@@ -678,14 +678,14 @@ namespace SimpleTasks.Controls.Calendar
         {
             GestureType type = GetGestureType(e);
 
-            if (type == GestureType.FlickLeft)
+            if (type == GestureType.FlickRightToLeft)
             {
                 if (IncrementYear())
                 {
                     VibrateHelper.Short();
                 }
             }
-            else if (type == GestureType.FlickRight)
+            else if (type == GestureType.FlickLeftToRight)
             {
                 if (DecrementYear())
                 {
@@ -841,11 +841,11 @@ namespace SimpleTasks.Controls.Calendar
                     {
                         if (horizontal > 0)
                         {
-                            return GestureType.FlickRight;
+                            return GestureType.FlickLeftToRight;
                         }
                         else
                         {
-                            return GestureType.FlickLeft;
+                            return GestureType.FlickRightToLeft;
                         }
                     }
                 }
@@ -855,11 +855,11 @@ namespace SimpleTasks.Controls.Calendar
                     {
                         if (vertical > 0)
                         {
-                            return GestureType.FlickUp;
+                            return GestureType.FlickBottomToTop;
                         }
                         else
                         {
-                            return GestureType.FlickDown;
+                            return GestureType.FlickTopToBottom;
                         }
                     }
                 }

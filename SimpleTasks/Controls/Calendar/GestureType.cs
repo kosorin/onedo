@@ -9,9 +9,9 @@ namespace SimpleTasks.Controls.Calendar
     public enum GestureType
     {
         None,
-        FlickLeft,
-        FlickRight,
-        FlickUp,
-        FlickDown
+        FlickRightToLeft,
+        FlickLeftToRight,
+        FlickBottomToTop,
+        FlickTopToBottom
     }
 }
