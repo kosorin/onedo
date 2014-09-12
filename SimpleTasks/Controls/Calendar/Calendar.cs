@@ -516,13 +516,18 @@ namespace SimpleTasks.Controls.Calendar
                 {
                     if (horizontal > 0)
                     {
-                        DecrementMonth();
+                        if (DecrementMonth())
+                        {
+                            VibrateHelper.Short();
+                        }
                     }
                     else
                     {
-                        IncrementMonth();
+                        if (IncrementMonth())
+                        {
+                            VibrateHelper.Short();
+                        }
                     }
-                    VibrateHelper.Short();
                 }
             }
         }
@@ -539,22 +544,26 @@ namespace SimpleTasks.Controls.Calendar
         #endregion // end of Public Methods
 
         #region Private Methods
-        private void IncrementMonth()
+        private bool IncrementMonth()
         {
             DateTime next = NextMonth(CurrentDate);
             if (next <= MaximumDate)
             {
                 CurrentDate = next;
+                return true;
             }
+            return false;
         }
 
-        private void DecrementMonth()
+        private bool DecrementMonth()
         {
             DateTime previous = PreviousMonth(CurrentDate);
             if (previous >= MinimumDate)
             {
                 CurrentDate = previous;
+                return true;
             }
+            return false;
         }
 
         private DateTime NextMonth(DateTime date)
