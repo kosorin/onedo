@@ -1,9 +1,21 @@
 ﻿{
-    "4.3.0 ": {
-        "date": "2014-09-04",
+    "4.5.0 ": {
+        "date": "2014-09-12",
         "items": [
-            "počet úkolů na hlavní dlaždici (můžete vypnout v nastavení)",
-            "možnost prohodit datum a název na široké dlaždici"
+            "dlaždice pro rychlé přidání úkolu (tlačítko pro připnutí najdete v nastavení)",
+            "možnost skrýt textové políčko pro přidání úkolu na hlavní stránce",
+            "seznam úkolů na malé dlaždici je zpět",
+            "Německý jazyk"
+        ]
+    },
+    "4.5.0": {
+        "date": "2014-09-12",
+        "items": [
+            "dlaždice pro rychlé přidání úkolu (tlačítko pro připnutí najdete v nastavení)",
+            "možnost skrýt textové políčko pro přidání úkolu na hlavní stránce",
+            "seznam úkolů na malé dlaždici je zpět",
+            "Německý jazyk",
+            "opravy chyb"
         ]
     },
     "4.3.0": {

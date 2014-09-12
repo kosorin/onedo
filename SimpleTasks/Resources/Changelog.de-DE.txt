@@ -1,9 +1,20 @@
 {
-    "4.3.0 ": {
-        "date": "2014-09-04",
+    "4.5.0 ": {
+        "date": "2014-09-12",
         "items": [
-            "task count on main tile (you can hide it in settings)",
-            "option to swap date and title on wide tile"
+            "German language",
+            "quick add live tile (pin to start from settings page)",
+            "option to hide quick add text box on main page",
+            "task list on small tile is back (see settings)"
+        ]
+    },
+    "4.5.0": {
+        "date": "2014-09-12",
+        "items": [
+            "quick add live tile",
+            "option to hide quick add text box on main page",
+            "German language",
+            "bug fixes"
         ]
     },
     "4.3.0": {
