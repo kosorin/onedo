@@ -11,7 +11,7 @@
     "4.5.0": {
         "date": "2014-09-12",
         "items": [
-            "dlaždice pro rychlé přidání úkolu (tlačítko pro připnutí najdete v nastavení)",
+            "dlaždice pro rychlé přidání úkolu",
             "možnost skrýt textové políčko pro přidání úkolu na hlavní stránce",
             "seznam úkolů na malé dlaždici je zpět",
             "Německý jazyk",

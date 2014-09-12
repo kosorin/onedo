@@ -13,6 +13,7 @@
         "items": [
             "quick add live tile",
             "option to hide quick add text box on main page",
+            "task list on small tile is back",
             "German language",
             "bug fixes"
         ]

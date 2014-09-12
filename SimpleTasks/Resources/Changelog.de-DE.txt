@@ -11,9 +11,10 @@
     "4.5.0": {
         "date": "2014-09-12",
         "items": [
+            "German language",
             "quick add live tile",
             "option to hide quick add text box on main page",
-            "German language",
+            "task list on small tile is back",
             "bug fixes"
         ]
     },
