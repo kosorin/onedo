@@ -798,6 +798,68 @@
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:Calendar">
                     <Grid>
+                        <VisualStateManager.VisualStateGroups>
+
+                            <!--Display States-->
+                            <VisualStateGroup x:Name="DisplayStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="MonthsMode"
+                                                      GeneratedDuration="0:0:0.35">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                    <VisualTransition To="DaysMode"
+                                                      GeneratedDuration="0:0:0.35">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <SineEase EasingMode="EaseInOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="MonthsMode">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="MonthItemsGrid"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthItemsGrid"
+                                                                       Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimation Storyboard.TargetName="YearBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+
+                                        <DoubleAnimation Storyboard.TargetName="YearMonthBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearMonthBorder"
+                                                                       Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="DaysMode">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthItemsGrid"
+                                                                       Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="YearMonthBorder"
+                                                                       Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -810,7 +872,8 @@
                         </Grid.ColumnDefinitions>
 
                         <!--YearMonthLabel-->
-                        <Grid Grid.Column="1">
+                        <Border Grid.Column="1"
+                                x:Name="YearMonthBorder">
                             <TextBlock Text="{TemplateBinding YearMonthLabel}"
                                        Style="{StaticResource NormalTextStyle}"
                                        FontSize="32"
@@ -818,11 +881,25 @@
                                        VerticalAlignment="Bottom"
                                        Margin="0,0,0,8">
                             </TextBlock>
-                        </Grid>
+                        </Border>
+
+                        <!--YearLabel-->
+                        <Border Grid.Column="1"
+                                x:Name="YearBorder"
+                                IsHitTestVisible="False"
+                                Opacity="0">
+                            <TextBlock Text="{TemplateBinding YearLabel}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       FontSize="32"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Margin="0,0,0,8">
+                            </TextBlock>
+                        </Border>
 
                         <!--Previous Button-->
                         <Button Grid.Column="0"
-                                x:Name="PreviousMonthButton"
+                                x:Name="PreviousButton"
                                 Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
                             <Button.Template>
                                 <ControlTemplate>
@@ -841,7 +918,7 @@
 
                         <!--Next Button-->
                         <Button Grid.Column="2"
-                                x:Name="NextMonthButton"
+                                x:Name="NextButton"
                                 Visibility="{Binding ShowNavigationButtons, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}">
                             <Button.Template>
                                 <ControlTemplate>
@@ -865,10 +942,20 @@
                               x:Name="DayOfWeekItemsGrid" />
 
                         <!--Calendar Items-->
-                        <Grid x:Name="ItemsGrid"
-                              Grid.Row="2"
+                        <Grid Grid.Row="2"
                               Grid.Column="0"
-                              Grid.ColumnSpan="3" />
+                              Grid.ColumnSpan="3"
+                              x:Name="ItemsGrid" />
+
+                        <!--Month Items-->
+                        <Grid Grid.Row="1"
+                              Grid.RowSpan="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="3"
+                              Opacity="0"
+                              IsHitTestVisible="False"
+                              x:Name="MonthItemsGrid"
+                              Background="{StaticResource CalendarMonthBackgroundBrush}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1025,6 +1112,131 @@
                                    HorizontalAlignment="Center"
                                    Margin="0,5" />
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="calendar:CalendarMonthItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="calendar:CalendarMonthItem">
+                    <Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+
+                            <!--Selection States-->
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Selected"
+                                                      GeneratedDuration="0:0:0.15" />
+                                    <VisualTransition To="Unselected"
+                                                      GeneratedDuration="0:0:0.15" />
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="OuterGrid"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource PhoneAccentColor}" />
+                                        <ColorAnimation Storyboard.TargetName="DayNumberBlock"
+                                                        Storyboard.TargetProperty="(Grid.Foreground).(SolidColorBrush.Color)"
+                                                        To="{StaticResource CalendarSelectedItemColor}" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unselected" />
+                            </VisualStateGroup>
+
+                            <!--Enabled States-->
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Disabled"
+                                                      GeneratedDuration="0:0:0.35" />
+                                    <VisualTransition To="Normal"
+                                                      GeneratedDuration="0:0:0.35" />
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="DisabledBrush"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="DayNumberBlock"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.45" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" />
+                            </VisualStateGroup>
+
+                            <!--This Month States-->
+                            <VisualStateGroup x:Name="ThisMonthStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="IsThisMonth"
+                                                      GeneratedDuration="0:0:0.35" />
+                                    <VisualTransition To="NotThisMonth"
+                                                      GeneratedDuration="0:0:0.35" />
+                                </VisualStateGroup.Transitions>
+
+                                <VisualState x:Name="IsThisMonth">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="TodayBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="NotThisMonth" />
+                            </VisualStateGroup>
+
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="OuterBorder"
+                                Style="{StaticResource CalendarBorderStyle}"
+                                BorderThickness="1">
+                            <Border.Background>
+                                <LinearGradientBrush x:Name="DisabledBrush"
+                                                     EndPoint="0,0"
+                                                     StartPoint="5,5"
+                                                     SpreadMethod="Repeat"
+                                                     MappingMode="Absolute"
+                                                     Opacity="0.0">
+                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                                  Offset="0" />
+                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                                  Offset="0.2" />
+                                    <GradientStop Color="Transparent"
+                                                  Offset="0.2" />
+                                    <GradientStop Color="Transparent"
+                                                  Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid x:Name="OuterGrid"
+                                  Background="Transparent">
+                                <Border x:Name="TodayBorder"
+                                        Opacity="0"
+                                        BorderThickness="{StaticResource PhoneBorderThickness}"
+                                        BorderBrush="{StaticResource PhoneAccentBrush}" />
+                                <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
+                                           Opacity="0.45" />
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock x:Name="DayNumberBlock"
+                                               Text="{Binding Path=MonthNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                               Style="{StaticResource NormalTextStyle}"
+                                               FontSize="42"
+                                               Foreground="{StaticResource CalendarItemBrush}"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,-4,0,-8" />
+                                    <TextBlock x:Name="MonthTextBlock"
+                                               Text="{Binding Path=MonthText, RelativeSource={RelativeSource TemplatedParent}}"
+                                               Style="{StaticResource NormalTextStyle}"
+                                               FontSize="20"
+                                               Foreground="{StaticResource CalendarItemBrush}"
+                                               Opacity="0.8"
+                                               HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

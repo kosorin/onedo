@@ -98,9 +98,12 @@
     <Compile Include="Controls\BasePickerPage.cs" />
     <Compile Include="Controls\Calendar\Calendar.cs" />
     <Compile Include="Controls\Calendar\CalendarDayOfWeekItem.cs" />
+    <Compile Include="Controls\Calendar\CalendarMonthItem.cs" />
     <Compile Include="Controls\Calendar\CalendarItem.cs" />
-    <Compile Include="Controls\Calendar\CurrentDateChangedEventArgs.cs" />
-    <Compile Include="Controls\Calendar\SelectedDateChangedEventArgs.cs" />
+    <Compile Include="Controls\Calendar\DateChangedEventArgs.cs" />
+    <Compile Include="Controls\Calendar\DisplayMode.cs" />
+    <Compile Include="Controls\Calendar\DisplayModeChangedEventArgs.cs" />
+    <Compile Include="Controls\Calendar\GestureType.cs" />
     <Compile Include="Controls\ListPicker.cs" />
     <Compile Include="Controls\ListPickerItem.cs" />
     <Compile Include="Controls\MySlider.cs" />
@@ -439,7 +442,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

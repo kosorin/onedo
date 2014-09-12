@@ -113,6 +113,8 @@
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush"
                      Color="#FFbababa" />
+    <SolidColorBrush x:Key="CalendarMonthBackgroundBrush"
+                     Color="#FFd0d0d0" />
     <!--EndRegion-->
 
     <!--Region ReminderPicker-->

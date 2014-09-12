@@ -18,10 +18,14 @@ using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Controls.Calendar
 {
-    [TemplatePart(Name = PreviousMonthButtonName, Type = typeof(Button))]
-    [TemplatePart(Name = NextMonthButtonName, Type = typeof(Button))]
+    [TemplatePart(Name = YearMonthBorderName, Type = typeof(Border))]
+    [TemplatePart(Name = PreviousButtonName, Type = typeof(Button))]
+    [TemplatePart(Name = NextMonthName, Type = typeof(Button))]
     [TemplatePart(Name = DayOfWeekItemsGridName, Type = typeof(Grid))]
     [TemplatePart(Name = ItemsGridName, Type = typeof(Grid))]
+    [TemplatePart(Name = MonthItemsGridName, Type = typeof(Grid))]
+    [TemplateVisualState(Name = DaysModeState, GroupName = DisplayStates)]
+    [TemplateVisualState(Name = MonthsModeState, GroupName = DisplayStates)]
     public class Calendar : Control
     {
         #region Constructor
@@ -32,43 +36,64 @@ namespace SimpleTasks.Controls.Calendar
         {
             DefaultStyleKey = typeof(Calendar);
 
-            _dateTimeFormatInfo = CultureInfo.CurrentCulture.DateTimeFormat;
-            FirstDayOfWeek = _dateTimeFormatInfo.FirstDayOfWeek;
-            SetDefaultDayOfWeekLabels();
+            DateTimeFormatInfo = CultureInfo.CurrentCulture.DateTimeFormat;
+            FirstDayOfWeek = DateTimeFormatInfo.FirstDayOfWeek;
+            Sunday = DateTimeFormatInfo.AbbreviatedDayNames[0].ToUpper();
+            Monday = DateTimeFormatInfo.AbbreviatedDayNames[1].ToUpper();
+            Tuesday = DateTimeFormatInfo.AbbreviatedDayNames[2].ToUpper();
+            Wednesday = DateTimeFormatInfo.AbbreviatedDayNames[3].ToUpper();
+            Thursday = DateTimeFormatInfo.AbbreviatedDayNames[4].ToUpper();
+            Friday = DateTimeFormatInfo.AbbreviatedDayNames[5].ToUpper();
+            Saturday = DateTimeFormatInfo.AbbreviatedDayNames[6].ToUpper();
         }
         #endregion
 
-        #region Private Fields/Constants
-        private Grid _itemsGrid = null;
+        #region Fields
         private Grid _dayOfWeekItemsGrid = null;
-        private readonly DateTimeFormatInfo _dateTimeFormatInfo;
+        private Grid _itemsGrid = null;
+        private Grid _monthItemsGrid = null;
+        private DateTime _oldDisplayDate = DateTime.MinValue;
 
         private const double _flickTreshold = 1000;
 
-        private const short _columnCount = 7;
         private const short _rowCount = 6;
+        private const short _columnCount = 7;
         private CalendarDayOfWeekItem[] _calendarDayOfWeekItems = new CalendarDayOfWeekItem[_columnCount];
         private CalendarItem[,] _calendarItems = new CalendarItem[_rowCount, _columnCount];
+
+        private const short _monthRowCount = 4;
+        private const short _monthColumnCount = 3;
+        private CalendarMonthItem[,] _calendarMonthItems = new CalendarMonthItem[_monthRowCount, _monthColumnCount];
         #endregion
 
         #region Events
-        public event EventHandler<CurrentDateChangedEventArgs> CurrentDateChanged;
+        public event EventHandler<DateChangedEventArgs> DisplayDateChanged;
+
+        public event EventHandler<DisplayModeChangedEventArgs> DisplayModeChanged;
 
         /// <summary>
         /// Event that occurs after a date is selected on the calendar
         /// </summary>
-        public event EventHandler<SelectedDateChangedEventArgs> SelectedDateChanged;
+        public event EventHandler<DateChangedEventArgs> SelectedDateChanged;
 
         /// <summary>
         /// Event that occurs after a date is clicked on
         /// </summary>
-        public event EventHandler<SelectedDateChangedEventArgs> DateClicked;
+        public event EventHandler<DateChangedEventArgs> DateClicked;
 
-        protected void OnCurrentDateChanged(DateTime date)
+        protected void OnDisplayDateChanged(DateTime date)
         {
-            if (CurrentDateChanged != null)
+            if (DisplayDateChanged != null)
             {
-                CurrentDateChanged(this, new CurrentDateChangedEventArgs(date));
+                DisplayDateChanged(this, new DateChangedEventArgs(date));
+            }
+        }
+
+        protected void OnDisplayModeChanged(DisplayMode mode)
+        {
+            if (DisplayModeChanged != null)
+            {
+                DisplayModeChanged(this, new DisplayModeChangedEventArgs(mode));
             }
         }
 
@@ -80,7 +105,7 @@ namespace SimpleTasks.Controls.Calendar
         {
             if (SelectedDateChanged != null)
             {
-                SelectedDateChanged(this, new SelectedDateChangedEventArgs(dateTime));
+                SelectedDateChanged(this, new DateChangedEventArgs(dateTime));
             }
         }
 
@@ -92,12 +117,14 @@ namespace SimpleTasks.Controls.Calendar
         {
             if (DateClicked != null)
             {
-                DateClicked(this, new SelectedDateChangedEventArgs(dateTime));
+                DateClicked(this, new DateChangedEventArgs(dateTime));
             }
         }
         #endregion
 
         #region Properties
+
+        public DateTimeFormatInfo DateTimeFormatInfo { get; private set; }
 
         #region ItemTemplate
         public ControlTemplate ItemTemplate
@@ -120,6 +147,36 @@ namespace SimpleTasks.Controls.Calendar
         public static readonly DependencyProperty DayOfWeekItemTemplateProperty =
             DependencyProperty.Register("DayOfWeekItemTemplate", typeof(ControlTemplate), typeof(Calendar), null);
         #endregion // end of DayOfWeekItemTemplate
+
+        #region Minimum/Maximum Date
+        /// <summary>
+        /// Minimum Date that calendar navigation supports
+        /// </summary>
+        public DateTime MinimumDate
+        {
+            get { return (DateTime)GetValue(MinimumDateProperty); }
+            set { SetValue(MinimumDateProperty, value); }
+        }
+        /// <summary>
+        /// Minimum Date that calendar navigation supports
+        /// </summary>
+        public static readonly DependencyProperty MinimumDateProperty =
+            DependencyProperty.Register("MinimumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(1753, 1, 1)));
+
+        /// <summary>
+        /// Maximum Date that calendar navigation supports
+        /// </summary>
+        public DateTime MaximumDate
+        {
+            get { return (DateTime)GetValue(MaximumDateProperty); }
+            set { SetValue(MaximumDateProperty, value); }
+        }
+        /// <summary>
+        /// Maximum Date that calendar navigation supports
+        /// </summary>
+        public static readonly DependencyProperty MaximumDateProperty =
+            DependencyProperty.Register("MaximumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(2499, 12, 31)));
+        #endregion // end of Minimum/Maximum Date
 
         #region SelectedDate +
         /// <summary>
@@ -145,7 +202,7 @@ namespace SimpleTasks.Controls.Calendar
             if (calendar != null)
             {
                 DateTime date = (DateTime)e.NewValue;
-                if (date.IsSameMonth(calendar.CurrentDate))
+                if (date.IsSameMonth(calendar.DisplayDate))
                 {
                     if (calendar._itemsGrid != null)
                     {
@@ -154,37 +211,82 @@ namespace SimpleTasks.Controls.Calendar
                             item.IsSelected = item.Date == date;
                         }
                     }
+                    if (calendar._monthItemsGrid != null)
+                    {
+                        foreach (CalendarMonthItem item in calendar.GetMonthItems())
+                        {
+                            item.IsSelected = item.Date.IsSameMonth(date);
+                        }
+                    }
                 }
                 else
                 {
-                    calendar.CurrentDate = date;
+                    calendar.DisplayDate = date;
                 }
+
                 calendar.OnSelectedDateChanged(date);
             }
         }
         #endregion // end of SelectedDate
 
-        #region CurrentDate +
-        public DateTime CurrentDate
+        #region DisplayDate +
+        public DateTime DisplayDate
         {
-            get { return (DateTime)GetValue(CurrentDateProperty); }
-            set { SetValue(CurrentDateProperty, value); }
+            get { return (DateTime)GetValue(DisplayDateProperty); }
+            set { SetValue(DisplayDateProperty, value); }
         }
-        public static readonly DependencyProperty CurrentDateProperty =
-            DependencyProperty.Register("CurrentDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(DateTime.Today, OnCurrentDateChanged));
+        public static readonly DependencyProperty DisplayDateProperty =
+            DependencyProperty.Register("DisplayDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(DateTime.Today, OnDisplayDateChanged));
 
-        private static void OnCurrentDateChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void OnDisplayDateChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var calendar = sender as Calendar;
             if (calendar != null)
             {
-                DateTime currentDate = (DateTime)e.NewValue;
-                calendar.UpdateYearMonthLabel();
-                calendar.BuildItems();
-                calendar.OnCurrentDateChanged(currentDate);
+                DateTime oldDisplayDate = (DateTime)e.OldValue;
+                DateTime displayDate = (DateTime)e.NewValue;
+
+                if (!displayDate.IsSameMonth(oldDisplayDate))
+                {
+                    calendar.UpdateYearMonthLabel();
+                    calendar.BuildItems();
+                }
+                if (!displayDate.IsSameYear(oldDisplayDate))
+                {
+                    calendar.UpdateYearLabel();
+                    calendar.BuildMonthItems();
+                }
+
+                calendar.OnDisplayDateChanged(displayDate);
             }
         }
-        #endregion // end of CurrentDate
+        #endregion // end of DisplayDate
+
+        #region DisplayMode +
+        public DisplayMode DisplayMode
+        {
+            get { return (DisplayMode)GetValue(DisplayModeProperty); }
+            set { SetValue(DisplayModeProperty, value); }
+        }
+        public static readonly DependencyProperty DisplayModeProperty =
+            DependencyProperty.Register("DisplayMode", typeof(DisplayMode), typeof(Calendar), new PropertyMetadata(DisplayMode.Days, OnDisplayModeChanged));
+
+        private static void OnDisplayModeChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var calendar = sender as Calendar;
+            if (calendar != null)
+            {
+                if ((DisplayMode)e.OldValue == DisplayMode.Days)
+                {
+                    calendar._oldDisplayDate = calendar.DisplayDate;
+                }
+
+                DisplayMode mode = (DisplayMode)e.NewValue;
+                calendar.UpdateVisualStates();
+                calendar.OnDisplayModeChanged(mode);
+            }
+        }
+        #endregion // end of DisplayMode +
 
         #region YearMonthLabel
         /// <summary>
@@ -202,6 +304,16 @@ namespace SimpleTasks.Controls.Calendar
         public static readonly DependencyProperty YearMonthLabelProperty =
             DependencyProperty.Register("YearMonthLabel", typeof(string), typeof(Calendar), new PropertyMetadata(""));
         #endregion // end of YearMonthLabel
+
+        #region YearLabel
+        public string YearLabel
+        {
+            get { return (string)GetValue(YearLabelProperty); }
+            set { SetValue(YearLabelProperty, value); }
+        }
+        public static readonly DependencyProperty YearLabelProperty =
+            DependencyProperty.Register("YearLabel", typeof(string), typeof(Calendar), new PropertyMetadata(""));
+        #endregion // end of YearLabel
 
         #region ShowNavigationButtons
         /// <summary>
@@ -374,36 +486,6 @@ namespace SimpleTasks.Controls.Calendar
             DependencyProperty.Register("Saturday", typeof(string), typeof(Calendar), new PropertyMetadata("Sa"));
         #endregion // end of DayNames
 
-        #region Minimum/Maximum Date
-        /// <summary>
-        /// Minimum Date that calendar navigation supports
-        /// </summary>
-        public DateTime MinimumDate
-        {
-            get { return (DateTime)GetValue(MinimumDateProperty); }
-            set { SetValue(MinimumDateProperty, value); }
-        }
-        /// <summary>
-        /// Minimum Date that calendar navigation supports
-        /// </summary>
-        public static readonly DependencyProperty MinimumDateProperty =
-            DependencyProperty.Register("MinimumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(1753, 1, 1)));
-
-        /// <summary>
-        /// Maximum Date that calendar navigation supports
-        /// </summary>
-        public DateTime MaximumDate
-        {
-            get { return (DateTime)GetValue(MaximumDateProperty); }
-            set { SetValue(MaximumDateProperty, value); }
-        }
-        /// <summary>
-        /// Maximum Date that calendar navigation supports
-        /// </summary>
-        public static readonly DependencyProperty MaximumDateProperty =
-            DependencyProperty.Register("MaximumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(2499, 12, 31)));
-        #endregion // end of Minimum/Maximum Date
-
         #region FirstDayOfWeek +
         /// <summary>
         /// Gets or sets the first day of week.
@@ -425,33 +507,43 @@ namespace SimpleTasks.Controls.Calendar
 
         private static void OnFirstDayOfWeekChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            ((Calendar)sender).BuildDayOfWeekItems();
-            ((Calendar)sender).BuildItems();
+            Calendar calendar = (Calendar)sender;
+            if (calendar != null)
+            {
+                calendar.BuildDayOfWeekItems();
+                calendar.BuildItems();
+            }
         }
         #endregion // end of FirstDayOfWeek
 
         #endregion
 
         #region Template
-        private const string PreviousMonthButtonName = "PreviousMonthButton";
-        private const string NextMonthButtonName = "NextMonthButton";
+        private const string YearMonthBorderName = "YearMonthBorder";
+        private const string PreviousButtonName = "PreviousButton";
+        private const string NextMonthName = "NextButton";
         private const string DayOfWeekItemsGridName = "DayOfWeekItemsGrid";
         private const string ItemsGridName = "ItemsGrid";
+        private const string MonthItemsGridName = "MonthItemsGrid";
 
-        /// <summary>
-        /// Apply default template and perform initialization
-        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
+            // YearMonth Border
+            Border yearMonthBorder = GetTemplateChild(YearMonthBorderName) as Border;
+            if (yearMonthBorder != null)
+            {
+                yearMonthBorder.Tap += YearMonthBorderTap;
+            }
+
             // Tlačítka
-            Button previousButton = GetTemplateChild(PreviousMonthButtonName) as Button;
+            Button previousButton = GetTemplateChild(PreviousButtonName) as Button;
             if (previousButton != null)
             {
                 previousButton.Click += PreviousButtonClick;
             }
-            Button nextButton = GetTemplateChild(NextMonthButtonName) as Button;
+            Button nextButton = GetTemplateChild(NextMonthName) as Button;
             if (nextButton != null)
             {
                 nextButton.Click += NextButtonClick;
@@ -460,32 +552,86 @@ namespace SimpleTasks.Controls.Calendar
             // Items Grid 
             _dayOfWeekItemsGrid = GetTemplateChild(DayOfWeekItemsGridName) as Grid;
             _itemsGrid = GetTemplateChild(ItemsGridName) as Grid;
+            _monthItemsGrid = GetTemplateChild(MonthItemsGridName) as Grid;
             if (_itemsGrid != null)
             {
-                _itemsGrid.ManipulationStarted += CalendarManipulationStarted;
-                _itemsGrid.ManipulationDelta += CalendarManipulationDelta;
-                _itemsGrid.ManipulationCompleted += CalendarManipulationCompleted;
+                _itemsGrid.ManipulationCompleted -= ItemsManipulationCompleted;
+                _itemsGrid.ManipulationCompleted += ItemsManipulationCompleted;
+            }
+            if (_monthItemsGrid != null)
+            {
+                _monthItemsGrid.ManipulationCompleted -= MonthItemsManipulationCompleted;
+                _monthItemsGrid.ManipulationCompleted += MonthItemsManipulationCompleted;
             }
 
-            CreateGrids();
             CreateDayOfWeekItems();
             CreateItems();
+            CreateMonthItems();
 
             UpdateYearMonthLabel();
+            UpdateYearLabel();
             BuildDayOfWeekItems();
             BuildItems();
+            BuildMonthItems();
+
+            UpdateVisualStates();
+        }
+        #endregion
+
+        #region Visual States
+        private const string DisplayStates = "DisplayStates";
+        private const string DaysModeState = "DaysMode";
+        private const string MonthsModeState = "MonthsMode";
+
+        private void UpdateVisualStates()
+        {
+            string mode;
+            switch (DisplayMode)
+            {
+            case DisplayMode.Days: mode = DaysModeState; break;
+            case DisplayMode.Months: mode = MonthsModeState; break;
+            default: mode = DaysModeState; break;
+            }
+            VisualStateManager.GoToState(this, mode, true);
         }
         #endregion
 
         #region Event handling
+        public void BackKeyPress(object sender, CancelEventArgs e)
+        {
+            if (GoBackToDaysDisplayMode())
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void YearMonthBorderTap(object sender, GestureEventArgs e)
+        {
+            DisplayMode = DisplayMode.Months;
+        }
+
         private void NextButtonClick(object sender, RoutedEventArgs e)
         {
-            IncrementMonth();
+            if (DisplayMode == DisplayMode.Months)
+            {
+                IncrementYear();
+            }
+            else
+            {
+                IncrementMonth();
+            }
         }
 
         private void PreviousButtonClick(object sender, RoutedEventArgs e)
         {
-            DecrementMonth();
+            if (DisplayMode == DisplayMode.Months)
+            {
+                DecrementYear();
+            }
+            else
+            {
+                DecrementMonth();
+            }
         }
 
         private void ItemTap(object sender, EventArgs e)
@@ -498,58 +644,83 @@ namespace SimpleTasks.Controls.Calendar
             }
         }
 
-        private void CalendarManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void MonthItemTap(object sender, EventArgs e)
         {
-        }
-
-        private void CalendarManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-        {
-        }
-
-        private void CalendarManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
-        {
-            if (e.IsInertial)
+            CalendarMonthItem item = (sender as CalendarMonthItem);
+            if (item != null)
             {
-                double horizontal = e.TotalManipulation.Translation.X;
-                double vertical = e.TotalManipulation.Translation.Y;
-                if (Math.Abs(e.FinalVelocities.LinearVelocity.X) >= _flickTreshold && Math.Abs(horizontal) >= Math.Abs(vertical))
+                DisplayDate = item.Date;
+                DisplayMode = DisplayMode.Days;
+            }
+        }
+
+        private void ItemsManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            GestureType type = GetGestureType(e);
+
+            if (type == GestureType.FlickLeft)
+            {
+                if (IncrementMonth())
                 {
-                    if (horizontal > 0)
-                    {
-                        if (DecrementMonth())
-                        {
-                            VibrateHelper.Short();
-                        }
-                    }
-                    else
-                    {
-                        if (IncrementMonth())
-                        {
-                            VibrateHelper.Short();
-                        }
-                    }
+                    VibrateHelper.Short();
+                }
+            }
+            else if (type == GestureType.FlickRight)
+            {
+                if (DecrementMonth())
+                {
+                    VibrateHelper.Short();
+                }
+            }
+        }
+
+        private void MonthItemsManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            GestureType type = GetGestureType(e);
+
+            if (type == GestureType.FlickLeft)
+            {
+                if (IncrementYear())
+                {
+                    VibrateHelper.Short();
+                }
+            }
+            else if (type == GestureType.FlickRight)
+            {
+                if (DecrementYear())
+                {
+                    VibrateHelper.Short();
                 }
             }
         }
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// Explicitly refresh the calendar
-        /// </summary>
-        public void Refresh()
+        public bool GoBackToDaysDisplayMode()
         {
-            BuildItems();
+            if (DisplayMode != DisplayMode.Days)
+            {
+                if (_oldDisplayDate == DateTime.MinValue)
+                {
+                    _oldDisplayDate = DisplayDate;
+                }
+                DisplayDate = _oldDisplayDate;
+                DisplayMode = DisplayMode.Days;
+                return true;
+            }
+            return false;
         }
         #endregion // end of Public Methods
 
         #region Private Methods
+
+        #region Month Inc/Dec
         private bool IncrementMonth()
         {
-            DateTime next = NextMonth(CurrentDate);
+            DateTime next = NextMonth(DisplayDate);
             if (next <= MaximumDate)
             {
-                CurrentDate = next;
+                DisplayDate = next;
                 return true;
             }
             return false;
@@ -557,10 +728,10 @@ namespace SimpleTasks.Controls.Calendar
 
         private bool DecrementMonth()
         {
-            DateTime previous = PreviousMonth(CurrentDate);
+            DateTime previous = PreviousMonth(DisplayDate);
             if (previous >= MinimumDate)
             {
-                CurrentDate = previous;
+                DisplayDate = previous;
                 return true;
             }
             return false;
@@ -589,26 +760,51 @@ namespace SimpleTasks.Controls.Calendar
             }
             return new DateTime(year, month, DateTime.DaysInMonth(year, month));
         }
+        #endregion // end of Month Inc/Dec
 
-        private int ColumnFromDayOfWeek(DayOfWeek dayOfWeek)
+        #region Year Inc/Dec
+        private bool IncrementYear()
+        {
+            DateTime next = NextYear(DisplayDate);
+            if (next <= MaximumDate)
+            {
+                DisplayDate = next;
+                return true;
+            }
+            return false;
+        }
+
+        private bool DecrementYear()
+        {
+            DateTime previous = PreviousYear(DisplayDate);
+            if (previous >= MinimumDate)
+            {
+                DisplayDate = previous;
+                return true;
+            }
+            return false;
+        }
+
+        private DateTime NextYear(DateTime date)
+        {
+            return new DateTime(date.Year + 1, 1, 1);
+        }
+
+        private DateTime PreviousYear(DateTime date)
+        {
+            return new DateTime(date.Year - 1, 12, 31);
+        }
+        #endregion // end of Year Inc/Dec
+
+        #region Helpers
+        private int ItemColumnFromDayOfWeek(DayOfWeek dayOfWeek)
         {
             return ((int)dayOfWeek - (int)FirstDayOfWeek + 7) % 7;
         }
 
-        private DayOfWeek DayOfWeekFromColumn(int column)
+        private DayOfWeek DayOfWeekFromItemColumn(int column)
         {
             return (DayOfWeek)(((int)FirstDayOfWeek + column) % 7);
-        }
-
-        private void SetDefaultDayOfWeekLabels()
-        {
-            Sunday = _dateTimeFormatInfo.AbbreviatedDayNames[0].ToUpper();
-            Monday = _dateTimeFormatInfo.AbbreviatedDayNames[1].ToUpper();
-            Tuesday = _dateTimeFormatInfo.AbbreviatedDayNames[2].ToUpper();
-            Wednesday = _dateTimeFormatInfo.AbbreviatedDayNames[3].ToUpper();
-            Thursday = _dateTimeFormatInfo.AbbreviatedDayNames[4].ToUpper();
-            Friday = _dateTimeFormatInfo.AbbreviatedDayNames[5].ToUpper();
-            Saturday = _dateTimeFormatInfo.AbbreviatedDayNames[6].ToUpper();
         }
 
         private IEnumerable<CalendarItem> GetItems()
@@ -622,7 +818,58 @@ namespace SimpleTasks.Controls.Calendar
             }
         }
 
-        private void CreateGrids()
+        private IEnumerable<CalendarMonthItem> GetMonthItems()
+        {
+            for (int row = 0; row < _monthRowCount; row++)
+            {
+                for (var column = 0; column < _monthColumnCount; column++)
+                {
+                    yield return _calendarMonthItems[row, column];
+                }
+            }
+        }
+
+        private GestureType GetGestureType(ManipulationCompletedEventArgs e)
+        {
+            if (e.IsInertial)
+            {
+                double horizontal = e.TotalManipulation.Translation.X;
+                double vertical = e.TotalManipulation.Translation.Y;
+                if (Math.Abs(horizontal) >= Math.Abs(vertical))
+                {
+                    if (Math.Abs(e.FinalVelocities.LinearVelocity.X) >= _flickTreshold)
+                    {
+                        if (horizontal > 0)
+                        {
+                            return GestureType.FlickRight;
+                        }
+                        else
+                        {
+                            return GestureType.FlickLeft;
+                        }
+                    }
+                }
+                else
+                {
+                    if (Math.Abs(e.FinalVelocities.LinearVelocity.Y) >= _flickTreshold)
+                    {
+                        if (vertical > 0)
+                        {
+                            return GestureType.FlickUp;
+                        }
+                        else
+                        {
+                            return GestureType.FlickDown;
+                        }
+                    }
+                }
+            }
+            return GestureType.None;
+        }
+        #endregion // end of Helpers
+
+        #region Create/Build
+        private void CreateDayOfWeekItems()
         {
             if (_dayOfWeekItemsGrid != null)
             {
@@ -630,26 +877,7 @@ namespace SimpleTasks.Controls.Calendar
                 {
                     _dayOfWeekItemsGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 }
-            }
 
-            if (_itemsGrid != null)
-            {
-                for (int column = 0; column < _columnCount; column++)
-                {
-                    _itemsGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                }
-
-                for (int row = 0; row < _rowCount; row++)
-                {
-                    _itemsGrid.RowDefinitions.Add(new RowDefinition());
-                }
-            }
-        }
-
-        private void CreateDayOfWeekItems()
-        {
-            if (_dayOfWeekItemsGrid != null)
-            {
                 for (int column = 0; column < _columnCount; column++)
                 {
                     CalendarDayOfWeekItem item = new CalendarDayOfWeekItem();
@@ -669,6 +897,15 @@ namespace SimpleTasks.Controls.Calendar
         {
             if (_itemsGrid != null)
             {
+                for (int column = 0; column < _columnCount; column++)
+                {
+                    _itemsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                }
+                for (int row = 0; row < _rowCount; row++)
+                {
+                    _itemsGrid.RowDefinitions.Add(new RowDefinition());
+                }
+
                 for (int row = 0; row < _rowCount; row++)
                 {
                     for (int column = 0; column < _columnCount; column++)
@@ -689,9 +926,47 @@ namespace SimpleTasks.Controls.Calendar
             }
         }
 
+        private void CreateMonthItems()
+        {
+            if (_monthItemsGrid != null)
+            {
+                for (int column = 0; column < _monthColumnCount; column++)
+                {
+                    _monthItemsGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                }
+                for (int row = 0; row < _monthRowCount; row++)
+                {
+                    _monthItemsGrid.RowDefinitions.Add(new RowDefinition());
+                }
+
+                for (int row = 0; row < _monthRowCount; row++)
+                {
+                    for (var column = 0; column < _monthColumnCount; column++)
+                    {
+                        CalendarMonthItem item = new CalendarMonthItem(this);
+                        item.SetValue(Grid.RowProperty, row);
+                        item.SetValue(Grid.ColumnProperty, column);
+                        //if (DayOfWeekItemTemplate != null)
+                        //{
+                        //    item.Template = DayOfWeekItemTemplate;
+                        //}
+                        item.Tap += MonthItemTap;
+
+                        _monthItemsGrid.Children.Add(item);
+                        _calendarMonthItems[row, column] = item;
+                    }
+                }
+            }
+        }
+
         private void UpdateYearMonthLabel()
         {
-            YearMonthLabel = CurrentDate.ToString("Y", _dateTimeFormatInfo);
+            YearMonthLabel = DisplayDate.ToString("Y", DateTimeFormatInfo);
+        }
+
+        private void UpdateYearLabel()
+        {
+            YearLabel = DisplayDate.ToString("yyyy", DateTimeFormatInfo);
         }
 
         private void BuildDayOfWeekItems()
@@ -702,7 +977,7 @@ namespace SimpleTasks.Controls.Calendar
                 {
                     CalendarDayOfWeekItem item = _calendarDayOfWeekItems[column];
 
-                    item.DayOfWeek = DayOfWeekFromColumn(column);
+                    item.DayOfWeek = DayOfWeekFromItemColumn(column);
                     switch (item.DayOfWeek)
                     {
                     case DayOfWeek.Monday: item.Text = Monday; break;
@@ -722,8 +997,8 @@ namespace SimpleTasks.Controls.Calendar
         {
             if (_itemsGrid != null)
             {
-                DateTime currentMonthDate = new DateTime(CurrentDate.Year, CurrentDate.Month, 1);
-                DateTime date = currentMonthDate.AddDays(-ColumnFromDayOfWeek(currentMonthDate.DayOfWeek));
+                DateTime currentMonthDate = new DateTime(DisplayDate.Year, DisplayDate.Month, 1);
+                DateTime date = currentMonthDate.AddDays(-ItemColumnFromDayOfWeek(currentMonthDate.DayOfWeek));
                 if (date.Day == 1)
                 {
                     date = date.AddDays(-7);
@@ -740,6 +1015,27 @@ namespace SimpleTasks.Controls.Calendar
                 }
             }
         }
+
+        private void BuildMonthItems()
+        {
+            if (_monthItemsGrid != null)
+            {
+                DateTime minimum = new DateTime(MinimumDate.Year, MinimumDate.Month, 1);
+                DateTime maximum = new DateTime(MaximumDate.Year, MaximumDate.Month, DateTime.DaysInMonth(MaximumDate.Year, MaximumDate.Month));
+
+                DateTime date = new DateTime(DisplayDate.Year, 1, 1);
+                foreach (CalendarMonthItem item in GetMonthItems())
+                {
+                    item.Date = date;
+                    item.IsSelected = date.IsSameMonth(SelectedDate);
+                    item.IsEnabled = date >= minimum && date <= maximum;
+
+                    date = date.AddMonths(1);
+                }
+            }
+        }
+        #endregion // end of Create/Build
+
         #endregion
     }
 }

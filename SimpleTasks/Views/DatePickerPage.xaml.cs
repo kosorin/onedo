@@ -34,10 +34,11 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = this;
 
+            // Nastavení kalendáře
             Calendar.MinimumDate = DateTime.Today;
-            Calendar.MaximumDate = DateTime.Today.AddYears(2);
-
+            Calendar.MaximumDate = DateTime.Today.AddYears(3);
             SelectDate(_date);
+            BackKeyPress += Calendar.BackKeyPress;
         }
 
         protected override object Save()
@@ -87,7 +88,8 @@ namespace SimpleTasks.Views
         public void SelectDate(int year, int month, int day)
         {
             Calendar.SelectedDate = new DateTime(year, month, day);
-            Calendar.CurrentDate = Calendar.SelectedDate;
+            Calendar.DisplayDate = Calendar.SelectedDate;
+            Calendar.DisplayMode = DisplayMode.Days;
         }
     }
 }
