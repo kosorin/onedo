@@ -4,6 +4,7 @@
   <Languages xmlns="">
     <Language code="cs-CZ" />
     <Language code="de-DE" />
+    <Language code="it-IT" />
     <Language code="sk-SK" />
   </Languages>
   <App xmlns="" ProductID="{b6fc44e1-bbd2-48d3-b564-bac3c06d408e}" Title="OneDo" RuntimeType="Silverlight" Version="4.5.0.0" Genre="apps.normal" Author="David Kosorin" Description="Practical application with ease of use and elegant design for scheduling your tasks and easier organize your life." Publisher="David Kosorin" PublisherID="{d4ad868c-9b87-4972-ab52-6aed9646acc1}">
@@ -22,18 +23,13 @@
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\MediumTile.png</BackgroundImageURI>
           <Title>OneDo</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false">
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
+          <BackContent></BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false"></BackBackgroundImageURI>
+          <BackTitle></BackTitle>
           <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\WideTile.png</LargeBackgroundImageURI>
           <LargeBackContent />
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
-          </LargeBackBackgroundImageURI>
-          <DeviceLockImageURI IsRelative="true" IsResource="false">
-          </DeviceLockImageURI>
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false"></LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
