@@ -804,15 +804,15 @@
                             <VisualStateGroup x:Name="DisplayStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition To="MonthsMode"
-                                                      GeneratedDuration="0:0:0.4">
+                                                      GeneratedDuration="0:0:0.45">
                                         <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseInOut" />
+                                            <QuarticEase EasingMode="EaseInOut" />
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                     <VisualTransition To="DaysMode"
-                                                      GeneratedDuration="0:0:0.4">
+                                                      GeneratedDuration="0:0:0.45">
                                         <VisualTransition.GeneratedEasingFunction>
-                                            <CubicEase EasingMode="EaseIn" />
+                                            <QuarticEase EasingMode="EaseInOut" />
                                         </VisualTransition.GeneratedEasingFunction>
                                     </VisualTransition>
                                 </VisualStateGroup.Transitions>
@@ -828,6 +828,9 @@
                                                                     Value="True" />
                                         </ObjectAnimationUsingKeyFrames>
 
+                                        <!--<DoubleAnimation Storyboard.TargetName="MonthItemsGridTransform"
+                                                         Storyboard.TargetProperty="TranslateY"
+                                                         To="0" />-->
                                         <DoubleAnimation Storyboard.TargetName="MonthItemsGridTransform"
                                                          Storyboard.TargetProperty="ScaleX"
                                                          To="1" />
@@ -911,7 +914,7 @@
                             <Button.Template>
                                 <ControlTemplate />
                             </Button.Template>
-                            
+
                             <Canvas Width="76"
                                     Height="60"
                                     Background="Transparent">
@@ -977,8 +980,8 @@
                               RenderTransformOrigin="0.5,0.5">
                             <Grid.RenderTransform>
                                 <CompositeTransform x:Name="MonthItemsGridTransform"
-                                                    ScaleX="1.5"
-                                                    ScaleY="1.5" />
+                                                    ScaleX="2.5"
+                                                    ScaleY="2.5"/>
                             </Grid.RenderTransform>
                         </Grid>
                     </Grid>

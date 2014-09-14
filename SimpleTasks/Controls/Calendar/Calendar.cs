@@ -276,6 +276,14 @@ namespace SimpleTasks.Controls.Calendar
             var calendar = sender as Calendar;
             if (calendar != null)
             {
+                if (calendar._monthItemsGrid != null)
+                {
+                    Point origin = calendar._monthItemsGrid.RenderTransformOrigin;
+                    origin.X = (((calendar.DisplayDate.Month - 1) % _monthColumnCount) / (double)(_monthColumnCount - 1));
+                    origin.Y = ((calendar.DisplayDate.Month - 1) / _monthColumnCount) / (double)(_monthRowCount - 1);
+                    calendar._monthItemsGrid.RenderTransformOrigin = origin;
+                }
+
                 if ((DisplayMode)e.OldValue == DisplayMode.Days)
                 {
                     calendar._oldDisplayDate = calendar.DisplayDate;
