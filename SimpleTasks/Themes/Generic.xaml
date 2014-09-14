@@ -796,6 +796,7 @@
 
                                 <VisualState x:Name="MonthsMode">
                                     <Storyboard>
+
                                         <DoubleAnimation Storyboard.TargetName="MonthItemsGrid"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="1" />
@@ -805,9 +806,6 @@
                                                                     Value="True" />
                                         </ObjectAnimationUsingKeyFrames>
 
-                                        <!--<DoubleAnimation Storyboard.TargetName="MonthItemsGridTransform"
-                                                         Storyboard.TargetProperty="TranslateY"
-                                                         To="0" />-->
                                         <DoubleAnimation Storyboard.TargetName="MonthItemsGridTransform"
                                                          Storyboard.TargetProperty="ScaleX"
                                                          To="1" />
@@ -958,7 +956,7 @@
                             <Grid.RenderTransform>
                                 <CompositeTransform x:Name="MonthItemsGridTransform"
                                                     ScaleX="2.5"
-                                                    ScaleY="2.5"/>
+                                                    ScaleY="2.5" />
                             </Grid.RenderTransform>
                         </Grid>
                     </Grid>

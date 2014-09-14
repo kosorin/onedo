@@ -19,23 +19,6 @@
                 <Grid.Background>
                     <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}" />
                 </Grid.Background>
-                <!--<Border>
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0"
-                                             EndPoint="24,24"
-                                             MappingMode="Absolute"
-                                             SpreadMethod="Repeat">
-                            <GradientStop Color="{StaticResource TasksListHeaderGradientColor}"
-                                          Offset="0" />
-                            <GradientStop Color="{StaticResource TasksListHeaderGradientColor}"
-                                          Offset="0.5" />
-                            <GradientStop Color="Transparent"
-                                          Offset="0.5" />
-                            <GradientStop Color="Transparent"
-                                          Offset="1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>-->
                 <TextBlock Style="{StaticResource NormalTextStyle}"
                            Opacity="0.75"
                            VerticalAlignment="Center"
