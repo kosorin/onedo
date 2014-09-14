@@ -9,8 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTasks.Helpers.Analytics
+namespace SimpleTasks.Helpers
 {
+    public enum CustomDimension
+    {
+        TaskRelativeDate = 1,
+        TaskTime = 2,
+        TaskReminder = 3,
+        TaskTileLineHeight = 4,
+        Feedback = 5,
+    }
+
     public static class GoogleAnalyticsHelper
     {
         private static bool _showDebugMessages = true;
@@ -56,7 +65,7 @@ namespace SimpleTasks.Helpers.Analytics
             }
         }
 
-        public static void SendEvent(EventCategory category, EventAction action, string label = "<Label>", long value = 0)
+        public static void SendEvent(string category, string action, string label = "<Label>", long value = 0)
         {
             if (!Settings.Current.General.Feedback)
                 return;
@@ -66,7 +75,7 @@ namespace SimpleTasks.Helpers.Analytics
                 if (ShowDebugMessages)
                     Debug.WriteLine("> GA SendEvent: {0} > {1} > '{2}' ({3})", category, action, label, value);
 
-                Tracker.SendEvent(category.ToString(), action.ToString(), label, value);
+                Tracker.SendEvent(category, action, label, value);
             }
             catch (Exception e)
             {

@@ -10,7 +10,6 @@ using Microsoft.Phone.Shell;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Models;
 using System.Diagnostics;
-using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Views
 {
@@ -46,14 +45,6 @@ namespace SimpleTasks.Views
             {
                 _task.ModifiedSinceStart = true;
             }
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-
-            GoogleAnalyticsHelper.SetDimension(CustomDimension.TaskTileLineHeight, ((int)_task.TileSettings.LineHeight).ToString());
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "edit task tile line height");
         }
 
         private void SetTask(TaskModel task)

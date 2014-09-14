@@ -12,7 +12,6 @@ using System.Globalization;
 using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
 using System.Windows.Media;
-using SimpleTasks.Helpers.Analytics;
 using SimpleTasks.Controls.Calendar;
 
 namespace SimpleTasks.Views
@@ -51,12 +50,6 @@ namespace SimpleTasks.Views
                 _date.Minute,
                 0);
 
-            int days = (int)(date.Date - DateTime.Today).TotalDays;
-            if (days > 0)
-            {
-                GoogleAnalyticsHelper.SetDimension(CustomDimension.TaskRelativeDate, days.ToString());
-                GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "edit task date");
-            }
             return date;
         }
 

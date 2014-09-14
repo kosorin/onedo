@@ -3,7 +3,7 @@ using Microsoft.Phone.Shell;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
-using SimpleTasks.Helpers.Analytics;
+using SimpleTasks.Helpers;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
 using System;
@@ -486,7 +486,6 @@ namespace SimpleTasks.Views
         private void PinButton(object sender, EventArgs e)
         {
             Pin();
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Tiles, EventAction.Add, "pin task tile");
 
             ApplicationBar.Buttons.RemoveAt(0);
             ApplicationBar.Buttons.Insert(0, appBarUnpinButton);
@@ -495,7 +494,6 @@ namespace SimpleTasks.Views
         private void UnpinButton(object sender, EventArgs e)
         {
             Unpin();
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Tiles, EventAction.Delete, "unpin task tile");
 
             ApplicationBar.Buttons.RemoveAt(0);
             ApplicationBar.Buttons.Insert(0, appBarPinButton);
@@ -504,7 +502,6 @@ namespace SimpleTasks.Views
         private void ActivateButton(object sender, EventArgs e)
         {
             Activate();
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "activate task");
 
             ApplicationBar.Buttons.RemoveAt(1);
             ApplicationBar.Buttons.Insert(1, appBarCompleteButton);
@@ -513,7 +510,6 @@ namespace SimpleTasks.Views
         private void CompleteButton(object sender, EventArgs e)
         {
             Complete();
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Edit, "complete task");
 
             ApplicationBar.Buttons.RemoveAt(1);
             ApplicationBar.Buttons.Insert(1, appBarActivateButton);
@@ -537,7 +533,6 @@ namespace SimpleTasks.Views
                 if (e1.Result == CustomMessageBoxResult.LeftButton)
                 {
                     Delete();
-                    GoogleAnalyticsHelper.SendEvent(EventCategory.Tasks, EventAction.Delete, "delete task");
                     GoBack();
                 }
             };
@@ -644,7 +639,6 @@ namespace SimpleTasks.Views
         #region Čas
         private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            PhoneApplicationService.Current.State["GA_TimePicker"] = 0;
             Navigate(typeof(TimePickerPage), DueDate, "TimePicker");
         }
         #endregion

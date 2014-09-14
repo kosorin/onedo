@@ -15,7 +15,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using SimpleTasks.Core.Helpers;
-using SimpleTasks.Helpers.Analytics;
+using SimpleTasks.Helpers;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -62,7 +62,7 @@ namespace SimpleTasks.Views
         {
             Settings.Current.General.Feedback = true;
             GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "True");
-            GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
+            GoogleAnalyticsHelper.SendEvent("Settings", "Edit", "set feedback");
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
@@ -72,7 +72,7 @@ namespace SimpleTasks.Views
                 // Pokud už byl feedback nastavený na false a check box se změní na unchecked,
                 // tak se znovu neposílá info o změně.
                 GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
-                GoogleAnalyticsHelper.SendEvent(EventCategory.Settings, EventAction.Edit, "set feedback");
+                GoogleAnalyticsHelper.SendEvent("Settings", "Edit", "set feedback");
                 Settings.Current.General.Feedback = false;
             }
         }

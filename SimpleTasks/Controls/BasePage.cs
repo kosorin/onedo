@@ -18,7 +18,6 @@ using SimpleTasks.Views;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Helpers;
-using SimpleTasks.Helpers.Analytics;
 
 namespace SimpleTasks.Controls
 {
