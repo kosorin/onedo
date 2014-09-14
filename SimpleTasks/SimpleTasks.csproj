@@ -108,14 +108,12 @@
     <Compile Include="Controls\ListPickerItem.cs" />
     <Compile Include="Controls\MySlider.cs" />
     <Compile Include="Controls\MyTextBox.cs" />
-    <Compile Include="Controls\IconButton.cs" />
     <Compile Include="Controls\MyToggleButton.cs" />
     <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\RingSlice.cs" />
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TaskListMenuItem.cs" />
     <Compile Include="Controls\ToggleControl.cs" />
     <Resource Include="Controls\Transitions\OneBackwardIn.xaml">
       <SubType>Designer</SubType>
