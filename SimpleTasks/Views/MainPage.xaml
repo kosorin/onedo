@@ -656,7 +656,7 @@
         <Grid Grid.Row="2" x:Name="QuickAddGrid">
             <controls:MyTextBox Grid.Row="1"
                                 x:Name="QuickAddTextBox"
-                                Hint="{Binding LocalizedResources.QuickAddLabel, Source={StaticResource LocalizedStrings}, StringFormat='\{0}&#8230;&#xe104;'}"
+                                Hint="&#8230;&#xe104;"
                                 GotFocus="QuickAddTextBox_GotFocus"
                                 LostFocus="QuickAddTextBox_LostFocus"
                                 KeyDown="QuickAddTextBox_KeyDown"
