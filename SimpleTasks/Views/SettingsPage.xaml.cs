@@ -52,14 +52,15 @@ namespace SimpleTasks.Views
             }
 
             // Theme
+            string systemTheme = ThemeHelper.SystemTheme == Theme.Dark ? AppResources.SettingsThemeDark : AppResources.SettingsThemeLight;
             List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
-            themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeSystem, Theme.System));
+            themeList.Add(new ListPickerItem<Theme>(string.Format(AppResources.SettingsThemeSystem, systemTheme), Theme.System));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeDark, Theme.Dark));
             ThemeListPicker.ItemsSource = themeList;
-            ThemeListPicker.SelectedIndex = (int)((App)App.Current).GetTheme();
+            ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
             _isSetThemeListPicker = true;
-            Debug.WriteLine("> TTTTheme {0}", ((App)App.Current).GetTheme());
+            Debug.WriteLine("> TTTTheme {0}", ThemeHelper.Theme);
         }
 
         #region Pin Tile
@@ -185,7 +186,7 @@ namespace SimpleTasks.Views
             ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
             if (item != null)
             {
-                ((App)App.Current).SetTheme(item.Value);
+                ThemeHelper.Theme = item.Value;
                 Debug.WriteLine("Save to {0}", item.Value);
             }
         }

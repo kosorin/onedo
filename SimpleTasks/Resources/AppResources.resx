@@ -692,7 +692,8 @@ It's still in beta. If you have any problem, send us email.</value>
     <value>Application restart is required for this setting to take effect.</value>
   </data>
   <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>system</value>
+    <value>system ({0})</value>
+    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>theme</value>

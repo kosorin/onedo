@@ -139,6 +139,7 @@
     <Compile Include="Helpers\GoogleAnalyticsHelper.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="Helpers\TaskModelExtensions.cs" />
+    <Compile Include="Helpers\ThemeHelper.cs" />
     <Compile Include="Helpers\VibrateHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\ChangelogList.cs" />

@@ -1267,7 +1267,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to system.
+        ///   Looks up a localized string similar to system ({0}).
         /// </summary>
         public static string SettingsThemeSystem {
             get {

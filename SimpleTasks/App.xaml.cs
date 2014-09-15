@@ -4,6 +4,7 @@ using Microsoft.Phone.Tasks;
 using Newtonsoft.Json.Linq;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
+using SimpleTasks.Helpers;
 using SimpleTasks.Models;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
@@ -25,7 +26,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        public static string ForceDebugCulture = "en-US";
+        public static string ForceDebugCulture = "it-IT";
 
         #region Properties
         public static Version Version
@@ -183,7 +184,7 @@ namespace SimpleTasks
             InitializeComponent();
             InitializePhoneApplication();
             InitializeLanguage();
-            InitializeTheme();
+            ThemeHelper.InitializeTheme();
 
             if (Debugger.IsAttached)
             {
@@ -334,107 +335,6 @@ namespace SimpleTasks
                 throw;
             }
         }
-
-        public void InitializeTheme()
-        {
-
-            //Debug.WriteLine("> Theme start: {0}", themeType);
-            //Stopwatch sw = Stopwatch.StartNew();
-            //if (themeType == Theme.Light)
-            //{
-            //    Debug.WriteLine(": to light theme");
-            //    ThemeManager.ToLightTheme();
-            //}
-            //else if (themeType == Theme.Dark)
-            //{
-            //    Debug.WriteLine(": to dark theme");
-            //    ThemeManager.ToDarkTheme();
-            //}
-            //sw.Stop();
-            //Debug.WriteLine("Theme stop {0}", sw.ElapsedMilliseconds);
-
-            string source = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
-                "Dark" :
-                "Light";
-            string currentSource = (Visibility)Resources["DarkThemeVisibility"] == Visibility.Visible ?
-                "Dark" :
-                "Light";
-
-            if (source == currentSource)
-            {
-                // Téma už je nastavené
-                return;
-            }
-            else
-            {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-
-                // ResourceDictionary
-                Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative);
-                ResourceDictionary app = Resources.MergedDictionaries[0];
-                ResourceDictionary theme = new ResourceDictionary
-                {
-                    Source = sourceUri
-                };
-
-                // Barvy
-                foreach (var ck in theme.Where(x => x.Value is Color))
-                {
-                    app.Remove(ck.Key);
-                    app.Add(ck.Key, (Color)ck.Value);
-                }
-
-                // Brushe
-                foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
-                {
-                    SolidColorBrush brush = (SolidColorBrush)ck.Value;
-                    SolidColorBrush appBrush = (SolidColorBrush)app[ck.Key];
-
-                    appBrush.Color = brush.Color;
-                    appBrush.Opacity = brush.Opacity;
-                }
-
-                sw.Stop();
-                Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
-            }
-        }
         #endregion
-
-        #region Theme
-        private const string _themeSettingsKey = "Theme";
-
-        public Theme GetTheme()
-        {
-            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            Theme theme;
-            if (settings.Contains(_themeSettingsKey))
-            {
-                theme = (Theme)settings[_themeSettingsKey];
-            }
-            else
-            {
-                theme = Theme.System;
-            }
-            return theme;
-        }
-
-        public void SetTheme(Theme theme)
-        {
-            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            if (settings.Contains(_themeSettingsKey))
-            {
-                if (!settings[_themeSettingsKey].Equals(theme))
-                {
-                    settings[_themeSettingsKey] = theme;
-                }
-            }
-            else
-            {
-                settings.Add(_themeSettingsKey, theme);
-            }
-            settings.Save();
-        }
-        #endregion // end of Theme
     }
 }

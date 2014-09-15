@@ -743,8 +743,8 @@ Diese Funktion ist noch im Betastadium, bei Problemen bitte eine E-Mail senden.<
           <target state="signed-off">Wenn nicht aktiviert, Aufgabenliste statt Anzahl auf kleinem Livetile zeigen.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
-          <source>system</source>
-          <target state="new">system</target>
+          <source>system ({0})</source>
+          <target state="new">system ({0})</target><note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
           <source>theme</source>
