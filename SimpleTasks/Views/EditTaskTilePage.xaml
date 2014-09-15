@@ -28,11 +28,11 @@
             <Setter Property="Background"
                     Value="Transparent" />
             <Setter Property="BorderBrush"
-                    Value="{StaticResource PhoneForegroundBrush}" />
+                    Value="{StaticResource NormalBrush}" />
             <Setter Property="Foreground"
-                    Value="{StaticResource PhoneForegroundBrush}" />
+                    Value="{StaticResource NormalBrush}" />
             <Setter Property="BorderThickness"
-                    Value="{StaticResource PhoneBorderThickness}" />
+                    Value="3" />
             <Setter Property="FontFamily"
                     Value="Segoe UI Symbol" />
             <Setter Property="FontSize"
@@ -53,7 +53,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                            Storyboard.TargetName="ContentContainer">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{StaticResource PhoneButtonBasePressedForegroundBrush}" />
+                                                                        Value="{StaticResource ButtonDarkForegroundBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                            Storyboard.TargetName="ButtonBackground">

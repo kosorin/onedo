@@ -7,9 +7,6 @@
              xmlns:sample="clr-namespace:Expression.Blend.SampleData.RoundTimePickerDataSource"
              x:Class="SimpleTasks.Controls.RoundTimePicker"
              mc:Ignorable="d"
-             FontFamily="{StaticResource PhoneFontFamilyNormal}"
-             FontSize="{StaticResource PhoneFontSizeNormal}"
-             Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="460"
              d:DesignWidth="460"
              d:DataContext="{d:DesignData /SampleData/RoundTimePickerDataSource/RoundTimePickerDataSource.xaml}">
@@ -21,7 +18,7 @@
         <controls:AngleConverter x:Key="AngleConverter" />
 
         <SolidColorBrush x:Key="HoursAmBackgroundBrush"
-                         Color="{StaticResource PhoneForegroundColor}"
+                         Color="{StaticResource NormalColor}"
                          Opacity="0.15" />
         <SolidColorBrush x:Key="HoursAmForegroundBrush"
                          Color="{StaticResource PhoneAccentColor}"
@@ -34,7 +31,7 @@
                          Opacity="1.00" />
 
         <SolidColorBrush x:Key="MinutesBackgroundBrush"
-                         Color="{StaticResource PhoneForegroundColor}"
+                         Color="{StaticResource NormalColor}"
                          Opacity="0.09" />
         <SolidColorBrush x:Key="MinutesForegroundBrush"
                          Color="{StaticResource PhoneAccentColor}"

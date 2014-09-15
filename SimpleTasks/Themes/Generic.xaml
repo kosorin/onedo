@@ -40,7 +40,7 @@
         <Setter Property="SelectionBackground"
                 Value="{StaticResource PhoneAccentBrush}" />
         <Setter Property="SelectionForeground"
-                Value="{StaticResource PhoneTextBoxSelectionForegroundBrush}" />
+                Value="{StaticResource PhoneAccentBrush}" />
         <Setter Property="TextWrapping"
                 Value="Wrap" />
         <Setter Property="InputScope"
@@ -1081,7 +1081,7 @@
                                   Background="Transparent">
                                 <Border x:Name="TodayBorder"
                                         Opacity="0"
-                                        BorderThickness="{StaticResource PhoneBorderThickness}"
+                                        BorderThickness="3"
                                         BorderBrush="{StaticResource PhoneAccentBrush}" />
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />
@@ -1217,7 +1217,7 @@
                                   Background="Transparent">
                                 <Border x:Name="TodayBorder"
                                         Opacity="0"
-                                        BorderThickness="{StaticResource PhoneBorderThickness}"
+                                        BorderThickness="3"
                                         BorderBrush="{StaticResource PhoneAccentBrush}" />
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />

@@ -580,7 +580,7 @@
                                                 <ColorAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
                                                                 Duration="0"
-                                                                To="{StaticResource PhoneForegroundColor}" />
+                                                                To="{StaticResource NormalColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
                                                                  Duration="0"
@@ -599,7 +599,7 @@
                                         HorizontalAlignment="Left"
                                         BorderBrush="{TemplateBinding BorderBrush}">
                                     <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
                                                          Opacity="0.27" />
                                     </Border.Background>
 
@@ -770,11 +770,11 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         HorizontalAlignment="Left">
                                     <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"
+                                        <SolidColorBrush Color="{StaticResource NormalColor}"
                                                          Opacity="0.45" />
                                     </Border.BorderBrush>
                                     <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
                                                          Opacity="0.27" />
                                     </Border.Background>
 
@@ -884,11 +884,11 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         HorizontalAlignment="Left">
                                     <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource PhoneForegroundColor}"
+                                        <SolidColorBrush Color="{StaticResource NormalColor}"
                                                          Opacity="0.45" />
                                     </Border.BorderBrush>
                                     <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource PhoneSubtleColor}"
+                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
                                                          Opacity="0.27" />
                                     </Border.Background>
 
