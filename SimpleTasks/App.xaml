@@ -15,8 +15,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary  Source="/SimpleTasks;component/Themes/Dark.xaml" />
-                <!--<ResourceDictionary  Source="/SimpleTasks;component/Themes/Light.xaml" />-->
+                <ResourceDictionary Source="/SimpleTasks;component/Themes/Dark.xaml" />
+                <!--<ResourceDictionary Source="/SimpleTasks;component/Themes/Light.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
 
             <!--Region Lokalizace-->

@@ -726,6 +726,26 @@ It's still in beta. If you have any problem, send us email.</target>
           <source>If unchecked, show task list on small tile instead of number of tasks.</source>
           <target state="new">If unchecked, show task list on small tile instead of number of tasks.</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
+          <source>system</source>
+          <target state="new">system</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
+          <source>theme</source>
+          <target state="new">theme</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
+          <source>Application restart is required for this setting to take effect.</source>
+          <target state="new">Application restart is required for this setting to take effect.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeLight" translate="yes" xml:space="preserve">
+          <source>light</source>
+          <target state="new">light</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeDark" translate="yes" xml:space="preserve">
+          <source>dark</source>
+          <target state="new">dark</target>
+        </trans-unit>
       </group>
     </body>
   </file>

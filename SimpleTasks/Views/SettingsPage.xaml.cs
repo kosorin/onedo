@@ -34,11 +34,13 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
 
+            // Default Time
             if (IsSetNavigationParameter("TimePicker"))
             {
                 Settings.Current.Tasks.DefaultTime = NavigationParameter<DateTime>("TimePicker");
             }
 
+            // Pin Tile
             _isPinnedQuickAdd = LiveTile.IsPinnedQuickAdd();
             if (_isPinnedQuickAdd)
             {
@@ -48,14 +50,28 @@ namespace SimpleTasks.Views
             {
                 QuickAddTileButton.Content = AppResources.TileForQuickAddPinButton;
             }
+
+            // Theme
+            List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
+            themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeSystem, Theme.System));
+            themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
+            themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeDark, Theme.Dark));
+            ThemeListPicker.ItemsSource = themeList;
+            ThemeListPicker.SelectedIndex = (int)((App)App.Current).GetTheme();
+            _isSetThemeListPicker = true;
+            Debug.WriteLine("> TTTTheme {0}", ((App)App.Current).GetTheme());
         }
 
+        #region Pin Tile
         public string PinTileHelpText { get { return string.Format(AppResources.SettingsPinTile, AppInfo.Name); } }
+        #endregion // end of Pin Tile
 
+        #region Default Time
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Navigate(typeof(TimePickerPage), Settings.Current.Tasks.DefaultTime, "TimePicker");
         }
+        #endregion // end of Default Time
 
         #region Feedback
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -83,6 +99,7 @@ namespace SimpleTasks.Views
         }
         #endregion
 
+        #region Default Task Tile Settings
         private void DefaultTaskTileSettingsButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             TaskModel task = new TaskModel()
@@ -136,6 +153,7 @@ namespace SimpleTasks.Views
 
             Navigate(typeof(EditTaskTilePage), task);
         }
+        #endregion // end of DefaultTaskTileSettings
 
         #region Quick Add Tile
         private bool _isPinnedQuickAdd = false;
@@ -155,5 +173,22 @@ namespace SimpleTasks.Views
             _isPinnedQuickAdd = !_isPinnedQuickAdd;
         }
         #endregion
+
+        #region Theme
+        private bool _isSetThemeListPicker = false;
+
+        private void ThemeListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_isSetThemeListPicker)
+                return;
+
+            ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
+            if (item != null)
+            {
+                ((App)App.Current).SetTheme(item.Value);
+                Debug.WriteLine("Save to {0}", item.Value);
+            }
+        }
+        #endregion // end of Theme
     }
 }

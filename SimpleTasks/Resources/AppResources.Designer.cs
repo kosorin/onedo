@@ -369,25 +369,21 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.3.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-09-04&quot;,
+        ///    &quot;4.5.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-09-12&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;task count on main tile (you can hide it in settings)&quot;,
-        ///            &quot;option to swap date and title on wide tile&quot;
+        ///            &quot;quick add live tile (pin to start from settings page)&quot;,
+        ///            &quot;option to hide quick add text box on main page&quot;,
+        ///            &quot;task list on small tile is back (see settings)&quot;,
+        ///            &quot;German language&quot;
         ///        ]
         ///    },
-        ///    &quot;4.3.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-09-04&quot;,
+        ///    &quot;4.5.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-09-12&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;task count on main tile&quot;,
-        ///            &quot;option to swap date and title on wide tile&quot;
-        ///        ]
-        ///    },
-        ///    &quot;4.2.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-08-30&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;backup and restore (BETA)&quot;
-        ///   [rest of string was truncated]&quot;;.
+        ///            &quot;quick add live tile&quot;,
+        ///            &quot;option to hide quick add text box on main page&quot;,
+        ///            &quot;task list on sma [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -1240,6 +1236,51 @@ namespace SimpleTasks.Resources {
         public static string SettingsSwapDateAndTitle {
             get {
                 return ResourceManager.GetString("SettingsSwapDateAndTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dark.
+        /// </summary>
+        public static string SettingsThemeDark {
+            get {
+                return ResourceManager.GetString("SettingsThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to light.
+        /// </summary>
+        public static string SettingsThemeLight {
+            get {
+                return ResourceManager.GetString("SettingsThemeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application restart is required for this setting to take effect..
+        /// </summary>
+        public static string SettingsThemeNote {
+            get {
+                return ResourceManager.GetString("SettingsThemeNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to system.
+        /// </summary>
+        public static string SettingsThemeSystem {
+            get {
+                return ResourceManager.GetString("SettingsThemeSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to theme.
+        /// </summary>
+        public static string SettingsThemeTitle {
+            get {
+                return ResourceManager.GetString("SettingsThemeTitle", resourceCulture);
             }
         }
         

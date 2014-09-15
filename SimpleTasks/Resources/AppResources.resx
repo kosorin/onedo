@@ -682,4 +682,19 @@ It's still in beta. If you have any problem, send us email.</value>
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
     <value>If unchecked, show task list on small tile instead of number of tasks.</value>
   </data>
+  <data name="SettingsThemeDark" xml:space="preserve">
+    <value>dark</value>
+  </data>
+  <data name="SettingsThemeLight" xml:space="preserve">
+    <value>light</value>
+  </data>
+  <data name="SettingsThemeNote" xml:space="preserve">
+    <value>Application restart is required for this setting to take effect.</value>
+  </data>
+  <data name="SettingsThemeSystem" xml:space="preserve">
+    <value>system</value>
+  </data>
+  <data name="SettingsThemeTitle" xml:space="preserve">
+    <value>theme</value>
+  </data>
 </root>

@@ -179,7 +179,17 @@
                 <ScrollViewer>
                     <StackPanel Margin="24,24,24,96">
 
-                        <!--Unpin Completed-->
+                        <!--Theme-->
+                        <TextBlock Style="{StaticResource LabelTextStyle}"
+                                   Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                        <controls:ListPicker x:Name="ThemeListPicker"
+                                             Foreground="{StaticResource SlightBrush}"
+                                             Background="{StaticResource ButtonBackgroundBrush}"
+                                             SelectionChanged="ThemeListPicker_SelectionChanged" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsThemeNote, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
+
+                        <!--Vibrate-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
@@ -217,7 +227,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
-            
+
         </phone:Pivot>
     </Grid>
 

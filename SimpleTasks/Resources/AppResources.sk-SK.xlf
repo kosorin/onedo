@@ -501,6 +501,26 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
           <source>If unchecked, show task list on small tile instead of number of tasks.</source>
           <target state="signed-off">Ak bude políčko odškrtnutie, tak zobrazí zoznam úloh na malé dlaždici namiesto počtu úloh.</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
+          <source>system</source>
+          <target state="new">system</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
+          <source>theme</source>
+          <target state="new">theme</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
+          <source>Application restart is required for this setting to take effect.</source>
+          <target state="new">Application restart is required for this setting to take effect.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeLight" translate="yes" xml:space="preserve">
+          <source>light</source>
+          <target state="new">light</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsThemeDark" translate="yes" xml:space="preserve">
+          <source>dark</source>
+          <target state="new">dark</target>
+        </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
           <source>pin to start</source>
           <target state="signed-off">pripnúť na domovskú obrazovku</target>

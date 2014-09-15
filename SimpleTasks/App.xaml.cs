@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -180,9 +181,9 @@ namespace SimpleTasks
             UnhandledException += Application_UnhandledException;
 
             InitializeComponent();
-            InitializeTheme();
             InitializePhoneApplication();
             InitializeLanguage();
+            InitializeTheme();
 
             if (Debugger.IsAttached)
             {
@@ -337,6 +338,21 @@ namespace SimpleTasks
         public void InitializeTheme()
         {
 
+            //Debug.WriteLine("> Theme start: {0}", themeType);
+            //Stopwatch sw = Stopwatch.StartNew();
+            //if (themeType == Theme.Light)
+            //{
+            //    Debug.WriteLine(": to light theme");
+            //    ThemeManager.ToLightTheme();
+            //}
+            //else if (themeType == Theme.Dark)
+            //{
+            //    Debug.WriteLine(": to dark theme");
+            //    ThemeManager.ToDarkTheme();
+            //}
+            //sw.Stop();
+            //Debug.WriteLine("Theme stop {0}", sw.ElapsedMilliseconds);
+
             string source = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
                 "Dark" :
                 "Light";
@@ -384,5 +400,41 @@ namespace SimpleTasks
             }
         }
         #endregion
+
+        #region Theme
+        private const string _themeSettingsKey = "Theme";
+
+        public Theme GetTheme()
+        {
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            Theme theme;
+            if (settings.Contains(_themeSettingsKey))
+            {
+                theme = (Theme)settings[_themeSettingsKey];
+            }
+            else
+            {
+                theme = Theme.System;
+            }
+            return theme;
+        }
+
+        public void SetTheme(Theme theme)
+        {
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            if (settings.Contains(_themeSettingsKey))
+            {
+                if (!settings[_themeSettingsKey].Equals(theme))
+                {
+                    settings[_themeSettingsKey] = theme;
+                }
+            }
+            else
+            {
+                settings.Add(_themeSettingsKey, theme);
+            }
+            settings.Save();
+        }
+        #endregion // end of Theme
     }
 }
