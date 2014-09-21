@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.IsolatedStorage;
@@ -53,74 +54,55 @@ namespace SimpleTasks.Helpers
             }
         }
 
+        private static Theme _currentTheme = Theme.Dark;
+        public static Theme CurrentTheme
+        {
+            get { return _currentTheme; }
+            private set { _currentTheme = value; }
+        }
+
+        private static Theme _theme = Theme.Dark;
         public static Theme SystemTheme
         {
-            get { return (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ? Theme.Dark : Theme.Light; }
+            get { return _theme; }
+            private set { _theme = value; }
         }
 
         public static void InitializeTheme()
         {
+            SystemTheme = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ? Theme.Dark : Theme.Light;
+            CurrentTheme = Theme == Theme.System ? SystemTheme : Theme;
 
-            //Debug.WriteLine("> Theme start: {0}", themeType);
-            //Stopwatch sw = Stopwatch.StartNew();
-            //if (themeType == Theme.Light)
-            //{
-            //    Debug.WriteLine(": to light theme");
-            //    ThemeManager.ToLightTheme();
-            //}
-            //else if (themeType == Theme.Dark)
-            //{
-            //    Debug.WriteLine(": to dark theme");
-            //    ThemeManager.ToDarkTheme();
-            //}
-            //sw.Stop();
-            //Debug.WriteLine("Theme stop {0}", sw.ElapsedMilliseconds);
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
-            string source = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ?
-                "Dark" :
-                "Light";
-            string currentSource = (Visibility)Resources["DarkThemeVisibility"] == Visibility.Visible ?
-                "Dark" :
-                "Light";
-
-            if (source == currentSource)
+            // ResourceDictionary
+            Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", CurrentTheme == Theme.Dark ? "Dark" : "Light"), UriKind.Relative);
+            ResourceDictionary app = Resources.MergedDictionaries[0];
+            ResourceDictionary theme = new ResourceDictionary
             {
-                // Téma už je nastavené
-                return;
-            }
-            else
+                Source = sourceUri
+            };
+
+            // Barvy
+            foreach (var ck in theme.Where(x => x.Value is Color))
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-
-                // ResourceDictionary
-                Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", source), UriKind.Relative);
-                ResourceDictionary app = Resources.MergedDictionaries[0];
-                ResourceDictionary theme = new ResourceDictionary
-                {
-                    Source = sourceUri
-                };
-
-                // Barvy
-                foreach (var ck in theme.Where(x => x.Value is Color))
-                {
-                    app.Remove(ck.Key);
-                    app.Add(ck.Key, (Color)ck.Value);
-                }
-
-                // Brushe
-                foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
-                {
-                    SolidColorBrush brush = (SolidColorBrush)ck.Value;
-                    SolidColorBrush appBrush = (SolidColorBrush)app[ck.Key];
-
-                    appBrush.Color = brush.Color;
-                    appBrush.Opacity = brush.Opacity;
-                }
-
-                sw.Stop();
-                Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
+                app.Remove(ck.Key);
+                app.Add(ck.Key, (Color)ck.Value);
             }
+
+            // Brushe
+            foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
+            {
+                SolidColorBrush brush = (SolidColorBrush)ck.Value;
+                SolidColorBrush appBrush = (SolidColorBrush)app[ck.Key];
+
+                appBrush.Color = brush.Color;
+                appBrush.Opacity = brush.Opacity;
+            }
+
+            sw.Stop();
+            Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
         }
     }
 }

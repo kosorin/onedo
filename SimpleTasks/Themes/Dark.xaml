@@ -7,8 +7,6 @@
                     xmlns:controls="clr-namespace:SimpleTasks.Controls"
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
 
-    <Visibility x:Key="DarkThemeVisibility">Visible</Visibility>
-
     <Color x:Key="SystemTrayBackgroundColor">#1F1F1F</Color>
     <SolidColorBrush x:Key="SystemTrayBackgroundBrush"
                      Color="{StaticResource SystemTrayBackgroundColor}" />
@@ -59,6 +57,15 @@
 
     <SolidColorBrush x:Key="MyButtonBackgroundBrush"
                      Color="#39FFFFFF" />
+    <!--EndRegion-->
+
+    <!--Region CheckBox-->
+    <SolidColorBrush x:Key="CheckBoxBackgroundBrush"
+                     Color="{StaticResource SubtleColor}"
+                     Opacity="0.27" />
+    <SolidColorBrush x:Key="CheckBoxBorderBrush"
+                     Color="{StaticResource NormalColor}"
+                     Opacity="0.45" />
     <!--EndRegion-->
 
     <!--Region BasePickerPage-->

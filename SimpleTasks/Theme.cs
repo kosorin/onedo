@@ -8,6 +8,7 @@ namespace SimpleTasks
 {
     public enum Theme
     {
+        // Neměnit hodnoty!
         System = 0,
         Light = 1,
         Dark = 2

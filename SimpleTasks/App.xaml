@@ -548,20 +548,12 @@
                         Value="40" />
                 <Setter Property="Height"
                         Value="40" />
-                <Setter Property="Background"
-                        Value="{x:Null}" />
-                <Setter Property="BorderThickness"
-                        Value="2" />
-                <Setter Property="BorderBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
-                                         Opacity="1" />
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource PhoneAccentBrush}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
-                            <Grid Background="{TemplateBinding Background}">
+                            <Grid Background="{x:Null}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
                                         <VisualStateGroup.Transitions>
@@ -577,14 +569,10 @@
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="1" />
-                                                <ColorAnimation Storyboard.TargetName="CompleteButtonRectangle"
-                                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                Duration="0"
-                                                                To="{StaticResource NormalColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
                                                                  Duration="0"
-                                                                 To="0.45" />
+                                                                 To="0" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Indeterminate" />
@@ -592,30 +580,30 @@
                                 </VisualStateManager.VisualStateGroups>
 
                                 <!--Checkbox-->
-                                <Border x:Name="CompleteButtonRectangle"
-                                        Width="{TemplateBinding Width}"
+                                <Border Width="{TemplateBinding Width}"
                                         Height="{TemplateBinding Height}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        HorizontalAlignment="Left"
-                                        BorderBrush="{TemplateBinding BorderBrush}">
-                                    <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                         Opacity="0.27" />
-                                    </Border.Background>
-
-                                    <ContentControl x:Name="CheckIcon"
-                                                    Style="{StaticResource CheckIconStyle}"
-                                                    Foreground="{StaticResource SubtleBrush}"
-                                                    Opacity="0"
-                                                    MaxWidth="0"
-                                                    MaxHeight="0">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.75"
-                                                                ScaleY="0.75"
-                                                                TranslateY="-18"
-                                                                TranslateX="-18" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
+                                        Background="{StaticResource CheckBoxBackgroundBrush}"
+                                        BorderThickness="2"
+                                        BorderBrush="{StaticResource CheckBoxBorderBrush}"
+                                        HorizontalAlignment="Left">
+                                    <Border x:Name="CompleteButtonRectangle"
+                                            Margin="-2"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="2">
+                                        <ContentControl x:Name="CheckIcon"
+                                                        Style="{StaticResource CheckIconStyle}"
+                                                        Foreground="{StaticResource SubtleBrush}"
+                                                        Opacity="0"
+                                                        MaxWidth="0"
+                                                        MaxHeight="0">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.75"
+                                                                    ScaleY="0.75"
+                                                                    TranslateY="-18"
+                                                                    TranslateX="-18" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
+                                    </Border>
                                 </Border>
 
                             </Grid>
@@ -742,17 +730,20 @@
                                             <VisualTransition To="Checked"
                                                               GeneratedDuration="0:0:0.25" />
                                         </VisualStateGroup.Transitions>
-                                        <VisualState x:Name="Unchecked" />
+                                        <VisualState x:Name="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Duration="0"
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckIcon"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="1" />
-                                                <ColorAnimation Storyboard.TargetName="CheckBoxBorder"
-                                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                Duration="0"
-                                                                To="{StaticResource PhoneAccentColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
                                                                  Duration="0"
@@ -764,33 +755,30 @@
                                 </VisualStateManager.VisualStateGroups>
 
                                 <!--CheckBox-->
-                                <Border x:Name="CheckBoxBorder"
-                                        Width="{TemplateBinding Height}"
+                                <Border Width="{TemplateBinding Height}"
                                         Height="{TemplateBinding Height}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{StaticResource CheckBoxBackgroundBrush}"
+                                        BorderThickness="2"
+                                        BorderBrush="{StaticResource CheckBoxBorderBrush}"
                                         HorizontalAlignment="Left">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource NormalColor}"
-                                                         Opacity="0.45" />
-                                    </Border.BorderBrush>
-                                    <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                         Opacity="0.27" />
-                                    </Border.Background>
-
-                                    <ContentControl x:Name="CheckIcon"
-                                                    Style="{StaticResource CheckIconStyle}"
-                                                    Foreground="{StaticResource SubtleBrush}"
-                                                    Opacity="0"
-                                                    MaxWidth="0"
-                                                    MaxHeight="0">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.75"
-                                                                ScaleY="0.75"
-                                                                TranslateY="-18"
-                                                                TranslateX="-18" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
+                                    <Border x:Name="CheckBoxBorder"
+                                            Margin="-2"
+                                            BorderBrush="{StaticResource PhoneAccentBrush}"
+                                            BorderThickness="2">
+                                        <ContentControl x:Name="CheckIcon"
+                                                        Style="{StaticResource CheckIconStyle}"
+                                                        Foreground="{StaticResource SubtleBrush}"
+                                                        Opacity="0"
+                                                        MaxWidth="0"
+                                                        MaxHeight="0">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.75"
+                                                                    ScaleY="0.75"
+                                                                    TranslateY="-18"
+                                                                    TranslateX="-18" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
+                                    </Border>
                                 </Border>
 
                                 <!--Text-->
@@ -847,17 +835,20 @@
                                             <VisualTransition To="Checked"
                                                               GeneratedDuration="0:0:0.25" />
                                         </VisualStateGroup.Transitions>
-                                        <VisualState x:Name="Unchecked" />
+                                        <VisualState x:Name="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Duration="0"
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckIcon"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="1" />
-                                                <ColorAnimation Storyboard.TargetName="CheckBoxBorder"
-                                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                Duration="0"
-                                                                To="{StaticResource PhoneAccentColor}" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                  Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
                                                                  Duration="0"
@@ -878,33 +869,32 @@
                                 </VisualStateManager.VisualStateGroups>
 
                                 <!--CheckBox-->
-                                <Border x:Name="CheckBoxBorder"
-                                        Width="50"
+                                <Border Width="50"
                                         Height="50"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{StaticResource CheckBoxBackgroundBrush}"
+                                        BorderThickness="2"
+                                        BorderBrush="{StaticResource CheckBoxBorderBrush}"
                                         HorizontalAlignment="Left">
-                                    <Border.BorderBrush>
-                                        <SolidColorBrush Color="{StaticResource NormalColor}"
-                                                         Opacity="0.45" />
-                                    </Border.BorderBrush>
-                                    <Border.Background>
-                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                         Opacity="0.27" />
-                                    </Border.Background>
+                                    <Border x:Name="CheckBoxBorder"
+                                            Margin="-2"
+                                            BorderBrush="{StaticResource PhoneAccentBrush}"
+                                            BorderThickness="2">
 
-                                    <ContentControl x:Name="CheckIcon"
-                                                    Style="{StaticResource CheckIconStyle}"
-                                                    Foreground="{StaticResource SubtleBrush}"
-                                                    Opacity="0"
-                                                    MaxWidth="0"
-                                                    MaxHeight="0">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.85"
-                                                                ScaleY="0.85"
-                                                                TranslateY="-20.4"
-                                                                TranslateX="-20.4" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
+                                        <ContentControl x:Name="CheckIcon"
+                                                        Style="{StaticResource CheckIconStyle}"
+                                                        Foreground="{StaticResource SubtleBrush}"
+                                                        Opacity="0"
+                                                        MaxWidth="0"
+                                                        MaxHeight="0">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.85"
+                                                                    ScaleY="0.85"
+                                                                    TranslateY="-20.4"
+                                                                    TranslateX="-20.4" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
+
+                                    </Border>
                                 </Border>
 
                                 <!--Text-->
