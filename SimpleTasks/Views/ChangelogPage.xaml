@@ -1,0 +1,88 @@
+﻿<controls:BasePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                   xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   xmlns:sample="clr-namespace:Expression.Blend.SampleData.AboutDataSource"
+                   x:Class="SimpleTasks.Views.ChangelogPage"
+                   Style="{StaticResource BasePageStyle}"
+                   mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot"
+          Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Changelog header-->
+        <TextBlock Grid.Row="0"
+                   Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
+                   Style="{StaticResource AccentTextStyle}"
+                   FontWeight="Normal"
+                   FontSize="60"
+                   Margin="24,24,0,0" />
+
+        <!--Changelog-->
+        <ScrollViewer Grid.Row="1"
+                      Margin="24,8,24,0">
+
+            <phone:LongListSelector ItemsSource="{Binding}"
+                                    DataContext="{Binding ChangelogList}"
+                                    d:DataContext="{d:DesignData /SampleData/AboutDataSource/ChangelogListSampleData.xaml}"
+                                    IsGroupingEnabled="True"
+                                    Margin="0,0,0,48"
+                                    LayoutMode="List">
+                <phone:LongListSelector.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,0,0,0">
+                            <!--Číslo verze-->
+                            <TextBlock Text="{Binding Version}"
+                                       Style="{StaticResource AccentTextStyle}"
+                                       FontWeight="Normal"
+                                       FontSize="42.667" />
+                            <!--Datum-->
+                            <TextBlock Text="{Binding Date, StringFormat=d}"
+                                       Style="{StaticResource SubtleTextStyle}"
+                                       FontSize="22.667"
+                                       Margin="5,0,0,4"
+                                       VerticalAlignment="Bottom" />
+                        </StackPanel>
+                    </DataTemplate>
+                </phone:LongListSelector.GroupHeaderTemplate>
+                <phone:LongListSelector.GroupFooterTemplate>
+                    <DataTemplate>
+                        <Grid Height="20" />
+                    </DataTemplate>
+                </phone:LongListSelector.GroupFooterTemplate>
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource NormalTextStyle}"
+                                       Text="•"
+                                       FontSize="20"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,10,0" />
+                            <!--Text-->
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Text}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       FontSize="20"
+                                       TextWrapping="Wrap" />
+                        </Grid>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
+
+        </ScrollViewer>
+    </Grid>
+
+</controls:BasePage>

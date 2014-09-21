@@ -61,6 +61,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        public static string AboutAuthor {
+            get {
+                return ResourceManager.GetString("AboutAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to contact us.
         /// </summary>
         public static string AboutContactUs {
@@ -88,7 +97,16 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version {0}.
+        ///   Looks up a localized string similar to Translation.
+        /// </summary>
+        public static string AboutTranslation {
+            get {
+                return ResourceManager.GetString("AboutTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string AboutVersion {
             get {
@@ -369,13 +387,18 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.5.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-09-12&quot;,
+        ///    &quot;4.6.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-09-22&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;quick add live tile (pin to start from settings page)&quot;,
-        ///            &quot;option to hide quick add text box on main page&quot;,
-        ///            &quot;task list on small tile is back (see settings)&quot;,
-        ///            &quot;German language&quot;
+        ///            &quot;Italian language&quot;,
+        ///            &quot;ability to set light or dark theme&quot;
+        ///        ]
+        ///    },
+        ///    &quot;4.6.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-09-22&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;Italian language&quot;,
+        ///            &quot;ability to set light or dark theme&quot;
         ///        ]
         ///    },
         ///    &quot;4.5.0&quot;: {
@@ -383,11 +406,20 @@ namespace SimpleTasks.Resources {
         ///        &quot;items&quot;: [
         ///            &quot;quick add live tile&quot;,
         ///            &quot;option to hide quick add text box on main page&quot;,
-        ///            &quot;task list on sma [rest of string was truncated]&quot;;.
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
                 return ResourceManager.GetString("ChangelogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show changelog.
+        /// </summary>
+        public static string ChangelogShow {
+            get {
+                return ResourceManager.GetString("ChangelogShow", resourceCulture);
             }
         }
         
@@ -1419,7 +1451,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to pin to start.
+        ///   Looks up a localized string similar to Pin to start.
         /// </summary>
         public static string TileForQuickAddPinButton {
             get {
@@ -1428,7 +1460,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to unpin.
+        ///   Looks up a localized string similar to Unpin.
         /// </summary>
         public static string TileForQuickAddUnpinButton {
             get {
@@ -1649,6 +1681,15 @@ namespace SimpleTasks.Resources {
         public static string UnknownError {
             get {
                 return ResourceManager.GetString("UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        public static string VersionFormat {
+            get {
+                return ResourceManager.GetString("VersionFormat", resourceCulture);
             }
         }
         

@@ -277,8 +277,7 @@
     <comment>Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
-    <comment>Version {VersionNumber}</comment>
+    <value>Version</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>due date</value>
@@ -670,10 +669,10 @@ It's still in beta.</value>
     <value>quick add tile</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
-    <value>pin to start</value>
+    <value>Pin to start</value>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
-    <value>unpin</value>
+    <value>Unpin</value>
   </data>
   <data name="QuickAddTileTitle" xml:space="preserve">
     <value>New task</value>
@@ -696,5 +695,18 @@ It's still in beta.</value>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>theme</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="AboutTranslation" xml:space="preserve">
+    <value>Translation</value>
+  </data>
+  <data name="VersionFormat" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>Version {VersionNumber}</comment>
+  </data>
+  <data name="ChangelogShow" xml:space="preserve">
+    <value>Show changelog</value>
   </data>
 </root>

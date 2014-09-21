@@ -27,7 +27,6 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
 
-            ChangelogList = App.LoadChangelog();
             DataContext = this;
 
             ApplicationBar = ThemeHelper.CreateApplicationBar();
@@ -48,13 +47,11 @@ namespace SimpleTasks.Views
         }
 
         #region Propertie
-        public string VersionString { get { return string.Format(AppResources.AboutVersion, App.VersionString); } }
+        public string VersionString { get { return App.VersionString; } }
 
         public string Author { get { return AppInfo.Author; } }
 
         public string AppName { get { return AppInfo.Name; } }
-
-        public ChangelogList ChangelogList { get; set; }
         #endregion
 
         #region Rate
@@ -81,5 +78,12 @@ namespace SimpleTasks.Views
             marketplaceDetailTask.Show();
         }
         #endregion
+
+        #region Changelog
+        private void Changelog_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Navigate(typeof(ChangelogPage));
+        }
+        #endregion // end of Changelog
     }
 }

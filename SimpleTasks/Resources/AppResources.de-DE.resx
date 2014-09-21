@@ -277,8 +277,8 @@
     <comment>Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
-    <comment>Version {VersionNumber}</comment>
+    <value>Version</value>
+    <comment></comment>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Fälligkeit</value>
@@ -666,15 +666,15 @@ Diese Funktion ist noch im Betastadium.</value>
     <value>Livetile für schnelles zufügen</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
-    <value>an Startbildschirm anheften</value>
-  </data>
+    <value>An Startbildschirm anheften</value>
+  <comment></comment></data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
-    <value>von Startbildschirm lösen</value>
-  </data>
+    <value>Von Startbildschirm lösen</value>
+  <comment></comment></data>
   <data name="QuickAddTileTitle" xml:space="preserve">
     <value>Neue Aufgabe</value>
   </data>
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
     <value>Wenn nicht aktiviert, Aufgabenliste statt Anzahl auf kleinem Livetile zeigen.</value>
   </data>
-</root>
+<data name="VersionFormat" xml:space="preserve"><value>Version {0}</value><comment>Version {VersionNumber}</comment></data><data name="ChangelogShow" xml:space="preserve"><value>Zeigen Änderungshistorie</value></data><data name="AboutAuthor" xml:space="preserve"><value>Autor</value></data><data name="AboutTranslation" xml:space="preserve"><value>Übersetzung</value></data><data name="SettingsThemeSystem" xml:space="preserve"><value>System ({0})</value><comment>{0} will be replaced with dark or light</comment></data><data name="SettingsThemeTitle" xml:space="preserve"><value>Thema</value></data><data name="SettingsThemeNote" xml:space="preserve"><value>Ein Neustart der App ist nötig um diese Einstellung zu übernehmen.</value></data><data name="SettingsThemeLight" xml:space="preserve"><value>hell</value></data><data name="SettingsThemeDark" xml:space="preserve"><value>dunkel</value></data></root>

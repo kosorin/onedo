@@ -558,8 +558,8 @@
     <value>aggiungi box impegno rapido</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
-    <value>pin sulla home screen</value>
-  </data>
+    <value>Pin sulla home screen</value>
+  <comment></comment></data>
   <data name="QuickAddTileTitle" xml:space="preserve">
     <value>Nuovo impegno</value>
   </data>
@@ -567,15 +567,15 @@
     <value>Se non selezionato, mostra una lista degli impegni in una live tile più piccola al posto del numero degli impegni.</value>
   </data>
   <data name="AppBarAbout" xml:space="preserve">
-    <value>about</value>
+    <value>informazioni su</value>
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
     <value>Feedback for {0} {1}</value>
     <comment>Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Versione {0}</value>
-    <comment>Version {VersionNumber}</comment>
+    <value>Versione</value>
+    <comment></comment>
   </data>
   <data name="SettingsPinTile" xml:space="preserve">
     <value>Nell'elenco delle app, tieni premuta {0} l'app. Poi, premi "pin su start".</value>
@@ -675,7 +675,7 @@ E' ancora una funzione beta.</value>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Non pinnare</value>
-  </data>
+  <comment></comment></data>
   <data name="SettingsThemeSystem" xml:space="preserve">
     <value>sistema ({0})</value>
     <comment>{0} will be replaced with dark or light</comment>
@@ -692,4 +692,4 @@ E' ancora una funzione beta.</value>
   <data name="SettingsThemeDark" xml:space="preserve">
     <value>scuro</value>
   </data>
-</root>
+<data name="VersionFormat" xml:space="preserve"><value>Versione {0}</value><comment>Version {VersionNumber}</comment></data><data name="ChangelogShow" xml:space="preserve"><value>Mostra changelog</value></data><data name="AboutAuthor" xml:space="preserve"><value>Autore</value></data><data name="AboutTranslation" xml:space="preserve"><value>Traduzione</value></data></root>

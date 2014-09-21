@@ -214,10 +214,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
           </trans-unit>
         <trans-unit id="Resx/AboutVersion" translate="yes" xml:space="preserve">
-          <source>Version {0}</source>
-          <target state="signed-off">Version {0}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
-          </trans-unit>
+          <source>Version</source>
+          <target state="signed-off">Version</target></trans-unit>
         <trans-unit id="Resx/DueDate" translate="yes" xml:space="preserve">
           <source>due date</source>
           <target state="signed-off">Fälligkeit</target>
@@ -723,13 +721,11 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
           <target state="signed-off">Livetile für schnelles zufügen</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
-          <source>pin to start</source>
-          <target state="signed-off">an Startbildschirm anheften</target>
-        </trans-unit>
+          <source>Pin to start</source>
+          <target state="signed-off">An Startbildschirm anheften</target></trans-unit>
         <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
-          <source>unpin</source>
-          <target state="signed-off">von Startbildschirm lösen</target>
-        </trans-unit>
+          <source>Unpin</source>
+          <target state="signed-off">Von Startbildschirm lösen</target></trans-unit>
         <trans-unit id="Resx/QuickAddTileTitle" translate="yes" xml:space="preserve">
           <source>New task</source>
           <target state="signed-off">Neue Aufgabe</target>
@@ -740,23 +736,41 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
           <source>system ({0})</source>
-          <target state="new">system ({0})</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note></trans-unit>
+          <target state="signed-off">System ({0})</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note>
+          </trans-unit>
         <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target state="new">theme</target>
+          <target state="signed-off">Thema</target>
+        </trans-unit>
+        <trans-unit id="Resx/VersionFormat" translate="yes" xml:space="preserve">
+          <source>Version {0}</source>
+          <target state="signed-off">Version {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
+          </trans-unit>
+        <trans-unit id="Resx/ChangelogShow" translate="yes" xml:space="preserve">
+          <source>Show changelog</source>
+          <target state="signed-off">Zeigen Änderungshistorie</target>
+        </trans-unit>
+        <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
+          <source>Author</source>
+          <target state="signed-off">Autor</target>
+        </trans-unit>
+        <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
+          <source>Translation</source>
+          <target state="signed-off">Übersetzung</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
-          <target state="new">Application restart is required for this setting to take effect.</target>
+          <target state="signed-off">Ein Neustart der App ist nötig um diese Einstellung zu übernehmen.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeLight" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target state="new">light</target>
+          <target state="signed-off">hell</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeDark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target state="new">dark</target>
+          <target state="signed-off">dunkel</target>
         </trans-unit>
       </group>
     </body>

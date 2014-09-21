@@ -176,6 +176,9 @@
     <Compile Include="Views\BackupPage.xaml.cs">
       <DependentUpon>BackupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChangelogPage.xaml.cs">
+      <DependentUpon>ChangelogPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DatePickerPage.xaml.cs">
       <DependentUpon>DatePickerPage.xaml</DependentUpon>
     </Compile>
@@ -358,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BackupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangelogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

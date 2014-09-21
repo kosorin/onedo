@@ -213,10 +213,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
-          <source>Version {0}</source>
-          <target state="signed-off" state-qualifier="tm-suggestion">Verzia {0}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
-          </trans-unit>
+          <source>Version</source>
+          <target state="signed-off">Verzia</target></trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Predvolený čas</target>
@@ -493,9 +491,8 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <target state="signed-off">dlaždica pre rýchle pridanie úlohy</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
-          <source>unpin</source>
-          <target state="signed-off">zrušiť pripnutie</target>
-        </trans-unit>
+          <source>Unpin</source>
+          <target state="signed-off">Zrušiť pripnutie</target></trans-unit>
         <trans-unit id="Resx/QuickAddTileTitle" translate="yes" xml:space="preserve">
           <source>New task</source>
           <target state="signed-off">Nová úloha</target>
@@ -513,6 +510,22 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <source>theme</source>
           <target state="signed-off">motív</target>
         </trans-unit>
+        <trans-unit id="Resx/VersionFormat" translate="yes" xml:space="preserve">
+          <source>Version {0}</source>
+          <target state="signed-off">Verzia {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
+          </trans-unit>
+        <trans-unit id="Resx/ChangelogShow" translate="yes" xml:space="preserve">
+          <source>Show changelog</source>
+          <target state="signed-off">Zobraziť zoznam zmien</target></trans-unit>
+        <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
+          <source>Author</source>
+          <target state="signed-off">Autor</target>
+        </trans-unit>
+        <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
+          <source>Translation</source>
+          <target state="signed-off">Preklad</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
           <target state="signed-off">Aby sa prejavila zmena tohto nastavenia, je potrebné reštartovať aplikáciu.</target>
@@ -526,9 +539,8 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <target state="signed-off">tmavý</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
-          <source>pin to start</source>
-          <target state="signed-off">pripnúť na domovskú obrazovku</target>
-        </trans-unit>
+          <source>Pin to start</source>
+          <target state="signed-off">Pripnúť na domovskú obrazovku</target></trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>show task count</source>
           <target state="signed-off">zobraziť počet úloh</target>

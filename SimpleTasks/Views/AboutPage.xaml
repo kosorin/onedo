@@ -15,15 +15,37 @@
     <controls:BasePage.Resources>
         <sample:AboutDataSource x:Key="AboutDataSource"
                                 d:IsDataSource="True" />
+
+        <Style x:Key="AboutHeaderTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource PhoneAccentBrush}" />
+            <Setter Property="FontSize"
+                    Value="24" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+        </Style>
+
+        <Style x:Key="AboutItemTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Margin"
+                    Value="0,0,0,20" />
+        </Style>
+        
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
         <ScrollViewer>
-            <StackPanel Margin="0,50,0,0">
+            <StackPanel Margin="24,0,24,0">
 
                 <!--Logo-->
-                <Grid HorizontalAlignment="Center">
+                <Grid Margin="0,48,0,48"
+                      HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <Border Width="120"
                                 Height="90">
@@ -68,81 +90,42 @@
                                 </Path>
                             </Canvas>
                         </Border>
-                        <TextBlock Text="{Binding AppName, FallbackValue=OneDó}"
+                        <TextBlock Text="{Binding AppName, FallbackValue=ÖńěĎó}"
                                    Style="{StaticResource NormalTextStyle}"
                                    FontSize="72"
                                    Margin="10,0,12,10" />
                     </StackPanel>
-                    <TextBlock Style="{StaticResource SubtleTextStyle}"
-                               FontWeight="Normal"
-                               FontSize="18"
-                               VerticalAlignment="Bottom"
-                               Margin="0,0,15,0"
-                               HorizontalAlignment="Right">
-                        <Run Text="by " /><Run Text="{Binding Author, FallbackValue='Dávid Kosorin'}" />
-                    </TextBlock>
                 </Grid>
 
-                <!--Version-->
-                <TextBlock Text="{Binding VersionString}"
-                           Style="{StaticResource SubtleTextStyle}"
-                           HorizontalAlignment="Center"
-                           Margin="0,20,0,10" />
+                <!--Autor-->
+                <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                           Text="{Binding LocalizedResources.AboutAuthor, Source={StaticResource LocalizedStrings}}" />
+                <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                           Text="{Binding Author, FallbackValue='Dávid Kosorin'}" />
 
-                <!--Changelog header-->
-                <TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
-                           Style="{StaticResource AccentTextStyle}"
-                           FontWeight="Normal"
-                           FontSize="56"
-                           Margin="24,20,0,-20" />
+                <!--Verze-->
+                <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                           Text="{Binding LocalizedResources.AboutVersion, Source={StaticResource LocalizedStrings}}" />
+                <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                           Text="{Binding VersionString}" />
+
+                <!--Překlad-->
+                <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                           Text="{Binding LocalizedResources.AboutTranslation, Source={StaticResource LocalizedStrings}}" />
+                <TextBlock Style="{StaticResource AboutItemTextStyle}">
+                        <Run>German</Run><Run Text=" - Jürgen Bauer"
+                                              Foreground="{StaticResource SlightBrush}" /><LineBreak />
+                        <Run>Italian</Run><Run Text=" - Roc Lat"
+                                               Foreground="{StaticResource SlightBrush}" />
+                </TextBlock>
 
                 <!--Changelog-->
-                <phone:LongListSelector ItemsSource="{Binding}"
-                                        DataContext="{Binding ChangelogList}"
-                                        d:DataContext="{d:DesignData /SampleData/AboutDataSource/ChangelogListSampleData.xaml}"
-                                        IsGroupingEnabled="True"
-                                        Margin="24,0,24,50"
-                                        LayoutMode="List">
-                    <phone:LongListSelector.GroupHeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="0,20,0,0">
-                                <!--Číslo verze-->
-                                <TextBlock Text="{Binding Version}"
-                                           Style="{StaticResource AccentTextStyle}"
-                                           FontWeight="Normal"
-                                           FontSize="42.667" />
-                                <!--Datum-->
-                                <TextBlock Text="{Binding Date, StringFormat=d}"
-                                           Style="{StaticResource SubtleTextStyle}"
-                                           FontSize="22.667"
-                                           Margin="5,0,0,4"
-                                           VerticalAlignment="Bottom" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </phone:LongListSelector.GroupHeaderTemplate>
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Style="{StaticResource NormalTextStyle}"
-                                           Text="•"
-                                           FontSize="20"
-                                           HorizontalAlignment="Right"
-                                           Margin="0,0,10,0" />
-                                <!--Text-->
-                                <TextBlock Grid.Column="1"
-                                           Text="{Binding Text}"
-                                           Style="{StaticResource NormalTextStyle}"
-                                           FontSize="20"
-                                           TextWrapping="Wrap" />
-                            </Grid>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
+                <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                           Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+                <Button Style="{StaticResource ButtonStyle}"
+                        Content="{Binding LocalizedResources.ChangelogShow, Source={StaticResource LocalizedStrings}}"
+                        Margin="0,4,0,0"
+                        Tap="Changelog_Tap" />
 
             </StackPanel>
         </ScrollViewer>

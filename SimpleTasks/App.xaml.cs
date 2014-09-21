@@ -80,7 +80,7 @@ namespace SimpleTasks
                 SimpleTasks.Models.ChangelogCategory changelog = App.LoadWhatsNew();
                 if (changelog != null)
                 {
-                    string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.AboutVersion, changelog.Version), changelog.Date.ToShortDateString());
+                    string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.VersionFormat, changelog.Version), changelog.Date.ToShortDateString());
                     foreach (SimpleTasks.Models.ChangelogItem item in changelog)
                     {
                         text += "  • " + item.Text + System.Environment.NewLine;

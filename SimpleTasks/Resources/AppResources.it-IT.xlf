@@ -23,7 +23,7 @@
           </trans-unit>
         <trans-unit id="Resx/AppBarAbout" translate="yes" xml:space="preserve">
           <source>about</source>
-          <target state="signed-off">about</target>
+          <target state="signed-off">informazioni su</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarSave" translate="yes" xml:space="preserve">
           <source>save</source>
@@ -214,10 +214,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
           </trans-unit>
         <trans-unit id="Resx/AboutVersion" translate="yes" xml:space="preserve">
-          <source>Version {0}</source>
-          <target state="signed-off">Versione {0}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
-          </trans-unit>
+          <source>Version</source>
+          <target state="signed-off">Versione</target></trans-unit>
         <trans-unit id="Resx/DueDate" translate="yes" xml:space="preserve">
           <source>due date</source>
           <target state="signed-off">data impegno</target>
@@ -722,13 +720,11 @@ E' ancora una funzione beta.</target></trans-unit>
           <target state="signed-off">aggiungi box impegno rapido</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
-          <source>pin to start</source>
-          <target state="signed-off">pin sulla home screen</target>
-        </trans-unit>
+          <source>Pin to start</source>
+          <target state="signed-off">Pin sulla home screen</target></trans-unit>
         <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
-          <source>unpin</source>
-          <target state="signed-off">Non pinnare</target>
-        </trans-unit>
+          <source>Unpin</source>
+          <target state="signed-off">Non pinnare</target></trans-unit>
         <trans-unit id="Resx/QuickAddTileTitle" translate="yes" xml:space="preserve">
           <source>New task</source>
           <target state="signed-off">Nuovo impegno</target>
@@ -745,6 +741,23 @@ E' ancora una funzione beta.</target></trans-unit>
         <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
           <source>theme</source>
           <target state="signed-off">tema</target>
+        </trans-unit>
+        <trans-unit id="Resx/VersionFormat" translate="yes" xml:space="preserve">
+          <source>Version {0}</source>
+          <target state="signed-off">Versione {0}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
+          </trans-unit>
+        <trans-unit id="Resx/ChangelogShow" translate="yes" xml:space="preserve">
+          <source>Show changelog</source>
+          <target state="signed-off">Mostra changelog</target>
+        </trans-unit>
+        <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
+          <source>Author</source>
+          <target state="signed-off">Autore</target>
+        </trans-unit>
+        <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
+          <source>Translation</source>
+          <target state="signed-off">Traduzione</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
