@@ -27,7 +27,6 @@
     <Color x:Key="NormalColor">#DE000000</Color>
     <Color x:Key="SlightColor">#99000000</Color>
     <Color x:Key="SubtleColor">#66000000</Color>
-    <Color x:Key="ChromeColor">#33000000</Color>
 
     <SolidColorBrush x:Key="BackgroundBrush"
                      Color="{StaticResource BackgroundColor}" />
@@ -37,8 +36,6 @@
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="SubtleBrush"
                      Color="{StaticResource SubtleColor}" />
-    <SolidColorBrush x:Key="ChromeBrush"
-                     Color="{StaticResource ChromeColor}" />
 
     <SolidColorBrush x:Key="LabelBrush"
                      Color="{StaticResource NormalColor}" />
