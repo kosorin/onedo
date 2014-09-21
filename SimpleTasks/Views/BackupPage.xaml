@@ -125,6 +125,7 @@
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
                                         <ContentControl Style="{StaticResource RefreshIconStyle}"
+                                                        Foreground="{StaticResource ButtonForegroundBrush}"
                                                         RenderTransformOrigin="0.5,0.5">
                                             <ContentControl.RenderTransform>
                                                 <CompositeTransform ScaleX="0.8"
