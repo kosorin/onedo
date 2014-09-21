@@ -24,24 +24,6 @@
             <Setter Property="Foreground"
                     Value="{StaticResource HelpBrush}" />
         </Style>
-
-        <Style x:Key="HelpRichTextStyle"
-               TargetType="RichTextBox">
-            <Setter Property="FontSize"
-                    Value="20" />
-            <Setter Property="TextWrapping"
-                    Value="Wrap" />
-            <Setter Property="FontSize"
-                    Value="20" />
-            <Setter Property="Foreground"
-                    Value="{StaticResource HelpBrush}" />
-            <Setter Property="FontFamily"
-                    Value="Segoe WP" />
-            <Setter Property="FontWeight"
-                    Value="Light" />
-            <Setter Property="Padding"
-                    Value="-12,0" />
-        </Style>
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
@@ -216,13 +198,8 @@
                                       Style="{StaticResource SwitchStyle}"
                                       Checked="ToggleButton_Checked"
                                       Unchecked="ToggleButton_Unchecked" />
-                        <RichTextBox Style="{StaticResource HelpRichTextStyle}">
-                            <Paragraph>
-                                <Run Text="{Binding LocalizedResources.SettingsFeedbackHelp, Source={StaticResource LocalizedStrings}}" />
-                                <Run Text=" " />
-                                <Hyperlink Click="Hyperlink_Click">kosorin@outlook.com</Hyperlink>
-                            </Paragraph>
-                        </RichTextBox>
+                        <TextBlock Text="{Binding LocalizedResources.SettingsFeedbackHelp, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
 
                     </StackPanel>
                 </ScrollViewer>
