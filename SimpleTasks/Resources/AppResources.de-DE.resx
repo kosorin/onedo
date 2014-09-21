@@ -125,10 +125,556 @@
     <value>de-DE</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ChangelogFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Changelog.de-DE.txt;System.String, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e;windows-1250</value>
+  <data name="AppBarNew" xml:space="preserve">
+    <value>neu</value>
+    <comment>new task</comment>
   </data>
-<data name="AppBarNew" xml:space="preserve"><value>neu</value><comment>new task</comment></data><data name="AppBarAbout" xml:space="preserve"><value>über</value></data><data name="AppBarSave" xml:space="preserve"><value>speichern</value><comment>save task</comment></data><data name="ChooseDate" xml:space="preserve"><value>DATUM EINSTELLEN</value></data><data name="DateCustomDue" xml:space="preserve"><value>Fälligkeitsdatum</value></data><data name="DateLater" xml:space="preserve"><value>später</value></data><data name="DateNextMonth" xml:space="preserve"><value>nächsten Monat</value></data><data name="DateNextWeek" xml:space="preserve"><value>nächste Woche</value></data><data name="DateNoDue" xml:space="preserve"><value>ohne Fälligkeit</value></data><data name="DateOverdue" xml:space="preserve"><value>überfällig</value></data><data name="DateThisMonth" xml:space="preserve"><value>diesen Monat</value></data><data name="DateThisWeek" xml:space="preserve"><value>diese Woche</value></data><data name="DateToday" xml:space="preserve"><value>heute</value></data><data name="DateTomorrow" xml:space="preserve"><value>morgen</value></data><data name="NoTasks" xml:space="preserve"><value>keine Aufgaben</value></data><data name="PriorityHigh" xml:space="preserve"><value>hohe Priorität</value></data><data name="PriorityNormal" xml:space="preserve"><value>normale Priorität</value></data><data name="AppBarComplete" xml:space="preserve"><value>erledigt</value><comment>complete task</comment></data><data name="PeriodicTaskDescription" xml:space="preserve"><value>Aktualisiere Livetile.</value><comment>Info about background task agent</comment></data><data name="AppBarActivate" xml:space="preserve"><value>aktivieren</value><comment>activate task</comment></data><data name="AppBarDeleteCompleted" xml:space="preserve"><value>erledigte Aufgaben löschen</value></data><data name="AppBarDelete" xml:space="preserve"><value>löschen</value><comment>delete task</comment></data><data name="AppBarSettings" xml:space="preserve"><value>Einstellungen</value></data><data name="DateCompleted" xml:space="preserve"><value>erledigt</value><comment>completed tasks</comment></data><data name="DeleteTaskCaption" xml:space="preserve"><value>Aufgabe löschen</value></data><data name="DeleteTask" xml:space="preserve"><value>Soll diese Aufgabe wirklich gelöscht werden?</value></data><data name="DeleteTaskYes" xml:space="preserve"><value>löschen</value><comment>delete confirmation</comment></data><data name="DeleteTaskNo" xml:space="preserve"><value>abbrechen</value><comment>cancel delete confirmation</comment></data><data name="AboutContactUs" xml:space="preserve"><value>kontaktieren</value><comment>AboutPage; AppBar</comment></data><data name="AboutRateReview" xml:space="preserve"><value>bewerten</value><comment>AboutPage; AppBar</comment></data><data name="SettingsDefaultDate" xml:space="preserve"><value>Standardfälligkeit</value></data><data name="SettingsDeleteAfterOneDay" xml:space="preserve"><value>nach 1 Tag</value></data><data name="SettingsDeleteAfterOneWeek" xml:space="preserve"><value>nach 1 Woche</value></data><data name="SettingsDeleteAfterThreeDays" xml:space="preserve"><value>nach 3 Tagen</value></data><data name="SettingsDeleteAfterTwoDays" xml:space="preserve"><value>nach 2 Tagen</value></data><data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve"><value>nach 2 Wochen</value></data><data name="SettingsDeleteCompletedTasks" xml:space="preserve"><value>Lösche erledigte Aufgaben</value></data><data name="SettingsDeleteCompletedTasksDays" xml:space="preserve"><value>Löschen nach</value></data><data name="SettingsFirstDayOfWeek" xml:space="preserve"><value>Erster Tag der Woche</value></data><data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve"><value>ersten Tag der Woche auswählen</value></data><data name="SettingsGeneral" xml:space="preserve"><value>allgemein</value><comment>general pivot in settings</comment></data><data name="SettingsTitle" xml:space="preserve"><value>EINSTELLUNGEN</value></data><data name="AppBarPinTile" xml:space="preserve"><value>Livetile hinzufügen</value></data><data name="AppBarUnpinTile" xml:space="preserve"><value>Livetile entfernen</value></data><data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve"><value>Aufgaben werden immer automatisch bei Programmstart gelöscht.</value></data><data name="AboutEmailSubject" xml:space="preserve"><value>Feedback zu {0} {1}</value><comment>Feedback for {AppliactionName} {Version}</comment></data><data name="AboutVersion" xml:space="preserve"><value>Version {0}</value><comment>Version {VersionNumber}</comment></data><data name="DueDate" xml:space="preserve"><value>Fälligkeit</value></data><data name="PriorityLow" xml:space="preserve"><value>niedrige Priorität</value></data><data name="Reminder" xml:space="preserve"><value>Erinnerung</value></data><data name="SettingsDefaultTime" xml:space="preserve"><value>Standardzeit</value></data><data name="AppBarOk" xml:space="preserve"><value>OK</value></data><data name="AppBarDeleteAll" xml:space="preserve"><value>alle Aufgaben löschen</value></data><data name="DeleteAllTasks" xml:space="preserve"><value>Sollen wirklich alle Aufgaben gelöscht werden?</value></data><data name="DeleteAllTasksCaption" xml:space="preserve"><value>Alle Aufgaben löschen</value></data><data name="DateSomeday" xml:space="preserve"><value>irgendwann</value></data><data name="DateUpcoming" xml:space="preserve"><value>demnächst</value></data><data name="SettingsPinTile" xml:space="preserve"><value>In der Appliste die {0} App drücken und halten um sie zum Startbildschirm hinzuzufügen.</value><comment>{0} is application name</comment></data><data name="AppBarCancel" xml:space="preserve"><value>abbrechen</value></data><data name="SettingsEnableTile" xml:space="preserve"><value>Livetile aktivieren</value></data><data name="SettingsTile" xml:space="preserve"><value>Livetiles</value></data><data name="SettingsDeleteNever" xml:space="preserve"><value>niemals</value></data><data name="SettingsDeleteWhenStarts" xml:space="preserve"><value>bei Schließen der App</value></data><data name="Detail" xml:space="preserve"><value>Details</value></data><data name="Title" xml:space="preserve"><value>Titel</value></data><data name="AppBarPin" xml:space="preserve"><value>hinzufügen</value></data><data name="AppBarUnpin" xml:space="preserve"><value>löschen</value></data><data name="AppBarDone" xml:space="preserve"><value>fertig</value></data><data name="ChooseReminderTime" xml:space="preserve"><value>ERINNERUNG EINSTELLEN</value></data><data name="SettingsUnpinCompleted" xml:space="preserve"><value>Livetile bei Erledigung der Aufgabe entfernen</value></data><data name="AppBarAddBullet" xml:space="preserve"><value>Punkt hinzufügen</value></data><data name="BulletText" xml:space="preserve"><value>Punkt</value></data><data name="Changelog" xml:space="preserve"><value>Änderungshistorie</value></data><data name="ChooseTime" xml:space="preserve"><value>ZEIT EINSTELLEN</value></data><data name="TimeAfternoon" xml:space="preserve"><value>nachmittags</value><comment>3 PM (15:00)</comment></data><data name="TimeEvening" xml:space="preserve"><value>abends</value><comment>7 PM (19:00)</comment></data><data name="TimeLateMorning" xml:space="preserve"><value>später morgen</value><comment>10 AM (10:00)</comment></data><data name="TimeMorning" xml:space="preserve"><value>morgens</value><comment>7 AM (7:00)</comment></data><data name="TimeNight" xml:space="preserve"><value>nachts</value><comment>10 PM (22:00)</comment></data><data name="TimeNoon" xml:space="preserve"><value>mittags</value><comment>12 PM (12:00)</comment></data><data name="NoReminder" xml:space="preserve"><value>keine Erinnerung</value></data><data name="DaysLabel" xml:space="preserve"><value>Tage</value></data><data name="HoursLabel" xml:space="preserve"><value>Stunden</value></data><data name="MinutesLabel" xml:space="preserve"><value>Minuten</value></data><data name="DateLastMonth" xml:space="preserve"><value>letzten Monat</value></data><data name="DateLastWeek" xml:space="preserve"><value>letzte Woche</value></data><data name="DateYesterday" xml:space="preserve"><value>gestern</value></data><data name="DateTimeDaysAbbr" xml:space="preserve"><value>d</value><comment>1 letter abbreviation for days</comment></data><data name="DateTimeHoursAbbr" xml:space="preserve"><value>h</value><comment>1 letter abbreviation for hours</comment></data><data name="DateTimeMinutesAbbr" xml:space="preserve"><value>m</value><comment>1 letter abbreviation for minutes</comment></data><data name="QuickAddLabel" xml:space="preserve"><value>neue Aufgabe zufügen</value></data><data name="ReminderBeforeDueDateText" xml:space="preserve"><value>vor Fälligkeitsdatum</value></data><data name="Time15mins" xml:space="preserve"><value>15 Minuten</value></data><data name="Time18hours" xml:space="preserve"><value>18 Stunden</value></data><data name="Time1day" xml:space="preserve"><value>1 Tag</value></data><data name="Time1hour" xml:space="preserve"><value>1 Stunde</value></data><data name="Time1week" xml:space="preserve"><value>1 Woche</value></data><data name="Time30mins" xml:space="preserve"><value>30 Minuten</value></data><data name="Time5mins" xml:space="preserve"><value>5 Minuten</value></data><data name="TimeZero" xml:space="preserve"><value>zur Fälligkeitszeit</value></data><data name="Days1" xml:space="preserve"><value>{0} Tag</value><comment>1 day</comment></data><data name="Days2To4" xml:space="preserve"><value>{0} Tage</value><comment>2-4 days</comment></data><data name="Days5AndMore" xml:space="preserve"><value>{0} Tage</value><comment>5+ days</comment></data><data name="Hours1" xml:space="preserve"><value>{0} Stunde</value><comment>1 hour</comment></data><data name="Hours2To4" xml:space="preserve"><value>{0} Stunden</value><comment>2-4 hours</comment></data><data name="Hours5AndMore" xml:space="preserve"><value>{0} Stunden</value><comment>5+ hours</comment></data><data name="Minutes1" xml:space="preserve"><value>{0} Minute</value><comment>1 minute</comment></data><data name="Minutes2To4" xml:space="preserve"><value>{0} Minuten</value><comment>2-4 minutes</comment></data><data name="Minutes5AndMore" xml:space="preserve"><value>{0} Minuten</value><comment>5+ minutes</comment></data><data name="Weeks1" xml:space="preserve"><value>{0} Woche</value><comment>1 week</comment></data><data name="Weeks2To4" xml:space="preserve"><value>{0} Wochen</value><comment>2-4 weeks</comment></data><data name="WhatsNew" xml:space="preserve"><value>Was ist neu</value></data><data name="Months1" xml:space="preserve"><value>{0} Monat</value><comment>1 month</comment></data><data name="Months2To4" xml:space="preserve"><value>{0} Monate</value><comment>2-4 months</comment></data><data name="AppBarAddSubtask" xml:space="preserve"><value>zufügen</value></data><data name="SubtaskAdd" xml:space="preserve"><value>Unteraufgabe hinzufügen</value></data><data name="SubtasksText" xml:space="preserve"><value>Unteraufgaben</value></data><data name="SubtaskText" xml:space="preserve"><value>Unteraufgabe</value></data><data name="TaskText" xml:space="preserve"><value>Aufgabe</value></data><data name="AppBarCompleteAllSubtasks" xml:space="preserve"><value>alle erledigen</value></data><data name="NoTasksHelpEnd" xml:space="preserve"><value>oder die Textbox um eine Aufgabe hinzuzufügen.</value><comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment></data><data name="NoTasksHelpStart" xml:space="preserve"><value>Tippe auf </value><comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment></data><data name="NoSubtasks" xml:space="preserve"><value>Keine Unteraufgaben</value></data><data name="TasksText" xml:space="preserve"><value>Aufgaben</value></data><data name="SettingsCompleteSubtasks" xml:space="preserve"><value>Unteraufgaben automatisch erledigen</value></data><data name="SettingsCompleteSubtasksDetail" xml:space="preserve"><value>Wenn eine Aufgabe als erledigt markiert wird, werden auch die Unteraufgaben als erledigt markiert.</value></data><data name="SettingsVibrate" xml:space="preserve"><value>Vibrieren</value></data><data name="AppBarDeleteAllSubtasks" xml:space="preserve"><value>alle löschen</value></data><data name="TileSettingsHideDate" xml:space="preserve"><value>Fälligkeit verstecken</value></data><data name="TileSettingsHideTitle" xml:space="preserve"><value>Titel verstecken</value></data><data name="TileSettingsShowCompletedSubtasks" xml:space="preserve"><value>erledigte Unteraufgaben zeigen</value></data><data name="TileSettingsTitleOnOneLine" xml:space="preserve"><value>Titel in einer Zeile</value></data><data name="TileSettingsBackgroundOpacity" xml:space="preserve"><value>Hintergrund Durchsichtigkeit</value></data><data name="TileSettingsLineHeight" xml:space="preserve"><value>Schriftgröße</value></data><data name="TileSettingsPreview" xml:space="preserve"><value>Vorschau</value></data><data name="AppBarTileSettings" xml:space="preserve"><value>Livetile einstellen</value></data><data name="TitleUntitled" xml:space="preserve"><value>Unbenannt</value></data><data name="SettingsFeedback" xml:space="preserve"><value>Feedback</value></data><data name="SettingsFeedbackHelp" xml:space="preserve"><value>Sende anonyme Nutzungsstatistiken zur Verbesserung dieser App. Statistiken helfen dem Entwickler häufig verwendete Funktionen zu identifizieren und zu verbessern. 
-Es werden keine persönlichen Daten gesammelt.</value><comment></comment></data><data name="EditText" xml:space="preserve"><value>Bearbeiten</value></data><data name="SettingsDefaultTaskTileSettings" xml:space="preserve"><value>Standardeinstellungen für Livetile</value></data><data name="SettingsHideTaskCheckBox" xml:space="preserve"><value>Checkbox verstecken</value></data><data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve"><value>Wischbewegung von rechts nach links zum Erledigen verwenden.</value></data><data name="BackupAndRestoreTitle" xml:space="preserve"><value>Sichern &amp; Wiederherstellen</value></data><data name="BackupText" xml:space="preserve"><value>Sichern</value></data><data name="RestoreText" xml:space="preserve"><value>Wiederherstellen</value></data><data name="SignIn" xml:space="preserve"><value>Anmelden</value></data><data name="SignOut" xml:space="preserve"><value>Abmelden</value></data><data name="SigningIn" xml:space="preserve"><value>Anmeldung läuft</value></data><data name="BackingUp" xml:space="preserve"><value>Sicherung läuft</value></data><data name="Restoring" xml:space="preserve"><value>Wiederherstellung läuft</value></data><data name="SelectBackup" xml:space="preserve"><value>Sicherung zum wiederherstellen wählen</value></data><data name="BackupDownloadingList" xml:space="preserve"><value>Lade Liste der Sicherungen</value></data><data name="NoBackups" xml:space="preserve"><value>Keine Sicherung</value></data><data name="UnknownError" xml:space="preserve"><value>Unbekannter Fehler.</value></data><data name="SignedInNo" xml:space="preserve"><value>Nicht angemeldet.</value></data><data name="SignedInYes" xml:space="preserve"><value>Angemeldet als {0}.</value><comment>{0} is user name</comment></data><data name="BackupLatest" xml:space="preserve"><value>aktuell</value></data><data name="RestoreWhatText" xml:space="preserve"><value>Datensätze zum wiederherstellen auswählen</value></data><data name="BackupAndRestoreHelpText" xml:space="preserve"><value>Für die Sicherung wird ein neuer Ordner "{0}" erstellt. Dieser kann beliebig verschoben werden. Bitte nicht umbenennen oder die enthaltenen Dateien modifizieren. 
-Diese Funktion ist noch im Betastadium.</value><comment></comment></data><data name="RestoreOk" xml:space="preserve"><value>Wiederherstellen erfolgreich.</value></data><data name="BackupOk" xml:space="preserve"><value>Sicherung erfolgreich.</value></data><data name="SettingsShowTaskCount" xml:space="preserve"><value>zeige Aufgabenanzahl</value></data><data name="SettingsSwapDateAndTitle" xml:space="preserve"><value>Titel und Datum bei großem Livetile vertauschen</value></data><data name="SettingsShowQuickAddTextBox" xml:space="preserve"><value>zeige "Aufgabe hinzufügen" Textbox auf der Hauptseite</value></data><data name="TileForQuickAddLabel" xml:space="preserve"><value>Livetile für schnelles zufügen</value></data><data name="TileForQuickAddPinButton" xml:space="preserve"><value>an Startbildschirm anheften</value></data><data name="TileForQuickAddUnpinButton" xml:space="preserve"><value>von Startbildschirm lösen</value></data><data name="QuickAddTileTitle" xml:space="preserve"><value>Neue Aufgabe</value></data><data name="SettingsShowTaskCountHelp" xml:space="preserve"><value>Wenn nicht aktiviert, Aufgabenliste statt Anzahl auf kleinem Livetile zeigen.</value></data></root>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>über</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>speichern</value>
+    <comment>save task</comment>
+  </data>
+  <data name="ChooseDate" xml:space="preserve">
+    <value>DATUM EINSTELLEN</value>
+  </data>
+  <data name="DateCustomDue" xml:space="preserve">
+    <value>Fälligkeitsdatum</value>
+  </data>
+  <data name="DateLater" xml:space="preserve">
+    <value>später</value>
+  </data>
+  <data name="DateNextMonth" xml:space="preserve">
+    <value>nächsten Monat</value>
+  </data>
+  <data name="DateNextWeek" xml:space="preserve">
+    <value>nächste Woche</value>
+  </data>
+  <data name="DateNoDue" xml:space="preserve">
+    <value>ohne Fälligkeit</value>
+  </data>
+  <data name="DateOverdue" xml:space="preserve">
+    <value>überfällig</value>
+  </data>
+  <data name="DateThisMonth" xml:space="preserve">
+    <value>diesen Monat</value>
+  </data>
+  <data name="DateThisWeek" xml:space="preserve">
+    <value>diese Woche</value>
+  </data>
+  <data name="DateToday" xml:space="preserve">
+    <value>heute</value>
+  </data>
+  <data name="DateTomorrow" xml:space="preserve">
+    <value>morgen</value>
+  </data>
+  <data name="NoTasks" xml:space="preserve">
+    <value>keine Aufgaben</value>
+  </data>
+  <data name="PriorityHigh" xml:space="preserve">
+    <value>hohe Priorität</value>
+  </data>
+  <data name="PriorityNormal" xml:space="preserve">
+    <value>normale Priorität</value>
+  </data>
+  <data name="AppBarComplete" xml:space="preserve">
+    <value>erledigt</value>
+    <comment>complete task</comment>
+  </data>
+  <data name="PeriodicTaskDescription" xml:space="preserve">
+    <value>Aktualisiere Livetile.</value>
+    <comment>Info about background task agent</comment>
+  </data>
+  <data name="AppBarActivate" xml:space="preserve">
+    <value>aktivieren</value>
+    <comment>activate task</comment>
+  </data>
+  <data name="AppBarDeleteCompleted" xml:space="preserve">
+    <value>erledigte Aufgaben löschen</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>löschen</value>
+    <comment>delete task</comment>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="DateCompleted" xml:space="preserve">
+    <value>erledigt</value>
+    <comment>completed tasks</comment>
+  </data>
+  <data name="DeleteTaskCaption" xml:space="preserve">
+    <value>Aufgabe löschen</value>
+  </data>
+  <data name="DeleteTask" xml:space="preserve">
+    <value>Soll diese Aufgabe wirklich gelöscht werden?</value>
+  </data>
+  <data name="DeleteTaskYes" xml:space="preserve">
+    <value>löschen</value>
+    <comment>delete confirmation</comment>
+  </data>
+  <data name="DeleteTaskNo" xml:space="preserve">
+    <value>abbrechen</value>
+    <comment>cancel delete confirmation</comment>
+  </data>
+  <data name="AboutContactUs" xml:space="preserve">
+    <value>kontaktieren</value>
+    <comment>AboutPage; AppBar</comment>
+  </data>
+  <data name="AboutRateReview" xml:space="preserve">
+    <value>bewerten</value>
+    <comment>AboutPage; AppBar</comment>
+  </data>
+  <data name="SettingsDefaultDate" xml:space="preserve">
+    <value>Standardfälligkeit</value>
+  </data>
+  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
+    <value>nach 1 Tag</value>
+  </data>
+  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
+    <value>nach 1 Woche</value>
+  </data>
+  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
+    <value>nach 3 Tagen</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
+    <value>nach 2 Tagen</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
+    <value>nach 2 Wochen</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
+    <value>Lösche erledigte Aufgaben</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
+    <value>Löschen nach</value>
+  </data>
+  <data name="SettingsFirstDayOfWeek" xml:space="preserve">
+    <value>Erster Tag der Woche</value>
+  </data>
+  <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
+    <value>ersten Tag der Woche auswählen</value>
+  </data>
+  <data name="SettingsGeneral" xml:space="preserve">
+    <value>allgemein</value>
+    <comment>general pivot in settings</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>EINSTELLUNGEN</value>
+  </data>
+  <data name="AppBarPinTile" xml:space="preserve">
+    <value>Livetile hinzufügen</value>
+  </data>
+  <data name="AppBarUnpinTile" xml:space="preserve">
+    <value>Livetile entfernen</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
+    <value>Aufgaben werden immer automatisch bei Programmstart gelöscht.</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Feedback zu {0} {1}</value>
+    <comment>Feedback for {AppliactionName} {Version}</comment>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>Version {VersionNumber}</comment>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>Fälligkeit</value>
+  </data>
+  <data name="PriorityLow" xml:space="preserve">
+    <value>niedrige Priorität</value>
+  </data>
+  <data name="Reminder" xml:space="preserve">
+    <value>Erinnerung</value>
+  </data>
+  <data name="SettingsDefaultTime" xml:space="preserve">
+    <value>Standardzeit</value>
+  </data>
+  <data name="AppBarOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AppBarDeleteAll" xml:space="preserve">
+    <value>alle Aufgaben löschen</value>
+  </data>
+  <data name="DeleteAllTasks" xml:space="preserve">
+    <value>Sollen wirklich alle Aufgaben gelöscht werden?</value>
+  </data>
+  <data name="DeleteAllTasksCaption" xml:space="preserve">
+    <value>Alle Aufgaben löschen</value>
+  </data>
+  <data name="DateSomeday" xml:space="preserve">
+    <value>irgendwann</value>
+  </data>
+  <data name="DateUpcoming" xml:space="preserve">
+    <value>demnächst</value>
+  </data>
+  <data name="SettingsPinTile" xml:space="preserve">
+    <value>In der Appliste die {0} App drücken und halten um sie zum Startbildschirm hinzuzufügen.</value>
+    <comment>{0} is application name</comment>
+  </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="SettingsEnableTile" xml:space="preserve">
+    <value>Livetile aktivieren</value>
+  </data>
+  <data name="SettingsTile" xml:space="preserve">
+    <value>Livetiles</value>
+  </data>
+  <data name="SettingsDeleteNever" xml:space="preserve">
+    <value>niemals</value>
+  </data>
+  <data name="SettingsDeleteWhenStarts" xml:space="preserve">
+    <value>bei Schließen der App</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="AppBarPin" xml:space="preserve">
+    <value>hinzufügen</value>
+  </data>
+  <data name="AppBarUnpin" xml:space="preserve">
+    <value>löschen</value>
+  </data>
+  <data name="AppBarDone" xml:space="preserve">
+    <value>fertig</value>
+  </data>
+  <data name="ChooseReminderTime" xml:space="preserve">
+    <value>ERINNERUNG EINSTELLEN</value>
+  </data>
+  <data name="SettingsUnpinCompleted" xml:space="preserve">
+    <value>Livetile bei Erledigung der Aufgabe entfernen</value>
+  </data>
+  <data name="AppBarAddBullet" xml:space="preserve">
+    <value>Punkt hinzufügen</value>
+  </data>
+  <data name="BulletText" xml:space="preserve">
+    <value>Punkt</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Änderungshistorie</value>
+  </data>
+  <data name="ChooseTime" xml:space="preserve">
+    <value>ZEIT EINSTELLEN</value>
+  </data>
+  <data name="TimeAfternoon" xml:space="preserve">
+    <value>nachmittags</value>
+    <comment>3 PM (15:00)</comment>
+  </data>
+  <data name="TimeEvening" xml:space="preserve">
+    <value>abends</value>
+    <comment>7 PM (19:00)</comment>
+  </data>
+  <data name="TimeLateMorning" xml:space="preserve">
+    <value>später morgen</value>
+    <comment>10 AM (10:00)</comment>
+  </data>
+  <data name="TimeMorning" xml:space="preserve">
+    <value>morgens</value>
+    <comment>7 AM (7:00)</comment>
+  </data>
+  <data name="TimeNight" xml:space="preserve">
+    <value>nachts</value>
+    <comment>10 PM (22:00)</comment>
+  </data>
+  <data name="TimeNoon" xml:space="preserve">
+    <value>mittags</value>
+    <comment>12 PM (12:00)</comment>
+  </data>
+  <data name="NoReminder" xml:space="preserve">
+    <value>keine Erinnerung</value>
+  </data>
+  <data name="DaysLabel" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="HoursLabel" xml:space="preserve">
+    <value>Stunden</value>
+  </data>
+  <data name="MinutesLabel" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="DateLastMonth" xml:space="preserve">
+    <value>letzten Monat</value>
+  </data>
+  <data name="DateLastWeek" xml:space="preserve">
+    <value>letzte Woche</value>
+  </data>
+  <data name="DateYesterday" xml:space="preserve">
+    <value>gestern</value>
+  </data>
+  <data name="DateTimeDaysAbbr" xml:space="preserve">
+    <value>d</value>
+    <comment>1 letter abbreviation for days</comment>
+  </data>
+  <data name="DateTimeHoursAbbr" xml:space="preserve">
+    <value>h</value>
+    <comment>1 letter abbreviation for hours</comment>
+  </data>
+  <data name="DateTimeMinutesAbbr" xml:space="preserve">
+    <value>m</value>
+    <comment>1 letter abbreviation for minutes</comment>
+  </data>
+  <data name="QuickAddLabel" xml:space="preserve">
+    <value>neue Aufgabe zufügen</value>
+  </data>
+  <data name="ReminderBeforeDueDateText" xml:space="preserve">
+    <value>vor Fälligkeitsdatum</value>
+  </data>
+  <data name="Time15mins" xml:space="preserve">
+    <value>15 Minuten</value>
+  </data>
+  <data name="Time18hours" xml:space="preserve">
+    <value>18 Stunden</value>
+  </data>
+  <data name="Time1day" xml:space="preserve">
+    <value>1 Tag</value>
+  </data>
+  <data name="Time1hour" xml:space="preserve">
+    <value>1 Stunde</value>
+  </data>
+  <data name="Time1week" xml:space="preserve">
+    <value>1 Woche</value>
+  </data>
+  <data name="Time30mins" xml:space="preserve">
+    <value>30 Minuten</value>
+  </data>
+  <data name="Time5mins" xml:space="preserve">
+    <value>5 Minuten</value>
+  </data>
+  <data name="TimeZero" xml:space="preserve">
+    <value>zur Fälligkeitszeit</value>
+  </data>
+  <data name="Days1" xml:space="preserve">
+    <value>{0} Tag</value>
+    <comment>1 day</comment>
+  </data>
+  <data name="Days2To4" xml:space="preserve">
+    <value>{0} Tage</value>
+    <comment>2-4 days</comment>
+  </data>
+  <data name="Days5AndMore" xml:space="preserve">
+    <value>{0} Tage</value>
+    <comment>5+ days</comment>
+  </data>
+  <data name="Hours1" xml:space="preserve">
+    <value>{0} Stunde</value>
+    <comment>1 hour</comment>
+  </data>
+  <data name="Hours2To4" xml:space="preserve">
+    <value>{0} Stunden</value>
+    <comment>2-4 hours</comment>
+  </data>
+  <data name="Hours5AndMore" xml:space="preserve">
+    <value>{0} Stunden</value>
+    <comment>5+ hours</comment>
+  </data>
+  <data name="Minutes1" xml:space="preserve">
+    <value>{0} Minute</value>
+    <comment>1 minute</comment>
+  </data>
+  <data name="Minutes2To4" xml:space="preserve">
+    <value>{0} Minuten</value>
+    <comment>2-4 minutes</comment>
+  </data>
+  <data name="Minutes5AndMore" xml:space="preserve">
+    <value>{0} Minuten</value>
+    <comment>5+ minutes</comment>
+  </data>
+  <data name="Weeks1" xml:space="preserve">
+    <value>{0} Woche</value>
+    <comment>1 week</comment>
+  </data>
+  <data name="Weeks2To4" xml:space="preserve">
+    <value>{0} Wochen</value>
+    <comment>2-4 weeks</comment>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Was ist neu</value>
+  </data>
+  <data name="Months1" xml:space="preserve">
+    <value>{0} Monat</value>
+    <comment>1 month</comment>
+  </data>
+  <data name="Months2To4" xml:space="preserve">
+    <value>{0} Monate</value>
+    <comment>2-4 months</comment>
+  </data>
+  <data name="AppBarAddSubtask" xml:space="preserve">
+    <value>zufügen</value>
+  </data>
+  <data name="SubtaskAdd" xml:space="preserve">
+    <value>Unteraufgabe hinzufügen</value>
+  </data>
+  <data name="SubtasksText" xml:space="preserve">
+    <value>Unteraufgaben</value>
+  </data>
+  <data name="SubtaskText" xml:space="preserve">
+    <value>Unteraufgabe</value>
+  </data>
+  <data name="TaskText" xml:space="preserve">
+    <value>Aufgabe</value>
+  </data>
+  <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
+    <value>alle erledigen</value>
+  </data>
+  <data name="NoTasksHelpEnd" xml:space="preserve">
+    <value>oder die Textbox um eine Aufgabe hinzuzufügen.</value>
+    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+  </data>
+  <data name="NoTasksHelpStart" xml:space="preserve">
+    <value>Tippe auf </value>
+    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+  </data>
+  <data name="NoSubtasks" xml:space="preserve">
+    <value>Keine Unteraufgaben</value>
+  </data>
+  <data name="TasksText" xml:space="preserve">
+    <value>Aufgaben</value>
+  </data>
+  <data name="SettingsCompleteSubtasks" xml:space="preserve">
+    <value>Unteraufgaben automatisch erledigen</value>
+  </data>
+  <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
+    <value>Wenn eine Aufgabe als erledigt markiert wird, werden auch die Unteraufgaben als erledigt markiert.</value>
+  </data>
+  <data name="SettingsVibrate" xml:space="preserve">
+    <value>Vibrieren</value>
+  </data>
+  <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
+    <value>alle löschen</value>
+  </data>
+  <data name="TileSettingsHideDate" xml:space="preserve">
+    <value>Fälligkeit verstecken</value>
+  </data>
+  <data name="TileSettingsHideTitle" xml:space="preserve">
+    <value>Titel verstecken</value>
+  </data>
+  <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
+    <value>erledigte Unteraufgaben zeigen</value>
+  </data>
+  <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
+    <value>Titel in einer Zeile</value>
+  </data>
+  <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
+    <value>Hintergrund Durchsichtigkeit</value>
+  </data>
+  <data name="TileSettingsLineHeight" xml:space="preserve">
+    <value>Schriftgröße</value>
+  </data>
+  <data name="TileSettingsPreview" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="AppBarTileSettings" xml:space="preserve">
+    <value>Livetile einstellen</value>
+  </data>
+  <data name="TitleUntitled" xml:space="preserve">
+    <value>Unbenannt</value>
+  </data>
+  <data name="SettingsFeedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="SettingsFeedbackHelp" xml:space="preserve">
+    <value>Sende anonyme Nutzungsstatistiken zur Verbesserung dieser App. Statistiken helfen dem Entwickler häufig verwendete Funktionen zu identifizieren und zu verbessern. 
+Es werden keine persönlichen Daten gesammelt.</value>
+  </data>
+  <data name="EditText" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
+    <value>Standardeinstellungen für Livetile</value>
+  </data>
+  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
+    <value>Checkbox verstecken</value>
+  </data>
+  <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
+    <value>Wischbewegung von rechts nach links zum Erledigen verwenden.</value>
+  </data>
+  <data name="BackupAndRestoreTitle" xml:space="preserve">
+    <value>Sichern &amp; Wiederherstellen</value>
+  </data>
+  <data name="BackupText" xml:space="preserve">
+    <value>Sichern</value>
+  </data>
+  <data name="RestoreText" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="SigningIn" xml:space="preserve">
+    <value>Anmeldung läuft</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Sicherung läuft</value>
+  </data>
+  <data name="Restoring" xml:space="preserve">
+    <value>Wiederherstellung läuft</value>
+  </data>
+  <data name="SelectBackup" xml:space="preserve">
+    <value>Sicherung zum wiederherstellen wählen</value>
+  </data>
+  <data name="BackupDownloadingList" xml:space="preserve">
+    <value>Lade Liste der Sicherungen</value>
+  </data>
+  <data name="NoBackups" xml:space="preserve">
+    <value>Keine Sicherung</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Unbekannter Fehler.</value>
+  </data>
+  <data name="SignedInNo" xml:space="preserve">
+    <value>Nicht angemeldet.</value>
+  </data>
+  <data name="SignedInYes" xml:space="preserve">
+    <value>Angemeldet als {0}.</value>
+    <comment>{0} is user name</comment>
+  </data>
+  <data name="BackupLatest" xml:space="preserve">
+    <value>aktuell</value>
+  </data>
+  <data name="RestoreWhatText" xml:space="preserve">
+    <value>Datensätze zum wiederherstellen auswählen</value>
+  </data>
+  <data name="BackupAndRestoreHelpText" xml:space="preserve">
+    <value>Für die Sicherung wird ein neuer Ordner "{0}" erstellt. Dieser kann beliebig verschoben werden. Bitte nicht umbenennen oder die enthaltenen Dateien modifizieren. 
+Diese Funktion ist noch im Betastadium.</value>
+  </data>
+  <data name="RestoreOk" xml:space="preserve">
+    <value>Wiederherstellen erfolgreich.</value>
+  </data>
+  <data name="BackupOk" xml:space="preserve">
+    <value>Sicherung erfolgreich.</value>
+  </data>
+  <data name="SettingsShowTaskCount" xml:space="preserve">
+    <value>zeige Aufgabenanzahl</value>
+  </data>
+  <data name="SettingsSwapDateAndTitle" xml:space="preserve">
+    <value>Titel und Datum bei großem Livetile vertauschen</value>
+  </data>
+  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
+    <value>zeige "Aufgabe hinzufügen" Textbox auf der Hauptseite</value>
+  </data>
+  <data name="TileForQuickAddLabel" xml:space="preserve">
+    <value>Livetile für schnelles zufügen</value>
+  </data>
+  <data name="TileForQuickAddPinButton" xml:space="preserve">
+    <value>an Startbildschirm anheften</value>
+  </data>
+  <data name="TileForQuickAddUnpinButton" xml:space="preserve">
+    <value>von Startbildschirm lösen</value>
+  </data>
+  <data name="QuickAddTileTitle" xml:space="preserve">
+    <value>Neue Aufgabe</value>
+  </data>
+  <data name="SettingsShowTaskCountHelp" xml:space="preserve">
+    <value>Wenn nicht aktiviert, Aufgabenliste statt Anzahl auf kleinem Livetile zeigen.</value>
+  </data>
+</root>
