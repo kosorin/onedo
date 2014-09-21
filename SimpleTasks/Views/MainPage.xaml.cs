@@ -141,7 +141,7 @@ namespace SimpleTasks.Views
 
         private void BuildTasksdAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             ApplicationBar.Buttons.Add(appBarNewTaskButton);
             foreach (var item in appBarMenuItems)
@@ -152,7 +152,7 @@ namespace SimpleTasks.Views
 
         private void BuildQuickAddAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
             ApplicationBar.Buttons.Add(appBarSaveQuickButton);
         }
         #endregion

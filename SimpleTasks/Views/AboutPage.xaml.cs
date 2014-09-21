@@ -17,6 +17,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Views
 {
@@ -29,7 +30,7 @@ namespace SimpleTasks.Views
             ChangelogList = App.LoadChangelog();
             DataContext = this;
 
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             ApplicationBarIconButton rateButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.star.png", UriKind.Relative));
             rateButton.Text = AppResources.AboutRateReview;

@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using SimpleTasks.ViewModels;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Resources;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Controls
 {
@@ -34,7 +35,7 @@ namespace SimpleTasks.Controls
 
         protected virtual void BuildAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             ApplicationBarIconButton appBarDoneButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Check.png", UriKind.Relative));
             appBarDoneButton.Text = AppResources.AppBarDone;

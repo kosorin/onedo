@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -101,8 +102,38 @@ namespace SimpleTasks.Helpers
                 appBrush.Opacity = brush.Opacity;
             }
 
+            // RootFrame
+            if (App.RootFrame != null && Resources.Contains("BackgroundBrush"))
+            {
+                SolidColorBrush rootFrameBackground = Resources["BackgroundBrush"] as SolidColorBrush;
+                if (rootFrameBackground != null)
+                {
+                    App.RootFrame.Background = rootFrameBackground;
+                }
+            }
+
+            // AppBar
+            if (Resources.Contains("SystemTrayBackgroundColor") && Resources.Contains("SystemTrayForegroundColor"))
+            {
+                _appBarBackground = (Color)Resources["SystemTrayBackgroundColor"];
+                _appBarForeground = (Color)Resources["SystemTrayForegroundColor"];
+            }
+
             sw.Stop();
             Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
+        }
+
+        private static Color _appBarBackground;
+
+        private static Color _appBarForeground;
+
+        public static ApplicationBar CreateApplicationBar()
+        {
+            ApplicationBar appBar = new ApplicationBar();
+            appBar.Opacity = 1;
+            appBar.BackgroundColor = _appBarBackground;
+            appBar.ForegroundColor = _appBarForeground;
+            return appBar;
         }
     }
 }

@@ -18,6 +18,7 @@ using System.Windows.Media.Animation;
 using SimpleTasks.Core.Models;
 using System.Collections.ObjectModel;
 using SubtaskCollection = System.Collections.ObjectModel.ObservableCollection<SimpleTasks.Core.Models.Subtask>;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Views
 {
@@ -182,7 +183,7 @@ namespace SimpleTasks.Views
 
         private void BuildAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             if (_appBarAddSubtaskButton == null)
             {

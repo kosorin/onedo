@@ -398,7 +398,7 @@ namespace SimpleTasks.Views
 
         private void BuildAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             if (IsPinned())
                 ApplicationBar.Buttons.Add(appBarUnpinButton);
@@ -417,7 +417,7 @@ namespace SimpleTasks.Views
 
         private void BuildTitleTextAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             // Ikony
             ApplicationBar.Buttons.Add(appBarOkButton);
@@ -425,7 +425,7 @@ namespace SimpleTasks.Views
 
         private void BuildDetailTextAppBar()
         {
-            ApplicationBar = new ApplicationBar();
+            ApplicationBar = ThemeHelper.CreateApplicationBar();
 
             // Ikony
             ApplicationBar.Buttons.Add(appBarAddBulletButton);
