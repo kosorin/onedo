@@ -71,11 +71,13 @@ namespace SimpleTasks.Helpers
 
         public static void InitializeTheme()
         {
-            SystemTheme = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ? Theme.Dark : Theme.Light;
-            CurrentTheme = Theme == Theme.System ? SystemTheme : Theme;
-
+#if DEBUG
             Stopwatch sw = new Stopwatch();
             sw.Start();
+#endif
+
+            SystemTheme = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ? Theme.Dark : Theme.Light;
+            CurrentTheme = Theme == Theme.System ? SystemTheme : Theme;
 
             // ResourceDictionary
             Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", CurrentTheme == Theme.Dark ? "Dark" : "Light"), UriKind.Relative);
@@ -119,8 +121,10 @@ namespace SimpleTasks.Helpers
                 _appBarForeground = (Color)Resources["SystemTrayForegroundColor"];
             }
 
+#if DEBUG
             sw.Stop();
             Debug.WriteLine("## CHANGE THEME RESOURCE: ELAPSED TOTAL = {0}", sw.Elapsed);
+#endif
         }
 
         private static Color _appBarBackground;
