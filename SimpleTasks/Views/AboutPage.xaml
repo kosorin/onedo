@@ -115,7 +115,7 @@
                 <TextBlock Style="{StaticResource AboutItemTextStyle}">
                         <Run>German</Run><Run Text=" - Jürgen Bauer"
                                               Foreground="{StaticResource SlightBrush}" /><LineBreak />
-                        <Run>Italian</Run><Run Text=" - Roc Lat"
+                        <Run>Italian</Run><Run Text=" - Roc La"
                                                Foreground="{StaticResource SlightBrush}" />
                 </TextBlock>
 
