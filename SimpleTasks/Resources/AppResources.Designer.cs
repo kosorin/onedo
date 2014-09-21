@@ -296,7 +296,7 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Backup will create new folder &quot;{0}&quot;. You can move this folder to your location, but please, do not rename it. Also don&apos;t modify files inside.
-        ///It&apos;s still in beta. If you have any problem, send us email..
+        ///It&apos;s still in beta..
         /// </summary>
         public static string BackupAndRestoreHelpText {
             get {
@@ -1140,8 +1140,7 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-        ///No personal data is being collected.
-        ///You can also contact us via email..
+        ///No personal data is being collected..
         /// </summary>
         public static string SettingsFeedbackHelp {
             get {

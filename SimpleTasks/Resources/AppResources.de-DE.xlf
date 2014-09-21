@@ -609,12 +609,9 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-No personal data is being collected.
-You can also contact us via email.</source>
+No personal data is being collected.</source>
           <target state="signed-off">Sende anonyme Nutzungsstatistiken zur Verbesserung dieser App. Statistiken helfen dem Entwickler häufig verwendete Funktionen zu identifizieren und zu verbessern. 
-Es werden keine persönlichen Daten gesammelt.
-Sie können uns auch per E-Mail kontaktieren.</target>
-        </trans-unit>
+Es werden keine persönlichen Daten gesammelt.</target></trans-unit>
         <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
           <source>Edit</source>
           <target state="signed-off">Bearbeiten</target>
@@ -698,10 +695,9 @@ Sie können uns auch per E-Mail kontaktieren.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
           <source>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
-It's still in beta. If you have any problem, send us email.</source>
+It's still in beta.</source>
           <target state="signed-off">Für die Sicherung wird ein neuer Ordner "{0}" erstellt. Dieser kann beliebig verschoben werden. Bitte nicht umbenennen oder die enthaltenen Dateien modifizieren. 
-Diese Funktion ist noch im Betastadium, bei Problemen bitte eine E-Mail senden.</target>
-        </trans-unit>
+Diese Funktion ist noch im Betastadium.</target></trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
           <target state="signed-off">Wiederherstellen erfolgreich.</target>
@@ -744,8 +740,8 @@ Diese Funktion ist noch im Betastadium, bei Problemen bitte eine E-Mail senden.<
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
           <source>system ({0})</source>
-          <target state="new">system ({0})</target><note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note>
-        </trans-unit>
+          <target state="new">system ({0})</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note></trans-unit>
         <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
           <source>theme</source>
           <target state="new">theme</target>

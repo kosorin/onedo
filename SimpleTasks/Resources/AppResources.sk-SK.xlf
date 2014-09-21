@@ -416,11 +416,9 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-No personal data is being collected.
-You can also contact us via email.</source>
+No personal data is being collected.</source>
           <target state="signed-off">Odosielať anonymné dáta o používaní pre zlepšenie tejto aplikácie. Štatistiky pomáhajú vývojárovi identifikovať a zameriavať sa na často používané funkcie.
-Nie sú zhromažďované žiadne osobné údaje.
-Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
+Nie sú zhromažďované žiadne osobné údaje.</target></trans-unit>
         <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
           <source>Edit</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Upraviť</target>
@@ -475,10 +473,9 @@ Môžete nás tiež kontaktovať prostredníctvom e-mailu.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
           <source>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
-It's still in beta. If you have any problem, send us email.</source>
+It's still in beta.</source>
           <target state="signed-off">Počas zálohovania sa vytvorí zložka "{0}". Túto zložku môžete presunúť, ale nepremenovávajte ju. Súbory vnútri priečinky taky nijak neupravujte.
-Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať email.</target>
-        </trans-unit>
+Táto funkcia je stále v beta verzii.</target></trans-unit>
         <trans-unit id="Resx/BackupOk" translate="yes" xml:space="preserve">
           <source>Successful backup.</source>
           <target state="signed-off">Úspešné zálohovanie.</target>
@@ -510,7 +507,8 @@ Táto funkcia je stále v beta verzii. Ak máte problém, môžete nám poslať 
         <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
           <source>system ({0})</source>
           <target state="signed-off">systémový ({0})</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note>
+          </trans-unit>
         <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
           <source>theme</source>
           <target state="signed-off">motív</target>

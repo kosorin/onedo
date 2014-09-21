@@ -584,8 +584,7 @@
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-No personal data is being collected.
-You can also contact us via email.</value>
+No personal data is being collected.</value>
   </data>
   <data name="EditText" xml:space="preserve">
     <value>Edit</value>
@@ -650,7 +649,7 @@ You can also contact us via email.</value>
   </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
-It's still in beta. If you have any problem, send us email.</value>
+It's still in beta.</value>
   </data>
   <data name="RestoreOk" xml:space="preserve">
     <value>Successful restore.</value>

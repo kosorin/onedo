@@ -442,8 +442,7 @@
         </trans-unit>
         <trans-unit id="Resx/Days1" translate="yes" xml:space="preserve">
           <source>{0} day</source>
-          <target state="signed-off">{0} giorno
-</target>
+          <target state="signed-off">{0} giorno</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 day</note>
           </trans-unit>
         <trans-unit id="Resx/Days2To4" translate="yes" xml:space="preserve">
@@ -610,10 +609,8 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-No personal data is being collected.
-You can also contact us via email.</source>
-          <target state="signed-off">Invia statistiche anonime sull'utilizzo, per migliorare il programma.</target>
-        </trans-unit>
+No personal data is being collected.</source>
+          <target state="signed-off">Invia statistiche anonime sull'utilizzo, per migliorare il programma.</target></trans-unit>
         <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
           <source>Edit</source>
           <target state="signed-off">Imposta</target>
@@ -697,10 +694,9 @@ You can also contact us via email.</source>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
           <source>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
-It's still in beta. If you have any problem, send us email.</source>
+It's still in beta.</source>
           <target state="signed-off">Il backup creerà una nuova cartella "{0}". Nota bene: può esssere spostata altrove, ma non rinominatela e non rinominate i file in essa contenuti. 
-E' ancora una funzione beta. In caso di problemi, inviateci un'email. </target>
-        </trans-unit>
+E' ancora una funzione beta.</target></trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
           <target state="signed-off">Backup ripristinato con successo.</target>
