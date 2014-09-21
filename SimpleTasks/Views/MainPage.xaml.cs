@@ -334,6 +334,18 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[1].Detail = "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.";
                 App.Tasks.Tasks[2].Title = "Thomas anrufen";
             }
+            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "it")
+            {
+                App.Tasks.Tasks[0].Title = "Lista della spesa";
+                App.Tasks.Tasks[0].Subtasks[0].Text = "latte";
+                App.Tasks.Tasks[0].Subtasks[1].Text = "mele";
+                App.Tasks.Tasks[0].Subtasks[2].Text = "patate";
+                App.Tasks.Tasks[0].Subtasks[3].Text = "prosciutto";
+                App.Tasks.Tasks[0].Subtasks[4].Text = "biscotti";
+                App.Tasks.Tasks[1].Title = "Progetto di matematica";
+                App.Tasks.Tasks[1].Detail = "In nec massa semper dolor sodales molestie. Curabitur sagittis consequat imperdiet. Aliquam nec mattis enim. Nam vitae ligula quis ligula viverra pharetra ac in arcu. Pellentesque luctus, urna sit amet porta commodo, quam dui maximus massa, in vestibulum lacus elit eu orci. Phasellus lacinia lobortis feugiat.";
+                App.Tasks.Tasks[2].Title = "Chiamare Francesco";
+            }
 
         }
 #endif
