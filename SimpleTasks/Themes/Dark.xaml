@@ -27,7 +27,6 @@
     <Color x:Key="NormalColor">#FfFfFf</Color>
     <Color x:Key="SlightColor">#CCFFFFFF</Color>
     <Color x:Key="SubtleColor">#99FFFFFF</Color>
-    <Color x:Key="ChromeColor">#1f1f1f</Color>
 
     <SolidColorBrush x:Key="BackgroundBrush"
                      Color="{StaticResource BackgroundColor}" />
@@ -37,8 +36,6 @@
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="SubtleBrush"
                      Color="{StaticResource SubtleColor}" />
-    <SolidColorBrush x:Key="ChromeBrush"
-                     Color="{StaticResource ChromeColor}" />
 
     <SolidColorBrush x:Key="LabelBrush"
                      Color="{StaticResource SlightColor}" />
@@ -90,7 +87,6 @@
                      Opacity="0.3" />
 
     <Color x:Key="TasksListHeaderBackgroundColor">#1AFFFFFF</Color>
-    <Color x:Key="TasksListHeaderGradientColor">#05FFFFFF</Color>
     <SolidColorBrush x:Key="TasksListHeaderBorderBrush"
                      Color="{StaticResource SubtleColor}"
                      Opacity="0.18" />
