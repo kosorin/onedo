@@ -62,7 +62,7 @@
     </tiles:ListTileControl.Resources>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource PhoneAccentBrush}">
+          Background="{StaticResource AccentBrush}">
 
         <Grid Background="#10000000">
             <Grid.RowDefinitions>

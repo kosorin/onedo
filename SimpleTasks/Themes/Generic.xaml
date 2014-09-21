@@ -18,7 +18,7 @@
 
     <!--Region MyTextBox-->
     <SolidColorBrush x:Key="MyTextBoxCaretBrush"
-                     Color="{StaticResource PhoneAccentColor}" />
+                     Color="{StaticResource AccentColor}" />
 
     <Style TargetType="controls:MyTextBox">
         <Setter Property="FontFamily"
@@ -36,11 +36,11 @@
         <Setter Property="CaretBrush"
                 Value="{StaticResource MyTextBoxCaretBrush}" />
         <Setter Property="BorderBrush"
-                Value="{StaticResource PhoneAccentBrush}" />
+                Value="{StaticResource AccentBrush}" />
         <Setter Property="SelectionBackground"
-                Value="{StaticResource PhoneAccentBrush}" />
+                Value="{StaticResource AccentBrush}" />
         <Setter Property="SelectionForeground"
-                Value="{StaticResource PhoneAccentBrush}" />
+                Value="{StaticResource AccentBrush}" />
         <Setter Property="TextWrapping"
                 Value="Wrap" />
         <Setter Property="InputScope"
@@ -146,7 +146,7 @@
         <Setter Property="Mask"
                 Value="#00000000" />
         <Setter Property="Background"
-                Value="{StaticResource PhoneAccentBrush}" />
+                Value="{StaticResource AccentBrush}" />
         <Setter Property="Foreground"
                 Value="{StaticResource ButtonDarkForegroundBrush}" />
         <Setter Property="Template">
@@ -401,7 +401,7 @@
     <!--Region ProgressRing-->
     <Style TargetType="controls:ProgressRing">
         <Setter Property="Foreground"
-                Value="{StaticResource PhoneAccentBrush}" />
+                Value="{StaticResource AccentBrush}" />
         <Setter Property="IsHitTestVisible"
                 Value="False" />
         <Setter Property="HorizontalAlignment"
@@ -986,7 +986,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="OuterGrid"
                                                         Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                                        To="{StaticResource PhoneAccentColor}" />
+                                                        To="{StaticResource AccentColor}" />
                                         <ColorAnimation Storyboard.TargetName="DayNumberBlock"
                                                         Storyboard.TargetProperty="(Grid.Foreground).(SolidColorBrush.Color)"
                                                         To="{StaticResource CalendarSelectedItemColor}" />
@@ -1082,7 +1082,7 @@
                                 <Border x:Name="TodayBorder"
                                         Opacity="0"
                                         BorderThickness="3"
-                                        BorderBrush="{StaticResource PhoneAccentBrush}" />
+                                        BorderBrush="{StaticResource AccentBrush}" />
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />
                                 <TextBlock x:Name="DayNumberBlock"
@@ -1141,7 +1141,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="OuterGrid"
                                                         Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
-                                                        To="{StaticResource PhoneAccentColor}" />
+                                                        To="{StaticResource AccentColor}" />
                                         <ColorAnimation Storyboard.TargetName="DayNumberBlock"
                                                         Storyboard.TargetProperty="(Grid.Foreground).(SolidColorBrush.Color)"
                                                         To="{StaticResource CalendarSelectedItemColor}" />
@@ -1218,7 +1218,7 @@
                                 <Border x:Name="TodayBorder"
                                         Opacity="0"
                                         BorderThickness="3"
-                                        BorderBrush="{StaticResource PhoneAccentBrush}" />
+                                        BorderBrush="{StaticResource AccentBrush}" />
                                 <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
                                            Opacity="0.45" />
                                 <StackPanel VerticalAlignment="Center">

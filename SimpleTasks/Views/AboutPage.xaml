@@ -20,7 +20,7 @@
                TargetType="TextBlock"
                BasedOn="{StaticResource NormalTextStyle}">
             <Setter Property="Foreground"
-                    Value="{StaticResource PhoneAccentBrush}" />
+                    Value="{StaticResource AccentBrush}" />
             <Setter Property="FontSize"
                     Value="24" />
             <Setter Property="FontWeight"
@@ -64,7 +64,7 @@
 
                                 <Path x:Name="LogoRect"
                                       Data="M146.439,53.4652 L166.806,53.4652 C185.197,53.4652 199.484,55.9897 209.667,61.0385 C219.851,66.0874 224.943,73.0161 224.943,81.8247 C224.943,91.1489 219.808,98.5179 209.539,103.932 C199.269,109.346 185.111,112.053 167.064,112.053 L146.439,112.053 z M104.802,36.514 L104.802,128.94 L170.286,128.94 C200.107,128.94 223.976,124.643 241.894,116.049 C259.812,107.456 268.772,95.9609 268.772,81.5669 C268.772,51.5316 235.943,36.514 170.286,36.514 z M0,0 L320,0 L320,160 L0,160 z"
-                                      Fill="{StaticResource PhoneAccentBrush}"
+                                      Fill="{StaticResource AccentBrush}"
                                       Width="320"
                                       Height="160"
                                       Canvas.Left="-60"
@@ -77,7 +77,7 @@
                                 </Path>
 
                                 <Path x:Name="LogoCheck"
-                                      Fill="{StaticResource PhoneAccentBrush}"
+                                      Fill="{StaticResource AccentBrush}"
                                       Data="m173,136.46875l18.985001,17.903l64.202011,-73.372902l17.509979,15.425003l-79.626984,97.137901l-21.070007,-21.093002l0,-36zm0,-50.862503l68.020004,0l-15.799011,15.7985l-52.220993,0l0,100.056007l54.854004,0l0,-34.230011l15.798996,-19.747986l0,69.775986l-70.653,0l0,-131.652496z"
                                       Canvas.Left="15"
                                       Canvas.Top="15"

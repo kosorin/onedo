@@ -69,6 +69,19 @@ namespace SimpleTasks.Helpers
             private set { _theme = value; }
         }
 
+        private static void ReplaceColor(ResourceDictionary rd, string key, Color newColor)
+        {
+            rd.Remove(key);
+            rd.Add(key, newColor);
+        }
+
+        private static void ReplaceBrush(ResourceDictionary rd, string key, SolidColorBrush newBrush)
+        {
+            SolidColorBrush brush = (SolidColorBrush)rd[key];
+            brush.Color = newBrush.Color;
+            brush.Opacity = newBrush.Opacity;
+        }
+
         public static void InitializeTheme()
         {
 #if DEBUG
@@ -90,18 +103,21 @@ namespace SimpleTasks.Helpers
             // Barvy
             foreach (var ck in theme.Where(x => x.Value is Color))
             {
-                app.Remove(ck.Key);
-                app.Add(ck.Key, (Color)ck.Value);
+                ReplaceColor(app, (string)ck.Key, (Color)ck.Value);
             }
 
             // Brushe
             foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
             {
-                SolidColorBrush brush = (SolidColorBrush)ck.Value;
-                SolidColorBrush appBrush = (SolidColorBrush)app[ck.Key];
+                ReplaceBrush(app, (string)ck.Key, (SolidColorBrush)ck.Value);
+            }
 
-                appBrush.Color = brush.Color;
-                appBrush.Opacity = brush.Opacity;
+            // Accent barva
+            if ((bool)theme["UsePhoneAccentColor"])
+            {
+                Color accentColor = (Color)Resources["PhoneAccentColor"];
+                ReplaceColor(app, "AccentColor", accentColor);
+                ReplaceBrush(app, "AccentBrush", new SolidColorBrush(accentColor));
             }
 
             // RootFrame

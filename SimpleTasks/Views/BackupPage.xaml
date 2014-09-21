@@ -20,7 +20,7 @@
                    Text="{Binding LocalizedResources.BackupAndRestoreTitle, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
                    Text="BETA"
-                   Foreground="{StaticResource PhoneAccentBrush}"
+                   Foreground="{StaticResource AccentBrush}"
                    HorizontalAlignment="Right"
                    FontFamily="Segoe WP Black"
                    FontWeight="Black" />

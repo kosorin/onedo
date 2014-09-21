@@ -445,7 +445,7 @@
                    TargetType="TextBlock"
                    BasedOn="{StaticResource NormalTextStyle}">
                 <Setter Property="Foreground"
-                        Value="{StaticResource PhoneAccentBrush}" />
+                        Value="{StaticResource AccentBrush}" />
             </Style>
 
             <Style x:Key="ButtonTextStyle"
@@ -518,7 +518,7 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
                                                                                Storyboard.TargetProperty="Background">
                                                     <DiscreteObjectKeyFrame KeyTime="0"
-                                                                            Value="{StaticResource PhoneAccentBrush}" />
+                                                                            Value="{StaticResource AccentBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
                                                                                Storyboard.TargetProperty="Foreground">
@@ -549,7 +549,7 @@
                 <Setter Property="Height"
                         Value="40" />
                 <Setter Property="BorderBrush"
-                        Value="{StaticResource PhoneAccentBrush}" />
+                        Value="{StaticResource AccentBrush}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
@@ -763,7 +763,7 @@
                                         HorizontalAlignment="Left">
                                     <Border x:Name="CheckBoxBorder"
                                             Margin="-2"
-                                            BorderBrush="{StaticResource PhoneAccentBrush}"
+                                            BorderBrush="{StaticResource AccentBrush}"
                                             BorderThickness="2">
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
@@ -877,7 +877,7 @@
                                         HorizontalAlignment="Left">
                                     <Border x:Name="CheckBoxBorder"
                                             Margin="-2"
-                                            BorderBrush="{StaticResource PhoneAccentBrush}"
+                                            BorderBrush="{StaticResource AccentBrush}"
                                             BorderThickness="2">
 
                                         <ContentControl x:Name="CheckIcon"
@@ -1025,7 +1025,7 @@
                                                     x:Name="PivotItemPresenter"
                                                     Margin="{TemplateBinding Padding}" />
                                     <Rectangle Grid.Row="1"
-                                               Fill="{StaticResource PhoneAccentBrush}"
+                                               Fill="{StaticResource AccentBrush}"
                                                Opacity="0.6"
                                                Height="10"
                                                VerticalAlignment="Top" />

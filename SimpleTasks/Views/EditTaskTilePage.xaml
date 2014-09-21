@@ -58,7 +58,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                            Storyboard.TargetName="ButtonBackground">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{StaticResource PhoneAccentBrush}" />
+                                                                        Value="{StaticResource AccentBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
@@ -228,19 +228,19 @@
                         <!--432 210 100-->
                         <Viewbox x:Name="WideTileViewBox"
                                  Opacity="1">
-                            <Border Background="{StaticResource PhoneAccentBrush}">
+                            <Border Background="{StaticResource AccentBrush}">
                                 <tiles:WideTaskTile x:Name="WideTile" />
                             </Border>
                         </Viewbox>
                         <Viewbox x:Name="MediumTileViewBox"
                                  Opacity="0">
-                            <Border Background="{StaticResource PhoneAccentBrush}">
+                            <Border Background="{StaticResource AccentBrush}">
                                 <tiles:MediumTaskTile x:Name="MediumTile" />
                             </Border>
                         </Viewbox>
                         <Viewbox x:Name="SmallTileViewBox"
                                  Opacity="0">
-                            <Border Background="{StaticResource PhoneAccentBrush}">
+                            <Border Background="{StaticResource AccentBrush}">
                                 <tiles:SmallTaskTile x:Name="SmallTile" />
                             </Border>
                         </Viewbox>

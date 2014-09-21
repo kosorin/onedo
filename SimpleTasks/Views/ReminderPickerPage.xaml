@@ -112,7 +112,7 @@
                         <DataTemplate>
                             <Grid Height="60"
                                   Margin="-8,-10"
-                                  Background="{StaticResource PhoneAccentBrush}">
+                                  Background="{StaticResource AccentBrush}">
                                 <Border Background="Black"
                                         Opacity="{Binding Value2}" />
                                 <TextBlock Text="{Binding}"

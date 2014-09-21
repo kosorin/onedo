@@ -562,7 +562,7 @@ namespace SimpleTasks.Views
             if (t.X < _completeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                icon.Foreground = (Brush)App.Current.Resources["PhoneAccentBrush"];
+                icon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
             }
             else
             {

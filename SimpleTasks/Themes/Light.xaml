@@ -8,7 +8,7 @@
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
 
     <!--Region SystemTray-->
-    <Color x:Key="SystemTrayBackgroundColor">#CCC</Color>
+    <Color x:Key="SystemTrayBackgroundColor">#CcCcCc</Color>
     <SolidColorBrush x:Key="SystemTrayBackgroundBrush"
                      Color="{StaticResource SystemTrayBackgroundColor}" />
 
@@ -18,7 +18,12 @@
     <!--EndRegion-->
 
     <!--Region Globální styly-->
-    <Color x:Key="BackgroundColor">#ececec</Color>
+    <sys:Boolean x:Key="UsePhoneAccentColor">True</sys:Boolean>
+    <Color x:Key="AccentColor">#008a00</Color>
+    <SolidColorBrush x:Key="AccentBrush"
+                     Color="{StaticResource AccentColor}" />
+    
+    <Color x:Key="BackgroundColor">#EcEcEc</Color>
     <Color x:Key="NormalColor">#DE000000</Color>
     <Color x:Key="SlightColor">#99000000</Color>
     <Color x:Key="SubtleColor">#66000000</Color>

@@ -62,7 +62,7 @@ namespace SimpleTasks.Models
         //        {
         //            if (Task.Color == TaskModel.DefaultColor)
         //            {
-        //                _color = (Color)App.Current.Resources["PhoneAccentColor"];
+        //                _color = (Color)App.Current.Resources["AccentColor"];
         //            }
         //            else
         //            {

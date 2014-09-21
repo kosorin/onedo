@@ -53,7 +53,7 @@
     </tiles:ListTileControl.Resources>
 
     <Grid x:Name="LayoutRoot"
-          Background="{StaticResource PhoneAccentBrush}">
+          Background="{StaticResource AccentBrush}">
         <StackPanel x:Name="CountWrapper"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"

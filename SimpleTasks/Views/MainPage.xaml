@@ -199,7 +199,7 @@
                                             <!--Vysoká priorita-->
                                             <Border Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                 <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                                Foreground="{StaticResource PhoneAccentBrush}"
+                                                                Foreground="{StaticResource AccentBrush}"
                                                                 Opacity="1"
                                                                 Margin="-5,0,-16,50"
                                                                 MaxHeight="0">
@@ -253,7 +253,7 @@
                                                 <StackPanel Orientation="Horizontal"
                                                             Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
                                                     <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                                                    Foreground="{StaticResource AccentBrush}"
                                                                     Margin="6,0,-18,0"
                                                                     VerticalAlignment="Bottom"
                                                                     MaxHeight="0">
@@ -283,7 +283,7 @@
                                                                             <Storyboard>
                                                                                 <ColorAnimation Storyboard.TargetName="Color"
                                                                                                 Storyboard.TargetProperty="Color"
-                                                                                                To="{StaticResource PhoneAccentColor}"
+                                                                                                To="{StaticResource AccentColor}"
                                                                                                 Duration="0:0:0.25" />
                                                                                 <DoubleAnimation Storyboard.TargetName="CrossIcon"
                                                                                                  Storyboard.TargetProperty="Opacity"
@@ -313,7 +313,7 @@
                                                                                     MaxHeight="0">
                                                                         <ContentControl.Foreground>
                                                                             <SolidColorBrush x:Name="Color"
-                                                                                             Color="{StaticResource PhoneAccentColor}" />
+                                                                                             Color="{StaticResource AccentColor}" />
                                                                         </ContentControl.Foreground>
                                                                         <ContentControl.RenderTransform>
                                                                             <CompositeTransform ScaleX="0.55"
@@ -324,7 +324,7 @@
                                                                     </ContentControl>
                                                                     <ContentControl x:Name="CrossIcon"
                                                                                     Style="{StaticResource BoldCloseIconStyle}"
-                                                                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                                                                    Foreground="{StaticResource AccentBrush}"
                                                                                     Height="0"
                                                                                     Width="0">
                                                                         <ContentControl.RenderTransform>
@@ -647,7 +647,7 @@
 
         <!--Oddělovač-->
         <Rectangle Grid.Row="1"
-                   Fill="{StaticResource PhoneAccentBrush}"
+                   Fill="{StaticResource AccentBrush}"
                    Opacity="0.6"
                    Height="10"
                    VerticalAlignment="Bottom" />

@@ -83,7 +83,7 @@
                                                 Canvas.Top="3"
                                                 RenderTransformOrigin="0.5,0.5">
                                             <Border.Background>
-                                                <SolidColorBrush Color="{StaticResource PhoneAccentColor}"
+                                                <SolidColorBrush Color="{StaticResource AccentColor}"
                                                                  Opacity="0.7" />
                                             </Border.Background>
 
@@ -139,7 +139,7 @@
                                          KeyDown="SubtaskTextBox_KeyDown"
                                          Loaded="SubtaskTextBox_Loaded">
                                     <TextBox.CaretBrush>
-                                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
+                                        <SolidColorBrush Color="{StaticResource AccentColor}" />
                                     </TextBox.CaretBrush>
                                     <TextBox.Template>
                                         <ControlTemplate TargetType="TextBox">

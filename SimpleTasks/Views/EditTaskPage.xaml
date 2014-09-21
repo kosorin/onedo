@@ -46,7 +46,7 @@
         <Storyboard x:Name="ShowDueStoryboard">
             <ColorAnimation Storyboard.TargetName="DueDatePicker"
                             Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
-                            To="{StaticResource PhoneAccentColor}"
+                            To="{StaticResource AccentColor}"
                             Duration="0:0:0.4" />
             <ColorAnimation Storyboard.TargetName="DueDatePicker"
                             Storyboard.TargetProperty="(ToggleButton.Foreground).(SolidColorBrush.Color)"
@@ -232,7 +232,7 @@
 
                             <controls:RingSlice InnerRadius="18"
                                                 Radius="26"
-                                                Fill="{StaticResource PhoneAccentBrush}"
+                                                Fill="{StaticResource AccentBrush}"
                                                 StartAngle="0"
                                                 EndAngle="{Binding SubtasksAngle, FallbackValue=225}"
                                                 Opacity="1" />
@@ -278,7 +278,7 @@
                                 <SolidColorBrush Color="{StaticResource ButtonDarkForegroundColor}" />
                             </controls:MyToggleButton.Foreground>
                             <controls:MyToggleButton.Background>
-                                <SolidColorBrush Color="{StaticResource PhoneAccentColor}" />
+                                <SolidColorBrush Color="{StaticResource AccentColor}" />
                             </controls:MyToggleButton.Background>
                             <controls:MyToggleButton.Template>
                                 <ControlTemplate>
@@ -363,7 +363,7 @@
                             Tap="DueTimePicker_Tap">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Background="{StaticResource PhoneAccentBrush}">
+                                <Border Background="{StaticResource AccentBrush}">
                                     <Grid Background="#22000000">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="70" />
@@ -395,7 +395,7 @@
                                                  IsChecked="{Binding IsSetReminder}">
                             <controls:MyToggleButton.Template>
                                 <ControlTemplate>
-                                    <Border Background="{StaticResource PhoneAccentBrush}">
+                                    <Border Background="{StaticResource AccentBrush}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CheckSatets">
                                                 <VisualState x:Name="Checked">
@@ -565,7 +565,7 @@
                                 </Grid>
                                 <Grid x:Name="HighPriorityGrid"
                                       Opacity="0"
-                                      Background="{StaticResource PhoneAccentBrush}">
+                                      Background="{StaticResource AccentBrush}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="70" />
                                         <ColumnDefinition Width="*" />
