@@ -1,11 +1,16 @@
 {
-    "4.5.0 ": {
-        "date": "2014-09-12",
+    "4.6.0 ": {
+        "date": "2014-09-22",
         "items": [
-            "dlaždice pro rychlé přidání úkolu (tlačítko pro připnutí najdete v nastavení)",
-            "možnost skrýt textové políčko pro přidání úkolu na hlavní stránce",
-            "seznam úkolů na malé dlaždici je zpět",
-            "Německý jazyk"
+            "taliansky jazyk",
+            "možnosť nastaviť svetlú alebo tmavú tému"
+        ]
+    },
+    "4.6.0": {
+        "date": "2014-09-22",
+        "items": [
+            "taliansky jazyk",
+            "možnosť nastaviť svetlú alebo tmavú tému"
         ]
     },
     "4.5.0": {

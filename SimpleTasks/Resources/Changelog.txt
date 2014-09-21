@@ -1,11 +1,16 @@
 {
-    "4.5.0 ": {
-        "date": "2014-09-12",
+    "4.6.0 ": {
+        "date": "2014-09-22",
         "items": [
-            "quick add live tile (pin to start from settings page)",
-            "option to hide quick add text box on main page",
-            "task list on small tile is back (see settings)",
-            "German language"
+            "Italian language",
+            "ability to set light or dark theme"
+        ]
+    },
+    "4.6.0": {
+        "date": "2014-09-22",
+        "items": [
+            "Italian language",
+            "ability to set light or dark theme"
         ]
     },
     "4.5.0": {
