@@ -94,7 +94,7 @@ namespace SimpleTasks.Helpers
 
             // ResourceDictionary
             Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", CurrentTheme == Theme.Dark ? "Dark" : "Light"), UriKind.Relative);
-            ResourceDictionary app = Resources.MergedDictionaries[0];
+            ResourceDictionary appTheme = Resources.MergedDictionaries[0];
             ResourceDictionary theme = new ResourceDictionary
             {
                 Source = sourceUri
@@ -103,21 +103,21 @@ namespace SimpleTasks.Helpers
             // Barvy
             foreach (var ck in theme.Where(x => x.Value is Color))
             {
-                ReplaceColor(app, (string)ck.Key, (Color)ck.Value);
+                ReplaceColor(appTheme, (string)ck.Key, (Color)ck.Value);
             }
 
             // Brushe
             foreach (var ck in theme.Where(x => x.Value is SolidColorBrush))
             {
-                ReplaceBrush(app, (string)ck.Key, (SolidColorBrush)ck.Value);
+                ReplaceBrush(appTheme, (string)ck.Key, (SolidColorBrush)ck.Value);
             }
 
             // Accent barva
             if ((bool)theme["UsePhoneAccentColor"])
             {
                 Color accentColor = (Color)Resources["PhoneAccentColor"];
-                ReplaceColor(app, "AccentColor", accentColor);
-                ReplaceBrush(app, "AccentBrush", new SolidColorBrush(accentColor));
+                ReplaceColor(appTheme, "AccentColor", accentColor);
+                ReplaceBrush(appTheme, "AccentBrush", new SolidColorBrush(accentColor));
             }
 
             // RootFrame
