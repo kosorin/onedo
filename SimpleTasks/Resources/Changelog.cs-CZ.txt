@@ -1,9 +1,18 @@
 ﻿{
-    "4.6.0 ": {
-        "date": "2014-09-22",
+    "4.7.0 ": {
+        "date": "2014-10-08",
         "items": [
-            "italský jazyk",
-            "možnost nastavit světlý nebo tmavý motiv"
+            "ruský jazyk",
+            "oprava italského překladu",
+            "oprava chyby: barva označeného textu"
+        ]
+    },
+    "4.7.0": {
+        "date": "2014-10-08",
+        "items": [
+            "ruský jazyk",
+            "oprava italského překladu",
+            "oprava chyby: barva označeného textu"
         ]
     },
     "4.6.0": {

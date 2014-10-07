@@ -1,9 +1,16 @@
 {
-    "4.6.0 ": {
-        "date": "2014-09-22",
+    "4.7.0 ": {
+        "date": "2014-10-08",
         "items": [
-            "Italian language",
-            "ability to set light or dark theme"
+            "russian language",
+            "bug fix: color of selected text"
+        ]
+    },
+    "4.7.0": {
+        "date": "2014-10-08",
+        "items": [
+            "russian language",
+            "bug fix: color of selected text"
         ]
     },
     "4.6.0": {
