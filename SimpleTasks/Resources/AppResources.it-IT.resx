@@ -149,7 +149,7 @@
     <value>prossima settimana</value>
   </data>
   <data name="DateNoDue" xml:space="preserve">
-    <value>impegno senza scadenza</value>
+    <value>nessuna scadenza</value>
   </data>
   <data name="DateOverdue" xml:space="preserve">
     <value>già scaduti</value>
@@ -343,7 +343,7 @@
     <comment>3 PM (15:00)</comment>
   </data>
   <data name="TimeEvening" xml:space="preserve">
-    <value>pomeriggio</value>
+    <value>serata</value>
     <comment>7 PM (19:00)</comment>
   </data>
   <data name="TimeLateMorning" xml:space="preserve">
@@ -351,11 +351,11 @@
     <comment>10 AM (10:00)</comment>
   </data>
   <data name="TimeMorning" xml:space="preserve">
-    <value>mattina</value>
+    <value>prima mattina</value>
     <comment>7 AM (7:00)</comment>
   </data>
   <data name="TimeNight" xml:space="preserve">
-    <value>sera</value>
+    <value>tarda sera</value>
     <comment>10 PM (22:00)</comment>
   </data>
   <data name="TimeNoon" xml:space="preserve">
@@ -423,7 +423,7 @@
     <value>5 minuti</value>
   </data>
   <data name="TimeZero" xml:space="preserve">
-    <value>alla data dell'impegno</value>
+    <value>esatta ora impegno</value>
   </data>
   <data name="WhatsNew" xml:space="preserve">
     <value>Novità</value>
@@ -453,7 +453,7 @@
     <value>impegni</value>
   </data>
   <data name="SettingsCompleteSubtasks" xml:space="preserve">
-    <value>Completa automaticamente i sub - impegni</value>
+    <value>autocompleta i sub-impegni</value>
   </data>
   <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
     <value>Quando completi un impegno che ne contiene dei sottostanti, questi saranno segnati come "completati".</value>
@@ -468,7 +468,7 @@
     <value>nascondi data impegno</value>
   </data>
   <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>nascondi tile</value>
+    <value>nascondi testo impegno</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>mostra gli impegni completati</value>
@@ -483,7 +483,7 @@
     <value>anteprima</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
-    <value>impostazioni tile</value>
+    <value>crea tile</value>
   </data>
   <data name="TitleUntitled" xml:space="preserve">
     <value>Senza titolo</value>
@@ -498,7 +498,7 @@
     <value>Nascondi check box dall'impegno</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
-    <value>Abilita gestione inversa dello swipe (da dx a sx).</value>
+    <value>Nascondi caselle di spunta dall'impegno.</value>
   </data>
   <data name="BackupAndRestoreTitle" xml:space="preserve">
     <value>backup &amp; ripristino</value>

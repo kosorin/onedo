@@ -52,7 +52,7 @@
         </trans-unit>
         <trans-unit id="Resx/DateNoDue" translate="yes" xml:space="preserve">
           <source>no due date</source>
-          <target state="signed-off">impegno senza scadenza</target>
+          <target state="signed-off">nessuna scadenza</target>
         </trans-unit>
         <trans-unit id="Resx/DateOverdue" translate="yes" xml:space="preserve">
           <source>overdue</source>
@@ -332,7 +332,7 @@
           </trans-unit>
         <trans-unit id="Resx/TimeEvening" translate="yes" xml:space="preserve">
           <source>evening</source>
-          <target state="signed-off">pomeriggio</target>
+          <target state="signed-off">serata</target>
           <note from="MultilingualBuild" annotates="source" priority="2">7 PM (19:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeLateMorning" translate="yes" xml:space="preserve">
@@ -342,12 +342,12 @@
           </trans-unit>
         <trans-unit id="Resx/TimeMorning" translate="yes" xml:space="preserve">
           <source>morning</source>
-          <target state="signed-off">mattina</target>
+          <target state="signed-off">prima mattina</target>
           <note from="MultilingualBuild" annotates="source" priority="2">7 AM (7:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
-          <target state="signed-off">sera</target>
+          <target state="signed-off">tarda sera</target>
           <note from="MultilingualBuild" annotates="source" priority="2">10 PM (22:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeNoon" translate="yes" xml:space="preserve">
@@ -436,7 +436,7 @@
         </trans-unit>
         <trans-unit id="Resx/TimeZero" translate="yes" xml:space="preserve">
           <source>in due time</source>
-          <target state="signed-off">alla data dell'impegno</target>
+          <target state="signed-off">esatta ora impegno</target>
         </trans-unit>
         <trans-unit id="Resx/Days1" translate="yes" xml:space="preserve">
           <source>{0} day</source>
@@ -551,7 +551,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
-          <target state="signed-off">Completa automaticamente i sub - impegni</target>
+          <target state="signed-off">autocompleta i sub-impegni</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasksDetail" translate="yes" xml:space="preserve">
           <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
@@ -571,7 +571,7 @@
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideTitle" translate="yes" xml:space="preserve">
           <source>hide title</source>
-          <target state="signed-off">nascondi tile</target>
+          <target state="signed-off">nascondi testo impegno</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
           <source>show completed subtasks</source>
@@ -595,7 +595,7 @@
         </trans-unit>
         <trans-unit id="Resx/AppBarTileSettings" translate="yes" xml:space="preserve">
           <source>tile settings</source>
-          <target state="signed-off">impostazioni tile</target>
+          <target state="signed-off">crea tile</target>
         </trans-unit>
         <trans-unit id="Resx/TitleUntitled" translate="yes" xml:space="preserve">
           <source>Untitled</source>
@@ -623,7 +623,7 @@ No personal data is being collected.</source>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
           <source>You can use right to left swipe gesture instead to complete task.</source>
-          <target state="signed-off">Abilita gestione inversa dello swipe (da dx a sx).</target>
+          <target state="signed-off">Nascondi caselle di spunta dall'impegno.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreTitle" translate="yes" xml:space="preserve">
           <source>backup %%amp; restore</source>
