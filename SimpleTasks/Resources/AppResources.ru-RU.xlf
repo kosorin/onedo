@@ -18,764 +18,762 @@
           </trans-unit>
         <trans-unit id="Resx/AppBarNew" translate="yes" xml:space="preserve">
           <source>new</source>
-          <target state="new">new</target>
+          <target state="signed-off">новая задача</target>
           <note from="MultilingualBuild" annotates="source" priority="2">new task</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarAbout" translate="yes" xml:space="preserve">
           <source>about</source>
-          <target state="new">about</target>
+          <target state="signed-off">о приложении</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarSave" translate="yes" xml:space="preserve">
           <source>save</source>
-          <target state="new">save</target>
+          <target state="signed-off">сохранить</target>
           <note from="MultilingualBuild" annotates="source" priority="2">save task</note>
           </trans-unit>
         <trans-unit id="Resx/ChooseDate" translate="yes" xml:space="preserve">
           <source>CHOOSE DATE</source>
-          <target state="new">CHOOSE DATE</target>
+          <target state="signed-off">ВЫБЕРИТЕ ДАТУ</target>
         </trans-unit>
         <trans-unit id="Resx/DateCustomDue" translate="yes" xml:space="preserve">
           <source>custom due date</source>
-          <target state="new">custom due date</target>
+          <target state="signed-off">дата по умолчанию</target>
         </trans-unit>
         <trans-unit id="Resx/DateLater" translate="yes" xml:space="preserve">
           <source>later</source>
-          <target state="new">later</target>
+          <target state="signed-off">позднее</target>
         </trans-unit>
         <trans-unit id="Resx/DateNextMonth" translate="yes" xml:space="preserve">
           <source>next month</source>
-          <target state="new">next month</target>
+          <target state="signed-off">следующий месяц</target>
         </trans-unit>
         <trans-unit id="Resx/DateNextWeek" translate="yes" xml:space="preserve">
           <source>next week</source>
-          <target state="new">next week</target>
+          <target state="signed-off">следующая неделя</target>
         </trans-unit>
         <trans-unit id="Resx/DateNoDue" translate="yes" xml:space="preserve">
           <source>no due date</source>
-          <target state="new">no due date</target>
+          <target state="signed-off">нет даты</target>
         </trans-unit>
         <trans-unit id="Resx/DateOverdue" translate="yes" xml:space="preserve">
           <source>overdue</source>
-          <target state="new">overdue</target>
+          <target state="signed-off">прошедшие</target>
         </trans-unit>
         <trans-unit id="Resx/DateThisMonth" translate="yes" xml:space="preserve">
           <source>this month</source>
-          <target state="new">this month</target>
+          <target state="signed-off">этот месяц</target>
         </trans-unit>
         <trans-unit id="Resx/DateThisWeek" translate="yes" xml:space="preserve">
           <source>this week</source>
-          <target state="new">this week</target>
+          <target state="signed-off">эта неделя</target>
         </trans-unit>
         <trans-unit id="Resx/DateToday" translate="yes" xml:space="preserve">
           <source>today</source>
-          <target state="new">today</target>
+          <target state="signed-off">сегодня</target>
         </trans-unit>
         <trans-unit id="Resx/DateTomorrow" translate="yes" xml:space="preserve">
           <source>tomorrow</source>
-          <target state="new">tomorrow</target>
+          <target state="signed-off">завтра</target>
         </trans-unit>
         <trans-unit id="Resx/NoTasks" translate="yes" xml:space="preserve">
           <source>No Tasks</source>
-          <target state="new">No Tasks</target>
+          <target state="signed-off">Нет Задач</target>
         </trans-unit>
         <trans-unit id="Resx/PriorityHigh" translate="yes" xml:space="preserve">
           <source>high priority</source>
-          <target state="new">high priority</target>
+          <target state="signed-off">высокий приоритет</target>
         </trans-unit>
         <trans-unit id="Resx/PriorityNormal" translate="yes" xml:space="preserve">
           <source>normal priority</source>
-          <target state="new">normal priority</target>
+          <target state="signed-off">нормальный приоритет</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarComplete" translate="yes" xml:space="preserve">
           <source>complete</source>
-          <target state="new">complete</target>
+          <target state="signed-off">завершить</target>
           <note from="MultilingualBuild" annotates="source" priority="2">complete task</note>
           </trans-unit>
         <trans-unit id="Resx/PeriodicTaskDescription" translate="yes" xml:space="preserve">
           <source>Updates live tile.</source>
-          <target state="new">Updates live tile.</target>
+          <target state="signed-off">Обновление живой плитки.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Info about background task agent</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarActivate" translate="yes" xml:space="preserve">
           <source>activate</source>
-          <target state="new">activate</target>
+          <target state="signed-off">сделать активной</target>
           <note from="MultilingualBuild" annotates="source" priority="2">activate task</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarDeleteCompleted" translate="yes" xml:space="preserve">
           <source>delete completed tasks</source>
-          <target state="new">delete completed tasks</target>
+          <target state="signed-off">удалить выполненные задачи</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarDelete" translate="yes" xml:space="preserve">
           <source>delete</source>
-          <target state="new">delete</target>
+          <target state="signed-off">удалить</target>
           <note from="MultilingualBuild" annotates="source" priority="2">delete task</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarSettings" translate="yes" xml:space="preserve">
           <source>settings</source>
-          <target state="new">settings</target>
+          <target state="signed-off">настройки</target>
         </trans-unit>
         <trans-unit id="Resx/DateCompleted" translate="yes" xml:space="preserve">
           <source>completed</source>
-          <target state="new">completed</target>
+          <target state="signed-off">выполненные</target>
           <note from="MultilingualBuild" annotates="source" priority="2">completed tasks</note>
           </trans-unit>
         <trans-unit id="Resx/DeleteTaskCaption" translate="yes" xml:space="preserve">
           <source>Delete task</source>
-          <target state="new">Delete task</target>
+          <target state="signed-off">Удалить задачу</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteTask" translate="yes" xml:space="preserve">
           <source>Are you sure you want to delete this task?</source>
-          <target state="new">Are you sure you want to delete this task?</target>
+          <target state="signed-off">Вы уверены, что хотите удалить эту задачу?</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteTaskYes" translate="yes" xml:space="preserve">
           <source>delete</source>
-          <target state="new">delete</target>
+          <target state="signed-off">удалить</target>
           <note from="MultilingualBuild" annotates="source" priority="2">delete confirmation</note>
           </trans-unit>
         <trans-unit id="Resx/DeleteTaskNo" translate="yes" xml:space="preserve">
           <source>cancel</source>
-          <target state="new">cancel</target>
+          <target state="signed-off">отменить</target>
           <note from="MultilingualBuild" annotates="source" priority="2">cancel delete confirmation</note>
           </trans-unit>
         <trans-unit id="Resx/AboutContactUs" translate="yes" xml:space="preserve">
           <source>contact us</source>
-          <target state="new">contact us</target>
+          <target state="signed-off">связаться с нами</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
           </trans-unit>
         <trans-unit id="Resx/AboutRateReview" translate="yes" xml:space="preserve">
           <source>rate and review</source>
-          <target state="new">rate and review</target>
+          <target state="signed-off">оценки и отзывы</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
           </trans-unit>
         <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
           <source>Default date</source>
-          <target state="new">Default date</target>
+          <target state="signed-off">День по умолчанию</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteAfterOneDay" translate="yes" xml:space="preserve">
           <source>after 1 day</source>
-          <target state="new">after 1 day</target>
+          <target state="signed-off">через 1 день</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteAfterOneWeek" translate="yes" xml:space="preserve">
           <source>after 1 week</source>
-          <target state="new">after 1 week</target>
+          <target state="signed-off">через 1 неделю</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteAfterThreeDays" translate="yes" xml:space="preserve">
           <source>after 3 days</source>
-          <target state="new">after 3 days</target>
+          <target state="signed-off">через 3 дня</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteAfterTwoDays" translate="yes" xml:space="preserve">
           <source>after 2 days</source>
-          <target state="new">after 2 days</target>
+          <target state="signed-off">через 2 дня</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteAfterTwoWeeks" translate="yes" xml:space="preserve">
           <source>after 2 weeks</source>
-          <target state="new">after 2 weeks</target>
+          <target state="signed-off">через 2 недели</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteCompletedTasks" translate="yes" xml:space="preserve">
           <source>Delete completed tasks</source>
-          <target state="new">Delete completed tasks</target>
+          <target state="signed-off">удалить выполненные задачи</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteCompletedTasksDays" translate="yes" xml:space="preserve">
           <source>Delete in</source>
-          <target state="new">Delete in</target>
+          <target state="signed-off">Удалить в</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsFirstDayOfWeek" translate="yes" xml:space="preserve">
           <source>First day of week</source>
-          <target state="new">First day of week</target>
+          <target state="signed-off">Первый день недели</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsFirstDayOfWeekPickerHeader" translate="yes" xml:space="preserve">
           <source>choose first day of week</source>
-          <target state="new">choose first day of week</target>
+          <target state="signed-off">выберите первый день недели</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsGeneral" translate="yes" xml:space="preserve">
           <source>general</source>
-          <target state="new">general</target>
+          <target state="signed-off">общие</target>
           <note from="MultilingualBuild" annotates="source" priority="2">general pivot in settings</note>
           </trans-unit>
         <trans-unit id="Resx/SettingsTitle" translate="yes" xml:space="preserve">
           <source>SETTINGS</source>
-          <target state="new">SETTINGS</target>
+          <target state="signed-off">НАСТРОЙКИ</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarPinTile" translate="yes" xml:space="preserve">
           <source>pin tile</source>
-          <target state="new">pin tile</target>
+          <target state="signed-off">закрепить тайл</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarUnpinTile" translate="yes" xml:space="preserve">
           <source>unpin tile</source>
-          <target state="new">unpin tile</target>
+          <target state="signed-off">открепить тайл</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteCompletedTasksInfo" translate="yes" xml:space="preserve">
           <source>Tasks are always automatically deleted when the application starts.</source>
-          <target state="new">Tasks are always automatically deleted when the application starts.</target>
+          <target state="signed-off">Задачи всегда автоматически удаляются, когда приложение открывается.</target>
         </trans-unit>
         <trans-unit id="Resx/AboutEmailSubject" translate="yes" xml:space="preserve">
           <source>Feedback for {0} {1}</source>
-          <target state="new">Feedback for {0} {1}</target>
+          <target state="signed-off">Обратная связь для {0} {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
           </trans-unit>
         <trans-unit id="Resx/AboutVersion" translate="yes" xml:space="preserve">
           <source>Version</source>
-          <target state="new">Version</target>
+          <target state="signed-off">Версия</target>
           </trans-unit>
         <trans-unit id="Resx/DueDate" translate="yes" xml:space="preserve">
           <source>due date</source>
-          <target state="new">due date</target>
+          <target state="signed-off">срок</target>
         </trans-unit>
         <trans-unit id="Resx/PriorityLow" translate="yes" xml:space="preserve">
           <source>low priority</source>
-          <target state="new">low priority</target>
+          <target state="signed-off">низкий приоритет</target>
         </trans-unit>
         <trans-unit id="Resx/Reminder" translate="yes" xml:space="preserve">
           <source>reminder</source>
-          <target state="new">reminder</target>
+          <target state="signed-off">напоминание</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
-          <target state="new">Default time</target>
+          <target state="signed-off">Время по умолчанию </target>
         </trans-unit>
         <trans-unit id="Resx/AppBarOk" translate="yes" xml:space="preserve">
           <source>ok</source>
-          <target state="new">ok</target>
+          <target state="signed-off">ок</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarDeleteAll" translate="yes" xml:space="preserve">
           <source>delete all tasks</source>
-          <target state="new">delete all tasks</target>
+          <target state="signed-off">удалить все задачи</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteAllTasks" translate="yes" xml:space="preserve">
           <source>Are you sure you want to delete all tasks?</source>
-          <target state="new">Are you sure you want to delete all tasks?</target>
+          <target state="signed-off">Вы уверены, что хотите удалить все задачи?</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteAllTasksCaption" translate="yes" xml:space="preserve">
           <source>Delete all tasks</source>
-          <target state="new">Delete all tasks</target>
+          <target state="signed-off">Удалить все задачи</target>
         </trans-unit>
         <trans-unit id="Resx/DateSomeday" translate="yes" xml:space="preserve">
           <source>someday</source>
-          <target state="new">someday</target>
+          <target state="signed-off">неопределённый день</target>
         </trans-unit>
         <trans-unit id="Resx/DateUpcoming" translate="yes" xml:space="preserve">
           <source>upcoming</source>
-          <target state="new">upcoming</target>
+          <target state="signed-off">предстоящие</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsPinTile" translate="yes" xml:space="preserve">
           <source>In the App list, tap and hold the {0} app, and then tap Pin to start.</source>
-          <target state="new">In the App list, tap and hold the {0} app, and then tap Pin to start.</target>
+          <target state="signed-off">В списке приложений зажмите иконку {0}, выберите - закрепить на начальный экран.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">{0} is application name</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarCancel" translate="yes" xml:space="preserve">
           <source>cancel</source>
-          <target state="new">cancel</target>
+          <target state="signed-off">отменить</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsEnableTile" translate="yes" xml:space="preserve">
           <source>Enable tile</source>
-          <target state="new">Enable tile</target>
+          <target state="signed-off">Включить тайл</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsTile" translate="yes" xml:space="preserve">
           <source>tiles</source>
-          <target state="new">tiles</target>
+          <target state="signed-off">тайлы</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteNever" translate="yes" xml:space="preserve">
           <source>never</source>
-          <target state="new">never</target>
+          <target state="signed-off">никогда</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDeleteWhenStarts" translate="yes" xml:space="preserve">
           <source>when application closes</source>
-          <target state="new">when application closes</target>
+          <target state="signed-off">при закрытии приложения</target>
         </trans-unit>
         <trans-unit id="Resx/Detail" translate="yes" xml:space="preserve">
           <source>Detail</source>
-          <target state="new">Detail</target>
+          <target state="signed-off">Подробнее</target>
         </trans-unit>
         <trans-unit id="Resx/Title" translate="yes" xml:space="preserve">
           <source>Title</source>
-          <target state="new">Title</target>
+          <target state="signed-off">Заголовок</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarPin" translate="yes" xml:space="preserve">
           <source>pin</source>
-          <target state="new">pin</target>
+          <target state="signed-off">закрепить</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarUnpin" translate="yes" xml:space="preserve">
           <source>unpin</source>
-          <target state="new">unpin</target>
+          <target state="signed-off">открепить</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarDone" translate="yes" xml:space="preserve">
           <source>done</source>
-          <target state="new">done</target>
+          <target state="signed-off">готово</target>
         </trans-unit>
         <trans-unit id="Resx/ChooseReminderTime" translate="yes" xml:space="preserve">
           <source>CHOOSE REMINDER</source>
-          <target state="new">CHOOSE REMINDER</target>
+          <target state="signed-off">ВЫБЕРИТЕ НАПОМИНАНИЕ</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsUnpinCompleted" translate="yes" xml:space="preserve">
           <source>Unpin tile upon completion of task</source>
-          <target state="new">Unpin tile upon completion of task</target>
+          <target state="signed-off">Открепить тайл после завершения задачи</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarAddBullet" translate="yes" xml:space="preserve">
           <source>add bullet</source>
-          <target state="new">add bullet</target>
+          <target state="signed-off">добавить подпункт</target>
         </trans-unit>
         <trans-unit id="Resx/BulletText" translate="yes" xml:space="preserve">
           <source>bullet</source>
-          <target state="new">bullet</target>
+          <target state="signed-off">подпункт</target>
         </trans-unit>
         <trans-unit id="Resx/Changelog" translate="yes" xml:space="preserve">
           <source>changelog</source>
-          <target state="new">changelog</target>
+          <target state="signed-off">список изменений</target>
         </trans-unit>
         <trans-unit id="Resx/ChooseTime" translate="yes" xml:space="preserve">
           <source>CHOOSE TIME</source>
-          <target state="new">CHOOSE TIME</target>
+          <target state="signed-off">ВЫБЕРИТЕ ВРЕМЯ</target>
         </trans-unit>
         <trans-unit id="Resx/TimeAfternoon" translate="yes" xml:space="preserve">
           <source>afternoon</source>
-          <target state="new">afternoon</target>
+          <target state="signed-off">день</target>
           <note from="MultilingualBuild" annotates="source" priority="2">3 PM (15:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeEvening" translate="yes" xml:space="preserve">
           <source>evening</source>
-          <target state="new">evening</target>
+          <target state="signed-off">вечер</target>
           <note from="MultilingualBuild" annotates="source" priority="2">7 PM (19:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeLateMorning" translate="yes" xml:space="preserve">
           <source>late morning</source>
-          <target state="new">late morning</target>
+          <target state="signed-off">позднее утро</target>
           <note from="MultilingualBuild" annotates="source" priority="2">10 AM (10:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeMorning" translate="yes" xml:space="preserve">
           <source>morning</source>
-          <target state="new">morning</target>
+          <target state="signed-off">утро</target>
           <note from="MultilingualBuild" annotates="source" priority="2">7 AM (7:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeNight" translate="yes" xml:space="preserve">
           <source>night</source>
-          <target state="new">night</target>
+          <target state="signed-off">ночь</target>
           <note from="MultilingualBuild" annotates="source" priority="2">10 PM (22:00)</note>
           </trans-unit>
         <trans-unit id="Resx/TimeNoon" translate="yes" xml:space="preserve">
           <source>noon</source>
-          <target state="new">noon</target>
+          <target state="signed-off">полдень</target>
           <note from="MultilingualBuild" annotates="source" priority="2">12 PM (12:00)</note>
           </trans-unit>
         <trans-unit id="Resx/NoReminder" translate="yes" xml:space="preserve">
           <source>no reminder</source>
-          <target state="new">no reminder</target>
+          <target state="signed-off">не напоминать</target>
         </trans-unit>
         <trans-unit id="Resx/DaysLabel" translate="yes" xml:space="preserve">
           <source>days</source>
-          <target state="new">days</target>
+          <target state="signed-off">дни</target>
         </trans-unit>
         <trans-unit id="Resx/HoursLabel" translate="yes" xml:space="preserve">
           <source>hours</source>
-          <target state="new">hours</target>
+          <target state="signed-off">часы</target>
         </trans-unit>
         <trans-unit id="Resx/MinutesLabel" translate="yes" xml:space="preserve">
           <source>minutes</source>
-          <target state="new">minutes</target>
+          <target state="signed-off">минуты</target>
         </trans-unit>
         <trans-unit id="Resx/DateLastMonth" translate="yes" xml:space="preserve">
           <source>last month</source>
-          <target state="new">last month</target>
+          <target state="signed-off">прошлый месяц</target>
         </trans-unit>
         <trans-unit id="Resx/DateLastWeek" translate="yes" xml:space="preserve">
           <source>last week</source>
-          <target state="new">last week</target>
+          <target state="signed-off">прошлая неделя</target>
         </trans-unit>
         <trans-unit id="Resx/DateYesterday" translate="yes" xml:space="preserve">
           <source>yesterday</source>
-          <target state="new">yesterday</target>
+          <target state="signed-off">вчера</target>
         </trans-unit>
         <trans-unit id="Resx/DateTimeDaysAbbr" translate="yes" xml:space="preserve">
           <source>d</source>
-          <target state="new">d</target>
+          <target state="signed-off">д</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for days</note>
           </trans-unit>
         <trans-unit id="Resx/DateTimeHoursAbbr" translate="yes" xml:space="preserve">
           <source>h</source>
-          <target state="new">h</target>
+          <target state="signed-off">ч</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for hours</note>
           </trans-unit>
         <trans-unit id="Resx/DateTimeMinutesAbbr" translate="yes" xml:space="preserve">
           <source>m</source>
-          <target state="new">m</target>
+          <target state="signed-off">м</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for minutes</note>
           </trans-unit>
         <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
           <source>Add a new task</source>
-          <target state="new">Add a new task</target>
+          <target state="signed-off">Добавить новую задачу</target>
         </trans-unit>
         <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
           <source>before due date</source>
-          <target state="new">before due date</target>
+          <target state="signed-off">до события</target>
         </trans-unit>
         <trans-unit id="Resx/Time15mins" translate="yes" xml:space="preserve">
           <source>15 minutes</source>
-          <target state="new">15 minutes</target>
+          <target state="signed-off">15 минут</target>
         </trans-unit>
         <trans-unit id="Resx/Time18hours" translate="yes" xml:space="preserve">
           <source>18 hours</source>
-          <target state="new">18 hours</target>
+          <target state="signed-off">18 часов</target>
         </trans-unit>
         <trans-unit id="Resx/Time1day" translate="yes" xml:space="preserve">
           <source>1 day</source>
-          <target state="new">1 day</target>
+          <target state="signed-off">1 день</target>
         </trans-unit>
         <trans-unit id="Resx/Time1hour" translate="yes" xml:space="preserve">
           <source>1 hour</source>
-          <target state="new">1 hour</target>
+          <target state="signed-off">1 час</target>
         </trans-unit>
         <trans-unit id="Resx/Time1week" translate="yes" xml:space="preserve">
           <source>1 week</source>
-          <target state="new">1 week</target>
+          <target state="signed-off">1 неделя</target>
         </trans-unit>
         <trans-unit id="Resx/Time30mins" translate="yes" xml:space="preserve">
           <source>30 minutes</source>
-          <target state="new">30 minutes</target>
+          <target state="signed-off">30 минут</target>
         </trans-unit>
         <trans-unit id="Resx/Time5mins" translate="yes" xml:space="preserve">
           <source>5 minutes</source>
-          <target state="new">5 minutes</target>
+          <target state="signed-off">5 минут</target>
         </trans-unit>
         <trans-unit id="Resx/TimeZero" translate="yes" xml:space="preserve">
           <source>in due time</source>
-          <target state="new">in due time</target>
+          <target state="signed-off">точно в срок</target>
         </trans-unit>
         <trans-unit id="Resx/Days1" translate="yes" xml:space="preserve">
           <source>{0} day</source>
-          <target state="new">{0} day</target>
+          <target state="signed-off">{0} день</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 day</note>
           </trans-unit>
         <trans-unit id="Resx/Days2To4" translate="yes" xml:space="preserve">
           <source>{0} days</source>
-          <target state="new">{0} days</target>
+          <target state="signed-off">{0} дня</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2-4 days</note>
           </trans-unit>
         <trans-unit id="Resx/Days5AndMore" translate="yes" xml:space="preserve">
           <source>{0} days</source>
-          <target state="new">{0} days</target>
+          <target state="signed-off">{0} дней</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ days</note>
           </trans-unit>
         <trans-unit id="Resx/Hours1" translate="yes" xml:space="preserve">
           <source>{0} hour</source>
-          <target state="new">{0} hour</target>
+          <target state="signed-off">{0} час</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 hour</note>
           </trans-unit>
         <trans-unit id="Resx/Hours2To4" translate="yes" xml:space="preserve">
           <source>{0} hours</source>
-          <target state="new">{0} hours</target>
+          <target state="signed-off">{0} часа</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2-4 hours</note>
           </trans-unit>
         <trans-unit id="Resx/Hours5AndMore" translate="yes" xml:space="preserve">
           <source>{0} hours</source>
-          <target state="new">{0} hours</target>
+          <target state="signed-off">{0} часов</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ hours</note>
           </trans-unit>
         <trans-unit id="Resx/Minutes1" translate="yes" xml:space="preserve">
           <source>{0} minute</source>
-          <target state="new">{0} minute</target>
+          <target state="signed-off">{0} минута</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 minute</note>
           </trans-unit>
         <trans-unit id="Resx/Minutes2To4" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="new">{0} minutes</target>
+          <target state="signed-off">{0} минуты</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2-4 minutes</note>
           </trans-unit>
         <trans-unit id="Resx/Minutes5AndMore" translate="yes" xml:space="preserve">
           <source>{0} minutes</source>
-          <target state="new">{0} minutes</target>
+          <target state="signed-off">{0} минут</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ minutes</note>
           </trans-unit>
         <trans-unit id="Resx/Weeks1" translate="yes" xml:space="preserve">
           <source>{0} week</source>
-          <target state="new">{0} week</target>
+          <target state="signed-off">{0} неделя</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 week</note>
           </trans-unit>
         <trans-unit id="Resx/Weeks2To4" translate="yes" xml:space="preserve">
           <source>{0} weeks</source>
-          <target state="new">{0} weeks</target>
+          <target state="signed-off">{0} недели</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2-4 weeks</note>
           </trans-unit>
         <trans-unit id="Resx/WhatsNew" translate="yes" xml:space="preserve">
           <source>What's new</source>
-          <target state="new">What's new</target>
+          <target state="signed-off">Что нового</target>
         </trans-unit>
         <trans-unit id="Resx/Months1" translate="yes" xml:space="preserve">
           <source>{0} month</source>
-          <target state="new">{0} month</target>
+          <target state="signed-off">{0} месяц</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 month</note>
           </trans-unit>
         <trans-unit id="Resx/Months2To4" translate="yes" xml:space="preserve">
           <source>{0} months</source>
-          <target state="new">{0} months</target>
+          <target state="signed-off">{0} месяца</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2-4 months</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="new">add</target>
+          <target state="signed-off">добавить</target>
         </trans-unit>
         <trans-unit id="Resx/SubtaskAdd" translate="yes" xml:space="preserve">
           <source>Add a subtask</source>
-          <target state="new">Add a subtask</target>
+          <target state="signed-off">Добавить подзадачу</target>
         </trans-unit>
         <trans-unit id="Resx/SubtasksText" translate="yes" xml:space="preserve">
           <source>subtasks</source>
-          <target state="new">subtasks</target>
+          <target state="signed-off">подзадачи</target>
         </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
           <source>subtask</source>
-          <target state="new">subtask</target>
+          <target state="signed-off">подзадача</target>
         </trans-unit>
         <trans-unit id="Resx/TaskText" translate="yes" xml:space="preserve">
           <source>task</source>
-          <target state="new">task</target>
+          <target state="signed-off">задача</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarCompleteAllSubtasks" translate="yes" xml:space="preserve">
           <source>complete all</source>
-          <target state="new">complete all</target>
+          <target state="signed-off">завершить все</target>
         </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>or text box bellow to add a task.</source>
-          <target state="new">or text box bellow to add a task.</target>
+          <target state="signed-off">или используйте строку ввода ниже, чтобы добавить задачу.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} or text box bellow to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
           <source>Tap</source>
-          <target state="new">Tap</target>
+          <target state="signed-off">Нажмите</target>
           <note from="MultilingualBuild" annotates="source" priority="2">This is first part of: Tap {plus_icon} or text box bellow to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/NoSubtasks" translate="yes" xml:space="preserve">
           <source>No Subtasks</source>
-          <target state="new">No Subtasks</target>
+          <target state="signed-off">Нет Подзадач</target>
         </trans-unit>
         <trans-unit id="Resx/TasksText" translate="yes" xml:space="preserve">
           <source>tasks</source>
-          <target state="new">tasks</target>
+          <target state="signed-off">задачи</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
-          <target state="new">Automatically complete subtasks</target>
+          <target state="signed-off">Автоматически завершать подзадачи</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasksDetail" translate="yes" xml:space="preserve">
           <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
-          <target state="new">When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</target>
+          <target state="signed-off">Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsVibrate" translate="yes" xml:space="preserve">
           <source>Vibrate</source>
-          <target state="new">Vibrate</target>
+          <target state="signed-off">Вибрация</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarDeleteAllSubtasks" translate="yes" xml:space="preserve">
           <source>delete all</source>
-          <target state="new">delete all</target>
+          <target state="signed-off">удалить все</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideDate" translate="yes" xml:space="preserve">
           <source>hide due date</source>
-          <target state="new">hide due date</target>
+          <target state="signed-off">скрыть дату</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsHideTitle" translate="yes" xml:space="preserve">
           <source>hide title</source>
-          <target state="new">hide title</target>
+          <target state="signed-off">скрыть заголовок</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
           <source>show completed subtasks</source>
-          <target state="new">show completed subtasks</target>
+          <target state="signed-off">показать завершенные задачи</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
           <source>title on one line</source>
-          <target state="new">title on one line</target>
+          <target state="signed-off">заголовок одной строкой</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
-          <target state="new">background opacity</target>
+          <target state="signed-off">прозрачность фона</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
           <source>font size</source>
-          <target state="new">font size</target>
+          <target state="signed-off">размер шрифта</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>preview</source>
-          <target state="new">preview</target>
+          <target state="signed-off">предпросмотр</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarTileSettings" translate="yes" xml:space="preserve">
           <source>tile settings</source>
-          <target state="new">tile settings</target>
+          <target state="signed-off">настройки тайла</target>
         </trans-unit>
         <trans-unit id="Resx/TitleUntitled" translate="yes" xml:space="preserve">
           <source>Untitled</source>
-          <target state="new">Untitled</target>
+          <target state="signed-off">Без названия</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedback" translate="yes" xml:space="preserve">
           <source>feedback</source>
-          <target state="new">feedback</target>
+          <target state="signed-off">сбор статистики</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
 No personal data is being collected.</source>
-          <target state="new">Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-No personal data is being collected.</target>
+          <target state="signed-off">Отправлять анонимные данные об использовании приложения в целях улучшения его качества. Статистика помогает разработчику выявить и выделить наиболее часто используемые функции приложения. Никакие личные данные не собираются.</target>
         </trans-unit>
         <trans-unit id="Resx/EditText" translate="yes" xml:space="preserve">
           <source>Edit</source>
-          <target state="new">Edit</target>
+          <target state="signed-off">Изменить</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTaskTileSettings" translate="yes" xml:space="preserve">
           <source>Default settings for task tile</source>
-          <target state="new">Default settings for task tile</target>
+          <target state="signed-off">Настройки по умолчанию для тайла задач</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBox" translate="yes" xml:space="preserve">
           <source>Hide task check box</source>
-          <target state="new">Hide task check box</target>
+          <target state="signed-off">Скрыть флажок для задачи</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
           <source>You can use right to left swipe gesture instead to complete task.</source>
-          <target state="new">You can use right to left swipe gesture instead to complete task.</target>
+          <target state="signed-off">Вы можете вместо этого использовать свайп влево на задаче,чтобы ее завершить.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreTitle" translate="yes" xml:space="preserve">
           <source>backup %%amp; restore</source>
-          <target state="new">backup %%amp; restore</target>
+          <target state="signed-off">копия %%amp; восстановление</target>
         </trans-unit>
         <trans-unit id="Resx/BackupText" translate="yes" xml:space="preserve">
           <source>Backup</source>
-          <target state="new">Backup</target>
+          <target state="signed-off">Копия</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreText" translate="yes" xml:space="preserve">
           <source>Restore</source>
-          <target state="new">Restore</target>
+          <target state="signed-off">Восстановление</target>
         </trans-unit>
         <trans-unit id="Resx/SignIn" translate="yes" xml:space="preserve">
           <source>Sign in</source>
-          <target state="new">Sign in</target>
+          <target state="signed-off">Вход</target>
         </trans-unit>
         <trans-unit id="Resx/SignOut" translate="yes" xml:space="preserve">
           <source>Sign out</source>
-          <target state="new">Sign out</target>
+          <target state="signed-off">Выход</target>
         </trans-unit>
         <trans-unit id="Resx/SigningIn" translate="yes" xml:space="preserve">
           <source>Signing in</source>
-          <target state="new">Signing in</target>
+          <target state="signed-off">Вход</target>
         </trans-unit>
         <trans-unit id="Resx/BackingUp" translate="yes" xml:space="preserve">
           <source>Backing up</source>
-          <target state="new">Backing up</target>
+          <target state="signed-off">Резервное копирование</target>
         </trans-unit>
         <trans-unit id="Resx/Restoring" translate="yes" xml:space="preserve">
           <source>Restoring</source>
-          <target state="new">Restoring</target>
+          <target state="signed-off">Восстановление</target>
         </trans-unit>
         <trans-unit id="Resx/SelectBackup" translate="yes" xml:space="preserve">
           <source>select backup to restore</source>
-          <target state="new">select backup to restore</target>
+          <target state="signed-off">выберите копию для восстановления</target>
         </trans-unit>
         <trans-unit id="Resx/BackupDownloadingList" translate="yes" xml:space="preserve">
           <source>Downloading list of backups</source>
-          <target state="new">Downloading list of backups</target>
+          <target state="signed-off">Загрузка списка резервных копий</target>
         </trans-unit>
         <trans-unit id="Resx/NoBackups" translate="yes" xml:space="preserve">
           <source>No backups</source>
-          <target state="new">No backups</target>
+          <target state="signed-off">Нет резервных копий</target>
         </trans-unit>
         <trans-unit id="Resx/UnknownError" translate="yes" xml:space="preserve">
           <source>Unknown error.</source>
-          <target state="new">Unknown error.</target>
+          <target state="signed-off">Неизвестная ошибка.</target>
         </trans-unit>
         <trans-unit id="Resx/SignedInNo" translate="yes" xml:space="preserve">
           <source>You're not signed in.</source>
-          <target state="new">You're not signed in.</target>
+          <target state="signed-off">Вы не вошли в OneDrive.</target>
         </trans-unit>
         <trans-unit id="Resx/SignedInYes" translate="yes" xml:space="preserve">
           <source>You're signed in as {0}.</source>
-          <target state="new">You're signed in as {0}.</target>
+          <target state="signed-off">Вы вошли как {0}.</target>
           <note from="MultilingualBuild" annotates="source" priority="2">{0} is user name</note>
           </trans-unit>
         <trans-unit id="Resx/BackupLatest" translate="yes" xml:space="preserve">
           <source>latest</source>
-          <target state="new">latest</target>
+          <target state="signed-off">последняя</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreWhatText" translate="yes" xml:space="preserve">
           <source>select items to restore</source>
-          <target state="new">select items to restore</target>
+          <target state="signed-off">выберите объекты для восстановления</target>
         </trans-unit>
         <trans-unit id="Resx/BackupAndRestoreHelpText" translate="yes" xml:space="preserve">
           <source>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
 It's still in beta.</source>
-          <target state="new">Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
-It's still in beta.</target>
+          <target state="signed-off">Резервное копирование создаст новую папку "{0}". Вы можете перемещать папку, но, пожалуйста, не переименовывайте её. Также не стоит трогать файлы внутри этой папки. Это всё ещё BETA-версия функции.</target>
         </trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
-          <target state="new">Successful restore.</target>
+          <target state="signed-off">Успешное восстановление.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupOk" translate="yes" xml:space="preserve">
           <source>Successful backup.</source>
-          <target state="new">Successful backup.</target>
+          <target state="signed-off">Успешное резервное копирование.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>show task count</source>
-          <target state="new">show task count</target>
+          <target state="signed-off">показать количество задач</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>swap title and date on wide tile</source>
-          <target state="new">swap title and date on wide tile</target>
+          <target state="signed-off">название и дата на большом тайле рядом </target>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowQuickAddTextBox" translate="yes" xml:space="preserve">
           <source>show "add task" text box on main page</source>
-          <target state="new">show "add task" text box on main page</target>
+          <target state="signed-off">показывать строку добавления задачи на главной странице приложения</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
           <source>quick add tile</source>
-          <target state="new">quick add tile</target>
+          <target state="signed-off">тайл быстрого добавления задачи</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
           <source>Pin to start</source>
-          <target state="new">Pin to start</target>
+          <target state="signed-off">закрепить на рабочем столе</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
           <source>Unpin</source>
-          <target state="new">Unpin</target>
+          <target state="signed-off">открепить</target>
         </trans-unit>
         <trans-unit id="Resx/QuickAddTileTitle" translate="yes" xml:space="preserve">
           <source>New task</source>
-          <target state="new">New task</target>
+          <target state="signed-off">Новая задача</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCountHelp" translate="yes" xml:space="preserve">
           <source>If unchecked, show task list on small tile instead of number of tasks.</source>
-          <target state="new">If unchecked, show task list on small tile instead of number of tasks.</target>
+          <target state="signed-off">Если не включено, показывать список задач на маленьком тайле вместо количества задач.</target>
         </trans-unit>
         <trans-unit id="Resx/ChangelogShow" translate="yes" xml:space="preserve">
           <source>Show changelog</source>
-          <target state="new">Show changelog</target>
+          <target state="signed-off">Показать список изменений</target>
         </trans-unit>
         <trans-unit id="Resx/VersionFormat" translate="yes" xml:space="preserve">
           <source>Version {0}</source>
-          <target state="new">Version {0}</target>
+          <target state="signed-off">Версия {0}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Version {VersionNumber}</note>
           </trans-unit>
         <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
           <source>Translation</source>
-          <target state="new">Translation</target>
+          <target state="signed-off">Перевод</target>
         </trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
-          <target state="new">Author</target>
+          <target state="signed-off">Автор</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeTitle" translate="yes" xml:space="preserve">
           <source>theme</source>
-          <target state="new">theme</target>
+          <target state="signed-off">тема</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeSystem" translate="yes" xml:space="preserve">
           <source>system ({0})</source>
-          <target state="new">system ({0})</target>
+          <target state="signed-off">системная ({0})</target>
           <note from="MultilingualBuild" annotates="source" priority="2">{0} will be replaced with dark or light</note>
           </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
-          <target state="new">Application restart is required for this setting to take effect.</target>
+          <target state="signed-off">Требуется перезапуск приложения, чтобы эта настройка вступила в силу.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeLight" translate="yes" xml:space="preserve">
           <source>light</source>
-          <target state="new">light</target>
+          <target state="signed-off">светлая</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeDark" translate="yes" xml:space="preserve">
           <source>dark</source>
-          <target state="new">dark</target>
+          <target state="signed-off">тёмная</target>
         </trans-unit>
       </group>
     </body>

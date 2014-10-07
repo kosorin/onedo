@@ -346,7 +346,18 @@ namespace SimpleTasks.Views
                 App.Tasks.Tasks[1].Detail = "In nec massa semper dolor sodales molestie. Curabitur sagittis consequat imperdiet. Aliquam nec mattis enim. Nam vitae ligula quis ligula viverra pharetra ac in arcu. Pellentesque luctus, urna sit amet porta commodo, quam dui maximus massa, in vestibulum lacus elit eu orci. Phasellus lacinia lobortis feugiat.";
                 App.Tasks.Tasks[2].Title = "Chiamare Francesco";
             }
-
+            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ru")
+            {
+                App.Tasks.Tasks[0].Title = "Список покупок";
+                App.Tasks.Tasks[0].Subtasks[0].Text = "молоко";
+                App.Tasks.Tasks[0].Subtasks[1].Text = "яблоки";
+                App.Tasks.Tasks[0].Subtasks[2].Text = "помидоры";
+                App.Tasks.Tasks[0].Subtasks[3].Text = "колбаса";
+                App.Tasks.Tasks[0].Subtasks[4].Text = "выпечка";
+                App.Tasks.Tasks[1].Title = "Математический проект";
+                App.Tasks.Tasks[1].Detail = "Не Весельем не ли отчаяньи То жаждущим снислала исчезает Он прошенье. Процветут Кто ров страстьми маловерах достигать отвращуся Без Праведник очи. Во та бы ту. Укреплять псалтирям благоволи правитель множества. Из из Се от НА. Как дать мое ведя тон Числ Нивы шаг Чтя скал пущу.";
+                App.Tasks.Tasks[2].Title = "Позвонить Иван";
+            }
         }
 #endif
         #endregion
