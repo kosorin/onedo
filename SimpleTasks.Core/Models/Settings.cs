@@ -130,7 +130,7 @@ namespace SimpleTasks.Core.Models
             #endregion
 
             #region DefaultTime
-            private DateTime _DefaultTime = new DateTime(1, 1, 1, 9, 0, 0);
+            private DateTime _DefaultTime = new DateTime(1, 1, 1, 15, 0, 0);
             [DataMember(Name = "DefaultTime")]
             public DateTime DefaultTime
             {
