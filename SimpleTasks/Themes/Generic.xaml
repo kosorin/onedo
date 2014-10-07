@@ -40,7 +40,7 @@
         <Setter Property="SelectionBackground"
                 Value="{StaticResource AccentBrush}" />
         <Setter Property="SelectionForeground"
-                Value="{StaticResource AccentBrush}" />
+                Value="{StaticResource ButtonDarkForegroundBrush}" />
         <Setter Property="TextWrapping"
                 Value="Wrap" />
         <Setter Property="InputScope"
