@@ -2,7 +2,8 @@
     "4.7.0 ": {
         "date": "2014-10-08",
         "items": [
-            "russian language",
+            "Russian language",
+            "fix Italian translation",
             "bug fix: color of selected text"
         ]
     },
@@ -10,6 +11,7 @@
         "date": "2014-10-08",
         "items": [
             "russian language",
+            "fix Italian translation",
             "bug fix: color of selected text"
         ]
     },
