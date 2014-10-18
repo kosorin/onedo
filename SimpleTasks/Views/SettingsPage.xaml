@@ -100,6 +100,41 @@
                                       Style="{StaticResource SwitchStyle}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
+
+                        <!--Swipe Left Gesture-->
+                        <TextBlock Style="{StaticResource LabelTextStyle}"
+                                   Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                        <controls:ListPicker Foreground="{StaticResource SlightBrush}"
+                                             Background="{StaticResource ButtonBackgroundBrush}"
+                                             ItemsSource="{Binding Tasks.GestureActionPickerList}"
+                                             SelectedItem="{Binding Tasks.SwipeLeftAction, Mode=TwoWay}">
+                            <controls:ListPicker.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Height="60"
+                                            Margin="-8,-10"
+                                            Padding="0,0,5,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Viewbox Grid.Column="0"
+                                                     Width="40"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="0,8,0,0">
+                                                <ContentControl Style="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionIconStyle'}"
+                                                                Foreground="{StaticResource ButtonForegroundBrush}" />
+                                            </Viewbox>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionText'}"
+                                                       Style="{StaticResource ButtonTextStyle}" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:ListPicker.ItemTemplate>
+                        </controls:ListPicker>
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>

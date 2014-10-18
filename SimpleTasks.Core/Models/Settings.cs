@@ -197,6 +197,24 @@ namespace SimpleTasks.Core.Models
             }
             #endregion
 
+            #region SwipeActions
+            public List<GestureAction> GestureActionPickerList
+            {
+                get
+                {
+                    return new List<GestureAction>() 
+                    { 
+                        GestureAction.None,
+                        GestureAction.Complete,
+                        GestureAction.Delete,
+                        GestureAction.Reminder,
+                        GestureAction.DueToday,
+                        GestureAction.DueTomorrow,
+                    };
+                }
+            }
+            #endregion // end of SwipeActions
+
             #region SwipeLeftAction
             private GestureAction _swipeLeftAction = GestureAction.Complete;
             [DataMember(Name = "SwipeLeftAction")]

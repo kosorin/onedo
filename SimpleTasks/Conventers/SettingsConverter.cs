@@ -4,6 +4,9 @@ using System.Windows.Data;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
 using DefaultDateTypes = SimpleTasks.Core.Models.Settings.TasksSettings.DefaultDateTypes;
+using SimpleTasks.Core.Models;
+using System.Windows;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Conventers
 {
@@ -38,6 +41,14 @@ namespace SimpleTasks.Conventers
                 case DefaultDateTypes.NoDueDate:
                 default: return AppResources.DateNoDue;
                 }
+            }
+            else if (settings == "GestureActionIconStyle" && value is GestureAction)
+            {
+                return GestureActionHelper.IconStyle((GestureAction)value);
+            }
+            else if (settings == "GestureActionText" && value is GestureAction)
+            {
+                return GestureActionHelper.Text((GestureAction)value);
             }
             return "";
         }

@@ -121,7 +121,6 @@
     </Resource>
     <Compile Include="Controls\Transitions\OneTransition.cs" />
     <Compile Include="Controls\Transitions\OneTransitionMode.cs" />
-    <Compile Include="Conventers\GestureActionIconConverter.cs" />
     <Compile Include="Conventers\OffOnConverter.cs" />
     <Compile Include="Conventers\SettingsConverter.cs" />
     <Compile Include="Conventers\StringFunctionConverter.cs" />
@@ -137,6 +136,7 @@
     <Compile Include="Conventers\DateConverter.cs" />
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
+    <Compile Include="Helpers\GestureActionHelper.cs" />
     <Compile Include="Helpers\GoogleAnalyticsHelper.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="Helpers\TaskModelExtensions.cs" />

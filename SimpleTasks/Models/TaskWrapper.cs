@@ -53,28 +53,14 @@ namespace SimpleTasks.Models
         #endregion
 
         #region Swipe Icon Styles
-        private Style GestureIconStyle(GestureAction action)
-        {
-            switch (action)
-            {
-            case GestureAction.Complete: return App.Current.Resources["CompleteIconStyle"] as Style;
-            case GestureAction.Delete: return App.Current.Resources["DeleteIconStyle"] as Style;
-            case GestureAction.Reminder: return App.Current.Resources["ClockIconStyle"] as Style;
-            case GestureAction.DueToday: return App.Current.Resources["CompleteIconStyle"] as Style;
-            case GestureAction.DueTomorrow: return App.Current.Resources["CompleteIconStyle"] as Style;
-            case GestureAction.None:
-            default: return App.Current.Resources["CompleteIconStyle"] as Style;
-            }
-        }
-
         public Style SwipeLeftIconStyle
         {
-            get { return GestureIconStyle(Settings.Current.Tasks.SwipeLeftAction); }
+            get { return GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction); }
         }
 
         public Style SwipeRightIconStyle
         {
-            get { return GestureIconStyle(Settings.Current.Tasks.SwipeRightAction); }
+            get { return GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction); }
         }
         #endregion // end of Swipe Icon Styles
 
