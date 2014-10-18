@@ -462,14 +462,23 @@
                         </Border>
                     </Button>
 
-                    <!--Gesture Complete icon-->
+                    <!--Swipe left gesture icon-->
                     <ContentControl Grid.ColumnSpan="2"
-                                    x:Name="CompleteGestureIcon"
+                                    x:Name="SwipeLeftGestureIcon"
                                     Margin="-105"
                                     Grid.Column="1"
-                                    Style="{StaticResource CompleteIconStyle}"
+                                    Style="{Binding Wrapper.SwipeLeftIconStyle}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Right" />
+
+                    <!--Swipe right gesture icon-->
+                    <ContentControl Grid.ColumnSpan="2"
+                                    x:Name="SwipeRightGestureIcon"
+                                    Margin="-150"
+                                    Grid.Column="1"
+                                    Style="{Binding Wrapper.SwipeRightIconStyle}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left" />
                 </Grid>
             </Border>
         </DataTemplate>

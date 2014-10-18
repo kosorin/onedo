@@ -196,6 +196,27 @@ namespace SimpleTasks.Core.Models
                 set { SetProperty(ref _completeSubtasks, value); }
             }
             #endregion
+
+            #region SwipeLeftAction
+            private GestureAction _swipeLeftAction = GestureAction.Complete;
+            [DataMember(Name = "SwipeLeftAction")]
+            public GestureAction SwipeLeftAction
+            {
+                get { return _swipeLeftAction; }
+                set { SetProperty(ref _swipeLeftAction, value); }
+            }
+            #endregion // end of SwipeLeftAction
+
+            #region SwipeRightAction
+            private GestureAction _swipeRightAction = GestureAction.None;
+            [DataMember(Name = "SwipeRightAction")]
+            public GestureAction SwipeRightAction
+            {
+                get { return _swipeRightAction; }
+                set { SetProperty(ref _swipeRightAction, value); }
+            }
+            #endregion // end of SwipeRightAction
+
         }
         #endregion
 

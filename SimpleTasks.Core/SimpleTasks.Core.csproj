@@ -18,7 +18,8 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <SupportedCultures></SupportedCultures>
+    <SupportedCultures>
+    </SupportedCultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,6 +102,7 @@
     <Compile Include="Models\BackupData.cs" />
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\FolderCollection.cs" />
+    <Compile Include="Models\GestureAction.cs" />
     <Compile Include="Models\OneDriveFileInfo.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SettingsCategory.cs" />

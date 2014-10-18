@@ -372,7 +372,11 @@ namespace SimpleTasks.Views
 
         private void ToggleComplete(FrameworkElement element)
         {
-            TaskModel task = element.DataContext as TaskModel;
+            ToggleComplete(element.DataContext as TaskModel);
+        }
+
+        private void ToggleComplete(TaskModel task)
+        {
             if (task == null)
                 return;
 
@@ -530,9 +534,31 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Gestures
-        private double _completeGestureTreshold = -105;
+        private double _swipeGestureTreshold = 105;
 
         private bool _canUseGestures = true;
+
+        private void ExecuteGesture(GestureAction action, TaskModel task)
+        {
+            switch (action)
+            {
+            case GestureAction.Complete:
+                VibrateHelper.Short();
+                ToggleComplete(task);
+                break;
+            case GestureAction.Delete:
+                break;
+            case GestureAction.Reminder:
+                break;
+            case GestureAction.DueToday:
+                break;
+            case GestureAction.DueTomorrow:
+                break;
+            case GestureAction.None:
+            default:
+                break;
+            }
+        }
 
         private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
@@ -549,11 +575,21 @@ namespace SimpleTasks.Views
             }
             border.Background = null;
 
-            double value = e.TotalManipulation.Translation.X;
-            if (_canUseGestures && value < _completeGestureTreshold)
+            if (_canUseGestures)
             {
-                VibrateHelper.Short();
-                ToggleComplete(border);
+                double value = e.TotalManipulation.Translation.X;
+
+                TaskModel task = border.DataContext as TaskModel;
+                if (value < 0 && Math.Abs(value) > _swipeGestureTreshold)
+                {
+                    // Swipe Left
+                    ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, task);
+                }
+                else if (value > 0 && Math.Abs(value) > _swipeGestureTreshold)
+                {
+                    // Swipe Right
+                    ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, task);
+                }
             }
         }
 
@@ -561,24 +597,31 @@ namespace SimpleTasks.Views
         {
             Grid infoGrid = (Grid)sender;
             Border border = (Border)infoGrid.FindName("RootBorder");
-            ContentControl icon = (ContentControl)border.FindName("CompleteGestureIcon");
+            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
+            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
             TranslateTransform t = (TranslateTransform)border.RenderTransform;
 
             t.X += e.DeltaManipulation.Translation.X;
-            if (t.X > 0)
+            if (Settings.Current.Tasks.SwipeLeftAction == GestureAction.None && t.X < 0)
+            {
+                t.X = 0;
+            }
+            else if (Settings.Current.Tasks.SwipeRightAction == GestureAction.None && t.X > 0)
             {
                 t.X = 0;
             }
 
-            if (t.X < _completeGestureTreshold)
+            if (Math.Abs(t.X) > _swipeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                icon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                swipeRightIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
             }
             else
             {
                 border.Background = null;
-                icon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                swipeRightIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
             }
         }
 
@@ -597,7 +640,7 @@ namespace SimpleTasks.Views
             border.Background = new SolidColorBrush(Colors.Transparent);
 
             double value = e.TotalManipulation.Translation.X;
-            if (_canUseGestures && value < _completeGestureTreshold)
+            if (_canUseGestures && value < _swipeGestureTreshold)
             {
                 VibrateHelper.Short();
                 ToggleSubtaskComplete(border);
@@ -615,7 +658,7 @@ namespace SimpleTasks.Views
                 t.X = 0;
             }
 
-            if (t.X < _completeGestureTreshold)
+            if (t.X < _swipeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
             }

@@ -121,6 +121,7 @@
     </Resource>
     <Compile Include="Controls\Transitions\OneTransition.cs" />
     <Compile Include="Controls\Transitions\OneTransitionMode.cs" />
+    <Compile Include="Conventers\GestureActionIconConverter.cs" />
     <Compile Include="Conventers\OffOnConverter.cs" />
     <Compile Include="Conventers\SettingsConverter.cs" />
     <Compile Include="Conventers\StringFunctionConverter.cs" />
@@ -224,7 +225,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="analytics.xml" />
+    <Content Include="analytics.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Assets\AppBar\appbar.add.png" />
     <Content Include="Assets\AppBar\appbar.check.all.png" />
     <Content Include="Assets\AppBar\appbar.check.png" />
