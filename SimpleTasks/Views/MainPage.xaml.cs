@@ -200,19 +200,6 @@ namespace SimpleTasks.Views
             messageBox.Show();
         }
 
-        private void OverlayAction(Action action)
-        {
-            PageOverlayTransitionShow.Begin();
-            EventHandler overlayHandler = null;
-            overlayHandler = (s, e) =>
-            {
-                action();
-                PageOverlayTransitionHide.Begin();
-                PageOverlayTransitionShow.Completed -= overlayHandler;
-            };
-            PageOverlayTransitionShow.Completed += overlayHandler;
-        }
-
 #if DEBUG
         private void RemindersMenuItem_Click(object sender, EventArgs e)
         {
@@ -470,6 +457,61 @@ namespace SimpleTasks.Views
                 Navigate(typeof(SubtasksPage), task);
             }
         }
+
+        private void OverlayAction(Action action)
+        {
+            PageOverlayTransitionShow.BeginTime = TimeSpan.FromSeconds(0.25);
+            PageOverlayTransitionShow.Begin();
+            EventHandler overlayHandler = null;
+            overlayHandler = (s, e) =>
+            {
+                action();
+                PageOverlayTransitionHide.Begin();
+                PageOverlayTransitionShow.Completed -= overlayHandler;
+            };
+            PageOverlayTransitionShow.Completed += overlayHandler;
+        }
+
+        private void OverlayAction(Action<TaskModel> action, TaskModel task)
+        {
+            PageOverlayTransitionShow.BeginTime = TimeSpan.Zero;
+            PageOverlayTransitionShow.Begin();
+            EventHandler overlayHandler = null;
+            overlayHandler = (s, e) =>
+            {
+                action(task);
+                PageOverlayTransitionHide.Begin();
+                PageOverlayTransitionShow.Completed -= overlayHandler;
+            };
+            PageOverlayTransitionShow.Completed += overlayHandler;
+        }
+
+        private void OverlayAction(Action<TaskModel, DateTime?> action, TaskModel task, DateTime? date)
+        {
+            PageOverlayTransitionShow.BeginTime = TimeSpan.Zero;
+            PageOverlayTransitionShow.Begin();
+            EventHandler overlayHandler = null;
+            overlayHandler = (s, e) =>
+            {
+                action(task, date);
+                PageOverlayTransitionHide.Begin();
+                PageOverlayTransitionShow.Completed -= overlayHandler;
+            };
+            PageOverlayTransitionShow.Completed += overlayHandler;
+        }
+
+        private void OverlayAction(Action<TaskModel, TimeSpan?> action, TaskModel task, TimeSpan? timespan)
+        {
+            PageOverlayTransitionShow.Begin();
+            EventHandler overlayHandler = null;
+            overlayHandler = (s, e) =>
+            {
+                action(task, timespan);
+                PageOverlayTransitionHide.Begin();
+                PageOverlayTransitionShow.Completed -= overlayHandler;
+            };
+            PageOverlayTransitionShow.Completed += overlayHandler;
+        }
         #endregion
 
         #region GroupedTasks
@@ -497,8 +539,7 @@ namespace SimpleTasks.Views
                 };
                 if (task.DueDate != null)
                 {
-                    DateTime defaultTime = Settings.Current.Tasks.DefaultTime;
-                    task.DueDate = task.DueDate.Value.AddHours(defaultTime.Hour).AddMinutes(defaultTime.Minute);
+                    task.DueDate = task.DueDate.Value.SetTime(Settings.Current.Tasks.DefaultTime);
                 }
 
                 App.Tasks.Add(task);
@@ -542,6 +583,27 @@ namespace SimpleTasks.Views
 
         private bool _canUseGestures = true;
 
+        private void SetDueDate(TaskModel task, DateTime? due)
+        {
+            task.DueDate = due;
+            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
+            if (wrapper != null)
+            {
+                wrapper.UpdateIsScheduled();
+            }
+            OnPropertyChanged(GroupedTasksProperty);
+        }
+
+        private void SetReminder(TaskModel task, TimeSpan? reminder)
+        {
+            task.Reminder = reminder;
+            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
+            if (wrapper != null)
+            {
+                wrapper.UpdateIsScheduled();
+            }
+        }
+
         private void ExecuteGesture(GestureAction action, TaskModel task)
         {
             switch (action)
@@ -553,15 +615,19 @@ namespace SimpleTasks.Views
 
             case GestureAction.Delete:
                 VibrateHelper.Short();
+                OverlayAction(App.Tasks.Delete, task);
                 break;
 
             case GestureAction.Reminder:
+                OverlayAction(SetReminder, task, TimeSpan.Zero);
                 break;
 
             case GestureAction.DueToday:
+                OverlayAction(SetDueDate, task, DateTimeExtensions.Today.SetTime(Settings.Current.Tasks.DefaultTime));
                 break;
 
             case GestureAction.DueTomorrow:
+                OverlayAction(SetDueDate, task, DateTimeExtensions.Tomorrow.SetTime(Settings.Current.Tasks.DefaultTime));
                 break;
 
             case GestureAction.None:
@@ -569,7 +635,7 @@ namespace SimpleTasks.Views
                 break;
             }
         }
-        
+
         private void ExecuteGesture(GestureAction action, Subtask subtask)
         {
             switch (action)
