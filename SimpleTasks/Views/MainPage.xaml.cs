@@ -415,11 +415,15 @@ namespace SimpleTasks.Views
         {
             if (element != null)
             {
-                Subtask subtask = element.DataContext as Subtask;
-                if (subtask != null)
-                {
-                    subtask.IsCompleted = !subtask.IsCompleted;
-                }
+                ToggleSubtaskComplete(element.DataContext as Subtask);
+            }
+        }
+
+        private void ToggleSubtaskComplete(Subtask subtask)
+        {
+            if (subtask != null)
+            {
+                subtask.IsCompleted = !subtask.IsCompleted;
             }
         }
 
@@ -546,14 +550,42 @@ namespace SimpleTasks.Views
                 VibrateHelper.Short();
                 ToggleComplete(task);
                 break;
+
             case GestureAction.Delete:
+                VibrateHelper.Short();
                 break;
+
             case GestureAction.Reminder:
                 break;
+
             case GestureAction.DueToday:
                 break;
+
             case GestureAction.DueTomorrow:
                 break;
+
+            case GestureAction.None:
+            default:
+                break;
+            }
+        }
+        
+        private void ExecuteGesture(GestureAction action, Subtask subtask)
+        {
+            switch (action)
+            {
+            case GestureAction.Complete:
+                VibrateHelper.Short();
+                ToggleSubtaskComplete(subtask);
+                break;
+
+            case GestureAction.Delete:
+                VibrateHelper.Short();
+                break;
+
+            case GestureAction.Reminder:
+            case GestureAction.DueToday:
+            case GestureAction.DueTomorrow:
             case GestureAction.None:
             default:
                 break;
@@ -639,11 +671,22 @@ namespace SimpleTasks.Views
             }
             border.Background = new SolidColorBrush(Colors.Transparent);
 
-            double value = e.TotalManipulation.Translation.X;
-            if (_canUseGestures && value < _swipeGestureTreshold)
+
+            if (_canUseGestures)
             {
-                VibrateHelper.Short();
-                ToggleSubtaskComplete(border);
+                double value = e.TotalManipulation.Translation.X;
+
+                Subtask subtask = border.DataContext as Subtask;
+                if (value < 0 && Math.Abs(value) > _swipeGestureTreshold)
+                {
+                    // Swipe Left
+                    ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, subtask);
+                }
+                else if (value > 0 && Math.Abs(value) > _swipeGestureTreshold)
+                {
+                    // Swipe Right
+                    ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, subtask);
+                }
             }
         }
 
@@ -652,19 +695,28 @@ namespace SimpleTasks.Views
             Border border = (Border)sender;
             TranslateTransform t = (TranslateTransform)border.RenderTransform;
 
+
             t.X += e.DeltaManipulation.Translation.X;
-            if (t.X > 0)
+            if (t.X < 0 && (Settings.Current.Tasks.SwipeLeftAction != GestureAction.Complete && Settings.Current.Tasks.SwipeLeftAction != GestureAction.Delete))
+            {
+                t.X = 0;
+            }
+            else if (t.X > 0 && (Settings.Current.Tasks.SwipeRightAction != GestureAction.Complete && Settings.Current.Tasks.SwipeRightAction != GestureAction.Delete))
             {
                 t.X = 0;
             }
 
-            if (t.X < _swipeGestureTreshold)
+            if (Math.Abs(t.X) > _swipeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
+                //swipeLeftIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                //swipeRightIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
             }
             else
             {
-                border.Background = new SolidColorBrush(Colors.Transparent);
+                border.Background = null;
+                //swipeLeftIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                //swipeRightIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
             }
         }
         #endregion

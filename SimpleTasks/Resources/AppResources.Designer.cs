@@ -387,26 +387,26 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.6.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-09-22&quot;,
+        ///    &quot;4.7.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-10-08&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;Italian language&quot;,
-        ///            &quot;ability to set light or dark theme&quot;
+        ///            &quot;Russian language&quot;,
+        ///            &quot;fix Italian translation&quot;,
+        ///            &quot;bug fix: color of selected text&quot;
+        ///        ]
+        ///    },
+        ///    &quot;4.7.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-10-08&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;russian language&quot;,
+        ///            &quot;fix Italian translation&quot;,
+        ///            &quot;bug fix: color of selected text&quot;
         ///        ]
         ///    },
         ///    &quot;4.6.0&quot;: {
         ///        &quot;date&quot;: &quot;2014-09-22&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;Italian language&quot;,
-        ///            &quot;ability to set light or dark theme&quot;
-        ///        ]
-        ///    },
-        ///    &quot;4.5.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-09-12&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;quick add live tile&quot;,
-        ///            &quot;option to hide quick add text box on main page&quot;,
-        ///     [rest of string was truncated]&quot;;.
+        ///            &quot;Italian language [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -735,6 +735,60 @@ namespace SimpleTasks.Resources {
         public static string EditText {
             get {
                 return ResourceManager.GetString("EditText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to complete task/subtask.
+        /// </summary>
+        public static string GestureActionComplete {
+            get {
+                return ResourceManager.GetString("GestureActionComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete task/subtask.
+        /// </summary>
+        public static string GestureActionDelete {
+            get {
+                return ResourceManager.GetString("GestureActionDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set due: Today.
+        /// </summary>
+        public static string GestureActionDueToday {
+            get {
+                return ResourceManager.GetString("GestureActionDueToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set due: Tomorrow.
+        /// </summary>
+        public static string GestureActionDueTomorrow {
+            get {
+                return ResourceManager.GetString("GestureActionDueTomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to no action.
+        /// </summary>
+        public static string GestureActionNone {
+            get {
+                return ResourceManager.GetString("GestureActionNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set reminder.
+        /// </summary>
+        public static string GestureActionReminder {
+            get {
+                return ResourceManager.GetString("GestureActionReminder", resourceCulture);
             }
         }
         
@@ -1267,6 +1321,24 @@ namespace SimpleTasks.Resources {
         public static string SettingsSwapDateAndTitle {
             get {
                 return ResourceManager.GetString("SettingsSwapDateAndTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe left gesture action.
+        /// </summary>
+        public static string SettingsSwipeLeft {
+            get {
+                return ResourceManager.GetString("SettingsSwipeLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swipe right gesture action.
+        /// </summary>
+        public static string SettingsSwipeRight {
+            get {
+                return ResourceManager.GetString("SettingsSwipeRight", resourceCulture);
             }
         }
         

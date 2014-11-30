@@ -24,6 +24,42 @@
             <Setter Property="Foreground"
                     Value="{StaticResource HelpBrush}" />
         </Style>
+
+        <Style x:Key="GestureListPickerStyle"
+               TargetType="controls:ListPicker">
+            <Setter Property="Foreground"
+                    Value="{StaticResource SlightBrush}" />
+            <Setter Property="Background"
+                    Value="{StaticResource ButtonBackgroundBrush}" />
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Height="60"
+                                Margin="-8,-10"
+                                Padding="0,0,5,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Viewbox Grid.Column="0"
+                                         Width="40"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Margin="0,8,0,0">
+                                    <ContentControl Style="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionIconStyle'}"
+                                                    Foreground="{StaticResource ButtonForegroundBrush}" />
+                                </Viewbox>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionText'}"
+                                           Style="{StaticResource ButtonTextStyle}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
@@ -103,38 +139,17 @@
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
-                        <controls:ListPicker Foreground="{StaticResource SlightBrush}"
-                                             Background="{StaticResource ButtonBackgroundBrush}"
-                                             ItemsSource="{Binding Tasks.GestureActionPickerList}"
-                                             SelectedItem="{Binding Tasks.SwipeLeftAction, Mode=TwoWay}">
-                            <controls:ListPicker.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Height="60"
-                                            Margin="-8,-10"
-                                            Padding="0,0,5,0">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="60" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+                                   Text="{Binding LocalizedResources.SettingsSwipeLeft, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                        <controls:ListPicker ItemsSource="{Binding Tasks.GestureActionPickerList}"
+                                             SelectedItem="{Binding Tasks.SwipeLeftAction, Mode=TwoWay}"
+                                             Style="{StaticResource GestureListPickerStyle}" />
 
-                                            <Viewbox Grid.Column="0"
-                                                     Width="40"
-                                                     HorizontalAlignment="Center"
-                                                     VerticalAlignment="Center"
-                                                     Margin="0,8,0,0">
-                                                <ContentControl Style="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionIconStyle'}"
-                                                                Foreground="{StaticResource ButtonForegroundBrush}" />
-                                            </Viewbox>
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionText'}"
-                                                       Style="{StaticResource ButtonTextStyle}" />
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </controls:ListPicker.ItemTemplate>
-                        </controls:ListPicker>
+                        <!--Swipe Left Gesture-->
+                        <TextBlock Style="{StaticResource LabelTextStyle}"
+                                   Text="{Binding LocalizedResources.SettingsSwipeRight, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                        <controls:ListPicker ItemsSource="{Binding Tasks.GestureActionPickerList}"
+                                             SelectedItem="{Binding Tasks.SwipeRightAction, Mode=TwoWay}"
+                                             Style="{StaticResource GestureListPickerStyle}" />
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>

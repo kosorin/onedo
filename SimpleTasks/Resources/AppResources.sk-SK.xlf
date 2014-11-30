@@ -518,6 +518,38 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         <trans-unit id="Resx/ChangelogShow" translate="yes" xml:space="preserve">
           <source>Show changelog</source>
           <target state="signed-off">Zobraziť zoznam zmien</target></trans-unit>
+        <trans-unit id="Resx/SettingsSwipeRight" translate="yes" xml:space="preserve">
+          <source>Swipe right gesture action</source>
+          <target state="new">Swipe right gesture action</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsSwipeLeft" translate="yes" xml:space="preserve">
+          <source>Swipe left gesture action</source>
+          <target state="new">Swipe left gesture action</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionReminder" translate="yes" xml:space="preserve">
+          <source>set reminder</source>
+          <target state="new">set reminder</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionNone" translate="yes" xml:space="preserve">
+          <source>no action</source>
+          <target state="new">no action</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionDueTomorrow" translate="yes" xml:space="preserve">
+          <source>set due: Tomorrow</source>
+          <target state="new">set due: Tomorrow</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionDueToday" translate="yes" xml:space="preserve">
+          <source>set due: Today</source>
+          <target state="new">set due: Today</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionDelete" translate="yes" xml:space="preserve">
+          <source>delete task/subtask</source>
+          <target state="new">delete task/subtask</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionComplete" translate="yes" xml:space="preserve">
+          <source>complete task/subtask</source>
+          <target state="new">complete task/subtask</target>
+        </trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
           <target state="signed-off">Autor</target>

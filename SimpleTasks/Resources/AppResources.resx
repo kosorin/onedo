@@ -709,4 +709,28 @@ It's still in beta.</value>
   <data name="ChangelogShow" xml:space="preserve">
     <value>Show changelog</value>
   </data>
+  <data name="GestureActionComplete" xml:space="preserve">
+    <value>complete task/subtask</value>
+  </data>
+  <data name="GestureActionDelete" xml:space="preserve">
+    <value>delete task/subtask</value>
+  </data>
+  <data name="GestureActionDueToday" xml:space="preserve">
+    <value>set due: Today</value>
+  </data>
+  <data name="GestureActionDueTomorrow" xml:space="preserve">
+    <value>set due: Tomorrow</value>
+  </data>
+  <data name="GestureActionNone" xml:space="preserve">
+    <value>no action</value>
+  </data>
+  <data name="GestureActionReminder" xml:space="preserve">
+    <value>set reminder</value>
+  </data>
+  <data name="SettingsSwipeLeft" xml:space="preserve">
+    <value>Swipe left gesture action</value>
+  </data>
+  <data name="SettingsSwipeRight" xml:space="preserve">
+    <value>Swipe right gesture action</value>
+  </data>
 </root>
