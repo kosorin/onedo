@@ -175,7 +175,7 @@ namespace SimpleTasks
 
         public static Style IconStyle(string name)
         {
-            return App.Current.Resources[name] as Style;
+            return App.Current.Resources[name + "IconStyle"] as Style;
         }
 
         #region Phone application initialization
