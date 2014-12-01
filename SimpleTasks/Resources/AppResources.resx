@@ -733,4 +733,16 @@ It's still in beta.</value>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Swipe right gesture action</value>
   </data>
+  <data name="ToastAllTasksDeleted" xml:space="preserve">
+    <value>All tasks were deleted.</value>
+  </data>
+  <data name="ToastCompletedTasksDeleted" xml:space="preserve">
+    <value>Completed tasks were deleted.</value>
+  </data>
+  <data name="ToastSubtaskDeleted" xml:space="preserve">
+    <value>Subtask was deleted.</value>
+  </data>
+  <data name="ToastTaskDeleted" xml:space="preserve">
+    <value>Task was deleted.</value>
+  </data>
 </root>

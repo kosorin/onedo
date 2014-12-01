@@ -1748,6 +1748,42 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All tasks were deleted..
+        /// </summary>
+        public static string ToastAllTasksDeleted {
+            get {
+                return ResourceManager.GetString("ToastAllTasksDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed tasks were deleted..
+        /// </summary>
+        public static string ToastCompletedTasksDeleted {
+            get {
+                return ResourceManager.GetString("ToastCompletedTasksDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subtask was deleted..
+        /// </summary>
+        public static string ToastSubtaskDeleted {
+            get {
+                return ResourceManager.GetString("ToastSubtaskDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task was deleted..
+        /// </summary>
+        public static string ToastTaskDeleted {
+            get {
+                return ResourceManager.GetString("ToastTaskDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown error..
         /// </summary>
         public static string UnknownError {

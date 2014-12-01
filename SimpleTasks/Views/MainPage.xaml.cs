@@ -170,6 +170,7 @@ namespace SimpleTasks.Views
         private void DeleteCompletedItem_Click(object sender, EventArgs e)
         {
             OverlayAction(App.Tasks.DeleteCompleted);
+            Toast.Show(AppResources.ToastCompletedTasksDeleted, App.IconStyle("Delete"));
         }
 
         void DeleteAllItem_Click(object sender, EventArgs e)
@@ -188,6 +189,7 @@ namespace SimpleTasks.Views
                 {
                 case CustomMessageBoxResult.LeftButton:
                     OverlayAction(App.Tasks.DeleteAll);
+                    Toast.Show(AppResources.ToastAllTasksDeleted, App.IconStyle("Delete"));
                     break;
                 case CustomMessageBoxResult.RightButton:
                 case CustomMessageBoxResult.None:
@@ -616,6 +618,7 @@ namespace SimpleTasks.Views
             case GestureAction.Delete:
                 VibrateHelper.Short();
                 OverlayAction(App.Tasks.Delete, task);
+                Toast.Show(AppResources.ToastTaskDeleted, App.IconStyle("Delete"));
                 break;
 
             case GestureAction.Reminder:
@@ -623,11 +626,11 @@ namespace SimpleTasks.Views
                 break;
 
             case GestureAction.DueToday:
-                OverlayAction(SetDueDate, task, DateTimeExtensions.Today.SetTime(Settings.Current.Tasks.DefaultTime));
+                OverlayAction(SetDueDate, task, DateTimeExtensions.Today.SetTime(task.DueDate ?? Settings.Current.Tasks.DefaultTime));
                 break;
 
             case GestureAction.DueTomorrow:
-                OverlayAction(SetDueDate, task, DateTimeExtensions.Tomorrow.SetTime(Settings.Current.Tasks.DefaultTime));
+                OverlayAction(SetDueDate, task, DateTimeExtensions.Tomorrow.SetTime(task.DueDate ?? Settings.Current.Tasks.DefaultTime));
                 break;
 
             case GestureAction.None:
@@ -636,7 +639,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ExecuteGesture(GestureAction action, Subtask subtask)
+        private void ExecuteSubtaskGesture(GestureAction action, Subtask subtask)
         {
             switch (action)
             {
@@ -647,6 +650,8 @@ namespace SimpleTasks.Views
 
             case GestureAction.Delete:
                 VibrateHelper.Short();
+                App.Tasks.DeleteSubtask(subtask);
+                Toast.Show(AppResources.ToastSubtaskDeleted, App.IconStyle("Delete"));
                 break;
 
             case GestureAction.Reminder:
@@ -737,7 +742,6 @@ namespace SimpleTasks.Views
             }
             border.Background = new SolidColorBrush(Colors.Transparent);
 
-
             if (_canUseGestures)
             {
                 double value = e.TotalManipulation.Translation.X;
@@ -746,12 +750,12 @@ namespace SimpleTasks.Views
                 if (value < 0 && Math.Abs(value) > _swipeGestureTreshold)
                 {
                     // Swipe Left
-                    ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, subtask);
+                    ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeLeftAction, subtask);
                 }
                 else if (value > 0 && Math.Abs(value) > _swipeGestureTreshold)
                 {
                     // Swipe Right
-                    ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, subtask);
+                    ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeRightAction, subtask);
                 }
             }
         }
