@@ -149,5 +149,17 @@ namespace SimpleTasks.ViewModels
             }
             Tasks.Clear();
         }
+
+        public void DeleteSubtask(Subtask subtask)
+        {
+            foreach (TaskModel task in Tasks)
+            {
+                if (task.Subtasks.Contains(subtask))
+                {
+                    task.Subtasks.Remove(subtask);
+                    break;
+                }
+            }
+        }
     }
 }
