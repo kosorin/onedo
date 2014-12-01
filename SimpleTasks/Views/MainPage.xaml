@@ -492,6 +492,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <controls:ToastPrompt x:Name="Toast"
+                              Grid.Row="1"
+                              Canvas.ZIndex="1" />
+
         <!--Úkoly-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1">
@@ -661,7 +665,8 @@
                    VerticalAlignment="Bottom" />
 
         <!--Quick add-->
-        <Grid Grid.Row="2" x:Name="QuickAddGrid">
+        <Grid Grid.Row="2"
+              x:Name="QuickAddGrid">
             <controls:MyTextBox Grid.Row="1"
                                 x:Name="QuickAddTextBox"
                                 Hint="&#8230;&#xe104;"
