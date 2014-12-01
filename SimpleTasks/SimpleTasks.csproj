@@ -114,6 +114,9 @@
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ToastPrompt.xaml.cs">
+      <DependentUpon>ToastPrompt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ToggleControl.cs" />
     <Resource Include="Controls\Transitions\OneBackwardIn.xaml">
       <SubType>Designer</SubType>
@@ -357,6 +360,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Page Include="Controls\ToastPrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Light.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -447,9 +454,6 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity" />
-    <Reference Include="Toastinet">
-      <HintPath>..\packages\Toastinet.1.5.4\lib\wp8\Toastinet.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleTasks.Core\SimpleTasks.Core.csproj">

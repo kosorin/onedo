@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="SimpleTasks.Controls.ToastPrompt"
+             x:Name="ToastRoot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             FontFamily="{StaticResource PhoneFontFamilyNormal}"
+             FontSize="{StaticResource PhoneFontSizeNormal}"
+             Foreground="{StaticResource PhoneForegroundBrush}"
+             d:DesignHeight="100"
+             d:DesignWidth="480"
+             HorizontalContentAlignment="Stretch"
+             Tap="ToastRoot_Tap">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="MessageChangedStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)"
+                             Storyboard.TargetName="MainGrid"
+                             Duration="0:0:0.65"
+                             From="0"
+                             To="360">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent"
+          Canvas.ZIndex="1">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OpenStates"
+                              CurrentStateChanging="OnCurrentStateChanging"
+                              CurrentStateChanged="OnCurrentStateChanged">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Opened"
+                                      From="Closed"
+                                      GeneratedDuration="0:0:0.55">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <ElasticEase EasingMode="EaseOut"
+                                         Oscillations="1"
+                                         Springiness="6" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+                    <VisualTransition To="Closed"
+                                      From="Opened"
+                                      GeneratedDuration="0:0:0.55">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <ElasticEase EasingMode="EaseIn" />
+                        </VisualTransition.GeneratedEasingFunction>
+                        <Storyboard Completed="SbCompleted">
+                            <DoubleAnimation Duration="0:0:0.45"
+                                             To="{Binding InvertedHeight, ElementName=ToastRoot}"
+                                             Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)"
+                                             Storyboard.TargetName="MainGrid"
+                                             d:IsOptimized="True">
+                                <DoubleAnimation.EasingFunction>
+                                    <ElasticEase EasingMode="EaseIn"
+                                                 Oscillations="1"
+                                                 Springiness="6" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Closed">
+                    <Storyboard>
+                        <DoubleAnimation To="{Binding InvertedHeight, ElementName=ToastRoot}"
+                                         Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)"
+                                         Storyboard.TargetName="MainGrid"
+                                         d:IsOptimized="True" />
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="MainGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Opened" />
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid x:Name="MainGrid"
+              Height="{Binding Height, ElementName=ToastRoot}"
+              Background="{Binding Background, ElementName=ToastRoot}"
+              Canvas.ZIndex="1">
+            <Grid.Projection>
+                <PlaneProjection />
+            </Grid.Projection>
+
+            <StackPanel x:Name="Container"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="{Binding TextHAlignment, ElementName=ToastRoot}">
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="18,0,-8,0"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding ShowLogo, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            SizeChanged="OnFirstContainerChanged">
+
+                    <Viewbox Height="36"
+                             Width="36"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left">
+                        <ContentControl Style="{Binding Icon, ElementName=ToastRoot}" />
+                    </Viewbox>
+
+                    <TextBlock Text="{Binding Title, ElementName=ToastRoot}"
+                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
+                               Style="{StaticResource NormalTextStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0" />
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center">
+                    <TextBlock x:Name="ToastMsg"
+                               Text="{Binding Message, ElementName=ToastRoot}"
+                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
+                               Style="{StaticResource NormalTextStyle}"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Margin="18,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>
