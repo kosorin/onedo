@@ -173,6 +173,11 @@ namespace SimpleTasks
             task.Show();
         }
 
+        public static Style IconStyle(string name)
+        {
+            return App.Current.Resources[name] as Style;
+        }
+
         #region Phone application initialization
 
         public static PhoneApplicationFrame RootFrame { get; private set; }

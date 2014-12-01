@@ -15,11 +15,11 @@ namespace SimpleTasks.Helpers
         {
             switch (action)
             {
-            case GestureAction.Complete: return App.Current.Resources["CheckBoxIconStyle"] as Style;
-            case GestureAction.Delete: return App.Current.Resources["DeleteIconStyle"] as Style;
-            case GestureAction.Reminder: return App.Current.Resources["ReminderIconStyle"] as Style;
-            case GestureAction.DueToday: return App.Current.Resources["CalendarIconStyle"] as Style;
-            case GestureAction.DueTomorrow: return App.Current.Resources["CalendarIconStyle"] as Style;
+            case GestureAction.Complete: return App.IconStyle("CheckBoxIconStyle");
+            case GestureAction.Delete: return App.IconStyle("DeleteIconStyle");
+            case GestureAction.Reminder: return App.IconStyle("ReminderIconStyle");
+            case GestureAction.DueToday: return App.IconStyle("CalendarIconStyle");
+            case GestureAction.DueTomorrow: return App.IconStyle("CalendarIconStyle");
             case GestureAction.None:
             default: return null;
             }
