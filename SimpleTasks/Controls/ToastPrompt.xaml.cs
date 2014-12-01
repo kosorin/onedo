@@ -13,7 +13,7 @@ using System.ComponentModel;
 
 namespace SimpleTasks.Controls
 {
-    public partial class ToastPrompt : UserControl, INotifyPropertyChanged
+    public partial class ToastPrompt : UserControl
     {
         private enum States
         {
@@ -22,7 +22,7 @@ namespace SimpleTasks.Controls
         }
 
         #region Private variables
-        private const double _defaultDuration = 5;
+        private const double _defaultDuration = 4;
         private States _state = States.Closed;
         private TimeSpan _interval = TimeSpan.FromSeconds(_defaultDuration);
         private DispatcherTimer _timer = null;
@@ -48,33 +48,34 @@ namespace SimpleTasks.Controls
         }
         #endregion
 
-        #region ShowLogo (Default: true)
+        #region ShowIcon
         /// <summary>
         /// Show the image bound to the control (default is True)
         /// </summary>
-        public bool ShowLogo
+        public bool ShowIcon
         {
-            get { return (bool)GetValue(ShowLogoProperty); }
-            set { SetValue(ShowLogoProperty, value); }
+            get { return (bool)GetValue(ShowIconProperty); }
+            set { SetValue(ShowIconProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ShowLogo.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShowLogoProperty =
-            DependencyProperty.Register("ShowLogo", typeof(bool), typeof(ToastPrompt), new PropertyMetadata(true));
+        // Using a DependencyProperty as the backing store for ShowIcon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowIconProperty =
+            DependencyProperty.Register("ShowIcon", typeof(bool), typeof(ToastPrompt), new PropertyMetadata(true));
         #endregion
 
-        #region Background (Default: ARGB = 255, 52, 73, 94)
-        public new SolidColorBrush Background
+        #region ShowTitle
+        public bool ShowTitle
         {
-            get { return (SolidColorBrush)GetValue(BackgroundProperty); }
-            set { SetValue(BackgroundProperty, value); }
+            get { return (bool)GetValue(ShowTitleProperty); }
+            set { SetValue(ShowTitleProperty, value); }
         }
 
-        public new static readonly DependencyProperty BackgroundProperty =
-            DependencyProperty.Register("Background", typeof(SolidColorBrush), typeof(ToastPrompt), new PropertyMetadata(new SolidColorBrush { Color = new Color { A = 255, R = 52, G = 73, B = 94 }, Opacity = .9 }));
-        #endregion
+        // Using a DependencyProperty as the backing store for ShowTitle.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowTitleProperty =
+            DependencyProperty.Register("ShowTitle", typeof(bool), typeof(ToastPrompt), new PropertyMetadata(false));
+        #endregion // end of ShowTitle
 
-        #region TextHAlignment (Horizontal alignment) (Default: Stretch)
+        #region TextHAlignment 
         public HorizontalAlignment TextHAlignment
         {
             get { return (HorizontalAlignment)GetValue(TextHAlignmentProperty); }
@@ -97,7 +98,7 @@ namespace SimpleTasks.Controls
 
         #endregion
 
-        #region Duration (Default: 3s)
+        #region Duration
         /// <summary>
         /// Displaying duration of the toast (in sec)
         /// </summary>
@@ -196,9 +197,10 @@ namespace SimpleTasks.Controls
             }
 
             Message = message;
-            Title = title;
             Icon = icon;
-            ShowLogo = Icon != null;
+            ShowIcon = Icon != null;
+            Title = title;
+            ShowTitle = Title != "";
 
             if (_timer != null)
             {
@@ -210,12 +212,12 @@ namespace SimpleTasks.Controls
             _timer = new DispatcherTimer { Interval = _interval };
             _timer.Tick += (s, t) =>
             {
-                Close();
+                Hide();
             };
             _timer.Start();
         }
 
-        public void Close()
+        public void Hide()
         {
             if (_timer != null)
             {
@@ -230,18 +232,14 @@ namespace SimpleTasks.Controls
         {
             InitializeComponent();
 
+            Foreground = App.Current.Resources["ButtonDarkForegroundBrush"] as SolidColorBrush;
+            Background = App.Current.Resources["AccentBrush"] as SolidColorBrush;
+
             this.Loaded += (s, e) =>
             {
                 UpdateVisualStates(States.Closed, false);
             };
         }
-
-        private void OnFirstContainerChanged(object sender, SizeChangedEventArgs e)
-        {
-            ToastMsg.Width = LayoutRoot.ActualWidth - 10 - e.NewSize.Width;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void SbCompleted(object sender, EventArgs e)
         {
@@ -253,7 +251,7 @@ namespace SimpleTasks.Controls
 
         private void ToastRoot_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Close();
+            Hide();
         }
     }
 }

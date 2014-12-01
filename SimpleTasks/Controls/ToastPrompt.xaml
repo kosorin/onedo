@@ -10,6 +10,7 @@
              Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="100"
              d:DesignWidth="480"
+             VerticalAlignment="Top"
              HorizontalContentAlignment="Stretch"
              Tap="ToastRoot_Tap">
 
@@ -93,42 +94,41 @@
                 <PlaneProjection />
             </Grid.Projection>
 
-            <StackPanel x:Name="Container"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="{Binding TextHAlignment, ElementName=ToastRoot}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal"
-                            Margin="18,0,-8,0"
-                            VerticalAlignment="Center"
-                            Visibility="{Binding ShowLogo, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
-                            SizeChanged="OnFirstContainerChanged">
+                <Viewbox Grid.Column="0"
+                         Height="36"
+                         Width="36"
+                         Visibility="{Binding ShowIcon, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"
+                         Margin="17,0,-2,0">
+                    <ContentControl Style="{Binding Icon, ElementName=ToastRoot}" />
+                </Viewbox>
 
-                    <Viewbox Height="36"
-                             Width="36"
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Left">
-                        <ContentControl Style="{Binding Icon, ElementName=ToastRoot}" />
-                    </Viewbox>
+                <TextBlock Grid.Column="1"
+                           Text="{Binding Title, ElementName=ToastRoot}"
+                           Foreground="{Binding Foreground, ElementName=ToastRoot}"
+                           Style="{StaticResource NormalTextStyle}"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Visibility="{Binding ShowTitle, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
+                           Margin="18,0,0,0" />
 
-                    <TextBlock Text="{Binding Title, ElementName=ToastRoot}"
-                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
-                               Style="{StaticResource NormalTextStyle}"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"
-                               Margin="10,0,0,0" />
-                </StackPanel>
-
-                <StackPanel HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center">
-                    <TextBlock x:Name="ToastMsg"
-                               Text="{Binding Message, ElementName=ToastRoot}"
-                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
-                               Style="{StaticResource NormalTextStyle}"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap"
-                               Margin="18,0,0,0" />
-                </StackPanel>
-            </StackPanel>
+                <TextBlock x:Name="ToastMsg"
+                           Grid.Column="2"
+                           Text="{Binding Message, ElementName=ToastRoot}"
+                           Foreground="{Binding Foreground, ElementName=ToastRoot}"
+                           Style="{StaticResource NormalTextStyle}"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="18,0,0,0" />
+            </Grid>
 
         </Grid>
     </Grid>
