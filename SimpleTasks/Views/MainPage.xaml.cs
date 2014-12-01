@@ -587,7 +587,7 @@ namespace SimpleTasks.Views
 
             if (hadReminder && !task.ExistsSystemReminder())
             {
-                Toast.Show(AppResources.ToastReminderOff, null, AppResources.ToastWarning);
+                Toast.Show(AppResources.ToastReminderOff, null, AppResources.ToastNotice);
             }
         }
 
