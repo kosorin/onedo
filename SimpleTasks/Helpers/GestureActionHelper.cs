@@ -17,7 +17,6 @@ namespace SimpleTasks.Helpers
             {
             case GestureAction.Complete: return App.IconStyle("CheckBox");
             case GestureAction.Delete: return App.IconStyle("Delete");
-            case GestureAction.Reminder: return App.IconStyle("Reminder");
             case GestureAction.DueToday: return App.IconStyle("Calendar");
             case GestureAction.DueTomorrow: return App.IconStyle("Calendar");
             case GestureAction.None:
@@ -31,7 +30,6 @@ namespace SimpleTasks.Helpers
             {
             case GestureAction.Complete: return AppResources.GestureActionComplete;
             case GestureAction.Delete: return AppResources.GestureActionDelete;
-            case GestureAction.Reminder: return AppResources.GestureActionReminder;
             case GestureAction.DueToday: return AppResources.GestureActionDueToday;
             case GestureAction.DueTomorrow: return AppResources.GestureActionDueTomorrow;
             case GestureAction.None:

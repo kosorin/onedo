@@ -11,7 +11,6 @@ namespace SimpleTasks.Core.Models
         None,
         Complete,
         Delete,
-        Reminder,
         DueToday,
         DueTomorrow
     }

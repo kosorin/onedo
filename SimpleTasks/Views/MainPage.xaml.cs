@@ -501,19 +501,6 @@ namespace SimpleTasks.Views
             };
             PageOverlayTransitionShow.Completed += overlayHandler;
         }
-
-        private void OverlayAction(Action<TaskModel, TimeSpan?> action, TaskModel task, TimeSpan? timespan)
-        {
-            PageOverlayTransitionShow.Begin();
-            EventHandler overlayHandler = null;
-            overlayHandler = (s, e) =>
-            {
-                action(task, timespan);
-                PageOverlayTransitionHide.Begin();
-                PageOverlayTransitionShow.Completed -= overlayHandler;
-            };
-            PageOverlayTransitionShow.Completed += overlayHandler;
-        }
         #endregion
 
         #region GroupedTasks
@@ -587,22 +574,20 @@ namespace SimpleTasks.Views
 
         private void SetDueDate(TaskModel task, DateTime? due)
         {
+            bool hadReminder = task.ExistsSystemReminder();
+
             task.DueDate = due;
+            App.Tasks.Update(task);
             TaskWrapper wrapper = task.Wrapper as TaskWrapper;
             if (wrapper != null)
             {
                 wrapper.UpdateIsScheduled();
             }
             OnPropertyChanged(GroupedTasksProperty);
-        }
 
-        private void SetReminder(TaskModel task, TimeSpan? reminder)
-        {
-            task.Reminder = reminder;
-            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
-            if (wrapper != null)
+            if (hadReminder && !task.ExistsSystemReminder())
             {
-                wrapper.UpdateIsScheduled();
+                Toast.Show("Reminder was disabled!", null, "Warning");
             }
         }
 
@@ -621,16 +606,13 @@ namespace SimpleTasks.Views
                 Toast.Show(AppResources.ToastTaskDeleted, App.IconStyle("Delete"));
                 break;
 
-            case GestureAction.Reminder:
-                OverlayAction(SetReminder, task, TimeSpan.Zero);
-                break;
-
             case GestureAction.DueToday:
-                OverlayAction(SetDueDate, task, DateTimeExtensions.Today.SetTime(task.DueDate ?? Settings.Current.Tasks.DefaultTime));
-                break;
-
             case GestureAction.DueTomorrow:
-                OverlayAction(SetDueDate, task, DateTimeExtensions.Tomorrow.SetTime(task.DueDate ?? Settings.Current.Tasks.DefaultTime));
+                DateTime? oldDue = task.DueDate;
+                DateTime newDue = (action == GestureAction.DueToday ? DateTimeExtensions.Today : DateTimeExtensions.Tomorrow);
+                newDue = newDue.SetTime(oldDue ?? Settings.Current.Tasks.DefaultTime);
+
+                OverlayAction(SetDueDate, task, newDue);
                 break;
 
             case GestureAction.None:
@@ -654,7 +636,6 @@ namespace SimpleTasks.Views
                 Toast.Show(AppResources.ToastSubtaskDeleted, App.IconStyle("Delete"));
                 break;
 
-            case GestureAction.Reminder:
             case GestureAction.DueToday:
             case GestureAction.DueTomorrow:
             case GestureAction.None:

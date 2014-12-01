@@ -207,7 +207,6 @@ namespace SimpleTasks.Core.Models
                         GestureAction.None,
                         GestureAction.Complete,
                         GestureAction.Delete,
-                        GestureAction.Reminder,
                         GestureAction.DueToday,
                         GestureAction.DueTomorrow,
                     };
