@@ -209,6 +209,8 @@ namespace SimpleTasks.Core.Models
                         GestureAction.Delete,
                         GestureAction.DueToday,
                         GestureAction.DueTomorrow,
+                        GestureAction.PostponeDay,
+                        GestureAction.PostponeWeek,
                     };
                 }
             }

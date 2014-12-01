@@ -12,6 +12,8 @@ namespace SimpleTasks.Core.Models
         Complete,
         Delete,
         DueToday,
-        DueTomorrow
+        DueTomorrow,
+        PostponeDay,
+        PostponeWeek
     }
 }

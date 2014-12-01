@@ -522,6 +522,14 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <source>Swipe right gesture action</source>
           <target state="new">Swipe right gesture action</target>
         </trans-unit>
+        <trans-unit id="Resx/GestureActionPostponeWeek" translate="yes" xml:space="preserve">
+          <source>postpone: 1 Week</source>
+          <target state="new">postpone: 1 Week</target>
+        </trans-unit>
+        <trans-unit id="Resx/GestureActionPostponeDay" translate="yes" xml:space="preserve">
+          <source>postpone: 1 Day</source>
+          <target state="new">postpone: 1 Day</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastTaskDeleted" translate="yes" xml:space="preserve">
           <source>Task was deleted.</source>
           <target state="new">Task was deleted.</target>
@@ -529,6 +537,10 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="new">Completed tasks were deleted.</target>
+        </trans-unit>
+        <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
+          <source>Postponed until {0:ddd}, {0:d}</source>
+          <target state="new">Postponed until {0:ddd}, {0:d}</target>
         </trans-unit>
         <trans-unit id="Resx/ToastSubtaskDeleted" translate="yes" xml:space="preserve">
           <source>Subtask was deleted.</source>

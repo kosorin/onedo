@@ -733,11 +733,20 @@ It's still in beta.</value>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Swipe right gesture action</value>
   </data>
+  <data name="GestureActionPostponeDay" xml:space="preserve">
+    <value>postpone: 1 Day</value>
+  </data>
+  <data name="GestureActionPostponeWeek" xml:space="preserve">
+    <value>postpone: 1 Week</value>
+  </data>
   <data name="ToastAllTasksDeleted" xml:space="preserve">
     <value>All tasks were deleted.</value>
   </data>
   <data name="ToastCompletedTasksDeleted" xml:space="preserve">
     <value>Completed tasks were deleted.</value>
+  </data>
+  <data name="ToastPostponedUntil" xml:space="preserve">
+    <value>Postponed until {0:ddd}, {0:d}</value>
   </data>
   <data name="ToastSubtaskDeleted" xml:space="preserve">
     <value>Subtask was deleted.</value>

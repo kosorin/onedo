@@ -591,6 +591,20 @@ namespace SimpleTasks.Views
             }
         }
 
+        private void Postpone(TaskModel task, DateTime? due)
+        {
+            task.DueDate = due;
+            App.Tasks.Update(task);
+            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
+            if (wrapper != null)
+            {
+                wrapper.UpdateIsScheduled();
+            }
+            OnPropertyChanged(GroupedTasksProperty);
+
+            Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), App.IconStyle("Calendar"));
+        }
+
         private void ExecuteGesture(GestureAction action, TaskModel task)
         {
             switch (action)
@@ -608,11 +622,27 @@ namespace SimpleTasks.Views
 
             case GestureAction.DueToday:
             case GestureAction.DueTomorrow:
-                DateTime? oldDue = task.DueDate;
-                DateTime newDue = (action == GestureAction.DueToday ? DateTimeExtensions.Today : DateTimeExtensions.Tomorrow);
-                newDue = newDue.SetTime(oldDue ?? Settings.Current.Tasks.DefaultTime);
+                VibrateHelper.Short();
+                {
+                    DateTime? oldDue = task.DueDate;
+                    DateTime newDue = (action == GestureAction.DueToday ? DateTimeExtensions.Today : DateTimeExtensions.Tomorrow);
+                    newDue = newDue.SetTime(oldDue ?? Settings.Current.Tasks.DefaultTime);
 
-                OverlayAction(SetDueDate, task, newDue);
+                    OverlayAction(SetDueDate, task, newDue);
+                }
+                break;
+
+            case GestureAction.PostponeDay:
+            case GestureAction.PostponeWeek:
+                VibrateHelper.Short();
+                if (task.HasDueDate)
+                {
+                    OverlayAction(Postpone, task, task.DueDate.Value.AddDays((action == GestureAction.PostponeDay ? 1 : 7)));
+                }
+                else
+                {
+                    OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.Tasks.DefaultTime));
+                }
                 break;
 
             case GestureAction.None:
@@ -636,9 +666,6 @@ namespace SimpleTasks.Views
                 Toast.Show(AppResources.ToastSubtaskDeleted, App.IconStyle("Delete"));
                 break;
 
-            case GestureAction.DueToday:
-            case GestureAction.DueTomorrow:
-            case GestureAction.None:
             default:
                 break;
             }

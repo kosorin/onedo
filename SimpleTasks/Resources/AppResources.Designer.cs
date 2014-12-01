@@ -784,6 +784,24 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to postpone: 1 Day.
+        /// </summary>
+        public static string GestureActionPostponeDay {
+            get {
+                return ResourceManager.GetString("GestureActionPostponeDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to postpone: 1 Week.
+        /// </summary>
+        public static string GestureActionPostponeWeek {
+            get {
+                return ResourceManager.GetString("GestureActionPostponeWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set reminder.
         /// </summary>
         public static string GestureActionReminder {
@@ -1762,6 +1780,15 @@ namespace SimpleTasks.Resources {
         public static string ToastCompletedTasksDeleted {
             get {
                 return ResourceManager.GetString("ToastCompletedTasksDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postponed until {0:ddd}, {0:d}.
+        /// </summary>
+        public static string ToastPostponedUntil {
+            get {
+                return ResourceManager.GetString("ToastPostponedUntil", resourceCulture);
             }
         }
         

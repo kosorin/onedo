@@ -26,7 +26,7 @@ namespace SimpleTasks.Models
         #region IsScheduled
         public void UpdateIsScheduled()
         {
-            if (Task != null && Task.HasReminder && (Task.DueDate - Task.Reminder) > DateTime.Now)
+            if (Task != null && Task.HasReminder)
             {
                 Reminder reminder = Task.GetSystemReminder();
                 IsScheduled = reminder != null && reminder.IsScheduled;
