@@ -748,10 +748,16 @@ It's still in beta.</value>
   <data name="ToastPostponedUntil" xml:space="preserve">
     <value>Postponed until {0:ddd}, {0:d}</value>
   </data>
+  <data name="ToastReminderOff" xml:space="preserve">
+    <value>Reminder was turned off!</value>
+  </data>
   <data name="ToastSubtaskDeleted" xml:space="preserve">
     <value>Subtask was deleted.</value>
   </data>
   <data name="ToastTaskDeleted" xml:space="preserve">
     <value>Task was deleted.</value>
+  </data>
+  <data name="ToastWarning" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>

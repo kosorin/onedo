@@ -1793,6 +1793,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reminder was turned off!.
+        /// </summary>
+        public static string ToastReminderOff {
+            get {
+                return ResourceManager.GetString("ToastReminderOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subtask was deleted..
         /// </summary>
         public static string ToastSubtaskDeleted {
@@ -1807,6 +1816,15 @@ namespace SimpleTasks.Resources {
         public static string ToastTaskDeleted {
             get {
                 return ResourceManager.GetString("ToastTaskDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string ToastWarning {
+            get {
+                return ResourceManager.GetString("ToastWarning", resourceCulture);
             }
         }
         

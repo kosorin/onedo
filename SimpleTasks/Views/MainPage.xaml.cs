@@ -587,7 +587,7 @@ namespace SimpleTasks.Views
 
             if (hadReminder && !task.ExistsSystemReminder())
             {
-                Toast.Show("Reminder was disabled!", null, "Warning");
+                Toast.Show(AppResources.ToastReminderOff, null, AppResources.ToastWarning);
             }
         }
 

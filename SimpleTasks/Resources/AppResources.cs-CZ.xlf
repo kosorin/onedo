@@ -532,6 +532,10 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>Task was deleted.</source>
           <target state="new">Task was deleted.</target>
         </trans-unit>
+        <trans-unit id="Resx/ToastWarning" translate="yes" xml:space="preserve">
+          <source>Warning</source>
+          <target state="new">Warning</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="new">Completed tasks were deleted.</target>
@@ -539,6 +543,10 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
         <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
           <source>Postponed until {0:ddd}, {0:d}</source>
           <target state="new">Postponed until {0:ddd}, {0:d}</target>
+        </trans-unit>
+        <trans-unit id="Resx/ToastReminderOff" translate="yes" xml:space="preserve">
+          <source>Reminder was turned off!</source>
+          <target state="new">Reminder was turned off!</target>
         </trans-unit>
         <trans-unit id="Resx/ToastSubtaskDeleted" translate="yes" xml:space="preserve">
           <source>Subtask was deleted.</source>
