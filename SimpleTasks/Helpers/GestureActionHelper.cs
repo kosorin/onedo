@@ -17,10 +17,10 @@ namespace SimpleTasks.Helpers
             {
             case GestureAction.Complete: return App.IconStyle("CheckBox");
             case GestureAction.Delete: return App.IconStyle("Delete");
-            case GestureAction.DueToday: return App.IconStyle("Calendar");
-            case GestureAction.DueTomorrow: return App.IconStyle("Calendar");
-            case GestureAction.PostponeDay: return App.IconStyle("Calendar");
-            case GestureAction.PostponeWeek: return App.IconStyle("Calendar");
+            case GestureAction.DueToday: return App.IconStyle("DueToday");
+            case GestureAction.DueTomorrow: return App.IconStyle("DueTomorrow");
+            case GestureAction.PostponeDay: return App.IconStyle("PostponeOneDay");
+            case GestureAction.PostponeWeek: return App.IconStyle("PostponeOneWeek");
             case GestureAction.None:
             default: return null;
             }

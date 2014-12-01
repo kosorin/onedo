@@ -538,6 +538,10 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <source>Warning</source>
           <target state="new">Warning</target>
         </trans-unit>
+        <trans-unit id="Resx/ToastNotice" translate="yes" xml:space="preserve">
+          <source>Notice</source>
+          <target state="new">Notice</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="new">Completed tasks were deleted.</target>

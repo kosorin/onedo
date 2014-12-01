@@ -1784,6 +1784,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notice.
+        /// </summary>
+        public static string ToastNotice {
+            get {
+                return ResourceManager.GetString("ToastNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Postponed until {0:ddd}, {0:d}.
         /// </summary>
         public static string ToastPostponedUntil {

@@ -760,4 +760,7 @@ It's still in beta.</value>
   <data name="ToastWarning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="ToastNotice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
 </root>
