@@ -390,6 +390,16 @@
                                                                 <CircleEase EasingMode="EaseOut" />
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                                                       Storyboard.TargetProperty="Foreground">
+                                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
+                                                                                    Value="Transparent" />
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
+                                                                                       Storyboard.TargetProperty="Foreground">
+                                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
+                                                                                    Value="Transparent" />
+                                                        </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
                                                 </Border.Resources>
                                                 <Border.RenderTransform>
@@ -430,6 +440,24 @@
                                                                                     Margin="5,0,0,0" />
                                                         </Border>
                                                     </Button>
+
+                                                    <!--Swipe left gesture icon-->
+                                                    <ContentControl Grid.ColumnSpan="2"
+                                                                    x:Name="SwipeLeftGestureIcon"
+                                                                    Margin="-105"
+                                                                    Grid.Column="1"
+                                                                    Foreground="Transparent"
+                                                                    VerticalAlignment="Center"
+                                                                    HorizontalAlignment="Right" />
+
+                                                    <!--Swipe right gesture icon-->
+                                                    <ContentControl Grid.ColumnSpan="2"
+                                                                    x:Name="SwipeRightGestureIcon"
+                                                                    Margin="-200"
+                                                                    Grid.Column="1"
+                                                                    Foreground="Transparent"
+                                                                    VerticalAlignment="Center"
+                                                                    HorizontalAlignment="Left" />
                                                 </Grid>
                                             </Border>
                                         </DataTemplate>
@@ -467,7 +495,6 @@
                                     x:Name="SwipeLeftGestureIcon"
                                     Margin="-105"
                                     Grid.Column="1"
-                                    Style="{Binding Wrapper.SwipeLeftIconStyle}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Right" />
 
@@ -476,7 +503,6 @@
                                     x:Name="SwipeRightGestureIcon"
                                     Margin="-150"
                                     Grid.Column="1"
-                                    Style="{Binding Wrapper.SwipeRightIconStyle}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Left" />
                 </Grid>

@@ -52,18 +52,6 @@ namespace SimpleTasks.Models
         }
         #endregion
 
-        #region Swipe Icon Styles
-        public Style SwipeLeftIconStyle
-        {
-            get { return GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction); }
-        }
-
-        public Style SwipeRightIconStyle
-        {
-            get { return GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction); }
-        }
-        #endregion // end of Swipe Icon Styles
-
         //#region Color
         //private Color? _color = null;
         //public Color Color

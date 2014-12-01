@@ -665,6 +665,12 @@ namespace SimpleTasks.Views
 
         private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
+            Grid infoGrid = (Grid)sender;
+            Border border = (Border)infoGrid.FindName("RootBorder");
+            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
+            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
+            swipeLeftIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
+            swipeRightIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
         }
 
         private void InfoGrid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
@@ -730,6 +736,11 @@ namespace SimpleTasks.Views
 
         private void SubtaskBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
+            Border border = (Border)sender;
+            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
+            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
+            swipeLeftIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
+            swipeRightIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
         }
 
         private void SubtaskBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
@@ -763,8 +774,9 @@ namespace SimpleTasks.Views
         private void SubtaskBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
             Border border = (Border)sender;
+            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
+            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
             TranslateTransform t = (TranslateTransform)border.RenderTransform;
-
 
             t.X += e.DeltaManipulation.Translation.X;
             if (t.X < 0 && (Settings.Current.Tasks.SwipeLeftAction != GestureAction.Complete && Settings.Current.Tasks.SwipeLeftAction != GestureAction.Delete))
@@ -779,14 +791,14 @@ namespace SimpleTasks.Views
             if (Math.Abs(t.X) > _swipeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                //swipeLeftIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
-                //swipeRightIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                swipeRightIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
             }
             else
             {
                 border.Background = null;
-                //swipeLeftIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
-                //swipeRightIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                swipeRightIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
             }
         }
         #endregion
