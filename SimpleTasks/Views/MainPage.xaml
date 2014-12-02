@@ -50,6 +50,22 @@
                                 <CircleEase EasingMode="EaseOut" />
                             </DoubleAnimation.EasingFunction>
                         </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.4">
+                            <DoubleAnimation.EasingFunction>
+                                <CircleEase EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="SwipeRightGestureIcon"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.4">
+                            <DoubleAnimation.EasingFunction>
+                                <CircleEase EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
                     </Storyboard>
                 </Border.Resources>
                 <Grid>
@@ -390,6 +406,22 @@
                                                                 <CircleEase EasingMode="EaseOut" />
                                                             </DoubleAnimation.EasingFunction>
                                                         </DoubleAnimation>
+                                                        <DoubleAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation Storyboard.TargetName="SwipeRightGestureIcon"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
                                                                                        Storyboard.TargetProperty="Foreground">
                                                             <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
@@ -444,7 +476,7 @@
                                                     <!--Swipe left gesture icon-->
                                                     <ContentControl Grid.ColumnSpan="2"
                                                                     x:Name="SwipeLeftGestureIcon"
-                                                                    Margin="-105"
+                                                                    Margin="-60"
                                                                     Grid.Column="1"
                                                                     Foreground="Transparent"
                                                                     VerticalAlignment="Center"
@@ -453,7 +485,7 @@
                                                     <!--Swipe right gesture icon-->
                                                     <ContentControl Grid.ColumnSpan="2"
                                                                     x:Name="SwipeRightGestureIcon"
-                                                                    Margin="-200"
+                                                                    Margin="-105"
                                                                     Grid.Column="1"
                                                                     Foreground="Transparent"
                                                                     VerticalAlignment="Center"
@@ -493,7 +525,7 @@
                     <!--Swipe left gesture icon-->
                     <ContentControl Grid.ColumnSpan="2"
                                     x:Name="SwipeLeftGestureIcon"
-                                    Margin="-105"
+                                    Margin="-65"
                                     Grid.Column="1"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Right" />
@@ -501,7 +533,7 @@
                     <!--Swipe right gesture icon-->
                     <ContentControl Grid.ColumnSpan="2"
                                     x:Name="SwipeRightGestureIcon"
-                                    Margin="-150"
+                                    Margin="-118"
                                     Grid.Column="1"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Left" />
