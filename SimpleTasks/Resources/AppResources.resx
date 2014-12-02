@@ -747,6 +747,7 @@ It's still in beta.</value>
   </data>
   <data name="ToastPostponedUntil" xml:space="preserve">
     <value>Postponed until {0:ddd}, {0:d}</value>
+    <comment>{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</comment>
   </data>
   <data name="ToastReminderOff" xml:space="preserve">
     <value>Reminder was turned off!</value>

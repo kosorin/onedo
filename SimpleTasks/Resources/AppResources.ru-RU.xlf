@@ -771,7 +771,7 @@ It's still in beta.</source>
         </trans-unit>
         <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
           <source>Postponed until {0:ddd}, {0:d}</source>
-          <target state="new">Postponed until {0:ddd}, {0:d}</target>
+          <target state="new">Postponed until {0:ddd}, {0:d}</target><note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
         </trans-unit>
         <trans-unit id="Resx/ToastReminderOff" translate="yes" xml:space="preserve">
           <source>Reminder was turned off!</source>
