@@ -488,14 +488,14 @@ namespace SimpleTasks.Views
             PageOverlayTransitionShow.Completed += overlayHandler;
         }
 
-        private void OverlayAction(Action<TaskModel, DateTime?> action, TaskModel task, DateTime? date)
+        private void OverlayAction(Action<TaskModel, DateTime?, GestureAction> action, TaskModel task, DateTime? date, GestureAction gestureAction)
         {
             PageOverlayTransitionShow.BeginTime = TimeSpan.Zero;
             PageOverlayTransitionShow.Begin();
             EventHandler overlayHandler = null;
             overlayHandler = (s, e) =>
             {
-                action(task, date);
+                action(task, date, gestureAction);
                 PageOverlayTransitionHide.Begin();
                 PageOverlayTransitionShow.Completed -= overlayHandler;
             };
@@ -572,7 +572,7 @@ namespace SimpleTasks.Views
 
         private bool _canUseGestures = true;
 
-        private void SetDueDate(TaskModel task, DateTime? due)
+        private void SetDueDate(TaskModel task, DateTime? due, GestureAction action)
         {
             bool hadReminder = task.ExistsSystemReminder();
 
@@ -587,11 +587,11 @@ namespace SimpleTasks.Views
 
             if (hadReminder && !task.ExistsSystemReminder())
             {
-                Toast.Show(AppResources.ToastReminderOff, null, AppResources.ToastNotice);
+                Toast.Show(AppResources.ToastReminderOff, GestureActionHelper.IconStyle(action), AppResources.ToastNotice);
             }
         }
 
-        private void Postpone(TaskModel task, DateTime? due)
+        private void Postpone(TaskModel task, DateTime? due, GestureAction action)
         {
             task.DueDate = due;
             App.Tasks.Update(task);
@@ -602,7 +602,7 @@ namespace SimpleTasks.Views
             }
             OnPropertyChanged(GroupedTasksProperty);
 
-            Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), App.IconStyle("Calendar"));
+            Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), GestureActionHelper.IconStyle(action));
         }
 
         private void ExecuteGesture(GestureAction action, TaskModel task)
@@ -628,7 +628,7 @@ namespace SimpleTasks.Views
                     DateTime newDue = (action == GestureAction.DueToday ? DateTimeExtensions.Today : DateTimeExtensions.Tomorrow);
                     newDue = newDue.SetTime(oldDue ?? Settings.Current.Tasks.DefaultTime);
 
-                    OverlayAction(SetDueDate, task, newDue);
+                    OverlayAction(SetDueDate, task, newDue, action);
                 }
                 break;
 
@@ -637,11 +637,11 @@ namespace SimpleTasks.Views
                 VibrateHelper.Short();
                 if (task.HasDueDate)
                 {
-                    OverlayAction(Postpone, task, task.DueDate.Value.AddDays((action == GestureAction.PostponeDay ? 1 : 7)));
+                    OverlayAction(Postpone, task, task.DueDate.Value.AddDays((action == GestureAction.PostponeDay ? 1 : 7)), action);
                 }
                 else
                 {
-                    OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.Tasks.DefaultTime));
+                    OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.Tasks.DefaultTime), action);
                 }
                 break;
 
