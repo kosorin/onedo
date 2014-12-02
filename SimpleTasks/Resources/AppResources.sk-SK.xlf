@@ -520,75 +520,75 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <target state="signed-off">Zobraziť zoznam zmien</target></trans-unit>
         <trans-unit id="Resx/SettingsSwipeRight" translate="yes" xml:space="preserve">
           <source>Swipe right gesture action</source>
-          <target state="new">Swipe right gesture action</target>
+          <target state="signed-off">Akcia pre gesto potiahnutia doprava</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionPostponeWeek" translate="yes" xml:space="preserve">
           <source>postpone: 1 Week</source>
-          <target state="new">postpone: 1 Week</target>
+          <target state="signed-off">odložiť: o týždeň</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionPostponeDay" translate="yes" xml:space="preserve">
           <source>postpone: 1 Day</source>
-          <target state="new">postpone: 1 Day</target>
+          <target state="signed-off">odložiť: o 1 deň</target>
         </trans-unit>
         <trans-unit id="Resx/ToastTaskDeleted" translate="yes" xml:space="preserve">
           <source>Task was deleted.</source>
-          <target state="new">Task was deleted.</target>
+          <target state="signed-off">Úloha bola zmazaná.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastWarning" translate="yes" xml:space="preserve">
           <source>Warning</source>
-          <target state="new">Warning</target>
+          <target state="signed-off">Varovanie</target>
         </trans-unit>
         <trans-unit id="Resx/ToastNotice" translate="yes" xml:space="preserve">
           <source>Notice</source>
-          <target state="new">Notice</target>
+          <target state="signed-off">Upozornenie</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
-          <target state="new">Completed tasks were deleted.</target>
+          <target state="signed-off">Dokončené úlohy boli zmazané.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
           <source>Postponed until {0:ddd}, {0:d}</source>
-          <target state="new">Postponed until {0:ddd}, {0:d}</target><note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
-        </trans-unit>
+          <target state="signed-off">Odložené na {0:ddd}, {0:d}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note></trans-unit>
         <trans-unit id="Resx/ToastReminderOff" translate="yes" xml:space="preserve">
           <source>Reminder was turned off!</source>
-          <target state="new">Reminder was turned off!</target>
+          <target state="signed-off">Pripomenutie bolo vypnuté.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastSubtaskDeleted" translate="yes" xml:space="preserve">
           <source>Subtask was deleted.</source>
-          <target state="new">Subtask was deleted.</target>
+          <target state="signed-off">Podúloha bola zmazaná.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastAllTasksDeleted" translate="yes" xml:space="preserve">
           <source>All tasks were deleted.</source>
-          <target state="new">All tasks were deleted.</target>
+          <target state="signed-off">Všetky úlohy boli zmazané.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwipeLeft" translate="yes" xml:space="preserve">
           <source>Swipe left gesture action</source>
-          <target state="new">Swipe left gesture action</target>
+          <target state="signed-off">Akcia pre gesto potiahnutia doprava</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionReminder" translate="yes" xml:space="preserve">
           <source>set reminder</source>
-          <target state="new">set reminder</target>
+          <target state="signed-off">nastaviť pripomenutie</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionNone" translate="yes" xml:space="preserve">
           <source>no action</source>
-          <target state="new">no action</target>
+          <target state="signed-off">žiadna akcia</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDueTomorrow" translate="yes" xml:space="preserve">
           <source>set due: Tomorrow</source>
-          <target state="new">set due: Tomorrow</target>
+          <target state="signed-off">nastaviť termín: zajtra</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDueToday" translate="yes" xml:space="preserve">
           <source>set due: Today</source>
-          <target state="new">set due: Today</target>
+          <target state="signed-off">nastaviť termín: dnes</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDelete" translate="yes" xml:space="preserve">
           <source>delete task/subtask</source>
-          <target state="new">delete task/subtask</target>
+          <target state="signed-off">zmazať úlohu/podúlohu</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionComplete" translate="yes" xml:space="preserve">
           <source>complete task/subtask</source>
-          <target state="new">complete task/subtask</target>
+          <target state="signed-off">splniť úlohu/podúlohu</target>
         </trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
