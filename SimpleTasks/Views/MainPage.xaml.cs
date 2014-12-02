@@ -728,18 +728,23 @@ namespace SimpleTasks.Views
                 t.X = 0;
             }
 
-            if (Math.Abs(t.X) > _swipeGestureTreshold)
+            double value = Math.Abs(t.X);
+            double opacity = Math.Min(value / _swipeGestureTreshold, 1.0);
+            Brush brush;
+            if (value > _swipeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
-                swipeRightIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                brush = (Brush)App.Current.Resources["AccentBrush"];
             }
             else
             {
                 border.Background = null;
-                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
-                swipeRightIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                brush = (Brush)App.Current.Resources["SubtleBrush"];
             }
+            swipeLeftIcon.Opacity = opacity;
+            swipeLeftIcon.Foreground = brush;
+            swipeRightIcon.Opacity = opacity;
+            swipeRightIcon.Foreground = brush;
         }
 
         private void SubtaskBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
@@ -796,18 +801,23 @@ namespace SimpleTasks.Views
                 t.X = 0;
             }
 
-            if (Math.Abs(t.X) > _swipeGestureTreshold)
+            double value = Math.Abs(t.X);
+            double opacity = Math.Min(value / _swipeGestureTreshold, 1.0);
+            Brush brush;
+            if (value > _swipeGestureTreshold)
             {
                 border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
-                swipeRightIcon.Foreground = (Brush)App.Current.Resources["AccentBrush"];
+                brush = (Brush)App.Current.Resources["AccentBrush"];
             }
             else
             {
                 border.Background = null;
-                swipeLeftIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
-                swipeRightIcon.Foreground = (Brush)App.Current.Resources["SubtleBrush"];
+                brush = (Brush)App.Current.Resources["SubtleBrush"];
             }
+            swipeLeftIcon.Opacity = opacity;
+            swipeLeftIcon.Foreground = brush;
+            swipeRightIcon.Opacity = opacity;
+            swipeRightIcon.Foreground = brush;
         }
         #endregion
     }
