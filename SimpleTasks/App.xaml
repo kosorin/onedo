@@ -9,7 +9,8 @@
              xmlns:helpcore="clr-namespace:SimpleTasks.Core.Helpers;assembly=SimpleTasks.Core"
              xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
              xmlns:controls="clr-namespace:SimpleTasks.Controls"
-             xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
+             xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
+             xmlns:cmodels="clr-namespace:SimpleTasks.Core.Models;assembly=SimpleTasks.Core">
 
     <!--Application Resources-->
     <Application.Resources>
@@ -21,6 +22,7 @@
 
             <!--Region Lokalizace-->
             <local:LocalizedStrings x:Key="LocalizedStrings" />
+            <cmodels:Settings x:Key="Settings" />
             <!--EndRegion-->
 
             <!--Region Konvertory-->
