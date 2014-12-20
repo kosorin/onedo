@@ -264,7 +264,8 @@
                     Grid.ColumnSpan="2"
                     Margin="-480,0"
                     BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource TasksListDelimiterBrush}">
+                    BorderBrush="{StaticResource TasksListDelimiterBrush}"
+                    IsHitTestVisible="False">
                 <Border.Background>
                     <SolidColorBrush Color="{StaticResource AccentColor}"
                                      Opacity="0" />
