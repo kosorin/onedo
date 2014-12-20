@@ -260,7 +260,46 @@
                 </VisualState>
 
             </VisualStateGroup>
+            
+            <!--DeletedStates-->
+            <VisualStateGroup x:Name="DeletedStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Deleted"
+                                      GeneratedDuration="0:0:0.5">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
 
+                    <VisualTransition To="NotDeleted"
+                                      GeneratedDuration="0:0:0.2">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+
+                <!--Deleted-->
+                <VisualState x:Name="Deleted">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootBorder"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootBorder"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!--NotDeleted-->
+                <VisualState x:Name="NotDeleted" />
+
+            </VisualStateGroup>
+            
         </VisualStateManager.VisualStateGroups>
 
         <Border.RenderTransform>
@@ -297,7 +336,6 @@
                     </Button.Template>
 
                     <Grid Background="Transparent"
-                          Tap="LOL_OMG"
                           ManipulationStarted="InfoGrid_ManipulationStarted"
                           ManipulationCompleted="InfoGrid_ManipulationCompleted"
                           ManipulationDelta="InfoGrid_ManipulationDelta">

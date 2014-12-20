@@ -560,12 +560,13 @@ namespace SimpleTasks.Views
             Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), GestureActionHelper.IconStyle(action));
         }
 
-        private void ExecuteGesture(GestureAction action, TaskModel task)
+        private void ExecuteGesture(GestureAction action, Controls.TaskEventArgs e)
         {
-            if (task == null)
+            if (e.Task == null)
             {
                 return;
             }
+            TaskModel task = e.Task;
 
             switch (action)
             {
@@ -576,7 +577,12 @@ namespace SimpleTasks.Views
 
             case GestureAction.Delete:
                 VibrateHelper.Short();
-                OverlayAction(App.Tasks.Delete, task);
+                OverlayAction(() =>
+                {
+                    e.Item.ResetDelete();
+                    App.Tasks.Delete(e.Task);
+                });
+                e.Delete = true;
                 Toast.Show(AppResources.ToastTaskDeleted, App.IconStyle("Delete"));
                 break;
 
@@ -638,12 +644,12 @@ namespace SimpleTasks.Views
 
         private void TaskItem_SwipeLeft(object sender, Controls.TaskEventArgs e)
         {
-            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e.Task);
+            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e);
         }
 
         private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
         {
-            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e.Task);
+            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e);
         }
 
         private void TaskItem_SubtaskSwipeLeft(object sender, TaskSubtaskEventArgs e)

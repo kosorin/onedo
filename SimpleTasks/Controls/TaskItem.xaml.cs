@@ -23,9 +23,15 @@ namespace SimpleTasks.Controls
     {
         public TaskModel Task { get; set; }
 
-        public TaskEventArgs(TaskModel task)
+        public TaskItem Item { get; set; }
+
+        public bool Delete { get; set; }
+
+        public TaskEventArgs(TaskModel task, TaskItem item)
         {
             Task = task;
+            Item = item;
+            Delete = false;
         }
     }
 
@@ -53,6 +59,8 @@ namespace SimpleTasks.Controls
     [TemplateVisualState(Name = GestureDragOkState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureDragState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureEndDragState, GroupName = GestureStatesGroup)]
+    [TemplateVisualState(Name = DeletedState, GroupName = DeleteStatesGroup)]
+    [TemplateVisualState(Name = NotDeletedState, GroupName = DeleteStatesGroup)]
     public partial class TaskItem : UserControl, INotifyPropertyChanged
     {
         #region Events
@@ -60,7 +68,14 @@ namespace SimpleTasks.Controls
         {
             if (handler != null)
             {
-                handler(this, new TaskEventArgs(Task));
+                TaskEventArgs args = new TaskEventArgs(Task, this);
+                handler(this, args);
+                if (args.Delete)
+                {
+                    args.Delete = false;
+                    RootBorder.Height = RootBorder.ActualHeight;
+                    UpdateVisualState(DeletedState);
+                }
             }
         }
 
@@ -231,6 +246,12 @@ namespace SimpleTasks.Controls
 
         private const string NotScheduledState = "NotScheduled";
 
+        private const string DeleteStatesGroup = "DeleteStates";
+
+        private const string DeletedState = "Deleted";
+
+        private const string NotDeletedState = "NotDeleted";
+
         private void UpdateVisualState(string state, bool useTransitions = true)
         {
             VisualStateManager.GoToState(this, state, useTransitions);
@@ -248,16 +269,12 @@ namespace SimpleTasks.Controls
         public TaskItem()
         {
             InitializeComponent();
+            ResetDelete();
             UpdateVisualStates(false);
         }
         #endregion // end of Constructor
 
         #region Event Handlers
-        private void LOL_OMG(object a, object b)
-        {
-
-        }
-
         private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
             UpdateVisualState(GestureStartDragState);
@@ -352,5 +369,13 @@ namespace SimpleTasks.Controls
             }
         }
         #endregion // end of Event Handlers
+
+        #region Delete
+        public void ResetDelete()
+        {
+            RootBorder.Height = double.NaN;
+            UpdateVisualState(NotDeletedState, false);
+        }
+        #endregion // end of Delete
     }
 }
