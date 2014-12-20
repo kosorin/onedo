@@ -818,11 +818,11 @@ E' ancora una funzione beta.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDelete" translate="yes" xml:space="preserve">
           <source>delete task/subtask</source>
-          <target state="translated">cancella impegno/sub-impegno</target>
+          <target state="signed-off">cancella impegno</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionComplete" translate="yes" xml:space="preserve">
           <source>complete task/subtask</source>
-          <target state="translated">completa impegno/sub-impegno</target>
+          <target state="signed-off">impegno completato</target>
         </trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
