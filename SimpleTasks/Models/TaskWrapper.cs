@@ -80,4 +80,16 @@ namespace SimpleTasks.Models
         //}
         //#endregion
     }
+
+    public static class TaskWrapperExtensions
+    {
+        public static TaskWrapper GetWrapper(this TaskModel task)
+        {
+            if (task != null && task.Wrapper != null)
+            {
+                return task.Wrapper as TaskWrapper;
+            }
+            return null;
+        }
+    }
 }

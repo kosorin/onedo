@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SimpleTasks.Helpers;
+using SimpleTasks.Models;
 
 namespace SimpleTasks.Controls
 {
@@ -185,7 +186,7 @@ namespace SimpleTasks.Controls
         private void UpdateVisualStates(bool useTransitions = true)
         {
             UpdateVisualState((Task != null && Task.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
-            UpdateVisualState(ScheduledState, useTransitions);
+            UpdateVisualState((Task != null && Task.GetWrapper() != null && Task.GetWrapper().IsScheduled) ? ScheduledState : NotScheduledState, useTransitions);
             UpdateVisualState(GestureEndDragState, useTransitions);
         }
         #endregion // end of Visual States

@@ -105,7 +105,7 @@ namespace SimpleTasks.ViewModels
                 task.SetSystemReminder();
             }
 
-            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
+            TaskWrapper wrapper = task.GetWrapper();
             if (wrapper != null)
             {
                 wrapper.UpdateIsScheduled();
