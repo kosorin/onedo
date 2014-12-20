@@ -101,11 +101,6 @@ namespace SimpleTasks.Views
             appBarMenuItems = new List<ApplicationBarMenuItem>();
 
 #if DEBUG
-            // Reminders
-            ApplicationBarMenuItem appBarRemindersMenuItem = new ApplicationBarMenuItem("seznam připomenutí");
-            appBarRemindersMenuItem.Click += RemindersMenuItem_Click;
-            appBarMenuItems.Add(appBarRemindersMenuItem);
-
             // Reset
             ApplicationBarMenuItem appBarResetMenuItem = new ApplicationBarMenuItem("resetovat data");
             appBarResetMenuItem.Click += ResetMenuItem_Click;
@@ -136,6 +131,13 @@ namespace SimpleTasks.Views
             ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem(AppResources.AppBarAbout);
             appBarAboutMenuItem.Click += (s, e) => { Navigate(typeof(AboutPage)); };
             appBarMenuItems.Add(appBarAboutMenuItem);
+
+#if DEBUG
+            // Reminders
+            ApplicationBarMenuItem appBarRemindersMenuItem = new ApplicationBarMenuItem("seznam připomenutí");
+            appBarRemindersMenuItem.Click += RemindersMenuItem_Click;
+            appBarMenuItems.Add(appBarRemindersMenuItem);
+#endif
             #endregion
         }
 
