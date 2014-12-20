@@ -765,9 +765,9 @@
                 <Setter Property="FontFamily"
                         Value="Segoe WP Semibold" />
                 <Setter Property="FontSize"
-                        Value="22.667" />
+                        Value="21" />
                 <Setter Property="Margin"
-                        Value="0,24,0,5" />
+                        Value="0,24,0,4" />
                 <Setter Property="TextTrimming"
                         Value="WordEllipsis" />
                 <Setter Property="TextWrapping"
@@ -1099,7 +1099,7 @@
                 <Setter Property="Background"
                         Value="Transparent" />
                 <Setter Property="Margin"
-                        Value="0,-5,0,0" />
+                        Value="0,-4,0,0" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
