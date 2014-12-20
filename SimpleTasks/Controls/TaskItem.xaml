@@ -129,84 +129,99 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
-                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                         To="0"
-                                         Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource SubtleColor}"
-                                        Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeRightGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource SubtleColor}"
-                                        Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
+                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource SubtleColor}" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource SubtleColor}" />
+                        </ColorAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
                 <!--OK-->
                 <VisualState x:Name="GestureDragOk">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
-                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                         To="0.4"
-                                         Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource AccentColor}"
-                                        Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeRightGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource AccentColor}"
-                                        Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
+                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0.4" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource AccentColor}" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource AccentColor}" />
+                        </ColorAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
                 <!--Drag-->
                 <VisualState x:Name="GestureDrag">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
-                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                         To="0"
-                                         Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource SubtleColor}"
-                                        Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeRightGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource SubtleColor}"
-                                        Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
+                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource SubtleColor}" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource SubtleColor}" />
+                        </ColorAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
                 <!--End-->
                 <VisualState x:Name="GestureEndDrag">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="RootTransform"
-                                         Storyboard.TargetProperty="X"
-                                         To="0"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="SwipeRightGestureIcon"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
-                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                         To="0"
-                                         Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource SubtleColor}"
-                                        Duration="0" />
-                        <ColorAnimation Storyboard.TargetName="SwipeRightGestureIcon"
-                                        Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
-                                        To="{StaticResource SubtleColor}"
-                                        Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootTransform"
+                                                       Storyboard.TargetProperty="X">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
+                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource SubtleColor}" />
+                        </ColorAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
+                                                      Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
+                            <DiscreteColorKeyFrame KeyTime="0"
+                                                   Value="{StaticResource SubtleColor}" />
+                        </ColorAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
