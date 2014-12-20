@@ -12,26 +12,32 @@
              Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="200"
              d:DesignWidth="400"
-             x:Name="Usrcntrl">
+             x:Name="Control">
 
     <Border x:Name="RootBorder"
-            DataContext="{Binding Task, ElementName=Usrcntrl}"
-            BorderThickness="0,0,0,1"
-            BorderBrush="{StaticResource TasksListDelimiterBrush}">
-        <Border.Background>
-            <SolidColorBrush Color="{StaticResource AccentColor}"
-                             Opacity="0" />
-        </Border.Background>
+            DataContext="{Binding Task, ElementName=Control}">
         <VisualStateManager.VisualStateGroups>
 
             <!--CompleteStates-->
             <VisualStateGroup x:Name="CompleteStates">
                 <VisualStateGroup.Transitions>
-                    <VisualTransition />
+                    <VisualTransition To="Uncompleted"
+                                      GeneratedDuration="0:0:0.35">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+
+                    <VisualTransition To="Completed"
+                                      GeneratedDuration="0:0:0.2">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
                 </VisualStateGroup.Transitions>
 
-                <!--Completed-->
-                <VisualState x:Name="Completed">
+                <!--Uncompleted-->
+                <VisualState x:Name="Uncompleted">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
                                                        Storyboard.TargetProperty="Visibility">
@@ -42,99 +48,57 @@
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1"
-                                         BeginTime="0:0:0.15"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="TaskInfoTransform"
                                          Storyboard.TargetProperty="Y"
                                          To="0"
-                                         BeginTime="0:0:0.15"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="MaxHeight"
                                          To="71"
-                                         Duration="0:0:0.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
 
                         <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="SubtasksStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="1"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                     </Storyboard>
                 </VisualState>
 
-                <!--Uncompleted-->
-                <VisualState x:Name="Uncompleted">
+                <!--Completed-->
+                <VisualState x:Name="Completed">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
                                                        Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0.5"
+                            <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
 
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="TaskInfoTransform"
                                          Storyboard.TargetProperty="Y"
                                          To="-15"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <QuinticEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
                                          Storyboard.TargetProperty="MaxHeight"
                                          To="0"
-                                         Duration="0:0:0.5">
-                            <DoubleAnimation.EasingFunction>
-                                <CubicEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
 
                         <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0.45"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                         <DoubleAnimation Storyboard.TargetName="SubtasksStackPanel"
                                          Storyboard.TargetProperty="Opacity"
                                          To="0.45"
-                                         Duration="0:0:0.35">
-                            <DoubleAnimation.EasingFunction>
-                                <CircleEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
+                                         Duration="0" />
                     </Storyboard>
                 </VisualState>
 
@@ -151,9 +115,9 @@
                     </VisualTransition>
 
                     <VisualTransition To="GestureDragOk"
-                                      GeneratedDuration="0:0:0.22" />
+                                      GeneratedDuration="0:0:0.18" />
                     <VisualTransition From="GestureDragOk"
-                                      GeneratedDuration="0:0:0.22" />
+                                      GeneratedDuration="0:0:0.18" />
 
                 </VisualStateGroup.Transitions>
 
@@ -165,7 +129,7 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
                                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
                                          To="0"
                                          Duration="0" />
@@ -183,9 +147,9 @@
                 <!--OK-->
                 <VisualState x:Name="GestureDragOk">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
                                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
-                                         To="0.45"
+                                         To="0.4"
                                          Duration="0" />
                         <ColorAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
                                         Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
@@ -201,7 +165,7 @@
                 <!--Drag-->
                 <VisualState x:Name="GestureDrag">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
                                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
                                          To="0"
                                          Duration="0" />
@@ -231,7 +195,7 @@
                                          Storyboard.TargetProperty="Opacity"
                                          To="0"
                                          Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="RootBorder"
+                        <DoubleAnimation Storyboard.TargetName="BackgroundBorder"
                                          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"
                                          To="0"
                                          Duration="0" />
@@ -243,6 +207,40 @@
                                         Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)"
                                         To="{StaticResource SubtleColor}"
                                         Duration="0" />
+                    </Storyboard>
+                </VisualState>
+
+            </VisualStateGroup>
+
+            <!--ScheduledStates-->
+            <VisualStateGroup x:Name="ScheduledStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="Scheduled"
+                                      GeneratedDuration="0:0:0.2">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+
+                    <VisualTransition To="NotScheduled"
+                                      GeneratedDuration="0:0:0.2">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+
+                <!--Scheduled-->
+                <VisualState x:Name="Scheduled" />
+
+                <!--NotScheduled-->
+                <VisualState x:Name="NotScheduled">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReminderGrid"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
@@ -261,11 +259,23 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!--Pozadí-->
+            <Border x:Name="BackgroundBorder"
+                    Grid.ColumnSpan="2"
+                    Margin="-480,0"
+                    BorderThickness="0,0,0,1"
+                    BorderBrush="{StaticResource TasksListDelimiterBrush}">
+                <Border.Background>
+                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                                     Opacity="0" />
+                </Border.Background>
+            </Border>
+
             <!--Info + Podúkoly-->
             <StackPanel Grid.Column="1">
 
                 <!--Horní + spodní Info-->
-                <Button>
+                <Button Tap="Task_Tap">
                     <Button.Template>
                         <ControlTemplate TargetType="ButtonBase" />
                     </Button.Template>
@@ -315,7 +325,7 @@
 
                             <!--Název-->
                             <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                                    Content="{Binding Title}"
+                                                    Content="{Binding Title, FallbackValue='Dummy title'}"
                                                     Style="{StaticResource TaskCheckBoxTextStyle}"
                                                     IsHitTestVisible="False"
                                                     FontSize="32"
@@ -355,7 +365,7 @@
                                                                     TranslateY="-29" />
                                             </ContentControl.RenderTransform>
                                         </ContentControl>
-                                        <TextBlock Text="{Binding DueDate, Converter={StaticResource TaskToDueStringConverter}}"
+                                        <TextBlock Text="{Binding DueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
                                                    Style="{StaticResource SlightTextStyle}"
                                                    FontSize="22"
                                                    Margin="0,1,8,0"
@@ -363,81 +373,35 @@
                                     </StackPanel>
 
                                     <!--Připomenutí-->
-                                    <controls:ToggleControl IsChecked="{Binding Wrapper.IsScheduled}">
-                                        <controls:ToggleControl.Template>
-                                            <ControlTemplate>
-                                                <StackPanel Orientation="Horizontal"
-                                                            Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                    <VisualStateManager.VisualStateGroups>
-                                                        <VisualStateGroup x:Name="CheckStates">
-                                                            <VisualState x:Name="Checked">
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="Color"
-                                                                                    Storyboard.TargetProperty="Color"
-                                                                                    To="{StaticResource AccentColor}"
-                                                                                    Duration="0:0:0.25" />
-                                                                    <DoubleAnimation Storyboard.TargetName="CrossIcon"
-                                                                                     Storyboard.TargetProperty="Opacity"
-                                                                                     To="0"
-                                                                                     Duration="0:0:0.25" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                            <VisualState x:Name="Unchecked">
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="Color"
-                                                                                    Storyboard.TargetProperty="Color"
-                                                                                    To="{StaticResource SubtleColor}"
-                                                                                    Duration="0:0:0.25" />
-                                                                    <DoubleAnimation Storyboard.TargetName="CrossIcon"
-                                                                                     Storyboard.TargetProperty="Opacity"
-                                                                                     To="1"
-                                                                                     Duration="0:0:0.25" />
-                                                                </Storyboard>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid x:Name="ReminderGrid">
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <!--Ikona-->
+                                            <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                            Margin="6,0,-18,0"
+                                                            MaxHeight="0"
+                                                            VerticalAlignment="Bottom">
+                                                <ContentControl.Foreground>
+                                                    <SolidColorBrush x:Name="Color"
+                                                                     Color="{StaticResource AccentColor}" />
+                                                </ContentControl.Foreground>
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.55"
+                                                                        ScaleY="0.55"
+                                                                        TranslateX="1"
+                                                                        TranslateY="-28" />
+                                                </ContentControl.RenderTransform>
+                                            </ContentControl>
 
-                                                    <!--Ikona-->
-                                                    <Grid VerticalAlignment="Bottom">
-                                                        <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                                        Margin="6,0,-18,0"
-                                                                        MaxHeight="0">
-                                                            <ContentControl.Foreground>
-                                                                <SolidColorBrush x:Name="Color"
-                                                                                 Color="{StaticResource AccentColor}" />
-                                                            </ContentControl.Foreground>
-                                                            <ContentControl.RenderTransform>
-                                                                <CompositeTransform ScaleX="0.55"
-                                                                                    ScaleY="0.55"
-                                                                                    TranslateX="1"
-                                                                                    TranslateY="-28" />
-                                                            </ContentControl.RenderTransform>
-                                                        </ContentControl>
-                                                        <ContentControl x:Name="CrossIcon"
-                                                                        Style="{StaticResource BoldCloseIconStyle}"
-                                                                        Foreground="{StaticResource AccentBrush}"
-                                                                        Height="0"
-                                                                        Width="0">
-                                                            <ContentControl.RenderTransform>
-                                                                <CompositeTransform ScaleX="0.4"
-                                                                                    ScaleY="0.4"
-                                                                                    TranslateX="0"
-                                                                                    TranslateY="-15" />
-                                                            </ContentControl.RenderTransform>
-                                                        </ContentControl>
-                                                    </Grid>
+                                            <!--Text-->
+                                            <TextBlock Text="{Binding Reminder, Converter={StaticResource ReminderConverter}, FallbackValue='2 dny'}"
+                                                       Style="{StaticResource SlightTextStyle}"
+                                                       VerticalAlignment="Bottom"
+                                                       FontSize="22"
+                                                       Margin="0,1,8,0" />
 
-                                                    <!--Text-->
-                                                    <TextBlock Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
-                                                               Style="{StaticResource SlightTextStyle}"
-                                                               VerticalAlignment="Bottom"
-                                                               FontSize="22"
-                                                               Margin="0,1,8,0" />
-
-                                                </StackPanel>
-                                            </ControlTemplate>
-                                        </controls:ToggleControl.Template>
-                                    </controls:ToggleControl>
+                                        </StackPanel>
+                                    </Grid>
 
                                 </StackPanel>
                             </Grid>
@@ -447,7 +411,7 @@
                                   MaxHeight="30"
                                   Margin="0,-10,12,10"
                                   Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
-                                <TextBlock Text="{Binding Detail}"
+                                <TextBlock Text="{Binding Detail, FallbackValue='Dummy detail'}"
                                            Style="{StaticResource SlightTextStyle}"
                                            FontSize="22"
                                            TextWrapping="NoWrap"
@@ -585,7 +549,7 @@
                     <ControlTemplate TargetType="ButtonBase" />
                 </Button.Template>
 
-                <Border Tap="LOL_OMG"
+                <Border Tap="Checkbox_Tap"
                         Background="Transparent"
                         VerticalAlignment="Top"
                         Margin="10,10,0,0"

@@ -352,16 +352,9 @@ namespace SimpleTasks.Views
         #endregion
 
         #region TasksList
-        private void CompleteButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void TaskItem_Check(object sender, Controls.TaskEventArgs e)
         {
-            this.Focus();
-
-            ToggleComplete(sender as FrameworkElement);
-        }
-
-        private void ToggleComplete(FrameworkElement element)
-        {
-            ToggleComplete(element.DataContext as TaskModel);
+            ToggleComplete(e.Task);
         }
 
         private void ToggleComplete(TaskModel task)
@@ -416,14 +409,12 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void TaskListItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void TaskItem_Click(object sender, Controls.TaskEventArgs e)
         {
-            Grid grid = (Grid)sender;
-            TaskModel task = (TaskModel)grid.DataContext;
-            if (task == null)
+            if (e.Task == null)
                 return;
 
-            NavigateQuery(typeof(EditTaskPage), "?Task={0}", task.Uid);
+            NavigateQuery(typeof(EditTaskPage), "?Task={0}", e.Task.Uid);
         }
 
         private TaskModel SubtaskElementFindTask(FrameworkElement element)
@@ -568,27 +559,18 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Gestures
-        private double _swipeGestureTreshold = 105;
-
-        private bool _canUseGestures = true;
-
         private void SetDueDate(TaskModel task, DateTime? due, GestureAction action)
         {
-            bool hadReminder = task.ExistsSystemReminder();
+            //bool hadReminder = task.ExistsSystemReminder();
 
             task.DueDate = due;
             App.Tasks.Update(task);
-            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
-            if (wrapper != null)
-            {
-                wrapper.UpdateIsScheduled();
-            }
             OnPropertyChanged(GroupedTasksProperty);
 
-            if (hadReminder && !task.ExistsSystemReminder())
-            {
-                Toast.Show(AppResources.ToastReminderOff, GestureActionHelper.IconStyle(action), AppResources.ToastNotice);
-            }
+            //if (hadReminder && !task.ExistsSystemReminder())
+            //{
+            //    Toast.Show(AppResources.ToastReminderOff, GestureActionHelper.IconStyle(action), AppResources.ToastNotice);
+            //}
         }
 
         private void Postpone(TaskModel task, DateTime? due, GestureAction action)
@@ -607,6 +589,11 @@ namespace SimpleTasks.Views
 
         private void ExecuteGesture(GestureAction action, TaskModel task)
         {
+            if (task == null)
+            {
+                return;
+            }
+
             switch (action)
             {
             case GestureAction.Complete:
@@ -651,8 +638,13 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ExecuteSubtaskGesture(GestureAction action, Subtask subtask)
+        private void ExecuteSubtaskGesture(GestureAction action, TaskModel task, Subtask subtask)
         {
+            if (task == null || subtask == null)
+            {
+                return;
+            }
+
             switch (action)
             {
             case GestureAction.Complete:
@@ -671,153 +663,14 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void TaskItem_SwipeLeft(object sender, Controls.TaskEventArgs e)
         {
-            Grid infoGrid = (Grid)sender;
-            Border border = (Border)infoGrid.FindName("RootBorder");
-            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
-            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
-            swipeLeftIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
-            swipeRightIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
+            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e.Task);
         }
 
-        private void InfoGrid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
         {
-            Grid infoGrid = (Grid)sender;
-            Border border = (Border)infoGrid.FindName("RootBorder");
-            Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
-            if (storyboard != null)
-            {
-                storyboard.Begin();
-            }
-            border.Background = null;
-
-            if (_canUseGestures)
-            {
-                double value = e.TotalManipulation.Translation.X;
-
-                TaskModel task = border.DataContext as TaskModel;
-                if (value < 0 && Math.Abs(value) > _swipeGestureTreshold)
-                {
-                    // Swipe Left
-                    ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, task);
-                }
-                else if (value > 0 && Math.Abs(value) > _swipeGestureTreshold)
-                {
-                    // Swipe Right
-                    ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, task);
-                }
-            }
-        }
-
-        private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-        {
-            Grid infoGrid = (Grid)sender;
-            Border border = (Border)infoGrid.FindName("RootBorder");
-            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
-            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
-            TranslateTransform t = (TranslateTransform)border.RenderTransform;
-
-            t.X += e.DeltaManipulation.Translation.X;
-            if (Settings.Current.Tasks.SwipeLeftAction == GestureAction.None && t.X < 0)
-            {
-                t.X = 0;
-            }
-            else if (Settings.Current.Tasks.SwipeRightAction == GestureAction.None && t.X > 0)
-            {
-                t.X = 0;
-            }
-
-            double value = Math.Abs(t.X);
-            double opacity = Math.Min(value / _swipeGestureTreshold, 1.0);
-            Brush brush;
-            if (value > _swipeGestureTreshold)
-            {
-                border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                brush = (Brush)App.Current.Resources["AccentBrush"];
-            }
-            else
-            {
-                border.Background = null;
-                brush = (Brush)App.Current.Resources["SubtleBrush"];
-            }
-            swipeLeftIcon.Opacity = opacity;
-            swipeLeftIcon.Foreground = brush;
-            swipeRightIcon.Opacity = opacity;
-            swipeRightIcon.Foreground = brush;
-        }
-
-        private void SubtaskBorder_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
-        {
-            Border border = (Border)sender;
-            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
-            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
-            swipeLeftIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
-            swipeRightIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
-        }
-
-        private void SubtaskBorder_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
-        {
-            Border border = (Border)sender;
-            Storyboard storyboard = border.Resources["ResetTranslate"] as Storyboard;
-            if (storyboard != null)
-            {
-                storyboard.Begin();
-            }
-            border.Background = new SolidColorBrush(Colors.Transparent);
-
-            if (_canUseGestures)
-            {
-                double value = e.TotalManipulation.Translation.X;
-
-                Subtask subtask = border.DataContext as Subtask;
-                if (value < 0 && Math.Abs(value) > _swipeGestureTreshold)
-                {
-                    // Swipe Left
-                    ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeLeftAction, subtask);
-                }
-                else if (value > 0 && Math.Abs(value) > _swipeGestureTreshold)
-                {
-                    // Swipe Right
-                    ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeRightAction, subtask);
-                }
-            }
-        }
-
-        private void SubtaskBorder_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-        {
-            Border border = (Border)sender;
-            ContentControl swipeLeftIcon = (ContentControl)border.FindName("SwipeLeftGestureIcon");
-            ContentControl swipeRightIcon = (ContentControl)border.FindName("SwipeRightGestureIcon");
-            TranslateTransform t = (TranslateTransform)border.RenderTransform;
-
-            t.X += e.DeltaManipulation.Translation.X;
-            if (t.X < 0 && (Settings.Current.Tasks.SwipeLeftAction != GestureAction.Complete && Settings.Current.Tasks.SwipeLeftAction != GestureAction.Delete))
-            {
-                t.X = 0;
-            }
-            else if (t.X > 0 && (Settings.Current.Tasks.SwipeRightAction != GestureAction.Complete && Settings.Current.Tasks.SwipeRightAction != GestureAction.Delete))
-            {
-                t.X = 0;
-            }
-
-            double value = Math.Abs(t.X);
-            double opacity = Math.Min(value / _swipeGestureTreshold, 1.0);
-            Brush brush;
-            if (value > _swipeGestureTreshold)
-            {
-                border.Background = new SolidColorBrush((Color)App.Current.Resources["SubtleColor"]) { Opacity = 0.30 };
-                brush = (Brush)App.Current.Resources["AccentBrush"];
-            }
-            else
-            {
-                border.Background = null;
-                brush = (Brush)App.Current.Resources["SubtleBrush"];
-            }
-            swipeLeftIcon.Opacity = opacity;
-            swipeLeftIcon.Foreground = brush;
-            swipeRightIcon.Opacity = opacity;
-            swipeRightIcon.Foreground = brush;
+            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e.Task);
         }
         #endregion
     }

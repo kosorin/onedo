@@ -104,6 +104,12 @@ namespace SimpleTasks.ViewModels
             {
                 task.SetSystemReminder();
             }
+
+            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
+            if (wrapper != null)
+            {
+                wrapper.UpdateIsScheduled();
+            }
         }
 
         public void Delete(TaskModel task)

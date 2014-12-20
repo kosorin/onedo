@@ -34,7 +34,13 @@
 
         <!--List Task-->
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
-            <controls:TaskItem Task="{Binding}" />
+            <controls:TaskItem Task="{Binding}"
+                               IsCompleted="{Binding IsCompleted}"
+                               IsScheduled="{Binding Wrapper.IsScheduled}"
+                               Click="TaskItem_Click"
+                               Check="TaskItem_Check"
+                               SwipeLeft="TaskItem_SwipeLeft"
+                               SwipeRight="TaskItem_SwipeRight" />
         </DataTemplate>
     </controls:BasePage.Resources>
 

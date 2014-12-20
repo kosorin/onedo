@@ -18,14 +18,60 @@ using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Controls
 {
+    public class TaskEventArgs : RoutedEventArgs
+    {
+        public TaskModel Task { get; set; }
+
+        public TaskEventArgs(TaskModel task)
+        {
+            Task = task;
+        }
+    }
+
     [TemplateVisualState(Name = CompletedState, GroupName = CompleteStatesGroup)]
     [TemplateVisualState(Name = UncompletedState, GroupName = CompleteStatesGroup)]
+    [TemplateVisualState(Name = ScheduledState, GroupName = ScheduledStatesGroup)]
+    [TemplateVisualState(Name = NotScheduledState, GroupName = ScheduledStatesGroup)]
     [TemplateVisualState(Name = GestureStartDragState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureDragOkState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureDragState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureEndDragState, GroupName = GestureStatesGroup)]
     public partial class TaskItem : UserControl, INotifyPropertyChanged
     {
+        #region Events
+        private void OnTaskEvent(EventHandler<TaskEventArgs> handler)
+        {
+            if (handler != null)
+            {
+                handler(this, new TaskEventArgs(Task));
+            }
+        }
+
+        public event EventHandler<TaskEventArgs> SwipeLeft;
+        private void OnSwipeLeft()
+        {
+            OnTaskEvent(SwipeLeft);
+        }
+
+        public event EventHandler<TaskEventArgs> SwipeRight;
+        private void OnSwipeRight()
+        {
+            OnTaskEvent(SwipeRight);
+        }
+
+        public event EventHandler<TaskEventArgs> Check;
+        private void OnCheck()
+        {
+            OnTaskEvent(Check);
+        }
+
+        public event EventHandler<TaskEventArgs> Click;
+        private void OnClick()
+        {
+            OnTaskEvent(Click);
+        }
+        #endregion // end of Events
+
         #region Dependency Properties
         public TaskModel Task
         {
@@ -34,27 +80,45 @@ namespace SimpleTasks.Controls
         }
         public static readonly DependencyProperty TaskProperty =
             DependencyProperty.Register("Task", typeof(TaskModel), typeof(TaskItem), new PropertyMetadata(null, TaskPropertyChanged));
-
         private static void TaskPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             TaskItem item = d as TaskItem;
             if (item != null)
             {
-                item.UpdateVisualStates(CompletedState, false);
-                item.UpdateVisualStates(GestureEndDragState, false);
+                item.UpdateVisualStates(false);
             }
-            //TaskModel task = e.NewValue as TaskModel;
-            //if (task != null)
-            //{
-            //    task.PropertyChanged -= Task_PropertyChanged;
-            //    task.PropertyChanged += Task_PropertyChanged;
-            //}
+        }
 
-            //TaskModel oldTask = e.OldValue as TaskModel;
-            //if (oldTask != null)
-            //{
-            //    oldTask.PropertyChanged -= Task_PropertyChanged;
-            //}
+        public bool IsCompleted
+        {
+            get { return (bool)GetValue(IsCompletedProperty); }
+            set { SetValue(IsCompletedProperty, value); }
+        }
+        public static readonly DependencyProperty IsCompletedProperty =
+            DependencyProperty.Register("IsCompleted", typeof(bool), typeof(TaskItem), new PropertyMetadata(false, IsCompletedChanged));
+        private static void IsCompletedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TaskItem item = d as TaskItem;
+            if (item != null)
+            {
+                item.UpdateVisualState((bool)e.NewValue ? CompletedState : UncompletedState);
+            }
+        }
+
+        public bool IsScheduled
+        {
+            get { return (bool)GetValue(IsScheduledProperty); }
+            set { SetValue(IsScheduledProperty, value); }
+        }
+        public static readonly DependencyProperty IsScheduledProperty =
+            DependencyProperty.Register("IsScheduled", typeof(bool), typeof(TaskItem), new PropertyMetadata(true, IsScheduledChanged));
+        private static void IsScheduledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TaskItem item = d as TaskItem;
+            if (item != null)
+            {
+                item.UpdateVisualState((bool)e.NewValue ? ScheduledState : NotScheduledState);
+            }
         }
 
         public double SwipeGestureTreshold
@@ -107,9 +171,22 @@ namespace SimpleTasks.Controls
 
         private const string GestureEndDragState = "GestureEndDrag";
 
-        private void UpdateVisualStates(string state, bool useTransitions = true)
+        private const string ScheduledStatesGroup = "ScheduledStates";
+
+        private const string ScheduledState = "Scheduled";
+
+        private const string NotScheduledState = "NotScheduled";
+
+        private void UpdateVisualState(string state, bool useTransitions = true)
         {
             VisualStateManager.GoToState(this, state, useTransitions);
+        }
+
+        private void UpdateVisualStates(bool useTransitions = true)
+        {
+            UpdateVisualState((Task != null && Task.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
+            UpdateVisualState(ScheduledState, useTransitions);
+            UpdateVisualState(GestureEndDragState, useTransitions);
         }
         #endregion // end of Visual States
 
@@ -117,11 +194,12 @@ namespace SimpleTasks.Controls
         public TaskItem()
         {
             InitializeComponent();
-            UpdateVisualStates(CompletedState, false);
-            UpdateVisualStates(GestureEndDragState, false);
+            UpdateVisualStates(false);
+            Debug.WriteLine("CONSTRUCT");
         }
         #endregion // end of Constructor
 
+        #region Event Handlers
         private void LOL_OMG(object a, object b)
         {
 
@@ -129,7 +207,7 @@ namespace SimpleTasks.Controls
 
         private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
-            UpdateVisualStates(GestureStartDragState);
+            UpdateVisualState(GestureStartDragState);
 
             SwipeLeftGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
             SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
@@ -143,15 +221,15 @@ namespace SimpleTasks.Controls
                 if (value < 0)
                 {
                     // Swipe Left
-                    //ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, task);
+                    OnSwipeLeft();
                 }
                 else
                 {
                     // Swipe Right
-                    //ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, task);
+                    OnSwipeRight();
                 }
             }
-            UpdateVisualStates(GestureEndDragState);
+            UpdateVisualState(GestureEndDragState);
         }
 
         private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
@@ -169,11 +247,11 @@ namespace SimpleTasks.Controls
             double value = Math.Abs(RootTransform.X);
             if (value > SwipeGestureTreshold)
             {
-                UpdateVisualStates(GestureDragOkState);
+                UpdateVisualState(GestureDragOkState);
             }
             else
             {
-                UpdateVisualStates(GestureDragState);
+                UpdateVisualState(GestureDragState);
             }
 
             double opacity = Math.Min(value / SwipeGestureTreshold, 1.0);
@@ -250,5 +328,16 @@ namespace SimpleTasks.Controls
             swipeRightIcon.Opacity = opacity;
             swipeRightIcon.Foreground = brush;
         }
+
+        private void Checkbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OnCheck();
+        }
+
+        private void Task_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OnClick();
+        }
+        #endregion // end of Event Handlers
     }
 }
