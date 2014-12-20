@@ -743,75 +743,76 @@ It's still in beta.</source>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwipeRight" translate="yes" xml:space="preserve">
           <source>Swipe right gesture action</source>
-          <target state="new">Swipe right gesture action</target>
+          <target state="signed-off">Действие свайпом вправо</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionPostponeWeek" translate="yes" xml:space="preserve">
           <source>postpone: 1 Week</source>
-          <target state="new">postpone: 1 Week</target>
+          <target state="signed-off">отложить на: 1 неделю</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionPostponeDay" translate="yes" xml:space="preserve">
           <source>postpone: 1 Day</source>
-          <target state="new">postpone: 1 Day</target>
+          <target state="signed-off">отложить на: 1 день</target>
         </trans-unit>
         <trans-unit id="Resx/ToastTaskDeleted" translate="yes" xml:space="preserve">
           <source>Task was deleted.</source>
-          <target state="new">Task was deleted.</target>
+          <target state="signed-off">Задача удалена.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastWarning" translate="yes" xml:space="preserve">
           <source>Warning</source>
-          <target state="new">Warning</target>
+          <target state="signed-off">Предупреждение</target>
         </trans-unit>
         <trans-unit id="Resx/ToastNotice" translate="yes" xml:space="preserve">
           <source>Notice</source>
-          <target state="new">Notice</target>
+          <target state="signed-off">Уведомление</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
-          <target state="new">Completed tasks were deleted.</target>
+          <target state="signed-off">Выполенные задачи удалены.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
           <source>Postponed until {0:ddd}, {0:d}</source>
-          <target state="new">Postponed until {0:ddd}, {0:d}</target><note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
-        </trans-unit>
+          <target state="signed-off">Отложено до {0:ddd}, {0:d}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
+          </trans-unit>
         <trans-unit id="Resx/ToastReminderOff" translate="yes" xml:space="preserve">
           <source>Reminder was turned off!</source>
-          <target state="new">Reminder was turned off!</target>
+          <target state="signed-off">Напоминание выключено!</target>
         </trans-unit>
         <trans-unit id="Resx/ToastSubtaskDeleted" translate="yes" xml:space="preserve">
           <source>Subtask was deleted.</source>
-          <target state="new">Subtask was deleted.</target>
+          <target state="signed-off">Подзадача удалена.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastAllTasksDeleted" translate="yes" xml:space="preserve">
           <source>All tasks were deleted.</source>
-          <target state="new">All tasks were deleted.</target>
+          <target state="signed-off">Все задачи удалены.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwipeLeft" translate="yes" xml:space="preserve">
           <source>Swipe left gesture action</source>
-          <target state="new">Swipe left gesture action</target>
+          <target state="signed-off">Действие свайпом влево</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionReminder" translate="yes" xml:space="preserve">
           <source>set reminder</source>
-          <target state="new">set reminder</target>
+          <target state="signed-off">установить напоминание</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionNone" translate="yes" xml:space="preserve">
           <source>no action</source>
-          <target state="new">no action</target>
+          <target state="signed-off">нет действия</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDueTomorrow" translate="yes" xml:space="preserve">
           <source>set due: Tomorrow</source>
-          <target state="new">set due: Tomorrow</target>
+          <target state="signed-off">установить на: Завтра</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDueToday" translate="yes" xml:space="preserve">
           <source>set due: Today</source>
-          <target state="new">set due: Today</target>
+          <target state="signed-off">установить на: Сегодня</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDelete" translate="yes" xml:space="preserve">
           <source>delete task/subtask</source>
-          <target state="new">delete task/subtask</target>
+          <target state="signed-off">удалить задачу/подзадачу</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionComplete" translate="yes" xml:space="preserve">
           <source>complete task/subtask</source>
-          <target state="new">complete task/subtask</target>
+          <target state="signed-off">завершить задачу/подзадачу</target>
         </trans-unit>
         <trans-unit id="Resx/VersionFormat" translate="yes" xml:space="preserve">
           <source>Version {0}</source>

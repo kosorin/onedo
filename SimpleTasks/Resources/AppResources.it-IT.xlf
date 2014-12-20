@@ -753,75 +753,76 @@ E' ancora una funzione beta.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwipeRight" translate="yes" xml:space="preserve">
           <source>Swipe right gesture action</source>
-          <target state="new">Swipe right gesture action</target>
+          <target state="signed-off">Azioni swipe destra</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionPostponeWeek" translate="yes" xml:space="preserve">
           <source>postpone: 1 Week</source>
-          <target state="new">postpone: 1 Week</target>
+          <target state="signed-off">postponi: 1 settimana</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionPostponeDay" translate="yes" xml:space="preserve">
           <source>postpone: 1 Day</source>
-          <target state="new">postpone: 1 Day</target>
+          <target state="signed-off">postponi: 1 giorno</target>
         </trans-unit>
         <trans-unit id="Resx/ToastTaskDeleted" translate="yes" xml:space="preserve">
           <source>Task was deleted.</source>
-          <target state="new">Task was deleted.</target>
+          <target state="signed-off">Impegno cancellato.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastWarning" translate="yes" xml:space="preserve">
           <source>Warning</source>
-          <target state="new">Warning</target>
+          <target state="signed-off">Attenzione</target>
         </trans-unit>
         <trans-unit id="Resx/ToastNotice" translate="yes" xml:space="preserve">
           <source>Notice</source>
-          <target state="new">Notice</target>
+          <target state="signed-off">Avviso</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
-          <target state="new">Completed tasks were deleted.</target>
+          <target state="signed-off">I task completati sono stati cancellati.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
           <source>Postponed until {0:ddd}, {0:d}</source>
-          <target state="new">Postponed until {0:ddd}, {0:d}</target><note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
-        </trans-unit>
+          <target state="signed-off">Postposto sino a {0:ddd}, {0:d}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
+          </trans-unit>
         <trans-unit id="Resx/ToastReminderOff" translate="yes" xml:space="preserve">
           <source>Reminder was turned off!</source>
-          <target state="new">Reminder was turned off!</target>
+          <target state="signed-off">Il reminder era spento!</target>
         </trans-unit>
         <trans-unit id="Resx/ToastSubtaskDeleted" translate="yes" xml:space="preserve">
           <source>Subtask was deleted.</source>
-          <target state="new">Subtask was deleted.</target>
+          <target state="signed-off">Sub-impegno cancellato.</target>
         </trans-unit>
         <trans-unit id="Resx/ToastAllTasksDeleted" translate="yes" xml:space="preserve">
           <source>All tasks were deleted.</source>
-          <target state="new">All tasks were deleted.</target>
+          <target state="signed-off">Tutti gli impegni sono stati cancellati.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwipeLeft" translate="yes" xml:space="preserve">
           <source>Swipe left gesture action</source>
-          <target state="new">Swipe left gesture action</target>
+          <target state="signed-off">Azioni Swipe sinistra</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionReminder" translate="yes" xml:space="preserve">
           <source>set reminder</source>
-          <target state="new">set reminder</target>
+          <target state="signed-off">imposta reminder</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionNone" translate="yes" xml:space="preserve">
           <source>no action</source>
-          <target state="new">no action</target>
+          <target state="signed-off">nessun'azione</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDueTomorrow" translate="yes" xml:space="preserve">
           <source>set due: Tomorrow</source>
-          <target state="new">set due: Tomorrow</target>
+          <target state="signed-off">imposta impegno: domani</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDueToday" translate="yes" xml:space="preserve">
           <source>set due: Today</source>
-          <target state="new">set due: Today</target>
+          <target state="signed-off">imposta impegno: oggi</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionDelete" translate="yes" xml:space="preserve">
           <source>delete task/subtask</source>
-          <target state="new">delete task/subtask</target>
+          <target state="translated">cancella impegno/sub-impegno</target>
         </trans-unit>
         <trans-unit id="Resx/GestureActionComplete" translate="yes" xml:space="preserve">
           <source>complete task/subtask</source>
-          <target state="new">complete task/subtask</target>
+          <target state="translated">completa impegno/sub-impegno</target>
         </trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
