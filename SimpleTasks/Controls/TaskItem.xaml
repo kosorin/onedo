@@ -22,14 +22,14 @@
             <VisualStateGroup x:Name="CompleteStates">
                 <VisualStateGroup.Transitions>
                     <VisualTransition To="Uncompleted"
-                                      GeneratedDuration="0:0:0.35">
+                                      GeneratedDuration="0:0:0.42">
                         <VisualTransition.GeneratedEasingFunction>
                             <CircleEase EasingMode="EaseOut" />
                         </VisualTransition.GeneratedEasingFunction>
                     </VisualTransition>
 
                     <VisualTransition To="Completed"
-                                      GeneratedDuration="0:0:0.2">
+                                      GeneratedDuration="0:0:0.35">
                         <VisualTransition.GeneratedEasingFunction>
                             <CircleEase EasingMode="EaseOut" />
                         </VisualTransition.GeneratedEasingFunction>
@@ -45,27 +45,32 @@
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
 
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoTransform"
-                                         Storyboard.TargetProperty="Y"
-                                         To="0"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="MaxHeight"
-                                         To="71"
-                                         Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoTransform"
+                                                       Storyboard.TargetProperty="Y">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="MaxHeight">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="71" />
+                        </DoubleAnimationUsingKeyFrames>
 
-                        <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="SubtasksStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="1"
-                                         Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskPriorityGrid"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
@@ -78,27 +83,32 @@
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
 
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoTransform"
-                                         Storyboard.TargetProperty="Y"
-                                         To="-15"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="TaskInfoStackPanel"
-                                         Storyboard.TargetProperty="MaxHeight"
-                                         To="0"
-                                         Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoTransform"
+                                                       Storyboard.TargetProperty="Y">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="-15" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                                                       Storyboard.TargetProperty="MaxHeight">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
 
-                        <DoubleAnimation Storyboard.TargetName="TaskPriorityGrid"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0.45"
-                                         Duration="0" />
-                        <DoubleAnimation Storyboard.TargetName="SubtasksStackPanel"
-                                         Storyboard.TargetProperty="Opacity"
-                                         To="0.45"
-                                         Duration="0" />
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskPriorityGrid"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0.45" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0.45" />
+                        </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
@@ -124,16 +134,6 @@
                 <!--Start-->
                 <VisualState x:Name="GestureStartDrag">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootTransform"
-                                                       Storyboard.TargetProperty="X">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
                                                       Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
                             <DiscreteColorKeyFrame KeyTime="0"
@@ -150,8 +150,8 @@
                 <!--OK-->
                 <VisualState x:Name="GestureDragOk">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.4" />
                         </DoubleAnimationUsingKeyFrames>
@@ -171,8 +171,8 @@
                 <!--Drag-->
                 <VisualState x:Name="GestureDrag">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
@@ -207,8 +207,8 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
@@ -275,14 +275,14 @@
             </Grid.ColumnDefinitions>
 
             <!--Pozadí-->
-            <Border x:Name="BackgroundBorder"
-                    Grid.ColumnSpan="2"
+            <Border Grid.ColumnSpan="2"
                     Margin="-480,0"
                     BorderThickness="0,0,0,1"
                     BorderBrush="{StaticResource TasksListDelimiterBrush}"
                     IsHitTestVisible="False">
                 <Border.Background>
-                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                    <SolidColorBrush x:Name="BackgroundBorderBrush"
+                                     Color="{StaticResource AccentColor}"
                                      Opacity="0" />
                 </Border.Background>
             </Border>

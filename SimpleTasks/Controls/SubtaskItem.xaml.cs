@@ -212,6 +212,10 @@ namespace SimpleTasks.Controls
 
             SwipeLeftGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
             SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
+            SwipeLeftGestureIcon.Opacity = 0;
+            SwipeRightGestureIcon.Opacity = 0;
+            BackgroundBorderBrush.Opacity = 0;
+            RootTransform.X = 0;
         }
 
         private void Subtask_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)

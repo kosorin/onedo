@@ -22,35 +22,12 @@
 
             <!--CompleteStates-->
             <VisualStateGroup x:Name="CompleteStates">
-                <VisualStateGroup.Transitions>
-                    <VisualTransition To="Uncompleted"
-                                      GeneratedDuration="0:0:0.35">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-
-                    <VisualTransition To="Completed"
-                                      GeneratedDuration="0:0:0.2">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-                </VisualStateGroup.Transitions>
 
                 <!--Uncompleted-->
-                <VisualState x:Name="Uncompleted">
-                    <Storyboard>
-
-                    </Storyboard>
-                </VisualState>
+                <VisualState x:Name="Uncompleted" />
 
                 <!--Completed-->
-                <VisualState x:Name="Completed">
-                    <Storyboard>
-
-                    </Storyboard>
-                </VisualState>
+                <VisualState x:Name="Completed" />
 
             </VisualStateGroup>
 
@@ -64,9 +41,9 @@
                         </VisualTransition.GeneratedEasingFunction>
                     </VisualTransition>
 
-                    <VisualTransition To="GestureDragOk"
-                                      GeneratedDuration="0:0:0.18" />
                     <VisualTransition From="GestureDragOk"
+                                      GeneratedDuration="0:0:0.18" />
+                    <VisualTransition To="GestureDragOk"
                                       GeneratedDuration="0:0:0.18" />
 
                 </VisualStateGroup.Transitions>
@@ -74,16 +51,6 @@
                 <!--Start-->
                 <VisualState x:Name="GestureStartDrag">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootTransform"
-                                                       Storyboard.TargetProperty="X">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
                                                       Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
                             <DiscreteColorKeyFrame KeyTime="0"
@@ -94,24 +61,14 @@
                             <DiscreteColorKeyFrame KeyTime="0"
                                                    Value="{StaticResource SubtleColor}" />
                         </ColorAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
-                                                       Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Opacity)">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
-                                                       Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Opacity)">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
                 <!--OK-->
                 <VisualState x:Name="GestureDragOk">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.4" />
                         </DoubleAnimationUsingKeyFrames>
@@ -131,8 +88,8 @@
                 <!--Drag-->
                 <VisualState x:Name="GestureDrag">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
@@ -167,8 +124,8 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
-                                                       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
@@ -239,12 +196,12 @@
             </Grid.ColumnDefinitions>
 
             <!--Pozadí-->
-            <Border x:Name="BackgroundBorder"
-                    Grid.ColumnSpan="2"
+            <Border Grid.ColumnSpan="2"
                     Margin="-600,0"
                     IsHitTestVisible="False">
                 <Border.Background>
-                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                    <SolidColorBrush x:Name="BackgroundBorderBrush"
+                                     Color="{StaticResource AccentColor}"
                                      Opacity="0" />
                 </Border.Background>
             </Border>

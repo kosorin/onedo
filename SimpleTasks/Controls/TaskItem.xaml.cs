@@ -155,6 +155,7 @@ namespace SimpleTasks.Controls
             if (item != null)
             {
                 item.UpdateVisualState((bool)e.NewValue ? CompletedState : UncompletedState);
+                Debug.WriteLine("----- DOKONCENI: {0} : {1}", (bool)e.NewValue, item.RootBorder.ActualHeight);
             }
         }
 
@@ -263,6 +264,10 @@ namespace SimpleTasks.Controls
 
             SwipeLeftGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
             SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
+            SwipeLeftGestureIcon.Opacity = 0;
+            SwipeRightGestureIcon.Opacity = 0;
+            BackgroundBorderBrush.Opacity = 0;
+            RootTransform.X = 0;
         }
 
         private void InfoGrid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
