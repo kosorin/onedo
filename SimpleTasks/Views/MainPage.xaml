@@ -40,7 +40,11 @@
                                Click="TaskItem_Click"
                                Check="TaskItem_Check"
                                SwipeLeft="TaskItem_SwipeLeft"
-                               SwipeRight="TaskItem_SwipeRight" />
+                               SwipeRight="TaskItem_SwipeRight"
+                               SubtaskClick="TaskItem_SubtaskClick"
+                               SubtaskCheck="TaskItem_SubtaskCheck"
+                               SubtaskSwipeLeft="TaskItem_SubtaskSwipeLeft"
+                               SubtaskSwipeRight="TaskItem_SubtaskSwipeRight" />
         </DataTemplate>
     </controls:BasePage.Resources>
 

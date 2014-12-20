@@ -114,6 +114,9 @@
     <Compile Include="Controls\RoundTimePicker.xaml.cs">
       <DependentUpon>RoundTimePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SubtaskItem.xaml.cs">
+      <DependentUpon>SubtaskItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TaskItem.xaml.cs">
       <DependentUpon>TaskItem.xaml</DependentUpon>
     </Compile>
@@ -363,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Page Include="Controls\SubtaskItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TaskItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -395,14 +395,6 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ToggleSubtaskComplete(FrameworkElement element)
-        {
-            if (element != null)
-            {
-                ToggleSubtaskComplete(element.DataContext as Subtask);
-            }
-        }
-
         private void ToggleSubtaskComplete(Subtask subtask)
         {
             if (subtask != null)
@@ -419,38 +411,17 @@ namespace SimpleTasks.Views
             NavigateQuery(typeof(EditTaskPage), "?Task={0}", e.Task.Uid);
         }
 
-        private TaskModel SubtaskElementFindTask(FrameworkElement element)
+        private void TaskItem_SubtaskClick(object sender, TaskSubtaskEventArgs e)
         {
-            while (element != null)
+            if (e.Task != null)
             {
-                element = VisualTreeHelper.GetParent(element) as FrameworkElement;
-                if (element is ItemsControl)
-                    break;
-            }
-            ItemsControl itemsControl = element as ItemsControl;
-            return (TaskModel)itemsControl.DataContext;
-        }
-
-        private void SubtaskCheckbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            FrameworkElement element = (FrameworkElement)sender;
-            ToggleSubtaskComplete(element);
-            TaskModel task = SubtaskElementFindTask(element);
-            if (task != null)
-            {
-                task.ModifiedSinceStart = true;
+                Navigate(typeof(SubtasksPage), e.Task);
             }
         }
 
-        private void SubtaskText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void TaskItem_SubtaskCheck(object sender, TaskSubtaskEventArgs e)
         {
-            FrameworkElement element = (FrameworkElement)sender;
-            Subtask subtask = element.DataContext as Subtask;
-            TaskModel task = SubtaskElementFindTask(element);
-            if (task != null)
-            {
-                Navigate(typeof(SubtasksPage), task);
-            }
+            ToggleSubtaskComplete(e.Subtask);
         }
 
         private void OverlayAction(Action action)
@@ -640,9 +611,9 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ExecuteSubtaskGesture(GestureAction action, TaskModel task, Subtask subtask)
+        private void ExecuteSubtaskGesture(GestureAction action, TaskSubtaskEventArgs e)
         {
-            if (task == null || subtask == null)
+            if (e.Task == null || e.Subtask == null)
             {
                 return;
             }
@@ -651,12 +622,12 @@ namespace SimpleTasks.Views
             {
             case GestureAction.Complete:
                 VibrateHelper.Short();
-                ToggleSubtaskComplete(subtask);
+                ToggleSubtaskComplete(e.Subtask);
                 break;
 
             case GestureAction.Delete:
                 VibrateHelper.Short();
-                App.Tasks.DeleteSubtask(subtask);
+                e.Delete = true;
                 Toast.Show(AppResources.ToastSubtaskDeleted, App.IconStyle("Delete"));
                 break;
 
@@ -673,6 +644,16 @@ namespace SimpleTasks.Views
         private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
         {
             ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e.Task);
+        }
+
+        private void TaskItem_SubtaskSwipeLeft(object sender, TaskSubtaskEventArgs e)
+        {
+            ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeLeftAction, e);
+        }
+
+        private void TaskItem_SubtaskSwipeRight(object sender, TaskSubtaskEventArgs e)
+        {
+            ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeRightAction, e);
         }
         #endregion
     }

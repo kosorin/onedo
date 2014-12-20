@@ -446,106 +446,12 @@
                     <ItemsControl ItemsSource="{Binding Subtasks}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border x:Name="RootBorder"
-                                        ManipulationStarted="SubtaskBorder_ManipulationStarted"
-                                        ManipulationCompleted="SubtaskBorder_ManipulationCompleted"
-                                        ManipulationDelta="SubtaskBorder_ManipulationDelta"
-                                        Background="Transparent">
-                                    <Border.Resources>
-                                        <Storyboard x:Key="ResetTranslate">
-                                            <DoubleAnimation Storyboard.TargetName="RootBorder"
-                                                             Storyboard.TargetProperty="(Border.RenderTransform).(TranslateTransform.X)"
-                                                             To="0"
-                                                             Duration="0:0:0.4">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CircleEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetName="SwipeLeftGestureIcon"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0"
-                                                             Duration="0:0:0.4">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CircleEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <DoubleAnimation Storyboard.TargetName="SwipeRightGestureIcon"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             To="0"
-                                                             Duration="0:0:0.4">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CircleEase EasingMode="EaseOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
-                                                                        Value="Transparent" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwipeRightGestureIcon"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
-                                                                        Value="Transparent" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </Border.Resources>
-                                    <Border.RenderTransform>
-                                        <TranslateTransform />
-                                    </Border.RenderTransform>
-
-                                    <Grid Height="50">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Button Grid.Column="0">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="ButtonBase" />
-                                            </Button.Template>
-
-                                            <Border Background="Transparent"
-                                                    Tap="LOL_OMG">
-                                                <ToggleButton IsChecked="{Binding IsCompleted}"
-                                                              Style="{StaticResource TaskCheckBoxStyle}"
-                                                              IsHitTestVisible="False" />
-                                            </Border>
-                                        </Button>
-
-                                        <Button Grid.Column="1">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="ButtonBase" />
-                                            </Button.Template>
-
-                                            <Border Background="Transparent"
-                                                    Tap="LOL_OMG">
-                                                <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                                                        Content="{Binding Text}"
-                                                                        Style="{StaticResource TaskCheckBoxTextStyle}"
-                                                                        IsHitTestVisible="False"
-                                                                        Margin="5,0,0,0" />
-                                            </Border>
-                                        </Button>
-
-                                        <!--Swipe left gesture icon-->
-                                        <ContentControl Grid.ColumnSpan="2"
-                                                        x:Name="SwipeLeftGestureIcon"
-                                                        Margin="-60"
-                                                        Grid.Column="1"
-                                                        Foreground="Transparent"
-                                                        VerticalAlignment="Center"
-                                                        HorizontalAlignment="Right" />
-
-                                        <!--Swipe right gesture icon-->
-                                        <ContentControl Grid.ColumnSpan="2"
-                                                        x:Name="SwipeRightGestureIcon"
-                                                        Margin="-105"
-                                                        Grid.Column="1"
-                                                        Foreground="Transparent"
-                                                        VerticalAlignment="Center"
-                                                        HorizontalAlignment="Left" />
-                                    </Grid>
-                                </Border>
+                                <controls:SubtaskItem Subtask="{Binding}"
+                                                      IsCompleted="{Binding IsCompleted}"
+                                                      Click="SubtaskItem_Click"
+                                                      Check="SubtaskItem_Check"
+                                                      SwipeLeft="SubtaskItem_SwipeLeft"
+                                                      SwipeRight="SubtaskItem_SwipeRight" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

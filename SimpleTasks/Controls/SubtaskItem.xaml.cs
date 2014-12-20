@@ -19,123 +19,76 @@ using SimpleTasks.Models;
 
 namespace SimpleTasks.Controls
 {
-    public class TaskEventArgs : RoutedEventArgs
+    public class SubtaskEventArgs : RoutedEventArgs
     {
-        public TaskModel Task { get; set; }
-
-        public TaskEventArgs(TaskModel task)
-        {
-            Task = task;
-        }
-    }
-
-    public class TaskSubtaskEventArgs : RoutedEventArgs
-    {
-        public TaskModel Task { get; set; }
-
         public Subtask Subtask { get; set; }
 
-        public bool Delete { get; set; }
+        public TaskModel DeleteFrom { get; set; }
 
-        public TaskSubtaskEventArgs(TaskModel task, Subtask subtask)
+        public SubtaskEventArgs(Subtask subtask)
         {
-            Task = task;
             Subtask = subtask;
-            Delete = false;
+            DeleteFrom = null;
         }
     }
 
     [TemplateVisualState(Name = CompletedState, GroupName = CompleteStatesGroup)]
     [TemplateVisualState(Name = UncompletedState, GroupName = CompleteStatesGroup)]
-    [TemplateVisualState(Name = ScheduledState, GroupName = ScheduledStatesGroup)]
-    [TemplateVisualState(Name = NotScheduledState, GroupName = ScheduledStatesGroup)]
+    [TemplateVisualState(Name = DeletedState, GroupName = DeleteStatesGroup)]
+    [TemplateVisualState(Name = NotDeletedState, GroupName = DeleteStatesGroup)]
     [TemplateVisualState(Name = GestureStartDragState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureDragOkState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureDragState, GroupName = GestureStatesGroup)]
     [TemplateVisualState(Name = GestureEndDragState, GroupName = GestureStatesGroup)]
-    public partial class TaskItem : UserControl, INotifyPropertyChanged
+    public partial class SubtaskItem : UserControl, INotifyPropertyChanged
     {
         #region Events
-        private void OnTaskEvent(EventHandler<TaskEventArgs> handler)
+        private void OnSubtaskEvent(EventHandler<SubtaskEventArgs> handler)
         {
             if (handler != null)
             {
-                handler(this, new TaskEventArgs(Task));
-            }
-        }
-
-        private bool OnSubtaskEvent(EventHandler<TaskSubtaskEventArgs> handler, Subtask subtask)
-        {
-            if (handler != null)
-            {
-                TaskSubtaskEventArgs args = new TaskSubtaskEventArgs(Task, subtask);
+                SubtaskEventArgs args = new SubtaskEventArgs(Subtask);
                 handler(this, args);
-                return args.Delete;
+                DeleteFrom = args.DeleteFrom;
             }
-
-            return false;
         }
 
-        public event EventHandler<TaskEventArgs> SwipeLeft;
+        public event EventHandler<SubtaskEventArgs> SwipeLeft;
         private void OnSwipeLeft()
         {
-            OnTaskEvent(SwipeLeft);
+            OnSubtaskEvent(SwipeLeft);
         }
 
-        public event EventHandler<TaskEventArgs> SwipeRight;
+        public event EventHandler<SubtaskEventArgs> SwipeRight;
         private void OnSwipeRight()
         {
-            OnTaskEvent(SwipeRight);
+            OnSubtaskEvent(SwipeRight);
         }
 
-        public event EventHandler<TaskEventArgs> Check;
+        public event EventHandler<SubtaskEventArgs> Check;
         private void OnCheck()
         {
-            OnTaskEvent(Check);
+            OnSubtaskEvent(Check);
         }
 
-        public event EventHandler<TaskEventArgs> Click;
+        public event EventHandler<SubtaskEventArgs> Click;
         private void OnClick()
         {
-            OnTaskEvent(Click);
-        }
-
-        public event EventHandler<TaskSubtaskEventArgs> SubtaskSwipeLeft;
-        private bool OnSwipeLeft(Subtask subtask)
-        {
-            return OnSubtaskEvent(SubtaskSwipeLeft, subtask);
-        }
-
-        public event EventHandler<TaskSubtaskEventArgs> SubtaskSwipeRight;
-        private bool OnSwipeRight(Subtask subtask)
-        {
-            return OnSubtaskEvent(SubtaskSwipeRight, subtask);
-        }
-
-        public event EventHandler<TaskSubtaskEventArgs> SubtaskCheck;
-        private void OnCheck(Subtask subtask)
-        {
-            OnSubtaskEvent(SubtaskCheck, subtask);
-        }
-
-        public event EventHandler<TaskSubtaskEventArgs> SubtaskClick;
-        private void OnClick(Subtask subtask)
-        {
-            OnSubtaskEvent(SubtaskClick, subtask);
+            OnSubtaskEvent(Click);
         }
         #endregion // end of Events
 
         #region Dependency Properties
-        public TaskModel Task
+        public Subtask Subtask
         {
-            get { return (TaskModel)GetValue(TaskProperty); }
+            get { return (Subtask)GetValue(TaskProperty); }
             set { SetValue(TaskProperty, value); }
         }
         public static readonly DependencyProperty TaskProperty =
-            DependencyProperty.Register("Task", typeof(TaskModel), typeof(TaskItem), new PropertyMetadata(null, TaskPropertyChanged));
+            DependencyProperty.Register("Subtask", typeof(Subtask), typeof(SubtaskItem), new PropertyMetadata(null, TaskPropertyChanged));
         private static void TaskPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskItem item = d as TaskItem;
+            SubtaskItem item = d as SubtaskItem;
             if (item != null)
             {
                 item.UpdateVisualStates(false);
@@ -148,29 +101,13 @@ namespace SimpleTasks.Controls
             set { SetValue(IsCompletedProperty, value); }
         }
         public static readonly DependencyProperty IsCompletedProperty =
-            DependencyProperty.Register("IsCompleted", typeof(bool), typeof(TaskItem), new PropertyMetadata(false, IsCompletedChanged));
+            DependencyProperty.Register("IsCompleted", typeof(bool), typeof(SubtaskItem), new PropertyMetadata(false, IsCompletedChanged));
         private static void IsCompletedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            TaskItem item = d as TaskItem;
+            SubtaskItem item = d as SubtaskItem;
             if (item != null)
             {
                 item.UpdateVisualState((bool)e.NewValue ? CompletedState : UncompletedState);
-            }
-        }
-
-        public bool IsScheduled
-        {
-            get { return (bool)GetValue(IsScheduledProperty); }
-            set { SetValue(IsScheduledProperty, value); }
-        }
-        public static readonly DependencyProperty IsScheduledProperty =
-            DependencyProperty.Register("IsScheduled", typeof(bool), typeof(TaskItem), new PropertyMetadata(true, IsScheduledChanged));
-        private static void IsScheduledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            TaskItem item = d as TaskItem;
-            if (item != null)
-            {
-                item.UpdateVisualState((bool)e.NewValue ? ScheduledState : NotScheduledState);
             }
         }
 
@@ -180,7 +117,24 @@ namespace SimpleTasks.Controls
             set { SetValue(SwipeGestureTresholdProperty, value); }
         }
         public static readonly DependencyProperty SwipeGestureTresholdProperty =
-            DependencyProperty.Register("SwipeGestureTreshold", typeof(double), typeof(TaskItem), new PropertyMetadata(105d));
+            DependencyProperty.Register("SwipeGestureTreshold", typeof(double), typeof(SubtaskItem), new PropertyMetadata(105d));
+
+        public TaskModel DeleteFrom
+        {
+            get { return (TaskModel)GetValue(DeleteFromProperty); }
+            set { SetValue(DeleteFromProperty, value); }
+        }
+        public static readonly DependencyProperty DeleteFromProperty =
+            DependencyProperty.Register("DeleteFrom", typeof(TaskModel), typeof(SubtaskItem), new PropertyMetadata(null, DeleteFromChanged));
+        private static void DeleteFromChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            SubtaskItem item = d as SubtaskItem;
+            if (item != null)
+            {
+                item.UpdateVisualState(e.NewValue != null ? DeletedState : NotDeletedState);
+            }
+        }
+
         #endregion // end of Dependency Properties
 
         #region INotifyPropertyChanged
@@ -214,6 +168,12 @@ namespace SimpleTasks.Controls
 
         private const string UncompletedState = "Uncompleted";
 
+        private const string DeleteStatesGroup = "DeleteStates";
+
+        private const string DeletedState = "Deleted";
+
+        private const string NotDeletedState = "NotDeleted";
+
         private const string GestureStatesGroup = "GestureStates";
 
         private const string GestureStartDragState = "GestureStartDrag";
@@ -224,12 +184,6 @@ namespace SimpleTasks.Controls
 
         private const string GestureEndDragState = "GestureEndDrag";
 
-        private const string ScheduledStatesGroup = "ScheduledStates";
-
-        private const string ScheduledState = "Scheduled";
-
-        private const string NotScheduledState = "NotScheduled";
-
         private void UpdateVisualState(string state, bool useTransitions = true)
         {
             VisualStateManager.GoToState(this, state, useTransitions);
@@ -237,14 +191,14 @@ namespace SimpleTasks.Controls
 
         private void UpdateVisualStates(bool useTransitions = true)
         {
-            UpdateVisualState((Task != null && Task.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
-            UpdateVisualState((Task != null && Task.GetWrapper() != null && Task.GetWrapper().IsScheduled) ? ScheduledState : NotScheduledState, useTransitions);
+            UpdateVisualState((Subtask != null && Subtask.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
+            UpdateVisualState(DeleteFrom != null ? DeletedState : NotDeletedState);
             UpdateVisualState(GestureEndDragState, useTransitions);
         }
         #endregion // end of Visual States
 
         #region Constructor
-        public TaskItem()
+        public SubtaskItem()
         {
             InitializeComponent();
             UpdateVisualStates(false);
@@ -252,12 +206,7 @@ namespace SimpleTasks.Controls
         #endregion // end of Constructor
 
         #region Event Handlers
-        private void LOL_OMG(object a, object b)
-        {
-
-        }
-
-        private void InfoGrid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void Subtask_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
             UpdateVisualState(GestureStartDragState);
 
@@ -265,7 +214,7 @@ namespace SimpleTasks.Controls
             SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
         }
 
-        private void InfoGrid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void Subtask_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
             double value = e.TotalManipulation.Translation.X;
             if (Math.Abs(value) > SwipeGestureTreshold)
@@ -284,14 +233,14 @@ namespace SimpleTasks.Controls
             UpdateVisualState(GestureEndDragState);
         }
 
-        private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        private void Subtask_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
             RootTransform.X += e.DeltaManipulation.Translation.X;
-            if (Settings.Current.Tasks.SwipeLeftAction == GestureAction.None && RootTransform.X < 0)
+            if ((Settings.Current.Tasks.SwipeLeftAction != GestureAction.Complete && Settings.Current.Tasks.SwipeLeftAction != GestureAction.Delete) && RootTransform.X < 0)
             {
                 RootTransform.X = 0;
             }
-            else if (Settings.Current.Tasks.SwipeRightAction == GestureAction.None && RootTransform.X > 0)
+            else if ((Settings.Current.Tasks.SwipeRightAction != GestureAction.Complete && Settings.Current.Tasks.SwipeRightAction != GestureAction.Delete) && RootTransform.X > 0)
             {
                 RootTransform.X = 0;
             }
@@ -316,34 +265,16 @@ namespace SimpleTasks.Controls
             OnCheck();
         }
 
-        private void Task_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void Subtask_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             OnClick();
         }
 
-        private void SubtaskItem_Click(object sender, SubtaskEventArgs e)
+        private void Storyboard_Completed(object sender, EventArgs e)
         {
-            OnClick(e.Subtask);
-        }
-
-        private void SubtaskItem_Check(object sender, SubtaskEventArgs e)
-        {
-            OnCheck(e.Subtask);
-        }
-
-        private void SubtaskItem_SwipeLeft(object sender, SubtaskEventArgs e)
-        {
-            if (OnSwipeLeft(e.Subtask))
+            if (DeleteFrom != null)
             {
-                e.DeleteFrom = Task;
-            }
-        }
-
-        private void SubtaskItem_SwipeRight(object sender, SubtaskEventArgs e)
-        {
-            if (OnSwipeRight(e.Subtask))
-            {
-                e.DeleteFrom = Task;
+                DeleteFrom.Subtasks.Remove(Subtask);
             }
         }
         #endregion // end of Event Handlers
