@@ -1,10 +1,14 @@
 {
-    "4.7.0 ": {
-        "date": "2014-10-08",
+    "4.8.0 ": {
+        "date": "2014-12-20",
         "items": [
-            "ruský jazyk",
-            "oprava talianskeho prekladu",
-            "oprava chyby: farba označeného textu"
+            "ďalšie akcie pre gestá na hlavnej stránke (nastavíte v nastavení)"
+        ]
+    },
+    "4.8.0": {
+        "date": "2014-12-20",
+        "items": [
+            "ďalšie akcie pre gestá na hlavnej stránke"
         ]
     },
     "4.7.0": {
