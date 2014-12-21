@@ -57,10 +57,11 @@ namespace SimpleTasks.Views
             themeList.Add(new ListPickerItem<Theme>(string.Format(AppResources.SettingsThemeSystem, systemTheme), Theme.System));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeDark, Theme.Dark));
+            themeList.Add(new ListPickerItem<Theme>("Solarized", Theme.Solarized));
             ThemeListPicker.ItemsSource = themeList;
             ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
             _isSetThemeListPicker = true;
-            Debug.WriteLine("> TTTTheme {0}", ThemeHelper.Theme);
+            Debug.WriteLine("> Theme {0}", ThemeHelper.Theme);
         }
 
         #region Pin Tile

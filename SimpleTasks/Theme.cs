@@ -11,6 +11,7 @@ namespace SimpleTasks
         // Neměnit hodnoty!
         System = 0,
         Light = 1,
-        Dark = 2
+        Dark = 2,
+        Solarized = 3
     }
 }

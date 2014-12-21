@@ -62,11 +62,11 @@ namespace SimpleTasks.Helpers
             private set { _currentTheme = value; }
         }
 
-        private static Theme _theme = Theme.Dark;
+        private static Theme _systemTheme = Theme.Dark;
         public static Theme SystemTheme
         {
-            get { return _theme; }
-            private set { _theme = value; }
+            get { return _systemTheme; }
+            private set { _systemTheme = value; }
         }
 
         private static void ReplaceColor(ResourceDictionary rd, string key, Color newColor)
@@ -90,10 +90,10 @@ namespace SimpleTasks.Helpers
 #endif
 
             SystemTheme = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ? Theme.Dark : Theme.Light;
-            CurrentTheme = Theme == Theme.System ? SystemTheme : Theme;
+            CurrentTheme = (Theme == Theme.System) ? SystemTheme : Theme;
 
             // ResourceDictionary
-            Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", CurrentTheme == Theme.Dark ? "Dark" : "Light"), UriKind.Relative);
+            Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", CurrentTheme.ToString()), UriKind.Relative);
             ResourceDictionary appTheme = Resources.MergedDictionaries[0];
             ResourceDictionary theme = new ResourceDictionary
             {

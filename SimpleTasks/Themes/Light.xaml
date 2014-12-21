@@ -102,9 +102,6 @@
     <!--Region EditPage-->
     <SolidColorBrush x:Key="DetailMaskBrush"
                      Color="#20000000" />
-
-    <SolidColorBrush x:Key="SubtasksBackgroundBrush"
-                     Color="#d0d0d0" />
     <!--EndRegion-->
 
     <!--Region Calendar-->
