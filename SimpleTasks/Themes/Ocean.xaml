@@ -8,25 +8,25 @@
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
 
     <!--Region SystemTray-->
-    <Color x:Key="SystemTrayBackgroundColor">#1F1F1F</Color>
+    <Color x:Key="SystemTrayBackgroundColor">#00191E</Color>
     <SolidColorBrush x:Key="SystemTrayBackgroundBrush"
                      Color="{StaticResource SystemTrayBackgroundColor}" />
 
-    <Color x:Key="SystemTrayForegroundColor">#FEFEFE</Color>
+    <Color x:Key="SystemTrayForegroundColor">#AA44FDC6</Color>
     <SolidColorBrush x:Key="SystemTrayForegroundBrush"
                      Color="{StaticResource SystemTrayForegroundColor}" />
     <!--EndRegion-->
 
     <!--Region Globální styly-->
-    <sys:Boolean x:Key="UsePhoneAccentColor">True</sys:Boolean>
-    <Color x:Key="AccentColor">#008A00</Color>
+    <sys:Boolean x:Key="UsePhoneAccentColor">False</sys:Boolean>
+    <Color x:Key="AccentColor">#007369</Color>
     <SolidColorBrush x:Key="AccentBrush"
                      Color="{StaticResource AccentColor}" />
 
-    <Color x:Key="BackgroundColor">#0C0C0C</Color>
-    <Color x:Key="NormalColor">#FFFFFF</Color>
-    <Color x:Key="SlightColor">#CCFFFFFF</Color>
-    <Color x:Key="SubtleColor">#99FFFFFF</Color>
+    <Color x:Key="BackgroundColor">#002329</Color>
+    <Color x:Key="NormalColor">#44FDC6</Color>
+    <Color x:Key="SlightColor">#CC44FDC6</Color>
+    <Color x:Key="SubtleColor">#9944FDC6</Color>
 
     <SolidColorBrush x:Key="BackgroundBrush"
                      Color="{StaticResource BackgroundColor}" />
@@ -40,14 +40,14 @@
     <SolidColorBrush x:Key="LabelBrush"
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="HelpBrush"
-                     Color="#6bFFFFFF" />
+                     Color="#6b44FDC6" />
     <!--EndRegion-->
 
     <!--Region Button-->
-    <Color x:Key="ButtonBackgroundColor">#44FFFFFF</Color>
-    <Color x:Key="ButtonForegroundColor">#FFFFFF</Color>
-    <Color x:Key="ButtonDarkForegroundColor">#FFFFFF</Color>
-    <Color x:Key="ButtonCloseIconColor">#AAFFFFFF</Color>
+    <Color x:Key="ButtonBackgroundColor">#4444FDC6</Color>
+    <Color x:Key="ButtonForegroundColor">#44FDC6</Color>
+    <Color x:Key="ButtonDarkForegroundColor">#44FDC6</Color>
+    <Color x:Key="ButtonCloseIconColor">#AA44FDC6</Color>
 
     <SolidColorBrush x:Key="ButtonBackgroundBrush"
                      Color="{StaticResource ButtonBackgroundColor}" />
@@ -59,7 +59,7 @@
                      Color="{StaticResource ButtonCloseIconColor}" />
 
     <SolidColorBrush x:Key="MyButtonBackgroundBrush"
-                     Color="#39FFFFFF" />
+                     Color="#3944FDC6" />
     <!--EndRegion-->
 
     <!--Region CheckBox-->
@@ -72,8 +72,8 @@
     <!--EndRegion-->
 
     <!--Region BasePickerPage-->
-    <Color x:Key="BasePickerPageBackgroundColor">#1F1F1F</Color>
-    <Color x:Key="BasePickerPageForegroundColor">#FEFEFE</Color>
+    <Color x:Key="BasePickerPageBackgroundColor">#00191E</Color>
+    <Color x:Key="BasePickerPageForegroundColor">#CC44FDC6</Color>
 
     <SolidColorBrush x:Key="BasePickerPageBackgroundBrush"
                      Color="{StaticResource BasePickerPageBackgroundColor}" />
@@ -86,7 +86,7 @@
                      Color="{StaticResource SubtleColor}"
                      Opacity="0.3" />
 
-    <Color x:Key="TasksListHeaderBackgroundColor">#1AFFFFFF</Color>
+    <Color x:Key="TasksListHeaderBackgroundColor">#1A44FDC6</Color>
     <SolidColorBrush x:Key="TasksListHeaderBorderBrush"
                      Color="{StaticResource SubtleColor}"
                      Opacity="0.18" />
@@ -95,7 +95,7 @@
                      Color="{StaticResource SlightColor}"
                      Opacity="0.55" />
     <SolidColorBrush x:Key="QuickAddBackgroundBrush"
-                     Color="#444444" />
+                     Color="#007369" />
     <!--EndRegion-->
 
     <!--Region EditPage-->
@@ -104,13 +104,13 @@
     <!--EndRegion-->
 
     <!--Region Calendar-->
-    <Color x:Key="CalendarDisabledColor">#1F1F1F</Color>
-    <Color x:Key="CalendarBorderColor">#5D5D5D</Color>
-    <Color x:Key="CalendarSelectedItemColor">#FFFFFF</Color>
+    <Color x:Key="CalendarDisabledColor">#3044FDC6</Color>
+    <Color x:Key="CalendarBorderColor">#6602C087</Color>
+    <Color x:Key="CalendarSelectedItemColor">#44FDC6</Color>
     <SolidColorBrush x:Key="CalendarBorderBrush"
                      Color="{StaticResource CalendarBorderColor}" />
     <SolidColorBrush x:Key="CalendarItemBackgroundBrush"
-                     Color="#33FFFFFF" />
+                     Color="#3344FDC6" />
     <SolidColorBrush x:Key="CalendarItemBrush"
                      Color="{StaticResource NormalColor}" />
     <SolidColorBrush x:Key="CalendarSelectedItemBrush"
@@ -118,9 +118,9 @@
     <SolidColorBrush x:Key="CalendarWeekdayBrush"
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush"
-                     Color="#2A2A2A" />
+                     Color="#002329" />
     <SolidColorBrush x:Key="CalendarMonthBackgroundBrush"
-                     Color="#191919" />
+                     Color="#002329" />
     <!--EndRegion-->
 
     <!--Region ReminderPicker-->

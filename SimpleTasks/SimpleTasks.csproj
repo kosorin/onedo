@@ -381,6 +381,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Ocean.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Dark.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -500,7 +504,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

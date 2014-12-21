@@ -58,6 +58,7 @@ namespace SimpleTasks.Views
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeDark, Theme.Dark));
             themeList.Add(new ListPickerItem<Theme>("Solarized", Theme.Solarized));
+            themeList.Add(new ListPickerItem<Theme>("Ocean", Theme.Ocean));
             ThemeListPicker.ItemsSource = themeList;
             ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
             _isSetThemeListPicker = true;

@@ -12,6 +12,7 @@ namespace SimpleTasks
         System = 0,
         Light = 1,
         Dark = 2,
-        Solarized = 3
+        Solarized = 3,
+        Ocean = 4
     }
 }
