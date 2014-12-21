@@ -40,7 +40,7 @@
     <SolidColorBrush x:Key="LabelBrush"
                      Color="{StaticResource SlightColor}" />
     <SolidColorBrush x:Key="HelpBrush"
-                     Color="#6b002b36" />
+                     Color="{StaticResource SubtleColor}" />
     <!--EndRegion-->
 
     <!--Region Button-->
@@ -104,7 +104,7 @@
     <!--EndRegion-->
 
     <!--Region Calendar-->
-    <Color x:Key="CalendarDisabledColor">#93a1a1</Color>
+    <Color x:Key="CalendarDisabledColor">#66002b36</Color>
     <Color x:Key="CalendarBorderColor">#839496</Color>
     <Color x:Key="CalendarSelectedItemColor">#eee8d5</Color>
     <SolidColorBrush x:Key="CalendarBorderBrush"
@@ -118,7 +118,7 @@
     <SolidColorBrush x:Key="CalendarWeekdayBrush"
                      Color="{StaticResource NormalColor}" />
     <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush"
-                     Color="#93a1a1" />
+                     Color="#30002b36" />
     <SolidColorBrush x:Key="CalendarMonthBackgroundBrush"
                      Color="#eee8d5" />
     <!--EndRegion-->
