@@ -108,7 +108,7 @@
 
                 <!--End-->
                 <VisualState x:Name="GestureEndDrag">
-                    <Storyboard>
+                    <Storyboard Completed="GestureEndStoryboard_Completed">
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootTransform"
                                                        Storyboard.TargetProperty="X">
                             <DiscreteDoubleKeyFrame KeyTime="0"
@@ -164,7 +164,7 @@
 
                 <!--Deleted-->
                 <VisualState x:Name="Deleted">
-                    <Storyboard Completed="Storyboard_Completed">
+                    <Storyboard Completed="DeleteStoryboard_Completed">
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RootBorder"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteDoubleKeyFrame KeyTime="0"

@@ -212,6 +212,8 @@ namespace SimpleTasks.Controls
 
             SwipeLeftGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
             SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
+            SwipeLeftGestureIcon.Visibility = Visibility.Visible;
+            SwipeRightGestureIcon.Visibility = Visibility.Visible;
             SwipeLeftGestureIcon.Opacity = 0;
             SwipeRightGestureIcon.Opacity = 0;
             BackgroundBorderBrush.Opacity = 0;
@@ -220,7 +222,7 @@ namespace SimpleTasks.Controls
 
         private void Subtask_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            double value = e.TotalManipulation.Translation.X;
+            double value = RootTransform.X;
             if (Math.Abs(value) > SwipeGestureTreshold)
             {
                 if (value < 0)
@@ -235,6 +237,13 @@ namespace SimpleTasks.Controls
                 }
             }
             UpdateVisualState(GestureEndDragState);
+        }
+
+        private void GestureEndStoryboard_Completed(object sender, EventArgs e)
+        {
+            SwipeLeftGestureIcon.Visibility = Visibility.Collapsed;
+            SwipeRightGestureIcon.Visibility = Visibility.Collapsed;
+            Debug.WriteLine("SUB GEST END");
         }
 
         private void Subtask_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
@@ -260,8 +269,8 @@ namespace SimpleTasks.Controls
             }
 
             double opacity = Math.Min(value / SwipeGestureTreshold, 1.0);
-            SwipeLeftGestureIcon.Opacity = opacity;
-            SwipeRightGestureIcon.Opacity = opacity;
+            SwipeLeftGestureIcon.Opacity = RootTransform.X < 0 ? opacity : 0;
+            SwipeRightGestureIcon.Opacity = RootTransform.X > 0 ? opacity : 0;
         }
 
         private void Checkbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -274,13 +283,14 @@ namespace SimpleTasks.Controls
             OnClick();
         }
 
-        private void Storyboard_Completed(object sender, EventArgs e)
+        private void DeleteStoryboard_Completed(object sender, EventArgs e)
         {
             if (DeleteFrom != null)
             {
                 DeleteFrom.Subtasks.Remove(Subtask);
             }
         }
+
         #endregion // end of Event Handlers
     }
 }
