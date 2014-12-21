@@ -537,8 +537,7 @@
             <!--Swipe right gesture icon-->
             <ContentControl Grid.ColumnSpan="2"
                             x:Name="SwipeRightGestureIcon"
-                            Margin="-118"
-                            Grid.Column="1"
+                            Margin="-55"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left">
                 <ContentControl.Foreground>
