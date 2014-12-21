@@ -175,6 +175,21 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+        #region Repeats 12
+        private Repeats _repeats = Repeats.None;
+        [DataMember(Order = 12)]
+        public Repeats Repeats
+        {
+            get { return _repeats; }
+            set
+            {
+                if (SetProperty(ref _repeats, value))
+                {
+                    Modified = DateTime.Now;
+                }
+            }
+        }
+        #endregion // end of Repeats 12
 
         #region Priority 20
         private TaskPriority _priority = TaskPriority.Normal;

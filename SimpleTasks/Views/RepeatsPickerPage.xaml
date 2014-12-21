@@ -1,0 +1,48 @@
+﻿<controls:BasePickerPage x:Class="SimpleTasks.Views.RepeatsPickerPage"
+                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                         xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                         mc:Ignorable="d"
+                         Style="{StaticResource BasePickerPageStyle}">
+
+    <controls:BasePickerPage.Resources>
+        <Style x:Key="DayOfWeekStyle"
+               TargetType="ToggleButton"
+               BasedOn="{StaticResource CheckBoxStyle}">
+            <Setter Property="Height"
+                    Value="50" />
+            <Setter Property="Margin"
+                    Value="0,0,0,20" />
+        </Style>
+    </controls:BasePickerPage.Resources>
+
+    <Grid Style="{StaticResource BasePickerPageRootStyle}">
+        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
+                   Text="REPEATS ON" />
+
+        <ScrollViewer Margin="0,80,0,0">
+            <StackPanel x:Name="ButtonPanel"
+                        Margin="24,0">
+                <ToggleButton Content="{Binding DayNames[0]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+                <ToggleButton Content="{Binding DayNames[1]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+                <ToggleButton Content="{Binding DayNames[2]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+                <ToggleButton Content="{Binding DayNames[3]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+                <ToggleButton Content="{Binding DayNames[4]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+                <ToggleButton Content="{Binding DayNames[5]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+                <ToggleButton Content="{Binding DayNames[6]}"
+                              Style="{StaticResource DayOfWeekStyle}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</controls:BasePickerPage>
