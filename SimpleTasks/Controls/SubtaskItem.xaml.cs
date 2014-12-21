@@ -216,7 +216,7 @@ namespace SimpleTasks.Controls
             SwipeRightGestureIcon.Visibility = Visibility.Visible;
             SwipeLeftGestureIcon.Opacity = 0;
             SwipeRightGestureIcon.Opacity = 0;
-            BackgroundBorderBrush.Opacity = 0;
+            BackgroundBorder.Opacity = 0;
             RootTransform.X = 0;
         }
 
