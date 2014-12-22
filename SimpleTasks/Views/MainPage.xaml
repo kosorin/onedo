@@ -56,6 +56,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!--Toast-->
         <controls:ToastPrompt x:Name="Toast"
                               Grid.Row="1"
                               Canvas.ZIndex="1" />
@@ -76,14 +77,15 @@
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="ScrollStates">
                                     <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="00:00:00.5" />
+                                        <VisualTransition GeneratedDuration="0:0:0.5" />
                                     </VisualStateGroup.Transitions>
                                     <VisualState x:Name="Scrolling">
                                         <Storyboard>
-                                            <DoubleAnimation Duration="0"
-                                                             To="1"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             Storyboard.TargetName="VerticalScrollBar" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                                           Storyboard.TargetName="VerticalScrollBar">
+                                                <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                        Value="0.6" />
+                                            </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="NotScrolling" />
@@ -99,6 +101,7 @@
                                                  VerticalAlignment="Top"
                                                  Padding="0,0,0,10" />
                                 <ScrollBar x:Name="VerticalScrollBar"
+                                           Background="{StaticResource SubtleBrush}"
                                            Grid.Column="1"
                                            Margin="-10,0,0,0"
                                            Opacity="0"
