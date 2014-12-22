@@ -55,7 +55,7 @@
 
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
-                             To="180"
+                             To="240"
                              Duration="0:0:0.3">
                 <DoubleAnimation.EasingFunction>
                     <CircleEase EasingMode="EaseOut" />
@@ -151,6 +151,30 @@
                              To="0"
                              Duration="0:0:0.4" />
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReminderCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="False" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="ShowRepeatsStoryboard">
+            <DoubleAnimation Storyboard.TargetName="RepeatsCloseButton"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:0.4" />
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RepeatsCloseButton"
+                                           Storyboard.TargetProperty="IsEnabled">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="True" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="HideRepeatsStoryboard">
+            <DoubleAnimation Storyboard.TargetName="RepeatsCloseButton"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:0.4" />
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RepeatsCloseButton"
                                            Storyboard.TargetProperty="IsEnabled">
                 <DiscreteObjectKeyFrame KeyTime="0"
                                         Value="False" />
@@ -253,11 +277,12 @@
                     </Grid>
                 </Button>
 
-                <!--Termín & Připomenutí-->
+                <!--Termín & Připomenutí & Opakování-->
                 <Grid x:Name="DueGrid"
                       Margin="0,0,0,20"
-                      Height="180">
+                      Height="240">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
                         <RowDefinition Height="60" />
                         <RowDefinition Height="60" />
                         <RowDefinition Height="60" />
@@ -461,6 +486,78 @@
                         </controls:MyToggleButton>
                         <Button x:Name="ReminderCloseButton"
                                 Tap="ReminderCloseButton_Tap"
+                                Grid.Column="1"
+                                Style="{StaticResource CloseButtonStyle}" />
+                    </Grid>
+
+                    <!--Opakování-->
+                    <Grid x:Name="RepeatsPickerGrid"
+                          Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="60" />
+                        </Grid.ColumnDefinitions>
+                        <controls:MyToggleButton x:Name="RepeatsPicker"
+                                                 Grid.ColumnSpan="2"
+                                                 Tap="RepeatsPicker_Tap"
+                                                 DoubleTap="RepeatsPicker_Tap"
+                                                 IsChecked="{Binding IsSetRepeats}">
+                            <controls:MyToggleButton.Template>
+                                <ControlTemplate>
+                                    <Border Background="{StaticResource AccentBrush}">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CheckSatets">
+                                                <VisualState x:Name="Checked">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="RepeatsText"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="1"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="OnlyOnceText"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Unchecked">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="RepeatsText"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="0"
+                                                                         Duration="0:0:0.4" />
+                                                        <DoubleAnimation Storyboard.TargetName="OnlyOnceText"
+                                                                         Storyboard.TargetProperty="Opacity"
+                                                                         To="1"
+                                                                         Duration="0:0:0.4" />
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid Background="#41000000">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <ContentControl Style="{StaticResource RepeatsIconStyle}"
+                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+
+                                            <TextBlock x:Name="RepeatsText"
+                                                       Grid.Column="1"
+                                                       Text="{Binding Repeats, Converter={StaticResource RepeatsConverter}}"
+                                                       Style="{StaticResource ButtonTextStyle}"
+                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                            <TextBlock x:Name="OnlyOnceText"
+                                                       Grid.Column="1"
+                                                       Text="only once"
+                                                       Style="{StaticResource ButtonTextStyle}"
+                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </controls:MyToggleButton.Template>
+                        </controls:MyToggleButton>
+                        <Button x:Name="RepeatsCloseButton"
+                                Tap="RepeatsCloseButton_Tap"
                                 Grid.Column="1"
                                 Style="{StaticResource CloseButtonStyle}" />
                     </Grid>

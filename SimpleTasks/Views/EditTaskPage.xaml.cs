@@ -77,6 +77,13 @@ namespace SimpleTasks.Views
                 {
                     Reminder = NavigationParameter<TimeSpan>("ReminderPicker");
                 }
+
+                // Příchod ze stránky výběru opakování.
+                if (IsSetNavigationParameter("RepeatsPicker"))
+                {
+                    Repeats = NavigationParameter<Repeats>("RepeatsPicker");
+                    IsSetRepeats = (Repeats != Core.Models.Repeats.None);
+                }
             }
 
             if (Task != null)
@@ -209,6 +216,31 @@ namespace SimpleTasks.Views
                 SetProperty(ref _isSetReminderDate, value);
             }
         }
+
+        private Repeats _repeats = Repeats.None;
+        public Repeats Repeats
+        {
+            get { return _repeats; }
+            set { SetProperty(ref _repeats, value); }
+        }
+
+        private bool _isSetRepeats = false;
+        public bool IsSetRepeats
+        {
+            get { return _isSetRepeats; }
+            set
+            {
+                if (value)
+                {
+                    ShowRepeats();
+                }
+                else
+                {
+                    HideRepeats();
+                }
+                SetProperty(ref _isSetRepeats, value);
+            }
+        }
         #endregion
 
         #region Task methods
@@ -253,6 +285,10 @@ namespace SimpleTasks.Views
             {
                 Reminder = Task.Reminder.Value;
             }
+
+            // Opakování
+            IsSetRepeats = Task.Repeats != Core.Models.Repeats.None;
+            Repeats = Task.Repeats;
         }
 
         public void Save()
@@ -287,6 +323,12 @@ namespace SimpleTasks.Views
                 Task.Reminder = Reminder;
             else
                 Task.Reminder = null;
+
+            // Opakování
+            if (IsSetRepeats)
+                Task.Repeats = Repeats;
+            else
+                Task.Repeats = Core.Models.Repeats.None;
 
             // Nastavení dlaždice
             if (Task.TileSettings == null)
@@ -675,6 +717,40 @@ namespace SimpleTasks.Views
             IsSetReminder = false;
         }
         #endregion
+
+        #region Opakování
+        private void ShowRepeats()
+        {
+            RepeatsPicker.ApplyStates();
+            HideRepeatsStoryboard.Pause();
+            ShowRepeatsStoryboard.Begin();
+        }
+
+        private void HideRepeats()
+        {
+            RepeatsPicker.ApplyStates();
+            ShowRepeatsStoryboard.Pause();
+            HideRepeatsStoryboard.Begin();
+        }
+
+        private void RepeatsPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Navigate(typeof(RepeatsPickerPage), Repeats, "RepeatsPicker");
+            //if (IsSetRepeats)
+            //{
+            //    Navigate(typeof(RepeatsPickerPage), Repeats, "RepeatsPicker");
+            //}
+            //else
+            //{
+            //    IsSetRepeats = true;
+            //}
+        }
+
+        private void RepeatsCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            IsSetRepeats = false;
+        }
+        #endregion // end of Opakování
 
         #region Podúkoly
         private void EditSubtasks_Tap(object sender, System.Windows.Input.GestureEventArgs e)
