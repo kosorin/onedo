@@ -29,7 +29,7 @@ namespace SimpleTasks.ViewModels
 
         public void Load(TaskCollection tasks)
         {
-            Tasks = tasks;
+            Tasks = tasks ?? new TaskCollection();
             if (Settings.Current.Tasks.DeleteCompleted > 0)
             {
                 DeleteCompleted(Settings.Current.Tasks.DeleteCompletedBefore);
