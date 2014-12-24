@@ -171,11 +171,6 @@ namespace SimpleTasks.Views
                 {
                     // Při parsování datumu, takže
                 }
-
-                if (list.Count >= _maxBackupsInList)
-                {
-                    break;
-                }
             }
 
             // Seřazení podle vytvoření
@@ -183,6 +178,11 @@ namespace SimpleTasks.Views
             {
                 return f2.Value2.CompareTo(f1.Value2);
             });
+
+            if (list.Count > _maxBackupsInList)
+            {
+                list.RemoveRange(_maxBackupsInList, list.Count - _maxBackupsInList);
+            }
 
             // Naplnění pickeru
             if (list.Count > 0)
