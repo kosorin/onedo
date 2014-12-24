@@ -52,6 +52,7 @@ namespace SimpleTasks.Views
             }
 
             // Theme
+            _isSetThemeListPicker = false;
             string systemTheme = ThemeHelper.SystemTheme == Theme.Dark ? AppResources.SettingsThemeDark : AppResources.SettingsThemeLight;
             List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
             themeList.Add(new ListPickerItem<Theme>(string.Format(AppResources.SettingsThemeSystem, systemTheme), Theme.System));
