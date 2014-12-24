@@ -78,6 +78,7 @@ namespace SimpleTasks.Views
         #endregion
 
         #region AppBar
+
         #region AppBar Create
         private ApplicationBarIconButton appBarNewTaskButton;
 
@@ -90,11 +91,11 @@ namespace SimpleTasks.Views
             #region Ikony
             appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
             appBarNewTaskButton.Text = AppResources.AppBarNew;
-            appBarNewTaskButton.Click += AddNewTask_Click;
+            appBarNewTaskButton.Click += (s, e) => { Navigate(typeof(EditTaskPage)); };
 
             appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
             appBarSaveQuickButton.Text = AppResources.AppBarSave;
-            appBarSaveQuickButton.Click += QuickAddSave;
+            appBarSaveQuickButton.Click += QuickAddSaveButton_Click;
             #endregion
 
             #region Menu
@@ -109,12 +110,12 @@ namespace SimpleTasks.Views
 
             // Smazat dokončené úkoly
             ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
-            appBarDeleteCompletedItem.Click += DeleteCompletedItem_Click;
+            appBarDeleteCompletedItem.Click += DeleteCompletedMenuItem_Click;
             appBarMenuItems.Add(appBarDeleteCompletedItem);
 
             // Smazat všechny úkoly
             ApplicationBarMenuItem appBarDeleteAllItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteAll);
-            appBarDeleteAllItem.Click += DeleteAllItem_Click;
+            appBarDeleteAllItem.Click += DeleteAllMenuItem_Click;
             appBarMenuItems.Add(appBarDeleteAllItem);
 
             // Záloha
@@ -159,23 +160,18 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        private void AddNewTask_Click(object sender, EventArgs e)
-        {
-            Navigate(typeof(EditTaskPage));
-        }
-
-        void QuickAddSave(object sender, EventArgs e)
+        private void QuickAddSaveButton_Click(object sender, EventArgs e)
         {
             QuickAdd(QuickAddTextBox.Text);
         }
 
-        private void DeleteCompletedItem_Click(object sender, EventArgs e)
+        private void DeleteCompletedMenuItem_Click(object sender, EventArgs e)
         {
             OverlayAction(App.Tasks.DeleteCompleted);
             Toast.Show(AppResources.ToastCompletedTasksDeleted, App.IconStyle("Delete"));
         }
 
-        void DeleteAllItem_Click(object sender, EventArgs e)
+        private void DeleteAllMenuItem_Click(object sender, EventArgs e)
         {
             CustomMessageBox messageBox = new CustomMessageBox()
             {
@@ -200,7 +196,6 @@ namespace SimpleTasks.Views
                 }
             };
 
-
             messageBox.Show();
         }
 
@@ -215,7 +210,7 @@ namespace SimpleTasks.Views
             MessageBox.Show(s);
         }
 
-        void ResetMenuItem_Click(object sender, EventArgs e)
+        private void ResetMenuItem_Click(object sender, EventArgs e)
         {
             App.Tasks.DeleteAll();
 
@@ -353,12 +348,7 @@ namespace SimpleTasks.Views
 #endif
         #endregion
 
-        #region TasksList
-        private void TaskItem_Check(object sender, Controls.TaskEventArgs e)
-        {
-            ToggleComplete(e.Task);
-        }
-
+        #region Methods
         private void ToggleComplete(TaskModel task)
         {
             if (task == null)
@@ -387,20 +377,42 @@ namespace SimpleTasks.Views
                 task.Completed = null;
             }
             App.Tasks.Update(task);
-
-            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
-            if (wrapper != null)
-            {
-                wrapper.UpdateIsScheduled();
-            }
         }
 
-        private void ToggleSubtaskComplete(Subtask subtask)
+        private void ToggleComplete(TaskModel task, Subtask subtask)
         {
+            if (task != null)
+            {
+                task.ModifiedSinceStart = true;
+            }
+
             if (subtask != null)
             {
                 subtask.IsCompleted = !subtask.IsCompleted;
             }
+        }
+
+        private void SetDueDate(TaskModel task, DateTime? due, GestureAction action)
+        {
+            task.DueDate = due;
+            App.Tasks.Update(task);
+            OnPropertyChanged(GroupedTasksProperty);
+        }
+
+        private void Postpone(TaskModel task, DateTime? due, GestureAction action)
+        {
+            task.DueDate = due;
+            App.Tasks.Update(task);
+            OnPropertyChanged(GroupedTasksProperty);
+
+            Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), GestureActionHelper.IconStyle(action));
+        }
+        #endregion // end of Methods
+
+        #region Úkoly
+        private void TaskItem_Check(object sender, Controls.TaskEventArgs e)
+        {
+            ToggleComplete(e.Task);
         }
 
         private void TaskItem_Click(object sender, Controls.TaskEventArgs e)
@@ -411,17 +423,17 @@ namespace SimpleTasks.Views
             NavigateQuery(typeof(EditTaskPage), "?Task={0}", e.Task.Uid);
         }
 
+        private void TaskItem_SubtaskCheck(object sender, TaskSubtaskEventArgs e)
+        {
+            ToggleComplete(e.Task, e.Subtask);
+        }
+
         private void TaskItem_SubtaskClick(object sender, TaskSubtaskEventArgs e)
         {
             if (e.Task != null)
             {
                 Navigate(typeof(SubtasksPage), e.Task);
             }
-        }
-
-        private void TaskItem_SubtaskCheck(object sender, TaskSubtaskEventArgs e)
-        {
-            ToggleSubtaskComplete(e.Subtask);
         }
 
         private void OverlayAction(Action action)
@@ -481,28 +493,6 @@ namespace SimpleTasks.Views
         #endregion
 
         #region QuickAddTextBox
-        private void QuickAdd(string title)
-        {
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                TaskModel task = new TaskModel()
-                {
-                    Title = title,
-                    DueDate = Settings.Current.Tasks.DefaultDate
-                };
-                if (task.DueDate != null)
-                {
-                    task.DueDate = task.DueDate.Value.SetTime(Settings.Current.Tasks.DefaultTime);
-                }
-
-                App.Tasks.Add(task);
-                QuickAddTextBox.Text = "";
-                this.Focus();
-
-                TasksLongListSelector.ScrollTo(task);
-            }
-        }
-
         SupportedPageOrientation orientation;
 
         private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -529,35 +519,49 @@ namespace SimpleTasks.Views
                 QuickAdd(QuickAddTextBox.Text);
             }
         }
+
+        private void QuickAdd(string title)
+        {
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                TaskModel task = new TaskModel()
+                {
+                    Title = title,
+                    DueDate = Settings.Current.Tasks.DefaultDate
+                };
+                if (task.DueDate != null)
+                {
+                    task.DueDate = task.DueDate.Value.SetTime(Settings.Current.Tasks.DefaultTime);
+                }
+
+                App.Tasks.Add(task);
+                QuickAddTextBox.Text = "";
+                this.Focus();
+
+                TasksLongListSelector.ScrollTo(task);
+            }
+        }
         #endregion
 
         #region Gestures
-        private void SetDueDate(TaskModel task, DateTime? due, GestureAction action)
+        private void TaskItem_SwipeLeft(object sender, Controls.TaskEventArgs e)
         {
-            //bool hadReminder = task.ExistsSystemReminder();
-
-            task.DueDate = due;
-            App.Tasks.Update(task);
-            OnPropertyChanged(GroupedTasksProperty);
-
-            //if (hadReminder && !task.ExistsSystemReminder())
-            //{
-            //    Toast.Show(AppResources.ToastReminderOff, GestureActionHelper.IconStyle(action), AppResources.ToastNotice);
-            //}
+            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e);
         }
 
-        private void Postpone(TaskModel task, DateTime? due, GestureAction action)
+        private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
         {
-            task.DueDate = due;
-            App.Tasks.Update(task);
-            TaskWrapper wrapper = task.Wrapper as TaskWrapper;
-            if (wrapper != null)
-            {
-                wrapper.UpdateIsScheduled();
-            }
-            OnPropertyChanged(GroupedTasksProperty);
+            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e);
+        }
 
-            Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), GestureActionHelper.IconStyle(action));
+        private void TaskItem_SubtaskSwipeLeft(object sender, TaskSubtaskEventArgs e)
+        {
+            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e);
+        }
+
+        private void TaskItem_SubtaskSwipeRight(object sender, TaskSubtaskEventArgs e)
+        {
+            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e);
         }
 
         private void ExecuteGesture(GestureAction action, Controls.TaskEventArgs e)
@@ -617,7 +621,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ExecuteSubtaskGesture(GestureAction action, TaskSubtaskEventArgs e)
+        private void ExecuteGesture(GestureAction action, TaskSubtaskEventArgs e)
         {
             if (e.Task == null || e.Subtask == null)
             {
@@ -628,7 +632,7 @@ namespace SimpleTasks.Views
             {
             case GestureAction.Complete:
                 VibrateHelper.Short();
-                ToggleSubtaskComplete(e.Subtask);
+                ToggleComplete(e.Task, e.Subtask);
                 break;
 
             case GestureAction.Delete:
@@ -640,26 +644,6 @@ namespace SimpleTasks.Views
             default:
                 break;
             }
-        }
-
-        private void TaskItem_SwipeLeft(object sender, Controls.TaskEventArgs e)
-        {
-            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e);
-        }
-
-        private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
-        {
-            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e);
-        }
-
-        private void TaskItem_SubtaskSwipeLeft(object sender, TaskSubtaskEventArgs e)
-        {
-            ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeLeftAction, e);
-        }
-
-        private void TaskItem_SubtaskSwipeRight(object sender, TaskSubtaskEventArgs e)
-        {
-            ExecuteSubtaskGesture(Settings.Current.Tasks.SwipeRightAction, e);
         }
         #endregion
     }

@@ -110,6 +110,8 @@ namespace SimpleTasks.ViewModels
             {
                 wrapper.UpdateIsScheduled();
             }
+
+            task.ModifiedSinceStart = true;
         }
 
         public void Delete(TaskModel task)
@@ -122,12 +124,8 @@ namespace SimpleTasks.ViewModels
 
         public void DeleteCompleted(DateTime beforeDate)
         {
-            // Odstranění úkolů, které byly odstarněny před více jak 'days' dny.
-            var completedTasks = Tasks.Where((t) =>
-            {
-                return t.IsCompleted && t.Completed.Value < beforeDate;
-            }).ToList();
-            foreach (TaskModel task in completedTasks)
+            // Odstranění úkolů, které byly dokončeny před beforeDate
+            foreach (TaskModel task in Tasks.Where(t => (t.IsCompleted && t.Completed.Value < beforeDate)).ToList())
             {
                 Delete(task);
             }
@@ -135,25 +133,21 @@ namespace SimpleTasks.ViewModels
 
         public void DeleteCompleted()
         {
-            // Odstranění dokončených úkolů
-            foreach (TaskModel task in Tasks.Where(t => t.IsCompleted).ToList())
-            {
-                Delete(task);
-            }
+            DeleteCompleted(DateTime.MaxValue);
         }
 
         public void DeleteAll()
         {
+            foreach (TaskModel task in Tasks.ToList())
+            {
+                Delete(task);
+            }
+
+            // Odstranění "zapomenutých" připoměnutí
             foreach (Reminder r in ScheduledActionService.GetActions<Reminder>())
             {
                 ScheduledActionService.Remove(r.Name);
             }
-
-            foreach (TaskModel task in Tasks)
-            {
-                LiveTile.Unpin(task);
-            }
-            Tasks.Clear();
         }
     }
 }
