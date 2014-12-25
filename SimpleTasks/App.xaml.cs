@@ -1,5 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Tasks;
 using Newtonsoft.Json.Linq;
 using SimpleTasks.Core.Helpers;
@@ -29,6 +30,8 @@ namespace SimpleTasks
         public static string ForceDebugCulture = "en-US";
 
         #region Properties
+        public static readonly string BackgroundAgentName = "PeriodicBackgroundAgent";
+
         public static Version Version
         {
             get
@@ -48,6 +51,7 @@ namespace SimpleTasks
         public static readonly string SettingsFileName = "Settings.json";
 
         public static readonly string TasksFileName = "Tasks.json";
+
         public static TasksViewModel Tasks { get; private set; }
         #endregion
 
@@ -91,6 +95,30 @@ namespace SimpleTasks
             }
 
             Tasks.Load();
+
+            try
+            {
+                PeriodicTask task = ScheduledActionService.Find(BackgroundAgentName) as PeriodicTask;
+                if (task != null)
+                {
+                    ScheduledActionService.Remove(BackgroundAgentName);
+                }
+
+                ScheduledActionService.Add(new PeriodicTask(BackgroundAgentName)
+                {
+                    ExpirationTime = DateTime.Today.AddDays(14),
+                    Description = "Background agent."
+                });
+
+#if DEBUG
+                ScheduledActionService.LaunchForTest(BackgroundAgentName, TimeSpan.FromSeconds(65));
+                Debug.WriteLine("> LAUNCH FOR TEST");
+#endif
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("ERR> PeriodicTask: {0}", ex.Message);
+            }
 
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");

@@ -486,6 +486,10 @@
     <Reference Include="System.Windows.Interactivity" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimpleTasks.BackgroundAgent\SimpleTasks.BackgroundAgent.csproj">
+      <Project>{33bd0442-8005-4029-91c5-652b2184cb95}</Project>
+      <Name>SimpleTasks.BackgroundAgent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleTasks.Core\SimpleTasks.Core.csproj">
       <Project>{B40DF63D-03CC-4078-A3C7-E18422DA4005}</Project>
       <Name>SimpleTasks.Core</Name>
@@ -505,7 +509,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

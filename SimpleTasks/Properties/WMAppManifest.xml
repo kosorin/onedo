@@ -16,6 +16,9 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Views/EntryPage.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="PeriodicBackgroundAgent" Source="SimpleTasks.BackgroundAgent" Type="SimpleTasks.BackgroundAgent.ScheduledAgent" />
+      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="SimpleTasksToken" TaskName="_default">

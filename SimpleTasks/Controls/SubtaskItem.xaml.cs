@@ -243,7 +243,6 @@ namespace SimpleTasks.Controls
         {
             SwipeLeftGestureIcon.Visibility = Visibility.Collapsed;
             SwipeRightGestureIcon.Visibility = Visibility.Collapsed;
-            Debug.WriteLine("SUB GEST END");
         }
 
         private void Subtask_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)

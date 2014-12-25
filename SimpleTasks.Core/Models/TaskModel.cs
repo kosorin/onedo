@@ -152,9 +152,10 @@ namespace SimpleTasks.Core.Models
                         if ((Repeats & Repeats.Saturday) != 0) list.Add(DayOfWeek.Saturday);
                         if ((Repeats & Repeats.Sunday) != 0) list.Add(DayOfWeek.Sunday);
 
+                        DateTime startDate = (DateTime.Today < DueDate.Value.Date) ? DueDate.Value.Date : DateTime.Today;
                         for (int i = 0; i < dayCount; i++)
                         {
-                            DateTime date = DateTime.Today.AddDays(i);
+                            DateTime date = startDate.AddDays(i);
                             if (list.Contains(date.DayOfWeek))
                             {
                                 return date.SetTime(DueDate.Value);

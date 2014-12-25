@@ -312,7 +312,6 @@ namespace SimpleTasks.Controls
         {
             SwipeLeftGestureIcon.Visibility = Visibility.Collapsed;
             SwipeRightGestureIcon.Visibility = Visibility.Collapsed;
-            Debug.WriteLine("GEST END");
         }
 
         private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)

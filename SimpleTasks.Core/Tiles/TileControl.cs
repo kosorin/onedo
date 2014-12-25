@@ -7,12 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SimpleTasks.Core.Tiles
 {
     public abstract class TileControl : UserControl
     {
+        public TileControl()
+        {
+            Resources.Add("AccentBrush", new SolidColorBrush(Colors.Red));
+        }
+
         public abstract void Refresh();
 
         public void RenderToStream(Stream stream)

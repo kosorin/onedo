@@ -11,4 +11,7 @@
         <Setter Property="FontFamily"
                 Value="Segoe WP" />
     </Style>
+
+    <SolidColorBrush x:Key="AccentBrush"
+                     Color="Yellow" />
 </ResourceDictionary>
