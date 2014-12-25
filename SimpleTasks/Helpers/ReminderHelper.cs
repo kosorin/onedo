@@ -13,7 +13,7 @@ namespace SimpleTasks.Helpers
 {
     public class ReminderHelper
     {
-        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri)
+        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri, bool weekly)
         {
             Remove(name);
             if (beginTime <= DateTime.Now)
@@ -51,6 +51,7 @@ namespace SimpleTasks.Helpers
                     Title = title,
                     Content = content,
                     NavigationUri = navigationUri,
+                    RecurrenceType = weekly ? RecurrenceInterval.Weekly : RecurrenceInterval.None
                 });
             }
             catch (InvalidOperationException e)

@@ -30,6 +30,7 @@ namespace SimpleTasks.Helpers
         {
             if (task.HasReminder)
             {
+                bool weekly = (task.Repeats != Repeats.None);
                 foreach (DateTime date in task.ReminderDates)
                 {
                     ReminderHelper.Add(
@@ -37,7 +38,8 @@ namespace SimpleTasks.Helpers
                         task.Title,
                         task.Detail,
                         date,
-                        new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative));
+                        new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative),
+                        weekly);
                 }
             }
         }

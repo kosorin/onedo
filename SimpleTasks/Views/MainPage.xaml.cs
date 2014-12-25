@@ -208,9 +208,9 @@ namespace SimpleTasks.Views
                 string name = r.Name;
                 if (name.Length > 12)
                 {
-                    name = string.Format("{0}...{1}", name.Substring(0, 4), name.Substring(name.Length - 4, 4));
+                    name = string.Format("{0}...{1}", name.Substring(0, 3), name.Substring(name.Length - 3, 3));
                 }
-                s += string.Format("\n{0}: {1} - {2}", name, r.IsScheduled, r.BeginTime);
+                s += string.Format("\n{0}: {1} - {2:g}{3}", name, r.IsScheduled, r.BeginTime, r.RecurrenceType == RecurrenceInterval.Weekly ? " [w]" : "");
             }
             MessageBox.Show(s);
         }
