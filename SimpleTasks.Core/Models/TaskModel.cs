@@ -126,6 +126,8 @@ namespace SimpleTasks.Core.Models
                     OnPropertyChanged("ReminderDate");
                     OnPropertyChanged("ReminderDates");
                     OnPropertyChanged("HasReminder");
+                    OnPropertyChanged("Repeats");
+                    OnPropertyChanged("HasRepeats");
                     Modified = DateTime.Now;
                 }
             }
@@ -226,10 +228,17 @@ namespace SimpleTasks.Core.Models
             {
                 if (SetProperty(ref _repeats, value))
                 {
+                    OnPropertyChanged("HasRepeats");
                     Modified = DateTime.Now;
                 }
             }
         }
+
+        public bool HasRepeats
+        {
+            get { return Repeats != Models.Repeats.None; }
+        }
+
         #endregion // end of Repeats 12
 
         #region Priority 20

@@ -170,7 +170,7 @@
                 <!--NotScheduled-->
                 <VisualState x:Name="NotScheduled">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReminderGrid"
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReminderControl"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
@@ -317,7 +317,7 @@
                                                     Y="0" />
                             </StackPanel.RenderTransform>
 
-                            <!--Datum & připomenutí-->
+                            <!--Datum & připomenutí & opakování-->
                             <Grid x:Name="MoreInfo"
                                   MaxHeight="32"
                                   Margin="0,0,0,10">
@@ -341,40 +341,41 @@
                                         <TextBlock Text="{Binding DueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
                                                    Style="{StaticResource SlightTextStyle}"
                                                    FontSize="22"
-                                                   Margin="0,1,8,0"
+                                                   Margin="0,1,2,0"
                                                    VerticalAlignment="Bottom" />
                                     </StackPanel>
 
                                     <!--Připomenutí-->
-                                    <Grid x:Name="ReminderGrid">
-                                        <StackPanel Orientation="Horizontal"
-                                                    Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                            <!--Ikona-->
-                                            <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                            Margin="6,0,-18,0"
-                                                            MaxHeight="0"
-                                                            VerticalAlignment="Bottom">
-                                                <ContentControl.Foreground>
-                                                    <SolidColorBrush x:Name="Color"
-                                                                     Color="{StaticResource AccentColor}" />
-                                                </ContentControl.Foreground>
-                                                <ContentControl.RenderTransform>
-                                                    <CompositeTransform ScaleX="0.55"
-                                                                        ScaleY="0.55"
-                                                                        TranslateX="1"
-                                                                        TranslateY="-28" />
-                                                </ContentControl.RenderTransform>
-                                            </ContentControl>
+                                    <ContentControl x:Name="ReminderControl"
+                                                    Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    Style="{StaticResource ReminderIconStyle}"
+                                                    Margin="0,0,-24,0"
+                                                    MaxHeight="0"
+                                                    VerticalAlignment="Bottom"
+                                                    Foreground="{StaticResource AccentBrush}">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55"
+                                                                ScaleY="0.55"
+                                                                TranslateX="1"
+                                                                TranslateY="-28" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
 
-                                            <!--Text-->
-                                            <TextBlock Text="{Binding Reminder, Converter={StaticResource ReminderConverter}, FallbackValue='2 dny'}"
-                                                       Style="{StaticResource SlightTextStyle}"
-                                                       VerticalAlignment="Bottom"
-                                                       FontSize="22"
-                                                       Margin="0,1,8,0" />
-
-                                        </StackPanel>
-                                    </Grid>
+                                    <!--Opakování-->
+                                    <ContentControl x:Name="RepeatsControl"
+                                                    Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    Style="{StaticResource RepeatsIconStyle}"
+                                                    Margin="0,0,-18,0"
+                                                    MaxHeight="0"
+                                                    VerticalAlignment="Bottom"
+                                                    Foreground="{StaticResource AccentBrush}">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55"
+                                                                ScaleY="0.55"
+                                                                TranslateX="1"
+                                                                TranslateY="-28" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
 
                                 </StackPanel>
                             </Grid>
