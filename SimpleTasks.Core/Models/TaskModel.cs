@@ -196,10 +196,10 @@ namespace SimpleTasks.Core.Models
 
                     for (int i = 0; i < dayCount; i++)
                     {
-                        DateTime date = ReminderDate.AddDays(i);
+                        DateTime date = DueDate.Value.AddDays(i);
                         if (list.Contains(date.DayOfWeek))
                         {
-                            dates.Add(date);
+                            dates.Add(date - Reminder.Value);
                         }
                     }
                 }
