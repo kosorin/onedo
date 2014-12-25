@@ -39,8 +39,8 @@ namespace SimpleTasks.ViewModels
             Debug.WriteLine("> Nahrané úkoly ({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
-                Reminder reminder = task.GetSystemReminder();
-                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null ? reminder.Name : "<false>");
+                List<Reminder> reminders = task.GetSystemReminder();
+                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminders.Count);
             }
 #endif
         }
@@ -73,8 +73,8 @@ namespace SimpleTasks.ViewModels
             Debug.WriteLine(": Obnovené úkoly({0}):", Tasks.Count);
             foreach (TaskModel task in Tasks)
             {
-                Reminder reminder = task.GetSystemReminder();
-                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminder != null ? reminder.Name : "<false>");
+                List<Reminder> reminders = task.GetSystemReminder();
+                Debug.WriteLine(": {0} [připomenutí: {1}]", task.Title, reminders.Count);
             }
 #endif
         }
@@ -82,6 +82,12 @@ namespace SimpleTasks.ViewModels
         public void Add(TaskModel task)
         {
             Tasks.Add(task);
+            UpdateReminders(task);
+        }
+
+        private void UpdateReminders(TaskModel task)
+        {
+            task.RemoveSystemReminder();
             if (task.IsActive && task.HasReminder)
             {
                 task.SetSystemReminder();
@@ -90,20 +96,7 @@ namespace SimpleTasks.ViewModels
 
         public void Update(TaskModel task)
         {
-            Reminder reminder = task.GetSystemReminder();
-            if (reminder != null)
-            {
-                if (task.IsCompleted || !task.HasReminder || !reminder.IsScheduled || reminder.BeginTime != task.ReminderDate)
-                {
-                    task.RemoveSystemReminder();
-                    reminder = null;
-                }
-            }
-
-            if (reminder == null && task.IsActive && task.HasReminder)
-            {
-                task.SetSystemReminder();
-            }
+            UpdateReminders(task);
 
             TaskWrapper wrapper = task.GetWrapper();
             if (wrapper != null)

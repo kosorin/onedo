@@ -205,7 +205,12 @@ namespace SimpleTasks.Views
             string s = string.Format("> Reminders ({0})", DateTime.Now.ToString(CultureInfo.CurrentCulture));
             foreach (var r in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
             {
-                s += string.Format("\n{0}\n  {1} -  {2}", r.Name, r.IsScheduled, r.BeginTime);
+                string name = r.Name;
+                if (name.Length > 12)
+                {
+                    name = string.Format("{0}...{1}", name.Substring(0, 4), name.Substring(name.Length - 4, 4));
+                }
+                s += string.Format("\n{0}: {1} - {2}", name, r.IsScheduled, r.BeginTime);
             }
             MessageBox.Show(s);
         }

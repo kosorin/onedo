@@ -28,8 +28,17 @@ namespace SimpleTasks.Models
         {
             if (Task != null && Task.HasReminder)
             {
-                Reminder reminder = Task.GetSystemReminder();
-                IsScheduled = reminder != null && reminder.IsScheduled;
+                List<Reminder> reminders = Task.GetSystemReminder();
+                bool isScheduled = reminders.Count > 0;
+                foreach (Reminder reminder in reminders)
+                {
+                    if (!reminder.IsScheduled)
+                    {
+                        isScheduled = false;
+                        break;
+                    }
+                }
+                IsScheduled = isScheduled;
             }
             else
             {

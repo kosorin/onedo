@@ -24,21 +24,25 @@ namespace SimpleTasks.Helpers
 
             try
             {
+                const int titleMaxLength = 63;
+                const int contentMaxLength = 255;
+
                 // Není povolena nulová délka
                 if (string.IsNullOrWhiteSpace(title))
                 {
                     title = AppResources.TitleUntitled;
                 }
+
                 // Maximum je 63 znaků
-                if (title.Length > 63)
+                if (title.Length > titleMaxLength)
                 {
-                    title = title.Substring(0, 63 - 3) + "...";
+                    title = title.Substring(0, titleMaxLength - 3) + "...";
                 }
 
-                // Maximum je 256 znaků
-                if (content.Length > 255)
+                // Maximum je 255 znaků
+                if (content.Length > contentMaxLength)
                 {
-                    content = content.Substring(0, 255 - 3) + "...";
+                    content = content.Substring(0, contentMaxLength - 3) + "...";
                 }
 
                 ScheduledActionService.Add(new Reminder(name)
@@ -65,7 +69,7 @@ namespace SimpleTasks.Helpers
 
         public static Reminder Get(string name)
         {
-            return (Reminder)ScheduledActionService.Find(name);
+            return ScheduledActionService.Find(name) as Reminder;
         }
 
         public static bool Exists(string name)
@@ -75,10 +79,11 @@ namespace SimpleTasks.Helpers
 
         public static void Remove(string name)
         {
-            if (Exists(name))
+            try
             {
                 ScheduledActionService.Remove(name);
             }
+            catch (InvalidOperationException) { }
         }
     }
 }
