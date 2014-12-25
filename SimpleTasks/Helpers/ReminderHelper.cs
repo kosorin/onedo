@@ -80,11 +80,10 @@ namespace SimpleTasks.Helpers
 
         public static void Remove(string name)
         {
-            try
+            if (Exists(name))
             {
                 ScheduledActionService.Remove(name);
             }
-            catch (InvalidOperationException) { }
         }
     }
 }
