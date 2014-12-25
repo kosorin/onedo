@@ -120,6 +120,7 @@ namespace SimpleTasks.Core.Models
             {
                 if (SetProperty(ref _dueDate, value))
                 {
+                    OnPropertyChanged("CurrentDueDate");
                     OnPropertyChanged("HasDueDate");
                     OnPropertyChanged("IsOverdue");
                     OnPropertyChanged("Reminder");
@@ -129,6 +130,42 @@ namespace SimpleTasks.Core.Models
                     OnPropertyChanged("Repeats");
                     OnPropertyChanged("HasRepeats");
                     Modified = DateTime.Now;
+                }
+            }
+        }
+
+        public DateTime? CurrentDueDate
+        {
+            get
+            {
+                if (Repeats != Models.Repeats.None)
+                {
+                    if (HasDueDate)
+                    {
+                        const int dayCount = 7;
+                        List<DayOfWeek> list = new List<DayOfWeek>();
+                        if ((Repeats & Repeats.Monday) != 0) list.Add(DayOfWeek.Monday);
+                        if ((Repeats & Repeats.Tuesday) != 0) list.Add(DayOfWeek.Tuesday);
+                        if ((Repeats & Repeats.Wednesday) != 0) list.Add(DayOfWeek.Wednesday);
+                        if ((Repeats & Repeats.Thursday) != 0) list.Add(DayOfWeek.Thursday);
+                        if ((Repeats & Repeats.Friday) != 0) list.Add(DayOfWeek.Friday);
+                        if ((Repeats & Repeats.Saturday) != 0) list.Add(DayOfWeek.Saturday);
+                        if ((Repeats & Repeats.Sunday) != 0) list.Add(DayOfWeek.Sunday);
+
+                        for (int i = 0; i < dayCount; i++)
+                        {
+                            DateTime date = DateTime.Today.AddDays(i);
+                            if (list.Contains(date.DayOfWeek))
+                            {
+                                return date.SetTime(DueDate.Value);
+                            }
+                        }
+                    }
+                    return null;
+                }
+                else
+                {
+                    return DueDate;
                 }
             }
         }
@@ -168,7 +205,7 @@ namespace SimpleTasks.Core.Models
                 {
                     throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
                 }
-                return DueDate.Value - Reminder.Value;
+                return CurrentDueDate.Value - Reminder.Value;
             }
         }
 
@@ -228,6 +265,7 @@ namespace SimpleTasks.Core.Models
             {
                 if (SetProperty(ref _repeats, value))
                 {
+                    OnPropertyChanged("CurrentDueDate");
                     OnPropertyChanged("HasRepeats");
                     Modified = DateTime.Now;
                 }

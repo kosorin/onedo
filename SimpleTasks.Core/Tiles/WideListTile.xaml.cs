@@ -82,11 +82,11 @@ namespace SimpleTasks.Core.Tiles
                     };
 
                     TextBlock dateTextBlock = null;
-                    if (task.DueDate != null)
+                    if (task.CurrentDueDate != null)
                     {
                         dateTextBlock = new TextBlock()
                         {
-                            Text = task.DueDate.Value.ToShortDateString(),
+                            Text = task.CurrentDueDate.Value.ToShortDateString(),
                             Style = (Style)Resources["LineTextStyle"],
                             FontSize = lineHeight * 0.72,
                             LineHeight = lineHeight,

@@ -338,7 +338,7 @@
                                                                     TranslateY="-29" />
                                             </ContentControl.RenderTransform>
                                         </ContentControl>
-                                        <TextBlock Text="{Binding DueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
+                                        <TextBlock Text="{Binding CurrentDueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
                                                    Style="{StaticResource SlightTextStyle}"
                                                    FontSize="22"
                                                    Margin="0,1,2,0"
