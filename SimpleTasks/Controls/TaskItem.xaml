@@ -321,35 +321,14 @@
                             <Grid x:Name="MoreInfo"
                                   MaxHeight="32"
                                   Margin="0,0,0,10">
-                                <StackPanel Orientation="Horizontal">
-
-                                    <!--Datum-->
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                        Foreground="{StaticResource AccentBrush}"
-                                                        Margin="6,0,-18,0"
-                                                        VerticalAlignment="Bottom"
-                                                        MaxHeight="0">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55"
-                                                                    ScaleY="0.55"
-                                                                    TranslateX="0"
-                                                                    TranslateY="-29" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
-                                        <TextBlock Text="{Binding CurrentDueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
-                                                   Style="{StaticResource SlightTextStyle}"
-                                                   FontSize="22"
-                                                   Margin="0,1,2,0"
-                                                   VerticalAlignment="Bottom" />
-                                    </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                                     <!--Připomenutí-->
                                     <ContentControl x:Name="ReminderControl"
                                                     Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                     Style="{StaticResource ReminderIconStyle}"
-                                                    Margin="0,0,-24,0"
+                                                    Margin="5,0,-24,0"
                                                     MaxHeight="0"
                                                     VerticalAlignment="Bottom"
                                                     Foreground="{StaticResource AccentBrush}">
@@ -365,7 +344,7 @@
                                     <ContentControl x:Name="RepeatsControl"
                                                     Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                     Style="{StaticResource RepeatsIconStyle}"
-                                                    Margin="0,0,-18,0"
+                                                    Margin="5,0,-24,0"
                                                     MaxHeight="0"
                                                     VerticalAlignment="Bottom"
                                                     Foreground="{StaticResource AccentBrush}">
@@ -376,6 +355,25 @@
                                                                 TranslateY="-28" />
                                         </ContentControl.RenderTransform>
                                     </ContentControl>
+
+                                    <!--Datum-->
+                                    <ContentControl Style="{StaticResource CalendarIconStyle}"
+                                                    Foreground="{StaticResource AccentBrush}"
+                                                    Margin="6,0,-18,0"
+                                                    VerticalAlignment="Bottom"
+                                                    MaxHeight="0">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55"
+                                                                ScaleY="0.55"
+                                                                TranslateX="0"
+                                                                TranslateY="-29" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                    <TextBlock Text="{Binding CurrentDueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
+                                               Style="{StaticResource SlightTextStyle}"
+                                               FontSize="22"
+                                               Margin="0,1,2,0"
+                                               VerticalAlignment="Bottom" />
 
                                 </StackPanel>
                             </Grid>
