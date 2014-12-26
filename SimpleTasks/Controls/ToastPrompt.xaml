@@ -51,8 +51,9 @@
                         <VisualTransition.GeneratedEasingFunction>
                             <ElasticEase EasingMode="EaseIn" />
                         </VisualTransition.GeneratedEasingFunction>
-                        <Storyboard Completed="SbCompleted">
-                            <DoubleAnimation Duration="0:0:0.45"
+                        <Storyboard Completed="CloseStoryboard_Completed">
+                            <DoubleAnimation x:Name="CloseAnimation"
+                                             Duration="0:0:0.45"
                                              To="{Binding InvertedHeight, ElementName=ToastRoot}"
                                              Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)"
                                              Storyboard.TargetName="MainGrid"
@@ -87,14 +88,13 @@
         </VisualStateManager.VisualStateGroups>
 
         <Grid x:Name="MainGrid"
-              Height="{Binding Height, ElementName=ToastRoot}"
               Background="{Binding Background, ElementName=ToastRoot}"
               Canvas.ZIndex="1">
             <Grid.Projection>
                 <PlaneProjection />
             </Grid.Projection>
 
-            <Grid >
+            <Grid Margin="0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -105,7 +105,6 @@
                          Height="36"
                          Width="36"
                          Visibility="{Binding ShowIcon, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
-                         VerticalAlignment="Center"
                          HorizontalAlignment="Left"
                          Margin="17,0,-2,0">
                     <ContentControl Style="{Binding Icon, ElementName=ToastRoot}" />

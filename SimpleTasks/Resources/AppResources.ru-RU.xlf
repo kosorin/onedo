@@ -765,6 +765,10 @@ It's still in beta.</source>
           <source>Notice</source>
           <target state="signed-off">Уведомление</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
+          <source>accent color</source>
+          <target state="new">accent color</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="signed-off">Выполенные задачи удалены.</target>

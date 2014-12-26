@@ -387,12 +387,16 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.7.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-10-08&quot;,
+        ///    &quot;4.8.0 &quot;: {
+        ///        &quot;date&quot;: &quot;2014-12-20&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;Russian language&quot;,
-        ///            &quot;fix Italian translation&quot;,
-        ///            &quot;bug fix: color of selected text&quot;
+        ///            &quot;more actions for gestures on main page (see settings page)&quot;
+        ///        ]
+        ///    },
+        ///    &quot;4.8.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-12-20&quot;,
+        ///        &quot;items&quot;: [
+        ///            &quot;more actions for gestures on main page&quot;
         ///        ]
         ///    },
         ///    &quot;4.7.0&quot;: {
@@ -403,10 +407,7 @@ namespace SimpleTasks.Resources {
         ///            &quot;bug fix: color of selected text&quot;
         ///        ]
         ///    },
-        ///    &quot;4.6.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-09-22&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;Italian language [rest of string was truncated]&quot;;.
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -1357,6 +1358,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsSwipeRight {
             get {
                 return ResourceManager.GetString("SettingsSwipeRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to accent color.
+        /// </summary>
+        public static string SettingsThemeColor {
+            get {
+                return ResourceManager.GetString("SettingsThemeColor", resourceCulture);
             }
         }
         

@@ -18,6 +18,7 @@ using SimpleTasks.Core.Helpers;
 using SimpleTasks.Helpers;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Windows.Media;
 
 namespace SimpleTasks.Views
 {
@@ -54,6 +55,7 @@ namespace SimpleTasks.Views
             // Theme
             _isSetThemeListPicker = false;
             string systemTheme = ThemeHelper.SystemTheme == Theme.Dark ? AppResources.SettingsThemeDark : AppResources.SettingsThemeLight;
+
             List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
             themeList.Add(new ListPickerItem<Theme>(string.Format(AppResources.SettingsThemeSystem, systemTheme), Theme.System));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
@@ -62,8 +64,21 @@ namespace SimpleTasks.Views
             themeList.Add(new ListPickerItem<Theme>("Ocean", Theme.Ocean));
             ThemeListPicker.ItemsSource = themeList;
             ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
+
+            List<ListPickerItem<Color>> themeColorList = new List<ListPickerItem<Color>>();
+            themeColorList.Add(new ListPickerItem<Color>("Yellow", Color.FromArgb(255, 181, 137, 0)));
+            themeColorList.Add(new ListPickerItem<Color>("Orange", Color.FromArgb(255, 203, 75, 22)));
+            themeColorList.Add(new ListPickerItem<Color>("Red", Color.FromArgb(255, 220, 50, 47)));
+            themeColorList.Add(new ListPickerItem<Color>("Magenta", Color.FromArgb(255, 211, 54, 130)));
+            themeColorList.Add(new ListPickerItem<Color>("Violet", Color.FromArgb(255, 108, 113, 196)));
+            themeColorList.Add(new ListPickerItem<Color>("Blue", Color.FromArgb(255, 38, 139, 210)));
+            themeColorList.Add(new ListPickerItem<Color>("Cyan", Color.FromArgb(255, 42, 161, 152)));
+            themeColorList.Add(new ListPickerItem<Color>("Green", Color.FromArgb(255, 133, 153, 0)));
+            ThemeColorListPicker.ItemsSource = themeColorList;
+            int themeColorIndex = themeColorList.FindIndex(item => item.Value == ThemeHelper.ThemeColor);
+            ThemeColorListPicker.SelectedIndex = (themeColorIndex == -1 ? 1 : themeColorIndex);
+
             _isSetThemeListPicker = true;
-            Debug.WriteLine("> Theme {0}", ThemeHelper.Theme);
         }
 
         #region Pin Tile
@@ -183,14 +198,32 @@ namespace SimpleTasks.Views
 
         private void ThemeListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!_isSetThemeListPicker)
-                return;
-
             ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
             if (item != null)
             {
-                ThemeHelper.Theme = item.Value;
-                Debug.WriteLine("Save to {0}", item.Value);
+                ThemeColorPanel.Visibility = (item.Value == Theme.Solarized ? Visibility.Visible : Visibility.Collapsed);
+                if (_isSetThemeListPicker)
+                {
+                    ThemeHelper.Theme = item.Value;
+                    Toast.Show(AppResources.SettingsThemeNote);
+                }
+            }
+            else
+            {
+                ThemeColorPanel.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ThemeColorListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_isSetThemeListPicker)
+            {
+                ListPickerItem<Color> item = ThemeColorListPicker.SelectedItem as ListPickerItem<Color>;
+                if (item != null)
+                {
+                    ThemeHelper.ThemeColor = item.Value;
+                    Toast.Show(AppResources.SettingsThemeNote);
+                }
             }
         }
         #endregion // end of Theme

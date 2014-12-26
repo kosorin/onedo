@@ -218,8 +218,31 @@
                                              Foreground="{StaticResource SlightBrush}"
                                              Background="{StaticResource ButtonBackgroundBrush}"
                                              SelectionChanged="ThemeListPicker_SelectionChanged" />
-                        <TextBlock Text="{Binding LocalizedResources.SettingsThemeNote, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource HelpTextStyle}" />
+
+                        <!--Theme Color-->
+                        <StackPanel x:Name="ThemeColorPanel">
+                            <TextBlock Style="{StaticResource LabelTextStyle}"
+                                       Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                            <controls:ListPicker x:Name="ThemeColorListPicker"
+                                                 Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                 Background="{StaticResource ButtonBackgroundBrush}"
+                                                 SelectionChanged="ThemeColorListPicker_SelectionChanged">
+                                <controls:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Height="60"
+                                                Margin="-8,-10"
+                                                Padding="10,0">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{Binding Value}" />
+                                            </Border.Background>
+                                            <TextBlock Text="{Binding Label}"
+                                                       Style="{StaticResource ButtonTextStyle}"
+                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                        </Border>
+                                    </DataTemplate>
+                                </controls:ListPicker.ItemTemplate>
+                            </controls:ListPicker>
+                        </StackPanel>
 
                         <!--Vibrate-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
@@ -256,6 +279,10 @@
             </phone:PivotItem>
 
         </phone:Pivot>
+
+        <!--Toast-->
+        <controls:ToastPrompt x:Name="Toast"
+                              Canvas.ZIndex="1" />
     </Grid>
 
 </controls:BasePage>

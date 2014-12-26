@@ -764,4 +764,7 @@ It's still in beta.</value>
   <data name="ToastNotice" xml:space="preserve">
     <value>Notice</value>
   </data>
+  <data name="SettingsThemeColor" xml:space="preserve">
+    <value>accent color</value>
+  </data>
 </root>

@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace SimpleTasks.Controls
 {
@@ -75,7 +76,7 @@ namespace SimpleTasks.Controls
             DependencyProperty.Register("ShowTitle", typeof(bool), typeof(ToastPrompt), new PropertyMetadata(false));
         #endregion // end of ShowTitle
 
-        #region TextHAlignment 
+        #region TextHAlignment
         public HorizontalAlignment TextHAlignment
         {
             get { return (HorizontalAlignment)GetValue(TextHAlignmentProperty); }
@@ -133,7 +134,6 @@ namespace SimpleTasks.Controls
         #endregion
 
         #region Height
-
         public int InvertedHeight
         {
             get
@@ -145,16 +145,11 @@ namespace SimpleTasks.Controls
         public new int Height
         {
             get { return (int)GetValue(HeightProperty); }
-            set
-            {
-                SetValue(HeightProperty, value);
-                //PropertyChanged(this, new PropertyChangedEventArgs("InvertedHeight"));
-            }
+            set { SetValue(HeightProperty, value); }
         }
 
         public new static readonly DependencyProperty HeightProperty =
             DependencyProperty.Register("Height", typeof(int), typeof(ToastPrompt), new PropertyMetadata(50));
-
         #endregion
 
         #region Title
@@ -207,6 +202,7 @@ namespace SimpleTasks.Controls
                 _timer.Stop();
                 _timer = null;
             }
+
             UpdateVisualStates(States.Opened, true);
 
             _timer = new DispatcherTimer { Interval = _interval };
@@ -241,7 +237,7 @@ namespace SimpleTasks.Controls
             };
         }
 
-        private void SbCompleted(object sender, EventArgs e)
+        private void CloseStoryboard_Completed(object sender, EventArgs e)
         {
             // Force the property to be changed even if the user don't change the message value
             // It's done in this callback to avoid text disappear (set to empty) before the closing animation is completed

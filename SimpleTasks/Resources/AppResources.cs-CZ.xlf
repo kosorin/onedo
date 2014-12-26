@@ -540,6 +540,10 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>Notice</source>
           <target state="signed-off">Upozornění</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
+          <source>accent color</source>
+          <target state="new">accent color</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="signed-off">Dokončené úkoly byly smazány.</target>
