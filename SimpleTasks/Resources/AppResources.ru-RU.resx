@@ -125,187 +125,641 @@
     <value>ru-RU</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ChangelogFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Changelog.txt;System.String, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e;windows-1250</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-<data name="AppBarNew" xml:space="preserve"><value>новая задача</value><comment>new task</comment></data><data name="AppBarAbout" xml:space="preserve"><value>о приложении</value></data><data name="AppBarSave" xml:space="preserve"><value>сохранить</value><comment>save task</comment></data><data name="ChooseDate" xml:space="preserve"><value>ВЫБЕРИТЕ ДАТУ</value></data><data name="DateCustomDue" xml:space="preserve"><value>дата по умолчанию</value></data><data name="DateLater" xml:space="preserve"><value>позднее</value></data><data name="DateNextMonth" xml:space="preserve"><value>следующий месяц</value></data><data name="DateNextWeek" xml:space="preserve"><value>следующая неделя</value></data><data name="DateNoDue" xml:space="preserve"><value>нет даты</value></data><data name="DateOverdue" xml:space="preserve"><value>прошедшие</value></data><data name="DateThisMonth" xml:space="preserve"><value>этот месяц</value></data><data name="DateThisWeek" xml:space="preserve"><value>эта неделя</value></data><data name="DateToday" xml:space="preserve"><value>сегодня</value></data><data name="DateTomorrow" xml:space="preserve"><value>завтра</value></data><data name="NoTasks" xml:space="preserve"><value>Нет Задач</value></data><data name="PriorityHigh" xml:space="preserve"><value>высокий приоритет</value></data><data name="PriorityNormal" xml:space="preserve"><value>нормальный приоритет</value></data><data name="AppBarComplete" xml:space="preserve"><value>завершить</value><comment>complete task</comment></data><data name="PeriodicTaskDescription" xml:space="preserve"><value>Обновление живой плитки.</value><comment>Info about background task agent</comment></data><data name="AppBarActivate" xml:space="preserve"><value>сделать активной</value><comment>activate task</comment></data><data name="AppBarDeleteCompleted" xml:space="preserve"><value>удалить выполненные задачи</value></data><data name="AppBarDelete" xml:space="preserve"><value>удалить</value><comment>delete task</comment></data><data name="AppBarSettings" xml:space="preserve"><value>настройки</value></data><data name="DateCompleted" xml:space="preserve"><value>выполненные</value><comment>completed tasks</comment></data><data name="DeleteTaskCaption" xml:space="preserve"><value>Удалить задачу</value></data><data name="DeleteTask" xml:space="preserve"><value>Вы уверены, что хотите удалить эту задачу?</value></data><data name="DeleteTaskYes" xml:space="preserve"><value>удалить</value><comment>delete confirmation</comment></data><data name="DeleteTaskNo" xml:space="preserve"><value>отменить</value><comment>cancel delete confirmation</comment></data><data name="AboutContactUs" xml:space="preserve"><value>связаться с нами</value><comment>AboutPage; AppBar</comment></data><data name="AboutRateReview" xml:space="preserve"><value>оценки и отзывы</value><comment>AboutPage; AppBar</comment></data><data name="SettingsDefaultDate" xml:space="preserve"><value>День по умолчанию</value></data><data name="SettingsDeleteAfterOneDay" xml:space="preserve"><value>через 1 день</value></data><data name="SettingsDeleteAfterOneWeek" xml:space="preserve"><value>через 1 неделю</value></data><data name="SettingsDeleteAfterThreeDays" xml:space="preserve"><value>через 3 дня</value></data><data name="SettingsDeleteAfterTwoDays" xml:space="preserve"><value>через 2 дня</value></data><data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve"><value>через 2 недели</value></data><data name="SettingsDeleteCompletedTasks" xml:space="preserve"><value>удалить выполненные задачи</value></data><data name="SettingsDeleteCompletedTasksDays" xml:space="preserve"><value>Удалить в</value></data><data name="SettingsFirstDayOfWeek" xml:space="preserve"><value>Первый день недели</value></data><data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve"><value>выберите первый день недели</value></data><data name="SettingsGeneral" xml:space="preserve"><value>общие</value><comment>general pivot in settings</comment></data><data name="SettingsTitle" xml:space="preserve"><value>НАСТРОЙКИ</value></data><data name="AppBarPinTile" xml:space="preserve"><value>закрепить тайл</value></data><data name="AppBarUnpinTile" xml:space="preserve"><value>открепить тайл</value></data><data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve"><value>Задачи всегда автоматически удаляются, когда приложение открывается.</value></data><data name="AboutEmailSubject" xml:space="preserve"><value>Обратная связь для {0} {1}</value><comment>Feedback for {AppliactionName} {Version}</comment></data><data name="AboutVersion" xml:space="preserve"><value>Версия</value></data><data name="DueDate" xml:space="preserve"><value>срок</value></data><data name="PriorityLow" xml:space="preserve"><value>низкий приоритет</value></data><data name="Reminder" xml:space="preserve"><value>напоминание</value></data><data name="SettingsDefaultTime" xml:space="preserve"><value>Время по умолчанию </value></data><data name="AppBarOk" xml:space="preserve"><value>ок</value></data><data name="AppBarDeleteAll" xml:space="preserve"><value>удалить все задачи</value></data><data name="DeleteAllTasks" xml:space="preserve"><value>Вы уверены, что хотите удалить все задачи?</value></data><data name="DeleteAllTasksCaption" xml:space="preserve"><value>Удалить все задачи</value></data><data name="DateSomeday" xml:space="preserve"><value>неопределённый день</value></data><data name="DateUpcoming" xml:space="preserve"><value>предстоящие</value></data><data name="SettingsPinTile" xml:space="preserve"><value>В списке приложений зажмите иконку {0}, выберите - закрепить на начальный экран.</value><comment>{0} is application name</comment></data><data name="AppBarCancel" xml:space="preserve"><value>отменить</value></data><data name="SettingsEnableTile" xml:space="preserve"><value>Включить тайл</value></data><data name="SettingsTile" xml:space="preserve"><value>тайлы</value></data><data name="SettingsDeleteNever" xml:space="preserve"><value>никогда</value></data><data name="SettingsDeleteWhenStarts" xml:space="preserve"><value>при закрытии приложения</value></data><data name="Detail" xml:space="preserve"><value>Подробнее</value></data><data name="Title" xml:space="preserve"><value>Заголовок</value></data><data name="AppBarPin" xml:space="preserve"><value>закрепить</value></data><data name="AppBarUnpin" xml:space="preserve"><value>открепить</value></data><data name="AppBarDone" xml:space="preserve"><value>готово</value></data><data name="ChooseReminderTime" xml:space="preserve"><value>ВЫБЕРИТЕ НАПОМИНАНИЕ</value></data><data name="SettingsUnpinCompleted" xml:space="preserve"><value>Открепить тайл после завершения задачи</value></data><data name="AppBarAddBullet" xml:space="preserve"><value>добавить подпункт</value></data><data name="BulletText" xml:space="preserve"><value>подпункт</value></data><data name="Changelog" xml:space="preserve"><value>список изменений</value></data><data name="ChooseTime" xml:space="preserve"><value>ВЫБЕРИТЕ ВРЕМЯ</value></data><data name="TimeAfternoon" xml:space="preserve"><value>день</value><comment>3 PM (15:00)</comment></data><data name="TimeEvening" xml:space="preserve"><value>вечер</value><comment>7 PM (19:00)</comment></data><data name="TimeLateMorning" xml:space="preserve"><value>позднее утро</value><comment>10 AM (10:00)</comment></data><data name="TimeMorning" xml:space="preserve"><value>утро</value><comment>7 AM (7:00)</comment></data><data name="TimeNight" xml:space="preserve"><value>ночь</value><comment>10 PM (22:00)</comment></data><data name="TimeNoon" xml:space="preserve"><value>полдень</value><comment>12 PM (12:00)</comment></data><data name="NoReminder" xml:space="preserve"><value>не напоминать</value></data><data name="DaysLabel" xml:space="preserve"><value>дни</value></data><data name="HoursLabel" xml:space="preserve"><value>часы</value></data><data name="MinutesLabel" xml:space="preserve"><value>минуты</value></data><data name="DateLastMonth" xml:space="preserve"><value>прошлый месяц</value></data><data name="DateLastWeek" xml:space="preserve"><value>прошлая неделя</value></data><data name="DateYesterday" xml:space="preserve"><value>вчера</value></data><data name="DateTimeDaysAbbr" xml:space="preserve"><value>д</value><comment>1 letter abbreviation for days</comment></data><data name="DateTimeHoursAbbr" xml:space="preserve"><value>ч</value><comment>1 letter abbreviation for hours</comment></data><data name="DateTimeMinutesAbbr" xml:space="preserve"><value>м</value><comment>1 letter abbreviation for minutes</comment></data><data name="QuickAddLabel" xml:space="preserve"><value>Добавить новую задачу</value></data><data name="ReminderBeforeDueDateText" xml:space="preserve"><value>до события</value></data><data name="Time15mins" xml:space="preserve"><value>15 минут</value></data><data name="Time18hours" xml:space="preserve"><value>18 часов</value></data><data name="Time1day" xml:space="preserve"><value>1 день</value></data><data name="Time1hour" xml:space="preserve"><value>1 час</value></data><data name="Time1week" xml:space="preserve"><value>1 неделя</value></data><data name="Time30mins" xml:space="preserve"><value>30 минут</value></data><data name="Time5mins" xml:space="preserve"><value>5 минут</value></data><data name="TimeZero" xml:space="preserve"><value>точно в срок</value></data><data name="Days1" xml:space="preserve"><value>{0} день</value><comment>1 day</comment></data><data name="Days2To4" xml:space="preserve"><value>{0} дня</value><comment>2-4 days</comment></data><data name="Days5AndMore" xml:space="preserve"><value>{0} дней</value><comment>5+ days</comment></data><data name="Hours1" xml:space="preserve"><value>{0} час</value><comment>1 hour</comment></data><data name="Hours2To4" xml:space="preserve"><value>{0} часа</value><comment>2-4 hours</comment></data><data name="Hours5AndMore" xml:space="preserve"><value>{0} часов</value><comment>5+ hours</comment></data><data name="Minutes1" xml:space="preserve"><value>{0} минута</value><comment>1 minute</comment></data><data name="Minutes2To4" xml:space="preserve"><value>{0} минуты</value><comment>2-4 minutes</comment></data><data name="Minutes5AndMore" xml:space="preserve"><value>{0} минут</value><comment>5+ minutes</comment></data><data name="Weeks1" xml:space="preserve"><value>{0} неделя</value><comment>1 week</comment></data><data name="Weeks2To4" xml:space="preserve"><value>{0} недели</value><comment>2-4 weeks</comment></data><data name="WhatsNew" xml:space="preserve"><value>Что нового</value></data><data name="Months1" xml:space="preserve"><value>{0} месяц</value><comment>1 month</comment></data><data name="Months2To4" xml:space="preserve"><value>{0} месяца</value><comment>2-4 months</comment></data><data name="AppBarAddSubtask" xml:space="preserve"><value>добавить</value></data><data name="SubtaskAdd" xml:space="preserve"><value>Добавить подзадачу</value></data><data name="SubtasksText" xml:space="preserve"><value>подзадачи</value></data><data name="SubtaskText" xml:space="preserve"><value>подзадача</value></data><data name="TaskText" xml:space="preserve"><value>задача</value></data><data name="AppBarCompleteAllSubtasks" xml:space="preserve"><value>завершить все</value></data><data name="NoTasksHelpEnd" xml:space="preserve"><value>или используйте строку ввода ниже, чтобы добавить задачу.</value><comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment></data><data name="NoTasksHelpStart" xml:space="preserve"><value>Нажмите</value><comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment></data><data name="NoSubtasks" xml:space="preserve"><value>Нет Подзадач</value></data><data name="TasksText" xml:space="preserve"><value>задачи</value></data><data name="SettingsCompleteSubtasks" xml:space="preserve"><value>Автоматически завершать подзадачи</value></data><data name="SettingsCompleteSubtasksDetail" xml:space="preserve"><value>Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</value></data><data name="SettingsVibrate" xml:space="preserve"><value>Вибрация</value></data><data name="AppBarDeleteAllSubtasks" xml:space="preserve"><value>удалить все</value></data><data name="TileSettingsHideDate" xml:space="preserve"><value>скрыть дату</value></data><data name="TileSettingsHideTitle" xml:space="preserve"><value>скрыть заголовок</value></data><data name="TileSettingsShowCompletedSubtasks" xml:space="preserve"><value>показать завершенные задачи</value></data><data name="TileSettingsTitleOnOneLine" xml:space="preserve"><value>заголовок одной строкой</value></data><data name="TileSettingsBackgroundOpacity" xml:space="preserve"><value>прозрачность фона</value></data><data name="TileSettingsLineHeight" xml:space="preserve"><value>размер шрифта</value></data><data name="TileSettingsPreview" xml:space="preserve"><value>предпросмотр</value></data><data name="AppBarTileSettings" xml:space="preserve"><value>настройки тайла</value></data><data name="TitleUntitled" xml:space="preserve"><value>Без названия</value></data><data name="SettingsFeedback" xml:space="preserve"><value>сбор статистики</value></data><data name="SettingsFeedbackHelp" xml:space="preserve"><value>Отправлять анонимные данные об использовании приложения в целях улучшения его качества. Статистика помогает разработчику выявить и выделить наиболее часто используемые функции приложения. Никакие личные данные не собираются.</value></data><data name="EditText" xml:space="preserve"><value>Изменить</value></data><data name="SettingsDefaultTaskTileSettings" xml:space="preserve"><value>Настройки по умолчанию для тайла задач</value></data><data name="SettingsHideTaskCheckBox" xml:space="preserve"><value>Скрыть флажок для задачи</value></data><data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve"><value>Вы можете вместо этого использовать свайп влево на задаче,чтобы ее завершить.</value></data><data name="BackupAndRestoreTitle" xml:space="preserve"><value>копия &amp; восстановление</value></data><data name="BackupText" xml:space="preserve"><value>Копия</value></data><data name="RestoreText" xml:space="preserve"><value>Восстановление</value></data><data name="SignIn" xml:space="preserve"><value>Вход</value></data><data name="SignOut" xml:space="preserve"><value>Выход</value></data><data name="SigningIn" xml:space="preserve"><value>Вход</value></data><data name="BackingUp" xml:space="preserve"><value>Резервное копирование</value></data><data name="Restoring" xml:space="preserve"><value>Восстановление</value></data><data name="SelectBackup" xml:space="preserve"><value>выберите копию для восстановления</value></data><data name="BackupDownloadingList" xml:space="preserve"><value>Загрузка списка резервных копий</value></data><data name="NoBackups" xml:space="preserve"><value>Нет резервных копий</value></data><data name="UnknownError" xml:space="preserve"><value>Неизвестная ошибка.</value></data><data name="SignedInNo" xml:space="preserve"><value>Вы не вошли в OneDrive.</value></data><data name="SignedInYes" xml:space="preserve"><value>Вы вошли как {0}.</value><comment>{0} is user name</comment></data><data name="BackupLatest" xml:space="preserve"><value>последняя</value></data><data name="RestoreWhatText" xml:space="preserve"><value>выберите объекты для восстановления</value></data><data name="BackupAndRestoreHelpText" xml:space="preserve"><value>Резервное копирование создаст новую папку "{0}". Вы можете перемещать папку, но, пожалуйста, не переименовывайте её. Также не стоит трогать файлы внутри этой папки. Это всё ещё BETA-версия функции.</value></data><data name="RestoreOk" xml:space="preserve"><value>Успешное восстановление.</value></data><data name="BackupOk" xml:space="preserve"><value>Успешное резервное копирование.</value></data><data name="SettingsShowTaskCount" xml:space="preserve"><value>показать количество задач</value></data><data name="SettingsSwapDateAndTitle" xml:space="preserve"><value>название и дата на большом тайле рядом </value></data><data name="SettingsShowQuickAddTextBox" xml:space="preserve"><value>показывать строку добавления задачи на главной странице приложения</value></data><data name="TileForQuickAddLabel" xml:space="preserve"><value>тайл быстрого добавления задачи</value></data><data name="TileForQuickAddPinButton" xml:space="preserve"><value>закрепить на рабочем столе</value></data><data name="TileForQuickAddUnpinButton" xml:space="preserve"><value>открепить</value></data><data name="QuickAddTileTitle" xml:space="preserve"><value>Новая задача</value></data><data name="SettingsShowTaskCountHelp" xml:space="preserve"><value>Если не включено, показывать список задач на маленьком тайле вместо количества задач.</value></data><data name="ChangelogShow" xml:space="preserve"><value>Показать список изменений</value></data><data name="VersionFormat" xml:space="preserve"><value>Версия {0}</value><comment>Version {VersionNumber}</comment></data><data name="AboutTranslation" xml:space="preserve"><value>Перевод</value></data><data name="AboutAuthor" xml:space="preserve"><value>Автор</value></data><data name="SettingsThemeTitle" xml:space="preserve"><value>тема</value></data><data name="SettingsThemeSystem" xml:space="preserve"><value>системная ({0})</value><comment>{0} will be replaced with dark or light</comment></data><data name="SettingsThemeNote" xml:space="preserve"><value>Требуется перезапуск приложения, чтобы эта настройка вступила в силу.</value></data><data name="SettingsThemeLight" xml:space="preserve"><value>светлая</value></data><data name="SettingsThemeDark" xml:space="preserve"><value>тёмная</value></data><data name="SettingsSwipeRight" xml:space="preserve"><value>Действие свайпом вправо</value></data><data name="GestureActionPostponeWeek" xml:space="preserve"><value>отложить на: 1 неделю</value></data><data name="GestureActionPostponeDay" xml:space="preserve"><value>отложить на: 1 день</value></data><data name="ToastTaskDeleted" xml:space="preserve"><value>Задача удалена.</value></data><data name="ToastWarning" xml:space="preserve"><value>Предупреждение</value></data><data name="ToastNotice" xml:space="preserve"><value>Уведомление</value></data><data name="ToastCompletedTasksDeleted" xml:space="preserve"><value>Выполенные задачи удалены.</value></data><data name="ToastPostponedUntil" xml:space="preserve"><value>Отложено до {0:ddd}, {0:d}</value><comment>{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</comment></data><data name="ToastReminderOff" xml:space="preserve"><value>Напоминание выключено!</value></data><data name="ToastSubtaskDeleted" xml:space="preserve"><value>Подзадача удалена.</value></data><data name="ToastAllTasksDeleted" xml:space="preserve"><value>Все задачи удалены.</value></data><data name="SettingsSwipeLeft" xml:space="preserve"><value>Действие свайпом влево</value></data><data name="GestureActionReminder" xml:space="preserve"><value>установить напоминание</value></data><data name="GestureActionNone" xml:space="preserve"><value>нет действия</value></data><data name="GestureActionDueTomorrow" xml:space="preserve"><value>установить на: Завтра</value></data><data name="GestureActionDueToday" xml:space="preserve"><value>установить на: Сегодня</value></data><data name="GestureActionDelete" xml:space="preserve"><value>удалить задачу/подзадачу</value></data><data name="GestureActionComplete" xml:space="preserve"><value>завершить задачу/подзадачу</value></data></root>
+  <data name="AppBarNew" xml:space="preserve">
+    <value>новая задача</value>
+    <comment>new task</comment>
+  </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>о приложении</value>
+  </data>
+  <data name="AppBarSave" xml:space="preserve">
+    <value>сохранить</value>
+    <comment>save task</comment>
+  </data>
+  <data name="ChooseDate" xml:space="preserve">
+    <value>ВЫБЕРИТЕ ДАТУ</value>
+  </data>
+  <data name="DateCustomDue" xml:space="preserve">
+    <value>дата по умолчанию</value>
+  </data>
+  <data name="DateLater" xml:space="preserve">
+    <value>позднее</value>
+  </data>
+  <data name="DateNextMonth" xml:space="preserve">
+    <value>следующий месяц</value>
+  </data>
+  <data name="DateNextWeek" xml:space="preserve">
+    <value>следующая неделя</value>
+  </data>
+  <data name="DateNoDue" xml:space="preserve">
+    <value>нет даты</value>
+  </data>
+  <data name="DateOverdue" xml:space="preserve">
+    <value>прошедшие</value>
+  </data>
+  <data name="DateThisMonth" xml:space="preserve">
+    <value>этот месяц</value>
+  </data>
+  <data name="DateThisWeek" xml:space="preserve">
+    <value>эта неделя</value>
+  </data>
+  <data name="DateToday" xml:space="preserve">
+    <value>сегодня</value>
+  </data>
+  <data name="DateTomorrow" xml:space="preserve">
+    <value>завтра</value>
+  </data>
+  <data name="NoTasks" xml:space="preserve">
+    <value>Нет Задач</value>
+  </data>
+  <data name="PriorityHigh" xml:space="preserve">
+    <value>высокий приоритет</value>
+  </data>
+  <data name="PriorityNormal" xml:space="preserve">
+    <value>нормальный приоритет</value>
+  </data>
+  <data name="AppBarComplete" xml:space="preserve">
+    <value>завершить</value>
+    <comment>complete task</comment>
+  </data>
+  <data name="PeriodicTaskDescription" xml:space="preserve">
+    <value>Обновление живой плитки.</value>
+    <comment>Info about background task agent</comment>
+  </data>
+  <data name="AppBarActivate" xml:space="preserve">
+    <value>сделать активной</value>
+    <comment>activate task</comment>
+  </data>
+  <data name="AppBarDeleteCompleted" xml:space="preserve">
+    <value>удалить выполненные задачи</value>
+  </data>
+  <data name="AppBarDelete" xml:space="preserve">
+    <value>удалить</value>
+    <comment>delete task</comment>
+  </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>настройки</value>
+  </data>
+  <data name="DateCompleted" xml:space="preserve">
+    <value>выполненные</value>
+    <comment>completed tasks</comment>
+  </data>
+  <data name="DeleteTaskCaption" xml:space="preserve">
+    <value>Удалить задачу</value>
+  </data>
+  <data name="DeleteTask" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить эту задачу?</value>
+  </data>
+  <data name="DeleteTaskYes" xml:space="preserve">
+    <value>удалить</value>
+    <comment>delete confirmation</comment>
+  </data>
+  <data name="DeleteTaskNo" xml:space="preserve">
+    <value>отменить</value>
+    <comment>cancel delete confirmation</comment>
+  </data>
+  <data name="AboutContactUs" xml:space="preserve">
+    <value>связаться с нами</value>
+    <comment>AboutPage; AppBar</comment>
+  </data>
+  <data name="AboutRateReview" xml:space="preserve">
+    <value>оценки и отзывы</value>
+    <comment>AboutPage; AppBar</comment>
+  </data>
+  <data name="SettingsDefaultDate" xml:space="preserve">
+    <value>День по умолчанию</value>
+  </data>
+  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
+    <value>через 1 день</value>
+  </data>
+  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
+    <value>через 1 неделю</value>
+  </data>
+  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
+    <value>через 3 дня</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
+    <value>через 2 дня</value>
+  </data>
+  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
+    <value>через 2 недели</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
+    <value>удалить выполненные задачи</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
+    <value>Удалить в</value>
+  </data>
+  <data name="SettingsFirstDayOfWeek" xml:space="preserve">
+    <value>Первый день недели</value>
+  </data>
+  <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
+    <value>выберите первый день недели</value>
+  </data>
+  <data name="SettingsGeneral" xml:space="preserve">
+    <value>общие</value>
+    <comment>general pivot in settings</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>НАСТРОЙКИ</value>
+  </data>
+  <data name="AppBarPinTile" xml:space="preserve">
+    <value>закрепить тайл</value>
+  </data>
+  <data name="AppBarUnpinTile" xml:space="preserve">
+    <value>открепить тайл</value>
+  </data>
+  <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
+    <value>Задачи всегда автоматически удаляются, когда приложение открывается.</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Обратная связь для {0} {1}</value>
+    <comment>Feedback for {AppliactionName} {Version}</comment>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="DueDate" xml:space="preserve">
+    <value>срок</value>
+  </data>
+  <data name="PriorityLow" xml:space="preserve">
+    <value>низкий приоритет</value>
+  </data>
+  <data name="Reminder" xml:space="preserve">
+    <value>напоминание</value>
+  </data>
+  <data name="SettingsDefaultTime" xml:space="preserve">
+    <value>Время по умолчанию </value>
+  </data>
+  <data name="AppBarOk" xml:space="preserve">
+    <value>ок</value>
+  </data>
+  <data name="AppBarDeleteAll" xml:space="preserve">
+    <value>удалить все задачи</value>
+  </data>
+  <data name="DeleteAllTasks" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить все задачи?</value>
+  </data>
+  <data name="DeleteAllTasksCaption" xml:space="preserve">
+    <value>Удалить все задачи</value>
+  </data>
+  <data name="DateSomeday" xml:space="preserve">
+    <value>неопределённый день</value>
+  </data>
+  <data name="DateUpcoming" xml:space="preserve">
+    <value>предстоящие</value>
+  </data>
+  <data name="SettingsPinTile" xml:space="preserve">
+    <value>В списке приложений зажмите иконку {0}, выберите - закрепить на начальный экран.</value>
+    <comment>{0} is application name</comment>
+  </data>
+  <data name="AppBarCancel" xml:space="preserve">
+    <value>отменить</value>
+  </data>
+  <data name="SettingsEnableTile" xml:space="preserve">
+    <value>Включить тайл</value>
+  </data>
+  <data name="SettingsTile" xml:space="preserve">
+    <value>тайлы</value>
+  </data>
+  <data name="SettingsDeleteNever" xml:space="preserve">
+    <value>никогда</value>
+  </data>
+  <data name="SettingsDeleteWhenStarts" xml:space="preserve">
+    <value>при закрытии приложения</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="AppBarPin" xml:space="preserve">
+    <value>закрепить</value>
+  </data>
+  <data name="AppBarUnpin" xml:space="preserve">
+    <value>открепить</value>
+  </data>
+  <data name="AppBarDone" xml:space="preserve">
+    <value>готово</value>
+  </data>
+  <data name="ChooseReminderTime" xml:space="preserve">
+    <value>ВЫБЕРИТЕ НАПОМИНАНИЕ</value>
+  </data>
+  <data name="SettingsUnpinCompleted" xml:space="preserve">
+    <value>Открепить тайл после завершения задачи</value>
+  </data>
+  <data name="AppBarAddBullet" xml:space="preserve">
+    <value>добавить подпункт</value>
+  </data>
+  <data name="BulletText" xml:space="preserve">
+    <value>подпункт</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>список изменений</value>
+  </data>
+  <data name="ChooseTime" xml:space="preserve">
+    <value>ВЫБЕРИТЕ ВРЕМЯ</value>
+  </data>
+  <data name="TimeAfternoon" xml:space="preserve">
+    <value>день</value>
+    <comment>3 PM (15:00)</comment>
+  </data>
+  <data name="TimeEvening" xml:space="preserve">
+    <value>вечер</value>
+    <comment>7 PM (19:00)</comment>
+  </data>
+  <data name="TimeLateMorning" xml:space="preserve">
+    <value>позднее утро</value>
+    <comment>10 AM (10:00)</comment>
+  </data>
+  <data name="TimeMorning" xml:space="preserve">
+    <value>утро</value>
+    <comment>7 AM (7:00)</comment>
+  </data>
+  <data name="TimeNight" xml:space="preserve">
+    <value>ночь</value>
+    <comment>10 PM (22:00)</comment>
+  </data>
+  <data name="TimeNoon" xml:space="preserve">
+    <value>полдень</value>
+    <comment>12 PM (12:00)</comment>
+  </data>
+  <data name="NoReminder" xml:space="preserve">
+    <value>не напоминать</value>
+  </data>
+  <data name="DaysLabel" xml:space="preserve">
+    <value>дни</value>
+  </data>
+  <data name="HoursLabel" xml:space="preserve">
+    <value>часы</value>
+  </data>
+  <data name="MinutesLabel" xml:space="preserve">
+    <value>минуты</value>
+  </data>
+  <data name="DateLastMonth" xml:space="preserve">
+    <value>прошлый месяц</value>
+  </data>
+  <data name="DateLastWeek" xml:space="preserve">
+    <value>прошлая неделя</value>
+  </data>
+  <data name="DateYesterday" xml:space="preserve">
+    <value>вчера</value>
+  </data>
+  <data name="DateTimeDaysAbbr" xml:space="preserve">
+    <value>д</value>
+    <comment>1 letter abbreviation for days</comment>
+  </data>
+  <data name="DateTimeHoursAbbr" xml:space="preserve">
+    <value>ч</value>
+    <comment>1 letter abbreviation for hours</comment>
+  </data>
+  <data name="DateTimeMinutesAbbr" xml:space="preserve">
+    <value>м</value>
+    <comment>1 letter abbreviation for minutes</comment>
+  </data>
+  <data name="QuickAddLabel" xml:space="preserve">
+    <value>Добавить новую задачу</value>
+  </data>
+  <data name="ReminderBeforeDueDateText" xml:space="preserve">
+    <value>до события</value>
+  </data>
+  <data name="Time15mins" xml:space="preserve">
+    <value>15 минут</value>
+  </data>
+  <data name="Time18hours" xml:space="preserve">
+    <value>18 часов</value>
+  </data>
+  <data name="Time1day" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="Time1hour" xml:space="preserve">
+    <value>1 час</value>
+  </data>
+  <data name="Time1week" xml:space="preserve">
+    <value>1 неделя</value>
+  </data>
+  <data name="Time30mins" xml:space="preserve">
+    <value>30 минут</value>
+  </data>
+  <data name="Time5mins" xml:space="preserve">
+    <value>5 минут</value>
+  </data>
+  <data name="TimeZero" xml:space="preserve">
+    <value>точно в срок</value>
+  </data>
+  <data name="Days1" xml:space="preserve">
+    <value>{0} день</value>
+    <comment>1 day</comment>
+  </data>
+  <data name="Days2To4" xml:space="preserve">
+    <value>{0} дня</value>
+    <comment>2-4 days</comment>
+  </data>
+  <data name="Days5AndMore" xml:space="preserve">
+    <value>{0} дней</value>
+    <comment>5+ days</comment>
+  </data>
+  <data name="Hours1" xml:space="preserve">
+    <value>{0} час</value>
+    <comment>1 hour</comment>
+  </data>
+  <data name="Hours2To4" xml:space="preserve">
+    <value>{0} часа</value>
+    <comment>2-4 hours</comment>
+  </data>
+  <data name="Hours5AndMore" xml:space="preserve">
+    <value>{0} часов</value>
+    <comment>5+ hours</comment>
+  </data>
+  <data name="Minutes1" xml:space="preserve">
+    <value>{0} минута</value>
+    <comment>1 minute</comment>
+  </data>
+  <data name="Minutes2To4" xml:space="preserve">
+    <value>{0} минуты</value>
+    <comment>2-4 minutes</comment>
+  </data>
+  <data name="Minutes5AndMore" xml:space="preserve">
+    <value>{0} минут</value>
+    <comment>5+ minutes</comment>
+  </data>
+  <data name="Weeks1" xml:space="preserve">
+    <value>{0} неделя</value>
+    <comment>1 week</comment>
+  </data>
+  <data name="Weeks2To4" xml:space="preserve">
+    <value>{0} недели</value>
+    <comment>2-4 weeks</comment>
+  </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Что нового</value>
+  </data>
+  <data name="Months1" xml:space="preserve">
+    <value>{0} месяц</value>
+    <comment>1 month</comment>
+  </data>
+  <data name="Months2To4" xml:space="preserve">
+    <value>{0} месяца</value>
+    <comment>2-4 months</comment>
+  </data>
+  <data name="AppBarAddSubtask" xml:space="preserve">
+    <value>добавить</value>
+  </data>
+  <data name="SubtaskAdd" xml:space="preserve">
+    <value>Добавить подзадачу</value>
+  </data>
+  <data name="SubtasksText" xml:space="preserve">
+    <value>подзадачи</value>
+  </data>
+  <data name="SubtaskText" xml:space="preserve">
+    <value>подзадача</value>
+  </data>
+  <data name="TaskText" xml:space="preserve">
+    <value>задача</value>
+  </data>
+  <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
+    <value>завершить все</value>
+  </data>
+  <data name="NoTasksHelpEnd" xml:space="preserve">
+    <value>или используйте строку ввода ниже, чтобы добавить задачу.</value>
+    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+  </data>
+  <data name="NoTasksHelpStart" xml:space="preserve">
+    <value>Нажмите</value>
+    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+  </data>
+  <data name="NoSubtasks" xml:space="preserve">
+    <value>Нет Подзадач</value>
+  </data>
+  <data name="TasksText" xml:space="preserve">
+    <value>задачи</value>
+  </data>
+  <data name="SettingsCompleteSubtasks" xml:space="preserve">
+    <value>Автоматически завершать подзадачи</value>
+  </data>
+  <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
+    <value>Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</value>
+  </data>
+  <data name="SettingsVibrate" xml:space="preserve">
+    <value>Вибрация</value>
+  </data>
+  <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
+    <value>удалить все</value>
+  </data>
+  <data name="TileSettingsHideDate" xml:space="preserve">
+    <value>скрыть дату</value>
+  </data>
+  <data name="TileSettingsHideTitle" xml:space="preserve">
+    <value>скрыть заголовок</value>
+  </data>
+  <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
+    <value>показать завершенные задачи</value>
+  </data>
+  <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
+    <value>заголовок одной строкой</value>
+  </data>
+  <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
+    <value>прозрачность фона</value>
+  </data>
+  <data name="TileSettingsLineHeight" xml:space="preserve">
+    <value>размер шрифта</value>
+  </data>
+  <data name="TileSettingsPreview" xml:space="preserve">
+    <value>предпросмотр</value>
+  </data>
+  <data name="AppBarTileSettings" xml:space="preserve">
+    <value>настройки тайла</value>
+  </data>
+  <data name="TitleUntitled" xml:space="preserve">
+    <value>Без названия</value>
+  </data>
+  <data name="SettingsFeedback" xml:space="preserve">
+    <value>сбор статистики</value>
+  </data>
+  <data name="SettingsFeedbackHelp" xml:space="preserve">
+    <value>Отправлять анонимные данные об использовании приложения в целях улучшения его качества. Статистика помогает разработчику выявить и выделить наиболее часто используемые функции приложения. Никакие личные данные не собираются.</value>
+  </data>
+  <data name="EditText" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
+    <value>Настройки по умолчанию для тайла задач</value>
+  </data>
+  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
+    <value>Скрыть флажок для задачи</value>
+  </data>
+  <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
+    <value>Вы можете вместо этого использовать свайп влево на задаче,чтобы ее завершить.</value>
+  </data>
+  <data name="BackupAndRestoreTitle" xml:space="preserve">
+    <value>копия &amp; восстановление</value>
+  </data>
+  <data name="BackupText" xml:space="preserve">
+    <value>Копия</value>
+  </data>
+  <data name="RestoreText" xml:space="preserve">
+    <value>Восстановление</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="SigningIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Резервное копирование</value>
+  </data>
+  <data name="Restoring" xml:space="preserve">
+    <value>Восстановление</value>
+  </data>
+  <data name="SelectBackup" xml:space="preserve">
+    <value>выберите копию для восстановления</value>
+  </data>
+  <data name="BackupDownloadingList" xml:space="preserve">
+    <value>Загрузка списка резервных копий</value>
+  </data>
+  <data name="NoBackups" xml:space="preserve">
+    <value>Нет резервных копий</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Неизвестная ошибка.</value>
+  </data>
+  <data name="SignedInNo" xml:space="preserve">
+    <value>Вы не вошли в OneDrive.</value>
+  </data>
+  <data name="SignedInYes" xml:space="preserve">
+    <value>Вы вошли как {0}.</value>
+    <comment>{0} is user name</comment>
+  </data>
+  <data name="BackupLatest" xml:space="preserve">
+    <value>последняя</value>
+  </data>
+  <data name="RestoreWhatText" xml:space="preserve">
+    <value>выберите объекты для восстановления</value>
+  </data>
+  <data name="BackupAndRestoreHelpText" xml:space="preserve">
+    <value>Резервное копирование создаст новую папку "{0}". Вы можете перемещать папку, но, пожалуйста, не переименовывайте её. Также не стоит трогать файлы внутри этой папки. Это всё ещё BETA-версия функции.</value>
+  </data>
+  <data name="RestoreOk" xml:space="preserve">
+    <value>Успешное восстановление.</value>
+  </data>
+  <data name="BackupOk" xml:space="preserve">
+    <value>Успешное резервное копирование.</value>
+  </data>
+  <data name="SettingsShowTaskCount" xml:space="preserve">
+    <value>показать количество задач</value>
+  </data>
+  <data name="SettingsSwapDateAndTitle" xml:space="preserve">
+    <value>название и дата на большом тайле рядом </value>
+  </data>
+  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
+    <value>показывать строку добавления задачи на главной странице приложения</value>
+  </data>
+  <data name="TileForQuickAddLabel" xml:space="preserve">
+    <value>тайл быстрого добавления задачи</value>
+  </data>
+  <data name="TileForQuickAddPinButton" xml:space="preserve">
+    <value>закрепить на рабочем столе</value>
+  </data>
+  <data name="TileForQuickAddUnpinButton" xml:space="preserve">
+    <value>открепить</value>
+  </data>
+  <data name="QuickAddTileTitle" xml:space="preserve">
+    <value>Новая задача</value>
+  </data>
+  <data name="SettingsShowTaskCountHelp" xml:space="preserve">
+    <value>Если не включено, показывать список задач на маленьком тайле вместо количества задач.</value>
+  </data>
+  <data name="ChangelogShow" xml:space="preserve">
+    <value>Показать список изменений</value>
+  </data>
+  <data name="VersionFormat" xml:space="preserve">
+    <value>Версия {0}</value>
+    <comment>Version {VersionNumber}</comment>
+  </data>
+  <data name="AboutTranslation" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="SettingsThemeTitle" xml:space="preserve">
+    <value>тема</value>
+  </data>
+  <data name="SettingsThemeSystem" xml:space="preserve">
+    <value>системная ({0})</value>
+    <comment>{0} will be replaced with dark or light</comment>
+  </data>
+  <data name="SettingsThemeNote" xml:space="preserve">
+    <value>Требуется перезапуск приложения, чтобы эта настройка вступила в силу.</value>
+  </data>
+  <data name="SettingsThemeLight" xml:space="preserve">
+    <value>светлая</value>
+  </data>
+  <data name="SettingsThemeDark" xml:space="preserve">
+    <value>тёмная</value>
+  </data>
+  <data name="SettingsSwipeRight" xml:space="preserve">
+    <value>Действие свайпом вправо</value>
+  </data>
+  <data name="GestureActionPostponeWeek" xml:space="preserve">
+    <value>отложить на: 1 неделю</value>
+  </data>
+  <data name="GestureActionPostponeDay" xml:space="preserve">
+    <value>отложить на: 1 день</value>
+  </data>
+  <data name="ToastTaskDeleted" xml:space="preserve">
+    <value>Задача удалена.</value>
+  </data>
+  <data name="ToastWarning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="ToastNotice" xml:space="preserve">
+    <value>Уведомление</value>
+  </data>
+  <data name="ToastCompletedTasksDeleted" xml:space="preserve">
+    <value>Выполенные задачи удалены.</value>
+  </data>
+  <data name="ToastPostponedUntil" xml:space="preserve">
+    <value>Отложено до {0:ddd}, {0:d}</value>
+    <comment>{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</comment>
+  </data>
+  <data name="ToastReminderOff" xml:space="preserve">
+    <value>Напоминание выключено!</value>
+  </data>
+  <data name="ToastSubtaskDeleted" xml:space="preserve">
+    <value>Подзадача удалена.</value>
+  </data>
+  <data name="ToastAllTasksDeleted" xml:space="preserve">
+    <value>Все задачи удалены.</value>
+  </data>
+  <data name="SettingsSwipeLeft" xml:space="preserve">
+    <value>Действие свайпом влево</value>
+  </data>
+  <data name="GestureActionReminder" xml:space="preserve">
+    <value>установить напоминание</value>
+  </data>
+  <data name="GestureActionNone" xml:space="preserve">
+    <value>нет действия</value>
+  </data>
+  <data name="GestureActionDueTomorrow" xml:space="preserve">
+    <value>установить на: Завтра</value>
+  </data>
+  <data name="GestureActionDueToday" xml:space="preserve">
+    <value>установить на: Сегодня</value>
+  </data>
+  <data name="GestureActionDelete" xml:space="preserve">
+    <value>удалить задачу/подзадачу</value>
+  </data>
+  <data name="GestureActionComplete" xml:space="preserve">
+    <value>завершить задачу/подзадачу</value>
+  </data>
+</root>
