@@ -35,15 +35,15 @@ namespace SimpleTasks.Conventers
 
                 if (repeats == Repeats.Weekends)
                 {
-                    return "weekends";
+                    return AppResources.RepeatsWeekends;
                 }
                 else if (repeats == Repeats.Weekdays)
                 {
-                    return "weekdays";
+                    return AppResources.RepeatsWeekdays;
                 }
                 else if (repeats == Repeats.AllDays)
                 {
-                    return "every day";
+                    return AppResources.RepeatsEveryDay;
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace SimpleTasks.Conventers
                     List<string> list = new List<string>();
                     if ((repeats & Repeats.Weekdays) == Repeats.Weekdays)
                     {
-                        list.Add("weekdays");
+                        list.Add(AppResources.RepeatsWeekdays);
                     }
                     else
                     {
@@ -75,7 +75,7 @@ namespace SimpleTasks.Conventers
                     }
                     if ((repeats & Repeats.Weekends) == Repeats.Weekends)
                     {
-                        list.Add("weekends");
+                        list.Add(AppResources.RepeatsWeekends);
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace SimpleTasks.Conventers
                     }
                 }
             }
-            return "only once";
+            return AppResources.RepeatsOnce;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

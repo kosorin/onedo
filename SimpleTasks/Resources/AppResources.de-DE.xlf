@@ -780,6 +780,30 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
           <source>accent color</source>
           <target state="new">accent color</target>
         </trans-unit>
+        <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
+          <source>weekends</source>
+          <target state="new">weekends</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsWeekdays" translate="yes" xml:space="preserve">
+          <source>weekdays</source>
+          <target state="new">weekdays</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsOnce" translate="yes" xml:space="preserve">
+          <source>only once</source>
+          <target state="new">only once</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsOn" translate="yes" xml:space="preserve">
+          <source>repeats on</source>
+          <target state="new">repeats on</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsEveryDay" translate="yes" xml:space="preserve">
+          <source>every day</source>
+          <target state="new">every day</target>
+        </trans-unit>
+        <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
+          <source>repeats</source>
+          <target state="new">repeats</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="signed-off">Erledigte Aufgaben gelöscht.</target>

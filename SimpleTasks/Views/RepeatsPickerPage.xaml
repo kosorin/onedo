@@ -22,7 +22,7 @@
 
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
-                   Text="REPEATS ON" />
+                   Text="{Binding LocalizedResources.RepeatsOn, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
 
         <ScrollViewer Margin="0,80,0,0">
             <StackPanel x:Name="ButtonPanel"

@@ -544,6 +544,30 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>accent color</source>
           <target state="new">accent color</target>
         </trans-unit>
+        <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
+          <source>weekends</source>
+          <target state="signed-off">víkendy</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsWeekdays" translate="yes" xml:space="preserve">
+          <source>weekdays</source>
+          <target state="signed-off">pracovní dny</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsOnce" translate="yes" xml:space="preserve">
+          <source>only once</source>
+          <target state="signed-off">pouze jednou</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsOn" translate="yes" xml:space="preserve">
+          <source>repeats on</source>
+          <target state="signed-off">opakovat v</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsEveryDay" translate="yes" xml:space="preserve">
+          <source>every day</source>
+          <target state="signed-off">každý den</target>
+        </trans-unit>
+        <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
+          <source>repeats</source>
+          <target state="signed-off">opakování</target>
+        </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
           <target state="signed-off">Dokončené úkoly byly smazány.</target>

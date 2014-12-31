@@ -767,4 +767,22 @@ It's still in beta.</value>
   <data name="SettingsThemeColor" xml:space="preserve">
     <value>accent color</value>
   </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>repeats</value>
+  </data>
+  <data name="RepeatsEveryDay" xml:space="preserve">
+    <value>every day</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>repeats on</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>only once</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>weekdays</value>
+  </data>
+  <data name="RepeatsWeekends" xml:space="preserve">
+    <value>weekends</value>
+  </data>
 </root>

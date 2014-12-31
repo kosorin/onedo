@@ -1028,6 +1028,60 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to repeats.
+        /// </summary>
+        public static string Repeats {
+            get {
+                return ResourceManager.GetString("Repeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to every day.
+        /// </summary>
+        public static string RepeatsEveryDay {
+            get {
+                return ResourceManager.GetString("RepeatsEveryDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to repeats on.
+        /// </summary>
+        public static string RepeatsOn {
+            get {
+                return ResourceManager.GetString("RepeatsOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to only once.
+        /// </summary>
+        public static string RepeatsOnce {
+            get {
+                return ResourceManager.GetString("RepeatsOnce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weekdays.
+        /// </summary>
+        public static string RepeatsWeekdays {
+            get {
+                return ResourceManager.GetString("RepeatsWeekdays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weekends.
+        /// </summary>
+        public static string RepeatsWeekends {
+            get {
+                return ResourceManager.GetString("RepeatsWeekends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
