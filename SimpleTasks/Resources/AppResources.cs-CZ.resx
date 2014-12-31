@@ -756,4 +756,22 @@ Tato funkce je pořád v beta verzi.</value>
   <data name="GestureActionComplete" xml:space="preserve">
     <value>dokončit úkol/podúkol</value>
   </data>
+  <data name="RepeatsWeekends" xml:space="preserve">
+    <value>víkendy</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>pracovní dny</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>pouze jednou</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>opakovat v</value>
+  </data>
+  <data name="RepeatsEveryDay" xml:space="preserve">
+    <value>každý den</value>
+  </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>opakování</value>
+  </data>
 </root>
