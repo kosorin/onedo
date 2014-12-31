@@ -37,8 +37,8 @@ namespace SimpleTasks.BackgroundAgent
             {
                 Debug.WriteLine(">>> BACKGROUND AGENT: UPDATE <<<");
 
-                Settings.Current = Settings.LoadFromFile("Settings.json");
-                TaskCollection tasks = TaskCollection.LoadFromFile("Tasks.json");
+                Settings.Current = Settings.LoadFromFile(AppInfo.SettingsFileName);
+                TaskCollection tasks = TaskCollection.LoadFromFile(AppInfo.TasksFileName);
                 if (tasks != null)
                 {
                     Deployment.Current.Dispatcher.BeginInvoke(() =>

@@ -48,10 +48,6 @@ namespace SimpleTasks
 
         public static Tuple<string, string, MessageBoxButton> MessageAfterStart = null;
 
-        public static readonly string SettingsFileName = "Settings.json";
-
-        public static readonly string TasksFileName = "Tasks.json";
-
         public static TasksViewModel Tasks { get; private set; }
         #endregion
 
@@ -68,7 +64,7 @@ namespace SimpleTasks
             Debug.WriteLine("> OS VERSION {0}", Environment.OSVersion.Version);
             Debug.WriteLine("> APP VERSION {0}", Version);
 
-            Settings.Current = Settings.LoadFromFile(SettingsFileName);
+            Settings.Current = Settings.LoadFromFile(AppInfo.SettingsFileName);
 
             if (Settings.Current.Version == null)
             {
@@ -129,7 +125,7 @@ namespace SimpleTasks
             Debug.WriteLine("===== Application Activated =====");
             if (!e.IsApplicationInstancePreserved)
             {
-                Settings.Current = Settings.LoadFromFile(SettingsFileName);
+                Settings.Current = Settings.LoadFromFile(AppInfo.SettingsFileName);
                 Tasks.Load();
 
                 RootFrame.UriMapper = new MyUriMapper();
@@ -140,7 +136,7 @@ namespace SimpleTasks
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             Debug.WriteLine("===== Application Deactivated =====");
-            Settings.SaveToFile(SettingsFileName, Settings.Current);
+            Settings.SaveToFile(AppInfo.SettingsFileName, Settings.Current);
             Tasks.Save();
             Debug.WriteLine("===== ===== DEACTIVATED ===== =====");
         }
@@ -148,7 +144,7 @@ namespace SimpleTasks
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             Debug.WriteLine("===== Application Closing =====");
-            Settings.SaveToFile(SettingsFileName, Settings.Current);
+            Settings.SaveToFile(AppInfo.SettingsFileName, Settings.Current);
             Tasks.Save();
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
