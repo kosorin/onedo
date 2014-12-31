@@ -64,7 +64,8 @@ namespace SimpleTasks.BackgroundAgent
                                 if (task.HasDueDate)
                                 {
                                     DateTime date = task.CurrentDueDate.Value.Date;
-                                    if (date >= DateTimeExtensions.Yesterday && date <= DateTimeExtensions.Tomorrow)
+                                    if (date == DateTimeExtensions.Today)
+                                    //if (date >= DateTimeExtensions.Yesterday && date <= DateTimeExtensions.Tomorrow)
                                     {
                                         LiveTile.Update(task);
                                     }
