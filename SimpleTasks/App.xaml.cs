@@ -107,8 +107,11 @@ namespace SimpleTasks
                 });
 
 #if DEBUG
-                ScheduledActionService.LaunchForTest(BackgroundAgentName, TimeSpan.FromSeconds(65));
-                Debug.WriteLine("> LAUNCH FOR TEST");
+                if (Debugger.IsAttached)
+                {
+                    ScheduledActionService.LaunchForTest(BackgroundAgentName, TimeSpan.FromSeconds(65));
+                    Debug.WriteLine("> LAUNCH FOR TEST");
+                }
 #endif
             }
             catch (Exception ex)

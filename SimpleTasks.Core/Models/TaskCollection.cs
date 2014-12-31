@@ -20,7 +20,12 @@ namespace SimpleTasks.Core.Models
 
         public static TaskCollection LoadFromFile(string fileName)
         {
-            return FileHelper.ReadFromJson<TaskCollection>(fileName);
+            TaskCollection tasks = FileHelper.ReadFromJson<TaskCollection>(fileName);
+            foreach (TaskModel task in tasks)
+            {
+                task.UpdateRepeatsDueDate();
+            }
+            return tasks;
         }
 
         public static void SaveToFile(string fileName, TaskCollection tasks)

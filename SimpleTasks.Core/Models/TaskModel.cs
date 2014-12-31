@@ -129,6 +129,14 @@ namespace SimpleTasks.Core.Models
                     OnPropertyChanged("HasReminder");
                     OnPropertyChanged("Repeats");
                     OnPropertyChanged("HasRepeats");
+                    if (IsCompleted && value != null)
+                    {
+                        CompletedForDueDate = value.Value.Date;
+                    }
+                    else
+                    {
+                        CompletedForDueDate = null;
+                    }
                     Modified = DateTime.Now;
                 }
             }
@@ -142,25 +150,8 @@ namespace SimpleTasks.Core.Models
                 {
                     if (HasDueDate)
                     {
-                        const int dayCount = 7;
-                        List<DayOfWeek> list = new List<DayOfWeek>();
-                        if ((Repeats & Repeats.Monday) != 0) list.Add(DayOfWeek.Monday);
-                        if ((Repeats & Repeats.Tuesday) != 0) list.Add(DayOfWeek.Tuesday);
-                        if ((Repeats & Repeats.Wednesday) != 0) list.Add(DayOfWeek.Wednesday);
-                        if ((Repeats & Repeats.Thursday) != 0) list.Add(DayOfWeek.Thursday);
-                        if ((Repeats & Repeats.Friday) != 0) list.Add(DayOfWeek.Friday);
-                        if ((Repeats & Repeats.Saturday) != 0) list.Add(DayOfWeek.Saturday);
-                        if ((Repeats & Repeats.Sunday) != 0) list.Add(DayOfWeek.Sunday);
-
-                        DateTime startDate = (DateTime.Today < DueDate.Value.Date) ? DueDate.Value.Date : DateTime.Today;
-                        for (int i = 0; i < dayCount; i++)
-                        {
-                            DateTime date = startDate.AddDays(i);
-                            if (list.Contains(date.DayOfWeek))
-                            {
-                                return date.SetTime(DueDate.Value);
-                            }
-                        }
+                        DateTime startDate = (DateTime.Today < DueDate.Value.Date) ? DueDate.Value : DateTime.Today.SetTime(DueDate.Value);
+                        return Repeats.NextDate(startDate);
                     }
                     return null;
                 }
@@ -179,6 +170,20 @@ namespace SimpleTasks.Core.Models
         public bool IsOverdue
         {
             get { return DueDate != null && DueDate.Value.Date < DateTime.Today; }
+        }
+
+        public bool UpdateRepeatsDueDate()
+        {
+            if (Repeats != Models.Repeats.None && HasDueDate)
+            {
+                if (DueDate < CurrentDueDate)
+                {
+                    Completed = null;
+                    DueDate = CurrentDueDate;
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
 
@@ -219,34 +224,7 @@ namespace SimpleTasks.Core.Models
                     throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
                 }
 
-                List<DateTime> dates = new List<DateTime>();
-                if (Repeats != Models.Repeats.None)
-                {
-                    const int dayCount = 7;
-                    List<DayOfWeek> list = new List<DayOfWeek>();
-                    if ((Repeats & Repeats.Monday) != 0) list.Add(DayOfWeek.Monday);
-                    if ((Repeats & Repeats.Tuesday) != 0) list.Add(DayOfWeek.Tuesday);
-                    if ((Repeats & Repeats.Wednesday) != 0) list.Add(DayOfWeek.Wednesday);
-                    if ((Repeats & Repeats.Thursday) != 0) list.Add(DayOfWeek.Thursday);
-                    if ((Repeats & Repeats.Friday) != 0) list.Add(DayOfWeek.Friday);
-                    if ((Repeats & Repeats.Saturday) != 0) list.Add(DayOfWeek.Saturday);
-                    if ((Repeats & Repeats.Sunday) != 0) list.Add(DayOfWeek.Sunday);
-
-                    for (int i = 0; i < dayCount; i++)
-                    {
-                        DateTime date = DueDate.Value.AddDays(i);
-                        if (list.Contains(date.DayOfWeek))
-                        {
-                            dates.Add(date - Reminder.Value);
-                        }
-                    }
-                }
-                else
-                {
-                    dates.Add(ReminderDate);
-                }
-
-                return dates;
+                return Repeats.NextWeekDates(DueDate.Value);
             }
         }
 
@@ -277,7 +255,6 @@ namespace SimpleTasks.Core.Models
         {
             get { return Repeats != Models.Repeats.None; }
         }
-
         #endregion // end of Repeats 12
 
         #region Priority 20
@@ -386,6 +363,14 @@ namespace SimpleTasks.Core.Models
                 {
                     OnPropertyChanged("IsCompleted");
                     OnPropertyChanged("IsActive");
+                    if (value != null && DueDate != null)
+                    {
+                        CompletedForDueDate = DueDate.Value.Date;
+                    }
+                    else
+                    {
+                        CompletedForDueDate = null;
+                    }
                     Modified = DateTime.Now;
                 }
             }
@@ -394,6 +379,16 @@ namespace SimpleTasks.Core.Models
         public bool IsCompleted { get { return Completed.HasValue; } }
 
         public bool IsActive { get { return !Completed.HasValue; } }
+        #endregion
+
+        #region CompletedForDueDate 102
+        private DateTime? _completedForDueDate = null;
+        [DataMember(Order = 102)]
+        public DateTime? CompletedForDueDate
+        {
+            get { return _completedForDueDate; }
+            private set { SetProperty(ref _completedForDueDate, value); }
+        }
         #endregion
     }
 }

@@ -184,8 +184,12 @@
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
+
         <ScrollViewer>
             <StackPanel Margin="24,0,24,0">
+                <!--Toast-->
+                <controls:ToastPrompt x:Name="Toast"
+                                      Canvas.ZIndex="1" />
                 <Border Height="40" />
 
                 <!--Text-->
@@ -682,6 +686,7 @@
                 <Border Height="40" />
             </StackPanel>
         </ScrollViewer>
+
     </Grid>
 
 </controls:BasePage>

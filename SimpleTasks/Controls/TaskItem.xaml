@@ -175,6 +175,11 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReminderControl"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
@@ -326,6 +331,7 @@
 
                                     <!--Připomenutí-->
                                     <ContentControl x:Name="ReminderControl"
+                                                    Width="50"
                                                     Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                     Style="{StaticResource ReminderIconStyle}"
                                                     Margin="5,0,-24,0"

@@ -4,6 +4,7 @@ using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using System;
+using Microsoft.Phone.Info;
 
 namespace SimpleTasks.BackgroundAgent
 {
@@ -24,6 +25,18 @@ namespace SimpleTasks.BackgroundAgent
                 Debugger.Break();
             }
         }
+
+        private static void ShowMemoryUsage()
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                Debug.WriteLine("> MEM. LIMIT: {0:0.00} MB", DeviceStatus.ApplicationMemoryUsageLimit / 1000000.0);
+                Debug.WriteLine("> MEM. USAGE: {0:0.00} MB", DeviceStatus.ApplicationCurrentMemoryUsage / 1000000.0);
+            }
+#endif
+        }
+
         protected override void OnInvoke(ScheduledTask scheduledTask)
         {
             Debug.WriteLine(">>> BACKGROUND AGENT <<<");
@@ -38,32 +51,42 @@ namespace SimpleTasks.BackgroundAgent
                 Debug.WriteLine(">>> BACKGROUND AGENT: UPDATE <<<");
 
                 Settings.Current = Settings.LoadFromFile(AppInfo.SettingsFileName);
-                TaskCollection tasks = TaskCollection.LoadFromFile(AppInfo.TasksFileName);
-                if (tasks != null)
+                if (Settings.Current.Tiles.Enable)
                 {
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    TaskCollection tasks = TaskCollection.LoadFromFile(AppInfo.TasksFileName);
+                    if (tasks != null)
                     {
-                        LiveTile.UpdateOrReset(Settings.Current.Tiles.Enable, tasks);
-                        foreach (TaskModel task in tasks)
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            if (task.Repeats != Repeats.None)
+                            LiveTile.Update(tasks);
+                            foreach (TaskModel task in tasks)
                             {
-                                LiveTile.Update(task);
+                                if (task.HasDueDate)
+                                {
+                                    DateTime date = task.CurrentDueDate.Value.Date;
+                                    if (date >= DateTimeExtensions.Yesterday && date <= DateTimeExtensions.Tomorrow)
+                                    {
+                                        LiveTile.Update(task);
+                                    }
+                                }
                             }
-                        }
-                        Debug.WriteLine(">>> BACKGROUND AGENT: DONE <<<");
+                            Debug.WriteLine(">>> BACKGROUND AGENT: DONE <<<");
+                            ShowMemoryUsage();
+                            NotifyComplete();
+                        });
+                    }
+                    else
+                    {
+                        Debug.WriteLine(">>> BACKGROUND AGENT: no tasks <<<");
+                        ShowMemoryUsage();
                         NotifyComplete();
-                    });
-                }
-                else
-                {
-                    Debug.WriteLine(">>> BACKGROUND AGENT: no tasks <<<");
-                    NotifyComplete();
+                    }
                 }
             }
             else
             {
                 Debug.WriteLine(">>> BACKGROUND AGENT: PASS <<<");
+                ShowMemoryUsage();
                 NotifyComplete();
             }
         }

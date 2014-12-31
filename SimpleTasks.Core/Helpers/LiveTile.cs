@@ -47,9 +47,12 @@ namespace SimpleTasks.Core.Helpers
             string wideFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, WideTileFileName);
 
             // Vytvoření obrázků dlaždic
+            var sw = Stopwatch.StartNew();
             new SimpleTasks.Core.Tiles.SmallTaskTile(task).SaveToPng(smallFileName);
             new SimpleTasks.Core.Tiles.MediumTaskTile(task).SaveToPng(mediumFileName);
             new SimpleTasks.Core.Tiles.WideTaskTile(task).SaveToPng(wideFileName);
+            sw.Stop();
+            Debug.WriteLine("> CREATED TILE FOR '{0}' (in {1:0.000} seconds)", task.Title, sw.ElapsedMilliseconds / 1000.0);
 
             FlipTileData flipTileData = new FlipTileData
             {
@@ -94,10 +97,10 @@ namespace SimpleTasks.Core.Helpers
                 ShellTile tile = PinnedTile(task);
                 if (tile != null)
                 {
-                    Deployment.Current.Dispatcher.BeginInvoke(delegate
-                    {
-                        tile.Update(CreateTile(task));
-                    });
+                    //Deployment.Current.Dispatcher.BeginInvoke(delegate
+                    //{
+                    tile.Update(CreateTile(task));
+                    //});
                 }
             }
             catch (Exception e)
@@ -202,13 +205,12 @@ namespace SimpleTasks.Core.Helpers
                 .OrderByDescending(t => t.Priority));
 
             // Vytvoření obrázků dlaždic
-            Debug.WriteLine("> START");
             var sw = Stopwatch.StartNew();
             new SmallListTile(tasks).SaveToPng(TileImageDirectory + SmallTileFileName);
             new MediumListTile(tasks).SaveToPng(TileImageDirectory + MediumTileFileName);
             new WideListTile(tasks).SaveToPng(TileImageDirectory + WideTileFileName);
             sw.Stop();
-            Debug.WriteLine(": {0}", sw.ElapsedMilliseconds);
+            Debug.WriteLine("> CREATED MAIN TILE (in {0:0.000} seconds)", sw.ElapsedMilliseconds / 1000.0);
 
             FlipTileData flipTileData = new FlipTileData
             {

@@ -24,7 +24,7 @@ namespace SimpleTasks.ViewModels
 
         public void Load()
         {
-            Load(TaskCollection.LoadFromFile(App.TasksFileName));
+            Load(TaskCollection.LoadFromFile(AppInfo.TasksFileName));
         }
 
         public void Load(TaskCollection tasks)
@@ -51,7 +51,7 @@ namespace SimpleTasks.ViewModels
             {
                 DeleteCompleted();
             }
-            TaskCollection.SaveToFile(App.TasksFileName, Tasks);
+            TaskCollection.SaveToFile(AppInfo.TasksFileName, Tasks);
         }
 
         public void Restore(TaskCollection tasks)

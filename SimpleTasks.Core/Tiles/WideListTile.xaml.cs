@@ -57,7 +57,7 @@ namespace SimpleTasks.Core.Tiles
                 InfoWrapper.Visibility = Visibility.Collapsed;
             }
 
-            // Podúkoly
+            // Úkoly
             NoTasksIcon.Visibility = count == 0 ? Visibility.Visible : Visibility.Collapsed;
             TasksStackPanel.Visibility = count > 0 ? Visibility.Visible : Visibility.Collapsed;
             if (count > 0)
@@ -84,9 +84,18 @@ namespace SimpleTasks.Core.Tiles
                     TextBlock dateTextBlock = null;
                     if (task.CurrentDueDate != null)
                     {
+                        string dt;
+                        if (task.CurrentDueDate.Value.Date == DateTime.Today)
+                        {
+                            dt = task.CurrentDueDate.Value.ToShortTimeString();
+                        }
+                        else
+                        {
+                            dt = task.CurrentDueDate.Value.ToShortDateString();
+                        }
                         dateTextBlock = new TextBlock()
                         {
-                            Text = task.CurrentDueDate.Value.ToShortDateString(),
+                            Text = dt,
                             Style = (Style)Resources["LineTextStyle"],
                             FontSize = lineHeight * 0.72,
                             LineHeight = lineHeight,
@@ -137,7 +146,6 @@ namespace SimpleTasks.Core.Tiles
                         content.Children.Add(titleTextBlock);
 
                         border.Child = content;
-
                     }
 
                     TasksStackPanel.Children.Add(border);
