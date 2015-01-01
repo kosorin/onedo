@@ -1,0 +1,135 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                    xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives">
+
+    <!--Region SystemTray-->
+    <Color x:Key="SystemTrayBackgroundColor">#eee8d5</Color>
+    <SolidColorBrush x:Key="SystemTrayBackgroundBrush"
+                     Color="{StaticResource SystemTrayBackgroundColor}" />
+
+    <Color x:Key="SystemTrayForegroundColor">#002b36</Color>
+    <SolidColorBrush x:Key="SystemTrayForegroundBrush"
+                     Color="{StaticResource SystemTrayForegroundColor}" />
+    <!--EndRegion-->
+
+    <!--Region Globální styly-->
+    <sys:Boolean x:Key="UsePhoneAccentColor">False</sys:Boolean>
+    <Color x:Key="AccentColor">#cb4b16</Color>
+    <SolidColorBrush x:Key="AccentBrush"
+                     Color="{StaticResource AccentColor}" />
+
+    <Color x:Key="BackgroundColor">#fdf6e3</Color>
+    <Color x:Key="NormalColor">#002b36</Color>
+    <Color x:Key="SlightColor">#CC002b36</Color>
+    <Color x:Key="SubtleColor">#99002b36</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush"
+                     Color="{StaticResource BackgroundColor}" />
+    <SolidColorBrush x:Key="NormalBrush"
+                     Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="SlightBrush"
+                     Color="{StaticResource SlightColor}" />
+    <SolidColorBrush x:Key="SubtleBrush"
+                     Color="{StaticResource SubtleColor}" />
+
+    <SolidColorBrush x:Key="LabelBrush"
+                     Color="{StaticResource SlightColor}" />
+    <SolidColorBrush x:Key="HelpBrush"
+                     Color="{StaticResource SubtleColor}" />
+    <!--EndRegion-->
+
+    <!--Region Button-->
+    <Color x:Key="ButtonBackgroundColor">#44002b36</Color>
+    <Color x:Key="ButtonForegroundColor">#002b36</Color>
+    <Color x:Key="ButtonDarkForegroundColor">#eee8d5</Color>
+    <Color x:Key="ButtonCloseIconColor">#88eee8d5</Color>
+
+    <SolidColorBrush x:Key="ButtonBackgroundBrush"
+                     Color="{StaticResource ButtonBackgroundColor}" />
+    <SolidColorBrush x:Key="ButtonForegroundBrush"
+                     Color="{StaticResource ButtonForegroundColor}" />
+    <SolidColorBrush x:Key="ButtonDarkForegroundBrush"
+                     Color="{StaticResource ButtonDarkForegroundColor}" />
+    <SolidColorBrush x:Key="ButtonCloseIconBrush"
+                     Color="{StaticResource ButtonCloseIconColor}" />
+
+    <SolidColorBrush x:Key="MyButtonBackgroundBrush"
+                     Color="#39002b36" />
+    <!--EndRegion-->
+
+    <!--Region CheckBox-->
+    <SolidColorBrush x:Key="CheckBoxBackgroundBrush"
+                     Color="{StaticResource SubtleColor}"
+                     Opacity="0.27" />
+    <SolidColorBrush x:Key="CheckBoxBorderBrush"
+                     Color="{StaticResource NormalColor}"
+                     Opacity="0.45" />
+    <!--EndRegion-->
+
+    <!--Region BasePickerPage-->
+    <Color x:Key="BasePickerPageBackgroundColor">#eee8d5</Color>
+    <Color x:Key="BasePickerPageForegroundColor">#002b36</Color>
+
+    <SolidColorBrush x:Key="BasePickerPageBackgroundBrush"
+                     Color="{StaticResource BasePickerPageBackgroundColor}" />
+    <SolidColorBrush x:Key="BasePickerPageForegroundBrush"
+                     Color="{StaticResource BasePickerPageForegroundColor}" />
+    <!--EndRegion-->
+
+    <!--Region MainPage-->
+    <SolidColorBrush x:Key="TasksListDelimiterBrush"
+                     Color="{StaticResource SubtleColor}"
+                     Opacity="0.3" />
+
+    <Color x:Key="TasksListHeaderBackgroundColor">#1A002b36</Color>
+    <SolidColorBrush x:Key="TasksListHeaderBorderBrush"
+                     Color="{StaticResource SubtleColor}"
+                     Opacity="0.18" />
+
+    <SolidColorBrush x:Key="QuickAddHintBrush"
+                     Color="{StaticResource SlightColor}"
+                     Opacity="0.55" />
+    <SolidColorBrush x:Key="QuickAddBackgroundBrush"
+                     Color="#BFBAAC" />
+    <!--EndRegion-->
+
+    <!--Region EditPage-->
+    <SolidColorBrush x:Key="DetailMaskBrush"
+                     Color="#20000000" />
+    <!--EndRegion-->
+
+    <!--Region Calendar-->
+    <Color x:Key="CalendarDisabledColor">#66002b36</Color>
+    <Color x:Key="CalendarBorderColor">#839496</Color>
+    <Color x:Key="CalendarSelectedItemColor">#eee8d5</Color>
+    <SolidColorBrush x:Key="CalendarBorderBrush"
+                     Color="{StaticResource CalendarBorderColor}" />
+    <SolidColorBrush x:Key="CalendarItemBackgroundBrush"
+                     Color="#33002b36" />
+    <SolidColorBrush x:Key="CalendarItemBrush"
+                     Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="CalendarSelectedItemBrush"
+                     Color="{StaticResource CalendarSelectedItemColor}" />
+    <SolidColorBrush x:Key="CalendarWeekdayBrush"
+                     Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="CalendarWeekdayBackgroundBrush"
+                     Color="#30002b36" />
+    <SolidColorBrush x:Key="CalendarMonthBackgroundBrush"
+                     Color="#eee8d5" />
+    <!--EndRegion-->
+
+    <!--Region ReminderPicker-->
+    <SolidColorBrush x:Key="TimeBeforeTextBrush"
+                     Color="{StaticResource SubtleColor}" />
+    <SolidColorBrush x:Key="TimeForegroundBrush"
+                     Color="{StaticResource NormalColor}" />
+    <SolidColorBrush x:Key="TimeForegroundSubtleBrush"
+                     Color="{StaticResource SubtleColor}"
+                     Opacity="0.55" />
+    <!--EndRegion-->
+</ResourceDictionary>
