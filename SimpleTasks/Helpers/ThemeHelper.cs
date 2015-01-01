@@ -117,6 +117,12 @@ namespace SimpleTasks.Helpers
             brush.Opacity = newBrush.Opacity;
         }
 
+        private static void SetAccentColor(ResourceDictionary rd, Color color)
+        {
+            ReplaceColor(rd, "AccentColor", color);
+            ReplaceBrush(rd, "AccentBrush", new SolidColorBrush(color));
+        }
+
         public static void InitializeTheme()
         {
 #if DEBUG
@@ -148,19 +154,13 @@ namespace SimpleTasks.Helpers
             }
 
             // Accent barva
-            if ((bool)theme["UsePhoneAccentColor"] || CurrentTheme == SimpleTasks.Theme.Solarized)
+            if (CurrentTheme.IsSolarized())
             {
-                Color accentColor;
-                if (CurrentTheme == SimpleTasks.Theme.Solarized)
-                {
-                    accentColor = ThemeColor;
-                }
-                else
-                {
-                    accentColor = (Color)Resources["PhoneAccentColor"];
-                }
-                ReplaceColor(appTheme, "AccentColor", accentColor);
-                ReplaceBrush(appTheme, "AccentBrush", new SolidColorBrush(accentColor));
+                SetAccentColor(appTheme, ThemeColor);
+            }
+            else if ((bool)theme["UsePhoneAccentColor"])
+            {
+                SetAccentColor(appTheme, (Color)Resources["PhoneAccentColor"]);
             }
 
             // RootFrame

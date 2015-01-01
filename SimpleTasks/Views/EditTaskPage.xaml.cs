@@ -356,7 +356,7 @@ namespace SimpleTasks.Views
                     subtask.IsCompleted = true;
                 }
             }
-            if (Settings.Current.Tiles.UnpinCompleted)
+            if (Settings.Current.Tiles.UnpinCompleted && Repeats == Core.Models.Repeats.None)
             {
                 Unpin();
             }

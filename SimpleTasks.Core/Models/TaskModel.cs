@@ -151,7 +151,7 @@ namespace SimpleTasks.Core.Models
                     if (HasDueDate)
                     {
                         DateTime startDate = (DateTime.Today < DueDate.Value.Date) ? DueDate.Value : DateTime.Today.SetTime(DueDate.Value);
-                        return Repeats.NextDate(startDate);
+                        return Repeats.ActualDate(startDate);
                     }
                     return null;
                 }
@@ -180,6 +180,10 @@ namespace SimpleTasks.Core.Models
                 {
                     Completed = null;
                     DueDate = CurrentDueDate;
+                    foreach (Subtask subtask in Subtasks)
+                    {
+                        subtask.IsCompleted = false;
+                    }
                     return true;
                 }
             }
@@ -224,7 +228,7 @@ namespace SimpleTasks.Core.Models
                     throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
                 }
 
-                return Repeats.NextWeekDates(DueDate.Value);
+                return Repeats.WeekDates(CurrentDueDate.Value, IsCompleted);
             }
         }
 

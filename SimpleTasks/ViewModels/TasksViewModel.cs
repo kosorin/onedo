@@ -88,7 +88,7 @@ namespace SimpleTasks.ViewModels
         private void UpdateReminders(TaskModel task)
         {
             task.RemoveSystemReminder();
-            if (task.IsActive && task.HasReminder)
+            if (task.HasReminder)
             {
                 task.SetSystemReminder();
             }

@@ -24,24 +24,23 @@ namespace SimpleTasks.Core.Models
 
     public static class RepeatsExtensions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="repeats"></param>
-        /// <param name="startDate"></param>
-        /// <returns>Vrací datum dalšího dne (může být stejný jako startDate) nebo DateTime.MaxValue, pokud</returns>
-        public static DateTime NextDate(this Repeats repeats, DateTime startDate)
+        public static List<DayOfWeek> DaysOfWeek(this Repeats repeats)
+        {
+            List<DayOfWeek> daysOfWeek = new List<DayOfWeek>();
+            if ((repeats & Repeats.Monday) != 0) daysOfWeek.Add(DayOfWeek.Monday);
+            if ((repeats & Repeats.Tuesday) != 0) daysOfWeek.Add(DayOfWeek.Tuesday);
+            if ((repeats & Repeats.Wednesday) != 0) daysOfWeek.Add(DayOfWeek.Wednesday);
+            if ((repeats & Repeats.Thursday) != 0) daysOfWeek.Add(DayOfWeek.Thursday);
+            if ((repeats & Repeats.Friday) != 0) daysOfWeek.Add(DayOfWeek.Friday);
+            if ((repeats & Repeats.Saturday) != 0) daysOfWeek.Add(DayOfWeek.Saturday);
+            if ((repeats & Repeats.Sunday) != 0) daysOfWeek.Add(DayOfWeek.Sunday);
+            return daysOfWeek;
+        }
+
+        public static DateTime ActualDate(this Repeats repeats, DateTime startDate)
         {
             const int daysInWeek = 7;
-            List<DayOfWeek> list = new List<DayOfWeek>();
-            if ((repeats & Repeats.Monday) != 0) list.Add(DayOfWeek.Monday);
-            if ((repeats & Repeats.Tuesday) != 0) list.Add(DayOfWeek.Tuesday);
-            if ((repeats & Repeats.Wednesday) != 0) list.Add(DayOfWeek.Wednesday);
-            if ((repeats & Repeats.Thursday) != 0) list.Add(DayOfWeek.Thursday);
-            if ((repeats & Repeats.Friday) != 0) list.Add(DayOfWeek.Friday);
-            if ((repeats & Repeats.Saturday) != 0) list.Add(DayOfWeek.Saturday);
-            if ((repeats & Repeats.Sunday) != 0) list.Add(DayOfWeek.Sunday);
-
+            List<DayOfWeek> list = repeats.DaysOfWeek();
             for (int i = 0; i < daysInWeek; i++)
             {
                 DateTime date = startDate.AddDays(i);
@@ -53,20 +52,35 @@ namespace SimpleTasks.Core.Models
             return DateTime.MaxValue;
         }
 
-        public static List<DateTime> NextWeekDates(this Repeats repeats, DateTime startDate)
+        public static DateTime NextDate(this Repeats repeats, DateTime startDate)
+        {
+            const int daysInWeek = 7 * 2;
+            bool next = false;
+            List<DayOfWeek> list = repeats.DaysOfWeek();
+            for (int i = 0; i < daysInWeek; i++)
+            {
+                DateTime date = startDate.AddDays(i);
+                if (list.Contains(date.DayOfWeek))
+                {
+                    if (next)
+                    {
+                        return date;
+                    }
+                    else
+                    {
+                        next = true;
+                    }
+                }
+            }
+            return DateTime.MaxValue;
+        }
+
+        public static List<DateTime> WeekDates(this Repeats repeats, DateTime startDate, bool skipFirst = false)
         {
             List<DateTime> dates = new List<DateTime>();
 
-            const int daysInWeek = 7;
-            List<DayOfWeek> list = new List<DayOfWeek>();
-            if ((repeats & Repeats.Monday) != 0) list.Add(DayOfWeek.Monday);
-            if ((repeats & Repeats.Tuesday) != 0) list.Add(DayOfWeek.Tuesday);
-            if ((repeats & Repeats.Wednesday) != 0) list.Add(DayOfWeek.Wednesday);
-            if ((repeats & Repeats.Thursday) != 0) list.Add(DayOfWeek.Thursday);
-            if ((repeats & Repeats.Friday) != 0) list.Add(DayOfWeek.Friday);
-            if ((repeats & Repeats.Saturday) != 0) list.Add(DayOfWeek.Saturday);
-            if ((repeats & Repeats.Sunday) != 0) list.Add(DayOfWeek.Sunday);
-
+            int daysInWeek = 7;
+            List<DayOfWeek> list = repeats.DaysOfWeek();
             for (int i = 0; i < daysInWeek; i++)
             {
                 DateTime date = startDate.AddDays(i);
@@ -75,6 +89,12 @@ namespace SimpleTasks.Core.Models
                     dates.Add(date);
                 }
             }
+
+            if (skipFirst && dates.Count > 0)
+            {
+                dates[0] = dates[0].AddDays(daysInWeek);
+            }
+
             return dates;
         }
     }

@@ -371,7 +371,7 @@ namespace SimpleTasks.Views
                         subtask.IsCompleted = true;
                     }
                 }
-                if (Settings.Current.Tiles.UnpinCompleted)
+                if (Settings.Current.Tiles.UnpinCompleted && task.Repeats == Repeats.None)
                 {
                     LiveTile.Unpin(task);
                 }

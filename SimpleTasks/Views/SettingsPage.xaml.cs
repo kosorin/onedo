@@ -60,7 +60,8 @@ namespace SimpleTasks.Views
             themeList.Add(new ListPickerItem<Theme>(string.Format(AppResources.SettingsThemeSystem, systemTheme), Theme.System));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
             themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeDark, Theme.Dark));
-            themeList.Add(new ListPickerItem<Theme>("Solarized", Theme.Solarized));
+            themeList.Add(new ListPickerItem<Theme>("Solarized Light", Theme.SolarizedLight));
+            themeList.Add(new ListPickerItem<Theme>("Solarized Dark", Theme.SolarizedDark));
             themeList.Add(new ListPickerItem<Theme>("Ocean", Theme.Ocean));
             ThemeListPicker.ItemsSource = themeList;
             ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
@@ -201,7 +202,7 @@ namespace SimpleTasks.Views
             ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
             if (item != null)
             {
-                ThemeColorPanel.Visibility = (item.Value == Theme.Solarized ? Visibility.Visible : Visibility.Collapsed);
+                ThemeColorPanel.Visibility = (item.Value.IsSolarized() ? Visibility.Visible : Visibility.Collapsed);
                 if (_isSetThemeListPicker)
                 {
                     ThemeHelper.Theme = item.Value;

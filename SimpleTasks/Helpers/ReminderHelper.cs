@@ -16,7 +16,7 @@ namespace SimpleTasks.Helpers
         public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri, bool weekly)
         {
             Remove(name);
-            if (beginTime <= DateTime.Now)
+            if (!weekly && beginTime <= DateTime.Now)
             {
                 Debug.WriteLine("> Reminder Add: overdue: {0} <= {1}", beginTime, DateTime.Now);
                 return;

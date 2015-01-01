@@ -41,8 +41,11 @@ namespace SimpleTasks.BackgroundAgent
         {
             Debug.WriteLine(">>> BACKGROUND AGENT <<<");
 #if DEBUG
-            ScheduledActionService.LaunchForTest(scheduledTask.Name, TimeSpan.FromSeconds(65));
-            Debug.WriteLine("> LAUNCH FOR TEST");
+            if (Debugger.IsAttached)
+            {
+                ScheduledActionService.LaunchForTest(scheduledTask.Name, TimeSpan.FromSeconds(65));
+                Debug.WriteLine("> LAUNCH FOR TEST");
+            }
 #endif
 
             // Aktualizace každý den 1x
