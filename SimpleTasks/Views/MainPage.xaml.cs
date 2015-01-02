@@ -210,7 +210,22 @@ namespace SimpleTasks.Views
                 {
                     name = string.Format("{0}...{1}", name.Substring(0, 3), name.Substring(name.Length - 3, 3));
                 }
-                s += string.Format("\n{0}: {1} - {2:g}{3}", name, r.IsScheduled, r.BeginTime, r.RecurrenceType == RecurrenceInterval.Weekly ? " [w]" : "");
+                string interval = "";
+                switch (r.RecurrenceType)
+                {
+                case RecurrenceInterval.Daily:
+                    interval = " [d]";
+                    break;
+                case RecurrenceInterval.Monthly:
+                    interval = " [m]";
+                    break;
+                case RecurrenceInterval.Weekly:
+                    interval = " [w]";
+                    break;
+                default:
+                    break;
+                }
+                s += string.Format("\n{0}: {1} - {2:g}{3}", name, r.IsScheduled, r.BeginTime, interval);
             }
             MessageBox.Show(s);
         }
@@ -371,7 +386,7 @@ namespace SimpleTasks.Views
                         subtask.IsCompleted = true;
                     }
                 }
-                if (Settings.Current.Tiles.UnpinCompleted && task.Repeats == Repeats.None)
+                if (Settings.Current.Tiles.UnpinCompleted && !task.HasRepeats)
                 {
                     LiveTile.Unpin(task);
                 }

@@ -137,10 +137,7 @@ namespace SimpleTasks.ViewModels
             }
 
             // Odstranění "zapomenutých" připoměnutí
-            foreach (Reminder r in ScheduledActionService.GetActions<Reminder>())
-            {
-                ScheduledActionService.Remove(r.Name);
-            }
+            ReminderHelper.RemoveAll();
         }
     }
 }

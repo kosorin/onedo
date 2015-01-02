@@ -26,9 +26,6 @@ namespace SimpleTasks.Controls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            SystemTray.ForegroundColor = (Color)App.Current.Resources["BasePickerPageForegroundColor"];
-            SystemTray.BackgroundColor = (Color)App.Current.Resources["BasePickerPageBackgroundColor"];
         }
 
         protected abstract object Save();

@@ -120,12 +120,11 @@ namespace SimpleTasks.Core.Models
             {
                 if (SetProperty(ref _dueDate, value))
                 {
-                    OnPropertyChanged("CurrentDueDate");
+                    OnPropertyChanged("ActualDueDate");
                     OnPropertyChanged("HasDueDate");
                     OnPropertyChanged("IsOverdue");
                     OnPropertyChanged("Reminder");
                     OnPropertyChanged("ReminderDate");
-                    OnPropertyChanged("ReminderDates");
                     OnPropertyChanged("HasReminder");
                     OnPropertyChanged("Repeats");
                     OnPropertyChanged("HasRepeats");
@@ -142,23 +141,15 @@ namespace SimpleTasks.Core.Models
             }
         }
 
-        public DateTime? CurrentDueDate
+        public DateTime? ActualDueDate
         {
             get
             {
-                if (Repeats != Models.Repeats.None)
+                if (HasDueDate)
                 {
-                    if (HasDueDate)
-                    {
-                        DateTime startDate = (DateTime.Today < DueDate.Value.Date) ? DueDate.Value : DateTime.Today.SetTime(DueDate.Value);
-                        return Repeats.ActualDate(startDate);
-                    }
-                    return null;
+                    return Repeats.ActualDate(DueDate.Value);
                 }
-                else
-                {
-                    return DueDate;
-                }
+                return null;
             }
         }
 
@@ -174,12 +165,12 @@ namespace SimpleTasks.Core.Models
 
         public bool UpdateRepeatsDueDate()
         {
-            if (Repeats != Models.Repeats.None && HasDueDate)
+            if (HasDueDate && HasRepeats)
             {
-                if (DueDate < CurrentDueDate)
+                if (DueDate < ActualDueDate)
                 {
                     Completed = null;
-                    DueDate = CurrentDueDate;
+                    //DueDate = ActualDueDate;
                     foreach (Subtask subtask in Subtasks)
                     {
                         subtask.IsCompleted = false;
@@ -215,21 +206,26 @@ namespace SimpleTasks.Core.Models
                 {
                     throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
                 }
-                return CurrentDueDate.Value - Reminder.Value;
+                return ActualDueDate.Value - Reminder.Value;
             }
         }
 
-        public List<DateTime> ReminderDates
+        public List<DateTime> ReminderDates()
         {
-            get
+            List<DateTime> dates;
+            if (HasReminder)
             {
-                if (!HasReminder)
+                dates = Repeats.Dates(DueDate.Value, IsCompleted);
+                for (int i = 0; i < dates.Count; i++)
                 {
-                    throw new InvalidOperationException("Pro získání datumu připomenutí je nutné zadat termín splnění.");
+                    dates[i] = dates[i] - Reminder.Value;
                 }
-
-                return Repeats.WeekDates(CurrentDueDate.Value, IsCompleted);
             }
+            else
+            {
+                dates = new List<DateTime>();
+            }
+            return dates;
         }
 
         public bool HasReminder
@@ -248,7 +244,7 @@ namespace SimpleTasks.Core.Models
             {
                 if (SetProperty(ref _repeats, value))
                 {
-                    OnPropertyChanged("CurrentDueDate");
+                    OnPropertyChanged("ActualDueDate");
                     OnPropertyChanged("HasRepeats");
                     Modified = DateTime.Now;
                 }

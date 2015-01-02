@@ -44,8 +44,8 @@ namespace SimpleTasks.Controls
             Debug.WriteLine("NAV TO: {0} ({1})", this, e.NavigationMode);
             base.OnNavigatedTo(e);
 
-            SystemTray.ForegroundColor = (Color)App.Current.Resources["SystemTrayForegroundColor"];
-            SystemTray.BackgroundColor = (Color)App.Current.Resources["SystemTrayBackgroundColor"];
+            SystemTray.ForegroundColor = (Color)App.Current.Resources["SlightColor"];
+            SystemTray.Opacity = 0;
 
             GoogleAnalyticsHelper.SendPage(this);
         }

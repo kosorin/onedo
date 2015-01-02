@@ -770,8 +770,8 @@ It's still in beta.</value>
   <data name="Repeats" xml:space="preserve">
     <value>repeats</value>
   </data>
-  <data name="RepeatsEveryDay" xml:space="preserve">
-    <value>every day</value>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>daily</value>
   </data>
   <data name="RepeatsOn" xml:space="preserve">
     <value>repeats on</value>
@@ -784,5 +784,14 @@ It's still in beta.</value>
   </data>
   <data name="RepeatsWeekends" xml:space="preserve">
     <value>weekends</value>
+  </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>days of week</value>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>monthly</value>
+  </data>
+  <data name="RepeatsWeekly" xml:space="preserve">
+    <value>weekly</value>
   </data>
 </root>

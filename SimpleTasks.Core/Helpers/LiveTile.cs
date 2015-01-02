@@ -194,14 +194,14 @@ namespace SimpleTasks.Core.Helpers
             // Vybere aktivní (nedokončené) úkoly a úkoly s termínem dokončení.
             // Uspořádá je podle termínu. Důležité úkoly ve stejném dnu mají přednost.
             List<TaskModel> tasks = tasksSource
-                .Where((t) => { return t.IsActive && t.CurrentDueDate != null; })
-                .OrderBy(t => t.CurrentDueDate.Value)
+                .Where((t) => { return t.IsActive && t.ActualDueDate != null; })
+                .OrderBy(t => t.ActualDueDate.Value)
                 .ThenByDescending(t => t.Priority)
                 .ToList();
 
             // Přidá úkoly bez termínu na konec seznamu (opět uspořádané podle důležitosti).
             tasks.AddRange(tasksSource
-                .Where((t) => { return t.IsActive && t.CurrentDueDate == null; })
+                .Where((t) => { return t.IsActive && t.ActualDueDate == null; })
                 .OrderByDescending(t => t.Priority));
 
             // Vytvoření obrázků dlaždic

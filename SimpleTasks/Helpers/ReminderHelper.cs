@@ -13,10 +13,10 @@ namespace SimpleTasks.Helpers
 {
     public class ReminderHelper
     {
-        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri, bool weekly)
+        public static void Add(string name, string title, string content, DateTime beginTime, Uri navigationUri, RecurrenceInterval interval = RecurrenceInterval.None)
         {
             Remove(name);
-            if (!weekly && beginTime <= DateTime.Now)
+            if (interval == RecurrenceInterval.None && beginTime <= DateTime.Now)
             {
                 Debug.WriteLine("> Reminder Add: overdue: {0} <= {1}", beginTime, DateTime.Now);
                 return;
@@ -51,7 +51,7 @@ namespace SimpleTasks.Helpers
                     Title = title,
                     Content = content,
                     NavigationUri = navigationUri,
-                    RecurrenceType = weekly ? RecurrenceInterval.Weekly : RecurrenceInterval.None
+                    RecurrenceType = interval
                 });
             }
             catch (InvalidOperationException e)
@@ -83,6 +83,55 @@ namespace SimpleTasks.Helpers
             if (Exists(name))
             {
                 ScheduledActionService.Remove(name);
+            }
+        }
+
+        public static List<Reminder> GetAll()
+        {
+            return ScheduledActionService.GetActions<Reminder>().ToList();
+        }
+
+        public static List<Reminder> GetAll(string name)
+        {
+            List<Reminder> reminders = new List<Reminder>();
+            foreach (Reminder reminder in ScheduledActionService.GetActions<Reminder>())
+            {
+                try
+                {
+                    if (reminder.Name.StartsWith(name))
+                    {
+                        reminders.Add(reminder);
+                    }
+                }
+                catch { }
+            }
+            return reminders;
+        }
+
+        public static void RemoveAll()
+        {
+            foreach (Reminder reminder in ScheduledActionService.GetActions<Reminder>())
+            {
+                try
+                {
+                    ScheduledActionService.Remove(reminder.Name);
+                }
+                catch { }
+            }
+        }
+
+        public static void RemoveAll(string name)
+        {
+            foreach (Reminder reminder in ScheduledActionService.GetActions<Reminder>())
+            {
+                try
+                {
+                    if (reminder.Name.StartsWith(name))
+                    {
+                        ScheduledActionService.Remove(reminder.Name);
+                    }
+                }
+                catch { }
             }
         }
     }

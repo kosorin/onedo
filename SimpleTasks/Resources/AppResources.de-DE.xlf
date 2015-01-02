@@ -784,6 +784,18 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
           <source>weekends</source>
           <target state="new">weekends</target>
         </trans-unit>
+        <trans-unit id="Resx/RepeatsWeekly" translate="yes" xml:space="preserve">
+          <source>weekly</source>
+          <target state="new">weekly</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsMonthly" translate="yes" xml:space="preserve">
+          <source>monthly</source>
+          <target state="new">monthly</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsDaysOfWeek" translate="yes" xml:space="preserve">
+          <source>days of week</source>
+          <target state="new">days of week</target>
+        </trans-unit>
         <trans-unit id="Resx/RepeatsWeekdays" translate="yes" xml:space="preserve">
           <source>weekdays</source>
           <target state="new">weekdays</target>
@@ -796,13 +808,13 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
           <source>repeats on</source>
           <target state="new">repeats on</target>
         </trans-unit>
-        <trans-unit id="Resx/RepeatsEveryDay" translate="yes" xml:space="preserve">
-          <source>every day</source>
-          <target state="new">every day</target>
-        </trans-unit>
         <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
           <source>repeats</source>
           <target state="new">repeats</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsDaily" translate="yes" xml:space="preserve">
+          <source>daily</source>
+          <target state="new">daily</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>

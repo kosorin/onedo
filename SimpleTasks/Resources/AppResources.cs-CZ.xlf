@@ -548,6 +548,18 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>weekends</source>
           <target state="signed-off">víkendy</target>
         </trans-unit>
+        <trans-unit id="Resx/RepeatsWeekly" translate="yes" xml:space="preserve">
+          <source>weekly</source>
+          <target state="signed-off">týdně</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsMonthly" translate="yes" xml:space="preserve">
+          <source>monthly</source>
+          <target state="signed-off">měsíčně</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsDaysOfWeek" translate="yes" xml:space="preserve">
+          <source>days of week</source>
+          <target state="signed-off">dny v týdnu</target>
+        </trans-unit>
         <trans-unit id="Resx/RepeatsWeekdays" translate="yes" xml:space="preserve">
           <source>weekdays</source>
           <target state="signed-off">pracovní dny</target>
@@ -560,13 +572,13 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>repeats on</source>
           <target state="signed-off">opakovat v</target>
         </trans-unit>
-        <trans-unit id="Resx/RepeatsEveryDay" translate="yes" xml:space="preserve">
-          <source>every day</source>
-          <target state="signed-off">každý den</target>
-        </trans-unit>
         <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
           <source>repeats</source>
           <target state="signed-off">opakování</target>
+        </trans-unit>
+        <trans-unit id="Resx/RepeatsDaily" translate="yes" xml:space="preserve">
+          <source>daily</source>
+          <target state="signed-off">denně</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>

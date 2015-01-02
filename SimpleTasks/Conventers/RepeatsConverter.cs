@@ -33,7 +33,15 @@ namespace SimpleTasks.Conventers
             {
                 Repeats repeats = (Repeats)value;
 
-                if (repeats == Repeats.Weekends)
+                if (repeats == Repeats.Monthly)
+                {
+                    return AppResources.RepeatsMonthly;
+                }
+                else if (repeats == Repeats.Weekly)
+                {
+                    return AppResources.RepeatsWeekly;
+                }
+                else if (repeats == Repeats.Weekends)
                 {
                     return AppResources.RepeatsWeekends;
                 }
@@ -41,9 +49,9 @@ namespace SimpleTasks.Conventers
                 {
                     return AppResources.RepeatsWeekdays;
                 }
-                else if (repeats == Repeats.AllDays)
+                else if (repeats == Repeats.Daily)
                 {
-                    return AppResources.RepeatsEveryDay;
+                    return AppResources.RepeatsDaily;
                 }
                 else
                 {

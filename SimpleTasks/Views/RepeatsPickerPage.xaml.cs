@@ -13,6 +13,7 @@ using SimpleTasks.Controls;
 using SimpleTasks.Core.Models;
 using System.Windows.Controls.Primitives;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace SimpleTasks.Views
 {
@@ -51,7 +52,39 @@ namespace SimpleTasks.Views
             InitializeComponent();
             DataContext = this;
 
-            UpdateButtons(NavigationParameter<Repeats>(_name, DefaultRepeats));
+            List<ListPickerItem<Repeats>> repeatsList = new List<ListPickerItem<Repeats>>();
+            repeatsList.Add(new ListPickerItem<Repeats>(AppResources.RepeatsOnce, Repeats.None));
+            repeatsList.Add(new ListPickerItem<Repeats>(AppResources.RepeatsDaily, Repeats.Daily));
+            repeatsList.Add(new ListPickerItem<Repeats>(AppResources.RepeatsDaysOfWeek, Repeats.Monday));
+            repeatsList.Add(new ListPickerItem<Repeats>(AppResources.RepeatsWeekly, Repeats.Weekly));
+            repeatsList.Add(new ListPickerItem<Repeats>(AppResources.RepeatsMonthly, Repeats.Monthly));
+            RepeatsListPicker.ItemsSource = repeatsList;
+
+            Repeats repeats = NavigationParameter<Repeats>(_name, DefaultRepeats);
+            switch (repeats)
+            {
+            case Repeats.Monthly:
+                RepeatsListPicker.SelectedIndex = 4;
+                break;
+
+            case Repeats.Weekly:
+                RepeatsListPicker.SelectedIndex = 3;
+                break;
+
+            case Repeats.Daily:
+                RepeatsListPicker.SelectedIndex = 1;
+                break;
+
+            case Repeats.None:
+                RepeatsListPicker.SelectedIndex = 0;
+                break;
+
+            default /* DaysOfWeek */:
+                RepeatsListPicker.SelectedIndex = 2;
+                break;
+            }
+
+            UpdateButtons(repeats);
         }
 
         private bool IsSetDayOfWeek(DayOfWeek dayOfWeek)
@@ -66,15 +99,28 @@ namespace SimpleTasks.Views
 
         protected override object Save()
         {
-            Repeats repeats = Repeats.None;
-            if (IsSetDayOfWeek(DayOfWeek.Monday)) repeats |= Repeats.Monday;
-            if (IsSetDayOfWeek(DayOfWeek.Tuesday)) repeats |= Repeats.Tuesday;
-            if (IsSetDayOfWeek(DayOfWeek.Wednesday)) repeats |= Repeats.Wednesday;
-            if (IsSetDayOfWeek(DayOfWeek.Thursday)) repeats |= Repeats.Thursday;
-            if (IsSetDayOfWeek(DayOfWeek.Friday)) repeats |= Repeats.Friday;
-            if (IsSetDayOfWeek(DayOfWeek.Saturday)) repeats |= Repeats.Saturday;
-            if (IsSetDayOfWeek(DayOfWeek.Sunday)) repeats |= Repeats.Sunday;
-            return repeats;
+            switch (RepeatsListPicker.SelectedIndex)
+            {
+            case 4: return Repeats.Monthly;
+
+            case 3: return Repeats.Weekly;
+
+            case 2:
+                Repeats repeats = Repeats.None;
+                if (IsSetDayOfWeek(DayOfWeek.Monday)) repeats |= Repeats.Monday;
+                if (IsSetDayOfWeek(DayOfWeek.Tuesday)) repeats |= Repeats.Tuesday;
+                if (IsSetDayOfWeek(DayOfWeek.Wednesday)) repeats |= Repeats.Wednesday;
+                if (IsSetDayOfWeek(DayOfWeek.Thursday)) repeats |= Repeats.Thursday;
+                if (IsSetDayOfWeek(DayOfWeek.Friday)) repeats |= Repeats.Friday;
+                if (IsSetDayOfWeek(DayOfWeek.Saturday)) repeats |= Repeats.Saturday;
+                if (IsSetDayOfWeek(DayOfWeek.Sunday)) repeats |= Repeats.Sunday;
+                return repeats;
+
+            case 1: return Repeats.Daily;
+
+            case 0:
+            default: return Repeats.None;
+            }
         }
 
         private void UpdateButtons(Repeats repeats)
@@ -86,6 +132,18 @@ namespace SimpleTasks.Views
             SetDayOfWeek(DayOfWeek.Friday, (repeats & Repeats.Friday) != 0);
             SetDayOfWeek(DayOfWeek.Saturday, (repeats & Repeats.Saturday) != 0);
             SetDayOfWeek(DayOfWeek.Sunday, (repeats & Repeats.Sunday) != 0);
+        }
+
+        private void RepeatsListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (RepeatsListPicker.SelectedItem != null)
+            {
+                ListPickerItem<Repeats> item = RepeatsListPicker.SelectedItem as ListPickerItem<Repeats>;
+                if (item != null)
+                {
+                    DaysOfWeekContainer.IsChecked = item.Value == Repeats.Monday;
+                }
+            }
         }
     }
 }

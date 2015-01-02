@@ -1037,11 +1037,29 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to every day.
+        ///   Looks up a localized string similar to daily.
         /// </summary>
-        public static string RepeatsEveryDay {
+        public static string RepeatsDaily {
             get {
-                return ResourceManager.GetString("RepeatsEveryDay", resourceCulture);
+                return ResourceManager.GetString("RepeatsDaily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days of week.
+        /// </summary>
+        public static string RepeatsDaysOfWeek {
+            get {
+                return ResourceManager.GetString("RepeatsDaysOfWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to monthly.
+        /// </summary>
+        public static string RepeatsMonthly {
+            get {
+                return ResourceManager.GetString("RepeatsMonthly", resourceCulture);
             }
         }
         
@@ -1078,6 +1096,15 @@ namespace SimpleTasks.Resources {
         public static string RepeatsWeekends {
             get {
                 return ResourceManager.GetString("RepeatsWeekends", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weekly.
+        /// </summary>
+        public static string RepeatsWeekly {
+            get {
+                return ResourceManager.GetString("RepeatsWeekly", resourceCulture);
             }
         }
         

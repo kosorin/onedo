@@ -246,6 +246,15 @@
                                 Background="{StaticResource QuickAddBackgroundBrush}"
                                 Height="65" />
         </Grid>
+
+        <Grid Grid.RowSpan="3">
+            <Button Content="Test"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Margin="10"
+                    Style="{StaticResource ButtonStyle}"
+                    Click="RemindersMenuItem_Click" />
+        </Grid>
     </Grid>
 
 </controls:BasePage>

@@ -215,8 +215,6 @@
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
                         <controls:ListPicker x:Name="ThemeListPicker"
-                                             Foreground="{StaticResource SlightBrush}"
-                                             Background="{StaticResource ButtonBackgroundBrush}"
                                              SelectionChanged="ThemeListPicker_SelectionChanged" />
 
                         <!--Theme Color-->
@@ -225,23 +223,7 @@
                                        Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
                             <controls:ListPicker x:Name="ThemeColorListPicker"
                                                  Foreground="{StaticResource ButtonDarkForegroundBrush}"
-                                                 Background="{StaticResource ButtonBackgroundBrush}"
-                                                 SelectionChanged="ThemeColorListPicker_SelectionChanged">
-                                <controls:ListPicker.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Height="60"
-                                                Margin="-8,-10"
-                                                Padding="10,0">
-                                            <Border.Background>
-                                                <SolidColorBrush Color="{Binding Value}" />
-                                            </Border.Background>
-                                            <TextBlock Text="{Binding Label}"
-                                                       Style="{StaticResource ButtonTextStyle}"
-                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}" />
-                                        </Border>
-                                    </DataTemplate>
-                                </controls:ListPicker.ItemTemplate>
-                            </controls:ListPicker>
+                                                 SelectionChanged="ThemeColorListPicker_SelectionChanged" />
                         </StackPanel>
 
                         <!--Vibrate-->

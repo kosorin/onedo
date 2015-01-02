@@ -57,7 +57,7 @@ namespace SimpleTasks.Core.Tiles
             if (!hideDate)
             {
                 Info.Height = settings.LineHeight;
-                Date.Text = task.CurrentDueDate.Value.ToShortDateString();
+                Date.Text = task.ActualDueDate.Value.ToShortDateString();
             }
 
             // Podúkoly + Detail

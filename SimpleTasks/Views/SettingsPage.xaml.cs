@@ -66,17 +66,17 @@ namespace SimpleTasks.Views
             ThemeListPicker.ItemsSource = themeList;
             ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
 
-            List<ListPickerItem<Color>> themeColorList = new List<ListPickerItem<Color>>();
-            themeColorList.Add(new ListPickerItem<Color>("Yellow", Color.FromArgb(255, 181, 137, 0)));
-            themeColorList.Add(new ListPickerItem<Color>("Orange", Color.FromArgb(255, 203, 75, 22)));
-            themeColorList.Add(new ListPickerItem<Color>("Red", Color.FromArgb(255, 220, 50, 47)));
-            themeColorList.Add(new ListPickerItem<Color>("Magenta", Color.FromArgb(255, 211, 54, 130)));
-            themeColorList.Add(new ListPickerItem<Color>("Violet", Color.FromArgb(255, 108, 113, 196)));
-            themeColorList.Add(new ListPickerItem<Color>("Blue", Color.FromArgb(255, 38, 139, 210)));
-            themeColorList.Add(new ListPickerItem<Color>("Cyan", Color.FromArgb(255, 42, 161, 152)));
-            themeColorList.Add(new ListPickerItem<Color>("Green", Color.FromArgb(255, 133, 153, 0)));
+            List<ColorListPickerItem> themeColorList = new List<ColorListPickerItem>();
+            themeColorList.Add(new ColorListPickerItem("Yellow", Color.FromArgb(255, 181, 137, 0)));
+            themeColorList.Add(new ColorListPickerItem("Orange", Color.FromArgb(255, 203, 75, 22)));
+            themeColorList.Add(new ColorListPickerItem("Red", Color.FromArgb(255, 220, 50, 47)));
+            themeColorList.Add(new ColorListPickerItem("Magenta", Color.FromArgb(255, 211, 54, 130)));
+            themeColorList.Add(new ColorListPickerItem("Violet", Color.FromArgb(255, 108, 113, 196)));
+            themeColorList.Add(new ColorListPickerItem("Blue", Color.FromArgb(255, 38, 139, 210)));
+            themeColorList.Add(new ColorListPickerItem("Cyan", Color.FromArgb(255, 42, 161, 152)));
+            themeColorList.Add(new ColorListPickerItem("Green", Color.FromArgb(255, 133, 153, 0)));
             ThemeColorListPicker.ItemsSource = themeColorList;
-            int themeColorIndex = themeColorList.FindIndex(item => item.Value == ThemeHelper.ThemeColor);
+            int themeColorIndex = themeColorList.FindIndex(item => item.Color == ThemeHelper.ThemeColor);
             ThemeColorListPicker.SelectedIndex = (themeColorIndex == -1 ? 1 : themeColorIndex);
 
             _isSetThemeListPicker = true;
@@ -219,10 +219,10 @@ namespace SimpleTasks.Views
         {
             if (_isSetThemeListPicker)
             {
-                ListPickerItem<Color> item = ThemeColorListPicker.SelectedItem as ListPickerItem<Color>;
+                ColorListPickerItem item = ThemeColorListPicker.SelectedItem as ColorListPickerItem;
                 if (item != null)
                 {
-                    ThemeHelper.ThemeColor = item.Value;
+                    ThemeHelper.ThemeColor = item.Color;
                     Toast.Show(AppResources.SettingsThemeNote);
                 }
             }

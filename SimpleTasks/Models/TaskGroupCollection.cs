@@ -54,7 +54,7 @@ namespace SimpleTasks.Models
             Comparer<TaskModel> somedayComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Priority.CompareTo(t1.Priority));
             Comparer<TaskModel> dateComparer = Comparer<TaskModel>.Create((t1, t2) =>
             {
-                int cmp = t1.CurrentDueDate.Value.CompareTo(t2.CurrentDueDate.Value);
+                int cmp = t1.ActualDueDate.Value.CompareTo(t2.ActualDueDate.Value);
                 if (cmp == 0)
                 {
                     return t2.Priority.CompareTo(t1.Priority);
@@ -99,15 +99,15 @@ namespace SimpleTasks.Models
             {
                 return _somedayGroup;
             }
-            else if (task.CurrentDueDate.Value >= DateTimeExtensions.Tomorrow.AddDays(1))
+            else if (task.ActualDueDate.Value >= DateTimeExtensions.Tomorrow.AddDays(1))
             {
                 return _upcomingGroup;
             }
-            else if (task.CurrentDueDate.Value >= DateTimeExtensions.Tomorrow)
+            else if (task.ActualDueDate.Value >= DateTimeExtensions.Tomorrow)
             {
                 return _tomorrowGroup;
             }
-            else if (task.CurrentDueDate.Value >= DateTimeExtensions.Today)
+            else if (task.ActualDueDate.Value >= DateTimeExtensions.Today)
             {
                 return _todayGroup;
             }

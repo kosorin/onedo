@@ -66,7 +66,7 @@ namespace SimpleTasks.BackgroundAgent
                             {
                                 if (task.HasDueDate)
                                 {
-                                    DateTime date = task.CurrentDueDate.Value.Date;
+                                    DateTime date = task.ActualDueDate.Value.Date;
                                     if (date == DateTimeExtensions.Today)
                                     //if (date >= DateTimeExtensions.Yesterday && date <= DateTimeExtensions.Tomorrow)
                                     {

@@ -768,10 +768,19 @@ Tato funkce je pořád v beta verzi.</value>
   <data name="RepeatsOn" xml:space="preserve">
     <value>opakovat v</value>
   </data>
-  <data name="RepeatsEveryDay" xml:space="preserve">
-    <value>každý den</value>
-  </data>
   <data name="Repeats" xml:space="preserve">
     <value>opakování</value>
+  </data>
+  <data name="RepeatsWeekly" xml:space="preserve">
+    <value>týdně</value>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>měsíčně</value>
+  </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>dny v týdnu</value>
+  </data>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>denně</value>
   </data>
 </root>

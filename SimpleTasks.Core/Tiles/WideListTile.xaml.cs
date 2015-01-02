@@ -82,16 +82,16 @@ namespace SimpleTasks.Core.Tiles
                     };
 
                     TextBlock dateTextBlock = null;
-                    if (task.CurrentDueDate != null)
+                    if (task.ActualDueDate != null)
                     {
                         string dt;
-                        if (task.CurrentDueDate.Value.Date == DateTime.Today)
+                        if (task.ActualDueDate.Value.Date == DateTime.Today)
                         {
-                            dt = task.CurrentDueDate.Value.ToShortTimeString();
+                            dt = task.ActualDueDate.Value.ToShortTimeString();
                         }
                         else
                         {
-                            dt = task.CurrentDueDate.Value.ToShortDateString();
+                            dt = task.ActualDueDate.Value.ToShortDateString();
                         }
                         dateTextBlock = new TextBlock()
                         {

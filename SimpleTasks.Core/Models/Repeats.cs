@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Phone.Scheduler;
+using SimpleTasks.Core.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,7 @@ namespace SimpleTasks.Core.Models
     public enum Repeats
     {
         None = 0,
+
         Monday = 1 << 0,
         Tuesday = 1 << 1,
         Wednesday = 1 << 2,
@@ -19,12 +22,30 @@ namespace SimpleTasks.Core.Models
 
         Weekdays = Monday | Tuesday | Wednesday | Thursday | Friday,
         Weekends = Saturday | Sunday,
-        AllDays = Weekdays | Weekends
+
+        Daily = Weekdays | Weekends,
+
+        Weekly = 1 << 7,
+        Monthly = 1 << 8,
     }
 
     public static class RepeatsExtensions
     {
-        public static List<DayOfWeek> DaysOfWeek(this Repeats repeats)
+        private const int _daysInWeek = 7;
+
+        public static RecurrenceInterval Interval(this Repeats repeats)
+        {
+            switch (repeats)
+            {
+            case Repeats.Monthly: return RecurrenceInterval.Monthly;
+            case Repeats.Weekly: return RecurrenceInterval.Weekly;
+            case Repeats.Daily: return RecurrenceInterval.Daily;
+            case Repeats.None: return RecurrenceInterval.None;
+            default /* DaysOfWeek */: return RecurrenceInterval.Weekly;
+            }
+        }
+
+        private static List<DayOfWeek> DaysOfWeek(this Repeats repeats)
         {
             List<DayOfWeek> daysOfWeek = new List<DayOfWeek>();
             if ((repeats & Repeats.Monday) != 0) daysOfWeek.Add(DayOfWeek.Monday);
@@ -39,63 +60,89 @@ namespace SimpleTasks.Core.Models
 
         public static DateTime ActualDate(this Repeats repeats, DateTime startDate)
         {
-            const int daysInWeek = 7;
-            List<DayOfWeek> list = repeats.DaysOfWeek();
-            for (int i = 0; i < daysInWeek; i++)
+            switch (repeats)
             {
-                DateTime date = startDate.AddDays(i);
-                if (list.Contains(date.DayOfWeek))
+            case Repeats.Monthly:
+                while (startDate.Date < DateTime.Today)
                 {
-                    return date;
+                    startDate = startDate.AddMonths(1);
                 }
-            }
-            return DateTime.MaxValue;
-        }
+                return startDate;
 
-        public static DateTime NextDate(this Repeats repeats, DateTime startDate)
-        {
-            const int daysInWeek = 7 * 2;
-            bool next = false;
-            List<DayOfWeek> list = repeats.DaysOfWeek();
-            for (int i = 0; i < daysInWeek; i++)
-            {
-                DateTime date = startDate.AddDays(i);
-                if (list.Contains(date.DayOfWeek))
+            case Repeats.Weekly:
+                while (startDate.Date < DateTime.Today)
                 {
-                    if (next)
+                    startDate = startDate.AddDays(_daysInWeek);
+                }
+                return startDate;
+
+            case Repeats.Daily:
+                return DateTime.Today.SetTime(startDate);
+
+            case Repeats.None:
+                return startDate;
+
+            default /* DaysOfWeek */:
+                if (startDate.Date < DateTime.Today)
+                {
+                    startDate = DateTime.Today.SetTime(startDate);
+                }
+                List<DayOfWeek> list = repeats.DaysOfWeek();
+                for (int i = 0; i < _daysInWeek; i++)
+                {
+                    DateTime date = startDate.AddDays(i);
+                    if (list.Contains(date.DayOfWeek))
                     {
                         return date;
                     }
-                    else
-                    {
-                        next = true;
-                    }
                 }
+                return startDate;
             }
-            return DateTime.MaxValue;
         }
 
-        public static List<DateTime> WeekDates(this Repeats repeats, DateTime startDate, bool skipFirst = false)
+        public static List<DateTime> Dates(this Repeats repeats, DateTime startDate, bool skipFirst = false)
         {
             List<DateTime> dates = new List<DateTime>();
 
-            int daysInWeek = 7;
-            List<DayOfWeek> list = repeats.DaysOfWeek();
-            for (int i = 0; i < daysInWeek; i++)
+            switch (repeats)
             {
-                DateTime date = startDate.AddDays(i);
-                if (list.Contains(date.DayOfWeek))
+            case Repeats.Monthly:
+                dates.Add(skipFirst ? startDate.AddMonths(1) : startDate);
+                return dates;
+
+            case Repeats.Weekly:
+                dates.Add(skipFirst ? startDate.AddDays(_daysInWeek) : startDate);
+                return dates;
+
+            case Repeats.Daily:
+                dates.Add(skipFirst ? startDate.AddDays(1) : startDate);
+                return dates;
+
+            case Repeats.None:
+                if (!skipFirst)
                 {
-                    dates.Add(date);
+                    dates.Add(startDate);
                 }
-            }
+                return dates;
 
-            if (skipFirst && dates.Count > 0)
-            {
-                dates[0] = dates[0].AddDays(daysInWeek);
-            }
+            default /* DaysOfWeek */:
+                List<DayOfWeek> list = repeats.DaysOfWeek();
+                for (int i = 0; i < _daysInWeek; i++)
+                {
+                    DateTime date = startDate.AddDays(i);
+                    if (list.Contains(date.DayOfWeek))
+                    {
+                        dates.Add(date);
+                    }
+                }
 
-            return dates;
+                if (skipFirst && dates.Count > 0)
+                {
+                    dates[0] = dates[0].AddDays(_daysInWeek);
+                }
+
+                return dates;
+            }
         }
     }
 }

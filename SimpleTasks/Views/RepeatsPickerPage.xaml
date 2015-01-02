@@ -22,25 +22,67 @@
 
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
-                   Text="{Binding LocalizedResources.RepeatsOn, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
+                   Text="{Binding LocalizedResources.Repeats, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
 
         <ScrollViewer Margin="0,80,0,0">
-            <StackPanel x:Name="ButtonPanel"
-                        Margin="24,0">
-                <ToggleButton Content="{Binding DayNames[0]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
-                <ToggleButton Content="{Binding DayNames[1]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
-                <ToggleButton Content="{Binding DayNames[2]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
-                <ToggleButton Content="{Binding DayNames[3]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
-                <ToggleButton Content="{Binding DayNames[4]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
-                <ToggleButton Content="{Binding DayNames[5]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
-                <ToggleButton Content="{Binding DayNames[6]}"
-                              Style="{StaticResource DayOfWeekStyle}" />
+            <StackPanel Margin="24,0">
+                <controls:ListPicker x:Name="RepeatsListPicker"
+                                     Foreground="{StaticResource SlightBrush}"
+                                     Background="{StaticResource ButtonBackgroundBrush}"
+                                     SelectionChanged="RepeatsListPicker_SelectionChanged" />
+
+                <controls:ToggleControl x:Name="DaysOfWeekContainer">
+                    <StackPanel x:Name="ButtonPanel"
+                                Margin="0,20,0,0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Checked"
+                                                      GeneratedDuration="0:0:0.6">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                    <VisualTransition To="Unchecked"
+                                                      GeneratedDuration="0:0:0.3">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Checked" />
+                                <VisualState x:Name="Unchecked">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                    Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
+                                                                       Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ToggleButton Content="{Binding DayNames[0]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                        <ToggleButton Content="{Binding DayNames[1]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                        <ToggleButton Content="{Binding DayNames[2]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                        <ToggleButton Content="{Binding DayNames[3]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                        <ToggleButton Content="{Binding DayNames[4]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                        <ToggleButton Content="{Binding DayNames[5]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                        <ToggleButton Content="{Binding DayNames[6]}"
+                                      Style="{StaticResource DayOfWeekStyle}" />
+                    </StackPanel>
+                </controls:ToggleControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>
