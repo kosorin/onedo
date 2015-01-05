@@ -70,7 +70,9 @@
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
-                                    HideEmptyGroups="True">
+                                    HideEmptyGroups="True"
+                                    ItemUnrealized="TasksLongListSelector_ItemUnrealized"
+                                    ItemRealized="TasksLongListSelector_ItemRealized">
                 <phone:LongListSelector.Template>
                     <ControlTemplate TargetType="phone:LongListSelector">
                         <Grid Background="{TemplateBinding Background}">
@@ -109,7 +111,6 @@
                             </Grid>
                         </Grid>
                     </ControlTemplate>
-
                 </phone:LongListSelector.Template>
             </phone:LongListSelector>
 

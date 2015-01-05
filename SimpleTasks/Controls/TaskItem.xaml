@@ -303,7 +303,7 @@
 
                             <!--Název-->
                             <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                                    Content="{Binding Title, FallbackValue='Dummy title'}"
+                                                    Content="{Binding Title}"
                                                     Style="{StaticResource TaskCheckBoxTextStyle}"
                                                     IsHitTestVisible="False"
                                                     FontSize="32"
@@ -375,7 +375,7 @@
                                                                 TranslateY="-29" />
                                         </ContentControl.RenderTransform>
                                     </ContentControl>
-                                    <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}, FallbackValue='pondělí, 12. prosince'}"
+                                    <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
                                                Style="{StaticResource SlightTextStyle}"
                                                FontSize="22"
                                                Margin="0,1,2,0"
@@ -389,7 +389,7 @@
                                   MaxHeight="30"
                                   Margin="0,-10,12,10"
                                   Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
-                                <TextBlock Text="{Binding Detail, FallbackValue='Dummy detail'}"
+                                <TextBlock Text="{Binding Detail}"
                                            Style="{StaticResource SlightTextStyle}"
                                            FontSize="22"
                                            TextWrapping="NoWrap"
@@ -427,8 +427,7 @@
                     Visibility="{Binding Current.General.HideTaskCheckBox, 
                                          Converter={StaticResource BooleanToVisibilityConverter}, 
                                          ConverterParameter='!', 
-                                         Source={StaticResource Settings}, 
-                                         FallbackValue=Visible}">
+                                         Source={StaticResource Settings}}">
                 <Button.Template>
                     <ControlTemplate TargetType="ButtonBase" />
                 </Button.Template>

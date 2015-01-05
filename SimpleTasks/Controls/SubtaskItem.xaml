@@ -192,7 +192,7 @@
                 <Border Background="Transparent"
                         Tap="Subtask_Tap">
                     <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                            Content="{Binding Text, FallbackValue='Dummy subtask'}"
+                                            Content="{Binding Text}"
                                             Style="{StaticResource TaskCheckBoxTextStyle}"
                                             IsHitTestVisible="False"
                                             Margin="5,0,0,0" />

@@ -666,5 +666,33 @@ namespace SimpleTasks.Views
             }
         }
         #endregion
+
+        private void BeginOpacityAnimation(DependencyObject target, double from, double to)
+        {
+            Storyboard sb = new Storyboard();
+
+            DoubleAnimation da = new DoubleAnimation();
+            Storyboard.SetTarget(da, target);
+            Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
+            da.From = from;
+            da.To = to;
+            da.BeginTime = TimeSpan.FromSeconds(0.5);
+            da.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+            da.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
+
+            sb.Children.Add(da);
+            sb.Begin();
+        }
+
+        private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
+        {
+            e.Container.Opacity = 0;
+            BeginOpacityAnimation(e.Container, 0, 1);
+        }
+
+        private void TasksLongListSelector_ItemUnrealized(object sender, ItemRealizationEventArgs e)
+        {
+            e.Container.Opacity = 0;
+        }
     }
 }
