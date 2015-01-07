@@ -351,6 +351,11 @@ namespace SimpleTasks.Controls
             OnClick();
         }
 
+        private void SubtaskAdd_Click(object sender, RoutedEventArgs e)
+        {
+            OnClick(new Subtask());
+        }
+
         private void SubtaskItem_Click(object sender, SubtaskEventArgs e)
         {
             OnClick(e.Subtask);
@@ -385,5 +390,6 @@ namespace SimpleTasks.Controls
             UpdateVisualState(NotDeletedState, false);
         }
         #endregion // end of Delete
+
     }
 }
