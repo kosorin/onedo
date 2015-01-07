@@ -61,6 +61,7 @@ namespace SimpleTasks.Views
             NavigationService.RemoveBackEntry();
 
             QuickAddGrid.Visibility = Settings.Current.General.ShowQuickAddTextBox ? Visibility.Visible : Visibility.Collapsed;
+            QuickAddGridSeparator.Visibility = Settings.Current.General.ShowQuickAddTextBox ? Visibility.Visible : Visibility.Collapsed;
 
             App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
             App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;

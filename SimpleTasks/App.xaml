@@ -900,7 +900,7 @@
                                 <!--Checkbox-->
                                 <Border Width="{TemplateBinding Width}"
                                         Height="{TemplateBinding Height}"
-                                        Background="{StaticResource CheckBoxBackgroundBrush}"
+                                        Background="Transparent"
                                         BorderThickness="2"
                                         BorderBrush="{StaticResource CheckBoxBorderBrush}"
                                         HorizontalAlignment="Left">
@@ -923,7 +923,6 @@
                                         </ContentControl>
                                     </Border>
                                 </Border>
-
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -1075,7 +1074,7 @@
                                 <!--CheckBox-->
                                 <Border Width="{TemplateBinding Height}"
                                         Height="{TemplateBinding Height}"
-                                        Background="{StaticResource CheckBoxBackgroundBrush}"
+                                        Background="Transparent"
                                         BorderThickness="2"
                                         BorderBrush="{StaticResource CheckBoxBorderBrush}"
                                         HorizontalAlignment="Left">
@@ -1189,7 +1188,7 @@
                                 <!--CheckBox-->
                                 <Border Width="50"
                                         Height="50"
-                                        Background="{StaticResource CheckBoxBackgroundBrush}"
+                                        Background="Transparent"
                                         BorderThickness="2"
                                         BorderBrush="{StaticResource CheckBoxBorderBrush}"
                                         HorizontalAlignment="Left">

@@ -14,22 +14,46 @@
     <controls:BasePage.Resources>
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
-            <Grid Height="50"
-                  toolkit:TiltEffect.SuppressTilt="True">
-                <Grid.Background>
+            <Border toolkit:TiltEffect.SuppressTilt="True"
+                    Height="50">
+                <Border.Background>
                     <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}" />
-                </Grid.Background>
-                <TextBlock Style="{StaticResource NormalTextStyle}"
-                           Opacity="0.75"
-                           VerticalAlignment="Center"
-                           Margin="16,0,0,0">
-                    <Run Text="{Binding Title, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
-                    <Run Text="{Binding Count, StringFormat='({0})'}"
-                         Foreground="{StaticResource SlightBrush}" />
-                </TextBlock>
-                <Border BorderThickness="0,1,0,2"
-                        BorderBrush="{StaticResource TasksListHeaderBorderBrush}" />
-            </Grid>
+                </Border.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Background="{StaticResource AccentBrush}"
+                            Padding="16,4,16,8"
+                            HorizontalAlignment="Left"
+                            Grid.Column="0">
+                        <TextBlock Text="{Binding Title}"
+                                   Style="{StaticResource NormalTextStyle}"
+                                   Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock Style="{StaticResource SubtleTextStyle}"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"
+                               Grid.Column="1"
+                               FontSize="22"
+                               HorizontalAlignment="Left">
+                        <Run Text="{Binding Count}" />
+                        <Run Text="TASK" FontSize="16" />
+                    </TextBlock>
+
+                    <Border  Grid.ColumnSpan="2"
+                             VerticalAlignment="Bottom"
+                             Height="10">
+                        <Border.Background>
+                            <SolidColorBrush Color="{StaticResource TasksListHeaderBackgroundColor}" />
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </Border>
         </DataTemplate>
 
         <!--List Task-->
@@ -228,6 +252,7 @@
 
         <!--Oddělovač-->
         <Rectangle Grid.Row="1"
+                   x:Name="QuickAddGridSeparator"
                    Fill="{StaticResource AccentBrush}"
                    Opacity="0.6"
                    Height="10"
