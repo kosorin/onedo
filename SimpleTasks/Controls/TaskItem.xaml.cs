@@ -51,16 +51,18 @@ namespace SimpleTasks.Controls
         }
     }
 
-    [TemplateVisualState(Name = CompletedState, GroupName = CompleteStatesGroup)]
-    [TemplateVisualState(Name = UncompletedState, GroupName = CompleteStatesGroup)]
-    [TemplateVisualState(Name = ScheduledState, GroupName = ScheduledStatesGroup)]
-    [TemplateVisualState(Name = NotScheduledState, GroupName = ScheduledStatesGroup)]
-    [TemplateVisualState(Name = GestureStartDragState, GroupName = GestureStatesGroup)]
-    [TemplateVisualState(Name = GestureDragOkState, GroupName = GestureStatesGroup)]
-    [TemplateVisualState(Name = GestureDragState, GroupName = GestureStatesGroup)]
-    [TemplateVisualState(Name = GestureEndDragState, GroupName = GestureStatesGroup)]
-    [TemplateVisualState(Name = DeletedState, GroupName = DeleteStatesGroup)]
-    [TemplateVisualState(Name = NotDeletedState, GroupName = DeleteStatesGroup)]
+    [TemplateVisualState(GroupName = CompleteStatesGroup, Name = CompletedState)]
+    [TemplateVisualState(GroupName = CompleteStatesGroup, Name = UncompletedState)]
+    [TemplateVisualState(GroupName = ScheduledStatesGroup, Name = ScheduledState)]
+    [TemplateVisualState(GroupName = ScheduledStatesGroup, Name = NotScheduledState)]
+    [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureStartDragState)]
+    [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureDragOkState)]
+    [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureDragState)]
+    [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureEndDragState)]
+    [TemplateVisualState(GroupName = DeleteStatesGroup, Name = DeletedState)]
+    [TemplateVisualState(GroupName = DeleteStatesGroup, Name = NotDeletedState)]
+    [TemplateVisualState(GroupName = SubtasksVisibilityStatesGroup, Name = VisibleState)]
+    [TemplateVisualState(GroupName = SubtasksVisibilityStatesGroup, Name = CollapsedState)]
     public partial class TaskItem : UserControl, INotifyPropertyChanged
     {
         #region Events
@@ -197,6 +199,22 @@ namespace SimpleTasks.Controls
         }
         public static readonly DependencyProperty SwipeGestureTresholdProperty =
             DependencyProperty.Register("SwipeGestureTreshold", typeof(double), typeof(TaskItem), new PropertyMetadata(105d));
+
+        public bool ShowSubtasks
+        {
+            get { return (bool)GetValue(ShowSubtasksProperty); }
+            set { SetValue(ShowSubtasksProperty, value); }
+        }
+        public static readonly DependencyProperty ShowSubtasksProperty =
+            DependencyProperty.Register("ShowSubtasks", typeof(bool), typeof(TaskItem), new PropertyMetadata(true, ShowSubtasks_Changed));
+        private static void ShowSubtasks_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TaskItem item = d as TaskItem;
+            if (item != null)
+            {
+                item.UpdateShowSubtasks(true);
+            }
+        }
         #endregion // end of Dependency Properties
 
         #region INotifyPropertyChanged
@@ -224,6 +242,12 @@ namespace SimpleTasks.Controls
         #endregion // end of INotifyPropertyChanged
 
         #region Visual States
+        private const string SubtasksVisibilityStatesGroup = "SubtasksVisibility";
+
+        private const string VisibleState = "Visible";
+
+        private const string CollapsedState = "Collapsed";
+
         private const string CompleteStatesGroup = "CompleteStates";
 
         private const string CompletedState = "Completed";
@@ -262,6 +286,17 @@ namespace SimpleTasks.Controls
             UpdateVisualState((Task != null && Task.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
             UpdateVisualState((Task != null && Task.GetWrapper() != null && Task.GetWrapper().IsScheduled) ? ScheduledState : NotScheduledState, useTransitions);
             UpdateVisualState(GestureEndDragState, useTransitions);
+            UpdateShowSubtasks(useTransitions);
+        }
+
+        private void UpdateShowSubtasks(bool useTransitions = true)
+        {
+            //if (Task != null && Task.Subtasks != null)
+            //{
+            //    ((DoubleAnimation)Collapsed.Storyboard.Children[1]).From = Task.Subtasks.Count * 50;
+            //    ((DoubleAnimation)Visible.Storyboard.Children[0]).To = Task.Subtasks.Count * 50;
+            //}
+            UpdateVisualState(ShowSubtasks ? VisibleState : CollapsedState, useTransitions);
         }
         #endregion // end of Visual States
 
