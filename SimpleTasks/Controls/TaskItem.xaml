@@ -469,6 +469,7 @@
                     <StackPanel x:Name="SubtasksStackPanel"
                                 Margin="3,-5,0,10"
                                 Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
+                        <!--Seznam podúkolů-->
                         <ItemsControl x:Name="SubtasksItemsControl"
                                       ItemsSource="{Binding Subtasks}">
                             <ItemsControl.ItemTemplate>
@@ -476,13 +477,41 @@
                                     <controls:SubtaskItem x:Name="SubtasksItemsControl"
                                                           Subtask="{Binding}"
                                                           IsCompleted="{Binding IsCompleted}"
-                                                          Click="SubtaskItem_Click"
+                                                          Click="SubtaskItem_Check"
                                                           Check="SubtaskItem_Check"
                                                           SwipeLeft="SubtaskItem_SwipeLeft"
                                                           SwipeRight="SubtaskItem_SwipeRight" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+
+                        <!--Přidat podúkol-->
+                        <Button Height="45"
+                                Click="SubtaskAdd_Click"
+                                Opacity="0.6">
+                            <Button.Template>
+                                <ControlTemplate />
+                            </Button.Template>
+                            <Grid Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource SubtleTextStyle}"
+                                           Text="+"
+                                           FontSize="46"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"
+                                           Margin="0,-8,0,0"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Style="{StaticResource SubtleTextStyle}"
+                                           Text="add a subtask"
+                                           FontSize="20"
+                                           VerticalAlignment="Center"
+                                           Grid.Column="1"
+                                           Margin="5,0,0,0" />
+                            </Grid>
+                        </Button>
                     </StackPanel>
                 </Border>
 

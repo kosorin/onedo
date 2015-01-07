@@ -89,6 +89,7 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1">
             <phone:LongListSelector x:Name="TasksLongListSelector"
+                                    VirtualizingStackPanel.VirtualizationMode="Standard"
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
@@ -137,7 +138,7 @@
                     </ControlTemplate>
                 </phone:LongListSelector.Template>
             </phone:LongListSelector>
-
+            
             <!--No tasks-->
             <StackPanel x:Name="NoTasksPanel"
                         Visibility="{Binding Tasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter=0}"
