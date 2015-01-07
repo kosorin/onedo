@@ -224,73 +224,6 @@
 
             </VisualStateGroup>
 
-            <!--SubtasksVisibility-->
-            <VisualStateGroup x:Name="SubtasksVisibility">
-                <VisualStateGroup.Transitions>
-                    <!--<VisualTransition To="Collapsed"
-                                      GeneratedDuration="0:0:0.35">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-
-                    <VisualTransition To="Visible"
-                                      GeneratedDuration="0:0:0.35">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>-->
-                </VisualStateGroup.Transitions>
-
-                <!--Collapsed-->
-                <VisualState x:Name="Collapsed">
-                    <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksArrow"
-                                                       Storyboard.TargetProperty="RotationX">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <!--<DoubleAnimation Storyboard.TargetName="SubtasksItemsControl"
-                                         Storyboard.TargetProperty="Height"
-                                         BeginTime="0"
-                                         Duration="0:0:0.35"
-                                         From="0"
-                                         To="0">
-                            <DoubleAnimation.EasingFunction>
-                                <CubicEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SubtasksItemsControl"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0:0:0.35"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>-->
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-
-                <!--Visible-->
-                <VisualState x:Name="Visible">
-                    <!--<Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="SubtasksItemsControl"
-                                         Storyboard.TargetProperty="Height"
-                                         BeginTime="0"
-                                         Duration="0:0:0.35"
-                                         From="0"
-                                         To="0">
-                            <DoubleAnimation.EasingFunction>
-                                <CubicEase EasingMode="EaseOut" />
-                            </DoubleAnimation.EasingFunction>
-                        </DoubleAnimation>
-                    </Storyboard>-->
-                </VisualState>
-
-            </VisualStateGroup>
-
         </VisualStateManager.VisualStateGroups>
 
         <Border.RenderTransform>
@@ -490,18 +423,33 @@
                     <ToggleButton Grid.Column="2"
                                   Margin="4,0,0,0"
                                   Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
-                                  IsChecked="{Binding ShowSubtasks, ElementName=Control, Mode=TwoWay}"
+                                  IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
                                   VerticalAlignment="Top">
-                        <ToggleButton.Projection>
-                            <PlaneProjection x:Name="SubtasksArrow"
-                                             RotationX="180"
-                                             CenterOfRotationY="0.53" />
-                        </ToggleButton.Projection>
                         <ToggleButton.Template>
                             <ControlTemplate>
-                                <Border Background="Transparent"
+                                <Border x:Name="RootBorder"
+                                        Background="Transparent"
                                         Height="70"
                                         Width="54">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CheckStates">
+                                            <VisualState x:Name="Checked">
+                                                <Storyboard>
+                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksArrow"
+                                                                                   Storyboard.TargetProperty="RotationX">
+                                                        <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                                Value="180" />
+                                                    </DoubleAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Unchecked" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Border.Projection>
+                                        <PlaneProjection x:Name="SubtasksArrow"
+                                                         RotationX="0"
+                                                         CenterOfRotationY="0.53" />
+                                    </Border.Projection>
                                     <TextBlock x:Name="Arrow"
                                                Text="&#xe019;"
                                                Foreground="{StaticResource SubtleBrush}"
@@ -517,24 +465,26 @@
                 </Grid>
 
                 <!--Podúkoly-->
-                <StackPanel x:Name="SubtasksStackPanel"
-                            Margin="3,-5,0,10"
-                            Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
-                    <ItemsControl x:Name="SubtasksItemsControl"
-                                  ItemsSource="{Binding Subtasks}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <controls:SubtaskItem x:Name="SubtasksItemsControl"
-                                                      Subtask="{Binding}"
-                                                      IsCompleted="{Binding IsCompleted}"
-                                                      Click="SubtaskItem_Click"
-                                                      Check="SubtaskItem_Check"
-                                                      SwipeLeft="SubtaskItem_SwipeLeft"
-                                                      SwipeRight="SubtaskItem_SwipeRight" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
+                <Border Visibility="{Binding ShowSubtasks, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel x:Name="SubtasksStackPanel"
+                                Margin="3,-5,0,10"
+                                Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
+                        <ItemsControl x:Name="SubtasksItemsControl"
+                                      ItemsSource="{Binding Subtasks}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:SubtaskItem x:Name="SubtasksItemsControl"
+                                                          Subtask="{Binding}"
+                                                          IsCompleted="{Binding IsCompleted}"
+                                                          Click="SubtaskItem_Click"
+                                                          Check="SubtaskItem_Check"
+                                                          SwipeLeft="SubtaskItem_SwipeLeft"
+                                                          SwipeRight="SubtaskItem_SwipeRight" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
 
             </StackPanel>
 

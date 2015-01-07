@@ -60,7 +60,6 @@
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <controls:TaskItem Task="{Binding}"
                                IsCompleted="{Binding IsCompleted}"
-                               ShowSubtasks="False"
                                IsScheduled="{Binding Wrapper.IsScheduled}"
                                Click="TaskItem_Click"
                                Check="TaskItem_Check"

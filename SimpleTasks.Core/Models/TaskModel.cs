@@ -106,6 +106,19 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+        #region ShowSubtasks 4
+        private bool _showSubtasks = false;
+        [DataMember(Order = 4)]
+        public bool ShowSubtasks
+        {
+            get { return _showSubtasks; }
+            private set
+            {
+                SetProperty(ref _showSubtasks, value);
+            }
+        }
+        #endregion
+
 
         #region DueDate 10
         private DateTime? _dueDate = null;
@@ -390,5 +403,6 @@ namespace SimpleTasks.Core.Models
             private set { SetProperty(ref _completedForDueDate, value); }
         }
         #endregion
+
     }
 }
