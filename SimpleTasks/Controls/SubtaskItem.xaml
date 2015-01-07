@@ -152,7 +152,7 @@
             <!--Pozadí-->
             <Border x:Name="BackgroundBorder"
                     Grid.ColumnSpan="2"
-                    Margin="-600,0"
+                    Margin="-560,0"
                     IsHitTestVisible="False"
                     BorderThickness="0,1"
                     Opacity="0">

@@ -102,10 +102,10 @@
                 <!--OK-->
                 <VisualState x:Name="GestureDragOk">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorderBrush"
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBorder"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0.4" />
+                                                    Value="1" />
                         </DoubleAnimationUsingKeyFrames>
                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="SwipeLeftGestureIcon"
                                                       Storyboard.TargetProperty="(ContentControl.Foreground).(SolidColorBrush.Color)">
@@ -238,16 +238,20 @@
             </Grid.ColumnDefinitions>
 
             <!--Pozadí-->
-            <Border Grid.ColumnSpan="2"
+            <Border x:Name="BackgroundBorder"
+                    Grid.ColumnSpan="2"
                     Margin="-480,0"
-                    BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource TasksListDelimiterBrush}"
-                    IsHitTestVisible="False">
+                    BorderThickness="0,1"
+                    IsHitTestVisible="False"
+                    Opacity="0">
                 <Border.Background>
-                    <SolidColorBrush x:Name="BackgroundBorderBrush"
-                                     Color="{StaticResource AccentColor}"
-                                     Opacity="0" />
+                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                                     Opacity="0.4" />
                 </Border.Background>
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                                     Opacity="0.8" />
+                </Border.BorderBrush>
             </Border>
 
             <!--Info + Podúkoly-->
