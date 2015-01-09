@@ -1050,7 +1050,7 @@
                                         <VisualState x:Name="Unchecked">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
-                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="0" />
                                             </Storyboard>
@@ -1062,7 +1062,7 @@
                                                                  Duration="0"
                                                                  To="1" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
-                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="1" />
                                             </Storyboard>
@@ -1080,11 +1080,10 @@
                                         HorizontalAlignment="Left">
                                     <Border x:Name="CheckBoxBorder"
                                             Margin="-2"
-                                            BorderBrush="{StaticResource AccentBrush}"
-                                            BorderThickness="2">
+                                            Background="{StaticResource AccentBrush}">
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
-                                                        Foreground="{StaticResource SubtleBrush}"
+                                                        Foreground="{StaticResource NormalBrush}"
                                                         Opacity="0"
                                                         MaxWidth="0"
                                                         MaxHeight="0">

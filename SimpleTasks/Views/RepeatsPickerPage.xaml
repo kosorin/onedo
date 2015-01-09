@@ -13,8 +13,6 @@
         <Style x:Key="DayOfWeekStyle"
                TargetType="ToggleButton"
                BasedOn="{StaticResource CheckBoxStyle}">
-            <Setter Property="Height"
-                    Value="50" />
             <Setter Property="Margin"
                     Value="0,0,0,20" />
         </Style>
