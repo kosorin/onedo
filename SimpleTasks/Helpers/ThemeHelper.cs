@@ -104,6 +104,12 @@ namespace SimpleTasks.Helpers
             }
         }
 
+        private static void ReplaceDouble(ResourceDictionary rd, string key, double newValue)
+        {
+            rd.Remove(key);
+            rd.Add(key, newValue);
+        }
+
         private static void ReplaceColor(ResourceDictionary rd, string key, Color newColor)
         {
             rd.Remove(key);
@@ -140,6 +146,12 @@ namespace SimpleTasks.Helpers
             {
                 Source = sourceUri
             };
+
+            // Čísla
+            foreach (var ck in theme.Where(x => x.Value is double))
+            {
+                ReplaceDouble(appTheme, (string)ck.Key, (double)ck.Value);
+            }
 
             // Barvy
             foreach (var ck in theme.Where(x => x.Value is Color))
