@@ -1587,6 +1587,33 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} subtask.
+        /// </summary>
+        public static string Subtasks1 {
+            get {
+                return ResourceManager.GetString("Subtasks1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} subtasks.
+        /// </summary>
+        public static string Subtasks2To4 {
+            get {
+                return ResourceManager.GetString("Subtasks2To4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} subtasks.
+        /// </summary>
+        public static string Subtasks5AndMore {
+            get {
+                return ResourceManager.GetString("Subtasks5AndMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to subtasks.
         /// </summary>
         public static string SubtasksText {
@@ -1601,6 +1628,33 @@ namespace SimpleTasks.Resources {
         public static string SubtaskText {
             get {
                 return ResourceManager.GetString("SubtaskText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} task.
+        /// </summary>
+        public static string Tasks1 {
+            get {
+                return ResourceManager.GetString("Tasks1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} tasks.
+        /// </summary>
+        public static string Tasks2To4 {
+            get {
+                return ResourceManager.GetString("Tasks2To4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} tasks.
+        /// </summary>
+        public static string Tasks5AndMore {
+            get {
+                return ResourceManager.GetString("Tasks5AndMore", resourceCulture);
             }
         }
         

@@ -34,8 +34,10 @@ namespace SimpleTasks.Views
             DataContext = this;
 
             // Nastavení kalendáře
+#if !DEBUG
             Calendar.MinimumDate = DateTime.Today;
             Calendar.MaximumDate = DateTime.Today.AddYears(3);
+#endif
             SelectDate(_date);
             BackKeyPress += Calendar.BackKeyPress;
         }

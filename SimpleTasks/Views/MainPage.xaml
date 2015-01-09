@@ -8,10 +8,13 @@
                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   xmlns:converters="clr-namespace:SimpleTasks.Conventers"
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d">
 
     <controls:BasePage.Resources>
+        <converters:TaskGroupCountConverter x:Key="TaskGroupCountConverter" />
+
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Border toolkit:TiltEffect.SuppressTilt="True"
@@ -24,7 +27,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Border Background="{StaticResource AccentBrush}"
-                            Padding="16,4,16,8"
+                            Padding="15,4,16,8"
                             HorizontalAlignment="Left"
                             Grid.Column="0">
                         <TextBlock Text="{Binding Title}"
@@ -34,15 +37,12 @@
                                    VerticalAlignment="Center" />
                     </Border>
                     <TextBlock Style="{StaticResource SubtleTextStyle}"
+                               Text="{Binding Count, Converter={StaticResource TaskGroupCountConverter}}"
                                VerticalAlignment="Center"
                                Margin="12,0,0,0"
                                Grid.Column="1"
-                               FontSize="22"
-                               HorizontalAlignment="Left">
-                        <Run Text="{Binding Count}" />
-                        <Run Text="TASK"
-                             FontSize="16" />
-                    </TextBlock>
+                               FontSize="16"
+                               HorizontalAlignment="Left" />
 
                     <Border Grid.ColumnSpan="2"
                             Background="Black"

@@ -794,4 +794,28 @@ It's still in beta.</value>
   <data name="RepeatsWeekly" xml:space="preserve">
     <value>weekly</value>
   </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} subtask</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} subtasks</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} subtasks</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} task</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} tasks</value>
+    <comment>2 to 4 tasks</comment>
+  </data>
+  <data name="Tasks5AndMore" xml:space="preserve">
+    <value>{0} tasks</value>
+    <comment>5+ tasks</comment>
+  </data>
 </root>

@@ -133,6 +133,7 @@
     </Resource>
     <Compile Include="Controls\Transitions\OneTransition.cs" />
     <Compile Include="Controls\Transitions\OneTransitionMode.cs" />
+    <Compile Include="Conventers\TaskGroupCountConverter.cs" />
     <Compile Include="Conventers\OffOnConverter.cs" />
     <Compile Include="Conventers\RepeatsConverter.cs" />
     <Compile Include="Conventers\SettingsConverter.cs" />
@@ -516,7 +517,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

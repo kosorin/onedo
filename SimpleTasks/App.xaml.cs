@@ -324,7 +324,9 @@ namespace SimpleTasks
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
 
-                if (String.IsNullOrWhiteSpace(ForceDebugCulture) == false)
+
+
+                if (String.IsNullOrWhiteSpace(ForceDebugCulture) == false && Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Emulator)
                 {
                     Thread.CurrentThread.CurrentCulture =
                         new CultureInfo(ForceDebugCulture);

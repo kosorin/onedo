@@ -787,6 +787,36 @@ E' ancora una funzione beta.</target></trans-unit>
           <source>weekly</source>
           <target state="new">weekly</target>
         </trans-unit>
+        <trans-unit id="Resx/Tasks5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} tasks</source>
+          <target state="new">{0} tasks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">5+ tasks</note>
+        </trans-unit>
+        <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
+          <source>{0} tasks</source>
+          <target state="new">{0} tasks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 tasks</note>
+        </trans-unit>
+        <trans-unit id="Resx/Tasks1" translate="yes" xml:space="preserve">
+          <source>{0} task</source>
+          <target state="new">{0} task</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 task</note>
+        </trans-unit>
+        <trans-unit id="Resx/Subtasks5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} subtasks</source>
+          <target state="new">{0} subtasks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">5+ subtasks</note>
+        </trans-unit>
+        <trans-unit id="Resx/Subtasks2To4" translate="yes" xml:space="preserve">
+          <source>{0} subtasks</source>
+          <target state="new">{0} subtasks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 subtasks</note>
+        </trans-unit>
+        <trans-unit id="Resx/Subtasks1" translate="yes" xml:space="preserve">
+          <source>{0} subtask</source>
+          <target state="new">{0} subtask</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 subtask</note>
+        </trans-unit>
         <trans-unit id="Resx/RepeatsMonthly" translate="yes" xml:space="preserve">
           <source>monthly</source>
           <target state="new">monthly</target>

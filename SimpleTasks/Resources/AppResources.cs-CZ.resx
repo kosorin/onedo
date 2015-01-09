@@ -783,4 +783,31 @@ Tato funkce je pořád v beta verzi.</value>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>denně</value>
   </data>
+  <data name="SettingsThemeColor" xml:space="preserve">
+    <value>barva motivu</value>
+  </data>
+  <data name="Tasks5AndMore" xml:space="preserve">
+    <value>{0} úkolů</value>
+    <comment>5+ tasks</comment>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} úkoly</value>
+    <comment>2 to 4 tasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} úkol</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} podúkolů</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} podúkoly</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} podúkol</value>
+    <comment>1 subtask</comment>
+  </data>
 </root>

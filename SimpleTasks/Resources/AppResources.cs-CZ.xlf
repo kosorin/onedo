@@ -542,7 +542,7 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
           <source>accent color</source>
-          <target state="new">accent color</target>
+          <target state="signed-off">barva motivu</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
           <source>weekends</source>
@@ -552,6 +552,36 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>weekly</source>
           <target state="signed-off">týdně</target>
         </trans-unit>
+        <trans-unit id="Resx/Tasks5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} tasks</source>
+          <target state="signed-off">{0} úkolů</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">5+ tasks</note>
+          </trans-unit>
+        <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
+          <source>{0} tasks</source>
+          <target state="signed-off">{0} úkoly</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 tasks</note>
+          </trans-unit>
+        <trans-unit id="Resx/Tasks1" translate="yes" xml:space="preserve">
+          <source>{0} task</source>
+          <target state="signed-off">{0} úkol</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 task</note>
+          </trans-unit>
+        <trans-unit id="Resx/Subtasks5AndMore" translate="yes" xml:space="preserve">
+          <source>{0} subtasks</source>
+          <target state="signed-off">{0} podúkolů</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">5+ subtasks</note>
+          </trans-unit>
+        <trans-unit id="Resx/Subtasks2To4" translate="yes" xml:space="preserve">
+          <source>{0} subtasks</source>
+          <target state="signed-off">{0} podúkoly</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 subtasks</note>
+          </trans-unit>
+        <trans-unit id="Resx/Subtasks1" translate="yes" xml:space="preserve">
+          <source>{0} subtask</source>
+          <target state="signed-off">{0} podúkol</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">1 subtask</note>
+          </trans-unit>
         <trans-unit id="Resx/RepeatsMonthly" translate="yes" xml:space="preserve">
           <source>monthly</source>
           <target state="signed-off">měsíčně</target>

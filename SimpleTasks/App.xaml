@@ -1115,6 +1115,8 @@
 
             <Style x:Key="SwitchStyle"
                    TargetType="ToggleButton">
+                <Setter Property="Height"
+                        Value="40" />
                 <Setter Property="BorderThickness"
                         Value="3" />
                 <Setter Property="Background"
@@ -1155,7 +1157,7 @@
                                         <VisualState x:Name="Unchecked">
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
-                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="0" />
                                             </Storyboard>
@@ -1167,7 +1169,7 @@
                                                                  Duration="0"
                                                                  To="1" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
-                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
+                                                                 Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="1" />
 
@@ -1186,28 +1188,27 @@
                                 </VisualStateManager.VisualStateGroups>
 
                                 <!--CheckBox-->
-                                <Border Width="50"
-                                        Height="50"
+                                <Border Width="{TemplateBinding Height}"
+                                        Height="{TemplateBinding Height}"
                                         Background="Transparent"
                                         BorderThickness="2"
                                         BorderBrush="{StaticResource CheckBoxBorderBrush}"
                                         HorizontalAlignment="Left">
                                     <Border x:Name="CheckBoxBorder"
                                             Margin="-2"
-                                            BorderBrush="{StaticResource AccentBrush}"
-                                            BorderThickness="2">
+                                            Background="{StaticResource AccentBrush}">
 
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
-                                                        Foreground="{StaticResource SubtleBrush}"
+                                                        Foreground="{StaticResource NormalBrush}"
                                                         Opacity="0"
                                                         MaxWidth="0"
                                                         MaxHeight="0">
                                             <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.85"
-                                                                    ScaleY="0.85"
-                                                                    TranslateY="-20.4"
-                                                                    TranslateX="-20.4" />
+                                                <CompositeTransform ScaleX="0.75"
+                                                                    ScaleY="0.75"
+                                                                    TranslateY="-18"
+                                                                    TranslateX="-18" />
                                             </ContentControl.RenderTransform>
                                         </ContentControl>
 
@@ -1215,7 +1216,7 @@
                                 </Border>
 
                                 <!--Text-->
-                                <Grid Margin="10,4,0,4"
+                                <Grid Margin="10,-4,0,0"
                                       VerticalAlignment="Center">
 
                                     <TextBlock x:Name="OnText"
