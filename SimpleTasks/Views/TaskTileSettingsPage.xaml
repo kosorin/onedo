@@ -296,13 +296,11 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <controls:MySlider x:Name="LineHeightSlider"
-                                           Minimum="37"
-                                           ValueTextVisibility="Visible"
-                                           Maximum="67"
-                                           RoundValue="{Binding LineHeight, Mode=OneWay}"
-                                           RoundValueChanged="LineHeight_RoundValueChanged"
-                                           Margin="0,0,0,-15" />
+                        <Slider x:Name="LineHeightSlider"
+                                Minimum="37"
+                                Maximum="67"
+                                Foreground="{StaticResource AccentBrush}"
+                                ValueChanged="LineHeight_ValueChanged" />
                         <Button Grid.Column="1"
                                 Style="{StaticResource RoundButtonStyle}"
                                 Margin="10,0,0,0"

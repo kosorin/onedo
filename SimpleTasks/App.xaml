@@ -1451,6 +1451,93 @@
                 </Setter>
             </Style>
             <!--EndRegion-->
+            
+            <!--Region Slider-->
+            <Style TargetType="Slider">
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="BorderBrush"
+                        Value="Transparent" />
+                <Setter Property="Maximum"
+                        Value="10" />
+                <Setter Property="Minimum"
+                        Value="0" />
+                <Setter Property="Value"
+                        Value="0" />
+                <Setter Property="Background"
+                        Value="{StaticResource NormalBrush}" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource AccentBrush}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Slider">
+                            <Grid Background="Transparent">
+                                <Grid x:Name="HorizontalTemplate"
+                                      Margin="1,0">
+                                    <Rectangle x:Name="HorizontalTrack"
+                                               Fill="{TemplateBinding Background}"
+                                               Height="12"
+                                               Opacity="0.2"
+                                               IsHitTestVisible="False"
+                                               Margin="0,12,0,10" />
+                                    <Rectangle x:Name="HorizontalFill"
+                                               Fill="{TemplateBinding Foreground}"
+                                               Height="12"
+                                               IsHitTestVisible="False"
+                                               Margin="0,12,0,10">
+                                        <Rectangle.Clip>
+                                            <RectangleGeometry Rect="0, 0, 6, 12" />
+                                        </Rectangle.Clip>
+                                    </Rectangle>
+                                    <Grid x:Name="HorizontalCenterElement"
+                                          HorizontalAlignment="Left"
+                                          Margin="0,6,0,4">
+                                        <Grid.RenderTransform>
+                                            <TranslateTransform />
+                                        </Grid.RenderTransform>
+                                        <Ellipse Width="38"
+                                                 Height="38"
+                                                 Margin="-1"
+                                                 Stretch="Fill"
+                                                 StrokeLineJoin="Round"
+                                                 Stroke="{StaticResource NormalBrush}"
+                                                 StrokeThickness="3"
+                                                 Fill="{StaticResource BackgroundBrush}" />
+                                    </Grid>
+                                </Grid>
+                                <Grid x:Name="VerticalTemplate"
+                                      Margin="{StaticResource PhoneVerticalMargin}">
+                                    <Rectangle x:Name="VerticalTrack"
+                                               Fill="{TemplateBinding Background}"
+                                               IsHitTestVisible="False"
+                                               Margin="18,0,18,0"
+                                               Width="12" />
+                                    <Rectangle x:Name="VerticalFill"
+                                               Fill="{TemplateBinding Foreground}"
+                                               IsHitTestVisible="False"
+                                               Margin="18,0,18,0"
+                                               Width="12">
+                                        <Rectangle.Clip>
+                                            <RectangleGeometry Rect="0, 0, 12, 6" />
+                                        </Rectangle.Clip>
+                                    </Rectangle>
+                                    <Rectangle x:Name="VerticalCenterElement"
+                                               Fill="{StaticResource PhoneForegroundBrush}"
+                                               Height="12"
+                                               Margin="12,0,12,0"
+                                               VerticalAlignment="Top"
+                                               Width="24">
+                                        <Rectangle.RenderTransform>
+                                            <TranslateTransform />
+                                        </Rectangle.RenderTransform>
+                                    </Rectangle>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--EndRegion Slider-->
 
             <!--Region ListPicker-->
             <Style x:Key="ListPickerItemTemplate"

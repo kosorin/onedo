@@ -50,7 +50,10 @@ namespace SimpleTasks.Views
         private void SetTask(TaskModel task)
         {
             _task = task;
-            DataContext = _task.TileSettings ?? (_task.TileSettings = Settings.Current.DefaultTaskTileSettings.Clone());
+            TaskTileSettings settings = _task.TileSettings ?? (_task.TileSettings = Settings.Current.DefaultTaskTileSettings.Clone());
+            
+            DataContext = settings;
+            LineHeightSlider.Value = (double)settings.LineHeight;
 
             SmallTile.Task = _task;
             MediumTile.Task = _task;
@@ -70,11 +73,11 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void LineHeight_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
+        private void LineHeight_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (_task != null)
             {
-                _task.TileSettings.LineHeight = e.NewValue;
+                _task.TileSettings.LineHeight = Math.Round(e.NewValue);
                 Refresh();
             }
         }
@@ -87,7 +90,7 @@ namespace SimpleTasks.Views
         private void ResetLineHeight_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             double newLineHeight = _useDefaultLineHeight ? TaskTileSettings.DefaultLineHeight : Settings.Current.DefaultTaskTileSettings.LineHeight;
-            LineHeightSlider.SetSliderValue((int)newLineHeight);
+            LineHeightSlider.Value = newLineHeight;
         }
 
         private void ChangeTileSize()
