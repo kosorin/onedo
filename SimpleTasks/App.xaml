@@ -782,20 +782,14 @@
             <Style x:Key="LabelTextStyle"
                    TargetType="TextBlock"
                    BasedOn="{StaticResource NormalTextStyle}">
-                <Setter Property="IsHitTestVisible"
-                        Value="False" />
-                <Setter Property="FontFamily"
-                        Value="Segoe WP Semibold" />
-                <Setter Property="FontSize"
-                        Value="21" />
-                <Setter Property="Margin"
-                        Value="0,24,0,4" />
-                <Setter Property="TextTrimming"
-                        Value="WordEllipsis" />
-                <Setter Property="TextWrapping"
-                        Value="Wrap" />
                 <Setter Property="Foreground"
                         Value="{StaticResource LabelBrush}" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="FontWeight"
+                        Value="SemiBold" />
+                <Setter Property="Margin"
+                        Value="0,24,0,4" />
             </Style>
             <!--EndRegion-->
 
@@ -1215,20 +1209,19 @@
                                 </Border>
 
                                 <!--Text-->
-                                <Grid Margin="10,-4,0,0"
-                                      VerticalAlignment="Center">
 
-                                    <TextBlock x:Name="OnText"
-                                               Opacity="0"
-                                               Text="{Binding On, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
-                                               Style="{StaticResource NormalTextStyle}"
-                                               FontSize="32" />
-
-                                    <TextBlock x:Name="OffText"
-                                               Text="{Binding Off, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
-                                               Style="{StaticResource SubtleTextStyle}"
-                                               FontSize="32" />
-                                </Grid>
+                                <Viewbox>
+                                    <Grid Margin="10,4,0,4"
+                                          VerticalAlignment="Center">
+                                        <TextBlock x:Name="OnText"
+                                                   Opacity="0"
+                                                   Text="{Binding On, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
+                                                   Style="{StaticResource NormalTextStyle}" />
+                                        <TextBlock x:Name="OffText"
+                                                   Text="{Binding Off, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToLower'}"
+                                                   Style="{StaticResource SubtleTextStyle}" />
+                                    </Grid>
+                                </Viewbox>
                             </StackPanel>
                         </ControlTemplate>
                     </Setter.Value>
@@ -1369,25 +1362,25 @@
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0"
                                             CacheMode="BitmapCache"
-                                            Background="{StaticResource SystemTrayBackgroundBrush}">
-
+                                            Background="{StaticResource AccentBrush}">
                                         <StackPanel>
                                             <TextBlock Text="{TemplateBinding Title}"
-                                                       Style="{StaticResource LabelTextStyle}"
+                                                       Style="{StaticResource SlightTextStyle}"
+                                                       FontFamily="Segoe WP Semibold"
                                                        FontWeight="SemiBold"
                                                        Margin="24,16,24,8" />
                                             <primitives:PivotHeadersControl x:Name="HeadersListElement"
-                                                                            Margin="0,-8,0,10" />
+                                                                            Margin="0,-8,0,20" />
                                         </StackPanel>
                                     </Border>
+                                    <Border Grid.Row="0"
+                                            Background="Black"
+                                            VerticalAlignment="Bottom"
+                                            Height="10"
+                                            Opacity="{StaticResource TasksListHeaderBottomOpacity}" />
                                     <ItemsPresenter Grid.Row="1"
                                                     x:Name="PivotItemPresenter"
                                                     Margin="{TemplateBinding Padding}" />
-                                    <Rectangle Grid.Row="1"
-                                               Fill="{StaticResource AccentBrush}"
-                                               Opacity="0.6"
-                                               Height="10"
-                                               VerticalAlignment="Top" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>

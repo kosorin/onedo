@@ -115,15 +115,15 @@
                                     <VisualState x:Name="NotScrolling" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Grid Margin="{TemplateBinding Padding}">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
                                 <ViewportControl x:Name="ViewportControl"
                                                  HorizontalContentAlignment="Stretch"
-                                                 VerticalAlignment="Top"
-                                                 Padding="0,0,0,10" />
+                                                 Padding="0,0,0,10"
+                                                 VerticalContentAlignment="Top" />
                                 <ScrollBar x:Name="VerticalScrollBar"
                                            Background="{StaticResource SubtleBrush}"
                                            Grid.Column="1"

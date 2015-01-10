@@ -237,6 +237,16 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!--Barva-->
+            <Border Grid.ColumnSpan="2"
+                    Width="6"
+                    HorizontalAlignment="Left"
+                    Visibility="{Binding HasColor, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Border.Background>
+                    <SolidColorBrush Color="{Binding Color}" />
+                </Border.Background>
+            </Border>
+
             <!--Pozadí-->
             <Border x:Name="BackgroundBorder"
                     Grid.ColumnSpan="2"

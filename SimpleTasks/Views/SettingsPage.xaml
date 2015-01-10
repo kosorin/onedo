@@ -74,7 +74,7 @@
 
                         <!--Default date-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                                   Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}}" />
                         <controls:ListPicker x:Name="DatePicker"
                                              Foreground="{StaticResource SlightBrush}"
                                              Background="{StaticResource ButtonBackgroundBrush}"
@@ -93,7 +93,7 @@
                         </controls:ListPicker>
 
                         <!--default time-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTime, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTime, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <Button Height="60"
                                 Tap="DefaultTime_Tap">
@@ -110,7 +110,7 @@
                         </Button>
 
                         <!--Automatically delete completed tasks-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <controls:ListPicker x:Name="DaysPicker"
                                              Foreground="{StaticResource SlightBrush}"
@@ -130,7 +130,7 @@
                         </controls:ListPicker>
 
                         <!--Automatically complete subtasks-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tasks.CompleteSubtasks, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
@@ -139,14 +139,14 @@
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsSwipeLeft, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                                   Text="{Binding LocalizedResources.SettingsSwipeLeft, Source={StaticResource LocalizedStrings}}" />
                         <controls:ListPicker ItemsSource="{Binding Tasks.GestureActionPickerList}"
                                              SelectedItem="{Binding Tasks.SwipeLeftAction, Mode=TwoWay}"
                                              Style="{StaticResource GestureListPickerStyle}" />
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsSwipeRight, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                                   Text="{Binding LocalizedResources.SettingsSwipeRight, Source={StaticResource LocalizedStrings}}" />
                         <controls:ListPicker ItemsSource="{Binding Tasks.GestureActionPickerList}"
                                              SelectedItem="{Binding Tasks.SwipeRightAction, Mode=TwoWay}"
                                              Style="{StaticResource GestureListPickerStyle}" />
@@ -160,7 +160,7 @@
                     <StackPanel Margin="24,24,24,96">
 
                         <!--Quick add tile-->
-                        <TextBlock Text="{Binding LocalizedResources.TileForQuickAddLabel, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.TileForQuickAddLabel, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <Button x:Name="QuickAddTileButton"
                                 Style="{StaticResource ButtonStyle}"
@@ -168,7 +168,7 @@
                                 Tap="QuickAddTileButton_Tap" />
 
                         <!--Enable tile-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.Enable, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
@@ -177,13 +177,13 @@
                                    Style="{StaticResource HelpTextStyle}" />
 
                         <!--Unpin Completed-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--show task count-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCount, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCount, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.ShowTaskCount, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
@@ -191,13 +191,13 @@
                                    Style="{StaticResource HelpTextStyle}" />
 
                         <!--Swap title and date on wide tile-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Tiles.SwapDateAndTitleOnWide, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Default Task Tile Settings-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <Button Style="{StaticResource ButtonStyle}"
                                 Content="{Binding LocalizedResources.EditText, Source={StaticResource LocalizedStrings}}"
@@ -213,33 +213,33 @@
 
                         <!--Theme-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                                   Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}" />
                         <controls:ListPicker x:Name="ThemeListPicker"
                                              SelectionChanged="ThemeListPicker_SelectionChanged" />
 
                         <!--Theme Color-->
                         <StackPanel x:Name="ThemeColorPanel">
                             <TextBlock Style="{StaticResource LabelTextStyle}"
-                                       Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
+                                       Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}}" />
                             <controls:ListPicker x:Name="ThemeColorListPicker"
                                                  Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                  SelectionChanged="ThemeColorListPicker_SelectionChanged" />
                         </StackPanel>
 
                         <!--Vibrate-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Show Quick Add-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsShowQuickAddTextBox, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsShowQuickAddTextBox, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.ShowQuickAddTextBox, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Hide Task CheckBox-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.HideTaskCheckBox, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
@@ -247,7 +247,7 @@
                                    Style="{StaticResource HelpTextStyle}" />
 
                         <!--Feedback-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding General.Feedback, Mode=OneTime}"
                                       Style="{StaticResource SwitchStyle}"

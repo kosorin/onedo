@@ -39,7 +39,7 @@
                      Color="{StaticResource SubtleColor}" />
 
     <SolidColorBrush x:Key="LabelBrush"
-                     Color="{StaticResource SlightColor}" />
+                     Color="{StaticResource SubtleColor}" />
     <SolidColorBrush x:Key="HelpBrush"
                      Color="#6bFFFFFF" />
     <!--EndRegion-->
