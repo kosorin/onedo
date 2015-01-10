@@ -992,15 +992,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a new task.
-        /// </summary>
-        public static string QuickAddLabel {
-            get {
-                return ResourceManager.GetString("QuickAddLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to New task.
         /// </summary>
         public static string QuickAddTileTitle {
@@ -1376,6 +1367,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsHideTaskCheckBoxHelp {
             get {
                 return ResourceManager.GetString("SettingsHideTaskCheckBoxHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to look.
+        /// </summary>
+        public static string SettingsLook {
+            get {
+                return ResourceManager.GetString("SettingsLook", resourceCulture);
             }
         }
         

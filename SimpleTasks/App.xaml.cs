@@ -92,6 +92,7 @@ namespace SimpleTasks
 
             Tasks.Load();
 
+            if (Settings.Current.EnableTile)
             try
             {
                 PeriodicTask task = ScheduledActionService.Find(BackgroundAgentName) as PeriodicTask;

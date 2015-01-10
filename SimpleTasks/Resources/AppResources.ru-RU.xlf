@@ -774,6 +774,10 @@ It's still in beta.</source>
           <target state="new">{0} tasks</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ tasks</note>
         </trans-unit>
+        <trans-unit id="Resx/SettingsLook" translate="yes" xml:space="preserve">
+          <source>look</source>
+          <target state="new">look</target>
+        </trans-unit>
         <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
           <target state="new">{0} tasks</target>

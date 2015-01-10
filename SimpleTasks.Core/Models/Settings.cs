@@ -60,8 +60,6 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region Tasks
-
         #region DefaultDate
         public enum DefaultDateTypes
         {
@@ -220,19 +218,15 @@ namespace SimpleTasks.Core.Models
         }
         #endregion // end of SwipeRightAction
 
-        #endregion
-
-        #region Tiles
-
-        #region Enable
-        private bool _enable = true;
-        [DataMember(Name = "Enable")]
-        public bool Enable
+        #region EnableTile
+        private bool _enableTile = true;
+        [DataMember(Name = "EnableTile")]
+        public bool EnableTile
         {
-            get { return _enable; }
+            get { return _enableTile; }
             set
             {
-                if (SetProperty(ref _enable, value))
+                if (SetProperty(ref _enableTile, value))
                 {
                     //LiveTile.UpdateOrReset(value, App.Tasks.Tasks, true);
                 }
@@ -280,10 +274,6 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #endregion
-
-        #region General
-
         #region Vibrate
         private bool _vibrate = true;
         [DataMember(Name = "Vibrate")]
@@ -312,8 +302,6 @@ namespace SimpleTasks.Core.Models
             get { return _feedback; }
             set { SetProperty(ref _feedback, value); }
         }
-        #endregion
-
         #endregion
     }
 }

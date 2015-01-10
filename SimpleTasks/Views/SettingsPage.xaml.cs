@@ -206,7 +206,10 @@ namespace SimpleTasks.Views
                 if (_isSetThemeListPicker)
                 {
                     ThemeHelper.Theme = item.Value;
-                    Toast.Show(AppResources.SettingsThemeNote);
+                    if (MainPivot.SelectedItem == ThemePivotItem)
+                    {
+                        Toast.Show(AppResources.SettingsThemeNote);
+                    }
                 }
             }
             else
@@ -223,7 +226,10 @@ namespace SimpleTasks.Views
                 if (item != null)
                 {
                     ThemeHelper.ThemeColor = item.Color;
-                    Toast.Show(AppResources.SettingsThemeNote);
+                    if (MainPivot.SelectedItem == ThemePivotItem)
+                    {
+                        Toast.Show(AppResources.SettingsThemeNote);
+                    }
                 }
             }
         }

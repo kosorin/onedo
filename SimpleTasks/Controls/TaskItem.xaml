@@ -68,12 +68,17 @@
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
-                        </DoubleAnimationUsingKeyFrames>
+                        </DoubleAnimationUsingKeyFrames> 
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0.45" />
+                                                    Value="0.5" />
                         </DoubleAnimationUsingKeyFrames>
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="CheckboxButton"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0.5" />
+                        </DoubleAnimationUsingKeyFrames>-->
                     </Storyboard>
                 </VisualState>
 
@@ -528,7 +533,8 @@
             </StackPanel>
 
             <!--Checkbox-->
-            <Button Grid.Column="0"
+            <Button x:Name="CheckboxButton"
+                    Grid.Column="0"
                     Width="60"
                     Visibility="{Binding Current.HideTaskCheckBox, 
                                          Converter={StaticResource BooleanToVisibilityConverter}, 

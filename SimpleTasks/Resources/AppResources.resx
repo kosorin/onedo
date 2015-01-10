@@ -812,4 +812,7 @@ It's still in beta.</value>
     <value>{0} tasks</value>
     <comment>5+ tasks</comment>
   </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>look</value>
+  </data>
 </root>

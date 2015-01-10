@@ -25,8 +25,8 @@
 
     <Color x:Key="BackgroundColor">#002b36</Color>
     <Color x:Key="NormalColor">#fdf6e3</Color>
-    <Color x:Key="SlightColor">#CCfdf6e3</Color>
-    <Color x:Key="SubtleColor">#99fdf6e3</Color>
+    <Color x:Key="SlightColor">#C4fdf6e3</Color>
+    <Color x:Key="SubtleColor">#88fdf6e3</Color>
 
     <SolidColorBrush x:Key="BackgroundBrush"
                      Color="{StaticResource BackgroundColor}" />

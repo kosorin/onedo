@@ -1,15 +1,15 @@
 ﻿<controls:BasePivotPage x:Class="SimpleTasks.Views.SettingsPage"
-                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                   xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                   xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
-                   Style="{StaticResource BasePageStyle}"
-                   mc:Ignorable="d">
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                        xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                        Style="{StaticResource BasePageStyle}"
+                        mc:Ignorable="d">
 
     <controls:BasePivotPage.Resources>
         <Style x:Key="GestureListPickerStyle"
@@ -118,6 +118,20 @@
                                       Style="{StaticResource SwitchStyle}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--Look-->
+            <phone:PivotItem Header="{Binding LocalizedResources.SettingsLook, Source={StaticResource LocalizedStrings}}">
+                <ScrollViewer>
+                    <StackPanel Margin="24,0,24,96">
+
+                        <!--Hide Task CheckBox-->
+                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource LabelTextStyle}" />
+                        <ToggleButton IsChecked="{Binding HideTaskCheckBox, Mode=TwoWay}"
+                                      Style="{StaticResource SwitchStyle}" />
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
@@ -132,6 +146,32 @@
                         <controls:ListPicker ItemsSource="{Binding GestureActionPickerList}"
                                              SelectedItem="{Binding SwipeRightAction, Mode=TwoWay}"
                                              Style="{StaticResource GestureListPickerStyle}" />
+
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--Theme-->
+            <phone:PivotItem x:Name="ThemePivotItem"
+                             Header="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}">
+                <ScrollViewer>
+                    <StackPanel Margin="24,0,24,96">
+
+                        <!--Theme-->
+                        <TextBlock Style="{StaticResource LabelTextStyle}"
+                                   Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}" />
+                        <controls:ListPicker x:Name="ThemeListPicker"
+                                             SelectionChanged="ThemeListPicker_SelectionChanged" />
+
+                        <!--Theme Color-->
+                        <StackPanel x:Name="ThemeColorPanel">
+                            <TextBlock Style="{StaticResource LabelTextStyle}"
+                                       Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}}" />
+                            <controls:ListPicker x:Name="ThemeColorListPicker"
+                                                 Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                 SelectionChanged="ThemeColorListPicker_SelectionChanged" />
+                        </StackPanel>
+
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
@@ -152,7 +192,7 @@
                         <!--Enable tile-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Enable, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding EnableTile, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
                         <TextBlock x:Name="PinTileTextBox"
                                    Text="Pin tile help text."
@@ -193,31 +233,10 @@
                 <ScrollViewer>
                     <StackPanel Margin="24,0,24,96">
 
-                        <!--Theme-->
-                        <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}" />
-                        <controls:ListPicker x:Name="ThemeListPicker"
-                                             SelectionChanged="ThemeListPicker_SelectionChanged" />
-
-                        <!--Theme Color-->
-                        <StackPanel x:Name="ThemeColorPanel">
-                            <TextBlock Style="{StaticResource LabelTextStyle}"
-                                       Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}}" />
-                            <controls:ListPicker x:Name="ThemeColorListPicker"
-                                                 Foreground="{StaticResource ButtonDarkForegroundBrush}"
-                                                 SelectionChanged="ThemeColorListPicker_SelectionChanged" />
-                        </StackPanel>
-
                         <!--Vibrate-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <ToggleButton IsChecked="{Binding Vibrate, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
-
-                        <!--Hide Task CheckBox-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding HideTaskCheckBox, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Feedback-->

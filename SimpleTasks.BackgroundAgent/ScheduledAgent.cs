@@ -54,7 +54,7 @@ namespace SimpleTasks.BackgroundAgent
                 Debug.WriteLine(">>> BACKGROUND AGENT: UPDATE <<<");
 
                 Settings.Current = Settings.LoadFromFile(AppInfo.SettingsFileName);
-                if (Settings.Current.Enable)
+                if (Settings.Current.EnableTile)
                 {
                     TaskCollection tasks = TaskCollection.LoadFromFile(AppInfo.TasksFileName);
                     if (tasks != null)

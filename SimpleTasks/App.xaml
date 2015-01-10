@@ -886,17 +886,20 @@
                                             <VisualTransition To="Checked"
                                                               GeneratedDuration="0:0:0.25" />
                                         </VisualStateGroup.Transitions>
-                                        <VisualState x:Name="Unchecked" />
+                                        <VisualState x:Name="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="CheckIcon"
+                                                <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
                                                                  To="1" />
-                                                <DoubleAnimation Storyboard.TargetName="CompleteButtonRectangle"
-                                                                 Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Opacity)"
-                                                                 Duration="0"
-                                                                 To="0" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Indeterminate" />
@@ -912,12 +915,10 @@
                                         HorizontalAlignment="Left">
                                     <Border x:Name="CompleteButtonRectangle"
                                             Margin="-2"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="2">
+                                            Background="{StaticResource AccentBrush}">
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
-                                                        Foreground="{StaticResource SubtleBrush}"
-                                                        Opacity="0"
+                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                         MaxWidth="0"
                                                         MaxHeight="0">
                                             <ContentControl.RenderTransform>
@@ -1063,10 +1064,6 @@
                                         </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="CheckIcon"
-                                                                 Storyboard.TargetProperty="Opacity"
-                                                                 Duration="0"
-                                                                 To="1" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
@@ -1090,7 +1087,6 @@
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
                                                         Foreground="{StaticResource ButtonDarkForegroundBrush}"
-                                                        Opacity="0"
                                                         MaxWidth="0"
                                                         MaxHeight="0">
                                             <ContentControl.RenderTransform>
@@ -1167,10 +1163,6 @@
                                         </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="CheckIcon"
-                                                                 Storyboard.TargetProperty="Opacity"
-                                                                 Duration="0"
-                                                                 To="1" />
                                                 <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  Duration="0"
@@ -1200,11 +1192,9 @@
                                     <Border x:Name="CheckBoxBorder"
                                             Margin="-2"
                                             Background="{StaticResource AccentBrush}">
-
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
                                                         Foreground="{StaticResource ButtonDarkForegroundBrush}"
-                                                        Opacity="0"
                                                         MaxWidth="0"
                                                         MaxHeight="0">
                                             <ContentControl.RenderTransform>
