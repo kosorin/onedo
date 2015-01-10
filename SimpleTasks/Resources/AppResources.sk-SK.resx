@@ -558,6 +558,7 @@
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>náhľad</value>
+    <comment></comment>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>nastavenie dlaždice</value>

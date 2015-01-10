@@ -565,6 +565,7 @@
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>предпросмотр</value>
+    <comment></comment>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>настройки тайла</value>

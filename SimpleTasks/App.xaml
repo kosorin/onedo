@@ -1240,6 +1240,19 @@
                 <Setter Property="shell:SystemTray.IsVisible"
                         Value="True" />
             </Style>
+
+            <Style x:Key="PageHeaderTextStyle"
+                   TargetType="TextBlock"
+                   BasedOn="{StaticResource NormalTextStyle}">
+                <Setter Property="Foreground"
+                        Value="{StaticResource ButtonDarkForegroundBrush}" />
+                <Setter Property="FontFamily"
+                        Value="Segoe WP Semibold" />
+                <Setter Property="FontWeight"
+                        Value="SemiBold" />
+                <Setter Property="Margin"
+                        Value="24,35,24,20" />
+            </Style>
             <!--EndRegion-->
 
             <!--Region BasePickerPage-->

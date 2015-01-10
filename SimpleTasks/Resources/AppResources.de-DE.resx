@@ -561,6 +561,7 @@
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>Vorschau</value>
+    <comment></comment>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>Livetile einstellen</value>

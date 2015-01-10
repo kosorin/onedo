@@ -567,7 +567,7 @@
     <value>Font size</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
-    <value>preview</value>
+    <value>Preview</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>tile settings</value>

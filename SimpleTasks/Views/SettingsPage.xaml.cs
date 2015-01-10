@@ -22,7 +22,7 @@ using System.Windows.Media;
 
 namespace SimpleTasks.Views
 {
-    public partial class SettingsPage : BasePivotPage
+    public partial class SettingsPage : BasePage
     {
         public SettingsPage()
         {

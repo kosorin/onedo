@@ -1,4 +1,4 @@
-﻿<controls:BasePivotPage x:Class="SimpleTasks.Views.SettingsPage"
+﻿<controls:BasePage x:Class="SimpleTasks.Views.SettingsPage"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -11,7 +11,7 @@
                         Style="{StaticResource BasePageStyle}"
                         mc:Ignorable="d">
 
-    <controls:BasePivotPage.Resources>
+    <controls:BasePage.Resources>
         <Style x:Key="GestureListPickerStyle"
                TargetType="controls:ListPicker">
             <Setter Property="Foreground"
@@ -46,7 +46,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </controls:BasePivotPage.Resources>
+    </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
@@ -260,4 +260,4 @@
                               Canvas.ZIndex="1" />
     </Grid>
 
-</controls:BasePivotPage>
+</controls:BasePage>

@@ -474,6 +474,7 @@
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>anteprima</value>
+    <comment></comment>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>crea tile</value>

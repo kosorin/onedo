@@ -199,75 +199,95 @@
     </controls:BasePage.Resources>
 
     <Grid Background="{StaticResource BackgroundBrush}">
-        <ScrollViewer>
-            <Grid Margin="24,0,24,40">
-                <StackPanel>
-                    <!--Nadpis-->
-                    <TextBlock Text="{Binding LocalizedResources.SettingsTaskTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource BasePickerPageHeaderStyle}"
-                               FontWeight="SemiBold"
-                               Margin="0,16,0,0" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                CacheMode="BitmapCache"
+                Background="{StaticResource AccentBrush}">
+            <TextBlock Text="{Binding LocalizedResources.SettingsTaskTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                       Style="{StaticResource PageHeaderTextStyle}" />
+        </Border>
+        <Border Grid.Row="0"
+                Background="Black"
+                VerticalAlignment="Bottom"
+                Height="10"
+                Opacity="{StaticResource TasksListHeaderBottomOpacity}" />
 
-                    <!--Náhled-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}}"
-                               Style="{StaticResource LabelTextStyle}"
-                               Margin="0" />
-                    <Grid x:Name="TilesGrid"
-                          Width="432"
-                          Height="210"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          Margin="0,0,0,10">
-                        <!--432 210 100-->
-                        <Viewbox x:Name="WideTileViewBox"
-                                 Opacity="1">
-                            <Border Background="{StaticResource AccentBrush}">
-                                <tiles:WideTaskTile x:Name="WideTile" />
-                            </Border>
-                        </Viewbox>
-                        <Viewbox x:Name="MediumTileViewBox"
-                                 Opacity="0">
-                            <Border Background="{StaticResource AccentBrush}">
-                                <tiles:MediumTaskTile x:Name="MediumTile" />
-                            </Border>
-                        </Viewbox>
-                        <Viewbox x:Name="SmallTileViewBox"
-                                 Opacity="0">
-                            <Border Background="{StaticResource AccentBrush}">
-                                <tiles:SmallTaskTile x:Name="SmallTile" />
-                            </Border>
-                        </Viewbox>
-                        <Button Tap="ChangeSizeButton_Tap"
-                                VerticalAlignment="Bottom"
-                                HorizontalAlignment="Right"
-                                RenderTransformOrigin="0,0">
-                            <Button.RenderTransform>
-                                <TranslateTransform X="24"
-                                                    Y="28" />
-                            </Button.RenderTransform>
-                            <Button.Template>
-                                <ControlTemplate />
-                            </Button.Template>
-                            <Border Background="Transparent"
-                                    Width="50"
-                                    Height="50">
-                                <Button x:Name="ChangeSizeButton"
-                                        Style="{StaticResource RoundButtonStyle}"
-                                        Background="{StaticResource BackgroundBrush}"
-                                        Content="&#xe111;"
-                                        Width="38"
-                                        Height="38"
-                                        FontSize="20"
-                                        RenderTransformOrigin="0.5,0.5">
-                                    <Button.RenderTransform>
-                                        <CompositeTransform x:Name="ChangeSizeButtonTransform"
-                                                            Rotation="180" />
-                                    </Button.RenderTransform>
-                                </Button>
-                            </Border>
-                        </Button>
-                    </Grid>
+        <Grid Margin="24,16,24,0"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
+            <!--Náhled-->
+            <StackPanel>
+                <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}}"
+                           Style="{StaticResource LabelTextStyle}"
+                           Margin="0" />
+                <Grid x:Name="TilesGrid"
+                      Width="432"
+                      Height="210"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Margin="0,0,0,10">
+                    <!--432 210 100-->
+                    <Viewbox x:Name="WideTileViewBox"
+                             Opacity="1">
+                        <Border Background="{StaticResource AccentBrush}">
+                            <tiles:WideTaskTile x:Name="WideTile" />
+                        </Border>
+                    </Viewbox>
+                    <Viewbox x:Name="MediumTileViewBox"
+                             Opacity="0">
+                        <Border Background="{StaticResource AccentBrush}">
+                            <tiles:MediumTaskTile x:Name="MediumTile" />
+                        </Border>
+                    </Viewbox>
+                    <Viewbox x:Name="SmallTileViewBox"
+                             Opacity="0">
+                        <Border Background="{StaticResource AccentBrush}">
+                            <tiles:SmallTaskTile x:Name="SmallTile" />
+                        </Border>
+                    </Viewbox>
+                    <Button Tap="ChangeSizeButton_Tap"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right"
+                            RenderTransformOrigin="0,0">
+                        <Button.RenderTransform>
+                            <TranslateTransform X="24"
+                                                Y="28" />
+                        </Button.RenderTransform>
+                        <Button.Template>
+                            <ControlTemplate />
+                        </Button.Template>
+                        <Border Background="Transparent"
+                                Width="50"
+                                Height="50">
+                            <Button x:Name="ChangeSizeButton"
+                                    Style="{StaticResource RoundButtonStyle}"
+                                    Background="{StaticResource BackgroundBrush}"
+                                    Content="&#xe111;"
+                                    Width="38"
+                                    Height="38"
+                                    FontSize="20"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Button.RenderTransform>
+                                    <CompositeTransform x:Name="ChangeSizeButtonTransform"
+                                                        Rotation="180" />
+                                </Button.RenderTransform>
+                            </Button>
+                        </Border>
+                    </Button>
+                </Grid>
+            </StackPanel>
+
+            <!--Jednotlivá nastavení-->
+            <ScrollViewer Grid.Row="1"
+                          Margin="0,16,0,0">
+                <StackPanel Margin="0,0,0,96">
                     <!--LineHeight-->
                     <TextBlock Text="{Binding LocalizedResources.TileSettingsLineHeight, Source={StaticResource LocalizedStrings}}"
                                Style="{StaticResource LabelTextStyle}" />
@@ -321,9 +341,8 @@
                                   Style="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />
                 </StackPanel>
-            </Grid>
-        </ScrollViewer>
-
+            </ScrollViewer>
+        </Grid>
     </Grid>
 
 </controls:BasePage>

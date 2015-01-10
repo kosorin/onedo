@@ -1722,7 +1722,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to preview.
+        ///   Looks up a localized string similar to Preview.
         /// </summary>
         public static string TileSettingsPreview {
             get {
