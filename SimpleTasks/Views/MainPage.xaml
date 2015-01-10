@@ -44,11 +44,12 @@
                                FontSize="16"
                                HorizontalAlignment="Left" />
 
-                    <Border Grid.ColumnSpan="2"
-                            Background="Black"
-                            VerticalAlignment="Bottom"
-                            Height="10"
-                            Opacity="{StaticResource TasksListHeaderBottomOpacity}" />
+                    <Border Grid.Column="0"
+                            Style="{StaticResource BottomBorderStyle}"
+                            Background="{StaticResource DarkerAccentBrush}" />
+                    <Border Grid.Column="1"
+                            Style="{StaticResource BottomBorderStyle}"
+                            Background="{StaticResource DarkerTasksListHeaderBackgroundBrush}" />
                 </Grid>
             </Border>
         </DataTemplate>

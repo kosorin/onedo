@@ -20,6 +20,9 @@
                 <!--<ResourceDictionary Source="/SimpleTasks;component/Themes/Light.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
 
+            <SolidColorBrush x:Key="DarkerAccentBrush" />
+            <SolidColorBrush x:Key="DarkerTasksListHeaderBackgroundBrush" />
+
             <!--Region Lokalizace-->
             <local:LocalizedStrings x:Key="LocalizedStrings" />
             <cmodels:Settings x:Key="Settings" />
@@ -1253,6 +1256,14 @@
                 <Setter Property="Margin"
                         Value="24,35,24,20" />
             </Style>
+
+            <Style x:Key="BottomBorderStyle"
+                   TargetType="Border">
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="Height"
+                        Value="10" />
+            </Style>
             <!--EndRegion-->
 
             <!--Region BasePickerPage-->
@@ -1387,10 +1398,8 @@
                                         </StackPanel>
                                     </Border>
                                     <Border Grid.Row="0"
-                                            Background="Black"
-                                            VerticalAlignment="Bottom"
-                                            Height="10"
-                                            Opacity="{StaticResource TasksListHeaderBottomOpacity}" />
+                                            Style="{StaticResource BottomBorderStyle}"
+                                            Background="{StaticResource DarkerAccentBrush}" />
                                     <ItemsPresenter Grid.Row="1"
                                                     x:Name="PivotItemPresenter"
                                                     Margin="{TemplateBinding Padding}" />
@@ -1451,7 +1460,7 @@
                 </Setter>
             </Style>
             <!--EndRegion-->
-            
+
             <!--Region Slider-->
             <Style TargetType="Slider">
                 <Setter Property="BorderThickness"

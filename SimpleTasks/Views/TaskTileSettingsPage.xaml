@@ -210,10 +210,8 @@
                        Style="{StaticResource PageHeaderTextStyle}" />
         </Border>
         <Border Grid.Row="0"
-                Background="Black"
-                VerticalAlignment="Bottom"
-                Height="10"
-                Opacity="{StaticResource TasksListHeaderBottomOpacity}" />
+                Style="{StaticResource BottomBorderStyle}"
+                Background="{StaticResource DarkerAccentBrush}" />
 
         <Grid Margin="24,16,24,0"
               Grid.Row="1">

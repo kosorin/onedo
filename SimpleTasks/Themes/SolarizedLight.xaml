@@ -86,8 +86,7 @@
                      Color="{StaticResource SubtleColor}"
                      Opacity="0.3" />
 
-    <sys:Double x:Key="TasksListHeaderBottomOpacity">0.08</sys:Double>
-    <Color x:Key="TasksListHeaderBackgroundColor">#1A002b36</Color>
+    <Color x:Key="TasksListHeaderBackgroundColor">#E3E1D2</Color>
     <SolidColorBrush x:Key="TasksListHeaderBorderBrush"
                      Color="{StaticResource TasksListHeaderBackgroundColor}" />
     <!--EndRegion-->
