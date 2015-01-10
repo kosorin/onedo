@@ -259,8 +259,8 @@ namespace SimpleTasks.Views
             }
 
             // Výchozí hodnoty
-            DateTime? defaultDate = Settings.Current.Tasks.DefaultDate;
-            DateTime defaultTime = Settings.Current.Tasks.DefaultTime;
+            DateTime? defaultDate = Settings.Current.DefaultDate;
+            DateTime defaultTime = Settings.Current.DefaultTime;
 
             // Datum & čas
             IsSetDueDate = Task.HasDueDate;
@@ -333,7 +333,7 @@ namespace SimpleTasks.Views
             // Nastavení dlaždice
             if (Task.TileSettings == null)
             {
-                Task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings.Clone();
+                Task.TileSettings = Settings.Current.DefaultTaskTileSettings.Clone();
             }
 
             // ULOŽENÍ
@@ -349,14 +349,14 @@ namespace SimpleTasks.Views
         {
             Task.Completed = DateTime.Now;
 
-            if (Settings.Current.Tasks.CompleteSubtasks)
+            if (Settings.Current.CompleteSubtasks)
             {
                 foreach (Subtask subtask in Task.Subtasks)
                 {
                     subtask.IsCompleted = true;
                 }
             }
-            if (Settings.Current.Tiles.UnpinCompleted && Repeats == Core.Models.Repeats.None)
+            if (Settings.Current.UnpinCompleted && Repeats == Core.Models.Repeats.None)
             {
                 Unpin();
             }

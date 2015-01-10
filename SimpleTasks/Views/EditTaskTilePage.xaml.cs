@@ -33,7 +33,7 @@ namespace SimpleTasks.Views
             SetTask(NavigationParameter<TaskModel>(DefaultParameterKey, new TaskModel()));
             try
             {
-                _useDefaultLineHeight = (_task == null || _task.TileSettings == Settings.Current.Tiles.DefaultTaskTileSettings);
+                _useDefaultLineHeight = (_task == null || _task.TileSettings == Settings.Current.DefaultTaskTileSettings);
             }
             catch { }
         }
@@ -50,7 +50,7 @@ namespace SimpleTasks.Views
         private void SetTask(TaskModel task)
         {
             _task = task;
-            DataContext = _task.TileSettings ?? (_task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings.Clone());
+            DataContext = _task.TileSettings ?? (_task.TileSettings = Settings.Current.DefaultTaskTileSettings.Clone());
 
             SmallTile.Task = _task;
             MediumTile.Task = _task;
@@ -86,7 +86,7 @@ namespace SimpleTasks.Views
 
         private void ResetLineHeight_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            double newLineHeight = _useDefaultLineHeight ? TaskTileSettings.DefaultLineHeight : Settings.Current.Tiles.DefaultTaskTileSettings.LineHeight;
+            double newLineHeight = _useDefaultLineHeight ? TaskTileSettings.DefaultLineHeight : Settings.Current.DefaultTaskTileSettings.LineHeight;
             LineHeightSlider.SetSliderValue((int)newLineHeight);
         }
 

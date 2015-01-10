@@ -17,7 +17,7 @@ namespace SimpleTasks.Helpers
 
         public static void Start(double seconds)
         {
-            if (Settings.Current.General.Vibrate)
+            if (Settings.Current.Vibrate)
             {
                 VibrateController.Default.Start(TimeSpan.FromSeconds(seconds));
             }

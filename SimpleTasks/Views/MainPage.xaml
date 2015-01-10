@@ -213,63 +213,8 @@
                                                 Value="Collapsed" />
                     </ObjectAnimationUsingKeyFrames>
                 </Storyboard>
-
-                <!--Quick Add-->
-                <Storyboard x:Name="PageOverlayTransitionQuickShow">
-                    <DoubleAnimation Storyboard.TargetName="PageOverlay"
-                                     Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.4"
-                                     To="0.58">
-                        <DoubleAnimation.EasingFunction>
-                            <CubicEase EasingMode="EaseOut" />
-                        </DoubleAnimation.EasingFunction>
-                    </DoubleAnimation>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
-                                                   Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                Value="Visible" />
-                    </ObjectAnimationUsingKeyFrames>
-                </Storyboard>
-                <Storyboard x:Name="PageOverlayTransitionQuickHide">
-                    <DoubleAnimation Storyboard.TargetName="PageOverlay"
-                                     Storyboard.TargetProperty="Opacity"
-                                     Duration="0:0:0.3"
-                                     BeginTime="0:0:0.2"
-                                     To="0">
-                    </DoubleAnimation>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PageOverlay"
-                                                   Storyboard.TargetProperty="Visibility">
-                        <DiscreteObjectKeyFrame KeyTime="0:0:0.5"
-                                                Value="Collapsed" />
-                    </ObjectAnimationUsingKeyFrames>
-                </Storyboard>
-
             </Rectangle.Resources>
         </Rectangle>
-
-        <!--Oddělovač-->
-        <Rectangle Grid.Row="1"
-                   x:Name="QuickAddGridSeparator"
-                   Fill="{StaticResource AccentBrush}"
-                   Opacity="0.6"
-                   Height="10"
-                   VerticalAlignment="Bottom" />
-
-        <!--Quick add-->
-        <Grid Grid.Row="2"
-              x:Name="QuickAddGrid">
-            <controls:MyTextBox Grid.Row="1"
-                                x:Name="QuickAddTextBox"
-                                Hint="&#8230;&#xe104;"
-                                GotFocus="QuickAddTextBox_GotFocus"
-                                LostFocus="QuickAddTextBox_LostFocus"
-                                KeyDown="QuickAddTextBox_KeyDown"
-                                BorderSize="0"
-                                FontSize="30"
-                                FontFamily="Segoe UI Symbol"
-                                Background="{StaticResource QuickAddBackgroundBrush}"
-                                Height="65" />
-        </Grid>
 
         <Grid Grid.RowSpan="3">
             <Button Content="Test"

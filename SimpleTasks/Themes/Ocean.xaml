@@ -90,12 +90,6 @@
     <Color x:Key="TasksListHeaderBackgroundColor">#1A44FDC6</Color>
     <SolidColorBrush x:Key="TasksListHeaderBorderBrush"
                      Color="{StaticResource TasksListHeaderBackgroundColor}" />
-
-    <SolidColorBrush x:Key="QuickAddHintBrush"
-                     Color="{StaticResource SlightColor}"
-                     Opacity="0.55" />
-    <SolidColorBrush x:Key="QuickAddBackgroundBrush"
-                     Color="#007369" />
     <!--EndRegion-->
 
     <!--Region EditPage-->

@@ -33,12 +33,12 @@ namespace SimpleTasks.Core.Tiles
 
             double lineHeight = 48;
             //DataContext = task;
-            //TaskTileSettings settings = task.TileSettings ?? Settings.Current.Tiles.DefaultTaskTileSettings;
+            //TaskTileSettings settings = task.TileSettings ?? Settings.Current.DefaultTaskTileSettings;
 
             int count = tasks.Count;
 
             // Info
-            if (Settings.Current.Tiles.ShowTaskCount)
+            if (Settings.Current.ShowTaskCount)
             {
                 InfoWrapper.Visibility = Visibility.Visible;
                 InfoWrapper.Height = lineHeight * 2;
@@ -70,7 +70,7 @@ namespace SimpleTasks.Core.Tiles
                 SolidColorBrush borderBrush = new SolidColorBrush(Color.FromArgb(102, 0, 0, 0));
                 SolidColorBrush background = new SolidColorBrush(Color.FromArgb(48, 0, 0, 0));
 
-                int maxTasks = (int)Math.Round(336 / lineHeight) + (Settings.Current.Tiles.ShowTaskCount ? -2 : 0);
+                int maxTasks = (int)Math.Round(336 / lineHeight) + (Settings.Current.ShowTaskCount ? -2 : 0);
                 foreach (TaskModel task in tasks.Take(maxTasks))
                 {
                     Border border = new Border()
@@ -119,7 +119,7 @@ namespace SimpleTasks.Core.Tiles
                         titleTextBlock.Opacity = 0.75;
                     }
 
-                    if (Settings.Current.Tiles.SwapDateAndTitleOnWide)
+                    if (Settings.Current.SwapDateAndTitleOnWide)
                     {
                         StackPanel content = new StackPanel() { Orientation = Orientation.Horizontal };
                         if (dateTextBlock != null)

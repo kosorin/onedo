@@ -422,9 +422,6 @@
     <value>м</value>
     <comment>1 letter abbreviation for minutes</comment>
   </data>
-  <data name="QuickAddLabel" xml:space="preserve">
-    <value>Добавить новую задачу</value>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>до события</value>
   </data>
@@ -659,9 +656,6 @@
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>название и дата на большом тайле рядом </value>
-  </data>
-  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
-    <value>показывать строку добавления задачи на главной странице приложения</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>тайл быстрого добавления задачи</value>

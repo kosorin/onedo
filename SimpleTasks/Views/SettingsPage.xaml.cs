@@ -9,7 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Models;
-using DefaultDateTypes = SimpleTasks.Core.Models.Settings.TasksSettings.DefaultDateTypes;
+using DefaultDateTypes = SimpleTasks.Core.Models.Settings.DefaultDateTypes;
 using SimpleTasks.Resources;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -38,7 +38,7 @@ namespace SimpleTasks.Views
             // Default Time
             if (IsSetNavigationParameter("TimePicker"))
             {
-                Settings.Current.Tasks.DefaultTime = NavigationParameter<DateTime>("TimePicker");
+                Settings.Current.DefaultTime = NavigationParameter<DateTime>("TimePicker");
             }
 
             // Pin Tile
@@ -89,27 +89,27 @@ namespace SimpleTasks.Views
         #region Default Time
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Navigate(typeof(TimePickerPage), Settings.Current.Tasks.DefaultTime, "TimePicker");
+            Navigate(typeof(TimePickerPage), Settings.Current.DefaultTime, "TimePicker");
         }
         #endregion // end of Default Time
 
         #region Feedback
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            Settings.Current.General.Feedback = true;
+            Settings.Current.Feedback = true;
             GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "True");
             GoogleAnalyticsHelper.SendEvent("Settings", "Edit", "set feedback");
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (Settings.Current.General.Feedback)
+            if (Settings.Current.Feedback)
             {
                 // Pokud už byl feedback nastavený na false a check box se změní na unchecked,
                 // tak se znovu neposílá info o změně.
                 GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
                 GoogleAnalyticsHelper.SendEvent("Settings", "Edit", "set feedback");
-                Settings.Current.General.Feedback = false;
+                Settings.Current.Feedback = false;
             }
         }
 
@@ -169,7 +169,7 @@ namespace SimpleTasks.Views
                 task.Detail = "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.";
             }
 
-            task.TileSettings = Settings.Current.Tiles.DefaultTaskTileSettings;
+            task.TileSettings = Settings.Current.DefaultTaskTileSettings;
 
             Navigate(typeof(EditTaskTilePage), task);
         }

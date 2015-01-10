@@ -279,8 +279,8 @@ namespace SimpleTasks.Controls
         {
             UpdateVisualState(GestureStartDragState);
 
-            SwipeLeftGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeLeftAction);
-            SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.Tasks.SwipeRightAction);
+            SwipeLeftGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.SwipeLeftAction);
+            SwipeRightGestureIcon.Style = GestureActionHelper.IconStyle(Settings.Current.SwipeRightAction);
             SwipeLeftGestureIcon.Visibility = Visibility.Visible;
             SwipeRightGestureIcon.Visibility = Visibility.Visible;
             SwipeLeftGestureIcon.Opacity = 0;
@@ -317,11 +317,11 @@ namespace SimpleTasks.Controls
         private void InfoGrid_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
             RootTransform.X += e.DeltaManipulation.Translation.X;
-            if (Settings.Current.Tasks.SwipeLeftAction == GestureAction.None && RootTransform.X < 0)
+            if (Settings.Current.SwipeLeftAction == GestureAction.None && RootTransform.X < 0)
             {
                 RootTransform.X = 0;
             }
-            else if (Settings.Current.Tasks.SwipeRightAction == GestureAction.None && RootTransform.X > 0)
+            else if (Settings.Current.SwipeRightAction == GestureAction.None && RootTransform.X > 0)
             {
                 RootTransform.X = 0;
             }

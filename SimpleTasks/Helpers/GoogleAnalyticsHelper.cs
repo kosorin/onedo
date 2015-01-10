@@ -44,7 +44,7 @@ namespace SimpleTasks.Helpers
 
         public static void SendPage(BasePage page)
         {
-            if (!Settings.Current.General.Feedback)
+            if (!Settings.Current.Feedback)
                 return;
 
             try
@@ -67,7 +67,7 @@ namespace SimpleTasks.Helpers
 
         public static void SendEvent(string category, string action, string label = "<Label>", long value = 0)
         {
-            if (!Settings.Current.General.Feedback)
+            if (!Settings.Current.Feedback)
                 return;
 
             try
@@ -85,7 +85,7 @@ namespace SimpleTasks.Helpers
 
         public static void SetDimension(CustomDimension type, string value)
         {
-            if (!Settings.Current.General.Feedback)
+            if (!Settings.Current.Feedback)
                 return;
 
             try

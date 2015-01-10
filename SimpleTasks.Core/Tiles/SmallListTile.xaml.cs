@@ -32,7 +32,7 @@ namespace SimpleTasks.Core.Tiles
                 return;
 
             int count = tasks.Count;
-            if (Settings.Current.Tiles.ShowTaskCount)
+            if (Settings.Current.ShowTaskCount)
             {
                 CountWrapper.Visibility = Visibility.Visible;
 

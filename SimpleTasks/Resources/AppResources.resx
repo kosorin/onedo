@@ -422,9 +422,6 @@
     <value>m</value>
     <comment>1 letter abbreviation for minutes</comment>
   </data>
-  <data name="QuickAddLabel" xml:space="preserve">
-    <value>Add a new task</value>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>before due date</value>
   </data>
@@ -661,9 +658,6 @@ It's still in beta.</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>swap title and date on wide tile</value>
-  </data>
-  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
-    <value>show "add task" text box on main page</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>quick add tile</value>

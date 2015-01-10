@@ -398,10 +398,6 @@
           <target state="signed-off">m</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for minutes</note>
           </trans-unit>
-        <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
-          <source>Add a new task</source>
-          <target state="signed-off">neue Aufgabe zufügen</target>
-        </trans-unit>
         <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
           <source>before due date</source>
           <target state="signed-off">vor Fälligkeitsdatum</target>
@@ -711,10 +707,6 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>swap title and date on wide tile</source>
           <target state="signed-off">Titel und Datum bei großem Livetile vertauschen</target>
-        </trans-unit>
-        <trans-unit id="Resx/SettingsShowQuickAddTextBox" translate="yes" xml:space="preserve">
-          <source>show "add task" text box on main page</source>
-          <target state="signed-off">zeige "Aufgabe hinzufügen" Textbox auf der Hauptseite</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
           <source>quick add tile</source>

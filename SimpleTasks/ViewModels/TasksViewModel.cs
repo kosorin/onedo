@@ -30,9 +30,9 @@ namespace SimpleTasks.ViewModels
         public void Load(TaskCollection tasks)
         {
             Tasks = tasks ?? new TaskCollection();
-            if (Settings.Current.Tasks.DeleteCompleted > 0)
+            if (Settings.Current.DeleteCompleted > 0)
             {
-                DeleteCompleted(Settings.Current.Tasks.DeleteCompletedBefore);
+                DeleteCompleted(Settings.Current.DeleteCompletedBefore);
             }
 
 #if DEBUG
@@ -47,7 +47,7 @@ namespace SimpleTasks.ViewModels
 
         public void Save()
         {
-            if (Settings.Current.Tasks.DeleteCompleted == 0)
+            if (Settings.Current.DeleteCompleted == 0)
             {
                 DeleteCompleted();
             }
@@ -64,9 +64,9 @@ namespace SimpleTasks.ViewModels
                 Add(task);
             }
 
-            if (Settings.Current.Tasks.DeleteCompleted > 0)
+            if (Settings.Current.DeleteCompleted > 0)
             {
-                DeleteCompleted(Settings.Current.Tasks.DeleteCompletedBefore);
+                DeleteCompleted(Settings.Current.DeleteCompletedBefore);
             }
 
 #if DEBUG

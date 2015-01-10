@@ -64,8 +64,8 @@
                         <controls:ListPicker x:Name="DatePicker"
                                              Foreground="{StaticResource SlightBrush}"
                                              Background="{StaticResource ButtonBackgroundBrush}"
-                                             ItemsSource="{Binding Tasks.DefaultDatePickerList}"
-                                             SelectedItem="{Binding Tasks.DefaultDateType, Mode=TwoWay}">
+                                             ItemsSource="{Binding DefaultDatePickerList}"
+                                             SelectedItem="{Binding DefaultDateType, Mode=TwoWay}">
                             <controls:ListPicker.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource ListPickerItemTemplate}">
@@ -87,7 +87,7 @@
 
                             <Border Background="{StaticResource ButtonBackgroundBrush}">
                                 <TextBlock Grid.Column="1"
-                                           Text="{Binding Tasks.DefaultTime, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
+                                           Text="{Binding DefaultTime, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
                                            Style="{StaticResource ButtonTextStyle}"
                                            Margin="10,0" />
                             </Border>
@@ -99,8 +99,8 @@
                         <controls:ListPicker x:Name="DaysPicker"
                                              Foreground="{StaticResource SlightBrush}"
                                              Background="{StaticResource ButtonBackgroundBrush}"
-                                             ItemsSource="{Binding Tasks.DeleteCompletedPickerList}"
-                                             SelectedItem="{Binding Tasks.DeleteCompleted, Mode=TwoWay}">
+                                             ItemsSource="{Binding DeleteCompletedPickerList}"
+                                             SelectedItem="{Binding DeleteCompleted, Mode=TwoWay}">
                             <controls:ListPicker.ItemTemplate>
                                 <DataTemplate>
                                     <Border Style="{StaticResource ListPickerItemTemplate}">
@@ -114,7 +114,7 @@
                         <!--Automatically complete subtasks-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Tasks.CompleteSubtasks, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding CompleteSubtasks, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
@@ -122,15 +122,15 @@
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsSwipeLeft, Source={StaticResource LocalizedStrings}}" />
-                        <controls:ListPicker ItemsSource="{Binding Tasks.GestureActionPickerList}"
-                                             SelectedItem="{Binding Tasks.SwipeLeftAction, Mode=TwoWay}"
+                        <controls:ListPicker ItemsSource="{Binding GestureActionPickerList}"
+                                             SelectedItem="{Binding SwipeLeftAction, Mode=TwoWay}"
                                              Style="{StaticResource GestureListPickerStyle}" />
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsSwipeRight, Source={StaticResource LocalizedStrings}}" />
-                        <controls:ListPicker ItemsSource="{Binding Tasks.GestureActionPickerList}"
-                                             SelectedItem="{Binding Tasks.SwipeRightAction, Mode=TwoWay}"
+                        <controls:ListPicker ItemsSource="{Binding GestureActionPickerList}"
+                                             SelectedItem="{Binding SwipeRightAction, Mode=TwoWay}"
                                              Style="{StaticResource GestureListPickerStyle}" />
                     </StackPanel>
                 </ScrollViewer>
@@ -152,7 +152,7 @@
                         <!--Enable tile-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Tiles.Enable, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding Enable, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
                         <TextBlock x:Name="PinTileTextBox"
                                    Text="Pin tile help text."
@@ -161,13 +161,13 @@
                         <!--Unpin Completed-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Tiles.UnpinCompleted, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding UnpinCompleted, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--show task count-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCount, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Tiles.ShowTaskCount, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding ShowTaskCount, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCountHelp, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
@@ -175,7 +175,7 @@
                         <!--Swap title and date on wide tile-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Tiles.SwapDateAndTitleOnWide, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding SwapDateAndTitleOnWide, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Default Task Tile Settings-->
@@ -191,7 +191,7 @@
             <!--General-->
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsGeneral, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
-                    <StackPanel Margin="24,24,24,96">
+                    <StackPanel Margin="24,0,24,96">
 
                         <!--Theme-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
@@ -211,27 +211,19 @@
                         <!--Vibrate-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding General.Vibrate, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
-
-                        <!--Show Quick Add-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsShowQuickAddTextBox, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding General.ShowQuickAddTextBox, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding Vibrate, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Hide Task CheckBox-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding General.HideTaskCheckBox, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding HideTaskCheckBox, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
-                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBoxHelp, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource HelpTextStyle}" />
 
                         <!--Feedback-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding General.Feedback, Mode=OneTime}"
+                        <ToggleButton IsChecked="{Binding Feedback, Mode=OneTime}"
                                       Style="{StaticResource SwitchStyle}"
                                       Checked="ToggleButton_Checked"
                                       Unchecked="ToggleButton_Unchecked" />

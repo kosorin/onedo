@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
-using DefaultDateTypes = SimpleTasks.Core.Models.Settings.TasksSettings.DefaultDateTypes;
+using DefaultDateTypes = SimpleTasks.Core.Models.Settings.DefaultDateTypes;
 using SimpleTasks.Core.Models;
 using System.Windows;
 using SimpleTasks.Helpers;

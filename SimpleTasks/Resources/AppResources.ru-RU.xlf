@@ -399,10 +399,6 @@
           <target state="signed-off">м</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for minutes</note>
           </trans-unit>
-        <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
-          <source>Add a new task</source>
-          <target state="signed-off">Добавить новую задачу</target>
-        </trans-unit>
         <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
           <source>before due date</source>
           <target state="signed-off">до события</target>
@@ -712,10 +708,6 @@ It's still in beta.</source>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>swap title and date on wide tile</source>
           <target state="signed-off">название и дата на большом тайле рядом </target>
-        </trans-unit>
-        <trans-unit id="Resx/SettingsShowQuickAddTextBox" translate="yes" xml:space="preserve">
-          <source>show "add task" text box on main page</source>
-          <target state="signed-off">показывать строку добавления задачи на главной странице приложения</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
           <source>quick add tile</source>

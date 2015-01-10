@@ -418,9 +418,6 @@
     <value>m</value>
     <comment>1 letter abbreviation for minutes</comment>
   </data>
-  <data name="QuickAddLabel" xml:space="preserve">
-    <value>neue Aufgabe zufügen</value>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>vor Fälligkeitsdatum</value>
   </data>
@@ -657,9 +654,6 @@ Diese Funktion ist noch im Betastadium.</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>Titel und Datum bei großem Livetile vertauschen</value>
-  </data>
-  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
-    <value>zeige "Aufgabe hinzufügen" Textbox auf der Hauptseite</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>Livetile für schnelles zufügen</value>

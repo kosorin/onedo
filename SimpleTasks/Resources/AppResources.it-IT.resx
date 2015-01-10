@@ -395,9 +395,6 @@
     <value>m</value>
     <comment>1 letter abbreviation for minutes</comment>
   </data>
-  <data name="QuickAddLabel" xml:space="preserve">
-    <value>Aggiungi impegno</value>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>prima della data dell'impegno</value>
   </data>
@@ -550,9 +547,6 @@
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>mostra numero di impegni</value>
-  </data>
-  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
-    <value>mostra "aggiungi impegno" nella pagina principale</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>aggiungi box impegno rapido</value>

@@ -324,9 +324,6 @@
           <target state="signed-off">d</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 letter abbreviation for days</note>
           </trans-unit>
-        <trans-unit id="Resx/QuickAddLabel" translate="yes" xml:space="preserve">
-          <source>Add a new task</source>
-          <target state="signed-off">Přidat nový úkol</target></trans-unit>
         <trans-unit id="Resx/ReminderBeforeDueDateText" translate="yes" xml:space="preserve">
           <source>before due date</source>
           <target state="signed-off">před termínem</target>
@@ -479,10 +476,6 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>swap title and date on wide tile</source>
           <target state="signed-off">prohodit název a datum na široké dlaždici</target>
-        </trans-unit>
-        <trans-unit id="Resx/SettingsShowQuickAddTextBox" translate="yes" xml:space="preserve">
-          <source>show "add task" text box on main page</source>
-          <target state="signed-off">zobrazit textové pole "přidat nový úkol" na hlavní stránce</target>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
           <source>quick add tile</source>

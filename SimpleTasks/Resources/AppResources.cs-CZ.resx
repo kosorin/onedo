@@ -402,9 +402,6 @@
     <value>d</value>
     <comment>1 letter abbreviation for days</comment>
   </data>
-  <data name="QuickAddLabel" xml:space="preserve">
-    <value>Přidat nový úkol</value>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>před termínem</value>
   </data>
@@ -653,9 +650,6 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>zobrazit počet úkolů</value>
-  </data>
-  <data name="SettingsShowQuickAddTextBox" xml:space="preserve">
-    <value>zobrazit textové pole "přidat nový úkol" na hlavní stránce</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>dlaždice pro rychlé přidání úkolu</value>

@@ -530,7 +530,7 @@
             <!--Checkbox-->
             <Button Grid.Column="0"
                     Width="60"
-                    Visibility="{Binding Current.General.HideTaskCheckBox, 
+                    Visibility="{Binding Current.HideTaskCheckBox, 
                                          Converter={StaticResource BooleanToVisibilityConverter}, 
                                          ConverterParameter='!', 
                                          Source={StaticResource Settings}}">

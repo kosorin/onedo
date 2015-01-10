@@ -60,9 +60,6 @@ namespace SimpleTasks.Views
             base.OnNavigatedTo(e);
             NavigationService.RemoveBackEntry();
 
-            QuickAddGrid.Visibility = Settings.Current.General.ShowQuickAddTextBox ? Visibility.Visible : Visibility.Collapsed;
-            QuickAddGridSeparator.Visibility = Settings.Current.General.ShowQuickAddTextBox ? Visibility.Visible : Visibility.Collapsed;
-
             App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
             App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;
             if (e.NavigationMode == NavigationMode.Back)
@@ -83,8 +80,6 @@ namespace SimpleTasks.Views
         #region AppBar Create
         private ApplicationBarIconButton appBarNewTaskButton;
 
-        private ApplicationBarIconButton appBarSaveQuickButton;
-
         private List<ApplicationBarMenuItem> appBarMenuItems;
 
         private void CreateAppBarItems()
@@ -93,10 +88,6 @@ namespace SimpleTasks.Views
             appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
             appBarNewTaskButton.Text = AppResources.AppBarNew;
             appBarNewTaskButton.Click += (s, e) => { Navigate(typeof(EditTaskPage)); };
-
-            appBarSaveQuickButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.save.png", UriKind.Relative));
-            appBarSaveQuickButton.Text = AppResources.AppBarSave;
-            appBarSaveQuickButton.Click += QuickAddSaveButton_Click;
             #endregion
 
             #region Menu
@@ -153,18 +144,7 @@ namespace SimpleTasks.Views
                 ApplicationBar.MenuItems.Add(item);
             }
         }
-
-        private void BuildQuickAddAppBar()
-        {
-            ApplicationBar = ThemeHelper.CreateApplicationBar();
-            ApplicationBar.Buttons.Add(appBarSaveQuickButton);
-        }
         #endregion
-
-        private void QuickAddSaveButton_Click(object sender, EventArgs e)
-        {
-            QuickAdd(QuickAddTextBox.Text);
-        }
 
         private void DeleteCompletedMenuItem_Click(object sender, EventArgs e)
         {
@@ -380,14 +360,14 @@ namespace SimpleTasks.Views
                 // DOKONČENÍ
                 task.Completed = DateTime.Now;
                 task.ModifiedSinceStart = true;
-                if (Settings.Current.Tasks.CompleteSubtasks && task.HasSubtasks)
+                if (Settings.Current.CompleteSubtasks && task.HasSubtasks)
                 {
                     foreach (Subtask subtask in task.Subtasks)
                     {
                         subtask.IsCompleted = true;
                     }
                 }
-                if (Settings.Current.Tiles.UnpinCompleted && !task.HasRepeats)
+                if (Settings.Current.UnpinCompleted && !task.HasRepeats)
                 {
                     LiveTile.Unpin(task);
                 }
@@ -513,76 +493,25 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        #region QuickAddTextBox
-        SupportedPageOrientation orientation;
-
-        private void QuickAddTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            PageOverlayTransitionQuickHide.Begin();
-            BuildTasksdAppBar();
-
-            SupportedOrientations = orientation;
-        }
-
-        private void QuickAddTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PageOverlayTransitionQuickShow.Begin();
-            BuildQuickAddAppBar();
-
-            orientation = SupportedOrientations;
-            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
-        }
-
-        private void QuickAddTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                QuickAdd(QuickAddTextBox.Text);
-            }
-        }
-
-        private void QuickAdd(string title)
-        {
-            if (!string.IsNullOrWhiteSpace(title))
-            {
-                TaskModel task = new TaskModel()
-                {
-                    Title = title,
-                    DueDate = Settings.Current.Tasks.DefaultDate
-                };
-                if (task.DueDate != null)
-                {
-                    task.DueDate = task.DueDate.Value.SetTime(Settings.Current.Tasks.DefaultTime);
-                }
-
-                App.Tasks.Add(task);
-                QuickAddTextBox.Text = "";
-                this.Focus();
-
-                TasksLongListSelector.ScrollTo(task);
-            }
-        }
-        #endregion
-
         #region Gestures
         private void TaskItem_SwipeLeft(object sender, Controls.TaskEventArgs e)
         {
-            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e);
+            ExecuteGesture(Settings.Current.SwipeLeftAction, e);
         }
 
         private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
         {
-            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e);
+            ExecuteGesture(Settings.Current.SwipeRightAction, e);
         }
 
         private void TaskItem_SubtaskSwipeLeft(object sender, TaskSubtaskEventArgs e)
         {
-            ExecuteGesture(Settings.Current.Tasks.SwipeLeftAction, e);
+            ExecuteGesture(Settings.Current.SwipeLeftAction, e);
         }
 
         private void TaskItem_SubtaskSwipeRight(object sender, TaskSubtaskEventArgs e)
         {
-            ExecuteGesture(Settings.Current.Tasks.SwipeRightAction, e);
+            ExecuteGesture(Settings.Current.SwipeRightAction, e);
         }
 
         private void ExecuteGesture(GestureAction action, Controls.TaskEventArgs e)
@@ -617,7 +546,7 @@ namespace SimpleTasks.Views
                 {
                     DateTime? oldDue = task.DueDate;
                     DateTime newDue = (action == GestureAction.DueToday ? DateTimeExtensions.Today : DateTimeExtensions.Tomorrow);
-                    newDue = newDue.SetTime(oldDue ?? Settings.Current.Tasks.DefaultTime);
+                    newDue = newDue.SetTime(oldDue ?? Settings.Current.DefaultTime);
 
                     OverlayAction(SetDueDate, task, newDue, action);
                 }
@@ -632,7 +561,7 @@ namespace SimpleTasks.Views
                 }
                 else
                 {
-                    OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.Tasks.DefaultTime), action);
+                    OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.DefaultTime), action);
                 }
                 break;
 

@@ -1389,15 +1389,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to show &quot;add task&quot; text box on main page.
-        /// </summary>
-        public static string SettingsShowQuickAddTextBox {
-            get {
-                return ResourceManager.GetString("SettingsShowQuickAddTextBox", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to show task count.
         /// </summary>
         public static string SettingsShowTaskCount {

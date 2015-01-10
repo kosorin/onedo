@@ -35,7 +35,7 @@ namespace SimpleTasks.Core.Tiles
                 return;
 
             DataContext = task;
-            TaskTileSettings settings = task.TileSettings ?? Settings.Current.Tiles.DefaultTaskTileSettings;
+            TaskTileSettings settings = task.TileSettings ?? Settings.Current.DefaultTaskTileSettings;
 
             // Název
             if (settings.HideTitle)
