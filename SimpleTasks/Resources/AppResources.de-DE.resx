@@ -544,23 +544,20 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>alle löschen</value>
   </data>
-  <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>Fälligkeit verstecken</value>
-  </data>
-  <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>Titel verstecken</value>
-  </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>erledigte Unteraufgaben zeigen</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>Titel in einer Zeile</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>Hintergrund Durchsichtigkeit</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>Schriftgröße</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>Vorschau</value>
@@ -573,6 +570,7 @@
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>Feedback</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Sende anonyme Nutzungsstatistiken zur Verbesserung dieser App. Statistiken helfen dem Entwickler häufig verwendete Funktionen zu identifizieren und zu verbessern. 
@@ -583,9 +581,6 @@ Es werden keine persönlichen Daten gesammelt.</value>
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Standardeinstellungen für Livetile</value>
-  </data>
-  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
-    <value>Checkbox verstecken</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Wischbewegung von rechts nach links zum Erledigen verwenden.</value>
@@ -651,12 +646,15 @@ Diese Funktion ist noch im Betastadium.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>zeige Aufgabenanzahl</value>
+    <comment></comment>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>Titel und Datum bei großem Livetile vertauschen</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>Livetile für schnelles zufügen</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>An Startbildschirm anheften</value>

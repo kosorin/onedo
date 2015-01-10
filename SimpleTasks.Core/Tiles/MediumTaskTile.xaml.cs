@@ -38,11 +38,7 @@ namespace SimpleTasks.Core.Tiles
             TaskTileSettings settings = task.TileSettings ?? Settings.Current.DefaultTaskTileSettings;
 
             // Název
-            if (settings.HideTitle)
-            {
-                TitleWrapper.Visibility = Visibility.Collapsed;
-            }
-            else
+            if (settings.ShowTitle)
             {
                 TitleWrapper.Visibility = Visibility.Visible;
                 Title.FontSize = settings.LineHeight * 0.72;
@@ -50,11 +46,15 @@ namespace SimpleTasks.Core.Tiles
                 Title.Text = task.Title;
                 Title.TextWrapping = settings.TitleOnOneLine ? TextWrapping.NoWrap : TextWrapping.Wrap;
             }
+            else
+            {
+                TitleWrapper.Visibility = Visibility.Collapsed;
+            }
 
             // Date
-            bool hideDate = settings.HideDate || !task.HasDueDate;
-            InfoWrapper.Visibility = hideDate ? Visibility.Collapsed : Visibility.Visible;
-            if (!hideDate)
+            bool showDate = settings.ShowDate && task.HasDueDate;
+            InfoWrapper.Visibility = showDate ? Visibility.Visible : Visibility.Collapsed;
+            if (showDate)
             {
                 Info.Height = settings.LineHeight;
                 Date.Text = task.ActualDueDate.Value.ToShortDateString();

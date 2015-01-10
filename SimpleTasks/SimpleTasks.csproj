@@ -198,8 +198,8 @@
     <Compile Include="Views\DatePickerPage.xaml.cs">
       <DependentUpon>DatePickerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditTaskTilePage.xaml.cs">
-      <DependentUpon>EditTaskTilePage.xaml</DependentUpon>
+    <Compile Include="Views\TaskTileSettingsPage.xaml.cs">
+      <DependentUpon>TaskTileSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SubtasksPage.xaml.cs">
       <DependentUpon>SubtasksPage.xaml</DependentUpon>
@@ -427,7 +427,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditTaskTilePage.xaml">
+    <Page Include="Views\TaskTileSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

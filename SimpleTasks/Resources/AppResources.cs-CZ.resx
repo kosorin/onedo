@@ -542,9 +542,11 @@
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>nadpis na jeden řádek</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>velikost písma</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>náhled</value>
@@ -560,15 +562,11 @@
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>zobrazit dokončené podúkoly</value>
-  </data>
-  <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>skrýt název</value>
-  </data>
-  <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>skrýt termín</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>zpětná vazba</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Odesílat anonymní data o používání pro zlepšení této aplikace. Statistiky pomáhají vývojáři identifikovat a zaměřovat se na často používané funkce.
@@ -582,9 +580,6 @@ Nejsou shromažďovány žádné osobní údaje.</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Místo toho můžete pro dokončení úkolu použít gesto tažení zprava doleva.</value>
-  </data>
-  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
-    <value>Skrýt zaškrtávací políčko</value>
   </data>
   <data name="SignOut" xml:space="preserve">
     <value>Odhlásit se</value>
@@ -647,12 +642,15 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>prohodit název a datum na široké dlaždici</value>
+    <comment></comment>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>zobrazit počet úkolů</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>dlaždice pro rychlé přidání úkolu</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Odepnout</value>
@@ -779,6 +777,7 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="SettingsThemeColor" xml:space="preserve">
     <value>barva motivu</value>
+    <comment></comment>
   </data>
   <data name="Tasks5AndMore" xml:space="preserve">
     <value>{0} úkolů</value>

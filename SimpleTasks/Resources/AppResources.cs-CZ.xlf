@@ -386,13 +386,21 @@
           <source>delete all</source>
           <target state="signed-off">odstranit všechny</target>
         </trans-unit>
+        <trans-unit id="Resx/TileSettingsShowTitle" translate="yes" xml:space="preserve">
+          <source>Show title</source>
+          <target state="new">Show title</target>
+        </trans-unit>
+        <trans-unit id="Resx/TileSettingsShowDate" translate="yes" xml:space="preserve">
+          <source>Show due date</source>
+          <target state="new">Show due date</target>
+        </trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
-          <source>title on one line</source>
-          <target state="signed-off">nadpis na jeden řádek</target>
+          <source>Title on one line</source>
+          <target state="needs-review-translation">nadpis na jeden řádek</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
-          <source>font size</source>
-          <target state="signed-off">velikost písma</target></trans-unit>
+          <source>Font size</source>
+          <target state="needs-review-translation">velikost písma</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note></trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>preview</source>
           <target state="signed-off">náhled</target>
@@ -406,8 +414,8 @@
           <target state="signed-off">Bez názvu</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedback" translate="yes" xml:space="preserve">
-          <source>feedback</source>
-          <target state="signed-off">zpětná vazba</target>
+          <source>Feedback</source>
+          <target state="needs-review-translation">zpětná vazba</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
@@ -421,6 +429,10 @@ Nejsou shromažďovány žádné osobní údaje.</target></trans-unit>
         <trans-unit id="Resx/SettingsDefaultTaskTileSettings" translate="yes" xml:space="preserve">
           <source>Default settings for task tile</source>
           <target state="signed-off">Výchozí nastavení pro dlaždice úkolů</target></trans-unit>
+        <trans-unit id="Resx/SettingsShowTaskCheckBox" translate="yes" xml:space="preserve">
+          <source>Show task check box</source>
+          <target state="new">Show task check box</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
           <source>You can use right to left swipe gesture instead to complete task.</source>
           <target state="signed-off">Místo toho můžete pro dokončení úkolu použít gesto tažení zprava doleva.</target>
@@ -474,12 +486,12 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>Successful backup.</source>
           <target state="signed-off">Zálohování proběhlo úspěšně.</target></trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
-          <source>swap title and date on wide tile</source>
-          <target state="signed-off">prohodit název a datum na široké dlaždici</target>
+          <source>Swap title and date on wide tile</source>
+          <target state="needs-review-translation">prohodit název a datum na široké dlaždici</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
-          <source>quick add tile</source>
-          <target state="signed-off">dlaždice pro rychlé přidání úkolu</target>
+          <source>Quick add tile</source>
+          <target state="needs-review-translation">dlaždice pro rychlé přidání úkolu</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
           <source>Unpin</source>
@@ -534,8 +546,8 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <target state="signed-off">Upozornění</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
-          <source>accent color</source>
-          <target state="signed-off">barva motivu</target>
+          <source>Accent color</source>
+          <target state="needs-review-translation">barva motivu</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
           <source>weekends</source>
@@ -553,6 +565,10 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
         <trans-unit id="Resx/SettingsLook" translate="yes" xml:space="preserve">
           <source>look</source>
           <target state="new">look</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsTaskTile" translate="yes" xml:space="preserve">
+          <source>Task tile settings</source>
+          <target state="new">Task tile settings</target>
         </trans-unit>
         <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
@@ -680,8 +696,8 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>Pin to start</source>
           <target state="signed-off">Připnout na úvodní obrazovku</target></trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
-          <source>show task count</source>
-          <target state="signed-off">zobrazit počet úkolů</target>
+          <source>Show task count</source>
+          <target state="needs-review-translation">zobrazit počet úkolů</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
@@ -710,25 +726,13 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>backup %%amp; restore</source>
           <target state="signed-off">záloha %%amp; obnovení</target>
         </trans-unit>
-        <trans-unit id="Resx/SettingsHideTaskCheckBox" translate="yes" xml:space="preserve">
-          <source>Hide task check box</source>
-          <target state="signed-off">Skrýt zaškrtávací políčko</target>
-        </trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
           <target state="signed-off">průhlednost pozadí</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
-          <source>show completed subtasks</source>
-          <target state="signed-off">zobrazit dokončené podúkoly</target>
-        </trans-unit>
-        <trans-unit id="Resx/TileSettingsHideTitle" translate="yes" xml:space="preserve">
-          <source>hide title</source>
-          <target state="signed-off">skrýt název</target>
-        </trans-unit>
-        <trans-unit id="Resx/TileSettingsHideDate" translate="yes" xml:space="preserve">
-          <source>hide due date</source>
-          <target state="signed-off">skrýt termín</target>
+          <source>Show completed subtasks</source>
+          <target state="needs-review-translation">zobrazit dokončené podúkoly</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>

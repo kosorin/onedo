@@ -550,9 +550,11 @@
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>názov na jeden riadok</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>veľkosť písma</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>náhľad</value>
@@ -568,15 +570,11 @@
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>zobraziť dokončené podúlohy</value>
-  </data>
-  <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>skryť názov</value>
-  </data>
-  <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>skryť termín</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>spätná väzba</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Odosielať anonymné dáta o používaní pre zlepšenie tejto aplikácie. Štatistiky pomáhajú vývojárovi identifikovať a zameriavať sa na často používané funkcie.
@@ -590,9 +588,6 @@ Nie sú zhromažďované žiadne osobné údaje.</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Namiesto toho môžete pre dokončenie úlohy použiť gesto pretiahnutia sprava doľava.</value>
-  </data>
-  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
-    <value>Skryť zaškrtávacie políčko</value>
   </data>
   <data name="SignOut" xml:space="preserve">
     <value>Odhlásiť sa</value>
@@ -655,12 +650,15 @@ Táto funkcia je stále v beta verzii.</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>prehodiť názov s dátumom na veľkej dlaždici</value>
+    <comment></comment>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>zobraziť počet úloh</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>dlaždica pre rýchle pridanie úlohy</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Zrušiť pripnutie</value>

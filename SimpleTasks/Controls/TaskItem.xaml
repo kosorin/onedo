@@ -536,7 +536,7 @@
             <Button x:Name="CheckboxButton"
                     Grid.Column="0"
                     Width="60"
-                    Visibility="{Binding Current.HideTaskCheckBox, 
+                    Visibility="{Binding Current.ShowTaskCheckBox, 
                                          Converter={StaticResource BooleanToVisibilityConverter}, 
                                          ConverterParameter='!', 
                                          Source={StaticResource Settings}}">

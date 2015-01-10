@@ -548,23 +548,20 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>удалить все</value>
   </data>
-  <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>скрыть дату</value>
-  </data>
-  <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>скрыть заголовок</value>
-  </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>показать завершенные задачи</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>заголовок одной строкой</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>прозрачность фона</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>размер шрифта</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>предпросмотр</value>
@@ -577,6 +574,7 @@
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>сбор статистики</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Отправлять анонимные данные об использовании приложения в целях улучшения его качества. Статистика помогает разработчику выявить и выделить наиболее часто используемые функции приложения. Никакие личные данные не собираются.</value>
@@ -586,9 +584,6 @@
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Настройки по умолчанию для тайла задач</value>
-  </data>
-  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
-    <value>Скрыть флажок для задачи</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Вы можете вместо этого использовать свайп влево на задаче,чтобы ее завершить.</value>
@@ -653,12 +648,15 @@
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>показать количество задач</value>
+    <comment></comment>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>название и дата на большом тайле рядом </value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>тайл быстрого добавления задачи</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>закрепить на рабочем столе</value>

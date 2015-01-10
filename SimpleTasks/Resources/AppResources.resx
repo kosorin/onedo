@@ -548,23 +548,23 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>delete all</value>
   </data>
-  <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>hide due date</value>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Show due date</value>
   </data>
-  <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>hide title</value>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Show title</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>show completed subtasks</value>
+    <value>Show completed subtasks</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
-    <value>title on one line</value>
+    <value>Title on one line</value>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>background opacity</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>font size</value>
+    <value>Font size</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>preview</value>
@@ -576,7 +576,7 @@
     <value>Untitled</value>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
-    <value>feedback</value>
+    <value>Feedback</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
@@ -588,8 +588,8 @@ No personal data is being collected.</value>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Default settings for task tile</value>
   </data>
-  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
-    <value>Hide task check box</value>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Show task check box</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>You can use right to left swipe gesture instead to complete task.</value>
@@ -654,13 +654,13 @@ It's still in beta.</value>
     <value>Successful backup.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>show task count</value>
+    <value>Show task count</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>swap title and date on wide tile</value>
+    <value>Swap title and date on wide tile</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>quick add tile</value>
+    <value>Quick add tile</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>Pin to start</value>
@@ -759,7 +759,7 @@ It's still in beta.</value>
     <value>Notice</value>
   </data>
   <data name="SettingsThemeColor" xml:space="preserve">
-    <value>accent color</value>
+    <value>Accent color</value>
   </data>
   <data name="Repeats" xml:space="preserve">
     <value>repeats</value>
@@ -814,5 +814,8 @@ It's still in beta.</value>
   </data>
   <data name="SettingsLook" xml:space="preserve">
     <value>look</value>
+  </data>
+  <data name="SettingsTaskTile" xml:space="preserve">
+    <value>Task tile settings</value>
   </data>
 </root>

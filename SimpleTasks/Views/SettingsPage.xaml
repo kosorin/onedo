@@ -128,9 +128,9 @@
                     <StackPanel Margin="24,0,24,96">
 
                         <!--Hide Task CheckBox-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsHideTaskCheckBox, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCheckBox, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding HideTaskCheckBox, Mode=TwoWay}"
+                        <ToggleButton IsChecked="{Binding ShowTaskCheckBox, Mode=TwoWay}"
                                       Style="{StaticResource SwitchStyle}" />
 
                         <!--Swipe Left Gesture-->

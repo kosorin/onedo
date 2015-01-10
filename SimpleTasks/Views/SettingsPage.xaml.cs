@@ -171,7 +171,7 @@ namespace SimpleTasks.Views
 
             task.TileSettings = Settings.Current.DefaultTaskTileSettings;
 
-            Navigate(typeof(EditTaskTilePage), task);
+            Navigate(typeof(TaskTileSettingsPage), task);
         }
         #endregion // end of DefaultTaskTileSettings
 

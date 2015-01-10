@@ -562,29 +562,29 @@
           <source>delete all</source>
           <target state="signed-off">удалить все</target>
         </trans-unit>
-        <trans-unit id="Resx/TileSettingsHideDate" translate="yes" xml:space="preserve">
-          <source>hide due date</source>
-          <target state="signed-off">скрыть дату</target>
+        <trans-unit id="Resx/TileSettingsShowTitle" translate="yes" xml:space="preserve">
+          <source>Show title</source>
+          <target state="new">Show title</target>
         </trans-unit>
-        <trans-unit id="Resx/TileSettingsHideTitle" translate="yes" xml:space="preserve">
-          <source>hide title</source>
-          <target state="signed-off">скрыть заголовок</target>
+        <trans-unit id="Resx/TileSettingsShowDate" translate="yes" xml:space="preserve">
+          <source>Show due date</source>
+          <target state="new">Show due date</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
-          <source>show completed subtasks</source>
-          <target state="signed-off">показать завершенные задачи</target>
+          <source>Show completed subtasks</source>
+          <target state="needs-review-translation">показать завершенные задачи</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
-          <source>title on one line</source>
-          <target state="signed-off">заголовок одной строкой</target>
+          <source>Title on one line</source>
+          <target state="needs-review-translation">заголовок одной строкой</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
           <target state="signed-off">прозрачность фона</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
-          <source>font size</source>
-          <target state="signed-off">размер шрифта</target>
+          <source>Font size</source>
+          <target state="needs-review-translation">размер шрифта</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>preview</source>
@@ -599,8 +599,8 @@
           <target state="signed-off">Без названия</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedback" translate="yes" xml:space="preserve">
-          <source>feedback</source>
-          <target state="signed-off">сбор статистики</target>
+          <source>Feedback</source>
+          <target state="needs-review-translation">сбор статистики</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
@@ -615,9 +615,9 @@ No personal data is being collected.</source>
           <source>Default settings for task tile</source>
           <target state="signed-off">Настройки по умолчанию для тайла задач</target>
         </trans-unit>
-        <trans-unit id="Resx/SettingsHideTaskCheckBox" translate="yes" xml:space="preserve">
-          <source>Hide task check box</source>
-          <target state="signed-off">Скрыть флажок для задачи</target>
+        <trans-unit id="Resx/SettingsShowTaskCheckBox" translate="yes" xml:space="preserve">
+          <source>Show task check box</source>
+          <target state="new">Show task check box</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
           <source>You can use right to left swipe gesture instead to complete task.</source>
@@ -702,16 +702,16 @@ It's still in beta.</source>
           <target state="signed-off">Успешное резервное копирование.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
-          <source>show task count</source>
-          <target state="signed-off">показать количество задач</target>
+          <source>Show task count</source>
+          <target state="needs-review-translation">показать количество задач</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
-          <source>swap title and date on wide tile</source>
-          <target state="signed-off">название и дата на большом тайле рядом </target>
+          <source>Swap title and date on wide tile</source>
+          <target state="needs-review-translation">название и дата на большом тайле рядом </target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
-          <source>quick add tile</source>
-          <target state="signed-off">тайл быстрого добавления задачи</target>
+          <source>Quick add tile</source>
+          <target state="needs-review-translation">тайл быстрого добавления задачи</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
           <source>Pin to start</source>
@@ -758,8 +758,8 @@ It's still in beta.</source>
           <target state="signed-off">Уведомление</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
-          <source>accent color</source>
-          <target state="new">accent color</target>
+          <source>Accent color</source>
+          <target state="new">Accent color</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
           <source>weekends</source>
@@ -777,6 +777,10 @@ It's still in beta.</source>
         <trans-unit id="Resx/SettingsLook" translate="yes" xml:space="preserve">
           <source>look</source>
           <target state="new">look</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsTaskTile" translate="yes" xml:space="preserve">
+          <source>Task tile settings</source>
+          <target state="new">Task tile settings</target>
         </trans-unit>
         <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>

@@ -284,13 +284,13 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region HideTaskCheckBox
-        private bool _hideTaskCheckBox = false;
-        [DataMember(Name = "HideTaskCheckBox")]
-        public bool HideTaskCheckBox
+        #region ShowTaskCheckBox
+        private bool _showTaskCheckBox = false;
+        [DataMember(Name = "ShowTaskCheckBox")]
+        public bool ShowTaskCheckBox
         {
-            get { return _hideTaskCheckBox; }
-            set { SetProperty(ref _hideTaskCheckBox, value); }
+            get { return _showTaskCheckBox; }
+            set { SetProperty(ref _showTaskCheckBox, value); }
         }
         #endregion
 

@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 namespace SimpleTasks.Views
 {
-    public partial class EditTaskTilePage : BasePage
+    public partial class TaskTileSettingsPage : BasePage
     {
         private TaskModel _task = null;
 
@@ -26,7 +26,7 @@ namespace SimpleTasks.Views
 
         private bool _useDefaultLineHeight = false;
 
-        public EditTaskTilePage()
+        public TaskTileSettingsPage()
         {
             InitializeComponent();
 

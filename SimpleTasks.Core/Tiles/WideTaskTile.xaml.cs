@@ -38,11 +38,7 @@ namespace SimpleTasks.Core.Tiles
             TaskTileSettings settings = task.TileSettings ?? Settings.Current.DefaultTaskTileSettings;
 
             // Název
-            if (settings.HideTitle)
-            {
-                TitleWrapper.Visibility = Visibility.Collapsed;
-            }
-            else
+            if (settings.ShowTitle)
             {
                 TitleWrapper.Visibility = Visibility.Visible;
                 Title.FontSize = settings.LineHeight * 0.72;
@@ -50,11 +46,15 @@ namespace SimpleTasks.Core.Tiles
                 Title.Text = task.Title;
                 Title.TextWrapping = settings.TitleOnOneLine ? TextWrapping.NoWrap : TextWrapping.Wrap;
             }
+            else
+            {
+                TitleWrapper.Visibility = Visibility.Collapsed;
+            }
 
             // Date
-            bool hideDate = settings.HideDate || !task.HasDueDate;
-            InfoWrapper.Visibility = hideDate ? Visibility.Collapsed : Visibility.Visible;
-            if (!hideDate)
+            bool showDate = settings.ShowDate && task.HasDueDate;
+            InfoWrapper.Visibility = showDate ? Visibility.Visible : Visibility.Collapsed;
+            if (showDate)
             {
                 Info.Height = settings.LineHeight;
                 Date.Text = task.ActualDueDate.Value.ToShortDateString();
@@ -66,9 +66,9 @@ namespace SimpleTasks.Core.Tiles
             ShowSecondColumn();
             List<Subtask> subtasks = new List<Subtask>(task.Subtasks.Where(s => settings.ShowCompletedSubtasks || !s.IsCompleted));
             int maxColumnItems = (int)Math.Round(336 / settings.LineHeight);
-            if (!settings.HideTitle)
+            if (settings.ShowTitle)
                 maxColumnItems--;
-            if (!hideDate)
+            if (showDate)
                 maxColumnItems--;
             bool subtaksOnTwoColumns = subtasks.Count > maxColumnItems;
             bool showSubtasks = subtasks.Count > 0;

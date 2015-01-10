@@ -1307,7 +1307,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to feedback.
+        ///   Looks up a localized string similar to Feedback.
         /// </summary>
         public static string SettingsFeedback {
             get {
@@ -1353,15 +1353,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide task check box.
-        /// </summary>
-        public static string SettingsHideTaskCheckBox {
-            get {
-                return ResourceManager.GetString("SettingsHideTaskCheckBox", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You can use right to left swipe gesture instead to complete task..
         /// </summary>
         public static string SettingsHideTaskCheckBoxHelp {
@@ -1389,7 +1380,16 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to show task count.
+        ///   Looks up a localized string similar to Show task check box.
+        /// </summary>
+        public static string SettingsShowTaskCheckBox {
+            get {
+                return ResourceManager.GetString("SettingsShowTaskCheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show task count.
         /// </summary>
         public static string SettingsShowTaskCount {
             get {
@@ -1407,7 +1407,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to swap title and date on wide tile.
+        ///   Looks up a localized string similar to Swap title and date on wide tile.
         /// </summary>
         public static string SettingsSwapDateAndTitle {
             get {
@@ -1434,7 +1434,16 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to accent color.
+        ///   Looks up a localized string similar to Task tile settings.
+        /// </summary>
+        public static string SettingsTaskTile {
+            get {
+                return ResourceManager.GetString("SettingsTaskTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accent color.
         /// </summary>
         public static string SettingsThemeColor {
             get {
@@ -1668,7 +1677,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to quick add tile.
+        ///   Looks up a localized string similar to Quick add tile.
         /// </summary>
         public static string TileForQuickAddLabel {
             get {
@@ -1704,25 +1713,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to hide due date.
-        /// </summary>
-        public static string TileSettingsHideDate {
-            get {
-                return ResourceManager.GetString("TileSettingsHideDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to hide title.
-        /// </summary>
-        public static string TileSettingsHideTitle {
-            get {
-                return ResourceManager.GetString("TileSettingsHideTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to font size.
+        ///   Looks up a localized string similar to Font size.
         /// </summary>
         public static string TileSettingsLineHeight {
             get {
@@ -1740,7 +1731,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to show completed subtasks.
+        ///   Looks up a localized string similar to Show completed subtasks.
         /// </summary>
         public static string TileSettingsShowCompletedSubtasks {
             get {
@@ -1749,7 +1740,25 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to title on one line.
+        ///   Looks up a localized string similar to Show due date.
+        /// </summary>
+        public static string TileSettingsShowDate {
+            get {
+                return ResourceManager.GetString("TileSettingsShowDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show title.
+        /// </summary>
+        public static string TileSettingsShowTitle {
+            get {
+                return ResourceManager.GetString("TileSettingsShowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title on one line.
         /// </summary>
         public static string TileSettingsTitleOnOneLine {
             get {

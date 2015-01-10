@@ -11,18 +11,11 @@
                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                    xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
                    xmlns:sample="clr-namespace:Expression.Blend.SampleData.EditDataSource"
-                   x:Class="SimpleTasks.Views.EditTaskTilePage"
+                   x:Class="SimpleTasks.Views.TaskTileSettingsPage"
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d">
 
     <controls:BasePage.Resources>
-        <Style x:Key="LabelStyle"
-               BasedOn="{StaticResource LabelTextStyle}"
-               TargetType="TextBlock">
-            <Setter Property="Margin"
-                    Value="0,10,0,4" />
-        </Style>
-
         <Style x:Key="RoundButtonStyle"
                TargetType="Button">
             <Setter Property="Background"
@@ -210,14 +203,14 @@
             <Grid Margin="24,0,24,40">
                 <StackPanel>
                     <!--Nadpis-->
-                    <TextBlock Text="{Binding LocalizedResources.AppBarTileSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                    <TextBlock Text="{Binding LocalizedResources.SettingsTaskTile, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                                Style="{StaticResource BasePickerPageHeaderStyle}"
                                FontWeight="SemiBold"
                                Margin="0,16,0,0" />
 
                     <!--Náhled-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelStyle}"
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsPreview, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource LabelTextStyle}"
                                Margin="0" />
                     <Grid x:Name="TilesGrid"
                           Width="432"
@@ -276,8 +269,8 @@
                     </Grid>
 
                     <!--LineHeight-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsLineHeight, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsLineHeight, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource LabelTextStyle}" />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -299,32 +292,32 @@
                     </Grid>
 
                     <!--ShowCompletedSubtasks-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsShowCompletedSubtasks, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsShowCompletedSubtasks, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource LabelTextStyle}" />
                     <ToggleButton IsChecked="{Binding ShowCompletedSubtasks, Mode=TwoWay}"
                                   Style="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />
 
                     <!--HideTitle-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsHideTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelStyle}" />
-                    <ToggleButton IsChecked="{Binding HideTitle, Mode=TwoWay}"
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsShowTitle, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource LabelTextStyle}" />
+                    <ToggleButton IsChecked="{Binding ShowTitle, Mode=TwoWay}"
                                   Style="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />
 
 
                     <!--TitleOnOneLine-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsTitleOnOneLine, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsTitleOnOneLine, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource LabelTextStyle}" />
                     <ToggleButton IsChecked="{Binding TitleOnOneLine, Mode=TwoWay}"
                                   Style="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged"
-                                  IsEnabled="{Binding HideTitle, Converter={StaticResource BoolNegationConverter}}" />
+                                  IsEnabled="{Binding ShowTitle}" />
 
                     <!--HideDate-->
-                    <TextBlock Text="{Binding LocalizedResources.TileSettingsHideDate, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Style="{StaticResource LabelStyle}" />
-                    <ToggleButton IsChecked="{Binding HideDate, Mode=TwoWay}"
+                    <TextBlock Text="{Binding LocalizedResources.TileSettingsShowDate, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource LabelTextStyle}" />
+                    <ToggleButton IsChecked="{Binding ShowDate, Mode=TwoWay}"
                                   Style="{StaticResource SwitchStyle}"
                                   Tap="SettingChanged" />
                 </StackPanel>

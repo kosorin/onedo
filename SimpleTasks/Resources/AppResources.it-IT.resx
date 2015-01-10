@@ -461,20 +461,16 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>cancella tutto</value>
   </data>
-  <data name="TileSettingsHideDate" xml:space="preserve">
-    <value>nascondi data impegno</value>
-  </data>
-  <data name="TileSettingsHideTitle" xml:space="preserve">
-    <value>nascondi testo impegno</value>
-  </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>mostra gli impegni completati</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>opacità dello sfondo della tile</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>dimensione font</value>
+    <comment></comment>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>anteprima</value>
@@ -490,9 +486,6 @@
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Impostazioni di default per la tile impegni</value>
-  </data>
-  <data name="SettingsHideTaskCheckBox" xml:space="preserve">
-    <value>Nascondi check box dall'impegno</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Nascondi caselle di spunta dall'impegno.</value>
@@ -547,9 +540,11 @@
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>mostra numero di impegni</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>aggiungi box impegno rapido</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>Pin sulla home screen</value>
@@ -645,9 +640,11 @@
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>titolo su una sola linea</value>
+    <comment></comment>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>feedback</value>
+    <comment></comment>
   </data>
   <data name="EditText" xml:space="preserve">
     <value>Imposta</value>
@@ -665,6 +662,7 @@ E' ancora una funzione beta.</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>inverti titolo e data nella tile grande</value>
+    <comment></comment>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Non pinnare</value>

@@ -21,8 +21,8 @@ namespace SimpleTasks.Core.Models
             newSettings.BackgroundOpacity = BackgroundOpacity;
             newSettings.TitleOnOneLine = TitleOnOneLine;
             newSettings.ShowCompletedSubtasks = ShowCompletedSubtasks;
-            newSettings.HideTitle = HideTitle;
-            newSettings.HideDate = HideDate;
+            newSettings.ShowTitle = ShowTitle;
+            newSettings.ShowDate = ShowDate;
 
             return newSettings;
         }
@@ -69,23 +69,23 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
-        #region HideTitle
-        private bool _hideTitle = false;
+        #region ShowTitle
+        private bool _showTitle = true;
         [DataMember()]
-        public bool HideTitle
+        public bool ShowTitle
         {
-            get { return _hideTitle; }
-            set { SetProperty(ref _hideTitle, value); }
+            get { return _showTitle; }
+            set { SetProperty(ref _showTitle, value); }
         }
         #endregion
 
-        #region HideDate
-        private bool _hideDate = false;
+        #region ShowDate
+        private bool _showDate = true;
         [DataMember()]
-        public bool HideDate
+        public bool ShowDate
         {
-            get { return _hideDate; }
-            set { SetProperty(ref _hideDate, value); }
+            get { return _showDate; }
+            set { SetProperty(ref _showDate, value); }
         }
         #endregion
     }

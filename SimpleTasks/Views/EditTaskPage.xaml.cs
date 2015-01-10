@@ -522,7 +522,7 @@ namespace SimpleTasks.Views
 
         private void TileSettingsButton_Click(object sender, EventArgs e)
         {
-            Navigate(typeof(EditTaskTilePage), Task);
+            Navigate(typeof(TaskTileSettingsPage), Task);
         }
 
         private void PinButton(object sender, EventArgs e)
