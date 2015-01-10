@@ -1,4 +1,4 @@
-﻿<controls:BasePage x:Class="SimpleTasks.Views.SettingsPage"
+﻿<controls:BasePivotPage x:Class="SimpleTasks.Views.SettingsPage"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -11,20 +11,7 @@
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d">
 
-    <controls:BasePage.Resources>
-        <Style x:Key="HelpTextStyle"
-               TargetType="TextBlock"
-               BasedOn="{StaticResource SubtleTextStyle}">
-            <Setter Property="FontSize"
-                    Value="20" />
-            <Setter Property="TextWrapping"
-                    Value="Wrap" />
-            <Setter Property="FontSize"
-                    Value="20" />
-            <Setter Property="Foreground"
-                    Value="{StaticResource HelpBrush}" />
-        </Style>
-
+    <controls:BasePivotPage.Resources>
         <Style x:Key="GestureListPickerStyle"
                TargetType="controls:ListPicker">
             <Setter Property="Foreground"
@@ -34,20 +21,19 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Border Height="60"
-                                Margin="-8,-10"
+                        <Border Style="{StaticResource ListPickerItemTemplate}"
                                 Padding="0,0,5,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="55" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Viewbox Grid.Column="0"
-                                         Width="40"
+                                         Height="32"
                                          HorizontalAlignment="Center"
                                          VerticalAlignment="Center"
-                                         Margin="0,8,0,0">
+                                         Margin="0,4,0,0">
                                     <ContentControl Style="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='GestureActionIconStyle'}"
                                                     Foreground="{StaticResource ButtonForegroundBrush}" />
                                 </Viewbox>
@@ -60,7 +46,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </controls:BasePage.Resources>
+    </controls:BasePivotPage.Resources>
 
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
@@ -70,7 +56,7 @@
             <!--Tasks-->
             <phone:PivotItem Header="{Binding LocalizedResources.TasksText, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
-                    <StackPanel Margin="24,24,24,96">
+                    <StackPanel Margin="24,0,24,96">
 
                         <!--Default date-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
@@ -82,9 +68,7 @@
                                              SelectedItem="{Binding Tasks.DefaultDateType, Mode=TwoWay}">
                             <controls:ListPicker.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="60"
-                                            Margin="-8,-10"
-                                            Padding="10,0">
+                                    <Border Style="{StaticResource ListPickerItemTemplate}">
                                         <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DefaultDateType'}"
                                                    Style="{StaticResource ButtonTextStyle}" />
                                     </Border>
@@ -95,7 +79,7 @@
                         <!--default time-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTime, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
-                        <Button Height="60"
+                        <Button Height="50"
                                 Tap="DefaultTime_Tap">
                             <Button.Template>
                                 <ControlTemplate TargetType="ButtonBase" />
@@ -119,9 +103,7 @@
                                              SelectedItem="{Binding Tasks.DeleteCompleted, Mode=TwoWay}">
                             <controls:ListPicker.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="60"
-                                            Margin="-8,-10"
-                                            Padding="10,0">
+                                    <Border Style="{StaticResource ListPickerItemTemplate}">
                                         <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DeleteCompleted'}"
                                                    Style="{StaticResource ButtonTextStyle}" />
                                     </Border>
@@ -157,7 +139,7 @@
             <!--Live Tile-->
             <phone:PivotItem Header="{Binding LocalizedResources.SettingsTile, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
-                    <StackPanel Margin="24,24,24,96">
+                    <StackPanel Margin="24,0,24,96">
 
                         <!--Quick add tile-->
                         <TextBlock Text="{Binding LocalizedResources.TileForQuickAddLabel, Source={StaticResource LocalizedStrings}}"
@@ -267,4 +249,4 @@
                               Canvas.ZIndex="1" />
     </Grid>
 
-</controls:BasePage>
+</controls:BasePivotPage>

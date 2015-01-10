@@ -8,13 +8,15 @@
                     xmlns:calendar="clr-namespace:SimpleTasks.Controls.Calendar"
                     xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone">
 
-    <Style TargetType="controls:ToggleControl">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl" />
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <!--Region ToggleControl-->
+        <Style TargetType="controls:ToggleControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    <!--EndRegion ToggleControl-->
 
     <!--Region MyTextBox-->
     <SolidColorBrush x:Key="MyTextBoxCaretBrush"
@@ -355,7 +357,7 @@
                         <Grid x:Name="Root"
                               Background="{TemplateBinding Background}">
                             <Border x:Name="Border"
-                                    MinHeight="60">
+                                    MinHeight="50">
                                 <UserControl x:Name="UserControl">
                                     <StackPanel>
                                         <Canvas x:Name="ItemsPresenterHost">
@@ -383,18 +385,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <!--<Setter Property="ItemTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Border Height="60"
-                            Margin="-8,-10"
-                            Padding="10,0">
-                        <TextBlock Text="{Binding}"
-                                   Style="{StaticResource ButtonTextStyle}" />
-                    </Border>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>-->
     </Style>
 
     <Style x:Key="ListPickerItemStyle"
@@ -408,7 +398,7 @@
         <Setter Property="Padding"
                 Value="10,0" />
         <Setter Property="Height"
-                Value="60" />
+                Value="50" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ListPickerItem">
