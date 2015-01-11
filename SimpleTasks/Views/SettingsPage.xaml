@@ -1,15 +1,15 @@
 ﻿<controls:BasePage x:Class="SimpleTasks.Views.SettingsPage"
-                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                        xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                        xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                        xmlns:controls="clr-namespace:SimpleTasks.Controls"
-                        Style="{StaticResource BasePageStyle}"
-                        mc:Ignorable="d">
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                   xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                   xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   Style="{StaticResource BasePageStyle}"
+                   mc:Ignorable="d">
 
     <controls:BasePage.Resources>
         <Style x:Key="GestureListPickerStyle"
@@ -112,10 +112,9 @@
                         </controls:ListPicker>
 
                         <!--Automatically complete subtasks-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding CompleteSubtasks, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding CompleteSubtasks, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsCompleteSubtasks, Source={StaticResource LocalizedStrings}}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsCompleteSubtasksDetail, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
                     </StackPanel>
@@ -128,10 +127,9 @@
                     <StackPanel Margin="24,0,24,96">
 
                         <!--Hide Task CheckBox-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCheckBox, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding ShowTaskCheckBox, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding ShowTaskCheckBox, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsShowTaskCheckBox, Source={StaticResource LocalizedStrings}}" />
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
@@ -190,33 +188,29 @@
                                 Tap="QuickAddTileButton_Tap" />
 
                         <!--Enable tile-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding EnableTile, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding EnableTile, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}" />
                         <TextBlock x:Name="PinTileTextBox"
                                    Text="Pin tile help text."
                                    Style="{StaticResource HelpTextStyle}" />
 
                         <!--Unpin Completed-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding UnpinCompleted, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding UnpinCompleted, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsUnpinCompleted, Source={StaticResource LocalizedStrings}}" />
 
                         <!--show task count-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCount, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding ShowTaskCount, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding ShowTaskCount, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsShowTaskCount, Source={StaticResource LocalizedStrings}}" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsShowTaskCountHelp, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource HelpTextStyle}" />
 
                         <!--Swap title and date on wide tile-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding SwapDateAndTitleOnWide, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding SwapDateAndTitleOnWide, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsSwapDateAndTitle, Source={StaticResource LocalizedStrings}}" />
 
                         <!--Default Task Tile Settings-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}}"
@@ -234,16 +228,17 @@
                     <StackPanel Margin="24,0,24,96">
 
                         <!--Vibrate-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Vibrate, Mode=TwoWay}"
-                                      Style="{StaticResource SwitchStyle}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding Vibrate, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}" />
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding Vibrate, Mode=TwoWay}"
+                                      Content="Strašně dlouhý text pro testování. Trololol omf nice funguje?" />
 
                         <!--Feedback-->
-                        <TextBlock Text="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource LabelTextStyle}" />
-                        <ToggleButton IsChecked="{Binding Feedback, Mode=OneTime}"
-                                      Style="{StaticResource SwitchStyle}"
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding Feedback, Mode=OneTime}"
+                                      Content="{Binding LocalizedResources.SettingsFeedback, Source={StaticResource LocalizedStrings}}"
                                       Checked="ToggleButton_Checked"
                                       Unchecked="ToggleButton_Unchecked" />
                         <TextBlock Text="{Binding LocalizedResources.SettingsFeedbackHelp, Source={StaticResource LocalizedStrings}}"

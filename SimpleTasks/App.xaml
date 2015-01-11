@@ -1026,6 +1026,10 @@
                         Value="{StaticResource SlightBrush}" />
                 <Setter Property="Background"
                         Value="Transparent" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="Margin"
+                        Value="0,20,0,0" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
@@ -1103,13 +1107,10 @@
                                 </Border>
 
                                 <!--Text-->
-                                <Viewbox>
-                                    <TextBlock Text="{TemplateBinding Content}"
-                                               Style="{StaticResource NormalTextStyle}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               Margin="10,4,0,4"
-                                               VerticalAlignment="Center" />
-                                </Viewbox>
+                                <TextBlock Text="{TemplateBinding Content}"
+                                           Style="{StaticResource LabelTextStyle}"
+                                           Margin="12,0,0,0"
+                                           VerticalAlignment="Center" />
 
                             </StackPanel>
                         </ControlTemplate>
