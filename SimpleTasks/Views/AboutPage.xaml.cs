@@ -46,6 +46,13 @@ namespace SimpleTasks.Views
             ApplicationBar.MenuItems.Add(storeItem);
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            SystemTray.ForegroundColor = (Color)App.Current.Resources["SlightColor"];
+        }
+
         #region Propertie
         public string VersionString { get { return App.VersionString; } }
 
