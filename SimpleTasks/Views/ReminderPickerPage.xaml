@@ -81,49 +81,32 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel Margin="30,100,30,0">
+        <StackPanel Margin="30,-120,30,0"
+                    VerticalAlignment="Center">
 
             <!--Info-->
-            <Grid Height="110">
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="{Binding ReminderValue, Converter={StaticResource ReminderConverter}, FallbackValue='5 minutes'}"
-                               Style="{StaticResource ReminderTextStyle}" />
-                    <TextBlock Visibility="{Binding BeforeTextVisibility}"
-                               Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
-                               Style="{StaticResource BeforeTextStyle}" />
-                </StackPanel>
-            </Grid>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource AccentTextStyle}"
+                           Text="{Binding ReminderValue, Converter={StaticResource ReminderConverter}, FallbackValue='5 minutes'}" />
+                <TextBlock Style="{StaticResource NormalTextStyle}"
+                           Visibility="{Binding BeforeTextVisibility}"
+                           Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
+                           Margin="8,0,0,0" />
+            </StackPanel>
 
-            <Grid>
-                <!--Slider-->
-                <controls:MySlider Margin="0,120,0,0"
-                                   x:Name="ReminderSlider"
-                                   RoundValueChanged="ReminderSlider_RoundValueChanged" />
+            <!--Výběr typu-->
+            <controls:ListPicker x:Name="TypePicker"
+                                 ItemsSource="{Binding LengthTypes}"
+                                 SelectedItem="{Binding LengthType, Mode=TwoWay}"
+                                 VerticalContentAlignment="Bottom"
+                                 SelectionChanged="LengthTypes_SelectionChanged"
+                                 Margin="0,5,0,0" />
 
-                <!--Výběr typu-->
-                <controls:ListPicker x:Name="TypePicker"
-                                     ItemsSource="{Binding LengthTypes}"
-                                     SelectedItem="{Binding LengthType, Mode=TwoWay}"
-                                     VerticalContentAlignment="Bottom"
-                                     SelectionChanged="LengthTypes_SelectionChanged"
-                                     VerticalAlignment="Top"
-                                     Margin="0,60,0,0">
-                    <controls:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="60"
-                                  Margin="-8,-10"
-                                  Background="{StaticResource AccentBrush}">
-                                <Border Background="Black"
-                                        Opacity="{Binding Value2}" />
-                                <TextBlock Text="{Binding}"
-                                           Margin="12,0,0,0"
-                                           Style="{StaticResource ButtonTextStyle}"
-                                           Foreground="{StaticResource ButtonDarkForegroundBrush}" />
-                            </Grid>
-                        </DataTemplate>
-                    </controls:ListPicker.ItemTemplate>
-                </controls:ListPicker>
-            </Grid>
+            <!--Slider-->
+            <Slider x:Name="ReminderSlider"
+                    ValueChanged="ReminderSlider_ValueChanged"
+                    Margin="0,20,0,0" />
+
 
         </StackPanel>
 

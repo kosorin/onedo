@@ -42,12 +42,13 @@ namespace SimpleTasks.Views
         #region Private methods
         private TimeSpan GetTimeSpan()
         {
+            int value = (int)Math.Round(ReminderSlider.Value);
             switch (LengthTypes.FindIndex(t => t == LengthType))
             {
-            case 2: return new TimeSpan(ConvertBackDays(ReminderSlider.RoundValue), 0, 0, 0);
-            case 1: return new TimeSpan(ReminderSlider.RoundValue, 0, 0);
+            case 2: return new TimeSpan(ConvertBackDays(value), 0, 0, 0);
+            case 1: return new TimeSpan(value, 0, 0);
             case 0:
-            default: return new TimeSpan(0, ReminderSlider.RoundValue, 0);
+            default: return new TimeSpan(0, value, 0);
             }
         }
 
@@ -72,7 +73,7 @@ namespace SimpleTasks.Views
             }
 
             SetSliders(type);
-            ReminderSlider.SetSliderValue(value);
+            ReminderSlider.Value = (double)value;
         }
 
         private int ConvertDays(int value)
@@ -112,7 +113,7 @@ namespace SimpleTasks.Views
         private void SetSliders(int type)
         {
             LengthType = LengthTypes[type];
-            ReminderSlider.SetMaximum(LengthTypes[type].Value1);
+            ReminderSlider.Maximum = (double)LengthTypes[type].Value1;
             OnPropertyChanged("ReminderValue");
         }
         #endregion
@@ -171,14 +172,14 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ReminderSlider_RoundValueChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
-        {
-            OnPropertyChanged("ReminderValue");
-        }
-
         private void QuickButton_Click(object sender, RoutedEventArgs e)
         {
             SetTimeSpan(TimeSpan.Parse((string)((Button)sender).Tag));
+        }
+
+        private void ReminderSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            OnPropertyChanged("ReminderValue");
         }
         #endregion
     }
