@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Controls;
 using SimpleTasks.Models;
+using System.Windows.Media;
 
 namespace SimpleTasks.Views
 {

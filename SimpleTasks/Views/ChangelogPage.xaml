@@ -11,30 +11,30 @@
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot"
-          Background="{StaticResource BackgroundBrush}">
+    <Grid Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <!--Changelog header-->
-        <TextBlock Grid.Row="0"
-                   Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}}"
-                   Style="{StaticResource AccentTextStyle}"
-                   FontWeight="Normal"
-                   FontSize="60"
-                   Margin="24,24,0,0" />
+        <Border Grid.Row="0"
+                CacheMode="BitmapCache"
+                Background="{StaticResource AccentBrush}">
+            <TextBlock Text="{Binding LocalizedResources.Changelog, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                       Style="{StaticResource PageHeaderTextStyle}" />
+        </Border>
+        <Border Grid.Row="0"
+                Style="{StaticResource BottomBorderStyle}"
+                Background="{StaticResource DarkerAccentBrush}" />
 
         <!--Changelog-->
         <ScrollViewer Grid.Row="1"
-                      Margin="24,8,24,0">
+                      Margin="24,0,24,0">
 
             <phone:LongListSelector ItemsSource="{Binding}"
                                     DataContext="{Binding ChangelogList}"
                                     d:DataContext="{d:DesignData /SampleData/AboutDataSource/ChangelogListSampleData.xaml}"
                                     IsGroupingEnabled="True"
-                                    Margin="0,0,0,48"
+                                    Margin="0,8,0,48"
                                     LayoutMode="List">
                 <phone:LongListSelector.GroupHeaderTemplate>
                     <DataTemplate>
