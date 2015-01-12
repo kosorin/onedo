@@ -231,9 +231,6 @@
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"
                                       IsChecked="{Binding Vibrate, Mode=TwoWay}"
                                       Content="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}" />
-                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
-                                      IsChecked="{Binding Vibrate, Mode=TwoWay}"
-                                      Content="Strašně dlouhý text pro testování. Trololol omf nice funguje?" />
 
                         <!--Feedback-->
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"

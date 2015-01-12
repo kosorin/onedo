@@ -218,12 +218,12 @@
         </Rectangle>
 
         <Grid Grid.RowSpan="3">
-            <Button Content="Test"
+            <Button x:Name="TestButton"
+                    Content="Test"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"
                     Margin="10"
-                    Style="{StaticResource ButtonStyle}"
-                    Click="RemindersMenuItem_Click" />
+                    Style="{StaticResource ButtonStyle}" />
         </Grid>
     </Grid>
 

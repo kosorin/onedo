@@ -26,6 +26,8 @@ namespace SimpleTasks.Controls
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            SystemTray.ForegroundColor = (Color)App.Current.Resources["SlightColor"];
         }
 
         protected abstract object Save();

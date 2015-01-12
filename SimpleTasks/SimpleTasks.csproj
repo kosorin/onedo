@@ -248,6 +248,7 @@
     <Content Include="Assets\AppBar\appbar.check.all.png" />
     <Content Include="Assets\AppBar\appbar.check.png" />
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
+    <Content Include="Assets\AppBar\appbar.clean.png" />
     <Content Include="Assets\AppBar\appbar.close.png" />
     <Content Include="Assets\AppBar\appbar.delete.all.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />

@@ -541,16 +541,13 @@
     <value>odstranit všechny</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
-    <value>nadpis na jeden řádek</value>
-    <comment></comment>
+    <value>Nadpis na jeden řádek</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>velikost písma</value>
-    <comment></comment>
+    <value>Velikost písma</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
-    <value>náhled</value>
-    <comment></comment>
+    <value>Náhled</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>nastavení dlaždice</value>
@@ -562,12 +559,10 @@
     <value>průhlednost pozadí</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>zobrazit dokončené podúkoly</value>
-    <comment></comment>
+    <value>Zobrazit dokončené podúkoly</value>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
-    <value>zpětná vazba</value>
-    <comment></comment>
+    <value>Zpětná vazba</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Odesílat anonymní data o používání pro zlepšení této aplikace. Statistiky pomáhají vývojáři identifikovat a zaměřovat se na často používané funkce.
@@ -642,16 +637,13 @@ Tato funkce je pořád v beta verzi.</value>
     <value>záloha &amp; obnovení</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>prohodit název a datum na široké dlaždici</value>
-    <comment></comment>
+    <value>Prohodit název a datum na široké dlaždici</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>zobrazit počet úkolů</value>
-    <comment></comment>
+    <value>Zobrazit počet úkolů</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>dlaždice pro rychlé přidání úkolu</value>
-    <comment></comment>
+    <value>Dlaždice pro rychlé přidání úkolu</value>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Odepnout</value>
@@ -777,8 +769,7 @@ Tato funkce je pořád v beta verzi.</value>
     <value>denně</value>
   </data>
   <data name="SettingsThemeColor" xml:space="preserve">
-    <value>barva motivu</value>
-    <comment></comment>
+    <value>Barva motivu</value>
   </data>
   <data name="Tasks5AndMore" xml:space="preserve">
     <value>{0} úkolů</value>
@@ -803,5 +794,33 @@ Tato funkce je pořád v beta verzi.</value>
   <data name="Subtasks1" xml:space="preserve">
     <value>{0} podúkol</value>
     <comment>1 subtask</comment>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Zobrazit název
+</value>
+  </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Zobrazit datum</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Zobrazit zaškrtávací políčko</value>
+  </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>vzhled</value>
+  </data>
+  <data name="SettingsTaskTile" xml:space="preserve">
+    <value>Nastavení dlaždice úkolu</value>
+  </data>
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
+    <value>obnovit</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>storno</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Verze vybrané zálohy neodpovídá aktuální verzi aplikace. Některá data se nemusí správně obnovit.</value>
+  </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Mějte na paměti</value>
   </data>
 </root>

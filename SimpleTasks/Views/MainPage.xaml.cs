@@ -43,6 +43,12 @@ namespace SimpleTasks.Views
             {
                 Loaded += MainPage_Loaded;
             }
+
+#if DEBUG
+            TestButton.Click += RemindersMenuItem_Click;
+#else
+            TestButton.Visibility = System.Windows.Visibility.Collapsed;
+#endif
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -81,16 +87,26 @@ namespace SimpleTasks.Views
         #region AppBar
 
         #region AppBar Create
-        private ApplicationBarIconButton appBarNewTaskButton;
+        private List<ApplicationBarIconButton> appBarButtons;
 
         private List<ApplicationBarMenuItem> appBarMenuItems;
 
         private void CreateAppBarItems()
         {
             #region Ikony
-            appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
+            appBarButtons = new List<ApplicationBarIconButton>();
+
+            // Přidat úkol
+            ApplicationBarIconButton appBarNewTaskButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.png", UriKind.Relative));
             appBarNewTaskButton.Text = AppResources.AppBarNew;
             appBarNewTaskButton.Click += (s, e) => { Navigate(typeof(EditTaskPage)); };
+            appBarButtons.Add(appBarNewTaskButton);
+
+            // Smazat dokončené úkoly
+            ApplicationBarIconButton appBarDeleteCompletedButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.clean.png", UriKind.Relative));
+            appBarDeleteCompletedButton.Text = AppResources.AppBarDeleteCompleted;
+            appBarDeleteCompletedButton.Click += DeleteCompletedMenuItem_Click;
+            appBarButtons.Add(appBarDeleteCompletedButton);
             #endregion
 
             #region Menu
@@ -102,11 +118,6 @@ namespace SimpleTasks.Views
             appBarResetMenuItem.Click += ResetMenuItem_Click;
             appBarMenuItems.Add(appBarResetMenuItem);
 #endif
-
-            // Smazat dokončené úkoly
-            ApplicationBarMenuItem appBarDeleteCompletedItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteCompleted);
-            appBarDeleteCompletedItem.Click += DeleteCompletedMenuItem_Click;
-            appBarMenuItems.Add(appBarDeleteCompletedItem);
 
             // Smazat všechny úkoly
             ApplicationBarMenuItem appBarDeleteAllItem = new ApplicationBarMenuItem(AppResources.AppBarDeleteAll);
@@ -141,7 +152,10 @@ namespace SimpleTasks.Views
         {
             ApplicationBar = ThemeHelper.CreateApplicationBar();
 
-            ApplicationBar.Buttons.Add(appBarNewTaskButton);
+            foreach (var item in appBarButtons)
+            {
+                ApplicationBar.Buttons.Add(item);
+            }
             foreach (var item in appBarMenuItems)
             {
                 ApplicationBar.MenuItems.Add(item);
