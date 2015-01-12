@@ -81,31 +81,31 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel Margin="30,-120,30,0"
-                    VerticalAlignment="Center">
+        <StackPanel Margin="30,200,30,0">
 
             <!--Info-->
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource AccentTextStyle}"
-                           Text="{Binding ReminderValue, Converter={StaticResource ReminderConverter}, FallbackValue='5 minutes'}" />
+                           Text="{Binding ReminderValue, Converter={StaticResource ReminderConverter}, FallbackValue='5 minutes'}"
+                           FontWeight="SemiBold"/>
                 <TextBlock Style="{StaticResource NormalTextStyle}"
                            Visibility="{Binding BeforeTextVisibility}"
                            Text="{Binding LocalizedResources.ReminderBeforeDueDateText, Source={StaticResource LocalizedStrings}, Mode=OneTime}"
                            Margin="8,0,0,0" />
             </StackPanel>
 
+            <!--Slider-->
+            <Slider x:Name="ReminderSlider"
+                    ValueChanged="ReminderSlider_ValueChanged"
+                    Margin="0,5,0,0" />
+            
             <!--Výběr typu-->
             <controls:ListPicker x:Name="TypePicker"
                                  ItemsSource="{Binding LengthTypes}"
                                  SelectedItem="{Binding LengthType, Mode=TwoWay}"
                                  VerticalContentAlignment="Bottom"
                                  SelectionChanged="LengthTypes_SelectionChanged"
-                                 Margin="0,5,0,0" />
-
-            <!--Slider-->
-            <Slider x:Name="ReminderSlider"
-                    ValueChanged="ReminderSlider_ValueChanged"
-                    Margin="0,20,0,0" />
+                                 Margin="0,20,0,0" />
 
 
         </StackPanel>
