@@ -782,6 +782,22 @@ It's still in beta.</source>
           <source>Task tile settings</source>
           <target state="new">Task tile settings</target>
         </trans-unit>
+        <trans-unit id="Resx/BackupVersionMismatchYes" translate="yes" xml:space="preserve">
+          <source>restore</source>
+          <target state="new">restore</target>
+        </trans-unit>
+        <trans-unit id="Resx/BackupVersionMismatchNo" translate="yes" xml:space="preserve">
+          <source>cancel</source>
+          <target state="new">cancel</target>
+        </trans-unit>
+        <trans-unit id="Resx/BackupVersionMismatchContent" translate="yes" xml:space="preserve">
+          <source>Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</source>
+          <target state="new">Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</target>
+        </trans-unit>
+        <trans-unit id="Resx/BackupVersionMismatchCaption" translate="yes" xml:space="preserve">
+          <source>Be aware</source>
+          <target state="new">Be aware</target>
+        </trans-unit>
         <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
           <target state="new">{0} tasks</target>

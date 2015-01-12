@@ -368,6 +368,42 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Be aware.
+        /// </summary>
+        public static string BackupVersionMismatchCaption {
+            get {
+                return ResourceManager.GetString("BackupVersionMismatchCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version of given backup doesn&apos;t match the current version of the application. Some information may be missing in the backup..
+        /// </summary>
+        public static string BackupVersionMismatchContent {
+            get {
+                return ResourceManager.GetString("BackupVersionMismatchContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string BackupVersionMismatchNo {
+            get {
+                return ResourceManager.GetString("BackupVersionMismatchNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to restore.
+        /// </summary>
+        public static string BackupVersionMismatchYes {
+            get {
+                return ResourceManager.GetString("BackupVersionMismatchYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to bullet.
         /// </summary>
         public static string BulletText {

@@ -818,4 +818,16 @@ It's still in beta.</value>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Task tile settings</value>
   </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Be aware</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
+    <value>restore</value>
+  </data>
 </root>

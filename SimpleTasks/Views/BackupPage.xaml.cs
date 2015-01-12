@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Phone.Controls;
+using Newtonsoft.Json;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
@@ -66,7 +67,13 @@ namespace SimpleTasks.Views
                 SetProperty(ref _isLoggedIn, value);
                 SignButton.Content = value ? AppResources.SignOut : AppResources.SignIn;
                 OnPropertyChanged("SignedInText");
+                OnPropertyChanged("NotLoggedIn");
             }
+        }
+
+        public bool NotLoggedIn
+        {
+            get { return !IsLoggedIn; }
         }
 
         public string SignedInText
@@ -140,6 +147,22 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Methods
+        private void Restore(BackupData backupData)
+        {
+            // Zpracování dat
+            if (UseSettings && backupData.Settings != null)
+            {
+                backupData.Settings.Version = App.VersionString;
+                Settings.Current = backupData.Settings;
+            }
+            if (UseTasks && backupData.Tasks != null)
+            {
+                App.Tasks.Restore(backupData.Tasks);
+            }
+
+            MessageBox.Show(AppResources.RestoreOk, AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+        }
+
         private async Task RefreshBackupList()
         {
             // Získání souborů
@@ -231,7 +254,7 @@ namespace SimpleTasks.Views
             return fileId != null;
         }
 
-        private async Task<bool> Restore()
+        private async Task<BackupData> GetBackupData()
         {
             BackupData backupData = null;
 
@@ -245,17 +268,6 @@ namespace SimpleTasks.Views
                     try
                     {
                         backupData = JsonConvert.DeserializeObject<BackupData>(data, new JsonSerializerSettings());
-
-                        // Zpracování dat
-                        if (UseSettings && backupData.Settings != null)
-                        {
-                            backupData.Settings.Version = App.VersionString;
-                            Settings.Current = backupData.Settings;
-                        }
-                        if (UseTasks && backupData.Tasks != null)
-                        {
-                            App.Tasks.Restore(backupData.Tasks);
-                        }
                     }
                     catch
                     {
@@ -264,7 +276,7 @@ namespace SimpleTasks.Views
                 }
             }
 
-            return backupData != null;
+            return backupData;
         }
         #endregion
 
@@ -320,13 +332,43 @@ namespace SimpleTasks.Views
             PerformingAction = true;
 
             ActionTextBlock.Text = AppResources.Restoring;
-            if (await Restore())
+            BackupData backupData = await GetBackupData();
+            if (backupData != null)
             {
-                MessageBox.Show(string.Format(AppResources.RestoreOk), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+                if (backupData.Version != App.VersionString)
+                {
+                    CustomMessageBox messageBox = new CustomMessageBox()
+                    {
+                        Caption = AppResources.BackupVersionMismatchCaption,
+                        Message = AppResources.BackupVersionMismatchContent,
+                        LeftButtonContent = AppResources.BackupVersionMismatchYes,
+                        RightButtonContent = AppResources.BackupVersionMismatchNo
+                    };
+
+                    messageBox.Dismissed += (s1, e1) =>
+                    {
+                        switch (e1.Result)
+                        {
+                        case CustomMessageBoxResult.LeftButton:
+                            Restore(backupData);
+                            break;
+                        case CustomMessageBoxResult.RightButton:
+                        case CustomMessageBoxResult.None:
+                        default:
+                            break;
+                        }
+                    };
+
+                    messageBox.Show();
+                }
+                else
+                {
+                    Restore(backupData);
+                }
             }
             else
             {
-                MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+                MessageBox.Show(AppResources.UnknownError, AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
             }
 
             PerformingAction = false;
@@ -340,6 +382,27 @@ namespace SimpleTasks.Views
             await RefreshBackupList();
 
             PerformingAction = false;
+        }
+
+        private void Pivot_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (BackupPanel.Children[0] == LoginPanel)
+            {
+                BackupPanel.Children.RemoveAt(0);
+            }
+            if (RestorePanel.Children[0] == LoginPanel)
+            {
+                RestorePanel.Children.RemoveAt(0);
+            }
+
+            if (Pivot.SelectedIndex == 0)
+            {
+                BackupPanel.Children.Insert(0, LoginPanel);
+            }
+            else if (Pivot.SelectedIndex == 1)
+            {
+                RestorePanel.Children.Insert(0, LoginPanel);
+            }
         }
         #endregion
     }

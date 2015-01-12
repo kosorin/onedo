@@ -4,205 +4,276 @@
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   xmlns:Primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
                    x:Class="SimpleTasks.Views.BackupPage"
-                   mc:Ignorable="d"
-                   Style="{StaticResource BasePageStyle}">
+                   Style="{StaticResource BasePageStyle}"
+                   mc:Ignorable="d">
 
-    <Grid Background="{StaticResource BackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <controls:BasePage.Resources>
+        <Style x:Key="BackupPivotStyle"
+               TargetType="phone:Pivot">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="phone:Pivot">
+                        <Border Background="{TemplateBinding Background}"
+                                CacheMode="BitmapCache">
+                            <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0"
+                                        CacheMode="BitmapCache"
+                                        Background="{StaticResource AccentBrush}">
+                                    <StackPanel Margin="0,35,0,0">
+                                        <Grid>
+                                            <TextBlock Text="{TemplateBinding Title}"
+                                                       Style="{StaticResource NormalTextStyle}"
+                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                       FontFamily="Segoe WP Semibold"
+                                                       FontWeight="SemiBold"
+                                                       Margin="24,0,24,8" />
+                                            <TextBlock Style="{StaticResource NormalTextStyle}"
+                                                       Text="BETA"
+                                                       Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                       HorizontalAlignment="Right"
+                                                       FontFamily="Segoe WP Black"
+                                                       FontWeight="Bold"
+                                                       Opacity="0.6"
+                                                       Margin="0,0,24,0" />
+                                        </Grid>
 
-        <!--Nadpis-->
-        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
-                   Text="{Binding LocalizedResources.BackupAndRestoreTitle, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
-        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
-                   Text="BETA"
-                   Foreground="{StaticResource AccentBrush}"
-                   HorizontalAlignment="Right"
-                   FontFamily="Segoe WP Black"
-                   FontWeight="Black" />
-
-        <!--Hlavní obsah-->
-        <ScrollViewer Grid.Row="1"
-                      Margin="24,0">
-            <StackPanel>
-                <!--Nápověda-->
-                <TextBlock Style="{StaticResource NormalTextStyle}"
-                           Text="{Binding BackupAndRestoreHelpText, FallbackValue='Lorem ipsum Help Text.'}"
-                           TextWrapping="Wrap"
-                           FontSize="20"
-                           Margin="0,0,0,10" />
-
-                <!--Přihlašování-->
-                <TextBlock Style="{StaticResource SubtleTextStyle}"
-                           Text="{Binding SignedInText, FallbackValue='You are signed in as David Kosorin.'}"
-                           Margin="0,0,0,5"
-                           TextWrapping="Wrap"
-                           FontSize="20" />
-                <StackPanel Orientation="Horizontal">
-                    <!--OneDrive Logo-->
-                    <Viewbox Height="50"
-                             HorizontalAlignment="Left">
-                        <Border Background="#094AB2"
-                                Padding="80">
-                            <Canvas Width="305"
-                                    Height="181">
-                                <Path Fill="White"
-                                      Data="M99.000031,179.551224C80.520722,174.933914 70.225586,160.24498 70.193024,138.449875 70.182618,131.481766 70.686768,128.14296 72.426117,123.661148 76.689728,112.675003 87.977875,104.386703 102.831726,101.335892 110.222931,99.817826 112.50003,98.187882 112.50003,94.415268 112.50003,93.231491 113.37973,89.706131 114.454833,86.581101 119.339232,72.384476 128.382628,60.549649 138.04602,55.70834 148.159637,50.641415 153.265716,49.498745 165.50003,49.56445 182.875244,49.657742 191.543731,53.42677 203.667938,66.159592L210.335815,73.162247 216.309326,71.095047C245.220123,61.089825,274.041321,78.121353,276.364532,106.583969L277.00003,114.370254 282.693237,116.410079C298.952148,122.235457 306.59433,134.46794 305.208923,152.449874 304.302917,164.209334 298.804748,173.597976 290.094635,178.258773L285.999939,180.449874 195.000031,180.625197C125.071229,180.759932,102.842225,180.511275,99.000031,179.551222z" />
-                                <Path Fill="White"
-                                      Data="M30.781433,166.98024C19.993408,164.416397 8.562408,154.888016 3.202118,143.991348 0.161529999999999,137.810165 -3.00000000015288E-05,136.901046 -3.00000000015288E-05,125.965866 -3.00000000015288E-05,115.564865 0.259490999999998,113.896225 2.680085,108.731796 7.782868,97.84465 17.559785,89.978012 29.826875,86.889145 32.415803,86.237228 34.848512,85.196701 35.232881,84.576859 35.61728,83.957016 36.044282,80.580338 36.181764,77.073166 37.035646,55.291256 51.327333,36.098843 71.283204,29.935085 82.064485,26.605098 95.609132,27.424236 107.335725,32.115429 111.054933,33.603298 110.63614,33.922299 118.500032,23.610897 123.150636,17.512798 132.547731,9.92867700000002 140.239717,6.06535000000002 148.541322,1.89588600000002 157.175142,-0.0250429999999833 167.500032,0.000256000000016243 196.357332,0.0710570000000162 221.227541,18.120937 230.424043,45.6683 233.362336,54.469859 233.215822,56.934856 229.750032,57.007503 228.23752,57.039196 223.903841,57.872142 220.119539,58.85847L213.239046,60.651805 206.960726,54.373591C189.258944,36.671778 160.369326,32.845637 135.810244,44.950419 125.998751,49.786357 118.114443,56.728983 112.159029,65.776702 107.913332,72.227065 102.500032,84.26036 102.500032,87.24797 102.500032,89.367477 100.783845,90.426589 93.454439,92.830245 70.762331,100.272109 57.517488,117.45848 57.526674,139.449874 57.529665,147.454055 59.591188,157.248122 62.452913,162.857528 63.531679,164.972091 64.133608,166.982955 63.790498,167.326034 62.913057,168.203506 34.684266,167.90776 30.781434,166.980239z" />
-                            </Canvas>
+                                        <Primitives:PivotHeadersControl x:Name="HeadersListElement"
+                                                                        Margin="0,-8,0,20" />
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Row="0"
+                                        Style="{StaticResource BottomBorderStyle}"
+                                        Background="{StaticResource DarkerAccentBrush}" />
+                                <ItemsPresenter Grid.Row="1"
+                                                x:Name="PivotItemPresenter"
+                                                Margin="{TemplateBinding Padding}" />
+                            </Grid>
                         </Border>
-                    </Viewbox>
-
-                    <!--Sign tlačítko-->
-                    <Button x:Name="SignButton"
-                            Style="{StaticResource ButtonStyle}"
-                            Content="{Binding LocalizedResources.SignIn, Source={StaticResource LocalizedStrings}}"
-                            Tap="SignButton_Tap" />
-                </StackPanel>
-
-                <!--Výběr pro obnovu-->
-                <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                    <!--Výběr zálohy-->
-                    <TextBlock Style="{StaticResource LabelTextStyle}"
-                               Text="{Binding LocalizedResources.SelectBackup, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="60" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--Restore list-->
-                        <controls:ListPicker x:Name="RestorePicker"
-                                             Foreground="{StaticResource SlightBrush}"
-                                             Background="{StaticResource ButtonBackgroundBrush}"
-                                             ItemsSource="{Binding BackupList}"
-                                             Margin="0,0,0,10"
-                                             Header="{Binding LocalizedResources.SelectBackup, Source={StaticResource LocalizedStrings}}">
-                            <controls:ListPicker.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Height="50"
-                                            Margin="-8,-5,-8,-10"
-                                            Padding="10,0">
-                                        <TextBlock Text="{Binding}"
-                                                   Style="{StaticResource ButtonTextStyle}"
-                                                   FontSize="22" />
-                                    </Border>
-                                </DataTemplate>
-                            </controls:ListPicker.ItemTemplate>
-                        </controls:ListPicker>
-
-                        <!--Refresh backup list-->
-                        <Button Grid.Column="1"
-                                VerticalAlignment="Top"
-                                Height="60"
-                                Width="60"
-                                Opacity="0.6"
-                                Tap="RefreshListButton_Tap">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Border x:Name="Root"
-                                            Background="{StaticResource ButtonBackgroundBrush}">
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Margin="2,0,0,0">
+                            <TextBlock Style="{StaticResource NormalTextStyle}"
+                                       Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                       FontSize="42"
+                                       Text="{Binding}" />
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="phone:PivotItem">
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Margin"
+                                Value="0" />
+                        <Setter Property="Padding"
+                                Value="0" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="phone:PivotItem">
+                                    <Grid Background="{TemplateBinding Background}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalAlignment}">
                                         <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup x:Name="CommonStates">
-                                                <VisualState x:Name="Normal" />
-                                                <VisualState x:Name="MouseOver" />
-                                                <VisualState x:Name="Pressed" />
-                                                <VisualState x:Name="Disabled">
-                                                    <Storyboard>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                       Storyboard.TargetProperty="Opacity">
-                                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                    Value="0.5" />
-                                                        </ObjectAnimationUsingKeyFrames>
-                                                    </Storyboard>
-                                                </VisualState>
+                                            <VisualStateGroup x:Name="Pivot">
+                                                <VisualState x:Name="Right" />
+                                                <VisualState x:Name="Left" />
+                                                <VisualState x:Name="Center" />
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <ContentControl Style="{StaticResource RefreshIconStyle}"
-                                                        Foreground="{StaticResource ButtonForegroundBrush}"
-                                                        RenderTransformOrigin="0.5,0.5">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.8"
-                                                                    ScaleY="0.8" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
-                                    </Border>
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          Content="{TemplateBinding Content}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Grid>
                                 </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </Grid>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </controls:BasePage.Resources>
 
-                    <!--Co použít pro obnovení-->
-                    <TextBlock Style="{StaticResource LabelTextStyle}"
-                               Text="{Binding LocalizedResources.RestoreWhatText, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
-                               Margin="0,10,0,5" />
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,0,0,10">
-                        <ToggleButton IsChecked="{Binding UseTasks, Mode=TwoWay}"
-                                      Style="{StaticResource CheckBoxStyle}"
-                                      Content="{Binding LocalizedResources.TasksText, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+    <Grid Background="{StaticResource BackgroundBrush}">
+
+        <phone:Pivot x:Name="Pivot"
+                     Title="{Binding LocalizedResources.BackupAndRestoreTitle, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}"
+                     Style="{StaticResource BackupPivotStyle}"
+                     SelectionChanged="Pivot_SelectionChanged">
+            <phone:PivotItem Header="backup">
+                <ScrollViewer>
+                    <StackPanel x:Name="BackupPanel"
+                                Margin="24,16,24,40">
+
+                        <!--Přihlašování-->
+                        <StackPanel x:Name="LoginPanel"
+                                    Margin="0,0,0,20">
+                            <TextBlock Style="{StaticResource SubtleTextStyle}"
+                                       Text="{Binding SignedInText, FallbackValue=You are signed in as John Doe.}"
+                                       Margin="0,0,0,5"
+                                       TextWrapping="Wrap"
+                                       FontSize="20" />
+                            <StackPanel Orientation="Horizontal">
+                                <!--OneDrive Logo-->
+                                <Viewbox Height="50"
+                                         HorizontalAlignment="Left">
+                                    <Border Background="#094AB2"
+                                            Padding="80">
+                                        <Canvas Width="305"
+                                                Height="181">
+                                            <Path Fill="White"
+                                                  Data="M99.000031,179.551224C80.520722,174.933914 70.225586,160.24498 70.193024,138.449875 70.182618,131.481766 70.686768,128.14296 72.426117,123.661148 76.689728,112.675003 87.977875,104.386703 102.831726,101.335892 110.222931,99.817826 112.50003,98.187882 112.50003,94.415268 112.50003,93.231491 113.37973,89.706131 114.454833,86.581101 119.339232,72.384476 128.382628,60.549649 138.04602,55.70834 148.159637,50.641415 153.265716,49.498745 165.50003,49.56445 182.875244,49.657742 191.543731,53.42677 203.667938,66.159592L210.335815,73.162247 216.309326,71.095047C245.220123,61.089825,274.041321,78.121353,276.364532,106.583969L277.00003,114.370254 282.693237,116.410079C298.952148,122.235457 306.59433,134.46794 305.208923,152.449874 304.302917,164.209334 298.804748,173.597976 290.094635,178.258773L285.999939,180.449874 195.000031,180.625197C125.071229,180.759932,102.842225,180.511275,99.000031,179.551222z" />
+                                            <Path Fill="White"
+                                                  Data="M30.781433,166.98024C19.993408,164.416397 8.562408,154.888016 3.202118,143.991348 0.161529999999999,137.810165 -3.00000000015288E-05,136.901046 -3.00000000015288E-05,125.965866 -3.00000000015288E-05,115.564865 0.259490999999998,113.896225 2.680085,108.731796 7.782868,97.84465 17.559785,89.978012 29.826875,86.889145 32.415803,86.237228 34.848512,85.196701 35.232881,84.576859 35.61728,83.957016 36.044282,80.580338 36.181764,77.073166 37.035646,55.291256 51.327333,36.098843 71.283204,29.935085 82.064485,26.605098 95.609132,27.424236 107.335725,32.115429 111.054933,33.603298 110.63614,33.922299 118.500032,23.610897 123.150636,17.512798 132.547731,9.92867700000002 140.239717,6.06535000000002 148.541322,1.89588600000002 157.175142,-0.0250429999999833 167.500032,0.000256000000016243 196.357332,0.0710570000000162 221.227541,18.120937 230.424043,45.6683 233.362336,54.469859 233.215822,56.934856 229.750032,57.007503 228.23752,57.039196 223.903841,57.872142 220.119539,58.85847L213.239046,60.651805 206.960726,54.373591C189.258944,36.671778 160.369326,32.845637 135.810244,44.950419 125.998751,49.786357 118.114443,56.728983 112.159029,65.776702 107.913332,72.227065 102.500032,84.26036 102.500032,87.24797 102.500032,89.367477 100.783845,90.426589 93.454439,92.830245 70.762331,100.272109 57.517488,117.45848 57.526674,139.449874 57.529665,147.454055 59.591188,157.248122 62.452913,162.857528 63.531679,164.972091 64.133608,166.982955 63.790498,167.326034 62.913057,168.203506 34.684266,167.90776 30.781434,166.980239z" />
+                                        </Canvas>
+                                    </Border>
+                                </Viewbox>
+
+                                <!--Sign tlačítko-->
+                                <Button x:Name="SignButton"
+                                        Style="{StaticResource ButtonStyle}"
+                                        Content="{Binding LocalizedResources.SignIn, Source={StaticResource LocalizedStrings}}"
+                                        Tap="SignButton_Tap" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!--Nápověda-->
+                        <TextBlock Grid.Row="1"
+                                   Style="{StaticResource NormalTextStyle}"
+                                   Text="{Binding BackupAndRestoreHelpText, FallbackValue=Lorem ipsum Help Text.}"
+                                   TextWrapping="Wrap"
+                                   FontSize="20"
+                                   Margin="0,0,0,5" />
+
+                        <!--Backup-->
+                        <Button x:Name="BackupButton"
+                                Style="{StaticResource ButtonStyle}"
+                                Content="{Binding LocalizedResources.BackupText, Source={StaticResource LocalizedStrings}}"
+                                Tap="BackupButton_Tap"
+                                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,0,0,10">
-                        <ToggleButton IsChecked="{Binding UseSettings, Mode=TwoWay}"
-                                      Style="{StaticResource CheckBoxStyle}"
-                                      Content="{Binding LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+                </ScrollViewer>
+            </phone:PivotItem>
+            <phone:PivotItem Header="restore">
+                <ScrollViewer>
+                    <StackPanel x:Name="RestorePanel"
+                                Margin="24,16,24,40">
+                        <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                            <!--Výběr zálohy-->
+                            <TextBlock Style="{StaticResource LabelTextStyle}"
+                                       Text="{Binding LocalizedResources.SelectBackup, Source={StaticResource LocalizedStrings}}"
+                                       Margin="0,0,0,4" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--Restore list-->
+                                <controls:ListPicker x:Name="RestorePicker"
+                                                     Foreground="{StaticResource SlightBrush}"
+                                                     Background="{StaticResource ButtonBackgroundBrush}"
+                                                     ItemsSource="{Binding BackupList}"
+                                                     Header="{Binding LocalizedResources.SelectBackup, Source={StaticResource LocalizedStrings}}" />
+
+                                <!--Refresh backup list-->
+                                <Button Grid.Column="1"
+                                        VerticalAlignment="Top"
+                                        Height="50"
+                                        Width="50"
+                                        Opacity="0.6"
+                                        Tap="RefreshListButton_Tap">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border x:Name="Root"
+                                                    Background="{StaticResource ButtonBackgroundBrush}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal" />
+                                                        <VisualState x:Name="MouseOver" />
+                                                        <VisualState x:Name="Pressed" />
+                                                        <VisualState x:Name="Disabled">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                                               Storyboard.TargetProperty="Opacity">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                            Value="0.5" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <ContentControl Style="{StaticResource RefreshIconStyle}"
+                                                                Foreground="{StaticResource ButtonForegroundBrush}"
+                                                                RenderTransformOrigin="0.5,0.5">
+                                                    <ContentControl.RenderTransform>
+                                                        <CompositeTransform ScaleX="0.7"
+                                                                            ScaleY="0.7" />
+                                                    </ContentControl.RenderTransform>
+                                                </ContentControl>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+
+                            <!--Co použít pro obnovení-->
+                            <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                          IsChecked="{Binding UseTasks, Mode=TwoWay}"
+                                          Content="{Binding LocalizedResources.TasksText, ConverterParameter=FirstUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
+                            <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                          IsChecked="{Binding UseSettings, Mode=TwoWay}"
+                                          Content="{Binding LocalizedResources.AppBarSettings, ConverterParameter=FirstUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
+
+                            <!--Restore-->
+                            <Button x:Name="RestoreButton"
+                                    IsEnabled="{Binding IsEnabledRestoreButton}"
+                                    Grid.Column="2"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
+                                    Tap="RestoreButton_Tap"
+                                    Margin="0,20,0,0" />
+                        </StackPanel>
                     </StackPanel>
-
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
-
-        <!--Tlačítka akce-->
-        <Grid Grid.Row="2"
-              Margin="10"
-              Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
-              VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <!--Backup-->
-            <Button x:Name="BackupButton"
-                    Grid.Column="0"
-                    Style="{StaticResource ButtonStyle}"
-                    Content="{Binding LocalizedResources.BackupText, Source={StaticResource LocalizedStrings}}"
-                    HorizontalAlignment="Stretch"
-                    Tap="BackupButton_Tap" />
-
-            <!--Restore-->
-            <Button x:Name="RestoreButton"
-                    IsEnabled="{Binding IsEnabledRestoreButton}"
-                    Grid.Column="2"
-                    Style="{StaticResource ButtonStyle}"
-                    Content="{Binding LocalizedResources.RestoreText, Source={StaticResource LocalizedStrings}}"
-                    HorizontalAlignment="Stretch"
-                    Tap="RestoreButton_Tap" />
-        </Grid>
+                </ScrollViewer>
+            </phone:PivotItem>
+        </phone:Pivot>
 
         <!--Action Progress Ring-->
         <Grid Grid.RowSpan="3"
-                Visibility="{Binding PerformingAction, FallbackValue=Collapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+              Visibility="{Binding PerformingAction, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
             <Grid.Background>
                 <SolidColorBrush Color="{StaticResource BackgroundColor}"
                                  Opacity="0.8" />
             </Grid.Background>
-            
+
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition />
                 <RowDefinition Height="1.2*" />
             </Grid.RowDefinitions>
 
             <Grid Height="50"
-                  Visibility="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                  Visibility="{Binding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
@@ -220,6 +291,7 @@
                            VerticalAlignment="Center" />
             </Grid>
         </Grid>
+
     </Grid>
 
 </controls:BasePage>
