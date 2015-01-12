@@ -109,7 +109,6 @@
     <Compile Include="Controls\Calendar\GestureType.cs" />
     <Compile Include="Controls\ListPicker.cs" />
     <Compile Include="Controls\ListPickerItem.cs" />
-    <Compile Include="Controls\MySlider.cs" />
     <Compile Include="Controls\MyTextBox.cs" />
     <Compile Include="Controls\MyToggleButton.cs" />
     <Compile Include="Controls\ProgressRing.cs" />
@@ -517,7 +516,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
