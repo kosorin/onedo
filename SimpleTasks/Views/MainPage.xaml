@@ -19,7 +19,8 @@
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Border toolkit:TiltEffect.SuppressTilt="True"
                     Background="{StaticResource TasksListHeaderBorderBrush}"
-                    Height="50">
+                    Height="50"
+                    Margin="0,0,0,5">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -56,7 +57,7 @@
 
         <!--List Task-->
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
-            <controls:TaskItem Task="{Binding}"
+            <controls:TaskItem DataContext="{Binding}"
                                IsCompleted="{Binding IsCompleted}"
                                IsScheduled="{Binding Wrapper.IsScheduled}"
                                Click="TaskItem_Click"
@@ -93,9 +94,7 @@
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
-                                    HideEmptyGroups="True"
-                                    ItemUnrealized="TasksLongListSelector_ItemUnrealized"
-                                    ItemRealized="TasksLongListSelector_ItemRealized">
+                                    HideEmptyGroups="True">
                 <phone:LongListSelector.Template>
                     <ControlTemplate TargetType="phone:LongListSelector">
                         <Grid Background="{TemplateBinding Background}">
@@ -217,7 +216,7 @@
             </Rectangle.Resources>
         </Rectangle>
 
-        <Grid Grid.RowSpan="3">
+        <Grid Grid.RowSpan="3" Visibility="Collapsed">
             <Button x:Name="TestButton"
                     Content="Test"
                     VerticalAlignment="Top"

@@ -15,7 +15,6 @@
              x:Name="Control">
 
     <Border x:Name="RootBorder"
-            DataContext="{Binding Subtask, ElementName=Control}"
             Background="Transparent"
             Height="50">
         <VisualStateManager.VisualStateGroups>

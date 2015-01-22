@@ -140,21 +140,10 @@ namespace SimpleTasks.Controls
         }
         #endregion // end of Events
 
-        #region Dependency Properties
+        #region (Dependency) Properties
         public TaskModel Task
         {
-            get { return (TaskModel)GetValue(TaskProperty); }
-            set { SetValue(TaskProperty, value); }
-        }
-        public static readonly DependencyProperty TaskProperty =
-            DependencyProperty.Register("Task", typeof(TaskModel), typeof(TaskItem), new PropertyMetadata(null, TaskPropertyChanged));
-        private static void TaskPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            TaskItem item = d as TaskItem;
-            if (item != null)
-            {
-                item.UpdateVisualStates(false);
-            }
+            get { return DataContext as TaskModel; }
         }
 
         public bool IsCompleted

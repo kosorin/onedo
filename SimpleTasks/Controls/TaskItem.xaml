@@ -15,7 +15,7 @@
              x:Name="Control">
 
     <Border x:Name="RootBorder"
-            DataContext="{Binding Task, ElementName=Control}">
+            Margin="0,0,0,5">
         <VisualStateManager.VisualStateGroups>
 
             <!--CompleteStates-->
@@ -47,7 +47,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-                        
+
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
@@ -237,14 +237,14 @@
                     Opacity="0.2" />-->
 
             <!--Barva-->
-            <Border Grid.ColumnSpan="2"
+            <!--<Border Grid.ColumnSpan="2"
                     Width="6"
                     HorizontalAlignment="Left"
                     Visibility="{Binding HasColor, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Border.Background>
                     <SolidColorBrush Color="{Binding Color}" />
                 </Border.Background>
-            </Border>
+            </Border>-->
 
             <!--Pozadí-->
             <Border x:Name="BackgroundBorder"
@@ -286,11 +286,8 @@
                         </Grid.RowDefinitions>
 
                         <!--Horní info-->
-                        <Grid MinHeight="60">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel MinHeight="60"
+                                    Orientation="Horizontal">
 
                             <!--Vysoká/nízká priorita-->
                             <Grid x:Name="TaskPriorityGrid"
@@ -322,9 +319,9 @@
                             </Grid>
 
                             <!--Název+detaul-->
-                            <StackPanel Grid.Column="1"
-                                        Margin="13,0,0,0"
+                            <StackPanel Margin="13,0,0,0"
                                         VerticalAlignment="Center">
+
                                 <!--Název-->
                                 <controls:ToggleControl IsChecked="{Binding IsCompleted}"
                                                         Content="{Binding Title, FallbackValue=Test title}"
@@ -333,9 +330,9 @@
                                                         FontSize="32" />
 
                                 <!--Detail-->
-                                <Grid x:Name="DetailWrapper"
-                                      Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
-                                      Margin="0,0,0,4">
+                                <Border x:Name="DetailWrapper"
+                                        Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
+                                        Margin="0,0,0,4">
                                     <TextBlock Text="{Binding Detail}"
                                                Style="{StaticResource SubtleTextStyle}"
                                                Opacity="0.8"
@@ -343,9 +340,9 @@
                                                FontWeight="Normal"
                                                TextWrapping="NoWrap"
                                                TextTrimming="WordEllipsis" />
-                                </Grid>
+                                </Border>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
 
                         <!--Datum-->
                         <StackPanel x:Name="TaskInfoStackPanel"
@@ -396,9 +393,16 @@
                         <ControlTemplate>
                             <Border x:Name="RootBorder"
                                     Background="Transparent"
-                                    Width="54">
+                                    Width="54"
+                                    Padding="0,10">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Checked"
+                                                              GeneratedDuration="0:0:0.3" />
+                                            <VisualTransition To="Unchecked"
+                                                              GeneratedDuration="0:0:0.3" />
+                                        </VisualStateGroup.Transitions>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
                                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksArrow"
@@ -466,8 +470,7 @@
                                   ItemsSource="{Binding Subtasks}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <controls:SubtaskItem x:Name="SubtasksItemsControl"
-                                                      Subtask="{Binding}"
+                                <controls:SubtaskItem DataContext="{Binding}"
                                                       IsCompleted="{Binding IsCompleted}"
                                                       Click="SubtaskItem_Check"
                                                       Check="SubtaskItem_Check"
@@ -478,9 +481,8 @@
                     </ItemsControl>
 
                     <!--Přidat podúkol-->
-                    <Button Height="45"
-                            Click="SubtaskAdd_Click"
-                            Margin="0,-6,0,0">
+                    <Button Height="48"
+                            Click="SubtaskAdd_Click">
                         <Button.Template>
                             <ControlTemplate />
                         </Button.Template>
@@ -490,19 +492,21 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Style="{StaticResource AccentTextStyle}"
+                                       IsHitTestVisible="False"
                                        Text="+"
                                        FontSize="46"
                                        FontWeight="SemiBold"
                                        VerticalAlignment="Center"
-                                       Margin="0,-8,0,0"
+                                       Margin="0,-16,0,0"
                                        HorizontalAlignment="Center" />
                             <TextBlock Style="{StaticResource AccentTextStyle}"
+                                       IsHitTestVisible="False"
                                        Text="add a subtask"
                                        FontSize="20"
                                        FontWeight="SemiBold"
                                        VerticalAlignment="Center"
                                        Grid.Column="1"
-                                       Margin="5,0,0,0" />
+                                       Margin="5,-8,0,0" />
                         </Grid>
                     </Button>
                 </StackPanel>

@@ -623,7 +623,6 @@ namespace SimpleTasks.Views
             Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
             da.From = from;
             da.To = to;
-            da.BeginTime = TimeSpan.FromSeconds(0.5);
             da.Duration = new Duration(TimeSpan.FromSeconds(0.5));
             da.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
 

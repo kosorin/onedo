@@ -81,18 +81,7 @@ namespace SimpleTasks.Controls
         #region Dependency Properties
         public Subtask Subtask
         {
-            get { return (Subtask)GetValue(TaskProperty); }
-            set { SetValue(TaskProperty, value); }
-        }
-        public static readonly DependencyProperty TaskProperty =
-            DependencyProperty.Register("Subtask", typeof(Subtask), typeof(SubtaskItem), new PropertyMetadata(null, TaskPropertyChanged));
-        private static void TaskPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            SubtaskItem item = d as SubtaskItem;
-            if (item != null)
-            {
-                item.UpdateVisualStates(false);
-            }
+            get { return DataContext as Subtask; }
         }
 
         public bool IsCompleted
