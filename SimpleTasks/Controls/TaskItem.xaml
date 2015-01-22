@@ -47,7 +47,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
-
+                        
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
@@ -56,10 +56,10 @@
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoTransform"
                                                        Storyboard.TargetProperty="Y">
                             <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="-15" />
+                                                    Value="-10" />
                         </DoubleAnimationUsingKeyFrames>
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
-                                                       Storyboard.TargetProperty="MaxHeight">
+                                                       Storyboard.TargetProperty="Height">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
@@ -69,16 +69,16 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
                         </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DetailWrapper"
+                                                       Storyboard.TargetProperty="Opacity">
+                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                    Value="0.45" />
+                        </DoubleAnimationUsingKeyFrames>
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.5" />
                         </DoubleAnimationUsingKeyFrames>
-                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="CheckboxButton"
-                                                       Storyboard.TargetProperty="Opacity">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0.5" />
-                        </DoubleAnimationUsingKeyFrames>-->
                     </Storyboard>
                 </VisualState>
 
@@ -153,21 +153,6 @@
 
             <!--ScheduledStates-->
             <VisualStateGroup x:Name="ScheduledStates">
-                <VisualStateGroup.Transitions>
-                    <VisualTransition To="Scheduled"
-                                      GeneratedDuration="0:0:0.2">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-
-                    <VisualTransition To="NotScheduled"
-                                      GeneratedDuration="0:0:0.2">
-                        <VisualTransition.GeneratedEasingFunction>
-                            <CircleEase EasingMode="EaseOut" />
-                        </VisualTransition.GeneratedEasingFunction>
-                    </VisualTransition>
-                </VisualStateGroup.Transitions>
 
                 <!--Scheduled-->
                 <VisualState x:Name="Scheduled" />
@@ -175,16 +160,11 @@
                 <!--NotScheduled-->
                 <VisualState x:Name="NotScheduled">
                     <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReminderControl"
-                                                       Storyboard.TargetProperty="Opacity">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ReminderControl"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DateIconControl"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource CalendarIconStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
@@ -298,21 +278,23 @@
                     <Grid Background="Transparent"
                           ManipulationStarted="InfoGrid_ManipulationStarted"
                           ManipulationCompleted="InfoGrid_ManipulationCompleted"
-                          ManipulationDelta="InfoGrid_ManipulationDelta">
+                          ManipulationDelta="InfoGrid_ManipulationDelta"
+                          Margin="0,0,0,4">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!--Horní info-->
-                        <Grid Height="60">
+                        <Grid MinHeight="60">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <!--Vysoká/nízká priorita-->
-                            <Grid x:Name="TaskPriorityGrid">
+                            <Grid x:Name="TaskPriorityGrid"
+                                  Margin="0,5,0,0">
                                 <!--Vysoká priorita-->
                                 <Border Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
                                     <ContentControl Style="{StaticResource HighPriorityIconStyle}"
@@ -332,113 +314,74 @@
                                                     MaxHeight="0"
                                                     RenderTransformOrigin="0.5,0.5">
                                         <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.8"
-                                                                ScaleY="0.8" />
+                                            <CompositeTransform ScaleX="0.75"
+                                                                ScaleY="0.75" />
                                         </ContentControl.RenderTransform>
                                     </ContentControl>
                                 </Border>
                             </Grid>
 
-                            <!--Název-->
-                            <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                                    Content="{Binding Title, FallbackValue=Test title}"
-                                                    Style="{StaticResource TaskCheckBoxTextStyle}"
-                                                    IsHitTestVisible="False"
-                                                    FontSize="32"
-                                                    Margin="8,0,0,4"
-                                                    Grid.Column="1" />
+                            <!--Název+detaul-->
+                            <StackPanel Grid.Column="1"
+                                        Margin="13,0,0,0"
+                                        VerticalAlignment="Center">
+                                <!--Název-->
+                                <controls:ToggleControl IsChecked="{Binding IsCompleted}"
+                                                        Content="{Binding Title, FallbackValue=Test title}"
+                                                        Style="{StaticResource TaskCheckBoxTextStyle}"
+                                                        IsHitTestVisible="False"
+                                                        FontSize="32" />
+
+                                <!--Detail-->
+                                <Grid x:Name="DetailWrapper"
+                                      Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
+                                      Margin="0,0,0,4">
+                                    <TextBlock Text="{Binding Detail}"
+                                               Style="{StaticResource SubtleTextStyle}"
+                                               Opacity="0.8"
+                                               FontSize="18"
+                                               FontWeight="Normal"
+                                               TextWrapping="NoWrap"
+                                               TextTrimming="WordEllipsis" />
+                                </Grid>
+                            </StackPanel>
                         </Grid>
 
-                        <!--Spodní info-->
+                        <!--Datum-->
                         <StackPanel x:Name="TaskInfoStackPanel"
-                                    Orientation="Vertical"
+                                    Orientation="Horizontal"
                                     Grid.Row="1"
-                                    Margin="0,-12,0,8"
-                                    MaxHeight="71"
+                                    Margin="0,-2,0,5"
+                                    Height="30"
+                                    Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     RenderTransformOrigin="0.5,0.5">
                             <StackPanel.RenderTransform>
                                 <TranslateTransform x:Name="TaskInfoTransform"
                                                     Y="0" />
                             </StackPanel.RenderTransform>
 
-                            <!--Detail-->
-                            <Grid x:Name="DetailWrapper"
-                                  MaxHeight="30"
-                                  Margin="0,0,12,0"
-                                  Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
-                                <TextBlock Text="{Binding Detail, FallbackValue=Test detail}"
-                                           Style="{StaticResource SubtleTextStyle}"
-                                           Opacity="0.8"
-                                           FontSize="18"
-                                           FontWeight="Normal"
-                                           TextWrapping="NoWrap"
-                                           TextTrimming="WordEllipsis"
-                                           Margin="8,0,20,0" />
-                            </Grid>
+                            <ContentControl x:Name="DateIconControl"
+                                            Style="{StaticResource CalendarReminderIconStyle}"
+                                            Foreground="{StaticResource AccentBrush}"
+                                            Margin="6,0,-14,0"
+                                            VerticalAlignment="Bottom"
+                                            Height="0">
+                                <ContentControl.RenderTransform>
+                                    <CompositeTransform ScaleX="0.55"
+                                                        ScaleY="0.55"
+                                                        TranslateX="0"
+                                                        TranslateY="-29" />
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
+                            <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
+                                       Style="{StaticResource SubtleTextStyle}"
+                                       Opacity="0.8"
+                                       FontSize="18"
+                                       FontWeight="SemiBold"
+                                       Margin="0,1,2,0"
+                                       VerticalAlignment="Center" />
 
-                            <!--Datum & připomenutí & opakování-->
-                            <Grid x:Name="MoreInfo"
-                                  MaxHeight="32">
-                                <StackPanel Orientation="Horizontal"
-                                            Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                            Height="30">
 
-                                    <!--Připomenutí-->
-                                    <ContentControl x:Name="ReminderControl"
-                                                    Width="50"
-                                                    Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                    Style="{StaticResource ReminderIconStyle}"
-                                                    Margin="5,0,-24,0"
-                                                    MaxHeight="0"
-                                                    VerticalAlignment="Bottom"
-                                                    Foreground="{StaticResource AccentBrush}">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.55"
-                                                                ScaleY="0.55"
-                                                                TranslateX="1"
-                                                                TranslateY="-28" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-
-                                    <!--Opakování-->
-                                    <ContentControl x:Name="RepeatsControl"
-                                                    Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                    Style="{StaticResource RepeatsIconStyle}"
-                                                    Margin="5,0,-24,0"
-                                                    MaxHeight="0"
-                                                    VerticalAlignment="Bottom"
-                                                    Foreground="{StaticResource AccentBrush}">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.55"
-                                                                ScaleY="0.55"
-                                                                TranslateX="1"
-                                                                TranslateY="-28" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-
-                                    <!--Datum-->
-                                    <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                    Foreground="{StaticResource AccentBrush}"
-                                                    Margin="6,0,-18,0"
-                                                    VerticalAlignment="Bottom"
-                                                    MaxHeight="0">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.55"
-                                                                ScaleY="0.55"
-                                                                TranslateX="0"
-                                                                TranslateY="-29" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-                                    <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
-                                               Style="{StaticResource SubtleTextStyle}"
-                                               Opacity="0.8"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Margin="2,1,2,0"
-                                               VerticalAlignment="Center" />
-
-                                </StackPanel>
-                            </Grid>
                         </StackPanel>
                     </Grid>
                 </Button>
@@ -448,12 +391,11 @@
                               Margin="4,0,0,0"
                               Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
                               IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
-                              VerticalAlignment="Top">
+                              VerticalAlignment="Center">
                     <ToggleButton.Template>
                         <ControlTemplate>
                             <Border x:Name="RootBorder"
                                     Background="Transparent"
-                                    Height="60"
                                     Width="54">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
@@ -538,7 +480,7 @@
                     <!--Přidat podúkol-->
                     <Button Height="45"
                             Click="SubtaskAdd_Click"
-                            Margin="0,-4,0,0">
+                            Margin="0,-6,0,0">
                         <Button.Template>
                             <ControlTemplate />
                         </Button.Template>
@@ -589,7 +531,6 @@
                 </ContentControl.Foreground>
             </ContentControl>
 
-       
         </Grid>
     </Border>
 
