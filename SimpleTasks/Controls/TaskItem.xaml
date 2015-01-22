@@ -15,7 +15,7 @@
              x:Name="Control">
 
     <Border x:Name="RootBorder"
-            Margin="0,0,0,8">
+            Margin="0,6">
         <VisualStateManager.VisualStateGroups>
 
             <!--CompleteStates-->
@@ -291,6 +291,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+                            
                             <!--Vysoká/nízká priorita-->
                             <Grid x:Name="TaskPriorityGrid"
                                   Margin="0,5,0,0">
@@ -334,6 +335,7 @@
 
                                 <!--Detail-->
                                 <Border x:Name="DetailWrapper"
+                                        Opacity="0.8"
                                         Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
                                         Margin="0,0,0,4">
                                     <TextBlock Text="{Binding Detail}"
@@ -349,6 +351,7 @@
 
                         <!--Datum-->
                         <StackPanel x:Name="TaskInfoStackPanel"
+                                    Opacity="0.8"
                                     Grid.Row="1"
                                     Orientation="Horizontal"
                                     Height="30"
@@ -361,7 +364,7 @@
 
                             <ContentControl x:Name="DateIconControl"
                                             Style="{StaticResource CalendarReminderIconStyle}"
-                                            Foreground="{StaticResource AccentBrush}"
+                                            Foreground="{StaticResource SubtleBrush}"
                                             Margin="6,-4,-14,0"
                                             VerticalAlignment="Bottom"
                                             Height="0">
@@ -439,8 +442,7 @@
             <Button x:Name="CheckboxButton"
                     Width="60"
                     Visibility="{Binding Current.ShowTaskCheckBox, 
-                                         Converter={StaticResource BooleanToVisibilityConverter}, 
-                                         ConverterParameter='!', 
+                                         Converter={StaticResource BooleanToVisibilityConverter},
                                          Source={StaticResource Settings}}">
                 <Button.Template>
                     <ControlTemplate TargetType="ButtonBase" />

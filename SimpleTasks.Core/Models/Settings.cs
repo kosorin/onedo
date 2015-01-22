@@ -285,7 +285,7 @@ namespace SimpleTasks.Core.Models
         #endregion
 
         #region ShowTaskCheckBox
-        private bool _showTaskCheckBox = false;
+        private bool _showTaskCheckBox = true;
         [DataMember(Name = "ShowTaskCheckBox")]
         public bool ShowTaskCheckBox
         {
