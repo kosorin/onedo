@@ -68,7 +68,7 @@
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
-                        </DoubleAnimationUsingKeyFrames> 
+                        </DoubleAnimationUsingKeyFrames>
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
@@ -241,6 +241,20 @@
                                   MinWidth="8" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--<Border Background="Red"
+                    Opacity="0.2" />
+            <Border Background="Yellow"
+                    Grid.Column="1"
+                    Opacity="0.2" />
+            <Border Background="Green"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Opacity="0.2" />-->
 
             <!--Barva-->
             <Border Grid.ColumnSpan="2"
@@ -255,6 +269,7 @@
             <!--Pozadí-->
             <Border x:Name="BackgroundBorder"
                     Grid.ColumnSpan="2"
+                    Grid.RowSpan="2"
                     Margin="-480,0"
                     BorderThickness="0,1"
                     IsHitTestVisible="False"
@@ -269,272 +284,212 @@
                 </Border.BorderBrush>
             </Border>
 
-            <!--Info + Podúkoly-->
-            <StackPanel Grid.Column="1">
+            <!--Info-->
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Tap="Task_Tap">
+                    <Button.Template>
+                        <ControlTemplate TargetType="ButtonBase" />
+                    </Button.Template>
 
-                <!--Horní + spodní Info-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Button Tap="Task_Tap">
-                        <Button.Template>
-                            <ControlTemplate TargetType="ButtonBase" />
-                        </Button.Template>
+                    <Grid Background="Transparent"
+                          ManipulationStarted="InfoGrid_ManipulationStarted"
+                          ManipulationCompleted="InfoGrid_ManipulationCompleted"
+                          ManipulationDelta="InfoGrid_ManipulationDelta">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        <Grid Background="Transparent"
-                              ManipulationStarted="InfoGrid_ManipulationStarted"
-                              ManipulationCompleted="InfoGrid_ManipulationCompleted"
-                              ManipulationDelta="InfoGrid_ManipulationDelta">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <!--Horní info-->
+                        <Grid Height="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                            <!--Horní info-->
-                            <Grid Height="70">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                            <!--Vysoká/nízká priorita-->
+                            <Grid x:Name="TaskPriorityGrid">
+                                <!--Vysoká priorita-->
+                                <Border Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Style="{StaticResource HighPriorityIconStyle}"
+                                                    Foreground="{StaticResource AccentBrush}"
+                                                    Opacity="1"
+                                                    Margin="-5,0,-16,50"
+                                                    MaxHeight="0">
+                                    </ContentControl>
+                                </Border>
 
-                                <!--Vysoká/nízká priorita-->
-                                <Grid x:Name="TaskPriorityGrid">
-
-                                    <!--Vysoká priorita-->
-                                    <Border Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                        Foreground="{StaticResource AccentBrush}"
-                                                        Opacity="1"
-                                                        Margin="-5,0,-16,50"
-                                                        MaxHeight="0">
-                                        </ContentControl>
-                                    </Border>
-
-                                    <!--Nízká priorita-->
-                                    <Border Visibility="{Binding IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <ContentControl Style="{StaticResource LowPriorityIconStyle}"
-                                                        Foreground="{StaticResource SubtleBrush}"
-                                                        Opacity=".6"
-                                                        Margin="-5,0,-16,40"
-                                                        MaxHeight="0"
-                                                        RenderTransformOrigin="0.5,0.5">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.8"
-                                                                    ScaleY="0.8" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
-                                    </Border>
-                                </Grid>
-
-                                <!--Název-->
-                                <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                                        Content="{Binding Title}"
-                                                        Style="{StaticResource TaskCheckBoxTextStyle}"
-                                                        IsHitTestVisible="False"
-                                                        FontSize="32"
-                                                        Margin="8,0,0,4"
-                                                        Grid.Column="1" />
+                                <!--Nízká priorita-->
+                                <Border Visibility="{Binding IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Style="{StaticResource LowPriorityIconStyle}"
+                                                    Foreground="{StaticResource SubtleBrush}"
+                                                    Opacity=".6"
+                                                    Margin="-5,0,-16,40"
+                                                    MaxHeight="0"
+                                                    RenderTransformOrigin="0.5,0.5">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.8"
+                                                                ScaleY="0.8" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                </Border>
                             </Grid>
 
-                            <!--Spodní info-->
-                            <StackPanel x:Name="TaskInfoStackPanel"
-                                        Orientation="Vertical"
-                                        Grid.Row="1"
-                                        Margin="0,-15,0,0"
-                                        MaxHeight="71"
-                                        RenderTransformOrigin="0.5,0.5">
-                                <StackPanel.RenderTransform>
-                                    <TranslateTransform x:Name="TaskInfoTransform"
-                                                        Y="0" />
-                                </StackPanel.RenderTransform>
+                            <!--Název-->
+                            <controls:ToggleControl IsChecked="{Binding IsCompleted}"
+                                                    Content="{Binding Title, FallbackValue=Test title}"
+                                                    Style="{StaticResource TaskCheckBoxTextStyle}"
+                                                    IsHitTestVisible="False"
+                                                    FontSize="32"
+                                                    Margin="8,0,0,4"
+                                                    Grid.Column="1" />
+                        </Grid>
 
-                                <!--Datum & připomenutí & opakování-->
-                                <Grid x:Name="MoreInfo"
-                                      MaxHeight="32"
-                                      Margin="0,0,0,10">
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                Height="30">
+                        <!--Spodní info-->
+                        <StackPanel x:Name="TaskInfoStackPanel"
+                                    Orientation="Vertical"
+                                    Grid.Row="1"
+                                    Margin="0,-12,0,8"
+                                    MaxHeight="71"
+                                    RenderTransformOrigin="0.5,0.5">
+                            <StackPanel.RenderTransform>
+                                <TranslateTransform x:Name="TaskInfoTransform"
+                                                    Y="0" />
+                            </StackPanel.RenderTransform>
 
-                                        <!--Připomenutí-->
-                                        <ContentControl x:Name="ReminderControl"
-                                                        Width="50"
-                                                        Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                        Style="{StaticResource ReminderIconStyle}"
-                                                        Margin="5,0,-24,0"
-                                                        MaxHeight="0"
-                                                        VerticalAlignment="Bottom"
-                                                        Foreground="{StaticResource AccentBrush}">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55"
-                                                                    ScaleY="0.55"
-                                                                    TranslateX="1"
-                                                                    TranslateY="-28" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
+                            <!--Detail-->
+                            <Grid x:Name="DetailWrapper"
+                                  MaxHeight="30"
+                                  Margin="0,0,12,0"
+                                  Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
+                                <TextBlock Text="{Binding Detail, FallbackValue=Test detail}"
+                                           Style="{StaticResource SubtleTextStyle}"
+                                           Opacity="0.8"
+                                           FontSize="18"
+                                           FontWeight="Normal"
+                                           TextWrapping="NoWrap"
+                                           TextTrimming="WordEllipsis"
+                                           Margin="8,0,20,0" />
+                            </Grid>
 
-                                        <!--Opakování-->
-                                        <ContentControl x:Name="RepeatsControl"
-                                                        Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                        Style="{StaticResource RepeatsIconStyle}"
-                                                        Margin="5,0,-24,0"
-                                                        MaxHeight="0"
-                                                        VerticalAlignment="Bottom"
-                                                        Foreground="{StaticResource AccentBrush}">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55"
-                                                                    ScaleY="0.55"
-                                                                    TranslateX="1"
-                                                                    TranslateY="-28" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
+                            <!--Datum & připomenutí & opakování-->
+                            <Grid x:Name="MoreInfo"
+                                  MaxHeight="32">
+                                <StackPanel Orientation="Horizontal"
+                                            Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Height="30">
 
-                                        <!--Datum-->
-                                        <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                        Foreground="{StaticResource AccentBrush}"
-                                                        Margin="6,0,-18,0"
-                                                        VerticalAlignment="Bottom"
-                                                        MaxHeight="0">
-                                            <ContentControl.RenderTransform>
-                                                <CompositeTransform ScaleX="0.55"
-                                                                    ScaleY="0.55"
-                                                                    TranslateX="0"
-                                                                    TranslateY="-29" />
-                                            </ContentControl.RenderTransform>
-                                        </ContentControl>
-                                        <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
-                                                   Style="{StaticResource SubtleTextStyle}"
-                                                   Opacity="0.8"
-                                                   FontSize="18"
-                                                   FontWeight="SemiBold"
-                                                   Margin="2,1,2,0"
-                                                   VerticalAlignment="Center" />
+                                    <!--Připomenutí-->
+                                    <ContentControl x:Name="ReminderControl"
+                                                    Width="50"
+                                                    Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    Style="{StaticResource ReminderIconStyle}"
+                                                    Margin="5,0,-24,0"
+                                                    MaxHeight="0"
+                                                    VerticalAlignment="Bottom"
+                                                    Foreground="{StaticResource AccentBrush}">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55"
+                                                                ScaleY="0.55"
+                                                                TranslateX="1"
+                                                                TranslateY="-28" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
 
-                                    </StackPanel>
-                                </Grid>
+                                    <!--Opakování-->
+                                    <ContentControl x:Name="RepeatsControl"
+                                                    Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    Style="{StaticResource RepeatsIconStyle}"
+                                                    Margin="5,0,-24,0"
+                                                    MaxHeight="0"
+                                                    VerticalAlignment="Bottom"
+                                                    Foreground="{StaticResource AccentBrush}">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55"
+                                                                ScaleY="0.55"
+                                                                TranslateX="1"
+                                                                TranslateY="-28" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
 
-                                <!--Detail-->
-                                <Grid x:Name="DetailWrapper"
-                                      MaxHeight="30"
-                                      Margin="0,-10,12,10"
-                                      Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}">
-                                    <TextBlock Text="{Binding Detail}"
+                                    <!--Datum-->
+                                    <ContentControl Style="{StaticResource CalendarIconStyle}"
+                                                    Foreground="{StaticResource AccentBrush}"
+                                                    Margin="6,0,-18,0"
+                                                    VerticalAlignment="Bottom"
+                                                    MaxHeight="0">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.55"
+                                                                ScaleY="0.55"
+                                                                TranslateX="0"
+                                                                TranslateY="-29" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
+                                    <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
                                                Style="{StaticResource SubtleTextStyle}"
                                                Opacity="0.8"
                                                FontSize="18"
-                                               FontWeight="Normal"
-                                               TextWrapping="NoWrap"
-                                               TextTrimming="WordEllipsis"
-                                               Margin="8,0,20,0" />
-                                </Grid>
-                            </StackPanel>
-                        </Grid>
-                    </Button>
+                                               FontWeight="SemiBold"
+                                               Margin="2,1,2,0"
+                                               VerticalAlignment="Center" />
 
-                    <!--Show Subtasks-->
-                    <ToggleButton Grid.Column="2"
-                                  Margin="4,0,0,0"
-                                  Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
-                                  IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
-                                  VerticalAlignment="Top">
-                        <ToggleButton.Template>
-                            <ControlTemplate>
-                                <Border x:Name="RootBorder"
-                                        Background="Transparent"
-                                        Height="70"
-                                        Width="54">
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup x:Name="CheckStates">
-                                            <VisualState x:Name="Checked">
-                                                <Storyboard>
-                                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksArrow"
-                                                                                   Storyboard.TargetProperty="RotationX">
-                                                        <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                                Value="180" />
-                                                    </DoubleAnimationUsingKeyFrames>
-                                                </Storyboard>
-                                            </VisualState>
-                                            <VisualState x:Name="Unchecked" />
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <Border.Projection>
-                                        <PlaneProjection x:Name="SubtasksArrow"
-                                                         RotationX="0"
-                                                         CenterOfRotationY="0.53" />
-                                    </Border.Projection>
-                                    <TextBlock x:Name="Arrow"
-                                               Text="&#xe019;"
-                                               Foreground="{StaticResource SubtleBrush}"
-                                               FontSize="32"
-                                               FontFamily="Segoe UI Symbol"
-                                               VerticalAlignment="Center"
-                                               Margin="0,-6,0,0"
-                                               IsHitTestVisible="False" />
-                                </Border>
-                            </ControlTemplate>
-                        </ToggleButton.Template>
-                    </ToggleButton>
-                </Grid>
-
-                <!--Podúkoly-->
-                <Border Visibility="{Binding ShowSubtasks, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <StackPanel x:Name="SubtasksStackPanel"
-                                Margin="3,-5,0,10"
-                                Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
-                        <!--Seznam podúkolů-->
-                        <ItemsControl x:Name="SubtasksItemsControl"
-                                      ItemsSource="{Binding Subtasks}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:SubtaskItem x:Name="SubtasksItemsControl"
-                                                          Subtask="{Binding}"
-                                                          IsCompleted="{Binding IsCompleted}"
-                                                          Click="SubtaskItem_Check"
-                                                          Check="SubtaskItem_Check"
-                                                          SwipeLeft="SubtaskItem_SwipeLeft"
-                                                          SwipeRight="SubtaskItem_SwipeRight" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-
-                        <!--Přidat podúkol-->
-                        <Button Height="45"
-                                Click="SubtaskAdd_Click"
-                                Opacity="0.6">
-                            <Button.Template>
-                                <ControlTemplate />
-                            </Button.Template>
-                            <Grid Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Style="{StaticResource SubtleTextStyle}"
-                                           Text="+"
-                                           FontSize="46"
-                                           FontWeight="SemiBold"
-                                           VerticalAlignment="Center"
-                                           Margin="0,-8,0,0"
-                                           HorizontalAlignment="Center" />
-                                <TextBlock Style="{StaticResource SubtleTextStyle}"
-                                           Text="add a subtask"
-                                           FontSize="20"
-                                           VerticalAlignment="Center"
-                                           Grid.Column="1"
-                                           Margin="5,0,0,0" />
+                                </StackPanel>
                             </Grid>
-                        </Button>
-                    </StackPanel>
-                </Border>
+                        </StackPanel>
+                    </Grid>
+                </Button>
 
-            </StackPanel>
+                <!--Show Subtasks-->
+                <ToggleButton Grid.Column="2"
+                              Margin="4,0,0,0"
+                              Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
+                              IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
+                              VerticalAlignment="Top">
+                    <ToggleButton.Template>
+                        <ControlTemplate>
+                            <Border x:Name="RootBorder"
+                                    Background="Transparent"
+                                    Height="60"
+                                    Width="54">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksArrow"
+                                                                               Storyboard.TargetProperty="RotationX">
+                                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                            Value="180" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Unchecked" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border.Projection>
+                                    <PlaneProjection x:Name="SubtasksArrow"
+                                                     RotationX="0"
+                                                     CenterOfRotationY="0.53" />
+                                </Border.Projection>
+                                <TextBlock x:Name="Arrow"
+                                           Text="&#xe019;"
+                                           Foreground="{StaticResource SubtleBrush}"
+                                           FontSize="32"
+                                           FontFamily="Segoe UI Symbol"
+                                           VerticalAlignment="Center"
+                                           Margin="0,-6,0,0"
+                                           IsHitTestVisible="False" />
+                            </Border>
+                        </ControlTemplate>
+                    </ToggleButton.Template>
+                </ToggleButton>
+            </Grid>
 
             <!--Checkbox-->
             <Button x:Name="CheckboxButton"
-                    Grid.Column="0"
                     Width="60"
                     Visibility="{Binding Current.ShowTaskCheckBox, 
                                          Converter={StaticResource BooleanToVisibilityConverter}, 
@@ -546,8 +501,8 @@
 
                 <Border Tap="Checkbox_Tap"
                         Background="Transparent"
-                        VerticalAlignment="Top"
-                        Margin="10,10,0,0"
+                        VerticalAlignment="Center"
+                        Margin="10,0,0,0"
                         Width="50"
                         Height="50"
                         HorizontalAlignment="Left">
@@ -556,6 +511,60 @@
                                   IsHitTestVisible="False" />
                 </Border>
             </Button>
+
+            <!--Podúkoly-->
+            <Border Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="3,0,0,0"
+                    Visibility="{Binding ShowSubtasks, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel x:Name="SubtasksStackPanel"
+                            Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
+                    <!--Seznam podúkolů-->
+                    <ItemsControl x:Name="SubtasksItemsControl"
+                                  ItemsSource="{Binding Subtasks}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <controls:SubtaskItem x:Name="SubtasksItemsControl"
+                                                      Subtask="{Binding}"
+                                                      IsCompleted="{Binding IsCompleted}"
+                                                      Click="SubtaskItem_Check"
+                                                      Check="SubtaskItem_Check"
+                                                      SwipeLeft="SubtaskItem_SwipeLeft"
+                                                      SwipeRight="SubtaskItem_SwipeRight" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!--Přidat podúkol-->
+                    <Button Height="45"
+                            Click="SubtaskAdd_Click"
+                            Margin="0,-4,0,0">
+                        <Button.Template>
+                            <ControlTemplate />
+                        </Button.Template>
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource AccentTextStyle}"
+                                       Text="+"
+                                       FontSize="46"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"
+                                       Margin="0,-8,0,0"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock Style="{StaticResource AccentTextStyle}"
+                                       Text="add a subtask"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="1"
+                                       Margin="5,0,0,0" />
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </Border>
 
             <!--Swipe left gesture icon-->
             <ContentControl Grid.ColumnSpan="2"
@@ -579,6 +588,8 @@
                     <SolidColorBrush Color="{StaticResource SubtleColor}" />
                 </ContentControl.Foreground>
             </ContentControl>
+
+       
         </Grid>
     </Border>
 
