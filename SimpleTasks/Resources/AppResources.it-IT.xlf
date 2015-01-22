@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="it-IT" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="4.8.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="it-IT" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="4.8.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.1.1250.0" tool-company="Microsoft" />
     </header>
@@ -24,6 +24,7 @@
         <trans-unit id="Resx/AppBarAbout" translate="yes" xml:space="preserve">
           <source>about</source>
           <target state="signed-off">informazioni su</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBar item</note>
         </trans-unit>
         <trans-unit id="Resx/AppBarSave" translate="yes" xml:space="preserve">
           <source>save</source>
@@ -99,7 +100,7 @@
         <trans-unit id="Resx/AppBarActivate" translate="yes" xml:space="preserve">
           <source>activate</source>
           <target state="signed-off">attivato</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">activate task</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button activate task</note>
           </trans-unit>
         <trans-unit id="Resx/AppBarDeleteCompleted" translate="yes" xml:space="preserve">
           <source>delete completed tasks</source>
@@ -140,12 +141,12 @@
         <trans-unit id="Resx/AboutContactUs" translate="yes" xml:space="preserve">
           <source>contact us</source>
           <target state="signed-off">contattaci</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar button</note>
           </trans-unit>
         <trans-unit id="Resx/AboutRateReview" translate="yes" xml:space="preserve">
           <source>rate and review</source>
           <target state="signed-off">Esprimi un giudizio</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar button</note>
           </trans-unit>
         <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
           <source>Default date</source>
@@ -211,11 +212,12 @@
         <trans-unit id="Resx/AboutEmailSubject" translate="yes" xml:space="preserve">
           <source>Feedback for {0} {1}</source>
           <target state="signed-off">Feedback for {0} {1}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; Email subject: Feedback for {AppliactionName} {Version}</note>
           </trans-unit>
         <trans-unit id="Resx/AboutVersion" translate="yes" xml:space="preserve">
           <source>Version</source>
-          <target state="signed-off">Versione</target></trans-unit>
+          <target state="signed-off">Versione</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note></trans-unit>
         <trans-unit id="Resx/DueDate" translate="yes" xml:space="preserve">
           <source>due date</source>
           <target state="signed-off">data impegno</target>
@@ -256,11 +258,6 @@
           <source>upcoming</source>
           <target state="signed-off">presto</target>
         </trans-unit>
-        <trans-unit id="Resx/SettingsPinTile" translate="yes" xml:space="preserve">
-          <source>In the App list, tap and hold the {0} app, and then tap Pin to start.</source>
-          <target state="signed-off">Nell'elenco delle app, tieni premuta {0} l'app. Poi, premi "pin su start".</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">{0} is application name</note>
-          </trans-unit>
         <trans-unit id="Resx/AppBarCancel" translate="yes" xml:space="preserve">
           <source>cancel</source>
           <target state="signed-off">cancella</target>
@@ -312,6 +309,7 @@
         <trans-unit id="Resx/AppBarAddBullet" translate="yes" xml:space="preserve">
           <source>add bullet</source>
           <target state="signed-off">aggiungi spunta</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button</note>
         </trans-unit>
         <trans-unit id="Resx/BulletText" translate="yes" xml:space="preserve">
           <source>bullet</source>
@@ -506,6 +504,7 @@
         <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
           <source>add</source>
           <target state="signed-off">aggiungi</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note>
         </trans-unit>
         <trans-unit id="Resx/SubtaskAdd" translate="yes" xml:space="preserve">
           <source>Add a subtask</source>
@@ -913,10 +912,12 @@ E' ancora una funzione beta.</target></trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
           <target state="signed-off">Autore</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
         </trans-unit>
         <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
           <source>Translation</source>
           <target state="signed-off">Traduzione</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>

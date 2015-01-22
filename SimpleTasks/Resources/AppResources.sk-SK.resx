@@ -137,11 +137,11 @@
   </data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>kontaktujte nás</value>
-    <comment>AboutPage; AppBar</comment>
+    <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
     <value>ohodnotiť</value>
-    <comment>AboutPage; AppBar</comment>
+    <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
     <value>Odstrániť dokončené úlohy</value>
@@ -167,10 +167,11 @@
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
     <value>Spätná väzba pre {0} {1}</value>
-    <comment>Feedback for {AppliactionName} {Version}</comment>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Verzia</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="NoTasks" xml:space="preserve">
     <value>Žiadne úlohy</value>
@@ -211,6 +212,7 @@
   </data>
   <data name="AppBarAbout" xml:space="preserve">
     <value>o aplikácii</value>
+    <comment>AppBar item</comment>
   </data>
   <data name="AppBarNew" xml:space="preserve">
     <value>nový</value>
@@ -250,7 +252,7 @@
   </data>
   <data name="AppBarActivate" xml:space="preserve">
     <value>aktivovať</value>
-    <comment>activate task</comment>
+    <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarUnpinTile" xml:space="preserve">
     <value>odopnúť dlaždicu</value>
@@ -284,10 +286,6 @@
   </data>
   <data name="DateSomeday" xml:space="preserve">
     <value>jedného dňa</value>
-  </data>
-  <data name="SettingsPinTile" xml:space="preserve">
-    <value>V zozname aplikácií ťuknite na aplikáciu {0}, podržte ju a potom ťuknite na položku Pripnúť na domovskú obrazovku.</value>
-    <comment>{0} is application name</comment>
   </data>
   <data name="SettingsTile" xml:space="preserve">
     <value>dlaždice</value>
@@ -342,6 +340,7 @@
   </data>
   <data name="AppBarAddBullet" xml:space="preserve">
     <value>pridať odrážku</value>
+    <comment>EditTaskPage; AppBar button</comment>
   </data>
   <data name="BulletText" xml:space="preserve">
     <value>odrážka</value>
@@ -506,6 +505,7 @@
   </data>
   <data name="AppBarAddSubtask" xml:space="preserve">
     <value>pridať</value>
+    <comment>AppBar button add subtask</comment>
   </data>
   <data name="TaskText" xml:space="preserve">
     <value>úloha</value>
@@ -698,9 +698,11 @@ Táto funkcia je stále v beta verzii.</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Autor</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="AboutTranslation" xml:space="preserve">
     <value>Preklad</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Akcia pre gesto potiahnutia doprava</value>

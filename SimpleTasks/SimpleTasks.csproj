@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>cs-CZ;de-DE;it-IT;ru-RU;sk-SK</SupportedCultures>
+    <SupportedCultures>cs-CZ;de-DE;it-IT;ru-RU;sk-SK;uk-UA</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SimpleTasks_$(Configuration)_$(Platform).xap</XapFilename>
@@ -315,6 +315,12 @@
       <DependentUpon>AppResources.sk-SK.xlf</DependentUpon>
       <culture>sk-SK</culture>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.uk-UA.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.uk-UA.xlf</DependentUpon>
+      <culture>uk-UA</culture>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="Resources\AppResources.cs-CZ.xlf">
@@ -336,6 +342,10 @@
     <XliffResource Include="Resources\AppResources.sk-SK.xlf">
       <Generator>XliffResxGenerator</Generator>
       <LastGenOutput>AppResources.sk-SK.resx</LastGenOutput>
+    </XliffResource>
+    <XliffResource Include="Resources\AppResources.uk-UA.xlf">
+      <Generator>XliffResxGenerator</Generator>
+      <LastGenOutput>AppResources.uk-UA.resx</LastGenOutput>
     </XliffResource>
   </ItemGroup>
   <ItemGroup>
@@ -517,7 +527,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

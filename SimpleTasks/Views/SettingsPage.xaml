@@ -191,9 +191,6 @@
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"
                                       IsChecked="{Binding EnableTile, Mode=TwoWay}"
                                       Content="{Binding LocalizedResources.SettingsEnableTile, Source={StaticResource LocalizedStrings}}" />
-                        <TextBlock x:Name="PinTileTextBox"
-                                   Text="Pin tile help text."
-                                   Style="{StaticResource HelpTextStyle}" />
 
                         <!--Unpin Completed-->
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"

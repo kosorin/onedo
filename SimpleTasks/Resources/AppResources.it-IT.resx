@@ -185,7 +185,7 @@
   </data>
   <data name="AppBarActivate" xml:space="preserve">
     <value>attivato</value>
-    <comment>activate task</comment>
+    <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>cancella gli impegni completati</value>
@@ -217,11 +217,11 @@
   </data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>contattaci</value>
-    <comment>AboutPage; AppBar</comment>
+    <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
     <value>Esprimi un giudizio</value>
-    <comment>AboutPage; AppBar</comment>
+    <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="SettingsDefaultDate" xml:space="preserve">
     <value>Data di default</value>
@@ -331,6 +331,7 @@
   </data>
   <data name="AppBarAddBullet" xml:space="preserve">
     <value>aggiungi spunta</value>
+    <comment>EditTaskPage; AppBar button</comment>
   </data>
   <data name="BulletText" xml:space="preserve">
     <value>spunta</value>
@@ -427,6 +428,7 @@
   </data>
   <data name="AppBarAddSubtask" xml:space="preserve">
     <value>aggiungi</value>
+    <comment>AppBar button add subtask</comment>
   </data>
   <data name="SubtaskAdd" xml:space="preserve">
     <value>Aggiungi sub- impegno</value>
@@ -558,17 +560,15 @@
   </data>
   <data name="AppBarAbout" xml:space="preserve">
     <value>informazioni su</value>
+    <comment>AppBar item</comment>
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
     <value>Feedback for {0} {1}</value>
-    <comment>Feedback for {AppliactionName} {Version}</comment>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Versione</value>
-  </data>
-  <data name="SettingsPinTile" xml:space="preserve">
-    <value>Nell'elenco delle app, tieni premuta {0} l'app. Poi, premi "pin su start".</value>
-    <comment>{0} is application name</comment>
+    <comment>AboutPage;</comment>
   </data>
   <data name="AppBarPin" xml:space="preserve">
     <value>pin</value>
@@ -693,9 +693,11 @@ E' ancora una funzione beta.</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Autore</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="AboutTranslation" xml:space="preserve">
     <value>Traduzione</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Azioni swipe destra</value>

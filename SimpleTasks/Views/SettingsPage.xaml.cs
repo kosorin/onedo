@@ -28,7 +28,6 @@ namespace SimpleTasks.Views
         {
             InitializeComponent();
             DataContext = Settings.Current;
-            PinTileTextBox.Text = PinTileHelpText;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -81,10 +80,6 @@ namespace SimpleTasks.Views
 
             _isSetThemeListPicker = true;
         }
-
-        #region Pin Tile
-        public string PinTileHelpText { get { return string.Format(AppResources.SettingsPinTile, AppInfo.Name); } }
-        #endregion // end of Pin Tile
 
         #region Default Time
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)

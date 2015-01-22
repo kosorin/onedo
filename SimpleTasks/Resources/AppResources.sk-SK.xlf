@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="sk-SK" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="4.8.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="sk-SK" original="AppResources.resx" tool-id="MultilingualAppToolkit" product-name="SimpleTasks" product-version="4.8.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.1.1250.0" tool-company="Microsoft" />
     </header>
@@ -71,6 +71,7 @@
         <trans-unit translate="yes" id="Resx/AppBarAbout" xml:space="preserve">
           <source>about</source>
           <target state="signed-off">o aplikácii</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBar item</note>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarNew" xml:space="preserve">
           <source>new</source>
@@ -134,17 +135,17 @@
         <trans-unit translate="yes" id="Resx/AppBarActivate" xml:space="preserve">
           <source>activate</source>
           <target state="signed-off" state-qualifier="tm-suggestion">aktivovať</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">activate task</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button activate task</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutContactUs" xml:space="preserve">
           <source>contact us</source>
           <target state="signed-off" state-qualifier="tm-suggestion">kontaktujte nás</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar button</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutRateReview" xml:space="preserve">
           <source>rate and review</source>
           <target state="signed-off">ohodnotiť</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; AppBar button</note>
           </trans-unit>
         <trans-unit id="Resx/SettingsDefaultDate" translate="yes" xml:space="preserve">
           <source>Default date</source>
@@ -210,11 +211,12 @@
         <trans-unit translate="yes" id="Resx/AboutEmailSubject" xml:space="preserve">
           <source>Feedback for {0} {1}</source>
           <target state="signed-off" state-qualifier="mt-suggestion">Spätná väzba pre {0} {1}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Feedback for {AppliactionName} {Version}</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage; Email subject: Feedback for {AppliactionName} {Version}</note>
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version</source>
-          <target state="signed-off">Verzia</target></trans-unit>
+          <target state="signed-off">Verzia</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note></trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Predvolený čas</target>
@@ -247,11 +249,6 @@
           <source>upcoming</source>
           <target state="signed-off">nadchádzajúce</target>
         </trans-unit>
-        <trans-unit translate="yes" id="Resx/SettingsPinTile" xml:space="preserve">
-          <source>In the App list, tap and hold the {0} app, and then tap Pin to start.</source>
-          <target state="signed-off">V zozname aplikácií ťuknite na aplikáciu {0}, podržte ju a potom ťuknite na položku Pripnúť na domovskú obrazovku.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">{0} is application name</note>
-          </trans-unit>
         <trans-unit translate="yes" id="Resx/SettingsTile" xml:space="preserve">
           <source>tiles</source>
           <target state="signed-off" state-qualifier="tm-suggestion">dlaždice</target></trans-unit>
@@ -280,6 +277,7 @@
         <trans-unit translate="yes" id="Resx/AppBarAddBullet" xml:space="preserve">
           <source>add bullet</source>
           <target state="signed-off">pridať odrážku</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button</note>
         </trans-unit>
         <trans-unit translate="yes" id="Resx/BulletText" xml:space="preserve">
           <source>bullet</source>
@@ -353,7 +351,8 @@
           </trans-unit>
         <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
           <source>add</source>
-          <target state="signed-off">pridať</target></trans-unit>
+          <target state="signed-off">pridať</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note></trans-unit>
         <trans-unit id="Resx/TaskText" translate="yes" xml:space="preserve">
           <source>task</source>
           <target state="signed-off">úloha</target>
@@ -692,10 +691,12 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         <trans-unit id="Resx/AboutAuthor" translate="yes" xml:space="preserve">
           <source>Author</source>
           <target state="signed-off">Autor</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
         </trans-unit>
         <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
           <source>Translation</source>
           <target state="signed-off">Preklad</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>

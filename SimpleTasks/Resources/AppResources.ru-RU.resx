@@ -135,6 +135,7 @@
   </data>
   <data name="AppBarAbout" xml:space="preserve">
     <value>о приложении</value>
+    <comment>AppBar item</comment>
   </data>
   <data name="AppBarSave" xml:space="preserve">
     <value>сохранить</value>
@@ -192,7 +193,7 @@
   </data>
   <data name="AppBarActivate" xml:space="preserve">
     <value>сделать активной</value>
-    <comment>activate task</comment>
+    <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>удалить выполненные задачи</value>
@@ -224,11 +225,11 @@
   </data>
   <data name="AboutContactUs" xml:space="preserve">
     <value>связаться с нами</value>
-    <comment>AboutPage; AppBar</comment>
+    <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
     <value>оценки и отзывы</value>
-    <comment>AboutPage; AppBar</comment>
+    <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="SettingsDefaultDate" xml:space="preserve">
     <value>День по умолчанию</value>
@@ -278,10 +279,11 @@
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
     <value>Обратная связь для {0} {1}</value>
-    <comment>Feedback for {AppliactionName} {Version}</comment>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Версия</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>срок</value>
@@ -312,10 +314,6 @@
   </data>
   <data name="DateUpcoming" xml:space="preserve">
     <value>предстоящие</value>
-  </data>
-  <data name="SettingsPinTile" xml:space="preserve">
-    <value>В списке приложений зажмите иконку {0}, выберите - закрепить на начальный экран.</value>
-    <comment>{0} is application name</comment>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
     <value>отменить</value>
@@ -355,6 +353,7 @@
   </data>
   <data name="AppBarAddBullet" xml:space="preserve">
     <value>добавить подпункт</value>
+    <comment>EditTaskPage; AppBar button</comment>
   </data>
   <data name="BulletText" xml:space="preserve">
     <value>подпункт</value>
@@ -506,6 +505,7 @@
   </data>
   <data name="AppBarAddSubtask" xml:space="preserve">
     <value>добавить</value>
+    <comment>AppBar button add subtask</comment>
   </data>
   <data name="SubtaskAdd" xml:space="preserve">
     <value>Добавить подзадачу</value>
@@ -680,9 +680,11 @@
   </data>
   <data name="AboutTranslation" xml:space="preserve">
     <value>Перевод</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Автор</value>
+    <comment>AboutPage;</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>тема</value>

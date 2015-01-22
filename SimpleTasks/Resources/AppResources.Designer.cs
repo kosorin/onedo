@@ -1407,15 +1407,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the App list, tap and hold the {0} app, and then tap Pin to start..
-        /// </summary>
-        public static string SettingsPinTile {
-            get {
-                return ResourceManager.GetString("SettingsPinTile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show task check box.
         /// </summary>
         public static string SettingsShowTaskCheckBox {
