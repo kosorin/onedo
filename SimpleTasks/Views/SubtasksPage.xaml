@@ -181,7 +181,6 @@
                                                                     BorderThickness="0"
                                                                     Foreground="{StaticResource NormalBrush}"
                                                                     FontFamily="{StaticResource DefaultFontFamily}"
-                                                                    FontWeight="{StaticResource DefaultFontWeight}"
                                                                     FontSize="24"
                                                                     HorizontalContentAlignment="Stretch"
                                                                     VerticalContentAlignment="Stretch" />

@@ -797,7 +797,6 @@
 
             <!--Region TextBlock-->
             <FontFamily x:Key="DefaultFontFamily">Segoe WP</FontFamily>
-            <FontWeight x:Key="DefaultFontWeight">Light</FontWeight>
 
             <Style x:Key="NormalTextStyle"
                    TargetType="TextBlock">

@@ -299,7 +299,7 @@
                                         <ContentControl Style="{StaticResource HighPriorityIconStyle}"
                                                         Foreground="{StaticResource AccentBrush}"
                                                         Opacity="1"
-                                                        Margin="-10,8,0,0">
+                                                        Margin="-10,6,0,2">
                                         </ContentControl>
                                     </Viewbox>
 
@@ -310,7 +310,7 @@
                                         <ContentControl Style="{StaticResource LowPriorityIconStyle}"
                                                         Foreground="{StaticResource SubtleBrush}"
                                                         Opacity=".6"
-                                                        Margin="-6,8,0,0">
+                                                        Margin="-6,6,0,2">
                                         </ContentControl>
                                     </Viewbox>
                                 </Grid>
