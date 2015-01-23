@@ -5,6 +5,8 @@ using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
 using System.Windows;
 using SimpleTasks.Core.Models;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SimpleTasks.Conventers
 {
@@ -38,69 +40,30 @@ namespace SimpleTasks.Conventers
                 return defaultString;
             }
 
-            int days = (int)(date.Date - DateTimeExtensions.Today).TotalDays;
-
-            string dayOfWeek = date.ToString("dddd", CultureInfo.CurrentCulture);
-            string monthDay = date.ToString("M", CultureInfo.CurrentCulture);
+            string dayOfWeek = date.ToString("ddd", CultureInfo.CurrentCulture);
+            string monthDay = date.ToString("d", CultureInfo.CurrentCulture);
             string shortTime = date.ToShortTimeString();
 
-            if (days >= 0)
+            if (date.Date >= DateTimeExtensions.Today)
             {
-                int daysToEndOfActualWeek = (int)(DateTimeExtensions.LastDayOfActualWeek - DateTimeExtensions.Today).TotalDays;
-                int daysToEndOfNextWeek = (int)(DateTimeExtensions.LastDayOfNextWeek - DateTimeExtensions.Today).TotalDays;
-                int daysToEndOfActualMonth = (int)(DateTimeExtensions.LastDayOfActualMonth - DateTimeExtensions.Today).TotalDays;
-                int daysToEndOfNextMonth = (int)(DateTimeExtensions.LastDayOfNextMonth - DateTimeExtensions.Today).TotalDays;
-
-                if (days == 0)
+                if (date.Date == DateTimeExtensions.Today || date.Date == DateTimeExtensions.Tomorrow)
                 {
-                    return string.Format("{0}, {1}", AppResources.DateToday, shortTime);
-                }
-                else if (days == 1)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateTomorrow, shortTime);
+                    return shortTime;
                 }
                 else if (date.Date <= DateTimeExtensions.LastDayOfActualWeek || date.Date <= DateTimeExtensions.Today.AddDays(5).Date)
                 {
-                    return string.Format("{0}, {1}", dayOfWeek, shortTime);
+                    return dayOfWeek;
                 }
-                else if (days > daysToEndOfActualWeek && days <= daysToEndOfNextWeek)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateNextWeek, dayOfWeek);
-                }
-                else if (days > daysToEndOfNextWeek && days <= daysToEndOfActualMonth)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateThisMonth, monthDay);
-                }
-                else if (days > daysToEndOfActualMonth && days <= daysToEndOfNextMonth)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateNextMonth, monthDay);
-                }
-                else if (days > daysToEndOfNextMonth && date.Year == DateTime.Today.Year)
+                else
                 {
                     return monthDay;
                 }
             }
             else
             {
-                if (days == -1)
+                if (date.Date == DateTimeExtensions.Yesterday)
                 {
-                    return string.Format("{0}, {1}", AppResources.DateYesterday, shortTime);
-                }
-                else if (date.Date >= DateTimeExtensions.FirstDayOfActualWeek)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateThisWeek, dayOfWeek);
-                }
-                else if (date.Date >= DateTimeExtensions.FirstDayOfPreviousWeek)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateLastWeek, dayOfWeek);
-                }
-                else if (date.Date >= DateTimeExtensions.FirstDayOfActualMonth)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateThisMonth, monthDay);
-                }
-                else if (date.Date >= DateTimeExtensions.FirstDayOfPreviousMonth)
-                {
-                    return string.Format("{0}, {1}", AppResources.DateLastWeek, monthDay);
+                    return AppResources.DateYesterday;
                 }
                 else if (date.Year == DateTime.Today.Year)
                 {

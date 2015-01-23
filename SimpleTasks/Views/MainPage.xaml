@@ -26,8 +26,9 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
+                    <!--Nadpis-->
                     <Border Background="{StaticResource AccentBrush}"
-                            Padding="15,4,16,8"
+                            Padding="24,4,24,8"
                             HorizontalAlignment="Left"
                             Grid.Column="0">
                         <TextBlock Text="{Binding Title}"
@@ -36,10 +37,12 @@
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
                     </Border>
-                    <TextBlock Style="{StaticResource SubtleTextStyle}"
+                    
+                    <!--Počet úkolů-->
+                    <TextBlock Style="{StaticResource SlightTextStyle}"
                                Text="{Binding Count, Converter={StaticResource TaskGroupCountConverter}}"
                                VerticalAlignment="Center"
-                               Margin="12,0,0,0"
+                               Margin="24,0,0,0"
                                Grid.Column="1"
                                FontSize="16"
                                HorizontalAlignment="Left" />
@@ -53,12 +56,19 @@
                 </Grid>
             </Border>
         </DataTemplate>
+        
+        <!--List Footer-->
+        <DataTemplate x:Key="TasksLongListSelectorGroupFooterTemmplate">
+            <Border toolkit:TiltEffect.SuppressTilt="True"
+                    Background="{x:Null}"
+                    Height="12" />
+        </DataTemplate>
 
         <!--List Task-->
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <controls:TaskItem DataContext="{Binding}"
+                               HasDetail="{Binding HasDetail}"
                                IsCompleted="{Binding IsCompleted}"
-                               IsScheduled="{Binding Wrapper.IsScheduled}"
                                Click="TaskItem_Click"
                                Check="TaskItem_Check"
                                SwipeLeft="TaskItem_SwipeLeft"
@@ -91,6 +101,7 @@
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
+                                    GroupFooterTemplate="{StaticResource TasksLongListSelectorGroupFooterTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
                                     HideEmptyGroups="True">

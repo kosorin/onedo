@@ -11,11 +11,24 @@
              FontSize="{StaticResource PhoneFontSizeNormal}"
              Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="200"
-             d:DesignWidth="400"
+             d:DesignWidth="350"
              x:Name="Control">
 
+    <UserControl.Resources>
+        <Style x:Key="InfoTextStyle"
+               BasedOn="{StaticResource SubtleTextStyle}"
+               TargetType="TextBlock">
+            <Setter Property="Opacity"
+                    Value="1" />
+            <Setter Property="FontSize"
+                    Value="18" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+        </Style>
+    </UserControl.Resources>
+
     <Border x:Name="RootBorder"
-            Margin="0,6">
+            Margin="0,12,0,0">
         <VisualStateManager.VisualStateGroups>
 
             <!--CompleteStates-->
@@ -42,24 +55,13 @@
                 <!--Completed-->
                 <VisualState x:Name="Completed">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DateTextBlock"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoTransform"
-                                                       Storyboard.TargetProperty="Y">
-                            <DiscreteDoubleKeyFrame KeyTime="0"
-                                                    Value="-10" />
-                        </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskInfoStackPanel"
-                                                       Storyboard.TargetProperty="Height">
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="InfoPanel"
+                                                       Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
@@ -69,7 +71,7 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DetailWrapper"
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DetailTextBlock"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
@@ -151,25 +153,6 @@
 
             </VisualStateGroup>
 
-            <!--ScheduledStates-->
-            <VisualStateGroup x:Name="ScheduledStates">
-
-                <!--Scheduled-->
-                <VisualState x:Name="Scheduled" />
-
-                <!--NotScheduled-->
-                <VisualState x:Name="NotScheduled">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DateIconControl"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource CalendarIconStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-
-            </VisualStateGroup>
-
             <!--DeletedStates-->
             <VisualStateGroup x:Name="DeletedStates">
                 <VisualStateGroup.Transitions>
@@ -234,6 +217,9 @@
             <Border Background="Green"
                     Grid.Column="1"
                     Grid.Row="1"
+                    Opacity="0.2" />
+            <Border Background="Blue"
+                    Grid.Row="1"
                     Opacity="0.2" />-->
 
             <!--Barva-->
@@ -265,131 +251,126 @@
             </Border>
 
             <!--Info-->
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1"
+                  Margin="16,0,24,0"
+                  MinHeight="60"
+                  Background="Transparent"
+                  ManipulationStarted="InfoGrid_ManipulationStarted"
+                  ManipulationCompleted="InfoGrid_ManipulationCompleted"
+                  ManipulationDelta="InfoGrid_ManipulationDelta">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+
                 <Button Tap="Task_Tap">
                     <Button.Template>
-                        <ControlTemplate TargetType="ButtonBase" />
+                        <ControlTemplate />
                     </Button.Template>
+                    <StackPanel VerticalAlignment="Center"
+                                Background="Transparent">
 
-                    <Grid Background="Transparent"
-                          ManipulationStarted="InfoGrid_ManipulationStarted"
-                          ManipulationCompleted="InfoGrid_ManipulationCompleted"
-                          ManipulationDelta="InfoGrid_ManipulationDelta"
-                          Margin="0,0,0,4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <!--Horní info-->
-                        <Grid MinHeight="60">
+                        <!--Název + datum-->
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            
-                            <!--Vysoká/nízká priorita-->
-                            <Grid x:Name="TaskPriorityGrid"
-                                  Margin="0,5,0,0">
-                                <!--Vysoká priorita-->
-                                <Border Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                    Foreground="{StaticResource AccentBrush}"
-                                                    Opacity="1"
-                                                    Margin="-5,0,-16,50"
-                                                    MaxHeight="0">
-                                    </ContentControl>
-                                </Border>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                                <!--Nízká priorita-->
-                                <Border Visibility="{Binding IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <ContentControl Style="{StaticResource LowPriorityIconStyle}"
-                                                    Foreground="{StaticResource SubtleBrush}"
-                                                    Opacity=".6"
-                                                    Margin="-5,0,-16,40"
-                                                    MaxHeight="0"
-                                                    RenderTransformOrigin="0.5,0.5">
-                                        <ContentControl.RenderTransform>
-                                            <CompositeTransform ScaleX="0.75"
-                                                                ScaleY="0.75" />
-                                        </ContentControl.RenderTransform>
-                                    </ContentControl>
-                                </Border>
-                            </Grid>
+                            <!--Název + priorita-->
+                            <Grid x:Name="TitleWrapper"
+                                  Grid.RowSpan="2"
+                                  VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <!--Název+detaul-->
-                            <StackPanel Margin="13,0,0,0"
-                                        VerticalAlignment="Center"
-                                        Grid.Column="1">
+                                <!--Vysoká/nízká priorita-->
+                                <Grid x:Name="TaskPriorityGrid">
+                                    <!--Vysoká priorita-->
+                                    <Viewbox Height="040"
+                                             Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Margin="0,0,2,0">
+                                        <ContentControl Style="{StaticResource HighPriorityIconStyle}"
+                                                        Foreground="{StaticResource AccentBrush}"
+                                                        Opacity="1"
+                                                        Margin="-10,8,0,0">
+                                        </ContentControl>
+                                    </Viewbox>
+
+                                    <!--Nízká priorita-->
+                                    <Viewbox Height="35"
+                                             Visibility="{Binding IsLowPriority, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                             Margin="0,0,4,0">
+                                        <ContentControl Style="{StaticResource LowPriorityIconStyle}"
+                                                        Foreground="{StaticResource SubtleBrush}"
+                                                        Opacity=".6"
+                                                        Margin="-6,8,0,0">
+                                        </ContentControl>
+                                    </Viewbox>
+                                </Grid>
 
                                 <!--Název-->
                                 <controls:ToggleControl IsChecked="{Binding IsCompleted}"
-                                                        Content="{Binding Title, FallbackValue=Test title}"
+                                                        Grid.Column="1"
+                                                        Content="{Binding Title, FallbackValue='Test title'}"
                                                         Style="{StaticResource TaskCheckBoxTextStyle}"
                                                         IsHitTestVisible="False"
-                                                        FontSize="32" />
+                                                        FontSize="30"
+                                                        HorizontalAlignment="Left" />
+                            </Grid>
 
-                                <!--Detail-->
-                                <Border x:Name="DetailWrapper"
-                                        Opacity="0.8"
-                                        Visibility="{Binding Detail, Converter={StaticResource NullOrEmptyToVisibilityConverter}}"
-                                        Margin="0,0,0,4">
-                                    <TextBlock Text="{Binding Detail}"
-                                               Style="{StaticResource SubtleTextStyle}"
-                                               Opacity="0.8"
-                                               FontSize="18"
-                                               FontWeight="Normal"
-                                               TextWrapping="NoWrap"
-                                               TextTrimming="WordEllipsis" />
-                                </Border>
+                            <!--Detail-->
+                            <TextBlock x:Name="DetailTextBlock"
+                                       Grid.Row="1"
+                                       Text="{Binding Detail, FallbackValue='Detail dummy, Lorem ipsum'}"
+                                       Style="{StaticResource InfoTextStyle}"
+                                       Visibility="{Binding HasDetail, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="WordEllipsis"
+                                       Margin="0,0,0,8"
+                                       VerticalAlignment="Top" />
+
+                            <!--Datum-->
+                            <TextBlock x:Name="DateTextBlock"
+                                       Grid.Column="1"
+                                       Text="{Binding ActualDueDate, FallbackValue='Led 21', Converter={StaticResource TaskToDueStringConverter}}"
+                                       Style="{StaticResource InfoTextStyle}"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       Margin="8,0,0,3"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right" />
+
+                            <!--Info-->
+                            <StackPanel x:Name="InfoPanel"
+                                        Orientation="Horizontal"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        MaxHeight="24"
+                                        Margin="8,0,0,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top">
+                                <Viewbox Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Style="{StaticResource ReminderIconStyle}"
+                                                    Foreground="{StaticResource SlightBrush}" />
+                                </Viewbox>
+                                <Viewbox Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <ContentControl Style="{StaticResource RepeatsIconStyle}"
+                                                    Foreground="{StaticResource SlightBrush}" />
+                                </Viewbox>
                             </StackPanel>
                         </Grid>
-
-                        <!--Datum-->
-                        <StackPanel x:Name="TaskInfoStackPanel"
-                                    Opacity="0.8"
-                                    Grid.Row="1"
-                                    Orientation="Horizontal"
-                                    Height="30"
-                                    Visibility="{Binding HasDueDate, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    RenderTransformOrigin="0.5,0.5">
-                            <StackPanel.RenderTransform>
-                                <TranslateTransform x:Name="TaskInfoTransform"
-                                                    Y="0" />
-                            </StackPanel.RenderTransform>
-
-                            <ContentControl x:Name="DateIconControl"
-                                            Style="{StaticResource CalendarReminderIconStyle}"
-                                            Foreground="{StaticResource SubtleBrush}"
-                                            Margin="6,-4,-14,0"
-                                            VerticalAlignment="Bottom"
-                                            Height="0">
-                                <ContentControl.RenderTransform>
-                                    <CompositeTransform ScaleX="0.55"
-                                                        ScaleY="0.55"
-                                                        TranslateX="0"
-                                                        TranslateY="-29" />
-                                </ContentControl.RenderTransform>
-                            </ContentControl>
-                            <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
-                                       Style="{StaticResource SubtleTextStyle}"
-                                       Opacity="0.8"
-                                       FontSize="18"
-                                       FontWeight="Normal"
-                                       Margin="0,-3,2,0"
-                                       VerticalAlignment="Center" />
-
-                        </StackPanel>
-                    </Grid>
+                    </StackPanel>
                 </Button>
 
                 <!--Show Subtasks-->
-                <ToggleButton Grid.Column="2"
-                              Margin="4,0,0,0"
+                <ToggleButton Grid.Column="1"
+                              Margin="0,0,-24,0"
                               Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
                               IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
                               VerticalAlignment="Center">
@@ -397,8 +378,8 @@
                         <ControlTemplate>
                             <Border x:Name="RootBorder"
                                     Background="Transparent"
-                                    Width="54"
-                                    Padding="0,10">
+                                    Padding="18,10,0,10"
+                                    Width="68">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
                                         <VisualStateGroup.Transitions>
@@ -426,8 +407,8 @@
                                 </Border.Projection>
                                 <TextBlock x:Name="Arrow"
                                            Text="&#xe019;"
-                                           Foreground="{StaticResource SubtleBrush}"
-                                           FontSize="32"
+                                           Foreground="{StaticResource SlightBrush}"
+                                           FontSize="24"
                                            FontFamily="Segoe UI Symbol"
                                            VerticalAlignment="Center"
                                            Margin="0,-6,0,0"
@@ -440,7 +421,7 @@
 
             <!--Checkbox-->
             <Button x:Name="CheckboxButton"
-                    Width="60"
+                    Width="64"
                     Visibility="{Binding Current.ShowTaskCheckBox, 
                                          Converter={StaticResource BooleanToVisibilityConverter},
                                          Source={StaticResource Settings}}">
@@ -451,9 +432,7 @@
                 <Border Tap="Checkbox_Tap"
                         Background="Transparent"
                         VerticalAlignment="Center"
-                        Margin="10,0,0,0"
-                        Width="50"
-                        Height="50"
+                        Margin="24,0,0,0"
                         HorizontalAlignment="Left">
                     <ToggleButton Style="{StaticResource TaskCheckBoxStyle}"
                                   IsChecked="{Binding IsCompleted}"
@@ -464,7 +443,7 @@
             <!--Podúkoly-->
             <Border Grid.Column="1"
                     Grid.Row="1"
-                    Margin="3,0,0,0"
+                    Margin="11,0,0,0"
                     Visibility="{Binding ShowSubtasks, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel x:Name="SubtasksStackPanel"
                             Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">

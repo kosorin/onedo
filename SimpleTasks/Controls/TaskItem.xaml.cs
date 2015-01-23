@@ -53,8 +53,6 @@ namespace SimpleTasks.Controls
 
     [TemplateVisualState(GroupName = CompleteStatesGroup, Name = CompletedState)]
     [TemplateVisualState(GroupName = CompleteStatesGroup, Name = UncompletedState)]
-    [TemplateVisualState(GroupName = ScheduledStatesGroup, Name = ScheduledState)]
-    [TemplateVisualState(GroupName = ScheduledStatesGroup, Name = NotScheduledState)]
     [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureStartDragState)]
     [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureDragOkState)]
     [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureDragState)]
@@ -159,23 +157,22 @@ namespace SimpleTasks.Controls
             if (item != null)
             {
                 item.UpdateVisualState((bool)e.NewValue ? CompletedState : UncompletedState);
-                Debug.WriteLine("----- DOKONCENI: {0} : {1}", (bool)e.NewValue, item.RootBorder.ActualHeight);
             }
         }
 
-        public bool IsScheduled
+        public bool HasDetail
         {
-            get { return (bool)GetValue(IsScheduledProperty); }
-            set { SetValue(IsScheduledProperty, value); }
+            get { return (bool)GetValue(HasDetailProperty); }
+            set { SetValue(HasDetailProperty, value); }
         }
-        public static readonly DependencyProperty IsScheduledProperty =
-            DependencyProperty.Register("IsScheduled", typeof(bool), typeof(TaskItem), new PropertyMetadata(true, IsScheduledChanged));
-        private static void IsScheduledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static readonly DependencyProperty HasDetailProperty =
+            DependencyProperty.Register("HasDetail", typeof(bool), typeof(TaskItem), new PropertyMetadata(false, HasDetailChanged));
+        private static void HasDetailChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             TaskItem item = d as TaskItem;
             if (item != null)
             {
-                item.UpdateVisualState((bool)e.NewValue ? ScheduledState : NotScheduledState);
+                Grid.SetRowSpan(item.TitleWrapper, (bool)e.NewValue ? 1 : 2);
             }
         }
 
@@ -229,12 +226,6 @@ namespace SimpleTasks.Controls
 
         private const string GestureEndDragState = "GestureEndDrag";
 
-        private const string ScheduledStatesGroup = "ScheduledStates";
-
-        private const string ScheduledState = "Scheduled";
-
-        private const string NotScheduledState = "NotScheduled";
-
         private const string DeleteStatesGroup = "DeleteStates";
 
         private const string DeletedState = "Deleted";
@@ -249,7 +240,6 @@ namespace SimpleTasks.Controls
         private void UpdateVisualStates(bool useTransitions = true)
         {
             UpdateVisualState((Task != null && Task.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
-            UpdateVisualState((Task != null && Task.GetWrapper() != null && Task.GetWrapper().IsScheduled) ? ScheduledState : NotScheduledState, useTransitions);
             UpdateVisualState(GestureEndDragState, useTransitions);
         }
         #endregion // end of Visual States
@@ -260,6 +250,7 @@ namespace SimpleTasks.Controls
             InitializeComponent();
             ResetDelete();
             UpdateVisualStates(false);
+
         }
         #endregion // end of Constructor
 

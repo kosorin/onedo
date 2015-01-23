@@ -71,8 +71,14 @@ namespace SimpleTasks.Core.Models
                 if (SetProperty(ref _detail, value))
                 {
                     Modified = DateTime.Now;
+                    OnPropertyChanged("HasDetail");
                 }
             }
+        }
+
+        public bool HasDetail
+        {
+            get { return !string.IsNullOrEmpty(Detail); }
         }
         #endregion
 
