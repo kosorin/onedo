@@ -385,6 +385,11 @@
                                                     <DiscreteDoubleKeyFrame KeyTime="0"
                                                                             Value="180" />
                                                 </DoubleAnimationUsingKeyFrames>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="ArrowForeground"
+                                                                              Storyboard.TargetProperty="Color">
+                                                    <DiscreteColorKeyFrame KeyTime="0"
+                                                                           Value="{StaticResource AccentColor}" />
+                                                </ColorAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Unchecked" />
@@ -397,12 +402,16 @@
                                 </Border.Projection>
                                 <TextBlock x:Name="Arrow"
                                            Text="&#xe019;"
-                                           Foreground="{StaticResource SlightBrush}"
                                            FontSize="24"
                                            FontFamily="Segoe UI Symbol"
                                            VerticalAlignment="Center"
                                            Margin="0,0,0,-4"
-                                           IsHitTestVisible="False" />
+                                           IsHitTestVisible="False">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush x:Name="ArrowForeground"
+                                                         Color="{StaticResource SubtleColor}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
                             </Border>
                         </ControlTemplate>
                     </ToggleButton.Template>
@@ -453,7 +462,7 @@
                     </ItemsControl>
 
                     <!--Přidat podúkol-->
-                    <Button Height="48"
+                    <Button Height="50"
                             Click="SubtaskAdd_Click">
                         <Button.Template>
                             <ControlTemplate />
@@ -463,22 +472,25 @@
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Style="{StaticResource AccentTextStyle}"
-                                       IsHitTestVisible="False"
-                                       Text="+"
-                                       FontSize="46"
+
+                            <!--Checkbox-->
+                            <Path Width="20"
+                                  Height="20"
+                                  Stretch="Fill"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Fill="{StaticResource AccentBrush}"
+                                  Data="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z " />
+
+                            <!--Text-->
+                            <TextBlock Grid.Column="1"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding LocalizedResources.SubtaskAdd, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource AccentTextStyle}"
+                                       FontSize="18"
                                        FontWeight="SemiBold"
-                                       VerticalAlignment="Center"
-                                       Margin="0,-16,0,0"
-                                       HorizontalAlignment="Center" />
-                            <TextBlock Style="{StaticResource AccentTextStyle}"
-                                       IsHitTestVisible="False"
-                                       Text="add a subtask"
-                                       FontSize="20"
-                                       FontWeight="SemiBold"
-                                       VerticalAlignment="Center"
-                                       Grid.Column="1"
-                                       Margin="5,-8,0,0" />
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" />
                         </Grid>
                     </Button>
                 </StackPanel>
