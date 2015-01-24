@@ -10,8 +10,8 @@
                          Style="{StaticResource BasePickerPageStyle}">
 
     <Grid Style="{StaticResource BasePickerPageRootStyle}">
-        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
-                   Text="{Binding LocalizedResources.ChooseTime, Source={StaticResource LocalizedStrings}}" />
+        <TextBlock Text="{Binding LocalizedResources.ChooseTime, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
+                   Style="{StaticResource BasePickerPageHeaderStyle}" />
 
         <StackPanel VerticalAlignment="Bottom"
                     Margin="0,0,0,20">
@@ -21,7 +21,7 @@
                                       VerticalAlignment="Center" />
 
             <Grid VerticalAlignment="Bottom"
-                  Margin="15,0">
+                  Margin="12,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

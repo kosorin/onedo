@@ -1,8 +1,11 @@
-﻿using System;
+﻿using SimpleTasks.Core.Models;
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -115,6 +118,13 @@ namespace SimpleTasks.Controls
             get { return _minutes % 60; }
             private set
             {
+                if (Settings.Current.RoundMinutesTo5)
+                {
+                    int before = value;
+                    value = (int)Math.Round(value / 5.0, MidpointRounding.AwayFromZero) * 5;
+                    Debug.WriteLine("----- FROM {0} to {1}", before, value);
+                }
+
                 SetProperty(ref _minutes, value % 60);
                 RaisePropertyChanged("Time");
             }
@@ -365,6 +375,15 @@ namespace SimpleTasks.Controls
         private void MinutesAngleAnimation_Completed(object sender, EventArgs e)
         {
             MinutesAngle = MinutesAngleAnimateTo;
+        }
+
+        private void RoundMinutesTo5Button_Tap(object sender, GestureEventArgs e)
+        {
+            if (((ToggleButton)sender).IsChecked ?? false)
+            {
+                Minutes = Minutes;
+                AnimateMinutes();
+            }
         }
         #endregion
 

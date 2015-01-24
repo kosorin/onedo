@@ -23,7 +23,7 @@
             <SolidColorBrush x:Key="DarkerAccentBrush" />
             <SolidColorBrush x:Key="DarkerTasksListHeaderBackgroundBrush" />
 
-            <!--Region Lokalizace-->
+            <!--Region Lokalizace + nastavení-->
             <local:LocalizedStrings x:Key="LocalizedStrings" />
             <cmodels:Settings x:Key="Settings" />
             <!--EndRegion-->
@@ -1304,7 +1304,7 @@
                 <Setter Property="Margin"
                         Value="24,35,24,20" />
             </Style>
-
+            
             <Style x:Key="BottomBorderStyle"
                    TargetType="Border">
                 <Setter Property="VerticalAlignment"
@@ -1335,15 +1335,9 @@
 
             <Style x:Key="BasePickerPageHeaderStyle"
                    TargetType="TextBlock"
-                   BasedOn="{StaticResource LabelTextStyle}">
+                   BasedOn="{StaticResource PageHeaderTextStyle}">
                 <Setter Property="Foreground"
                         Value="{StaticResource BasePickerPageForegroundBrush}" />
-                <Setter Property="Margin"
-                        Value="24,16,24,24" />
-                <Setter Property="FontWeight"
-                        Value="SemiBold" />
-                <Setter Property="VerticalAlignment"
-                        Value="Top" />
             </Style>
 
             <Style x:Key="BasePickerQuickButtonStyle"

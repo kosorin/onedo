@@ -60,6 +60,16 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+        #region RoundMinutesTo5
+        private bool _RoundMinutesTo5 = false;
+        [DataMember(Name = "RoundMinutesTo5")]
+        public bool RoundMinutesTo5
+        {
+            get { return _RoundMinutesTo5; }
+            set { SetProperty(ref _RoundMinutesTo5, value); }
+        }
+        #endregion
+
         #region DefaultDate
         public enum DefaultDateTypes
         {

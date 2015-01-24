@@ -7,8 +7,8 @@
              xmlns:sample="clr-namespace:Expression.Blend.SampleData.RoundTimePickerDataSource"
              x:Class="SimpleTasks.Controls.RoundTimePicker"
              mc:Ignorable="d"
-             d:DesignHeight="460"
-             d:DesignWidth="460"
+             d:DesignHeight="480"
+             d:DesignWidth="480"
              d:DataContext="{d:DesignData /SampleData/RoundTimePickerDataSource/RoundTimePickerDataSource.xaml}">
 
     <UserControl.Resources>
@@ -115,10 +115,11 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+
     </UserControl.Resources>
 
-    <Grid Width="460"
-          Height="460">
+    <Grid Width="480"
+          Height="480">
 
         <!--kolečka-->
         <Grid>
@@ -285,5 +286,108 @@
                  Foreground="{StaticResource TimeForegroundBrush}" />:<Run Text="{Binding Minutes, StringFormat=D2}"
                                                                            Foreground="{StaticResource TimeForegroundBrush}" /><Run Text="{Binding AmPmText}" />
         </TextBlock>
+
+        <ToggleButton IsChecked="{Binding Current.RoundMinutesTo5, Source={StaticResource Settings}, Mode=TwoWay}"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom"
+                      Margin="0,0,18,4"
+                      Tap="RoundMinutesTo5Button_Tap">
+            <ToggleButton.Style>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                    <Setter Property="BorderBrush"
+                            Value="{StaticResource ButtonBackgroundBrush}" />
+                    <Setter Property="Foreground"
+                            Value="{StaticResource NormalBrush}" />
+                    <Setter Property="BorderThickness"
+                            Value="3" />
+                    <Setter Property="FontFamily"
+                            Value="Segoe UI Symbol" />
+                    <Setter Property="FontSize"
+                            Value="24" />
+                    <Setter Property="Width"
+                            Value="62" />
+                    <Setter Property="Height"
+                            Value="62" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ToggleButton">
+                                <Grid Background="Transparent">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                                   Storyboard.TargetName="ContentContainer">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{StaticResource ButtonDarkForegroundBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                                   Storyboard.TargetName="ButtonBackground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{StaticResource AccentBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+
+                                        <VisualStateGroup x:Name="CheckStates">
+                                            <VisualState x:Name="Unchecked">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
+                                                                                   Storyboard.TargetProperty="Content">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="1&#8242;" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Checked">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                                   Storyboard.TargetName="ContentContainer">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{StaticResource ButtonDarkForegroundBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
+                                                                                   Storyboard.TargetProperty="Background">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{StaticResource AccentBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
+                                                                                   Storyboard.TargetProperty="Content">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="5&#8242;" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Border x:Name="ButtonBackground"
+                                            Margin="6"
+                                            CornerRadius="50"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentControl x:Name="ContentContainer"
+                                                        Width="{TemplateBinding Width}"
+                                                        Height="{TemplateBinding Height}"
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                        Content="{TemplateBinding Content}"
+                                                        FontFamily="{TemplateBinding FontFamily}"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center" />
+                                    </Border>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+
     </Grid>
 </UserControl>
