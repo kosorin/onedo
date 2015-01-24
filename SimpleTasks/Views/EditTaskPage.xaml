@@ -553,7 +553,7 @@
                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                             <TextBlock x:Name="OnlyOnceText"
                                                        Grid.Column="1"
-                                                       Text="only once"
+                                                       Text="{Binding LocalizedResources.RepeatsOnce, Source={StaticResource LocalizedStrings}}"
                                                        Style="{StaticResource ButtonTextStyle}"
                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}" />
                                         </Grid>
