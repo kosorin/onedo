@@ -347,7 +347,8 @@
                                            Style="{StaticResource InfoTextStyle}"
                                            Foreground="{Binding HasReminder, ConverterParameter='AccentBrush:SubtleBrush', Converter={StaticResource BrushConverter}}" />
                                 <Viewbox Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                         Height="22">
+                                         Height="22"
+                                         Margin="2,0,0,0">
                                     <ContentControl Style="{StaticResource ReminderRingIconStyle}"
                                                     Foreground="{StaticResource AccentBrush}" />
                                 </Viewbox>

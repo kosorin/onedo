@@ -11,7 +11,7 @@
              FontSize="{StaticResource PhoneFontSizeNormal}"
              Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="50"
-             d:DesignWidth="400"
+             d:DesignWidth="240"
              x:Name="Control">
 
     <Border x:Name="RootBorder"
