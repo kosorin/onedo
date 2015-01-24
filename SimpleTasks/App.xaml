@@ -51,6 +51,7 @@
             <!--To Bool-->
             <conv:BoolNegationConverter x:Key="BoolNegationConverter" />
             <conv:PriorityToBoolConverter x:Key="TaskPriorityToBooleanConverter" />
+            <conv:BrushConverter x:Key="BrushConverter" />
 
             <!--To Number-->
             <conv:BoolToNumberConverter x:Key="BooleanToNumberConverter" />
@@ -1009,6 +1010,8 @@
                         Value="{x:Null}" />
                 <Setter Property="FontSize"
                         Value="24" />
+                <Setter Property="FontWeight"
+                        Value="Light" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="controls:ToggleControl">
@@ -1059,6 +1062,7 @@
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
                                                FontSize="{TemplateBinding FontSize}"
+                                               FontWeight="{TemplateBinding FontWeight}"
                                                TextWrapping="NoWrap"
                                                TextTrimming="WordEllipsis" />
 

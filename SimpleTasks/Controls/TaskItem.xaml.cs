@@ -160,22 +160,6 @@ namespace SimpleTasks.Controls
             }
         }
 
-        public bool HasDetail
-        {
-            get { return (bool)GetValue(HasDetailProperty); }
-            set { SetValue(HasDetailProperty, value); }
-        }
-        public static readonly DependencyProperty HasDetailProperty =
-            DependencyProperty.Register("HasDetail", typeof(bool), typeof(TaskItem), new PropertyMetadata(false, HasDetailChanged));
-        private static void HasDetailChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            TaskItem item = d as TaskItem;
-            if (item != null)
-            {
-                Grid.SetRowSpan(item.TitleWrapper, (bool)e.NewValue ? 1 : 2);
-            }
-        }
-
         public double SwipeGestureTreshold
         {
             get { return (double)GetValue(SwipeGestureTresholdProperty); }

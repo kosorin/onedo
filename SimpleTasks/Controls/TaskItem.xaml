@@ -60,22 +60,22 @@
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="InfoPanel"
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="InfoPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0" />
-                        </DoubleAnimationUsingKeyFrames>
+                        </DoubleAnimationUsingKeyFrames>-->
 
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="TaskPriorityGrid"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
                         </DoubleAnimationUsingKeyFrames>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DetailTextBlock"
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="DetailTextBlock"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
                                                     Value="0.45" />
-                        </DoubleAnimationUsingKeyFrames>
+                        </DoubleAnimationUsingKeyFrames>-->
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="SubtasksStackPanel"
                                                        Storyboard.TargetProperty="Opacity">
                             <DiscreteDoubleKeyFrame KeyTime="0"
@@ -254,16 +254,16 @@
             <Grid Grid.Column="1"
                   Margin="16,0,24,0"
                   MinHeight="60"
-                  Background="Transparent"
-                  ManipulationStarted="InfoGrid_ManipulationStarted"
-                  ManipulationCompleted="InfoGrid_ManipulationCompleted"
-                  ManipulationDelta="InfoGrid_ManipulationDelta">
+                  Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Button Tap="Task_Tap">
+                <Button Tap="Task_Tap"
+                        ManipulationStarted="InfoGrid_ManipulationStarted"
+                        ManipulationCompleted="InfoGrid_ManipulationCompleted"
+                        ManipulationDelta="InfoGrid_ManipulationDelta">
                     <Button.Template>
                         <ControlTemplate />
                     </Button.Template>
@@ -276,14 +276,13 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
+                            <!--<Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                            </Grid.RowDefinitions>-->
 
                             <!--Název + priorita-->
                             <Grid x:Name="TitleWrapper"
-                                  Grid.RowSpan="2"
                                   VerticalAlignment="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -326,44 +325,34 @@
                             </Grid>
 
                             <!--Detail-->
-                            <TextBlock x:Name="DetailTextBlock"
+                            <!--<TextBlock x:Name="DetailTextBlock"
                                        Grid.Row="1"
+                                       Grid.ColumnSpan="2"
                                        Text="{Binding Detail, FallbackValue='Detail dummy, Lorem ipsum'}"
                                        Style="{StaticResource InfoTextStyle}"
+                                       FontWeight="Normal"
                                        Visibility="{Binding HasDetail, Converter={StaticResource BooleanToVisibilityConverter}}"
                                        TextWrapping="NoWrap"
                                        TextTrimming="WordEllipsis"
                                        Margin="0,0,0,8"
-                                       VerticalAlignment="Top" />
+                                       VerticalAlignment="Top" />-->
 
                             <!--Datum-->
-                            <TextBlock x:Name="DateTextBlock"
-                                       Grid.Column="1"
-                                       Text="{Binding ActualDueDate, FallbackValue='Led 21', Converter={StaticResource TaskToDueStringConverter}}"
-                                       Style="{StaticResource InfoTextStyle}"
-                                       Foreground="{StaticResource AccentBrush}"
-                                       Margin="8,0,0,3"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right" />
-
-                            <!--Info-->
-                            <StackPanel x:Name="InfoPanel"
+                            <StackPanel x:Name="DateTextBlock"
                                         Orientation="Horizontal"
                                         Grid.Column="1"
-                                        Grid.Row="1"
-                                        MaxHeight="24"
-                                        Margin="8,0,0,0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top">
-                                <Viewbox Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                    Foreground="{StaticResource SlightBrush}" />
-                                </Viewbox>
-                                <Viewbox Visibility="{Binding HasRepeats, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <ContentControl Style="{StaticResource RepeatsIconStyle}"
-                                                    Foreground="{StaticResource SlightBrush}" />
+                                        Margin="8,0,0,3"
+                                        VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding ActualDueDate, FallbackValue='Led 21', Converter={StaticResource TaskToDueStringConverter}}"
+                                           Style="{StaticResource InfoTextStyle}"
+                                           Foreground="{Binding HasReminder, ConverterParameter='AccentBrush:SubtleBrush', Converter={StaticResource BrushConverter}}" />
+                                <Viewbox Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                         Height="22">
+                                    <ContentControl Style="{StaticResource ReminderRingIconStyle}"
+                                                    Foreground="{StaticResource AccentBrush}" />
                                 </Viewbox>
                             </StackPanel>
+
                         </Grid>
                     </StackPanel>
                 </Button>
@@ -403,7 +392,7 @@
                                 <Border.Projection>
                                     <PlaneProjection x:Name="SubtasksArrow"
                                                      RotationX="0"
-                                                     CenterOfRotationY="0.53" />
+                                                     CenterOfRotationY="0.60" />
                                 </Border.Projection>
                                 <TextBlock x:Name="Arrow"
                                            Text="&#xe019;"
@@ -411,7 +400,7 @@
                                            FontSize="24"
                                            FontFamily="Segoe UI Symbol"
                                            VerticalAlignment="Center"
-                                           Margin="0,-6,0,0"
+                                           Margin="0,0,0,-4"
                                            IsHitTestVisible="False" />
                             </Border>
                         </ControlTemplate>

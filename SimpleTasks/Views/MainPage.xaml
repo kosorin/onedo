@@ -34,6 +34,7 @@
                         <TextBlock Text="{Binding Title}"
                                    Style="{StaticResource NormalTextStyle}"
                                    Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                   FontSize="20"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
                     </Border>
@@ -67,7 +68,6 @@
         <!--List Task-->
         <DataTemplate x:Key="TasksLongListSelectorItemTemplate">
             <controls:TaskItem DataContext="{Binding}"
-                               HasDetail="{Binding HasDetail}"
                                IsCompleted="{Binding IsCompleted}"
                                Click="TaskItem_Click"
                                Check="TaskItem_Check"
