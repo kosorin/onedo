@@ -373,7 +373,7 @@ namespace SimpleTasks.Views
 
         public void Pin()
         {
-            LiveTile.PinEmpty(Task);
+            LiveTileN.PinEmpty(Task);
         }
 
         public void Unpin()

@@ -18,7 +18,8 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <SupportedCultures></SupportedCultures>
+    <SupportedCultures>
+    </SupportedCultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,7 +97,6 @@
     <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\LiveTile.cs" />
-    <Compile Include="Helpers\OneDriveHelper.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\BackupData.cs" />
     <Compile Include="Models\Folder.cs" />

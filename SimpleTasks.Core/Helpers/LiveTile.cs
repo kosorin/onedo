@@ -40,7 +40,7 @@ namespace SimpleTasks.Core.Helpers
             return PinnedTile(task) != null;
         }
 
-        private static FlipTileData CreateTile(TaskModel task)
+        public static FlipTileData CreateTile(TaskModel task)
         {
             string smallFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, SmallTileFileName);
             string mediumFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, MediumTileFileName);
@@ -63,31 +63,6 @@ namespace SimpleTasks.Core.Helpers
                 Count = 0,
             };
             return flipTileData;
-        }
-
-        public static void PinEmpty(TaskModel task)
-        {
-            Pin(task, new FlipTileData());
-        }
-
-        public static void Pin(TaskModel task)
-        {
-            Pin(task, CreateTile(task));
-        }
-
-        public static void Pin(TaskModel task, StandardTileData tileData)
-        {
-            try
-            {
-                Deployment.Current.Dispatcher.BeginInvoke(delegate
-                {
-                    ShellTile.Create(new Uri(string.Format("/Views/EditTaskPage.xaml?Task={0}", task.Uid), UriKind.Relative), tileData, true);
-                });
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(": Chyba při vytváření živé dlaždice: {0}", e.Message);
-            }
         }
 
         public static void Update(TaskModel task)
@@ -233,57 +208,6 @@ namespace SimpleTasks.Core.Helpers
             catch (Exception e)
             {
                 Debug.WriteLine(": Chyba při aktualizaci živé dlaždice: {0}", e.Message);
-            }
-        }
-        #endregion
-
-        #region Dlaždice pro rychlé přidání
-        public static void PinQuickAdd(string tileTitle)
-        {
-            FlipTileData flipTileData = new FlipTileData
-            {
-                SmallBackgroundImage = new Uri("/Assets/Tiles/NewTaskSmallTile.png", UriKind.Relative),
-                BackgroundImage = new Uri("/Assets/Tiles/NewTaskMediumTile.png", UriKind.Relative),
-                Title = tileTitle,
-                Count = 0,
-            };
-
-            try
-            {
-                ShellTile.Create(new Uri("/Views/EditTaskPage.xaml", UriKind.Relative), flipTileData, false);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(": Chyba při vytváření živé dlaždice pro rychlé přidání: {0}", e.Message);
-            }
-        }
-
-        public static ShellTile PinnedQuickAddTile()
-        {
-            return ShellTile.ActiveTiles.FirstOrDefault((t) =>
-            {
-                return t.NavigationUri.OriginalString == "/Views/EditTaskPage.xaml";
-            });
-        }
-
-        public static bool IsPinnedQuickAdd()
-        {
-            return PinnedQuickAddTile() != null;
-        }
-
-        public static void UnpinQuickAdd()
-        {
-            try
-            {
-                ShellTile tile = PinnedQuickAddTile();
-                if (tile != null)
-                {
-                    tile.Delete();
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(": Chyba při mazání živé dlaždice pro rychlé přidání: {0}", e.Message);
             }
         }
         #endregion

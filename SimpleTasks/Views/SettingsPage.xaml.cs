@@ -46,7 +46,7 @@ namespace SimpleTasks.Views
             }
 
             // Pin Tile
-            _isPinnedQuickAdd = LiveTile.IsPinnedQuickAdd();
+            _isPinnedQuickAdd = LiveTileN.IsPinnedQuickAdd();
             if (_isPinnedQuickAdd)
             {
                 QuickAddTileButton.Content = AppResources.TileForQuickAddUnpinButton;
@@ -256,12 +256,12 @@ namespace SimpleTasks.Views
         {
             if (_isPinnedQuickAdd)
             {
-                LiveTile.UnpinQuickAdd();
+                LiveTileN.UnpinQuickAdd();
                 QuickAddTileButton.Content = AppResources.TileForQuickAddPinButton;
             }
             else
             {
-                LiveTile.PinQuickAdd(AppResources.QuickAddTileTitle);
+                LiveTileN.PinQuickAdd(AppResources.QuickAddTileTitle);
                 QuickAddTileButton.Content = AppResources.TileForQuickAddUnpinButton;
             }
             _isPinnedQuickAdd = !_isPinnedQuickAdd;

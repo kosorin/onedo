@@ -151,6 +151,8 @@
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\GestureActionHelper.cs" />
     <Compile Include="Helpers\GoogleAnalyticsHelper.cs" />
+    <Compile Include="Helpers\LiveTile.cs" />
+    <Compile Include="Helpers\OneDriveHelper.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="Helpers\TaskModelExtensions.cs" />
     <Compile Include="Helpers\ThemeHelper.cs" />
