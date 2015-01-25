@@ -62,19 +62,7 @@
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsDefaultDate, Source={StaticResource LocalizedStrings}}" />
                         <controls:ListPicker x:Name="DatePicker"
-                                             Foreground="{StaticResource SlightBrush}"
-                                             Background="{StaticResource ButtonBackgroundBrush}"
-                                             ItemsSource="{Binding DefaultDatePickerList}"
-                                             SelectedItem="{Binding DefaultDateType, Mode=TwoWay}">
-                            <controls:ListPicker.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Style="{StaticResource ListPickerItemTemplate}">
-                                        <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DefaultDateType'}"
-                                                   Style="{StaticResource ButtonTextStyle}" />
-                                    </Border>
-                                </DataTemplate>
-                            </controls:ListPicker.ItemTemplate>
-                        </controls:ListPicker>
+                                             SelectionChanged="DatePicker_SelectionChanged" />
 
                         <!--default time-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTime, Source={StaticResource LocalizedStrings}}"
@@ -97,19 +85,7 @@
                         <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
                         <controls:ListPicker x:Name="DaysPicker"
-                                             Foreground="{StaticResource SlightBrush}"
-                                             Background="{StaticResource ButtonBackgroundBrush}"
-                                             ItemsSource="{Binding DeleteCompletedPickerList}"
-                                             SelectedItem="{Binding DeleteCompleted, Mode=TwoWay}">
-                            <controls:ListPicker.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Style="{StaticResource ListPickerItemTemplate}">
-                                        <TextBlock Text="{Binding Converter={StaticResource SettingsConverter}, ConverterParameter='DeleteCompleted'}"
-                                                   Style="{StaticResource ButtonTextStyle}" />
-                                    </Border>
-                                </DataTemplate>
-                            </controls:ListPicker.ItemTemplate>
-                        </controls:ListPicker>
+                                             SelectionChanged="DaysPicker_SelectionChanged" />
 
                         <!--Automatically complete subtasks-->
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"
@@ -134,16 +110,14 @@
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsSwipeLeft, Source={StaticResource LocalizedStrings}}" />
-                        <controls:ListPicker ItemsSource="{Binding GestureActionPickerList}"
-                                             SelectedItem="{Binding SwipeLeftAction, Mode=TwoWay}"
-                                             Style="{StaticResource GestureListPickerStyle}" />
+                        <controls:ListPicker x:Name="GestureLeftPicker"
+                                             SelectionChanged="GestureLeftPicker_SelectionChanged" />
 
                         <!--Swipe Left Gesture-->
                         <TextBlock Style="{StaticResource LabelTextStyle}"
                                    Text="{Binding LocalizedResources.SettingsSwipeRight, Source={StaticResource LocalizedStrings}}" />
-                        <controls:ListPicker ItemsSource="{Binding GestureActionPickerList}"
-                                             SelectedItem="{Binding SwipeRightAction, Mode=TwoWay}"
-                                             Style="{StaticResource GestureListPickerStyle}" />
+                        <controls:ListPicker x:Name="GestureRightPicker"
+                                             SelectionChanged="GestureRightPicker_SelectionChanged" />
 
                     </StackPanel>
                 </ScrollViewer>

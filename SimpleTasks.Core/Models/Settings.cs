@@ -104,21 +104,6 @@ namespace SimpleTasks.Core.Models
                 }
             }
         }
-
-        public List<DefaultDateTypes> DefaultDatePickerList
-        {
-            get
-            {
-                return new List<DefaultDateTypes>() 
-                    { 
-                        DefaultDateTypes.NoDueDate,
-                        DefaultDateTypes.Today,    
-                        DefaultDateTypes.Tomorrow, 
-                        DefaultDateTypes.ThisWeek, 
-                        DefaultDateTypes.NextWeek
-                    };
-            }
-        }
         #endregion
 
         #region DefaultTime
@@ -160,23 +145,6 @@ namespace SimpleTasks.Core.Models
                 }
             }
         }
-
-        public List<int> DeleteCompletedPickerList
-        {
-            get
-            {
-                return new List<int>() 
-                    { 
-                        -1,
-                        0, 
-                        1, 
-                        2, 
-                        3, 
-                        7, 
-                        14
-                    };
-            }
-        }
         #endregion
 
         #region CompleteSubtasks
@@ -188,25 +156,6 @@ namespace SimpleTasks.Core.Models
             set { SetProperty(ref _completeSubtasks, value); }
         }
         #endregion
-
-        #region SwipeActions
-        public List<GestureAction> GestureActionPickerList
-        {
-            get
-            {
-                return new List<GestureAction>() 
-                    { 
-                        GestureAction.None,
-                        GestureAction.Complete,
-                        GestureAction.Delete,
-                        GestureAction.DueToday,
-                        GestureAction.DueTomorrow,
-                        GestureAction.PostponeDay,
-                        GestureAction.PostponeWeek,
-                    };
-            }
-        }
-        #endregion // end of SwipeActions
 
         #region SwipeLeftAction
         private GestureAction _swipeLeftAction = GestureAction.Complete;

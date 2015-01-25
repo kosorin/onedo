@@ -30,8 +30,6 @@
 
             <!--Region Konvertory-->
 
-            <conv:SettingsConverter x:Key="SettingsConverter" />
-
             <!--To String-->
             <conv:StringFunctionConverter x:Key="StringFunctionConverter" />
             <conv:OffOnConverter x:Key="OffOnConverter" />

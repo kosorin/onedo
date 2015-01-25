@@ -34,6 +34,11 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
 
+            // Inity...
+            InitDefaultDate();
+            InitDaysPicker();
+            InitGesturesPicker();
+
             // Default Time
             if (IsSetNavigationParameter("TimePicker"))
             {
@@ -81,12 +86,86 @@ namespace SimpleTasks.Views
             _isSetThemeListPicker = true;
         }
 
+        #region Default Date
+        private bool _defaultDateInit = false;
+
+        private void InitDefaultDate()
+        {
+            List<ListPickerItem<DefaultDateTypes>> defaultDateList = new List<ListPickerItem<DefaultDateTypes>>();
+            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateNoDue, DefaultDateTypes.NoDueDate));
+            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateToday, DefaultDateTypes.Today));
+            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateTomorrow, DefaultDateTypes.Tomorrow));
+            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateThisWeek, DefaultDateTypes.ThisWeek));
+            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateNextWeek, DefaultDateTypes.NextWeek));
+            DatePicker.ItemsSource = defaultDateList;
+
+            int index = 0;
+            for (int i = 0; i < defaultDateList.Count; i++)
+            {
+                if (defaultDateList[i].Value == Settings.Current.DefaultDateType)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            DatePicker.SelectedIndex = index;
+
+            _defaultDateInit = true;
+        }
+
+        private void DatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_defaultDateInit && DatePicker.SelectedItem is ListPickerItem<DefaultDateTypes>)
+            {
+                Settings.Current.DefaultDateType = ((ListPickerItem<DefaultDateTypes>)DatePicker.SelectedItem).Value;
+            }
+        }
+        #endregion // end of Default Date
+
         #region Default Time
         private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             Navigate(typeof(TimePickerPage), Settings.Current.DefaultTime, "TimePicker");
         }
         #endregion // end of Default Time
+
+        #region Automatically delete completed tasks
+        private bool _daysPickerInit = false;
+
+        private void InitDaysPicker()
+        {
+            List<ListPickerItem<int>> deleteCompletedList = new List<ListPickerItem<int>>();
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteNever, -1));
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteWhenStarts, 0));
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteAfterOneDay, 1));
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteAfterTwoDays, 2));
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteAfterThreeDays, 3));
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteAfterOneWeek, 7));
+            deleteCompletedList.Add(new ListPickerItem<int>(AppResources.SettingsDeleteAfterTwoWeeks, 14));
+            DaysPicker.ItemsSource = deleteCompletedList;
+
+            int index = 0;
+            for (int i = 0; i < deleteCompletedList.Count; i++)
+            {
+                if (deleteCompletedList[i].Value == Settings.Current.DeleteCompleted)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            DaysPicker.SelectedIndex = index;
+
+            _daysPickerInit = true;
+        }
+
+        private void DaysPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_daysPickerInit && DaysPicker.SelectedItem is ListPickerItem<int>)
+            {
+                Settings.Current.DeleteCompleted = ((ListPickerItem<int>)DaysPicker.SelectedItem).Value;
+            }
+        }
+        #endregion
 
         #region Feedback
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -221,5 +300,60 @@ namespace SimpleTasks.Views
             }
         }
         #endregion // end of Theme
+
+        #region Gestures
+        private bool _gesturesInit = false;
+
+        private List<GestureActionListPickerItem> CreateGestureList()
+        {
+            List<GestureActionListPickerItem> gestureList = new List<GestureActionListPickerItem>();
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.None));
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.Complete));
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.Delete));
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.DueToday));
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.DueTomorrow));
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.PostponeDay));
+            gestureList.Add(new GestureActionListPickerItem(GestureAction.PostponeWeek));
+            return gestureList;
+        }
+
+        private void InitGesturesPicker(SimpleTasks.Controls.ListPicker picker, GestureAction action)
+        {
+            picker.ItemsSource = CreateGestureList();
+            picker.SelectedIndex = 0;
+            for (int i = 0; i < picker.Items.Count; i++)
+            {
+                if (((GestureActionListPickerItem)picker.Items[i]).Action == action)
+                {
+                    picker.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private void InitGesturesPicker()
+        {
+            InitGesturesPicker(GestureLeftPicker, Settings.Current.SwipeLeftAction);
+            InitGesturesPicker(GestureRightPicker, Settings.Current.SwipeRightAction);
+
+            _gesturesInit = true;
+        }
+
+        private void GestureLeftPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_gesturesInit && GestureLeftPicker.SelectedItem is GestureActionListPickerItem)
+            {
+                Settings.Current.SwipeLeftAction = ((GestureActionListPickerItem)GestureLeftPicker.SelectedItem).Action;
+            }
+        }
+
+        private void GestureRightPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_gesturesInit && GestureRightPicker.SelectedItem is GestureActionListPickerItem)
+            {
+                Settings.Current.SwipeRightAction = ((GestureActionListPickerItem)GestureRightPicker.SelectedItem).Action;
+            }
+        }
+        #endregion // end of Gestures
     }
 }

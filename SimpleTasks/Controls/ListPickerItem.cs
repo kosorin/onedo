@@ -1,4 +1,6 @@
 ﻿using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +111,35 @@ namespace SimpleTasks.Controls
         {
             DefaultStyleKey = typeof(ColorListPickerItem);
             Color = color;
+        }
+    }
+
+    public class GestureActionListPickerItem : ListPickerItem
+    {
+        public GestureAction Action
+        {
+            get { return (GestureAction)GetValue(ActionProperty); }
+            private set { SetValue(ActionProperty, value); }
+        }
+        public static readonly DependencyProperty ActionProperty =
+            DependencyProperty.Register("Action", typeof(GestureAction), typeof(GestureActionListPickerItem), new PropertyMetadata(GestureAction.None));
+
+
+        public Style Icon
+        {
+            get { return (Style)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(Style), typeof(GestureActionListPickerItem), new PropertyMetadata(null));
+
+
+        public GestureActionListPickerItem(GestureAction action)
+            : base(GestureActionHelper.Text(action))
+        {
+            DefaultStyleKey = typeof(GestureActionListPickerItem);
+            Action = action;
+            Icon = GestureActionHelper.IconStyle(action);
         }
     }
 }
