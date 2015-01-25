@@ -385,11 +385,11 @@
                                                     <DiscreteDoubleKeyFrame KeyTime="0"
                                                                             Value="180" />
                                                 </DoubleAnimationUsingKeyFrames>
-                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="ArrowForeground"
-                                                                              Storyboard.TargetProperty="Color">
-                                                    <DiscreteColorKeyFrame KeyTime="0"
-                                                                           Value="{StaticResource AccentColor}" />
-                                                </ColorAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ArrowForeground"
+                                                                               Storyboard.TargetProperty="Opacity">
+                                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                            Value="0.8" />
+                                                </DoubleAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Unchecked" />
@@ -409,7 +409,8 @@
                                            IsHitTestVisible="False">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush x:Name="ArrowForeground"
-                                                         Color="{StaticResource SubtleColor}" />
+                                                         Color="{StaticResource SubtleColor}"
+                                                         Opacity="0.5" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
                             </Border>

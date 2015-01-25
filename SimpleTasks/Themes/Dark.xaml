@@ -64,11 +64,8 @@
     <!--EndRegion-->
 
     <!--Region CheckBox-->
-    <SolidColorBrush x:Key="CheckBoxBackgroundBrush"
-                     Color="{StaticResource SubtleColor}"
-                     Opacity="0.27" />
     <SolidColorBrush x:Key="CheckBoxBorderBrush"
-                     Color="{StaticResource NormalColor}"
+                     Color="{StaticResource SubtleColor}"
                      Opacity="0.45" />
     <!--EndRegion-->
 
