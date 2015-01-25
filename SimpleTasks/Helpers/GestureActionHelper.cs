@@ -22,7 +22,7 @@ namespace SimpleTasks.Helpers
             case GestureAction.PostponeDay: return App.IconStyle("PostponeOneDay");
             case GestureAction.PostponeWeek: return App.IconStyle("PostponeOneWeek");
             case GestureAction.None:
-            default: return null;
+            default: return App.IconStyle("BoldClose");
             }
         }
 
