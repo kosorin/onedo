@@ -87,6 +87,13 @@
                         <controls:ListPicker x:Name="DaysPicker"
                                              SelectionChanged="DaysPicker_SelectionChanged" />
 
+                        <!--Automatically complete task-->
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding CompleteTask, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsCompleteTask, Source={StaticResource LocalizedStrings}}" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsCompleteTaskDetail, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}" />
+
                         <!--Automatically complete subtasks-->
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"
                                       IsChecked="{Binding CompleteSubtasks, Mode=TwoWay}"
@@ -151,10 +158,8 @@
                         <TextBlock Style="{StaticResource HelpTextStyle}"
                                    Margin="0,24,0,0">
                             <Run FontWeight="Bold"
-                                 Text="{Binding LocalizedResources.ToastNotice, Source={StaticResource LocalizedStrings}}" />
-                            <Run FontWeight="Bold"
-                                 Text=": " />
-                            <Run  Text="{Binding LocalizedResources.SettingsThemeNote, Source={StaticResource LocalizedStrings}}" />
+                                 Text="{Binding LocalizedResources.ToastNotice, StringFormat='\{0}: ', Source={StaticResource LocalizedStrings}}" />
+                            <Run Text="{Binding LocalizedResources.SettingsThemeNote, Source={StaticResource LocalizedStrings}}" />
                         </TextBlock>
 
                     </StackPanel>

@@ -147,6 +147,16 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+        #region CompleteTask
+        private bool _completeTask = true;
+        [DataMember(Name = "CompleteTask")]
+        public bool CompleteTask
+        {
+            get { return _completeTask; }
+            set { SetProperty(ref _completeTask, value); }
+        }
+        #endregion
+
         #region CompleteSubtasks
         private bool _completeSubtasks = true;
         [DataMember(Name = "CompleteSubtasks")]

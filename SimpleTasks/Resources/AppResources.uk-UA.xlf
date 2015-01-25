@@ -936,6 +936,14 @@ It's still in beta.</source>
           <source>restore</source>
           <target state="translated">відновити</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteTaskDetail" translate="yes" xml:space="preserve">
+          <source>When you complete all subtasks, mark task as completed.</source>
+          <target state="new">When you complete all subtasks, mark task as completed.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteTask" translate="yes" xml:space="preserve">
+          <source>Automatically complete task</source>
+          <target state="new">Automatically complete task</target>
+        </trans-unit>
       </group>
     </body>
   </file>

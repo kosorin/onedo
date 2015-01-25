@@ -22,6 +22,7 @@ using Microsoft.Devices;
 using SimpleTasks.Controls;
 using Microsoft.Phone.Tasks;
 using System.Globalization;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -407,6 +408,14 @@ namespace SimpleTasks.Views
             if (subtask != null)
             {
                 subtask.IsCompleted = !subtask.IsCompleted;
+
+                if (Settings.Current.CompleteTask && !task.IsCompleted && subtask.IsCompleted)
+                {
+                    if (task.Subtasks.All(s => s.IsCompleted))
+                    {
+                        ToggleComplete(task);
+                    }
+                }
             }
         }
 

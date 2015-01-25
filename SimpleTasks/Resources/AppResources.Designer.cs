@@ -1217,6 +1217,24 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically complete task.
+        /// </summary>
+        public static string SettingsCompleteTask {
+            get {
+                return ResourceManager.GetString("SettingsCompleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you complete all subtasks, mark task as completed..
+        /// </summary>
+        public static string SettingsCompleteTaskDetail {
+            get {
+                return ResourceManager.GetString("SettingsCompleteTaskDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default date.
         /// </summary>
         public static string SettingsDefaultDate {

@@ -832,4 +832,10 @@ It's still in beta.</value>
   <data name="BackupVersionMismatchYes" xml:space="preserve">
     <value>restore</value>
   </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Automatically complete task</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>When you complete all subtasks, mark task as completed.</value>
+  </data>
 </root>

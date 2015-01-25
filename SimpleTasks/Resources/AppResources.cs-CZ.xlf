@@ -569,6 +569,14 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>restore</source>
           <target state="signed-off">obnovit</target>
         </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteTaskDetail" translate="yes" xml:space="preserve">
+          <source>When you complete all subtasks, mark task as completed.</source>
+          <target state="new">When you complete all subtasks, mark task as completed.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsCompleteTask" translate="yes" xml:space="preserve">
+          <source>Automatically complete task</source>
+          <target state="new">Automatically complete task</target>
+        </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchNo" translate="yes" xml:space="preserve">
           <source>cancel</source>
           <target state="signed-off">storno</target>
