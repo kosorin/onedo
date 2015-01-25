@@ -385,10 +385,15 @@
                                                     <DiscreteDoubleKeyFrame KeyTime="0"
                                                                             Value="180" />
                                                 </DoubleAnimationUsingKeyFrames>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="ArrowForeground"
+                                                                              Storyboard.TargetProperty="Color">
+                                                    <DiscreteColorKeyFrame KeyTime="0"
+                                                                           Value="{StaticResource AccentColor}" />
+                                                </ColorAnimationUsingKeyFrames>
                                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ArrowForeground"
                                                                                Storyboard.TargetProperty="Opacity">
                                                     <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                            Value="0.8" />
+                                                                            Value="1" />
                                                 </DoubleAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
