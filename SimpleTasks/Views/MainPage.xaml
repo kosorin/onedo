@@ -38,7 +38,7 @@
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center" />
                     </Border>
-                    
+
                     <!--Počet úkolů-->
                     <TextBlock Style="{StaticResource SlightTextStyle}"
                                Text="{Binding Count, Converter={StaticResource TaskGroupCountConverter}}"
@@ -57,7 +57,7 @@
                 </Grid>
             </Border>
         </DataTemplate>
-        
+
         <!--List Footer-->
         <DataTemplate x:Key="TasksLongListSelectorGroupFooterTemmplate">
             <Border toolkit:TiltEffect.SuppressTilt="True"
@@ -83,10 +83,66 @@
     <Grid x:Name="TasksRoot"
           Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <Grid x:Name="ChangelogGrid"
+              Background="{StaticResource AccentBrush}"
+              Visibility="Collapsed">
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="Black"
+                                     Opacity="0.3" />
+                </Border.Background>
+                <Grid Margin="24,35,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding LocalizedResources.AboutVersion, Source={StaticResource LocalizedStrings}}"
+                               Style="{StaticResource NormalTextStyle}"
+                               FontSize="18"
+                               Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                               VerticalAlignment="Center" />
+
+                    <Button Grid.Column="1"
+                            Tap="ChangelogShowButton_Tap">
+                        <Button.Template>
+                            <ControlTemplate />
+                        </Button.Template>
+                        <Border Background="Transparent">
+                            <TextBlock Text="{Binding LocalizedResources.ChangelogShow, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       FontSize="18"
+                                       Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                       VerticalAlignment="Center"
+                                       TextDecorations="Underline" />
+                        </Border>
+                    </Button>
+
+                    <Button Grid.Column="2"
+                            Margin="8,0"
+                            Tap="ChangelogHideButton_Tap">
+                        <Button.Template>
+                            <ControlTemplate />
+                        </Button.Template>
+                        <Border Background="Transparent">
+                            <ContentControl Style="{StaticResource BoldCloseIconStyle}"
+                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                            RenderTransformOrigin="0.5,0.58">
+                                <ContentControl.RenderTransform>
+                                    <CompositeTransform ScaleX="0.5"
+                                                        ScaleY="0.5" />
+                                </ContentControl.RenderTransform>
+                            </ContentControl>
+                        </Border>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
 
         <!--Toast-->
         <controls:ToastPrompt x:Name="Toast"
@@ -226,7 +282,8 @@
             </Rectangle.Resources>
         </Rectangle>
 
-        <Grid Grid.RowSpan="3" Visibility="Collapsed">
+        <Grid Grid.RowSpan="3"
+              Visibility="Collapsed">
             <Button x:Name="TestButton"
                     Content="Test"
                     VerticalAlignment="Top"

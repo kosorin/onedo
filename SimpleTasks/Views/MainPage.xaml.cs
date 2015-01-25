@@ -57,7 +57,8 @@ namespace SimpleTasks.Views
             Loaded -= MainPage_Loaded;
             if (App.MessageAfterStart != null)
             {
-                MessageBox.Show(App.MessageAfterStart.Item1, App.MessageAfterStart.Item2, App.MessageAfterStart.Item3);
+                //MessageBox.Show(App.MessageAfterStart.Item1, App.MessageAfterStart.Item2, App.MessageAfterStart.Item3);
+                ChangelogGrid.Visibility = Visibility.Visible;
                 App.MessageAfterStart = null;
             }
         }
@@ -649,5 +650,18 @@ namespace SimpleTasks.Views
         {
             e.Container.Opacity = 0;
         }
+
+        #region Changelog
+        private void ChangelogShowButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ChangelogGrid.Visibility = Visibility.Collapsed;
+            Navigate(typeof(ChangelogPage));
+        }
+
+        private void ChangelogHideButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ChangelogGrid.Visibility = Visibility.Collapsed;
+        }
+        #endregion // end of Changelog
     }
 }
