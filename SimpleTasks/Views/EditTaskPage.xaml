@@ -188,9 +188,6 @@
 
         <ScrollViewer>
             <StackPanel Margin="24,0,24,0">
-                <!--Toast-->
-                <controls:ToastPrompt x:Name="Toast"
-                                      Canvas.ZIndex="1" />
                 <Border Height="40" />
 
                 <!--Text-->

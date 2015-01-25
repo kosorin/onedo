@@ -155,20 +155,33 @@
                 <ScrollViewer>
                     <StackPanel Margin="24,0,24,96">
 
-                        <!--Theme-->
-                        <TextBlock Style="{StaticResource LabelTextStyle}"
-                                   Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}" />
-                        <controls:ListPicker x:Name="ThemeListPicker"
-                                             SelectionChanged="ThemeListPicker_SelectionChanged" />
+
+                        <StackPanel x:Name="ThemePanel">
+                            <!--Theme-->
+                            <TextBlock Style="{StaticResource LabelTextStyle}"
+                                       Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}" />
+                            <controls:ListPicker x:Name="ThemeListPicker"
+                                                 SelectionChanged="ThemeListPicker_SelectionChanged" />
+                        </StackPanel>
 
                         <!--Theme Color-->
-                        <StackPanel x:Name="ThemeColorPanel">
+                        <StackPanel x:Name="ThemeColorPanel"
+                                    Grid.Column="2">
                             <TextBlock Style="{StaticResource LabelTextStyle}"
                                        Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}}" />
                             <controls:ListPicker x:Name="ThemeColorListPicker"
                                                  Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                  SelectionChanged="ThemeColorListPicker_SelectionChanged" />
                         </StackPanel>
+
+                        <TextBlock Style="{StaticResource HelpTextStyle}"
+                                   Margin="0,24,0,0">
+                            <Run FontWeight="Bold"
+                                 Text="{Binding LocalizedResources.ToastNotice, Source={StaticResource LocalizedStrings}}" />
+                            <Run FontWeight="Bold"
+                                 Text=": " />
+                            <Run  Text="{Binding LocalizedResources.SettingsThemeNote, Source={StaticResource LocalizedStrings}}" />
+                        </TextBlock>
 
                     </StackPanel>
                 </ScrollViewer>
@@ -243,10 +256,6 @@
             </phone:PivotItem>
 
         </phone:Pivot>
-
-        <!--Toast-->
-        <controls:ToastPrompt x:Name="Toast"
-                              Canvas.ZIndex="1" />
     </Grid>
 
 </controls:BasePage>

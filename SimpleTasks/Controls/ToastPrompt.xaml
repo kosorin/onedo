@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Background="{StaticResource DarkerAccentBrush}"
+             Foreground="{StaticResource ButtonDarkForegroundBrush}"
              FontFamily="{StaticResource PhoneFontFamilyNormal}"
              FontSize="{StaticResource PhoneFontSizeNormal}"
-             Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="100"
              d:DesignWidth="480"
              VerticalAlignment="Top"
@@ -52,8 +53,7 @@
                             <ElasticEase EasingMode="EaseIn" />
                         </VisualTransition.GeneratedEasingFunction>
                         <Storyboard Completed="CloseStoryboard_Completed">
-                            <DoubleAnimation x:Name="CloseAnimation"
-                                             Duration="0:0:0.45"
+                            <DoubleAnimation Duration="0:0:0.45"
                                              To="{Binding InvertedHeight, ElementName=ToastRoot}"
                                              Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetY)"
                                              Storyboard.TargetName="MainGrid"
@@ -75,11 +75,8 @@
                                          d:IsOptimized="True" />
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
                                                        Storyboard.TargetName="MainGrid">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <Visibility>Collapsed</Visibility>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -93,8 +90,8 @@
                 <PlaneProjection />
             </Grid.Projection>
 
-            <Border Background="{StaticResource DarkerAccentBrush}">
-                <Grid Margin="0,40,0,5">
+            <Border Margin="0,-20,0,0" Background="{Binding Background, ElementName=ToastRoot}">
+                <Grid Margin="0,60,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -107,13 +104,14 @@
                              Visibility="{Binding ShowIcon, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
                              HorizontalAlignment="Left"
                              Margin="17,0,-2,0">
-                        <ContentControl Style="{Binding Icon, ElementName=ToastRoot}" />
+                        <ContentControl Style="{Binding Icon, ElementName=ToastRoot}"
+                                        Foreground="{Binding Foreground, ElementName=ToastRoot}" />
                     </Viewbox>
 
                     <TextBlock Grid.Column="1"
                                Text="{Binding Title, ElementName=ToastRoot}"
-                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
                                Style="{StaticResource NormalTextStyle}"
+                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Visibility="{Binding ShowTitle, ElementName=ToastRoot, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -122,8 +120,8 @@
                     <TextBlock x:Name="ToastMsg"
                                Grid.Column="2"
                                Text="{Binding Message, ElementName=ToastRoot}"
-                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
                                Style="{StaticResource NormalTextStyle}"
+                               Foreground="{Binding Foreground, ElementName=ToastRoot}"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"
                                Margin="18,0,0,0" />
