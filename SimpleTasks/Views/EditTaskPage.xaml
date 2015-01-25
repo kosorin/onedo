@@ -13,7 +13,8 @@
                    x:Class="SimpleTasks.Views.EditTaskPage"
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d"
-                   d:DataContext="{d:DesignData /SampleData/EditDataSource/EditDataSource.xaml}">
+                   d:DataContext="{d:DesignData /SampleData/EditDataSource/EditDataSource.xaml}"
+                   BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <controls:BasePage.Resources>
         <sample:EditDataSource x:Key="EditDataSource"
@@ -687,6 +688,76 @@
                 <Border Height="40" />
             </StackPanel>
         </ScrollViewer>
+
+        <controls:MyToggleButton x:Name="DeleteConfirmButton"
+                                 IsChecked="{Binding DeleteConfirm}"
+                                 Content="Tap again to delete task."
+                                 toolkit:TiltEffect.SuppressTilt="True">
+            <controls:MyToggleButton.Template>
+                <ControlTemplate TargetType="controls:MyToggleButton">
+                    <Grid x:Name="RootGrid"
+                          IsHitTestVisible="False">
+                        <Grid.Background>
+                            <SolidColorBrush x:Name="BackgroundBrush"
+                                             Color="{StaticResource BackgroundColor}"
+                                             Opacity="0.0" />
+                        </Grid.Background>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="Checked"
+                                                      GeneratedDuration="0:0:0.25">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                    <VisualTransition From="Checked"
+                                                      GeneratedDuration="0:0:0.25">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Unchecked" />
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DeleteConfirmProjection"
+                                                                       Storyboard.TargetProperty="RotationX">
+                                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                    Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="BackgroundBrush"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                    Value="0.5" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                                       Storyboard.TargetProperty="IsHitTestVisible">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="True" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border Background="{StaticResource SystemTrayBackgroundBrush}"
+                                VerticalAlignment="Bottom"
+                                Padding="24,12">
+
+
+                            <Border.Projection>
+                                <PlaneProjection x:Name="DeleteConfirmProjection"
+                                                 RotationX="90" />
+                            </Border.Projection>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       Style="{StaticResource NormalTextStyle}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </controls:MyToggleButton.Template>
+        </controls:MyToggleButton>
 
     </Grid>
 

@@ -128,12 +128,16 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatingFrom(e);
             Save();
+            DeleteConfirm = false;
         }
 
         private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            GoBack();
-            e.Cancel = true;
+            if (DeleteConfirm)
+            {
+                DeleteConfirm = false;
+                e.Cancel = true;
+            }
         }
 
         private void GoBack()
@@ -560,26 +564,9 @@ namespace SimpleTasks.Views
 
         private void DeleteButton(object sender, EventArgs e)
         {
-            CustomMessageBox messageBox = new CustomMessageBox()
-            {
-                Caption = AppResources.DeleteTaskCaption,
-                Message = AppResources.DeleteTask
-                            + Environment.NewLine + Environment.NewLine
-                            + TitleTextBox.Text,
-                LeftButtonContent = AppResources.DeleteTaskYes,
-                RightButtonContent = AppResources.DeleteTaskNo
-            };
-
-            messageBox.Dismissed += (s1, e1) =>
-            {
-                if (e1.Result == CustomMessageBoxResult.LeftButton)
-                {
-                    Delete();
-                    GoBack();
-                }
-            };
-            messageBox.Show();
+            DeleteConfirmqAction();
         }
+
         #endregion
 
         #region Název
@@ -774,6 +761,43 @@ namespace SimpleTasks.Views
                 return;
             }
             SubtasksAngle = 0;
+        }
+        #endregion
+
+        #region DeleteConfirm
+        private bool _deleteConfirm = false;
+        public bool DeleteConfirm
+        {
+            get { return _deleteConfirm; }
+            set
+            {
+                SetProperty(ref _deleteConfirm, value);
+
+                // Počítá se s tím, že tlačítka na appbaru jsou ve výchozím stavu vždy zapnuta!
+                foreach (ApplicationBarIconButton button in ApplicationBar.Buttons)
+                {
+                    button.IsEnabled = !value;
+                }
+                foreach (ApplicationBarMenuItem item in ApplicationBar.MenuItems)
+                {
+                    item.IsEnabled = !value;
+                }
+                appBarDeleteButton.IsEnabled = true;
+            }
+        }
+
+        private void DeleteConfirmqAction()
+        {
+            if (DeleteConfirm)
+            {
+                DeleteConfirm = false;
+                Delete();
+                GoBack();
+            }
+            else
+            {
+                DeleteConfirm = true;
+            }
         }
         #endregion
     }
