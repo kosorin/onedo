@@ -93,32 +93,45 @@ namespace SimpleTasks
             Tasks.Load();
 
             if (Settings.Current.EnableTile)
+            {
                 try
                 {
+                    bool add = true;
                     PeriodicTask task = ScheduledActionService.Find(BackgroundAgentName) as PeriodicTask;
                     if (task != null)
                     {
-                        ScheduledActionService.Remove(BackgroundAgentName);
+                        if (task.ExpirationTime - DateTime.Now < TimeSpan.FromDays(7))
+                        {
+                            ScheduledActionService.Remove(BackgroundAgentName);
+                        }
+                        else
+                        {
+                            add = false;
+                        }
                     }
 
-                    ScheduledActionService.Add(new PeriodicTask(BackgroundAgentName)
+                    if (add)
                     {
-                        ExpirationTime = DateTime.Today.AddDays(14),
-                        Description = "Background agent."
-                    });
+                        ScheduledActionService.Add(new PeriodicTask(BackgroundAgentName)
+                        {
+                            ExpirationTime = DateTime.Today.AddDays(14),
+                            Description = "Background agent."
+                        });
 
 #if DEBUG
-                    if (Debugger.IsAttached)
-                    {
-                        ScheduledActionService.LaunchForTest(BackgroundAgentName, TimeSpan.FromSeconds(65));
-                        Debug.WriteLine("> LAUNCH FOR TEST");
-                    }
+                        if (Debugger.IsAttached)
+                        {
+                            ScheduledActionService.LaunchForTest(BackgroundAgentName, TimeSpan.FromSeconds(65));
+                            Debug.WriteLine("> LAUNCH FOR TEST");
+                        }
 #endif
+                    }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine("ERR> PeriodicTask: {0}", ex.Message);
                 }
+            }
 
             RootFrame.UriMapper = new MyUriMapper();
             Debug.WriteLine("===== ===== LAUNCHED ===== =====");
