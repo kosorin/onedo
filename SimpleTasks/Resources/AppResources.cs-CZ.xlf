@@ -72,7 +72,7 @@
           <source>about</source>
           <target state="signed-off">o aplikaci</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AppBar item</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarNew" xml:space="preserve">
           <source>new</source>
           <target state="signed-off">nový</target>
@@ -216,7 +216,8 @@
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version</source>
           <target state="signed-off">Verze</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
+          </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Výchozí čas</target>
@@ -278,7 +279,7 @@
           <source>add bullet</source>
           <target state="signed-off">přidat odrážku</target>
           <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/BulletText" xml:space="preserve">
           <source>bullet</source>
           <target state="signed-off">odrážka</target>
@@ -352,7 +353,8 @@
         <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
           <source>add</source>
           <target state="signed-off">přidat</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note>
+          </trans-unit>
         <trans-unit id="Resx/TaskText" translate="yes" xml:space="preserve">
           <source>task</source>
           <target state="signed-off">úkol</target>
@@ -387,8 +389,7 @@
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowTitle" translate="yes" xml:space="preserve">
           <source>Show title</source>
-          <target state="signed-off">Zobrazit název
-</target>
+          <target state="translated">Zobrazit název</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowDate" translate="yes" xml:space="preserve">
           <source>Show due date</source>
@@ -686,12 +687,12 @@ Tato funkce je pořád v beta verzi.</target></trans-unit>
           <source>Author</source>
           <target state="signed-off">Autor</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
           <source>Translation</source>
           <target state="signed-off">Překlad</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
           <target state="signed-off">Aby se projevila změna tohoto nastavení, je nutné restartovat aplikaci.</target>

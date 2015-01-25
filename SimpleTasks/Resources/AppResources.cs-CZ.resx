@@ -798,8 +798,7 @@ Tato funkce je pořád v beta verzi.</value>
     <comment>1 subtask</comment>
   </data>
   <data name="TileSettingsShowTitle" xml:space="preserve">
-    <value>Zobrazit název
-</value>
+    <value>Zobrazit název</value>
   </data>
   <data name="TileSettingsShowDate" xml:space="preserve">
     <value>Zobrazit datum</value>
