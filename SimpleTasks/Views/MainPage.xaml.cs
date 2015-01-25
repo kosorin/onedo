@@ -40,7 +40,7 @@ namespace SimpleTasks.Views
             CreateAppBarItems();
             BuildTasksdAppBar();
 
-            if (App.MessageAfterStart != null)
+            if (App.ShowChangelog)
             {
                 Loaded += MainPage_Loaded;
             }
@@ -55,11 +55,10 @@ namespace SimpleTasks.Views
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             Loaded -= MainPage_Loaded;
-            if (App.MessageAfterStart != null)
+            if (App.ShowChangelog)
             {
-                //MessageBox.Show(App.MessageAfterStart.Item1, App.MessageAfterStart.Item2, App.MessageAfterStart.Item3);
                 ChangelogGrid.Visibility = Visibility.Visible;
-                App.MessageAfterStart = null;
+                App.ShowChangelog = false;
             }
         }
 

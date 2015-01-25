@@ -1,8 +1,8 @@
 {
-    "4.8.0 ": {
-        "date": "2014-12-20",
+    "5.0.0": {
+        "date": "2015-01-25",
         "items": [
-            "more actions for gestures on main page (see settings page)"
+            "TODO: napsat changelog"
         ]
     },
     "4.8.0": {

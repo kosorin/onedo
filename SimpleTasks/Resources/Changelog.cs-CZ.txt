@@ -1,8 +1,8 @@
 ﻿{
-    "4.8.0 ": {
-        "date": "2014-12-20",
+    "5.0.0": {
+        "date": "2015-01-25",
         "items": [
-            "více akcí pro gesta na hlavní stránce (nastavíte v nastavení)"
+            "TODO: napsat changelog"
         ]
     },
     "4.8.0": {

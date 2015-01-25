@@ -1,0 +1,86 @@
+﻿<controls:BasePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                   xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                   xmlns:controls="clr-namespace:SimpleTasks.Controls"
+                   xmlns:sample="clr-namespace:Expression.Blend.SampleData.AboutDataSource"
+                   x:Class="SimpleTasks.Views.AboutBAPage"
+                   Style="{StaticResource BasePageStyle}"
+                   mc:Ignorable="d"
+                   d:DataContext="{d:DesignData /SampleData/AboutDataSource/AboutDataSource.xaml}">
+
+    <controls:BasePage.Resources>
+        <sample:AboutDataSource x:Key="AboutDataSource"
+                                d:IsDataSource="True" />
+
+        <Style x:Key="AboutHeaderTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource LabelTextStyle}">
+            <Setter Property="FontSize"
+                    Value="24" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource AccentBrush}" />
+            <Setter Property="Margin"
+                    Value="0,20,0,0" />
+        </Style>
+
+        <Style x:Key="AboutItemTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource NormalTextStyle}">
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+
+    </controls:BasePage.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                CacheMode="BitmapCache"
+                Background="{StaticResource AccentBrush}">
+            <TextBlock Text="BACKGROUND AGENT"
+                       Style="{StaticResource PageHeaderTextStyle}" />
+        </Border>
+        <Border Grid.Row="0"
+                Style="{StaticResource BottomBorderStyle}"
+                Background="{StaticResource DarkerAccentBrush}" />
+
+        <Grid Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel Margin="24,16,24,96">
+                    <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                               Text="{Binding LocalizedResources.PeriodicTaskDescription, Source={StaticResource LocalizedStrings}}" />
+
+                    <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                               Text="Is scheduled" />
+                    <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                               Text="{Binding IsScheduled}" />
+
+                    <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                               Text="Expiration time" />
+                    <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                               Text="{Binding ExpirationTime}" />
+
+                    <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                               Text="Last exit reason" />
+                    <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                               Text="{Binding LastExitReason}" />
+
+                    <TextBlock Style="{StaticResource AboutHeaderTextStyle}"
+                               Text="Last scheduled time" />
+                    <TextBlock Style="{StaticResource AboutItemTextStyle}"
+                               Text="{Binding LastScheduledTime}" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+
+</controls:BasePage>

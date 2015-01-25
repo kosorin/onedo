@@ -46,7 +46,7 @@ namespace SimpleTasks
             get { return Version.ToString(3); }
         }
 
-        public static Tuple<string, string, MessageBoxButton> MessageAfterStart = null;
+        public static bool ShowChangelog = false;
 
         public static TasksViewModel Tasks { get; private set; }
         #endregion
@@ -76,17 +76,7 @@ namespace SimpleTasks
             {
                 Debug.WriteLine("==== AKTUALIZACE ====");
                 Settings.Current.Version = VersionString;
-
-                SimpleTasks.Models.ChangelogCategory changelog = App.LoadWhatsNew();
-                if (changelog != null)
-                {
-                    string text = string.Format("{0} ({1})\n\n", string.Format(AppResources.VersionFormat, changelog.Version), changelog.Date.ToShortDateString());
-                    foreach (SimpleTasks.Models.ChangelogItem item in changelog)
-                    {
-                        text += "  • " + item.Text + System.Environment.NewLine;
-                    }
-                    MessageAfterStart = new Tuple<string, string, MessageBoxButton>(text, AppResources.WhatsNew, MessageBoxButton.OK);
-                }
+                ShowChangelog = true;
                 Debug.WriteLine("==== ===== Actualized ===== ====");
             }
 
@@ -100,14 +90,15 @@ namespace SimpleTasks
                     PeriodicTask task = ScheduledActionService.Find(BackgroundAgentName) as PeriodicTask;
                     if (task != null)
                     {
-                        if (task.ExpirationTime - DateTime.Now < TimeSpan.FromDays(7))
-                        {
-                            ScheduledActionService.Remove(BackgroundAgentName);
-                        }
-                        else
-                        {
-                            add = false;
-                        }
+                        ScheduledActionService.Remove(BackgroundAgentName);
+                        //if (task.ExpirationTime - DateTime.Now < TimeSpan.FromDays(7))
+                        //{
+                        //    ScheduledActionService.Remove(BackgroundAgentName);
+                        //}
+                        //else
+                        //{
+                        //    add = false;
+                        //}
                     }
 
                     if (add)
@@ -115,7 +106,7 @@ namespace SimpleTasks
                         ScheduledActionService.Add(new PeriodicTask(BackgroundAgentName)
                         {
                             ExpirationTime = DateTime.Today.AddDays(14),
-                            Description = "Background agent."
+                            Description = AppResources.PeriodicTaskDescription
                         });
 
 #if DEBUG
@@ -166,22 +157,6 @@ namespace SimpleTasks
             Debug.WriteLine("===== ===== CLOSED ===== =====");
         }
 
-        public static ChangelogCategory LoadWhatsNew()
-        {
-            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
-            {
-                JObject categoryData = (JObject)version.Value;
-
-                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
-                foreach (JToken item in (JArray)categoryData["items"])
-                {
-                    category.AddItem(item.ToString());
-                }
-                return category;
-            }
-            return null;
-        }
-
         public static ChangelogList LoadChangelog()
         {
             ChangelogList changelog = new ChangelogList();
@@ -197,9 +172,6 @@ namespace SimpleTasks
                 }
                 changelog.AddCategory(category);
             }
-
-            // První záznam je pro zobrazení zprávy "What's new" po aktualizaci/instalaci.
-            changelog.RemoveAt(0);
 
             return changelog;
         }

@@ -1,8 +1,8 @@
 {
-    "4.8.0 ": {
-        "date": "2014-12-20",
+    "5.0.0": {
+        "date": "2015-01-25",
         "items": [
-            "ďalšie akcie pre gestá na hlavnej stránke (nastavíte v nastavení)"
+            "TODO: napsat changelog"
         ]
     },
     "4.8.0": {

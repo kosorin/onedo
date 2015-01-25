@@ -44,6 +44,10 @@ namespace SimpleTasks.Views
             ApplicationBarMenuItem storeItem = new ApplicationBarMenuItem("store");
             storeItem.Click += StoreItem_Click;
             ApplicationBar.MenuItems.Add(storeItem);
+
+            ApplicationBarMenuItem baItem = new ApplicationBarMenuItem("background agent");
+            baItem.Click += (s, e) => { Navigate(typeof(AboutBAPage)); };
+            ApplicationBar.MenuItems.Add(baItem);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
