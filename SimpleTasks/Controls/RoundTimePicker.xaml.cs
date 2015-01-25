@@ -441,18 +441,19 @@ namespace SimpleTasks.Controls
 
         private void AnimateHours()
         {
-            HoursAngleAnimateFrom = HoursAngle;
+            HoursAngleAnimateFrom = AngleHoursGrabberCompositeTransform.Rotation;
             HoursAngleAnimateTo = Hours12 * 30;
 
             double diff = Math.Sqrt(Math.Abs(HoursAngleAnimateTo - HoursAngleAnimateFrom) / 10) / 8;
 
             CurrentHoursAnimationDuration = DurationFromSeconds(diff);
+            HoursAngleAnimation.Stop();
             HoursAngleAnimation.Begin();
         }
 
         private void AnimateMinutes()
         {
-            MinutesAngleAnimateFrom = MinutesAngle;
+            MinutesAngleAnimateFrom = AngleMinutesGrabberCompositeTransform.Rotation;
             MinutesAngleAnimateTo = Minutes * 6;
             if (Minutes == 0 || Minutes == 60)
             {
@@ -461,6 +462,7 @@ namespace SimpleTasks.Controls
 
             double diff = Math.Sqrt(Math.Abs(MinutesAngleAnimateTo - MinutesAngleAnimateFrom) / 10) / 8;
             CurrentMinutesAnimationDuration = DurationFromSeconds(diff);
+            MinutesAngleAnimation.Stop();
             MinutesAngleAnimation.Begin();
         }
         #endregion
