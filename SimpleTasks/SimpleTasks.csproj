@@ -150,7 +150,6 @@
     <Compile Include="Conventers\NullToVisibilityConverter.cs" />
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\GestureActionHelper.cs" />
-    <Compile Include="Helpers\GoogleAnalyticsHelper.cs" />
     <Compile Include="Helpers\LiveTile.cs" />
     <Compile Include="Helpers\OneDriveHelper.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />

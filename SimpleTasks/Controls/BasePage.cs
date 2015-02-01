@@ -46,8 +46,6 @@ namespace SimpleTasks.Controls
 
             SystemTray.ForegroundColor = (Color)App.Current.Resources["ButtonDarkForegroundColor"];
             SystemTray.Opacity = 0;
-
-            GoogleAnalyticsHelper.SendPage(this);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

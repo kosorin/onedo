@@ -167,32 +167,6 @@ namespace SimpleTasks.Views
         }
         #endregion
 
-        #region Feedback
-        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            Settings.Current.Feedback = true;
-            GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "True");
-            GoogleAnalyticsHelper.SendEvent("Settings", "Edit", "set feedback");
-        }
-
-        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (Settings.Current.Feedback)
-            {
-                // Pokud už byl feedback nastavený na false a check box se změní na unchecked,
-                // tak se znovu neposílá info o změně.
-                GoogleAnalyticsHelper.SetDimension(CustomDimension.Feedback, "False");
-                GoogleAnalyticsHelper.SendEvent("Settings", "Edit", "set feedback");
-                Settings.Current.Feedback = false;
-            }
-        }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            App.FeedbackEmail();
-        }
-        #endregion
-
         #region Default Task Tile Settings
         private void DefaultTaskTileSettingsButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
