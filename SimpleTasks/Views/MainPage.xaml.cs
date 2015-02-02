@@ -40,10 +40,7 @@ namespace SimpleTasks.Views
             CreateAppBarItems();
             BuildTasksdAppBar();
 
-            if (App.ShowChangelog)
-            {
-                Loaded += MainPage_Loaded;
-            }
+            Loaded += MainPage_Loaded;
 
 #if DEBUG
             TestButton.Click += RemindersMenuItem_Click;
@@ -55,6 +52,7 @@ namespace SimpleTasks.Views
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             Loaded -= MainPage_Loaded;
+
             if (App.ShowChangelog)
             {
                 ChangelogGrid.Visibility = Visibility.Visible;
