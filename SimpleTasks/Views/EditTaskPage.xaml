@@ -584,7 +584,7 @@
                               IsChecked="{Binding Task.Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
                     <ToggleButton.Template>
                         <ControlTemplate>
-                            <Grid Height="50"
+                            <Grid Height="55"
                                   Background="{StaticResource ButtonBackgroundBrush}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
