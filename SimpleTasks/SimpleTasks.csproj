@@ -174,9 +174,6 @@
     <Compile Include="SampleData\AboutDataSource\AboutDataSource.xaml.cs">
       <DependentUpon>AboutDataSource.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SampleData\EditDataSource\EditDataSource.xaml.cs">
-      <DependentUpon>EditDataSource.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SampleData\RoundTimePickerDataSource\RoundTimePickerDataSource.xaml.cs">
       <DependentUpon>RoundTimePickerDataSource.xaml</DependentUpon>
     </Compile>
@@ -364,10 +361,6 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </DesignTimeOnly>
-    <DesignTimeOnly Include="SampleData\EditDataSource\EditDataSource.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </DesignTimeOnly>
     <DesignTimeOnly Include="SampleData\RoundTimePickerDataSource\RoundTimePickerDataSource.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
@@ -522,9 +515,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <DesignTimeOnly Include="SampleData\EditDataSource\EditDataSource.xsd" />
-  </ItemGroup>
-  <ItemGroup>
     <DesignTimeOnly Include="SampleData\AboutDataSource\AboutDataSource.xsd" />
   </ItemGroup>
   <ItemGroup>
@@ -535,8 +525,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Target Name="BeforeBuild">
-  </Target>
+  <Target Name="BeforeBuild"></Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

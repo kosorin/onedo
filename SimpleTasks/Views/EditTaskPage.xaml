@@ -9,16 +9,12 @@
                    xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                    xmlns:primitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone"
-                   xmlns:sample="clr-namespace:Expression.Blend.SampleData.EditDataSource"
                    x:Class="SimpleTasks.Views.EditTaskPage"
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d"
-                   d:DataContext="{d:DesignData /SampleData/EditDataSource/EditDataSource.xaml}"
                    BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
     <controls:BasePage.Resources>
-        <sample:EditDataSource x:Key="EditDataSource"
-                               d:IsDataSource="True" />
 
         <Style x:Key="CloseButtonStyle"
                TargetType="Button">
@@ -34,8 +30,8 @@
                                             Foreground="{TemplateBinding Foreground}"
                                             RenderTransformOrigin="0.5,0.5">
                                 <ContentControl.RenderTransform>
-                                    <CompositeTransform ScaleX="0.75"
-                                                        ScaleY="0.75" />
+                                    <CompositeTransform ScaleX="0.6"
+                                                        ScaleY="0.6" />
                                 </ContentControl.RenderTransform>
                             </ContentControl>
                         </Grid>
@@ -56,7 +52,7 @@
 
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
-                             To="240"
+                             To="220"
                              Duration="0:0:0.3">
                 <DoubleAnimation.EasingFunction>
                     <CircleEase EasingMode="EaseOut" />
@@ -101,7 +97,7 @@
 
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
-                             To="60"
+                             To="50"
                              Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut" />
@@ -188,18 +184,19 @@
 
         <ScrollViewer>
             <StackPanel Margin="24,0,24,0">
-                <Border Height="40" />
+                <Border Height="50" />
 
                 <!--Text-->
                 <StackPanel Margin="0,0,0,20">
+
                     <!--Název-->
                     <controls:MyTextBox x:Name="TitleTextBox"
-                                        MinHeight="55"
                                         KeyDown="TitleTextBox_KeyDown"
                                         GotFocus="TitleTextBox_GotFocus"
                                         LostFocus="TitleTextBox_LostFocus"
                                         Text="{Binding Task.Title, Mode=TwoWay}"
-                                        Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}">
+                                        Hint="{Binding LocalizedResources.Title, Source={StaticResource LocalizedStrings}}"
+                                        FontSize="28">
                         <controls:MyTextBox.Resources>
                             <Storyboard x:Name="TitleTextBoxNoTextStoryboard">
                                 <DoubleAnimation Storyboard.TargetName="TitleTextBox"
@@ -218,19 +215,24 @@
                         </controls:MyTextBox.Resources>
                     </controls:MyTextBox>
 
+                    <!--Oddělovač-->
+                    <Border Height="1"
+                            Background="{StaticResource SubtleBrush}" />
+
                     <!--Detail-->
                     <controls:MyTextBox x:Name="DetailTextBox"
-                                        MinHeight="55"
                                         GotFocus="DetailTextBox_GotFocus"
                                         LostFocus="DetailTextBox_LostFocus"
                                         AcceptsReturn="True"
-                                        Mask="{StaticResource DetailMaskBrush}"
                                         Text="{Binding Task.Detail, Mode=TwoWay}"
-                                        Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}" />
+                                        Hint="{Binding LocalizedResources.Detail, Source={StaticResource LocalizedStrings}}"
+                                        FontSize="20"
+                                        Margin="0,4,0,0" />
                 </StackPanel>
 
                 <!--Upravit podúkoly-->
                 <Button Tap="EditSubtasks_Tap"
+                        Visibility="Collapsed"
                         Margin="0,0,0,20">
                     <Button.Template>
                         <ControlTemplate />
@@ -281,20 +283,20 @@
 
                 <!--Termín & Připomenutí & Opakování-->
                 <Grid x:Name="DueGrid"
-                      Margin="0,0,0,20"
-                      Height="240">
+                      Margin="0,20"
+                      Height="220">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60" />
-                        <RowDefinition Height="60" />
-                        <RowDefinition Height="60" />
-                        <RowDefinition Height="60" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
                     </Grid.RowDefinitions>
 
                     <!--Datum-->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="50" />
                         </Grid.ColumnDefinitions>
                         <controls:MyToggleButton x:Name="DueDatePicker"
                                                  Tap="DueDatePicker_Tap"
@@ -348,11 +350,17 @@
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="60" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <ContentControl Style="{StaticResource CalendarIconStyle}"
-                                                        Foreground="{TemplateBinding Foreground}" />
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        RenderTransformOrigin="0.5,0.5">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.7"
+                                                                    ScaleY="0.7" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
                                         <TextBlock x:Name="DateText"
                                                    Opacity="{Binding IsSetDueDate, Converter={StaticResource BooleanToNumberConverter}, Mode=OneTime}"
                                                    Grid.Column="1"
@@ -372,7 +380,7 @@
                                                    FontFamily="Segoe UI Symbol"
                                                    HorizontalAlignment="Right"
                                                    VerticalAlignment="Top"
-                                                   Margin="0,12,18,0"
+                                                   Margin="0,6,13,0"
                                                    IsHitTestVisible="False" />
                                     </Grid>
                                 </ControlTemplate>
@@ -394,11 +402,17 @@
                                 <Border Background="{StaticResource AccentBrush}">
                                     <Grid Background="#22000000">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="60" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <ContentControl Style="{StaticResource ClockIconStyle}"
-                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                        RenderTransformOrigin="0.5,0.5">
+                                            <ContentControl.RenderTransform>
+                                                <CompositeTransform ScaleX="0.7"
+                                                                    ScaleY="0.7" />
+                                            </ContentControl.RenderTransform>
+                                        </ContentControl>
                                         <TextBlock Grid.Column="1"
                                                    Text="{Binding DueDate, Converter={StaticResource TimeToStringConverter}, Mode=OneWay, FallbackValue='12:00 AM'}"
                                                    Style="{StaticResource ButtonTextStyle}"
@@ -414,7 +428,7 @@
                           Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="50" />
                         </Grid.ColumnDefinitions>
                         <controls:MyToggleButton x:Name="ReminderPicker"
                                                  Grid.ColumnSpan="2"
@@ -454,21 +468,26 @@
                                         </VisualStateManager.VisualStateGroups>
                                         <Grid Background="#33000000">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="60" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <ContentControl Style="{StaticResource ReminderIconStyle}"
-                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                            RenderTransformOrigin="0.5,0.5">
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.7"
+                                                                        ScaleY="0.7" />
+                                                </ContentControl.RenderTransform>
+                                            </ContentControl>
 
                                             <Grid x:Name="ReminderText"
                                                   Grid.Column="1">
                                                 <TextBlock Text="{Binding Reminder, Converter={StaticResource ReminderConverter}}"
                                                            Style="{StaticResource ButtonTextStyle}"
-                                                           FontSize="28"
                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                            VerticalAlignment="Top" />
                                                 <TextBlock Style="{StaticResource ButtonTextStyle}"
-                                                           FontSize="18"
+                                                           FontSize="16"
                                                            Opacity="0.6"
                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                            VerticalAlignment="Bottom"
@@ -498,7 +517,7 @@
                           Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="50" />
                         </Grid.ColumnDefinitions>
                         <controls:MyToggleButton x:Name="RepeatsPicker"
                                                  Grid.ColumnSpan="2"
@@ -538,11 +557,17 @@
                                         </VisualStateManager.VisualStateGroups>
                                         <Grid Background="#41000000">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="60" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <ContentControl Style="{StaticResource RepeatsIconStyle}"
-                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                                            Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                            RenderTransformOrigin="0.5,0.5">
+                                                <ContentControl.RenderTransform>
+                                                    <CompositeTransform ScaleX="0.7"
+                                                                        ScaleY="0.7" />
+                                                </ContentControl.RenderTransform>
+                                            </ContentControl>
 
                                             <TextBlock x:Name="RepeatsText"
                                                        Grid.Column="1"
@@ -565,17 +590,6 @@
                                 Style="{StaticResource CloseButtonStyle}" />
                     </Grid>
                 </Grid>
-                <!--<TextBlock Style="{StaticResource AccentTextStyle}"
-                           Margin="0,-15,0,20"
-                           TextWrapping="Wrap"
-                           FontWeight="SemiBold"
-                           FontSize="20">
-                    <Run Text="NOTE: "
-                         FontWeight="Bold" />
-                    <Run Text="Reminder will not be set up." />
-                    <LineBreak />
-                    <Run Text="Please change due date/time or reminder value to set valid reminder time." />
-                </TextBlock>-->
 
                 <!--Priorita-->
                 <ToggleButton x:Name="PriorityButton"
@@ -584,7 +598,7 @@
                               IsChecked="{Binding Task.Priority, Converter={StaticResource TaskPriorityToBooleanConverter}, Mode=TwoWay}">
                     <ToggleButton.Template>
                         <ControlTemplate>
-                            <Grid Height="60"
+                            <Grid Height="50"
                                   Background="{StaticResource ButtonBackgroundBrush}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
@@ -644,19 +658,24 @@
                                 <Grid x:Name="LowPriorityGrid"
                                       Opacity="0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="60" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-
                                     <ContentControl Style="{StaticResource LowPriorityIconStyle}"
-                                                    Foreground="{StaticResource ButtonForegroundBrush}" />
+                                                    Foreground="{StaticResource ButtonForegroundBrush}"
+                                                    RenderTransformOrigin="0.5,0.5">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.6"
+                                                                ScaleY="0.6" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
                                     <TextBlock Grid.Column="1"
                                                Text="{Binding LocalizedResources.PriorityLow, Source={StaticResource LocalizedStrings}}"
                                                Style="{StaticResource ButtonTextStyle}" />
                                 </Grid>
                                 <Grid x:Name="NormalPriorityGrid">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="60" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="1"
@@ -667,11 +686,17 @@
                                       Opacity="0"
                                       Background="{StaticResource AccentBrush}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70" />
+                                        <ColumnDefinition Width="60" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <ContentControl Style="{StaticResource HighPriorityIconStyle}"
-                                                    Foreground="{StaticResource ButtonDarkForegroundBrush}" />
+                                                    Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                    RenderTransformOrigin="0.5,0.5">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform ScaleX="0.75"
+                                                                ScaleY="0.75" />
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
                                     <TextBlock Grid.Column="1"
                                                Text="{Binding LocalizedResources.PriorityHigh, Source={StaticResource LocalizedStrings}}"
                                                Style="{StaticResource ButtonTextStyle}"

@@ -43,6 +43,8 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
 
+            SystemTray.ForegroundColor = (Color)App.Current.Resources["SlightColor"];
+
             if (_firstTimeNavigatedTo)
             {
                 _firstTimeNavigatedTo = false;

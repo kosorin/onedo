@@ -236,28 +236,6 @@ namespace SimpleTasks.Controls
 
         #endregion
 
-        #region BorderSize
-        public static readonly DependencyProperty BorderSizeProperty =
-            DependencyProperty.Register("BorderSize", typeof(double), typeof(MyTextBox), null);
-
-        public double BorderSize
-        {
-            get { return (double)base.GetValue(BorderSizeProperty); }
-            set { base.SetValue(BorderSizeProperty, value); }
-        }
-        #endregion
-
-        #region Mask
-        public static readonly DependencyProperty MaskProperty =
-            DependencyProperty.Register("Mask", typeof(Brush), typeof(MyTextBox), null);
-
-        public Brush Mask
-        {
-            get { return base.GetValue(MaskProperty) as Brush; }
-            set { base.SetValue(MaskProperty, value); }
-        }
-        #endregion
-
         public MyTextBox()
         {
             DefaultStyleKey = typeof(MyTextBox);
