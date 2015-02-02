@@ -99,7 +99,7 @@ namespace SimpleTasks.Views
             StopNoTextAnimation();
             TitleTextBox.UpdateHintVisibility();
 
-            UpdateSubtasksAngle();
+            UpdateSubtasksCompleted();
         }
 
         private void FirstTimeLoaded()
@@ -747,22 +747,21 @@ namespace SimpleTasks.Views
             Navigate(typeof(SubtasksPage), Task);
         }
 
-        private double _subtasksAngle = 0;
-        public double SubtasksAngle
+        private string _subtasksCompleted = "";
+        public string SubtasksCompleted
         {
-            get { return _subtasksAngle; }
-            set { SetProperty(ref _subtasksAngle, value); }
+            get { return _subtasksCompleted; }
+            set { SetProperty(ref _subtasksCompleted, value); }
         }
 
-        private void UpdateSubtasksAngle()
+        private void UpdateSubtasksCompleted()
         {
             if (Task != null && Task.Subtasks != null && Task.Subtasks.Count > 0)
             {
-                double ratio = (double)Task.Subtasks.Count(s => s.IsCompleted) / (double)Task.Subtasks.Count;
-                SubtasksAngle = 359.99 * ratio; // není 360 kvůli chování kontrolu RingSlice.
+                SubtasksCompleted = string.Format(AppResources.SubtasksXCompleted, Task.Subtasks.Count(s => s.IsCompleted), Task.Subtasks.Count);
                 return;
             }
-            SubtasksAngle = 0;
+            SubtasksCompleted = "";
         }
         #endregion
 

@@ -260,7 +260,7 @@
                                        Visibility="{Binding Task.Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
                                        FontSize="16"
                                        Opacity="0.6"
-                                       Text="2 of 6 completed"
+                                       Text="{Binding SubtasksCompleted}"
                                        Margin="0,0,0,2" />
                         </StackPanel>
 
