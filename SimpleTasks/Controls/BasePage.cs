@@ -146,6 +146,11 @@ namespace SimpleTasks.Controls
             return false;
         }
 
+        public void SetNavigationParameter<T>(T parameter, string parameterKey)
+        {
+            PhoneApplicationService.Current.State[_navigationKey + parameterKey] = parameter;
+        }
+
         public static T NavigationParameter<T>(string parameterKey = DefaultParameterKey, T defaultValue = default(T))
         {
             string key = _navigationKey + parameterKey;

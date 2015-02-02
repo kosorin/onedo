@@ -19,11 +19,22 @@
     </controls:BasePage.Resources>
 
     <Grid Background="{StaticResource BackgroundBrush}">
-        <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
-                   Text="{Binding LocalizedResources.SubtasksText, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                CacheMode="BitmapCache"
+                Background="{StaticResource AccentBrush}">
+            <TextBlock Text="{Binding LocalizedResources.SubtasksText, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}"
+                       Style="{StaticResource PageHeaderTextStyle}" />
+        </Border>
+        <Border Grid.Row="0"
+                Style="{StaticResource BottomBorderStyle}"
+                Background="{StaticResource DarkerAccentBrush}" />
 
         <!--Seznam & oddělení-->
-        <Grid Margin="0,60,0,0">
+        <Grid Grid.Row="1">
             <!--Seznam-->
             <rlb:ReorderListBox x:Name="SubtaskListBox"
                                 ItemsSource="{Binding Subtasks}"
@@ -44,7 +55,7 @@
                                           Foreground="{TemplateBinding Foreground}"
                                           ManipulationMode="Control"
                                           Padding="{TemplateBinding Padding}">
-                                <ItemsPresenter Margin="0,0,0,15" />
+                                <ItemsPresenter  Margin="0,16,0,96" />
                             </ScrollViewer>
                             <Canvas x:Name="DragInterceptor"
                                     Background="Transparent"
@@ -222,7 +233,7 @@
                        HorizontalAlignment="Left"
                        TextAlignment="Center"
                        VerticalAlignment="Top"
-                       Margin="24,6,0,0" />
+                       Margin="24,16,24,0" />
         </Grid>
     </Grid>
 

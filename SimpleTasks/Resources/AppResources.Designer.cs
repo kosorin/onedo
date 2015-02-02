@@ -205,7 +205,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete completed tasks.
+        ///   Looks up a localized string similar to delete completed.
         /// </summary>
         public static string AppBarDeleteCompleted {
             get {
@@ -423,10 +423,10 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;4.8.0 &quot;: {
-        ///        &quot;date&quot;: &quot;2014-12-20&quot;,
+        ///    &quot;5.0.0&quot;: {
+        ///        &quot;date&quot;: &quot;2015-01-25&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;more actions for gestures on main page (see settings page)&quot;
+        ///            &quot;TODO: napsat changelog&quot;
         ///        ]
         ///    },
         ///    &quot;4.8.0&quot;: {
@@ -443,7 +443,8 @@ namespace SimpleTasks.Resources {
         ///            &quot;bug fix: color of selected text&quot;
         ///        ]
         ///    },
-        ///   [rest of string was truncated]&quot;;.
+        ///    &quot;4.6.0&quot;: {
+        ///        &quot;date&quot;: &quot;2014-0 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -727,6 +728,15 @@ namespace SimpleTasks.Resources {
         public static string DeleteTaskCaption {
             get {
                 return ResourceManager.GetString("DeleteTaskCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap button again to delete task..
+        /// </summary>
+        public static string DeleteTaskConfirm {
+            get {
+                return ResourceManager.GetString("DeleteTaskConfirm", resourceCulture);
             }
         }
         
@@ -1664,6 +1674,15 @@ namespace SimpleTasks.Resources {
         public static string SubtasksText {
             get {
                 return ResourceManager.GetString("SubtasksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} completed.
+        /// </summary>
+        public static string SubtasksXCompleted {
+            get {
+                return ResourceManager.GetString("SubtasksXCompleted", resourceCulture);
             }
         }
         

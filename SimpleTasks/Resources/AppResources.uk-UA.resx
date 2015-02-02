@@ -197,6 +197,7 @@
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>видалити завершені задачі</value>
+    <comment></comment>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>видалити</value>

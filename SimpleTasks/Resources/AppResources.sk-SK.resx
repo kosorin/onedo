@@ -249,6 +249,7 @@
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>odstrániť dokončené úlohy</value>
+    <comment></comment>
   </data>
   <data name="AppBarActivate" xml:space="preserve">
     <value>aktivovať</value>

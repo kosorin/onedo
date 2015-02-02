@@ -189,6 +189,7 @@
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>cancella gli impegni completati</value>
+    <comment></comment>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>cancella</value>

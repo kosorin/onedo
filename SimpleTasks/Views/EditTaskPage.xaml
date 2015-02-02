@@ -97,7 +97,7 @@
 
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
-                             To="50"
+                             To="55"
                              Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut" />
@@ -232,52 +232,38 @@
 
                 <!--Upravit podúkoly-->
                 <Button Tap="EditSubtasks_Tap"
-                        Visibility="Collapsed"
-                        Margin="0,0,0,20">
+                        Margin="0,20,0,0">
                     <Button.Template>
                         <ControlTemplate />
                     </Button.Template>
 
-                    <Grid Height="60"
+                    <Grid Height="55"
                           Background="{StaticResource ButtonBackgroundBrush}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <ContentControl Style="{StaticResource SubtasksIconStyle}"
-                                        Foreground="{StaticResource ButtonForegroundBrush}" />
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
-                                   Style="{StaticResource ButtonTextStyle}" />
-                        <Grid Grid.Column="2"
-                              Visibility="{Binding Task.Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
+                                        Foreground="{StaticResource ButtonForegroundBrush}"
+                                        RenderTransformOrigin="0.5,0.5">
+                            <ContentControl.RenderTransform>
+                                <CompositeTransform ScaleX="0.65"
+                                                    ScaleY="0.65" />
+                            </ContentControl.RenderTransform>
+                        </ContentControl>
 
-                            <Ellipse Fill="{StaticResource SubtleBrush}"
-                                     Opacity="0.22"
-                                     Width="50"
-                                     Height="50" />
-
-                            <controls:RingSlice InnerRadius="18"
-                                                Radius="26"
-                                                Fill="{StaticResource AccentBrush}"
-                                                StartAngle="0"
-                                                EndAngle="{Binding SubtasksAngle, FallbackValue=225}"
-                                                Opacity="1" />
-                            <controls:RingSlice InnerRadius="18"
-                                                Radius="26"
-                                                Fill="{StaticResource NormalBrush}"
-                                                StartAngle="0"
-                                                EndAngle="359.99"
-                                                Opacity="0.12" />
-
-                            <TextBlock Text="{Binding Task.Subtasks.Count, FallbackValue=4}"
-                                       Style="{StaticResource ButtonTextStyle}"
-                                       FontSize="22"
-                                       Foreground="{StaticResource SlightBrush}"
-                                       HorizontalAlignment="Center"
+                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="{Binding LocalizedResources.SubtasksText, Source={StaticResource LocalizedStrings}}"
+                                       Style="{StaticResource ButtonTextStyle}" />
+                            <TextBlock Style="{StaticResource ButtonTextStyle}"
+                                       Visibility="{Binding Task.Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
+                                       FontSize="16"
+                                       Opacity="0.6"
+                                       Text="2 of 6 completed"
                                        Margin="0,0,0,2" />
-                        </Grid>
+                        </StackPanel>
+
                     </Grid>
                 </Button>
 
@@ -555,7 +541,7 @@
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Grid Background="#41000000">
+                                        <Grid Background="#44000000">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="60" />
                                                 <ColumnDefinition Width="*" />
@@ -713,7 +699,7 @@
 
         <controls:MyToggleButton x:Name="DeleteConfirmButton"
                                  IsChecked="{Binding DeleteConfirm}"
-                                 Content="Tap again to delete task."
+                                 Content="{Binding LocalizedResources.DeleteTaskConfirm, Source={StaticResource LocalizedStrings}}"
                                  toolkit:TiltEffect.SuppressTilt="True">
             <controls:MyToggleButton.Template>
                 <ControlTemplate TargetType="controls:MyToggleButton">

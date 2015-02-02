@@ -459,6 +459,7 @@ namespace SimpleTasks.Views
         {
             if (e.Task != null)
             {
+                SetNavigationParameter(true, "AddSubtask");
                 Navigate(typeof(SubtasksPage), e.Task);
             }
         }

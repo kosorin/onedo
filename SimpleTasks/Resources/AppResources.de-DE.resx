@@ -193,6 +193,7 @@
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>erledigte Aufgaben löschen</value>
+    <comment></comment>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>löschen</value>
