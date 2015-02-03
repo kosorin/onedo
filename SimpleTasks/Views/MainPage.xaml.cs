@@ -64,7 +64,9 @@ namespace SimpleTasks.Views
         {
             base.OnNavigatedTo(e);
 
-            SystemTray.ForegroundColor = (Color)App.Current.Resources["SlightColor"];
+            SystemTray.BackgroundColor = (Color)App.Current.Resources["AccentColor"];
+            SystemTray.ForegroundColor = (Color)App.Current.Resources["ButtonDarkForegroundColor"];
+            SystemTray.Opacity = 1;
 
             NavigationService.RemoveBackEntry();
 
@@ -434,7 +436,24 @@ namespace SimpleTasks.Views
         }
         #endregion // end of Methods
 
-        #region Úkoly
+        #region Tasks
+        private void Tasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(GroupedTasksPropertyName);
+        }
+
+        public readonly string GroupedTasksPropertyName = "GroupedTasks";
+        public TaskGroupCollection GroupedTasks
+        {
+            get { return new DateTaskGroupCollection(App.Tasks.Tasks); }
+        }
+
+        public TaskCollection Tasks
+        {
+            get { return App.Tasks.Tasks; }
+        }
+
+
         private void TaskItem_Check(object sender, Controls.TaskEventArgs e)
         {
             ToggleComplete(e.Task);
@@ -502,19 +521,6 @@ namespace SimpleTasks.Views
                 PageOverlayTransitionShow.Completed -= overlayHandler;
             };
             PageOverlayTransitionShow.Completed += overlayHandler;
-        }
-        #endregion
-
-        #region GroupedTasks
-        private void Tasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(GroupedTasksPropertyName);
-        }
-
-        public readonly string GroupedTasksPropertyName = "GroupedTasks";
-        public TaskGroupCollection GroupedTasks
-        {
-            get { return new DateTaskGroupCollection(App.Tasks.Tasks); }
         }
         #endregion
 
@@ -621,33 +627,6 @@ namespace SimpleTasks.Views
             }
         }
         #endregion
-
-        private void BeginOpacityAnimation(DependencyObject target, double from, double to)
-        {
-            Storyboard sb = new Storyboard();
-
-            DoubleAnimation da = new DoubleAnimation();
-            Storyboard.SetTarget(da, target);
-            Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
-            da.From = from;
-            da.To = to;
-            da.Duration = new Duration(TimeSpan.FromSeconds(0.5));
-            da.EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut };
-
-            sb.Children.Add(da);
-            sb.Begin();
-        }
-
-        private void TasksLongListSelector_ItemRealized(object sender, ItemRealizationEventArgs e)
-        {
-            e.Container.Opacity = 0;
-            BeginOpacityAnimation(e.Container, 0, 1);
-        }
-
-        private void TasksLongListSelector_ItemUnrealized(object sender, ItemRealizationEventArgs e)
-        {
-            e.Container.Opacity = 0;
-        }
 
         #region Changelog
         private void ChangelogShowButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)

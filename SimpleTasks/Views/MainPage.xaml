@@ -78,6 +78,46 @@
                                SubtaskSwipeLeft="TaskItem_SubtaskSwipeLeft"
                                SubtaskSwipeRight="TaskItem_SubtaskSwipeRight" />
         </DataTemplate>
+
+        <!--List Template-->
+        <ControlTemplate x:Key="TasksLongListSelectorTemplate"
+                         TargetType="phone:LongListSelector">
+            <Grid Background="{TemplateBinding Background}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="ScrollStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0:0:0.5" />
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Scrolling">
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                               Storyboard.TargetName="VerticalScrollBar">
+                                    <DiscreteDoubleKeyFrame KeyTime="0"
+                                                            Value="0.6" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="NotScrolling" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <ViewportControl x:Name="ViewportControl"
+                                     HorizontalContentAlignment="Stretch"
+                                     Padding="0,0,0,10"
+                                     VerticalContentAlignment="Top" />
+                    <ScrollBar x:Name="VerticalScrollBar"
+                               Background="{StaticResource SubtleBrush}"
+                               Grid.Column="1"
+                               Margin="-10,0,0,0"
+                               Opacity="0"
+                               Orientation="Vertical" />
+                </Grid>
+            </Grid>
+        </ControlTemplate>
     </controls:BasePage.Resources>
 
     <Grid x:Name="TasksRoot"
@@ -88,6 +128,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!--Changelog-->
         <Grid x:Name="ChangelogGrid"
               Background="{StaticResource AccentBrush}"
               Visibility="Collapsed">
@@ -156,51 +197,12 @@
                                     VirtualizingStackPanel.VirtualizationMode="Standard"
                                     LayoutMode="List"
                                     ItemsSource="{Binding GroupedTasks}"
+                                    Template="{StaticResource TasksLongListSelectorTemplate}"
                                     GroupHeaderTemplate="{StaticResource TasksLongListSelectorGroupHeaderTemmplate}"
                                     GroupFooterTemplate="{StaticResource TasksLongListSelectorGroupFooterTemmplate}"
                                     ItemTemplate="{StaticResource TasksLongListSelectorItemTemplate}"
                                     IsGroupingEnabled="True"
-                                    HideEmptyGroups="True">
-                <phone:LongListSelector.Template>
-                    <ControlTemplate TargetType="phone:LongListSelector">
-                        <Grid Background="{TemplateBinding Background}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="ScrollStates">
-                                    <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="0:0:0.5" />
-                                    </VisualStateGroup.Transitions>
-                                    <VisualState x:Name="Scrolling">
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
-                                                                           Storyboard.TargetName="VerticalScrollBar">
-                                                <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                        Value="0.6" />
-                                            </DoubleAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="NotScrolling" />
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-                                <ViewportControl x:Name="ViewportControl"
-                                                 HorizontalContentAlignment="Stretch"
-                                                 Padding="0,0,0,10"
-                                                 VerticalContentAlignment="Top" />
-                                <ScrollBar x:Name="VerticalScrollBar"
-                                           Background="{StaticResource SubtleBrush}"
-                                           Grid.Column="1"
-                                           Margin="-10,0,0,0"
-                                           Opacity="0"
-                                           Orientation="Vertical" />
-                            </Grid>
-                        </Grid>
-                    </ControlTemplate>
-                </phone:LongListSelector.Template>
-            </phone:LongListSelector>
+                                    HideEmptyGroups="True" />
 
             <!--No tasks-->
             <StackPanel x:Name="NoTasksPanel"

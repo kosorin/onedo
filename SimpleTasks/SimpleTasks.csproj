@@ -505,10 +505,12 @@
   <ItemGroup>
     <DesignTimeOnly Include="SampleData\SubtasksDataSource\SubtasksDataSource.xsd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
