@@ -72,7 +72,7 @@ namespace SimpleTasks.Views
             App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;
             if (e.NavigationMode == NavigationMode.Back)
             {
-                OnPropertyChanged(GroupedTasksProperty);
+                OnPropertyChanged(GroupedTasksPropertyName);
             }
         }
 
@@ -421,14 +421,14 @@ namespace SimpleTasks.Views
         {
             task.DueDate = due;
             App.Tasks.Update(task);
-            OnPropertyChanged(GroupedTasksProperty);
+            OnPropertyChanged(GroupedTasksPropertyName);
         }
 
         private void Postpone(TaskModel task, DateTime? due, GestureAction action)
         {
             task.DueDate = due;
             App.Tasks.Update(task);
-            OnPropertyChanged(GroupedTasksProperty);
+            OnPropertyChanged(GroupedTasksPropertyName);
 
             Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), GestureActionHelper.IconStyle(action));
         }
@@ -508,10 +508,10 @@ namespace SimpleTasks.Views
         #region GroupedTasks
         private void Tasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            OnPropertyChanged(GroupedTasksProperty);
+            OnPropertyChanged(GroupedTasksPropertyName);
         }
 
-        public readonly string GroupedTasksProperty = "GroupedTasks";
+        public readonly string GroupedTasksPropertyName = "GroupedTasks";
         public TaskGroupCollection GroupedTasks
         {
             get { return new DateTaskGroupCollection(App.Tasks.Tasks); }
