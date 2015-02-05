@@ -149,7 +149,7 @@ namespace SimpleTasks.Controls
         }
 
         public new static readonly DependencyProperty HeightProperty =
-            DependencyProperty.Register("Height", typeof(int), typeof(ToastPrompt), new PropertyMetadata(85));
+            DependencyProperty.Register("Height", typeof(int), typeof(ToastPrompt), new PropertyMetadata(50));
         #endregion
 
         #region Title

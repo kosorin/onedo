@@ -91,7 +91,7 @@
             </Grid.Projection>
 
             <Border Margin="0,-20,0,0" Background="{Binding Background, ElementName=ToastRoot}">
-                <Grid Margin="0,60,0,5">
+                <Grid Margin="0,25,0,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />

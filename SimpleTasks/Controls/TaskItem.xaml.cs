@@ -59,6 +59,8 @@ namespace SimpleTasks.Controls
     [TemplateVisualState(GroupName = GestureStatesGroup, Name = GestureEndDragState)]
     [TemplateVisualState(GroupName = DeleteStatesGroup, Name = DeletedState)]
     [TemplateVisualState(GroupName = DeleteStatesGroup, Name = NotDeletedState)]
+    [TemplateVisualState(GroupName = SubtasksStatesGroup, Name = ShowSubtasksState)]
+    [TemplateVisualState(GroupName = SubtasksStatesGroup, Name = HideSubtasksState)]
     public partial class TaskItem : UserControl, INotifyPropertyChanged
     {
         #region Events
@@ -195,35 +197,32 @@ namespace SimpleTasks.Controls
 
         #region Visual States
         private const string CompleteStatesGroup = "CompleteStates";
-
         private const string CompletedState = "Completed";
-
         private const string UncompletedState = "Uncompleted";
 
         private const string GestureStatesGroup = "GestureStates";
-
         private const string GestureStartDragState = "GestureStartDrag";
-
         private const string GestureDragOkState = "GestureDragOk";
-
         private const string GestureDragState = "GestureDrag";
-
         private const string GestureEndDragState = "GestureEndDrag";
 
         private const string DeleteStatesGroup = "DeleteStates";
-
         private const string DeletedState = "Deleted";
-
         private const string NotDeletedState = "NotDeleted";
+
+        private const string SubtasksStatesGroup = "SubtasksStates";
+        private const string ShowSubtasksState = "ShowSubtasks";
+        private const string HideSubtasksState = "HideSubtasks";
 
         private void UpdateVisualState(string state, bool useTransitions = true)
         {
-            VisualStateManager.GoToState(this, state, useTransitions);
+            VisualStateManager.GoToState(this, state, _loaded && useTransitions);
         }
 
         private void UpdateVisualStates(bool useTransitions = true)
         {
             UpdateVisualState((Task != null && Task.IsCompleted) ? CompletedState : UncompletedState, useTransitions);
+            UpdateVisualState((Task != null && Task.ShowSubtasks) ? ShowSubtasksState : HideSubtasksState, useTransitions);
             UpdateVisualState(GestureEndDragState, useTransitions);
         }
         #endregion // end of Visual States
@@ -233,7 +232,19 @@ namespace SimpleTasks.Controls
         {
             InitializeComponent();
             ResetDelete();
+
+            Opacity = 0;
+        }
+
+        private bool _loaded = false;
+
+        private void Control_Loaded(object sender, RoutedEventArgs e)
+        {
             UpdateVisualStates(false);
+            //ShowSubtasksBorder.Visibility = (ShowSubtasksButton.IsChecked ?? false) ? Visibility.Visible : Visibility.Collapsed;
+            _loaded = true;
+
+            Opacity = 1;
 
         }
         #endregion // end of Constructor
@@ -345,6 +356,16 @@ namespace SimpleTasks.Controls
                 e.DeleteFrom = Task;
             }
         }
+
+        private void ShowSubtasksButton_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateVisualState(ShowSubtasksState);
+        }
+
+        private void ShowSubtasksButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateVisualState(HideSubtasksState);
+        }
         #endregion // end of Event Handlers
 
         #region Delete
@@ -354,6 +375,5 @@ namespace SimpleTasks.Controls
             UpdateVisualState(NotDeletedState, false);
         }
         #endregion // end of Delete
-
     }
 }

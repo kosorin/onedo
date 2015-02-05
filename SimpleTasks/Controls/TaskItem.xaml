@@ -12,7 +12,8 @@
              Foreground="{StaticResource PhoneForegroundBrush}"
              d:DesignHeight="200"
              d:DesignWidth="350"
-             x:Name="Control">
+             x:Name="Control"
+             Loaded="Control_Loaded">
 
     <UserControl.Resources>
         <Style x:Key="InfoTextStyle"
@@ -192,6 +193,82 @@
 
             </VisualStateGroup>
 
+            <!--DeletedStates-->
+            <VisualStateGroup x:Name="SubtasksStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="ShowSubtasks">
+
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ShowSubtasksBorder"
+                                             Storyboard.TargetProperty="Opacity"
+                                             From="0"
+                                             To="1"
+                                             Duration="0:0:0.22">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="ShowSubtasksBorder"
+                                             Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateY)"
+                                             From="-50"
+                                             To="0"
+                                             Duration="0:0:0.22">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+
+                    </VisualTransition>
+
+                    <VisualTransition To="HideSubtasks">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ShowSubtasksBorder"
+                                             Storyboard.TargetProperty="Opacity"
+                                             From="1"
+                                             To="0"
+                                             Duration="0:0:0.22">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="ShowSubtasksBorder"
+                                             Storyboard.TargetProperty="(Border.RenderTransform).(CompositeTransform.TranslateY)"
+                                             From="0"
+                                             To="-50"
+                                             Duration="0:0:0.22">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+
+                <!--HideSubtasks-->
+                <VisualState x:Name="HideSubtasks">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShowSubtasksBorder"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!--ShowSubtasks-->
+                <VisualState x:Name="ShowSubtasks">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ShowSubtasksBorder"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+            </VisualStateGroup>
+
         </VisualStateManager.VisualStateGroups>
 
         <Border.RenderTransform>
@@ -358,12 +435,15 @@
                 </Button>
 
                 <!--Show Subtasks-->
-                <ToggleButton Grid.Column="1"
+                <ToggleButton x:Name="ShowSubtasksButton"
+                              Grid.Column="1"
                               Margin="0,0,-24,0"
                               Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
                               IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
                               VerticalAlignment="Center"
-                              Height="60">
+                              Height="60"
+                              Checked="ShowSubtasksButton_Checked"
+                              Unchecked="ShowSubtasksButton_Unchecked">
                     <ToggleButton.Template>
                         <ControlTemplate>
                             <Border x:Name="RootBorder"
@@ -446,10 +526,14 @@
             </Button>
 
             <!--Podúkoly-->
-            <Border Grid.Column="1"
+            <Border x:Name="ShowSubtasksBorder"
+                    Grid.Column="1"
                     Grid.Row="1"
                     Margin="11,0,0,0"
-                    Visibility="{Binding ShowSubtasks, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    RenderTransformOrigin="0.5,0">
+                <Border.RenderTransform>
+                    <CompositeTransform />
+                </Border.RenderTransform>
                 <StackPanel x:Name="SubtasksStackPanel"
                             Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}">
                     <!--Seznam podúkolů-->
