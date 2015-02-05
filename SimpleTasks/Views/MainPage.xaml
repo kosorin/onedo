@@ -13,8 +13,6 @@
                    mc:Ignorable="d">
 
     <controls:BasePage.Resources>
-        <converters:TaskGroupCountConverter x:Key="TaskGroupCountConverter" />
-
         <!--List Header-->
         <DataTemplate x:Key="TasksLongListSelectorGroupHeaderTemmplate">
             <Border toolkit:TiltEffect.SuppressTilt="True"
@@ -31,22 +29,15 @@
                             Padding="24,4,24,8"
                             HorizontalAlignment="Left"
                             Grid.Column="0">
-                        <TextBlock Text="{Binding Title}"
-                                   Style="{StaticResource NormalTextStyle}"
+                        <TextBlock Style="{StaticResource NormalTextStyle}"
                                    Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                    FontSize="20"
                                    HorizontalAlignment="Left"
-                                   VerticalAlignment="Center" />
+                                   VerticalAlignment="Center">
+                            <Run Text="{Binding Title}" />
+                            (<Run Text="{Binding Count}" />)
+                        </TextBlock>
                     </Border>
-
-                    <!--Počet úkolů-->
-                    <TextBlock Style="{StaticResource SlightTextStyle}"
-                               Text="{Binding Count, Converter={StaticResource TaskGroupCountConverter}}"
-                               VerticalAlignment="Center"
-                               Margin="24,0,0,0"
-                               Grid.Column="1"
-                               FontSize="16"
-                               HorizontalAlignment="Left" />
 
                     <Border Grid.Column="0"
                             Style="{StaticResource BottomBorderStyle}"

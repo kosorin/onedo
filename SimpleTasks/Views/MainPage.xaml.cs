@@ -453,7 +453,6 @@ namespace SimpleTasks.Views
             get { return App.Tasks.Tasks; }
         }
 
-
         private void TaskItem_Check(object sender, Controls.TaskEventArgs e)
         {
             ToggleComplete(e.Task);
