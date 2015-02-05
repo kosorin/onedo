@@ -178,7 +178,7 @@ namespace SimpleTasks.Core.Models
         #endregion // end of SwipeLeftAction
 
         #region SwipeRightAction
-        private GestureAction _swipeRightAction = GestureAction.None;
+        private GestureAction _swipeRightAction = GestureAction.Delete;
         [DataMember(Name = "SwipeRightAction")]
         public GestureAction SwipeRightAction
         {
