@@ -151,7 +151,7 @@
     <Compile Include="Conventers\NumberToVisibilityConverter.cs" />
     <Compile Include="Helpers\GestureActionHelper.cs" />
     <Compile Include="Helpers\LiveTile.cs" />
-    <Compile Include="Helpers\OneDriveHelper.cs" />
+    <Compile Include="Helpers\LiveConnectHelper.cs" />
     <Compile Include="Helpers\ReminderHelper.cs" />
     <Compile Include="Helpers\TaskModelExtensions.cs" />
     <Compile Include="Helpers\ThemeHelper.cs" />
@@ -509,8 +509,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />
-  <Target Name="BeforeBuild">
-  </Target>
+  <Target Name="BeforeBuild"></Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

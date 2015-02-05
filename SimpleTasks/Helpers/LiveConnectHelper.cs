@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SimpleTasks.Helpers
 {
-    public static class OneDriveHelper
+    public static class LiveConnectHelper
     {
         #region Public fields/properties
         public const string ClientId = "0000000048122FFF";
@@ -22,8 +22,8 @@ namespace SimpleTasks.Helpers
         public static readonly List<string> Scopes = new List<string> 
         { 
             "wl.signin", 
-            "wl.skydrive_update", 
-            "wl.offline_access"
+            "wl.offline_access",
+            "wl.skydrive_update",
         };
 
         private const string DefaultUserName = "???";

@@ -47,7 +47,7 @@ namespace SimpleTasks.Views
                 PerformingAction = true;
 
                 ActionTextBlock.Text = AppResources.SigningIn;
-                IsLoggedIn = await OneDriveHelper.SilentLoginAsync();
+                IsLoggedIn = await LiveConnectHelper.SilentLoginAsync();
 
                 ActionTextBlock.Text = AppResources.BackupDownloadingList;
                 await RefreshBackupList();
@@ -78,7 +78,7 @@ namespace SimpleTasks.Views
 
         public string SignedInText
         {
-            get { return IsLoggedIn ? string.Format(AppResources.SignedInYes, OneDriveHelper.CurrentUserName) : AppResources.SignedInNo; }
+            get { return IsLoggedIn ? string.Format(AppResources.SignedInYes, LiveConnectHelper.CurrentUserName) : AppResources.SignedInNo; }
         }
 
         private bool _performingAction = false;
@@ -170,12 +170,12 @@ namespace SimpleTasks.Views
             if (IsLoggedIn)
             {
                 // Získání složky
-                string folderId = await OneDriveHelper.SearchFolderIdAsync(BackupFolderName);
+                string folderId = await LiveConnectHelper.SearchFolderIdAsync(BackupFolderName);
 
                 // Získání seznamu souborů se zálohami
                 if (folderId != null)
                 {
-                    files = await OneDriveHelper.GetFilesInfoAsync(folderId, BackupFileExtension);
+                    files = await LiveConnectHelper.GetFilesInfoAsync(folderId, BackupFileExtension);
                 }
             }
 
@@ -223,10 +223,10 @@ namespace SimpleTasks.Views
         private async Task<bool> Backup()
         {
             // Získání id složky
-            string folderId = await OneDriveHelper.SearchFolderIdAsync(BackupFolderName);
+            string folderId = await LiveConnectHelper.SearchFolderIdAsync(BackupFolderName);
             if (folderId == null)
             {
-                folderId = await OneDriveHelper.CreateFolderAsync(OneDriveHelper.Root, BackupFolderName);
+                folderId = await LiveConnectHelper.CreateFolderAsync(LiveConnectHelper.Root, BackupFolderName);
             }
 
             // Nahrajeme soubor a získáme jeho id
@@ -248,7 +248,7 @@ namespace SimpleTasks.Views
 
                 // Nahrání
                 string fileName = string.Format("{0}{1}", DateTime.Now.ToFileName(), BackupFileExtension);
-                fileId = await OneDriveHelper.UploadAsync(folderId, fileName, json);
+                fileId = await LiveConnectHelper.UploadAsync(folderId, fileName, json);
             }
 
             return fileId != null;
@@ -262,7 +262,7 @@ namespace SimpleTasks.Views
             if (selectedItem != null && selectedItem.Value1 != null)
             {
                 // Stáhnutí souboru
-                string data = await OneDriveHelper.DownloadAsync(selectedItem.Value1.Id);
+                string data = await LiveConnectHelper.DownloadAsync(selectedItem.Value1.Id);
                 if (data != null)
                 {
                     try
@@ -286,14 +286,14 @@ namespace SimpleTasks.Views
             if (IsLoggedIn)
             {
                 IsLoggedIn = false;
-                OneDriveHelper.Logout();
+                LiveConnectHelper.Logout();
             }
             else
             {
                 PerformingAction = true;
 
                 ActionTextBlock.Text = AppResources.SigningIn;
-                IsLoggedIn = await OneDriveHelper.LoginAsync();
+                IsLoggedIn = await LiveConnectHelper.LoginAsync();
 
                 if (IsLoggedIn)
                 {
