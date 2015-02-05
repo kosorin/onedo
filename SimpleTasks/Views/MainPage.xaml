@@ -29,14 +29,18 @@
                             Padding="24,4,24,8"
                             HorizontalAlignment="Left"
                             Grid.Column="0">
-                        <TextBlock Style="{StaticResource NormalTextStyle}"
-                                   Foreground="{StaticResource ButtonDarkForegroundBrush}"
-                                   FontSize="20"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center">
-                            <Run Text="{Binding Title}" />
-                            (<Run Text="{Binding Count}" />)
-                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                       FontSize="20"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Count, StringFormat=' ({0})'}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                       FontSize="20"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
                     </Border>
 
                     <Border Grid.Column="0"
