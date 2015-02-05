@@ -232,20 +232,16 @@ namespace SimpleTasks.Controls
         {
             InitializeComponent();
             ResetDelete();
-
-            Opacity = 0;
+            ShowSubtasksBorder.Visibility = Visibility.Collapsed;
         }
 
         private bool _loaded = false;
 
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
+            ShowSubtasksBorder.Visibility = Visibility.Visible;
             UpdateVisualStates(false);
-            //ShowSubtasksBorder.Visibility = (ShowSubtasksButton.IsChecked ?? false) ? Visibility.Visible : Visibility.Collapsed;
             _loaded = true;
-
-            Opacity = 1;
-
         }
         #endregion // end of Constructor
 
