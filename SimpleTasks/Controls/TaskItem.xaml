@@ -253,8 +253,7 @@
             <!--Info-->
             <Grid Grid.Column="1"
                   Margin="16,0,24,0"
-                  MinHeight="60"
-                  Background="Transparent">
+                  MinHeight="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
@@ -363,7 +362,8 @@
                               Margin="0,0,-24,0"
                               Visibility="{Binding Subtasks.Count, Converter={StaticResource IntegerToVisibilityConverter}, ConverterParameter='!0'}"
                               IsChecked="{Binding ShowSubtasks, Mode=TwoWay}"
-                              VerticalAlignment="Center">
+                              VerticalAlignment="Center"
+                              Height="60">
                     <ToggleButton.Template>
                         <ControlTemplate>
                             <Border x:Name="RootBorder"
