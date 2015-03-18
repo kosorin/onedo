@@ -527,9 +527,9 @@
           <target state="signed-off">alle erledigen</target>
         </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
-          <source>or text box bellow to add a task.</source>
-          <target state="signed-off">oder die Textbox um eine Aufgabe hinzuzufügen.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} or text box bellow to add a task.</note>
+          <source>to add a task.</source>
+          <target state="needs-review-translation">oder die Textbox um eine Aufgabe hinzuzufügen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} or text box bellow to add a task.</note><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           </trans-unit>
         <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
           <source>Tap</source>

@@ -984,7 +984,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to or text box bellow to add a task..
+        ///   Looks up a localized string similar to to add a task..
         /// </summary>
         public static string NoTasksHelpEnd {
             get {

@@ -523,7 +523,7 @@
     <value>complete all</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>or text box bellow to add a task.</value>
+    <value>to add a task.</value>
     <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
