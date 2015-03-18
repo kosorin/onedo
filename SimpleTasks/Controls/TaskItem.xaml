@@ -193,7 +193,7 @@
 
             </VisualStateGroup>
 
-            <!--DeletedStates-->
+            <!--SubtasksStates-->
             <VisualStateGroup x:Name="SubtasksStates">
                 <VisualStateGroup.Transitions>
                     <VisualTransition To="ShowSubtasks">

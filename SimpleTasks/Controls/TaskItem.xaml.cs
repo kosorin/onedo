@@ -239,8 +239,11 @@ namespace SimpleTasks.Controls
 
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowSubtasksBorder.Visibility = Visibility.Visible;
-            UpdateVisualStates(false);
+            if (!_loaded)
+            {
+                ShowSubtasksBorder.Visibility = Visibility.Visible;
+                UpdateVisualStates(false);
+            }
             _loaded = true;
         }
         #endregion // end of Constructor
