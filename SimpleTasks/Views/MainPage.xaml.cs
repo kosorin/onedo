@@ -25,6 +25,7 @@ using System.Globalization;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Text;
 
 namespace SimpleTasks.Views
 {
@@ -77,8 +78,24 @@ namespace SimpleTasks.Views
 
             if (App.ShowChangelog)
             {
-                ChangelogGrid.Visibility = Visibility.Visible;
+                ShowWhatsNew();
                 App.ShowChangelog = false;
+            }
+        }
+
+        private static void ShowWhatsNew()
+        {
+            ChangelogCategory changelog = App.LoadChangelog().FirstOrDefault();
+            if (changelog != null && changelog.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat(AppResources.VersionFormat, changelog.Version);
+                sb.AppendFormat("\n{0:d}\n\n", changelog.Date);
+                foreach (ChangelogItem item in changelog)
+                {
+                    sb.AppendFormat(" \u2022 {0}\n", item.Text);
+                }
+                MessageBox.Show(sb.ToString(), AppResources.WhatsNew, MessageBoxButton.OK);
             }
         }
 
@@ -655,18 +672,5 @@ namespace SimpleTasks.Views
             }
         }
         #endregion
-
-        #region Changelog
-        private void ChangelogShowButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            ChangelogGrid.Visibility = Visibility.Collapsed;
-            Navigate(typeof(ChangelogPage));
-        }
-
-        private void ChangelogHideButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            ChangelogGrid.Visibility = Visibility.Collapsed;
-        }
-        #endregion // end of Changelog
     }
 }
