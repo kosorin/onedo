@@ -46,7 +46,6 @@ namespace SimpleTasks.Models
         public void Update()
         {
             List<TaskModel> tasksToAdd = new List<TaskModel>();
-            HashSet<TaskGroup> groupsToSort = new HashSet<TaskGroup>();
 
             foreach (TaskGroup group in GetAllGroups())
             {
@@ -63,10 +62,10 @@ namespace SimpleTasks.Models
 
             foreach (TaskModel task in tasksToAdd)
             {
-                groupsToSort.Add(AddSortedTask(task));
+                AddSortedTask(task);
             }
 
-            foreach (TaskGroup group in groupsToSort)
+            foreach (TaskGroup group in GetAllGroups())
             {
                 group.Sort();
             }
@@ -110,15 +109,15 @@ namespace SimpleTasks.Models
 
             foreach (TaskModel task in tasks)
             {
-                AddSortedTask(task);
+                AddTask(task);
             }
 
-            //_completedGroup.Sort();
-            //_somedayGroup.Sort();
-            //_overdueGroup.Sort();
-            //_todayGroup.Sort();
-            //_tomorrowGroup.Sort();
-            //_upcomingGroup.Sort();
+            _completedGroup.Sort();
+            _somedayGroup.Sort();
+            _overdueGroup.Sort();
+            _todayGroup.Sort();
+            _tomorrowGroup.Sort();
+            _upcomingGroup.Sort();
 
             Add(_overdueGroup);
             Add(_todayGroup);
