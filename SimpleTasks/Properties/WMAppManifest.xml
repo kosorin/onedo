@@ -4,6 +4,7 @@
   <Languages xmlns="">
     <Language code="cs-CZ" />
     <Language code="de-DE" />
+    <Language code="es-ES" />
     <Language code="it-IT" />
     <Language code="ru-RU" />
     <Language code="sk-SK" />
@@ -28,18 +29,13 @@
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\MediumTile.png</BackgroundImageURI>
           <Title>OneDo</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false">
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
+          <BackContent></BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false"></BackBackgroundImageURI>
+          <BackTitle></BackTitle>
           <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\WideTile.png</LargeBackgroundImageURI>
           <LargeBackContent />
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
-          </LargeBackBackgroundImageURI>
-          <DeviceLockImageURI IsRelative="true" IsResource="false">
-          </DeviceLockImageURI>
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false"></LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
