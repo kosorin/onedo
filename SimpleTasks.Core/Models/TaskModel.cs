@@ -416,5 +416,9 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+        public override string ToString()
+        {
+            return string.Format("Uid = {0}; Title = \"{1}\"", Uid, Title);
+        }
     }
 }

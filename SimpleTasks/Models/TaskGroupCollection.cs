@@ -17,16 +17,22 @@ namespace SimpleTasks.Models
 
         protected abstract TaskGroup GetGroup(TaskModel task);
 
-        public void AddTask(TaskModel task)
+        protected abstract IEnumerable<TaskGroup> GetAllGroups();
+
+        public TaskGroup AddTask(TaskModel task)
         {
             task.Wrapper = new TaskWrapper(task);
-            GetGroup(task).Add(task);
+            TaskGroup group = GetGroup(task);
+            group.Add(task);
+            return group;
         }
 
-        public void AddSortedTask(TaskModel task)
+        public TaskGroup AddSortedTask(TaskModel task)
         {
             task.Wrapper = new TaskWrapper(task);
-            GetGroup(task).AddSorted(task);
+            TaskGroup group = GetGroup(task);
+            group.AddSorted(task);
+            return group;
         }
 
         public void RemoveTask(TaskModel task)
@@ -34,6 +40,35 @@ namespace SimpleTasks.Models
             foreach (TaskGroup group in this)
             {
                 group.Remove(task);
+            }
+        }
+
+        public void Update()
+        {
+            List<TaskModel> tasksToAdd = new List<TaskModel>();
+            HashSet<TaskGroup> groupsToSort = new HashSet<TaskGroup>();
+
+            foreach (TaskGroup group in GetAllGroups())
+            {
+                for (int i = group.Count - 1; i >= 0; i--)
+                {
+                    TaskModel task = group[i];
+                    if (GetGroup(task) != group)
+                    {
+                        tasksToAdd.Add(task);
+                        group.RemoveAt(i);
+                    }
+                }
+            }
+
+            foreach (TaskModel task in tasksToAdd)
+            {
+                groupsToSort.Add(AddSortedTask(task));
+            }
+
+            foreach (TaskGroup group in groupsToSort)
+            {
+                group.Sort();
             }
         }
     }
@@ -47,12 +82,16 @@ namespace SimpleTasks.Models
         private TaskGroup _somedayGroup = null;
         private TaskGroup _completedGroup = null;
 
+        Comparer<TaskModel> _completedComparer;
+        Comparer<TaskModel> _somedayComparer;
+        Comparer<TaskModel> _dateComparer;
+
         public DateTaskGroupCollection(TaskCollection tasks)
             : base(tasks)
         {
-            Comparer<TaskModel> completedComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Completed.Value.CompareTo(t1.Completed.Value));
-            Comparer<TaskModel> somedayComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Priority.CompareTo(t1.Priority));
-            Comparer<TaskModel> dateComparer = Comparer<TaskModel>.Create((t1, t2) =>
+            _completedComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Completed.Value.CompareTo(t1.Completed.Value));
+            _somedayComparer = Comparer<TaskModel>.Create((t1, t2) => t2.Priority.CompareTo(t1.Priority));
+            _dateComparer = Comparer<TaskModel>.Create((t1, t2) =>
             {
                 int cmp = t1.ActualDueDate.Value.CompareTo(t2.ActualDueDate.Value);
                 if (cmp == 0)
@@ -62,24 +101,24 @@ namespace SimpleTasks.Models
                 return cmp;
             });
 
-            _completedGroup = new TaskGroup(AppResources.DateCompleted, completedComparer);
-            _somedayGroup = new TaskGroup(AppResources.DateSomeday, somedayComparer);
-            _overdueGroup = new TaskGroup(AppResources.DateOverdue, dateComparer);
-            _todayGroup = new TaskGroup(AppResources.DateToday, dateComparer);
-            _tomorrowGroup = new TaskGroup(AppResources.DateTomorrow, dateComparer);
-            _upcomingGroup = new TaskGroup(AppResources.DateUpcoming, dateComparer);
+            _completedGroup = new TaskGroup(AppResources.DateCompleted, _completedComparer);
+            _somedayGroup = new TaskGroup(AppResources.DateSomeday, _somedayComparer);
+            _overdueGroup = new TaskGroup(AppResources.DateOverdue, _dateComparer);
+            _todayGroup = new TaskGroup(AppResources.DateToday, _dateComparer);
+            _tomorrowGroup = new TaskGroup(AppResources.DateTomorrow, _dateComparer);
+            _upcomingGroup = new TaskGroup(AppResources.DateUpcoming, _dateComparer);
 
             foreach (TaskModel task in tasks)
             {
-                AddTask(task);
+                AddSortedTask(task);
             }
 
-            _completedGroup.Sort();
-            _somedayGroup.Sort();
-            _overdueGroup.Sort();
-            _todayGroup.Sort();
-            _tomorrowGroup.Sort();
-            _upcomingGroup.Sort();
+            //_completedGroup.Sort();
+            //_somedayGroup.Sort();
+            //_overdueGroup.Sort();
+            //_todayGroup.Sort();
+            //_tomorrowGroup.Sort();
+            //_upcomingGroup.Sort();
 
             Add(_overdueGroup);
             Add(_todayGroup);
@@ -115,6 +154,16 @@ namespace SimpleTasks.Models
             {
                 return _overdueGroup;
             }
+        }
+
+        protected override IEnumerable<TaskGroup> GetAllGroups()
+        {
+            yield return _overdueGroup;
+            yield return _todayGroup;
+            yield return _tomorrowGroup;
+            yield return _upcomingGroup;
+            yield return _somedayGroup;
+            yield return _completedGroup;
         }
     }
 }

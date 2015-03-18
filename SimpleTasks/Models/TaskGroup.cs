@@ -2,12 +2,13 @@
 using SimpleTasks.Core.Models;
 using SimpleTasks.Resources;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace SimpleTasks.Models
 {
-    public class TaskGroup : List<TaskModel>
+    public class TaskGroup : ObservableCollection<TaskModel>
     {
         public string Title { get; private set; }
 
@@ -29,9 +30,15 @@ namespace SimpleTasks.Models
             Insert(i, task);
         }
 
-        public new void Sort()
+        public void Sort()
         {
-            base.Sort(_comparer);
+            List<TaskModel> list = new List<TaskModel>(this);
+            list.Sort(_comparer);
+            this.Clear();
+            foreach (TaskModel task in list)
+            {
+                this.Add(task);
+            }
         }
     }
 }

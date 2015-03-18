@@ -111,20 +111,13 @@ namespace SimpleTasks.Views
 
             App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
             App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                if (_tasksChanged)
-                {
-                    OnPropertyChanged(GroupedTasksPropertyName);
-                }
-            }
+
+            UpdateGroupedTasks();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            //App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
-            _tasksChanged = false;
         }
         #endregion
 
@@ -466,32 +459,69 @@ namespace SimpleTasks.Views
         {
             task.DueDate = due;
             App.Tasks.Update(task);
-            OnPropertyChanged(GroupedTasksPropertyName);
+            UpdateGroupedTasks();
         }
 
         private void Postpone(TaskModel task, DateTime? due, GestureAction action)
         {
             task.DueDate = due;
             App.Tasks.Update(task);
-            OnPropertyChanged(GroupedTasksPropertyName);
+            UpdateGroupedTasks();
 
             Toast.Show(string.Format(AppResources.ToastPostponedUntil, task.DueDate), GestureActionHelper.IconStyle(action));
         }
         #endregion // end of Methods
 
         #region Tasks
-        private bool _tasksChanged = false;
-
         private void Tasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            _tasksChanged = true;
-            OnPropertyChanged(GroupedTasksPropertyName);
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                ResetGroupedTasks();
+            }
+            else
+            {
+                if (e.OldItems != null)
+                {
+                    foreach (TaskModel task in e.OldItems)
+                    {
+                        GroupedTasks.RemoveTask(task);
+                    }
+                }
+                if (e.NewItems != null)
+                {
+                    foreach (TaskModel task in e.NewItems)
+                    {
+                        GroupedTasks.AddSortedTask(task);
+                    }
+                }
+            }
         }
 
         public readonly string GroupedTasksPropertyName = "GroupedTasks";
+        private TaskGroupCollection _groupedTasks = null;
         public TaskGroupCollection GroupedTasks
         {
-            get { return new DateTaskGroupCollection(App.Tasks.Tasks); }
+            get
+            {
+                if (_groupedTasks == null)
+                {
+                    _groupedTasks = new DateTaskGroupCollection(App.Tasks.Tasks);
+                }
+                return _groupedTasks;
+            }
+        }
+
+        private void ResetGroupedTasks()
+        {
+            _groupedTasks = null;
+            OnPropertyChanged(GroupedTasksPropertyName);
+        }
+
+        private void UpdateGroupedTasks()
+        {
+            GroupedTasks.Update();
+            OnPropertyChanged(GroupedTasksPropertyName);
         }
 
         public TaskCollection Tasks
