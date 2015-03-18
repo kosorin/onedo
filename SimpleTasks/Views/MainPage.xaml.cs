@@ -96,14 +96,18 @@ namespace SimpleTasks.Views
             App.Tasks.Tasks.CollectionChanged += Tasks_CollectionChanged;
             if (e.NavigationMode == NavigationMode.Back)
             {
-                OnPropertyChanged(GroupedTasksPropertyName);
+                if (_tasksChanged)
+                {
+                    OnPropertyChanged(GroupedTasksPropertyName);
+                }
             }
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
+            //App.Tasks.Tasks.CollectionChanged -= Tasks_CollectionChanged;
+            _tasksChanged = false;
         }
         #endregion
 
@@ -459,8 +463,11 @@ namespace SimpleTasks.Views
         #endregion // end of Methods
 
         #region Tasks
+        private bool _tasksChanged = false;
+
         private void Tasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            _tasksChanged = true;
             OnPropertyChanged(GroupedTasksPropertyName);
         }
 
