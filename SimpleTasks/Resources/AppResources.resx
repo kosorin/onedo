@@ -844,4 +844,7 @@ It's still in beta.</value>
   <data name="SubtasksXCompleted" xml:space="preserve">
     <value>{0} of {1} completed</value>
   </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>You can't use this action on tasks with repeats!</value>
+  </data>
 </root>

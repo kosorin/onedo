@@ -587,6 +587,10 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <source>{0} of {1} completed</source>
           <target state="new">{0} of {1} completed</target>
         </trans-unit>
+        <trans-unit id="Resx/GestureCantWithRepeats" translate="yes" xml:space="preserve">
+          <source>You can't use this action on tasks with repeats!</source>
+          <target state="new">You can't use this action on tasks with repeats!</target>
+        </trans-unit>
         <trans-unit id="Resx/SettingsCompleteTask" translate="yes" xml:space="preserve">
           <source>Automatically complete task</source>
           <target state="new">Automatically complete task</target>

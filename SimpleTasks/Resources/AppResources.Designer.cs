@@ -858,6 +858,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t use this action on tasks with repeats!.
+        /// </summary>
+        public static string GestureCantWithRepeats {
+            get {
+                return ResourceManager.GetString("GestureCantWithRepeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} hour.
         /// </summary>
         public static string Hours1 {

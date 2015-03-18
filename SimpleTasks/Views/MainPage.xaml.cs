@@ -649,6 +649,7 @@ namespace SimpleTasks.Views
             case GestureAction.DueToday:
             case GestureAction.DueTomorrow:
                 VibrateHelper.Short();
+                if (!task.HasRepeats)
                 {
                     DateTime? oldDue = task.DueDate;
                     DateTime newDue = (action == GestureAction.DueToday ? DateTimeExtensions.Today : DateTimeExtensions.Tomorrow);
@@ -656,18 +657,29 @@ namespace SimpleTasks.Views
 
                     OverlayAction(SetDueDate, task, newDue, action);
                 }
+                else
+                {
+                    Toast.Show(AppResources.GestureCantWithRepeats, App.IconStyle("Warning"));
+                }
                 break;
 
             case GestureAction.PostponeDay:
             case GestureAction.PostponeWeek:
                 VibrateHelper.Short();
-                if (task.HasDueDate)
+                if (!task.HasRepeats)
                 {
-                    OverlayAction(Postpone, task, task.DueDate.Value.AddDays((action == GestureAction.PostponeDay ? 1 : 7)), action);
+                    if (task.HasDueDate)
+                    {
+                        OverlayAction(Postpone, task, task.DueDate.Value.AddDays((action == GestureAction.PostponeDay ? 1 : 7)), action);
+                    }
+                    else
+                    {
+                        OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.DefaultTime), action);
+                    }
                 }
                 else
                 {
-                    OverlayAction(Postpone, task, DateTimeExtensions.Today.AddDays((action == GestureAction.PostponeDay ? 1 : 7)).SetTime(Settings.Current.DefaultTime), action);
+                    Toast.Show(AppResources.GestureCantWithRepeats, App.IconStyle("Warning"));
                 }
                 break;
 
