@@ -1296,6 +1296,119 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <Style x:Key="RadioButtonStyle"
+                   TargetType="RadioButton">
+                <Setter Property="Height"
+                        Value="50" />
+                <Setter Property="BorderThickness"
+                        Value="2" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource SlightBrush}" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <StackPanel x:Name="Root"
+                                        Orientation="Horizontal"
+                                        Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Normal"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Disabled"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Root"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
+                                                                 To="0.38" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PressedEllipse"
+                                                                               Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="Visible" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="CheckStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition To="Unchecked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                            <VisualTransition To="Checked"
+                                                              GeneratedDuration="0:0:0.25" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Unchecked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CheckBoxBorder"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0"
+                                                                 To="1" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Indeterminate" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <!--CheckBox-->
+                                <Grid>
+                                    <Ellipse Width="32"
+                                             Height="32"
+                                             StrokeThickness="2"
+                                             Stroke="{StaticResource CheckBoxBorderBrush}" />
+                                    
+                                    <Grid x:Name="CheckBoxBorder">
+                                        <Ellipse Width="32"
+                                                 Height="32"
+                                                 Fill="{StaticResource AccentBrush}" />
+                                        <Ellipse Width="32"
+                                                 Height="32"
+                                                 Fill="{StaticResource ButtonDarkForegroundBrush}"
+                                                 RenderTransformOrigin="0.5,0.5">
+                                            <Ellipse.RenderTransform>
+                                                <CompositeTransform ScaleX="0.6"
+                                                                    ScaleY="0.6" />
+                                            </Ellipse.RenderTransform>
+                                        </Ellipse>
+                                    </Grid>
+
+                                    <Ellipse x:Name="PressedEllipse"
+                                             Visibility="Collapsed"
+                                             Width="32"
+                                             Height="32"
+                                             Fill="{StaticResource AccentBrush}" />
+                                </Grid>
+
+                                <!--Text-->
+                                <TextBlock Text="{TemplateBinding Content}"
+                                           Style="{StaticResource LabelTextStyle}"
+                                           Margin="10,0,0,0"
+                                           VerticalAlignment="Center" />
+
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <!--EndRegion-->
 
             <!--Region BasePage-->
@@ -1323,7 +1436,7 @@
                 <Setter Property="Margin"
                         Value="24,35,24,20" />
             </Style>
-            
+
             <Style x:Key="BottomBorderStyle"
                    TargetType="Border">
                 <Setter Property="VerticalAlignment"

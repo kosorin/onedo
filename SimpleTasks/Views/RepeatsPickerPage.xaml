@@ -11,10 +11,105 @@
 
     <controls:BasePickerPage.Resources>
         <Style x:Key="DayOfWeekStyle"
-               TargetType="ToggleButton"
-               BasedOn="{StaticResource CheckBoxStyle}">
+               TargetType="ToggleButton">
+            <Setter Property="Height"
+                    Value="50" />
+            <Setter Property="Width"
+                    Value="70" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
             <Setter Property="Margin"
-                    Value="0,0,0,20" />
+                    Value="0,0,0,10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ButtonBase">
+                        <Border x:Name="Root"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}"
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                Padding="{TemplateBinding Padding}">
+                            <Border.Background>
+                                <SolidColorBrush x:Name="RootBackground"
+                                                 Color="{StaticResource ButtonBackgroundColor}" />
+                            </Border.Background>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0.5" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource AccentBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
+                                                                           Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ButtonDarkForegroundBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition To="Unchecked"
+                                                          GeneratedDuration="0:0:0.25" />
+                                        <VisualTransition To="Checked"
+                                                          GeneratedDuration="0:0:0.25" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unchecked">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="RootBackground"
+                                                            Storyboard.TargetProperty="Color"
+                                                            Duration="0"
+                                                            To="{StaticResource ButtonBackgroundColor}" />
+                                            <ColorAnimation Storyboard.TargetName="TextForeground"
+                                                            Storyboard.TargetProperty="Color"
+                                                            Duration="0"
+                                                            To="{StaticResource ButtonForegroundColor}" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="RootBackground"
+                                                            Storyboard.TargetProperty="Color"
+                                                            Duration="0"
+                                                            To="{StaticResource AccentColor}" />
+                                            <ColorAnimation Storyboard.TargetName="TextForeground"
+                                                            Storyboard.TargetProperty="Color"
+                                                            Duration="0"
+                                                            To="{StaticResource ButtonDarkForegroundColor}" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Indeterminate" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <TextBlock x:Name="Text"
+                                       Text="{TemplateBinding Content}"
+                                       Style="{StaticResource ButtonTextStyle}"
+                                       FontSize="20"
+                                       HorizontalAlignment="Center">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush x:Name="TextForeground"
+                                                     Color="{StaticResource ButtonBackgroundColor}" />
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </controls:BasePickerPage.Resources>
 
@@ -24,14 +119,24 @@
 
         <ScrollViewer Margin="0,80,0,0">
             <StackPanel Margin="24,0">
-                <controls:ListPicker x:Name="RepeatsListPicker"
-                                     Foreground="{StaticResource SlightBrush}"
-                                     Background="{StaticResource ButtonBackgroundBrush}"
-                                     SelectionChanged="RepeatsListPicker_SelectionChanged" />
+                <RadioButton x:Name="OnceRadioButton"
+                             Content="{Binding LocalizedResources.RepeatsOnce, ConverterParameter=ToUpper, Source={StaticResource LocalizedStrings}}"
+                             GroupName="RepeatsGroup"
+                             Style="{StaticResource RadioButtonStyle}" />
 
-                <controls:ToggleControl x:Name="DaysOfWeekContainer">
-                    <StackPanel x:Name="ButtonPanel"
-                                Margin="0,20,0,0">
+                <RadioButton x:Name="DailyRadioButton"
+                             Content="{Binding LocalizedResources.RepeatsDaily, ConverterParameter=ToUpper, Source={StaticResource LocalizedStrings}}"
+                             GroupName="RepeatsGroup"
+                             Style="{StaticResource RadioButtonStyle}" />
+
+                <RadioButton x:Name="DaysOfWeekRadioButton"
+                             Content="{Binding LocalizedResources.RepeatsDaysOfWeek, ConverterParameter=ToUpper, Source={StaticResource LocalizedStrings}}"
+                             GroupName="RepeatsGroup"
+                             Style="{StaticResource RadioButtonStyle}" />
+                <controls:ToggleControl x:Name="DaysOfWeekContainer"
+                                        IsChecked="{Binding ElementName=DaysOfWeekRadioButton, Path=IsChecked}">
+                    <Grid x:Name="ButtonPanel"
+                          Margin="40,0,0,0">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckedStates">
                                 <VisualStateGroup.Transitions>
@@ -54,7 +159,7 @@
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
                                                                        Storyboard.TargetProperty="Opacity">
                                             <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="0" />
+                                                                    Value="0.25" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
                                                                        Storyboard.TargetProperty="IsHitTestVisible">
@@ -65,22 +170,53 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
                         <ToggleButton Content="{Binding DayNames[0]}"
-                                      Style="{StaticResource DayOfWeekStyle}" />
+                                      Style="{StaticResource DayOfWeekStyle}"
+                                      Grid.Column="1"
+                                      Grid.Row="1" />
                         <ToggleButton Content="{Binding DayNames[1]}"
                                       Style="{StaticResource DayOfWeekStyle}" />
                         <ToggleButton Content="{Binding DayNames[2]}"
-                                      Style="{StaticResource DayOfWeekStyle}" />
+                                      Style="{StaticResource DayOfWeekStyle}"
+                                      Grid.Column="1" />
                         <ToggleButton Content="{Binding DayNames[3]}"
-                                      Style="{StaticResource DayOfWeekStyle}" />
+                                      Style="{StaticResource DayOfWeekStyle}"
+                                      Grid.Column="2" />
                         <ToggleButton Content="{Binding DayNames[4]}"
-                                      Style="{StaticResource DayOfWeekStyle}" />
+                                      Style="{StaticResource DayOfWeekStyle}"
+                                      Grid.Column="3" />
                         <ToggleButton Content="{Binding DayNames[5]}"
-                                      Style="{StaticResource DayOfWeekStyle}" />
+                                      Style="{StaticResource DayOfWeekStyle}"
+                                      Grid.Column="4" />
                         <ToggleButton Content="{Binding DayNames[6]}"
-                                      Style="{StaticResource DayOfWeekStyle}" />
-                    </StackPanel>
+                                      Style="{StaticResource DayOfWeekStyle}"
+                                      Grid.Row="1" />
+                    </Grid>
                 </controls:ToggleControl>
+
+                <RadioButton x:Name="WeeklyRadioButton"
+                             Content="{Binding LocalizedResources.RepeatsWeekly, ConverterParameter=ToUpper, Source={StaticResource LocalizedStrings}}"
+                             GroupName="RepeatsGroup"
+                             Style="{StaticResource RadioButtonStyle}" />
+
+                <RadioButton x:Name="MonthlyRadioButton"
+                             Content="{Binding LocalizedResources.RepeatsMonthly, ConverterParameter=ToUpper, Source={StaticResource LocalizedStrings}}"
+                             GroupName="RepeatsGroup"
+                             Style="{StaticResource RadioButtonStyle}"
+                             Margin="0,0,0,24" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
