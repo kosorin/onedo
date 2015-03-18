@@ -42,6 +42,28 @@ namespace SimpleTasks.Views
 
             Loaded += MainPage_Loaded;
 
+            //if (false)
+            //{
+            //    _rlb = new ReorderListBox.ReorderListBox();
+            //    BindingOperations.SetBinding(_rlb, ReorderListBox.ReorderListBox.ItemsSourceProperty, new Binding("Tasks") { Source = this });
+            //    _rlb.ItemTemplate = (DataTemplate)Resources["TasksLongListSelectorItemTemplate"];
+            //    _rlb.IsReorderEnabled = true;
+            //    ContentPanel.Children.Insert(0, _rlb);
+            //}
+            //else
+            //{
+            //    _lls = new LongListSelector();
+            //    BindingOperations.SetBinding(_lls, LongListSelector.ItemsSourceProperty, new Binding("GroupedTasks") { Source = this });
+            //    _lls.Template = (ControlTemplate)Resources["TasksLongListSelectorTemplate"];
+            //    _lls.GroupHeaderTemplate = (DataTemplate)Resources["TasksLongListSelectorGroupHeaderTemmplate"];
+            //    _lls.GroupFooterTemplate = (DataTemplate)Resources["TasksLongListSelectorGroupFooterTemmplate"];
+            //    _lls.ItemTemplate = (DataTemplate)Resources["TasksLongListSelectorItemTemplate"];
+            //    _lls.LayoutMode = LongListSelectorLayoutMode.List;
+            //    _lls.IsGroupingEnabled = true;
+            //    _lls.HideEmptyGroups = true;
+            //    ContentPanel.Children.Insert(0, _lls);
+            //}
+
 #if DEBUG
             TestButton.Click += RemindersMenuItem_Click;
 #else

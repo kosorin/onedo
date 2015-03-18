@@ -38,6 +38,7 @@
                             <TextBlock Text="{Binding Count, StringFormat=' ({0})'}"
                                        Style="{StaticResource NormalTextStyle}"
                                        Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                       Opacity="0.5"
                                        FontSize="20"
                                        VerticalAlignment="Center" />
                         </StackPanel>
