@@ -52,7 +52,7 @@
 
             <DoubleAnimation Storyboard.TargetName="DueGrid"
                              Storyboard.TargetProperty="Height"
-                             To="260"
+                             To="185"
                              Duration="0:0:0.3">
                 <DoubleAnimation.EasingFunction>
                     <CircleEase EasingMode="EaseOut" />
@@ -170,7 +170,7 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
 
-        <Storyboard x:Name="ShowRepeatsStoryboard">
+        <!--<Storyboard x:Name="ShowRepeatsStoryboard">
             <ColorAnimation Storyboard.TargetName="RepeatsPicker"
                             Storyboard.TargetProperty="(ToggleButton.Background).(SolidColorBrush.Color)"
                             To="{StaticResource AccentColor}"
@@ -209,7 +209,7 @@
                 <DiscreteObjectKeyFrame KeyTime="0"
                                         Value="False" />
             </ObjectAnimationUsingKeyFrames>
-        </Storyboard>
+        </Storyboard>-->
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
@@ -303,14 +303,14 @@
                 <!--Termín & Připomenutí & Opakování-->
                 <Grid x:Name="DueGrid"
                       Margin="0,20"
-                      Height="260">
+                      Height="185">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="55" />
                         <RowDefinition Height="55" />
                         <RowDefinition Height="20" />
                         <RowDefinition Height="55" />
-                        <RowDefinition Height="20" />
-                        <RowDefinition Height="55" />
+                        <!--<RowDefinition Height="20" />
+                        <RowDefinition Height="55" />-->
                     </Grid.RowDefinitions>
 
                     <!--Datum-->
@@ -537,7 +537,7 @@
                     </Grid>
 
                     <!--Opakování-->
-                    <Grid x:Name="RepeatsPickerGrid"
+                    <!--<Grid x:Name="RepeatsPickerGrid"
                           Grid.Row="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -615,7 +615,7 @@
                                 Tap="RepeatsCloseButton_Tap"
                                 Grid.Column="1"
                                 Style="{StaticResource CloseButtonStyle}" />
-                    </Grid>
+                    </Grid>-->
                 </Grid>
 
                 <!--Priorita-->
