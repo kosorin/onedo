@@ -120,7 +120,9 @@
                         <Run>Russian</Run><Run Text=" - Алекс Листопад"
                                                Foreground="{StaticResource SlightBrush}" /><LineBreak />
                         <Run>Ukrainian</Run><Run Text=" - Bogdan Yemchuk"
-                                               Foreground="{StaticResource SlightBrush}" />
+                                                 Foreground="{StaticResource SlightBrush}" /><LineBreak />
+                        <Run>Spanish</Run><Run Text=" - Javier Sans Besada"
+                                                 Foreground="{StaticResource SlightBrush}" />
                 </TextBlock>
 
                 <!--Changelog-->
