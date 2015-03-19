@@ -134,14 +134,15 @@
                              GroupName="RepeatsGroup"
                              Style="{StaticResource RadioButtonStyle}" />
                 <controls:ToggleControl x:Name="DaysOfWeekContainer"
-                                        IsChecked="{Binding ElementName=DaysOfWeekRadioButton, Path=IsChecked}">
+                                        IsChecked="{Binding ElementName=DaysOfWeekRadioButton, Path=IsChecked}"
+                                        Height="120">
                     <Grid x:Name="ButtonPanel"
                           Margin="40,0,0,0">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckedStates">
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition To="Checked"
-                                                      GeneratedDuration="0:0:0.6">
+                                                      GeneratedDuration="0:0:0.3">
                                         <VisualTransition.GeneratedEasingFunction>
                                             <CubicEase EasingMode="EaseOut" />
                                         </VisualTransition.GeneratedEasingFunction>
@@ -159,13 +160,13 @@
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
                                                                        Storyboard.TargetProperty="Opacity">
                                             <DiscreteDoubleKeyFrame KeyTime="0"
-                                                                    Value="0.25" />
+                                                                    Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
-                                                                       Storyboard.TargetProperty="IsHitTestVisible">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="False" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DaysOfWeekContainer"
+                                                                       Storyboard.TargetProperty="Height">
+                                            <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                    Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
