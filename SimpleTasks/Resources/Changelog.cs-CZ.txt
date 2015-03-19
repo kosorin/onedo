@@ -1,8 +1,10 @@
 ﻿{
-    "5.0.0": {
-        "date": "2015-01-25",
+    "4.9.0": {
+        "date": "2015-03-19",
         "items": [
-            "TODO: napsat changelog"
+            "Solarized motiv",
+            "skrýt/zobrazit pod§koly",
+            "design... opět :D"
         ]
     },
     "4.8.0": {
