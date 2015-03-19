@@ -550,7 +550,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasksDetail" translate="yes" xml:space="preserve">
           <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
-          <target state="signed-off">Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</target>
+          <target state="translated">Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsVibrate" translate="yes" xml:space="preserve">
           <source>Vibrate</source>
