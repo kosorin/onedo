@@ -126,11 +126,11 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AppBarNew" xml:space="preserve">
-    <value>nuevo</value>
+    <value>nueva</value>
     <comment>new task</comment>
   </data>
   <data name="AppBarAbout" xml:space="preserve">
-    <value>acerca de</value>
+    <value>acerca de OneDo</value>
     <comment>AppBar item</comment>
   </data>
   <data name="AppBarSave" xml:space="preserve">
@@ -141,7 +141,7 @@
     <value>ELIGE FECHA</value>
   </data>
   <data name="DateCustomDue" xml:space="preserve">
-    <value>fecha límite personalizada</value>
+    <value>fijar fecha personalizada</value>
   </data>
   <data name="DateLater" xml:space="preserve">
     <value>más tarde</value>
@@ -153,10 +153,10 @@
     <value>próxima semana</value>
   </data>
   <data name="DateNoDue" xml:space="preserve">
-    <value>sin fecha límite</value>
+    <value>sin fecha exacta</value>
   </data>
   <data name="DateOverdue" xml:space="preserve">
-    <value>atrasado</value>
+    <value>atrasada</value>
   </data>
   <data name="DateThisMonth" xml:space="preserve">
     <value>este mes</value>
@@ -174,13 +174,13 @@
     <value>No Hay Tareas</value>
   </data>
   <data name="PriorityHigh" xml:space="preserve">
-    <value>alta prioridad</value>
+    <value>prioridad alta</value>
   </data>
   <data name="PriorityNormal" xml:space="preserve">
     <value>prioridad normal</value>
   </data>
   <data name="AppBarComplete" xml:space="preserve">
-    <value>completado</value>
+    <value>completar</value>
     <comment>complete task</comment>
   </data>
   <data name="PeriodicTaskDescription" xml:space="preserve">
@@ -192,7 +192,7 @@
     <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
-    <value>eliminado</value>
+    <value>eliminar completadas</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>eliminar</value>
@@ -224,7 +224,7 @@
     <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
-    <value>valora y opina</value>
+    <value>califícanos</value>
     <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="SettingsDefaultDate" xml:space="preserve">
@@ -269,19 +269,15 @@
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>Las tareas se eliminan automáticamente cuando se inicia la aplicación</value>
   </data>
-  <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback para {0} {1}</value>
-    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
-  </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Versión</value>
     <comment>AboutPage;</comment>
   </data>
   <data name="DueDate" xml:space="preserve">
-    <value>Fecha límite</value>
+    <value>fecha fijada</value>
   </data>
   <data name="PriorityLow" xml:space="preserve">
-    <value>Prioridad baja</value>
+    <value>prioridad baja</value>
   </data>
   <data name="Reminder" xml:space="preserve">
     <value>recordatorio</value>
@@ -299,7 +295,7 @@
     <value>Eliminar todas las tareas</value>
   </data>
   <data name="DateSomeday" xml:space="preserve">
-    <value>algún día</value>
+    <value>sin día específico</value>
   </data>
   <data name="DateUpcoming" xml:space="preserve">
     <value>próximamente</value>
@@ -314,10 +310,10 @@
     <value>nunca</value>
   </data>
   <data name="SettingsDeleteWhenStarts" xml:space="preserve">
-    <value>cuando la aplicación se cierra</value>
+    <value>cuando la aplicación se cierre</value>
   </data>
   <data name="Detail" xml:space="preserve">
-    <value>Detalle</value>
+    <value>Detalles</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Título</value>
@@ -396,7 +392,7 @@
     <value>ayer</value>
   </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
-    <value>antes de fecha límite</value>
+    <value>antes de la hora fijada</value>
   </data>
   <data name="Time15mins" xml:space="preserve">
     <value>15 minutos</value>
@@ -420,7 +416,7 @@
     <value>5 minutos</value>
   </data>
   <data name="TimeZero" xml:space="preserve">
-    <value>en la hora límite</value>
+    <value>a la hora fijada</value>
   </data>
   <data name="Days1" xml:space="preserve">
     <value>{0} día</value>
@@ -501,7 +497,7 @@
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
-    <value>Toca</value>
+    <value>Pulsa</value>
     <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
@@ -523,7 +519,7 @@
     <value>eliminar todas</value>
   </data>
   <data name="TileSettingsShowDate" xml:space="preserve">
-    <value>Mostrar fecha límite</value>
+    <value>Mostrar fecha establecida</value>
   </data>
   <data name="TileSettingsShowTitle" xml:space="preserve">
     <value>Mostrar título</value>
@@ -532,7 +528,7 @@
     <value>Mostrar subtareas completadas</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
-    <value>Título en una línea</value>
+    <value>Mostrar título en una línea</value>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>Opacidad del fondo</value>
@@ -544,19 +540,19 @@
     <value>Vista Previa</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
-    <value>ajustes de tile</value>
+    <value>ajustes del tile</value>
   </data>
   <data name="TitleUntitled" xml:space="preserve">
     <value>Sin título</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
-    <value>Envía datos de uso anónimos para mejorar esta aplicación. Las estadísticas ayudan al desarrollador a conocer y centrarse en las funciones más usadas. No se recogerán datos personales.</value>
+    <value>Envía datos de uso anónimos para mejorar esta aplicación. Las estadísticas ayudan al desarrollador a conocer y a centrarse en las funciones más usadas. No se recogerán datos personales.</value>
   </data>
   <data name="EditText" xml:space="preserve">
     <value>Editar</value>
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
-    <value>Ajustes por defecto para el tile de tarea</value>
+    <value>Ajustes por defecto para tile de tarea</value>
   </data>
   <data name="SettingsShowTaskCheckBox" xml:space="preserve">
     <value>Mostrar casilla de verificación de tarea</value>
@@ -568,22 +564,22 @@
     <value>copia de seguridad &amp; restaurar</value>
   </data>
   <data name="BackupText" xml:space="preserve">
-    <value>Copia de seguridad</value>
+    <value>Crear copia</value>
   </data>
   <data name="RestoreText" xml:space="preserve">
     <value>Restaurar</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Entrar</value>
+    <value>Identificarse</value>
   </data>
   <data name="SignOut" xml:space="preserve">
     <value>Salir</value>
   </data>
   <data name="SigningIn" xml:space="preserve">
-    <value>Entrando</value>
+    <value>Accediendo</value>
   </data>
   <data name="BackingUp" xml:space="preserve">
-    <value>Haciendo copia</value>
+    <value>Creando copia</value>
   </data>
   <data name="Restoring" xml:space="preserve">
     <value>Restaurando</value>
@@ -592,7 +588,7 @@
     <value>elige copia para restaurar</value>
   </data>
   <data name="BackupDownloadingList" xml:space="preserve">
-    <value>Descargando lista de copias de seguridad</value>
+    <value>Descargando lista de backups</value>
   </data>
   <data name="NoBackups" xml:space="preserve">
     <value>No hay copias de seguridad</value>
@@ -601,35 +597,35 @@
     <value>Error desconocido.</value>
   </data>
   <data name="SignedInNo" xml:space="preserve">
-    <value>No estás registrado.</value>
+    <value>No te has identificado.</value>
   </data>
   <data name="SignedInYes" xml:space="preserve">
-    <value>Estás registrado como {0}</value>
+    <value>Te has identificado como {0}</value>
     <comment>{0} is user name</comment>
   </data>
   <data name="BackupLatest" xml:space="preserve">
-    <value>más reciente</value>
+    <value>última</value>
   </data>
   <data name="RestoreWhatText" xml:space="preserve">
     <value>elige qué quieres restaurar</value>
   </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
-    <value>Esta opción creará una carpeta llamada "{0}". Puedes moverla a otro sitio, pero por favor, no la renombres. Tampoco modifiques los archivos que hay dentro. Aún está en BETA.</value>
+    <value>Esta opción creará una carpeta llamada "{0}". Puedes moverla a otro sitio, pero por favor, no la renombres. Tampoco modifiques los archivos que hay dentro. Aún está en fase beta.</value>
   </data>
   <data name="RestoreOk" xml:space="preserve">
     <value>Se ha restaurado con éxito.</value>
   </data>
   <data name="BackupOk" xml:space="preserve">
-    <value>Copia creada con éxito</value>
+    <value>Copia de seguridad creada con éxito.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>Mostrar contador de tareas</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>Alternar título y fecha en el tile ancho</value>
+    <value>Alternar título y fecha en tile ancho</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>Tile para agregar tarea rápido</value>
+    <value>Tile para crear tarea nueva</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>Anclar a inicio</value>
@@ -641,7 +637,7 @@
     <value>Nueva tarea</value>
   </data>
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
-    <value>Si no está marcada, se mostrará una lista de tareas en el tile pequeño, en lugar del número de tareas</value>
+    <value>Si no está marcada, se mostrará una lista de tareas en el tile de tamaño pequeño, en lugar del número de tareas.</value>
   </data>
   <data name="SettingsThemeDark" xml:space="preserve">
     <value>oscuro</value>
@@ -672,7 +668,7 @@
     <comment>Version {VersionNumber}</comment>
   </data>
   <data name="ChangelogShow" xml:space="preserve">
-    <value>Mostrar informe de cambios</value>
+    <value>Mostrar informe</value>
   </data>
   <data name="GestureActionComplete" xml:space="preserve">
     <value>completar tarea/subtarea</value>
@@ -681,10 +677,10 @@
     <value>eliminar tarea/subtarea</value>
   </data>
   <data name="GestureActionDueToday" xml:space="preserve">
-    <value>fijar límite: Hoy</value>
+    <value>fijar fecha: Hoy</value>
   </data>
   <data name="GestureActionDueTomorrow" xml:space="preserve">
-    <value>fijar límite: Mañana</value>
+    <value>fijar fecha: Mañana</value>
   </data>
   <data name="GestureActionNone" xml:space="preserve">
     <value>sin acción</value>
@@ -736,7 +732,7 @@
     <value>repeticiones</value>
   </data>
   <data name="RepeatsDaily" xml:space="preserve">
-    <value>Diario</value>
+    <value>Diaria</value>
   </data>
   <data name="RepeatsOn" xml:space="preserve">
     <value>repetición activada</value>
@@ -745,13 +741,13 @@
     <value>sólo una vez</value>
   </data>
   <data name="RepeatsWeekdays" xml:space="preserve">
-    <value>días de semana</value>
+    <value>entre semana</value>
   </data>
   <data name="RepeatsWeekends" xml:space="preserve">
     <value>fines de semana</value>
   </data>
   <data name="RepeatsDaysOfWeek" xml:space="preserve">
-    <value>días de semana</value>
+    <value>días de la semana</value>
   </data>
   <data name="RepeatsMonthly" xml:space="preserve">
     <value>mensualmente</value>
@@ -784,16 +780,16 @@
     <comment>5+ tasks</comment>
   </data>
   <data name="SettingsLook" xml:space="preserve">
-    <value>aspecto</value>
+    <value>apariencia</value>
   </data>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Ajustes de tile de tareas</value>
   </data>
   <data name="BackupVersionMismatchCaption" xml:space="preserve">
-    <value>Ten en cuenta</value>
+    <value>¡Atención!</value>
   </data>
   <data name="BackupVersionMismatchContent" xml:space="preserve">
-    <value>La versión de esta copia de seguridad no coincide con la actual versión de la aplicación. Alguna información podría perderse en la copia.</value>
+    <value>La versión de esta copia de seguridad no coincide con la versión actual de la aplicación. Podría perderse alguna información en la restauración.</value>
   </data>
   <data name="BackupVersionMismatchNo" xml:space="preserve">
     <value>cancelar</value>
@@ -805,20 +801,27 @@
     <value>Completar tarea automáticamente</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
-    <value>Cuando completes todas las subtareas, marca la tarea como completada</value>
+    <value>Cuando completas todas las subtareas, la tarea se marcará como completada.</value>
   </data>
   <data name="DeleteTaskConfirm" xml:space="preserve">
-    <value>Toca el botón otra vez para eliminar la tarea</value>
+    <value>Pulsa otra vez para confirmar</value>
   </data>
   <data name="SubtasksXCompleted" xml:space="preserve">
-    <value>{0} de {1} completado/s</value>
+    <value>{0} de {1} completada/s</value>
   </data>
   <data name="GestureCantWithRepeats" xml:space="preserve">
-    <value>¡No puedes usar esta acción en tareas con repeticiones!</value>
+    <value>No puedes usar esta acción en tareas con repeticiones.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Este ajuste se aplicará a las nuevas tareas.</value>
   </data>
   <data name="SettingsGeneral" xml:space="preserve">
     <value>general</value>
     <comment>general pivot in settings</comment>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Feedback for {0} {1}</value>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>
@@ -840,8 +843,5 @@
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>Feedback</value>
-  </data>
-  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
-    <value>Este ajuste se aplicará a las nuevas tareas.</value>
   </data>
 </root>
