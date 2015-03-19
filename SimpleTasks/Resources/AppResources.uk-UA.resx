@@ -519,12 +519,12 @@
     <value>завершити всі</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>на текстове поле внизу, щоб додати задачу.</value>
-    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <value>щоб додати завдання.</value>
+    <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Клацніть</value>
-    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>Немає Підзадач</value>
@@ -827,5 +827,26 @@
   <data name="AboutEmailSubject" xml:space="preserve">
     <value>Feedback for {0} {1}</value>
     <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
+  </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>вигляд</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>Після завершення всі підзавдань, позначити завдання як завершене.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>Натисніть ще раз для підтвердження.</value>
+  </data>
+  <data name="SubtasksXCompleted" xml:space="preserve">
+    <value>{0} з {1} завершено</value>
+  </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>Неможливо виконати цю дію для завдань з повторами.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Настройки будуть використовуватись для нових завдань.</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Автоматично завершувати завдання</value>
   </data>
 </root>

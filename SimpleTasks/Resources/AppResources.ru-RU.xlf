@@ -530,12 +530,12 @@
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>to add a task.</source>
           <target state="needs-review-translation">или используйте строку ввода ниже, чтобы добавить задачу.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} or text box bellow to add a task.</note><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} to add a task.</note><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
           </trans-unit>
         <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
           <source>Tap</source>
           <target state="signed-off">Нажмите</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">This is first part of: Tap {plus_icon} or text box bellow to add a task.</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is first part of: Tap {plus_icon} to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/NoSubtasks" translate="yes" xml:space="preserve">
           <source>No Subtasks</source>
@@ -790,16 +790,20 @@ It's still in beta.</source>
           <target state="new">When you complete all subtasks, mark task as completed.</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteTaskConfirm" translate="yes" xml:space="preserve">
-          <source>Tap button again to delete task.</source>
-          <target state="new">Tap button again to delete task.</target>
+          <source>Tap again to confirm.</source>
+          <target state="new">Tap again to confirm.</target>
         </trans-unit>
         <trans-unit id="Resx/SubtasksXCompleted" translate="yes" xml:space="preserve">
           <source>{0} of {1} completed</source>
           <target state="new">{0} of {1} completed</target>
         </trans-unit>
         <trans-unit id="Resx/GestureCantWithRepeats" translate="yes" xml:space="preserve">
-          <source>You can't use this action on tasks with repeats!</source>
-          <target state="new">You can't use this action on tasks with repeats!</target>
+          <source>You cannot use this action on tasks with repeats.</source>
+          <target state="new">You cannot use this action on tasks with repeats.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsDefaultTaskTileHelp" translate="yes" xml:space="preserve">
+          <source>Setting will be applied for new tasks.</source>
+          <target state="new">Setting will be applied for new tasks.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteTask" translate="yes" xml:space="preserve">
           <source>Automatically complete task</source>

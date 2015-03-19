@@ -524,11 +524,11 @@
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
     <value>to add a task.</value>
-    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Tap</value>
-    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>No Subtasks</value>
@@ -839,13 +839,13 @@ It's still in beta.</value>
     <value>When you complete all subtasks, mark task as completed.</value>
   </data>
   <data name="DeleteTaskConfirm" xml:space="preserve">
-    <value>Tap button again to delete task.</value>
+    <value>Tap again to confirm.</value>
   </data>
   <data name="SubtasksXCompleted" xml:space="preserve">
     <value>{0} of {1} completed</value>
   </data>
   <data name="GestureCantWithRepeats" xml:space="preserve">
-    <value>You can't use this action on tasks with repeats!</value>
+    <value>You cannot use this action on tasks with repeats.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Setting will be applied for new tasks.</value>

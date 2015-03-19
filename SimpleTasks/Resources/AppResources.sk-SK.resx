@@ -248,8 +248,7 @@
     <comment>delete task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
-    <value>odstrániť dokončené úlohy</value>
-    <comment></comment>
+    <value>odstrániť dokončené</value>
   </data>
   <data name="AppBarActivate" xml:space="preserve">
     <value>aktivovať</value>
@@ -525,11 +524,11 @@
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Pre pridanie úlohy ťuknite na</value>
-    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>alebo na textové políčko nižšie.</value>
-    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <value>pre pridanie úlohy.</value>
+    <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>Žiadne podúlohy</value>
@@ -550,16 +549,13 @@
     <value>odstrániť všetky</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
-    <value>názov na jeden riadok</value>
-    <comment></comment>
+    <value>Názov na jeden riadok</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>veľkosť písma</value>
-    <comment></comment>
+    <value>Veľkosť písma</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
-    <value>náhľad</value>
-    <comment></comment>
+    <value>Náhľad</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>nastavenie dlaždice</value>
@@ -571,12 +567,10 @@
     <value>priehľadnosť pozadia</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>zobraziť dokončené podúlohy</value>
-    <comment></comment>
+    <value>Zobraziť dokončené podúlohy</value>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
-    <value>spätná väzba</value>
-    <comment></comment>
+    <value>Spätná väzba</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Odosielať anonymné dáta o používaní pre zlepšenie tejto aplikácie. Štatistiky pomáhajú vývojárovi identifikovať a zameriavať sa na často používané funkcie.
@@ -651,16 +645,13 @@ Táto funkcia je stále v beta verzii.</value>
     <value>záloha &amp; obnovenie</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>prehodiť názov s dátumom na veľkej dlaždici</value>
-    <comment></comment>
+    <value>Prehodiť názov s dátumom na veľkej dlaždici</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>zobraziť počet úloh</value>
-    <comment></comment>
+    <value>Zobraziť počet úloh</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>dlaždica pre rýchle pridanie úlohy</value>
-    <comment></comment>
+    <value>Dlaždica pre rýchle pridanie úlohy</value>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Zrušiť pripnutie</value>
@@ -759,5 +750,104 @@ Táto funkcia je stále v beta verzii.</value>
   </data>
   <data name="GestureActionComplete" xml:space="preserve">
     <value>splniť úlohu/podúlohu</value>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Zobraziť názov</value>
+  </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Zobraziť dátum</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Zobraziť zaškrt. políčko úlohy</value>
+  </data>
+  <data name="SettingsThemeColor" xml:space="preserve">
+    <value>Farba motívu</value>
+  </data>
+  <data name="RepeatsWeekends" xml:space="preserve">
+    <value>víkendy</value>
+  </data>
+  <data name="RepeatsWeekly" xml:space="preserve">
+    <value>týždenne</value>
+  </data>
+  <data name="Tasks5AndMore" xml:space="preserve">
+    <value>{0} úloh</value>
+    <comment>5+ tasks</comment>
+  </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>vzhľad</value>
+  </data>
+  <data name="SettingsTaskTile" xml:space="preserve">
+    <value>Nastavenie dlaždice úlohy</value>
+  </data>
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
+    <value>obnoviť</value>
+  </data>
+  <data name="SubtasksXCompleted" xml:space="preserve">
+    <value>{0} z {1} dokončené</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Automaticky dokončiť úlohu</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>zrušiť</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Verzia zálohy je staršia ako verzia aplikácie. Niektoré údaje môžu v zálohe chýbať.</value>
+  </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Upozornenie</value>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} úlohy</value>
+    <comment>2 to 4 tasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} úloha</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} podúloh</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} podúlohy</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} podúloha</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>mesačne</value>
+  </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>dni v týždni</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>pracovné dni</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>iba raz</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>opakovať v</value>
+  </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>opakovanie</value>
+  </data>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>denne</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>Po dokončení všetkých podúloh označiť úlohu za dokončenú.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>Pre potvrdenie ťuknite znova.</value>
+  </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>Táto akcia nie je dostupná pre úlohy s opakovaním.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Nastavenie bude použité v nových úlohách.</value>
   </data>
 </root>

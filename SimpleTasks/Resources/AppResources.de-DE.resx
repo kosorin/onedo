@@ -521,11 +521,11 @@
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
     <value>oder die Textbox um eine Aufgabe hinzuzufügen.</value>
-    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Tippe auf </value>
-    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>Keine Unteraufgaben</value>

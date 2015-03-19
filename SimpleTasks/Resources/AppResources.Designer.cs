@@ -423,10 +423,12 @@ namespace SimpleTasks.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    &quot;5.0.0&quot;: {
-        ///        &quot;date&quot;: &quot;2015-01-25&quot;,
+        ///    &quot;4.9.0&quot;: {
+        ///        &quot;date&quot;: &quot;2015-03-19&quot;,
         ///        &quot;items&quot;: [
-        ///            &quot;TODO: napsat changelog&quot;
+        ///            &quot;Solarized theme&quot;,
+        ///            &quot;collapse/expad subtasks&quot;,
+        ///            &quot;design... again :D&quot;
         ///        ]
         ///    },
         ///    &quot;4.8.0&quot;: {
@@ -440,11 +442,7 @@ namespace SimpleTasks.Resources {
         ///        &quot;items&quot;: [
         ///            &quot;russian language&quot;,
         ///            &quot;fix Italian translation&quot;,
-        ///            &quot;bug fix: color of selected text&quot;
-        ///        ]
-        ///    },
-        ///    &quot;4.6.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-0 [rest of string was truncated]&quot;;.
+        ///            &quot;bug fix: color of select [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ChangelogFile {
             get {
@@ -732,7 +730,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tap button again to delete task..
+        ///   Looks up a localized string similar to Tap again to confirm..
         /// </summary>
         public static string DeleteTaskConfirm {
             get {
@@ -858,7 +856,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can&apos;t use this action on tasks with repeats!.
+        ///   Looks up a localized string similar to You cannot use this action on tasks with repeats..
         /// </summary>
         public static string GestureCantWithRepeats {
             get {
@@ -1259,6 +1257,15 @@ namespace SimpleTasks.Resources {
         public static string SettingsDefaultDate {
             get {
                 return ResourceManager.GetString("SettingsDefaultDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting will be applied for new tasks..
+        /// </summary>
+        public static string SettingsDefaultTaskTileHelp {
+            get {
+                return ResourceManager.GetString("SettingsDefaultTaskTileHelp", resourceCulture);
             }
         }
         

@@ -240,8 +240,7 @@
     <comment>delete task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
-    <value>odstranit dokončené úkoly</value>
-    <comment></comment>
+    <value>odstranit dokončené</value>
   </data>
   <data name="AppBarActivate" xml:space="preserve">
     <value>aktivovat</value>
@@ -517,11 +516,11 @@
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Klepněte na</value>
-    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>nebo na textové pole níže pro přidání úkolu.</value>
-    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <value>pro přidání úkolu.</value>
+    <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>Žádné podúkoly</value>
@@ -824,5 +823,23 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="BackupVersionMismatchCaption" xml:space="preserve">
     <value>Mějte na paměti</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>Po dokončení všech podúkolů dokončit také úkol.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>Klepněte ještě jednou pro potvrzení.</value>
+  </data>
+  <data name="SubtasksXCompleted" xml:space="preserve">
+    <value>{0} z {1} dokončené</value>
+  </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>Tuto akci nelze použít pro úkoly s opakováním.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Toto nastavení bude použito pro nově přidané úkoly.</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Automaticky dokončit úkol</value>
   </data>
 </root>

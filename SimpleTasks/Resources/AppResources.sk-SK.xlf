@@ -72,7 +72,7 @@
           <source>about</source>
           <target state="signed-off">o aplikácii</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AppBar item</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarNew" xml:space="preserve">
           <source>new</source>
           <target state="signed-off">nový</target>
@@ -130,8 +130,7 @@
           </trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarDeleteCompleted" xml:space="preserve">
           <source>delete completed</source>
-          <target state="needs-review-translation">odstrániť dokončené úlohy</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">odstrániť dokončené</target></trans-unit>
         <trans-unit translate="yes" id="Resx/AppBarActivate" xml:space="preserve">
           <source>activate</source>
           <target state="signed-off" state-qualifier="tm-suggestion">aktivovať</target>
@@ -216,7 +215,8 @@
         <trans-unit translate="yes" id="Resx/AboutVersion" xml:space="preserve">
           <source>Version</source>
           <target state="signed-off">Verzia</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
+          </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTime" translate="yes" xml:space="preserve">
           <source>Default time</source>
           <target state="signed-off" state-qualifier="tm-suggestion">Predvolený čas</target>
@@ -278,7 +278,7 @@
           <source>add bullet</source>
           <target state="signed-off">pridať odrážku</target>
           <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit translate="yes" id="Resx/BulletText" xml:space="preserve">
           <source>bullet</source>
           <target state="signed-off" state-qualifier="tm-suggestion">odrážka</target>
@@ -352,7 +352,8 @@
         <trans-unit id="Resx/AppBarAddSubtask" translate="yes" xml:space="preserve">
           <source>add</source>
           <target state="signed-off">pridať</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note>
+          </trans-unit>
         <trans-unit id="Resx/TaskText" translate="yes" xml:space="preserve">
           <source>task</source>
           <target state="signed-off">úloha</target>
@@ -363,7 +364,7 @@
         <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
           <source>Tap</source>
           <target state="signed-off">Pre pridanie úlohy ťuknite na</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">This is first part of: Tap {plus_icon} or text box bellow to add a task.</note>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is first part of: Tap {plus_icon} to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/NoSubtasks" translate="yes" xml:space="preserve">
           <source>No Subtasks</source>
@@ -387,23 +388,21 @@
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowTitle" translate="yes" xml:space="preserve">
           <source>Show title</source>
-          <target state="new">Show title</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">Zobraziť názov</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowDate" translate="yes" xml:space="preserve">
           <source>Show due date</source>
-          <target state="new">Show due date</target>
+          <target state="signed-off">Zobraziť dátum</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
           <source>Title on one line</source>
-          <target state="needs-review-translation">názov na jeden riadok</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Názov na jeden riadok</target></trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
           <source>Font size</source>
-          <target state="needs-review-translation">veľkosť písma</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note></trans-unit>
+          <target state="signed-off">Veľkosť písma</target></trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>Preview</source>
-          <target state="needs-review-translation">náhľad</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Náhľad</target></trans-unit>
         <trans-unit id="Resx/AppBarTileSettings" translate="yes" xml:space="preserve">
           <source>tile settings</source>
           <target state="signed-off">nastavenie dlaždice</target>
@@ -414,8 +413,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedback" translate="yes" xml:space="preserve">
           <source>Feedback</source>
-          <target state="needs-review-translation">spätná väzba</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Spätná väzba</target></trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
 No personal data is being collected.</source>
@@ -430,7 +428,7 @@ Nie sú zhromažďované žiadne osobné údaje.</target></trans-unit>
           <target state="signed-off">Predvolené nastavenie pre dlaždice úloh</target></trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCheckBox" translate="yes" xml:space="preserve">
           <source>Show task check box</source>
-          <target state="new">Show task check box</target>
+          <target state="signed-off">Zobraziť zaškrt. políčko úlohy</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
           <source>You can use right to left swipe gesture instead to complete task.</source>
@@ -488,12 +486,10 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>Swap title and date on wide tile</source>
-          <target state="needs-review-translation">prehodiť názov s dátumom na veľkej dlaždici</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Prehodiť názov s dátumom na veľkej dlaždici</target></trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
           <source>Quick add tile</source>
-          <target state="needs-review-translation">dlaždica pre rýchle pridanie úlohy</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Dlaždica pre rýchle pridanie úlohy</target></trans-unit>
         <trans-unit id="Resx/TileForQuickAddUnpinButton" translate="yes" xml:space="preserve">
           <source>Unpin</source>
           <target state="signed-off">Zrušiť pripnutie</target></trans-unit>
@@ -548,117 +544,121 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
           <source>Accent color</source>
-          <target state="new">Accent color</target>
+          <target state="signed-off">Farba motívu</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
           <source>weekends</source>
-          <target state="new">weekends</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">víkendy</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekly" translate="yes" xml:space="preserve">
           <source>weekly</source>
-          <target state="new">weekly</target>
+          <target state="signed-off">týždenne</target>
         </trans-unit>
         <trans-unit id="Resx/Tasks5AndMore" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
-          <target state="new">{0} tasks</target>
+          <target state="signed-off">{0} úloh</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ tasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsLook" translate="yes" xml:space="preserve">
           <source>look</source>
-          <target state="new">look</target>
+          <target state="signed-off">vzhľad</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsTaskTile" translate="yes" xml:space="preserve">
           <source>Task tile settings</source>
-          <target state="new">Task tile settings</target>
+          <target state="signed-off">Nastavenie dlaždice úlohy</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchYes" translate="yes" xml:space="preserve">
           <source>restore</source>
-          <target state="new">restore</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">obnoviť</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteTaskDetail" translate="yes" xml:space="preserve">
           <source>When you complete all subtasks, mark task as completed.</source>
-          <target state="new">When you complete all subtasks, mark task as completed.</target>
+          <target state="signed-off">Po dokončení všetkých podúloh označiť úlohu za dokončenú.</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteTaskConfirm" translate="yes" xml:space="preserve">
-          <source>Tap button again to delete task.</source>
-          <target state="new">Tap button again to delete task.</target>
+          <source>Tap again to confirm.</source>
+          <target state="signed-off">Pre potvrdenie ťuknite znova.</target>
         </trans-unit>
         <trans-unit id="Resx/SubtasksXCompleted" translate="yes" xml:space="preserve">
           <source>{0} of {1} completed</source>
-          <target state="new">{0} of {1} completed</target>
+          <target state="signed-off">{0} z {1} dokončené</target>
         </trans-unit>
         <trans-unit id="Resx/GestureCantWithRepeats" translate="yes" xml:space="preserve">
-          <source>You can't use this action on tasks with repeats!</source>
-          <target state="new">You can't use this action on tasks with repeats!</target>
+          <source>You cannot use this action on tasks with repeats.</source>
+          <target state="signed-off">Táto akcia nie je dostupná pre úlohy s opakovaním.</target>
+        </trans-unit>
+        <trans-unit id="Resx/SettingsDefaultTaskTileHelp" translate="yes" xml:space="preserve">
+          <source>Setting will be applied for new tasks.</source>
+          <target state="signed-off">Nastavenie bude použité v nových úlohách.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteTask" translate="yes" xml:space="preserve">
           <source>Automatically complete task</source>
-          <target state="new">Automatically complete task</target>
+          <target state="signed-off">Automaticky dokončiť úlohu</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchNo" translate="yes" xml:space="preserve">
           <source>cancel</source>
-          <target state="new">cancel</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">zrušiť</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchContent" translate="yes" xml:space="preserve">
           <source>Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</source>
-          <target state="new">Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</target>
+          <target state="signed-off">Verzia zálohy je staršia ako verzia aplikácie. Niektoré údaje môžu v zálohe chýbať.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchCaption" translate="yes" xml:space="preserve">
           <source>Be aware</source>
-          <target state="new">Be aware</target>
+          <target state="signed-off">Upozornenie</target>
         </trans-unit>
         <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
-          <target state="new">{0} tasks</target>
+          <target state="signed-off">{0} úlohy</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 tasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Tasks1" translate="yes" xml:space="preserve">
           <source>{0} task</source>
-          <target state="new">{0} task</target>
+          <target state="signed-off">{0} úloha</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 task</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Subtasks5AndMore" translate="yes" xml:space="preserve">
           <source>{0} subtasks</source>
-          <target state="new">{0} subtasks</target>
+          <target state="signed-off">{0} podúloh</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ subtasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Subtasks2To4" translate="yes" xml:space="preserve">
           <source>{0} subtasks</source>
-          <target state="new">{0} subtasks</target>
+          <target state="signed-off">{0} podúlohy</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 subtasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Subtasks1" translate="yes" xml:space="preserve">
           <source>{0} subtask</source>
-          <target state="new">{0} subtask</target>
+          <target state="signed-off">{0} podúloha</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 subtask</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/RepeatsMonthly" translate="yes" xml:space="preserve">
           <source>monthly</source>
-          <target state="new">monthly</target>
+          <target state="signed-off">mesačne</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsDaysOfWeek" translate="yes" xml:space="preserve">
           <source>days of week</source>
-          <target state="new">days of week</target>
+          <target state="signed-off">dni v týždni</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekdays" translate="yes" xml:space="preserve">
           <source>weekdays</source>
-          <target state="new">weekdays</target>
+          <target state="signed-off">pracovné dni</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsOnce" translate="yes" xml:space="preserve">
           <source>only once</source>
-          <target state="new">only once</target>
+          <target state="signed-off" state-qualifier="tm-suggestion">iba raz</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsOn" translate="yes" xml:space="preserve">
           <source>repeats on</source>
-          <target state="new">repeats on</target>
+          <target state="signed-off">opakovať v</target>
         </trans-unit>
         <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
           <source>repeats</source>
-          <target state="new">repeats</target>
+          <target state="signed-off">opakovanie</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsDaily" translate="yes" xml:space="preserve">
           <source>daily</source>
-          <target state="new">daily</target>
+          <target state="signed-off">denne</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
@@ -667,7 +667,8 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         <trans-unit id="Resx/ToastPostponedUntil" translate="yes" xml:space="preserve">
           <source>Postponed until {0:ddd}, {0:d}</source>
           <target state="signed-off">Odložené na {0:ddd}, {0:d}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</note>
+          </trans-unit>
         <trans-unit id="Resx/ToastReminderOff" translate="yes" xml:space="preserve">
           <source>Reminder was turned off!</source>
           <target state="signed-off">Pripomenutie bolo vypnuté.</target>
@@ -712,12 +713,12 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <source>Author</source>
           <target state="signed-off">Autor</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
           <source>Translation</source>
           <target state="signed-off">Preklad</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
           <target state="signed-off">Aby sa prejavila zmena tohto nastavenia, je potrebné reštartovať aplikáciu.</target>
@@ -735,8 +736,7 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
           <target state="signed-off">Pripnúť na domovskú obrazovku</target></trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>Show task count</source>
-          <target state="needs-review-translation">zobraziť počet úloh</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Zobraziť počet úloh</target></trans-unit>
         <trans-unit id="Resx/RestoreOk" translate="yes" xml:space="preserve">
           <source>Successful restore.</source>
           <target state="signed-off">Úspešné obnovenie.</target>
@@ -771,16 +771,15 @@ Táto funkcia je stále v beta verzii.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
           <source>Show completed subtasks</source>
-          <target state="needs-review-translation">zobraziť dokončené podúlohy</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Zobraziť dokončené podúlohy</target></trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasks" translate="yes" xml:space="preserve">
           <source>Automatically complete subtasks</source>
           <target state="signed-off">Automaticky dokončiť podúlohy</target>
         </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>to add a task.</source>
-          <target state="needs-review-translation">alebo na textové políčko nižšie.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} or text box bellow to add a task.</note><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="signed-off">pre pridanie úlohy.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/SubtaskText" translate="yes" xml:space="preserve">
           <source>subtask</source>

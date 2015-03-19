@@ -498,11 +498,11 @@
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
     <value>para añadir una tarea.</value>
-    <comment>This is second part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
     <value>Toca</value>
-    <comment>This is first part of: Tap {plus_icon} or text box bellow to add a task.</comment>
+    <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
     <value>No hay subtareas</value>
@@ -840,5 +840,8 @@
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>Feedback</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Este ajuste se aplicará a las nuevas tareas.</value>
   </data>
 </root>

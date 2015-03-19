@@ -103,7 +103,7 @@
                         <StackPanel x:Name="ThemePanel">
                             <!--Theme-->
                             <TextBlock Style="{StaticResource LabelTextStyle}"
-                                       Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}" />
+                                       Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
                             <controls:ListPicker x:Name="ThemeListPicker"
                                                  SelectionChanged="ThemeListPicker_SelectionChanged" />
                         </StackPanel>
@@ -167,6 +167,9 @@
                         <!--Default Task Tile Settings-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileSettings, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />
+                        <TextBlock Text="{Binding LocalizedResources.SettingsDefaultTaskTileHelp, Source={StaticResource LocalizedStrings}}"
+                                   Style="{StaticResource HelpTextStyle}"
+                                   Margin="0,-2,0,6" />
                         <Button Style="{StaticResource ButtonStyle}"
                                 Content="{Binding LocalizedResources.EditText, Source={StaticResource LocalizedStrings}}"
                                 Tap="DefaultTaskTileSettingsButton_Tap" />
