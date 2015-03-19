@@ -830,6 +830,7 @@
   </data>
   <data name="SettingsLook" xml:space="preserve">
     <value>вигляд</value>
+    <comment>or appearance; section in settings</comment>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
     <value>Після завершення всі підзавдань, позначити завдання як завершене.</value>

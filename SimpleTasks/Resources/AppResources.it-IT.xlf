@@ -786,6 +786,7 @@ E' ancora una funzione beta.</target></trans-unit>
         <trans-unit id="Resx/SettingsLook" translate="yes" xml:space="preserve">
           <source>look</source>
           <target state="new">look</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">or appearance; section in settings</note>
         </trans-unit>
         <trans-unit id="Resx/SettingsTaskTile" translate="yes" xml:space="preserve">
           <source>Task tile settings</source>

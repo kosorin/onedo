@@ -808,6 +808,7 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="SettingsLook" xml:space="preserve">
     <value>vzhled</value>
+    <comment>or appearance; section in settings</comment>
   </data>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Nastavení dlaždice úkolu</value>

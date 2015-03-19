@@ -775,6 +775,7 @@ Táto funkcia je stále v beta verzii.</value>
   </data>
   <data name="SettingsLook" xml:space="preserve">
     <value>vzhľad</value>
+    <comment>or appearance; section in settings</comment>
   </data>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Nastavenie dlaždice úlohy</value>

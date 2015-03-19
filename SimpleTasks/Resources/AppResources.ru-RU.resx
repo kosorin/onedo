@@ -773,6 +773,7 @@
   </data>
   <data name="SettingsLook" xml:space="preserve">
     <value>вид</value>
+    <comment>or appearance; section in settings</comment>
   </data>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Настройки плитки задач</value>
