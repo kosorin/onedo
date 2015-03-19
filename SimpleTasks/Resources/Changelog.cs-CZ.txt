@@ -3,7 +3,7 @@
         "date": "2015-03-19",
         "items": [
             "Solarized motiv",
-            "skrýt/zobrazit pod§koly",
+            "skrýt/zobrazit podúkoly",
             "design... opět :D"
         ]
     },
