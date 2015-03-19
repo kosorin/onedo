@@ -27,7 +27,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        public static string ForceDebugCulture = "es-ES";
+        public static string ForceDebugCulture = "ru-RU";
 
         #region Properties
         public static readonly string BackgroundAgentName = "PeriodicBackgroundAgent";

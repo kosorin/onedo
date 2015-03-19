@@ -196,8 +196,7 @@
     <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
-    <value>удалить выполненные задачи</value>
-    <comment></comment>
+    <value>удалить выполненные</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>удалить</value>
@@ -524,7 +523,7 @@
     <value>завершить все</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>или используйте строку ввода ниже, чтобы добавить задачу.</value>
+    <value>чтобы добавить задачу.</value>
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
@@ -550,23 +549,19 @@
     <value>удалить все</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>показать завершенные задачи</value>
-    <comment></comment>
+    <value>Показать выполненные подзадачи</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
-    <value>заголовок одной строкой</value>
-    <comment></comment>
+    <value>Заголовок в одну строку</value>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>прозрачность фона</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>размер шрифта</value>
-    <comment></comment>
+    <value>Размер шрифта</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
-    <value>предпросмотр</value>
-    <comment></comment>
+    <value>Предпросмотр</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>настройки тайла</value>
@@ -575,8 +570,7 @@
     <value>Без названия</value>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
-    <value>сбор статистики</value>
-    <comment></comment>
+    <value>Обратная связь</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Отправлять анонимные данные об использовании приложения в целях улучшения его качества. Статистика помогает разработчику выявить и выделить наиболее часто используемые функции приложения. Никакие личные данные не собираются.</value>
@@ -649,16 +643,13 @@
     <value>Успешное резервное копирование.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>показать количество задач</value>
-    <comment></comment>
+    <value>Показать счётчик задач</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>название и дата на большом тайле рядом </value>
-    <comment></comment>
+    <value>Название и дата на большом тайле рядом </value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>тайл быстрого добавления задачи</value>
-    <comment></comment>
+    <value>Тайл быстрого добавления задачи</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>закрепить на рабочем столе</value>
@@ -757,5 +748,104 @@
   </data>
   <data name="GestureActionComplete" xml:space="preserve">
     <value>завершить задачу/подзадачу</value>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Показывать заголовок</value>
+  </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Показывать дату</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Показывать чек-бокс задачи</value>
+  </data>
+  <data name="SettingsThemeColor" xml:space="preserve">
+    <value>Акцентный цвет</value>
+  </data>
+  <data name="RepeatsWeekends" xml:space="preserve">
+    <value>выходные</value>
+  </data>
+  <data name="RepeatsWeekly" xml:space="preserve">
+    <value>еженедельно</value>
+  </data>
+  <data name="Tasks5AndMore" xml:space="preserve">
+    <value>{0} задач</value>
+    <comment>5+ tasks</comment>
+  </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>вид</value>
+  </data>
+  <data name="SettingsTaskTile" xml:space="preserve">
+    <value>Настройки плитки задач</value>
+  </data>
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
+    <value>восстановить</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>Если все подзадачи выполнены, помечать задачу как выполненную.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>Нажмите ещё раз для подтверждения.</value>
+  </data>
+  <data name="SubtasksXCompleted" xml:space="preserve">
+    <value>{0} из {1} выполнено</value>
+  </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>Вы не можете использовать это действие на задачи с повторами.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Настройка будет применена для новых задач.</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Автоматическое завершение задачи</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>отмена</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Версия вашего бэкапа не совпадает с текущей версией приложения. Часть информации могла быть утеряна при бэкапе.</value>
+  </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Обратите внимание</value>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} задачи</value>
+    <comment>2 to 4 tasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} задача</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} подзадач</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} подзадачи</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} подзадача</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>ежемесячно</value>
+  </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>дни недели</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>будни</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>единожды</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>повторяется</value>
+  </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>повторяется</value>
+  </data>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>ежедневно</value>
   </data>
 </root>
