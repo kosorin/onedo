@@ -374,5 +374,18 @@ namespace SimpleTasks.Controls
             UpdateVisualState(NotDeletedState, false);
         }
         #endregion // end of Delete
+
+        private void TaskPriorityGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            if (Settings.Current.ShowTaskCheckBox)
+            {
+                grid.Margin = new Thickness(-62, 0, 0, 0);
+            }
+            else
+            {
+                grid.Margin = new Thickness(0);
+            }
+        }
     }
 }

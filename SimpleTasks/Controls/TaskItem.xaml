@@ -352,10 +352,6 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <!--<Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>-->
 
                             <!--Název + priorita-->
                             <Grid x:Name="TitleWrapper"
@@ -366,7 +362,11 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--Vysoká/nízká priorita-->
-                                <Grid x:Name="TaskPriorityGrid">
+                                <Grid x:Name="TaskPriorityGrid"
+                                      Margin="-62,0,0,0"
+                                      toolkit:TiltEffect.SuppressTilt="True"
+                                      toolkit:TiltEffect.IsTiltEnabled="False"
+                                      Loaded="TaskPriorityGrid_Loaded">
                                     <!--Vysoká priorita-->
                                     <Viewbox Height="040"
                                              Visibility="{Binding IsHighPriority, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -374,7 +374,7 @@
                                         <ContentControl Style="{StaticResource HighPriorityIconStyle}"
                                                         Foreground="{StaticResource AccentBrush}"
                                                         Opacity="1"
-                                                        Margin="-10,6,0,2">
+                                                        Margin="-10,4,0,3">
                                         </ContentControl>
                                     </Viewbox>
 
@@ -385,7 +385,7 @@
                                         <ContentControl Style="{StaticResource LowPriorityIconStyle}"
                                                         Foreground="{StaticResource SubtleBrush}"
                                                         Opacity=".6"
-                                                        Margin="-6,6,0,2">
+                                                        Margin="-7,6,0,2">
                                         </ContentControl>
                                     </Viewbox>
                                 </Grid>
@@ -393,25 +393,12 @@
                                 <!--Název-->
                                 <controls:ToggleControl IsChecked="{Binding IsCompleted}"
                                                         Grid.Column="1"
-                                                        Content="{Binding Title, FallbackValue='Test title'}"
+                                                        Content="{Binding Title}"
                                                         Style="{StaticResource TaskCheckBoxTextStyle}"
                                                         IsHitTestVisible="False"
                                                         FontSize="30"
                                                         HorizontalAlignment="Left" />
                             </Grid>
-
-                            <!--Detail-->
-                            <!--<TextBlock x:Name="DetailTextBlock"
-                                       Grid.Row="1"
-                                       Grid.ColumnSpan="2"
-                                       Text="{Binding Detail, FallbackValue='Detail dummy, Lorem ipsum'}"
-                                       Style="{StaticResource InfoTextStyle}"
-                                       FontWeight="Normal"
-                                       Visibility="{Binding HasDetail, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                       TextWrapping="NoWrap"
-                                       TextTrimming="WordEllipsis"
-                                       Margin="0,0,0,8"
-                                       VerticalAlignment="Top" />-->
 
                             <!--Datum-->
                             <StackPanel x:Name="DateTextBlock"
@@ -419,7 +406,7 @@
                                         Grid.Column="1"
                                         Margin="8,0,0,3"
                                         VerticalAlignment="Bottom">
-                                <TextBlock Text="{Binding ActualDueDate, FallbackValue='Led 21', Converter={StaticResource TaskToDueStringConverter}}"
+                                <TextBlock Text="{Binding ActualDueDate, Converter={StaticResource TaskToDueStringConverter}}"
                                            Style="{StaticResource InfoTextStyle}"
                                            Foreground="{Binding HasReminder, ConverterParameter='AccentBrush:SubtleBrush', Converter={StaticResource BrushConverter}}" />
                                 <Viewbox Visibility="{Binding HasReminder, Converter={StaticResource BooleanToVisibilityConverter}}"
