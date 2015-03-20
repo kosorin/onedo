@@ -192,8 +192,7 @@
     <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
-    <value>erledigte Aufgaben löschen</value>
-    <comment></comment>
+    <value>erledigte löschen</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>löschen</value>
@@ -520,7 +519,7 @@
     <value>alle erledigen</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>oder die Textbox um eine Aufgabe hinzuzufügen.</value>
+    <value>um eine Aufgabe hinzuzufügen.</value>
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
@@ -546,23 +545,19 @@
     <value>alle löschen</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>erledigte Unteraufgaben zeigen</value>
-    <comment></comment>
+    <value>Erledigte Unteraufgaben zeigen</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>Titel in einer Zeile</value>
-    <comment></comment>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>Hintergrund Durchsichtigkeit</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>Schriftgröße</value>
-    <comment></comment>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
     <value>Vorschau</value>
-    <comment></comment>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
     <value>Livetile einstellen</value>
@@ -572,7 +567,6 @@
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>Feedback</value>
-    <comment></comment>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Sende anonyme Nutzungsstatistiken zur Verbesserung dieser App. Statistiken helfen dem Entwickler häufig verwendete Funktionen zu identifizieren und zu verbessern. 
@@ -647,16 +641,13 @@ Diese Funktion ist noch im Betastadium.</value>
     <value>Sicherung erfolgreich.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>zeige Aufgabenanzahl</value>
-    <comment></comment>
+    <value>Aufgabenanzahl zeigen</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>Titel und Datum bei großem Livetile vertauschen</value>
-    <comment></comment>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>Livetile für schnelles zufügen</value>
-    <comment></comment>
+    <value>Livetile für schnelles Zufügen</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>An Startbildschirm anheften</value>
@@ -755,5 +746,105 @@ Diese Funktion ist noch im Betastadium.</value>
   </data>
   <data name="GestureActionComplete" xml:space="preserve">
     <value>Aufgabe/Teilaufgabe erledigt</value>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Zeige Titel</value>
+  </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Zeige Verfallsdatum</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Zeige Checkboxen</value>
+  </data>
+  <data name="SettingsThemeColor" xml:space="preserve">
+    <value>Akzentfarbe</value>
+  </data>
+  <data name="RepeatsWeekends" xml:space="preserve">
+    <value>am Wochenende</value>
+  </data>
+  <data name="RepeatsWeekly" xml:space="preserve">
+    <value>wöchentlich</value>
+  </data>
+  <data name="Tasks5AndMore" xml:space="preserve">
+    <value>{0} Aufgaben</value>
+    <comment>5+ tasks</comment>
+  </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>Aussehen</value>
+    <comment>or appearance; section in settings</comment>
+  </data>
+  <data name="SettingsTaskTile" xml:space="preserve">
+    <value>Aufgaben-Livetile Einstellungen</value>
+  </data>
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
+    <value>wiederherstellen</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>Nach Erledigung aller Unteraufgaben die Aufgabe abhaken.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>Erneut tippen zum Bestätigen.</value>
+  </data>
+  <data name="SubtasksXCompleted" xml:space="preserve">
+    <value>{0} von {1} Aufgaben erledigt</value>
+  </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>Funktion bei wiederholenden Aufgaben nicht verwendbar.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Einstellung wird bei neuen Aufgaben angewendet.</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Aufgaben automatisch erledigen.</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Version des Backups stimmt nicht mit der aktuellen Version der App überein. Einige Daten können im Backup fehlen.</value>
+  </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Beachte</value>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} Aufgaben</value>
+    <comment>2 to 4 tasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} Aufgabe</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} Unteraufgaben</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} Unteraufgaben</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} Unteraufgabe</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>monatlich</value>
+  </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>Wochentage</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>wochentags</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>nur einmal</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>Wiederholung</value>
+  </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>wiederholend</value>
+  </data>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>täglich</value>
   </data>
 </root>

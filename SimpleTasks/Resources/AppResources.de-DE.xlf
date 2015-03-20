@@ -25,7 +25,7 @@
           <source>about</source>
           <target state="signed-off">über</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AppBar item</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/AppBarSave" translate="yes" xml:space="preserve">
           <source>save</source>
           <target state="signed-off">speichern</target>
@@ -104,8 +104,7 @@
           </trans-unit>
         <trans-unit id="Resx/AppBarDeleteCompleted" translate="yes" xml:space="preserve">
           <source>delete completed</source>
-          <target state="needs-review-translation">erledigte Aufgaben löschen</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">erledigte löschen</target></trans-unit>
         <trans-unit id="Resx/AppBarDelete" translate="yes" xml:space="preserve">
           <source>delete</source>
           <target state="signed-off">löschen</target>
@@ -217,7 +216,8 @@
         <trans-unit id="Resx/AboutVersion" translate="yes" xml:space="preserve">
           <source>Version</source>
           <target state="signed-off">Version</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note></trans-unit>
+          <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
+          </trans-unit>
         <trans-unit id="Resx/DueDate" translate="yes" xml:space="preserve">
           <source>due date</source>
           <target state="signed-off">Fälligkeit</target>
@@ -310,7 +310,7 @@
           <source>add bullet</source>
           <target state="signed-off">Punkt hinzufügen</target>
           <note from="MultilingualBuild" annotates="source" priority="2">EditTaskPage; AppBar button</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/BulletText" translate="yes" xml:space="preserve">
           <source>bullet</source>
           <target state="signed-off">Punkt</target>
@@ -505,7 +505,7 @@
           <source>add</source>
           <target state="signed-off">zufügen</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AppBar button add subtask</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SubtaskAdd" translate="yes" xml:space="preserve">
           <source>Add a subtask</source>
           <target state="signed-off">Unteraufgabe hinzufügen</target>
@@ -528,8 +528,8 @@
         </trans-unit>
         <trans-unit id="Resx/NoTasksHelpEnd" translate="yes" xml:space="preserve">
           <source>to add a task.</source>
-          <target state="needs-review-translation">oder die Textbox um eine Aufgabe hinzuzufügen.</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} to add a task.</note><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="signed-off">um eine Aufgabe hinzuzufügen.</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">This is second part of: Tap {plus_icon} to add a task.</note>
           </trans-unit>
         <trans-unit id="Resx/NoTasksHelpStart" translate="yes" xml:space="preserve">
           <source>Tap</source>
@@ -562,32 +562,28 @@
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowTitle" translate="yes" xml:space="preserve">
           <source>Show title</source>
-          <target state="new">Show title</target>
+          <target state="signed-off">Zeige Titel</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowDate" translate="yes" xml:space="preserve">
           <source>Show due date</source>
-          <target state="new">Show due date</target>
+          <target state="signed-off">Zeige Verfallsdatum</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsShowCompletedSubtasks" translate="yes" xml:space="preserve">
           <source>Show completed subtasks</source>
-          <target state="needs-review-translation">erledigte Unteraufgaben zeigen</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Erledigte Unteraufgaben zeigen</target></trans-unit>
         <trans-unit id="Resx/TileSettingsTitleOnOneLine" translate="yes" xml:space="preserve">
           <source>Title on one line</source>
-          <target state="needs-review-translation">Titel in einer Zeile</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Titel in einer Zeile</target></trans-unit>
         <trans-unit id="Resx/TileSettingsBackgroundOpacity" translate="yes" xml:space="preserve">
           <source>background opacity</source>
           <target state="signed-off">Hintergrund Durchsichtigkeit</target>
         </trans-unit>
         <trans-unit id="Resx/TileSettingsLineHeight" translate="yes" xml:space="preserve">
           <source>Font size</source>
-          <target state="needs-review-translation">Schriftgröße</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Schriftgröße</target></trans-unit>
         <trans-unit id="Resx/TileSettingsPreview" translate="yes" xml:space="preserve">
           <source>Preview</source>
-          <target state="needs-review-translation">Vorschau</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Vorschau</target></trans-unit>
         <trans-unit id="Resx/AppBarTileSettings" translate="yes" xml:space="preserve">
           <source>tile settings</source>
           <target state="signed-off">Livetile einstellen</target>
@@ -598,8 +594,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsFeedback" translate="yes" xml:space="preserve">
           <source>Feedback</source>
-          <target state="needs-review-translation">Feedback</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Feedback</target></trans-unit>
         <trans-unit id="Resx/SettingsFeedbackHelp" translate="yes" xml:space="preserve">
           <source>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
 No personal data is being collected.</source>
@@ -615,7 +610,7 @@ Es werden keine persönlichen Daten gesammelt.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCheckBox" translate="yes" xml:space="preserve">
           <source>Show task check box</source>
-          <target state="new">Show task check box</target>
+          <target state="signed-off">Zeige Checkboxen</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsHideTaskCheckBoxHelp" translate="yes" xml:space="preserve">
           <source>You can use right to left swipe gesture instead to complete task.</source>
@@ -701,16 +696,13 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsShowTaskCount" translate="yes" xml:space="preserve">
           <source>Show task count</source>
-          <target state="needs-review-translation">zeige Aufgabenanzahl</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Aufgabenanzahl zeigen</target></trans-unit>
         <trans-unit id="Resx/SettingsSwapDateAndTitle" translate="yes" xml:space="preserve">
           <source>Swap title and date on wide tile</source>
-          <target state="needs-review-translation">Titel und Datum bei großem Livetile vertauschen</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Titel und Datum bei großem Livetile vertauschen</target></trans-unit>
         <trans-unit id="Resx/TileForQuickAddLabel" translate="yes" xml:space="preserve">
           <source>Quick add tile</source>
-          <target state="needs-review-translation">Livetile für schnelles zufügen</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
-        </trans-unit>
+          <target state="signed-off">Livetile für schnelles Zufügen</target></trans-unit>
         <trans-unit id="Resx/TileForQuickAddPinButton" translate="yes" xml:space="preserve">
           <source>Pin to start</source>
           <target state="signed-off">An Startbildschirm anheften</target></trans-unit>
@@ -769,122 +761,122 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
         </trans-unit>
         <trans-unit id="Resx/SettingsThemeColor" translate="yes" xml:space="preserve">
           <source>Accent color</source>
-          <target state="new">Accent color</target>
+          <target state="signed-off">Akzentfarbe</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekends" translate="yes" xml:space="preserve">
           <source>weekends</source>
-          <target state="new">weekends</target>
+          <target state="signed-off">am Wochenende</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekly" translate="yes" xml:space="preserve">
           <source>weekly</source>
-          <target state="new">weekly</target>
+          <target state="signed-off">wöchentlich</target>
         </trans-unit>
         <trans-unit id="Resx/Tasks5AndMore" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
-          <target state="new">{0} tasks</target>
+          <target state="signed-off">{0} Aufgaben</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ tasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsLook" translate="yes" xml:space="preserve">
           <source>look</source>
-          <target state="new">look</target>
+          <target state="signed-off">Aussehen</target>
           <note from="MultilingualBuild" annotates="source" priority="2">or appearance; section in settings</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsTaskTile" translate="yes" xml:space="preserve">
           <source>Task tile settings</source>
-          <target state="new">Task tile settings</target>
+          <target state="signed-off">Aufgaben-Livetile Einstellungen</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchYes" translate="yes" xml:space="preserve">
           <source>restore</source>
-          <target state="new">restore</target>
+          <target state="signed-off">wiederherstellen</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteTaskDetail" translate="yes" xml:space="preserve">
           <source>When you complete all subtasks, mark task as completed.</source>
-          <target state="new">When you complete all subtasks, mark task as completed.</target>
+          <target state="signed-off">Nach Erledigung aller Unteraufgaben die Aufgabe abhaken.</target>
         </trans-unit>
         <trans-unit id="Resx/DeleteTaskConfirm" translate="yes" xml:space="preserve">
           <source>Tap again to confirm.</source>
-          <target state="new">Tap again to confirm.</target>
+          <target state="signed-off">Erneut tippen zum Bestätigen.</target>
         </trans-unit>
         <trans-unit id="Resx/SubtasksXCompleted" translate="yes" xml:space="preserve">
           <source>{0} of {1} completed</source>
-          <target state="new">{0} of {1} completed</target>
+          <target state="signed-off">{0} von {1} Aufgaben erledigt</target>
         </trans-unit>
         <trans-unit id="Resx/GestureCantWithRepeats" translate="yes" xml:space="preserve">
           <source>You cannot use this action on tasks with repeats.</source>
-          <target state="new">You cannot use this action on tasks with repeats.</target>
+          <target state="signed-off">Funktion bei wiederholenden Aufgaben nicht verwendbar.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsDefaultTaskTileHelp" translate="yes" xml:space="preserve">
           <source>Setting will be applied for new tasks.</source>
-          <target state="new">Setting will be applied for new tasks.</target>
+          <target state="signed-off">Einstellung wird bei neuen Aufgaben angewendet.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteTask" translate="yes" xml:space="preserve">
           <source>Automatically complete task</source>
-          <target state="new">Automatically complete task</target>
+          <target state="signed-off">Aufgaben automatisch erledigen.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchNo" translate="yes" xml:space="preserve">
           <source>cancel</source>
-          <target state="new">cancel</target>
+          <target state="signed-off">abbrechen</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchContent" translate="yes" xml:space="preserve">
           <source>Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</source>
-          <target state="new">Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</target>
+          <target state="signed-off">Version des Backups stimmt nicht mit der aktuellen Version der App überein. Einige Daten können im Backup fehlen.</target>
         </trans-unit>
         <trans-unit id="Resx/BackupVersionMismatchCaption" translate="yes" xml:space="preserve">
           <source>Be aware</source>
-          <target state="new">Be aware</target>
+          <target state="signed-off">Beachte</target>
         </trans-unit>
         <trans-unit id="Resx/Tasks2To4" translate="yes" xml:space="preserve">
           <source>{0} tasks</source>
-          <target state="new">{0} tasks</target>
+          <target state="signed-off">{0} Aufgaben</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 tasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Tasks1" translate="yes" xml:space="preserve">
           <source>{0} task</source>
-          <target state="new">{0} task</target>
+          <target state="signed-off">{0} Aufgabe</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 task</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Subtasks5AndMore" translate="yes" xml:space="preserve">
           <source>{0} subtasks</source>
-          <target state="new">{0} subtasks</target>
+          <target state="signed-off">{0} Unteraufgaben</target>
           <note from="MultilingualBuild" annotates="source" priority="2">5+ subtasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Subtasks2To4" translate="yes" xml:space="preserve">
           <source>{0} subtasks</source>
-          <target state="new">{0} subtasks</target>
+          <target state="signed-off">{0} Unteraufgaben</target>
           <note from="MultilingualBuild" annotates="source" priority="2">2 to 4 subtasks</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/Subtasks1" translate="yes" xml:space="preserve">
           <source>{0} subtask</source>
-          <target state="new">{0} subtask</target>
+          <target state="signed-off">{0} Unteraufgabe</target>
           <note from="MultilingualBuild" annotates="source" priority="2">1 subtask</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/RepeatsMonthly" translate="yes" xml:space="preserve">
           <source>monthly</source>
-          <target state="new">monthly</target>
+          <target state="signed-off">monatlich</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsDaysOfWeek" translate="yes" xml:space="preserve">
           <source>days of week</source>
-          <target state="new">days of week</target>
+          <target state="signed-off">Wochentage</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsWeekdays" translate="yes" xml:space="preserve">
           <source>weekdays</source>
-          <target state="new">weekdays</target>
+          <target state="signed-off">wochentags</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsOnce" translate="yes" xml:space="preserve">
           <source>only once</source>
-          <target state="new">only once</target>
+          <target state="signed-off">nur einmal</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsOn" translate="yes" xml:space="preserve">
           <source>repeats on</source>
-          <target state="new">repeats on</target>
+          <target state="signed-off">Wiederholung</target>
         </trans-unit>
         <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
           <source>repeats</source>
-          <target state="new">repeats</target>
+          <target state="signed-off">wiederholend</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsDaily" translate="yes" xml:space="preserve">
           <source>daily</source>
-          <target state="new">daily</target>
+          <target state="signed-off">täglich</target>
         </trans-unit>
         <trans-unit id="Resx/ToastCompletedTasksDeleted" translate="yes" xml:space="preserve">
           <source>Completed tasks were deleted.</source>
@@ -939,12 +931,12 @@ Diese Funktion ist noch im Betastadium.</target></trans-unit>
           <source>Author</source>
           <target state="signed-off">Autor</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/AboutTranslation" translate="yes" xml:space="preserve">
           <source>Translation</source>
           <target state="signed-off">Übersetzung</target>
           <note from="MultilingualBuild" annotates="source" priority="2">AboutPage;</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsThemeNote" translate="yes" xml:space="preserve">
           <source>Application restart is required for this setting to take effect.</source>
           <target state="signed-off">Ein Neustart der App ist nötig um diese Einstellung zu übernehmen.</target>
