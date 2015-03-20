@@ -540,7 +540,7 @@
     <value>Автоматически завершать подзадачи</value>
   </data>
   <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
-    <value>Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</value>
+    <value>Если все подзадачи выполнены, помечать задачу как выполненную.</value>
   </data>
   <data name="SettingsVibrate" xml:space="preserve">
     <value>Вибрация</value>
@@ -841,10 +841,10 @@
     <value>единожды</value>
   </data>
   <data name="RepeatsOn" xml:space="preserve">
-    <value>повторяется</value>
+    <value>повторять</value>
   </data>
   <data name="Repeats" xml:space="preserve">
-    <value>повторяется</value>
+    <value>повторы</value>
   </data>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>ежедневно</value>

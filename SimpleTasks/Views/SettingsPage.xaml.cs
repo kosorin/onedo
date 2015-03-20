@@ -19,6 +19,7 @@ using SimpleTasks.Helpers;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Media;
+using SimpleTasks.Models;
 
 namespace SimpleTasks.Views
 {
@@ -58,32 +59,40 @@ namespace SimpleTasks.Views
 
             // Theme
             _isSetThemeListPicker = false;
-            string systemTheme = ThemeHelper.SystemTheme == Theme.Dark ? AppResources.SettingsThemeDark : AppResources.SettingsThemeLight;
 
             List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
-            themeList.Add(new ListPickerItem<Theme>(string.Format(AppResources.SettingsThemeSystem, systemTheme), Theme.System));
-            themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeLight, Theme.Light));
-            themeList.Add(new ListPickerItem<Theme>(AppResources.SettingsThemeDark, Theme.Dark));
-            themeList.Add(new ListPickerItem<Theme>("Solarized Light", Theme.SolarizedLight));
-            themeList.Add(new ListPickerItem<Theme>("Solarized Dark", Theme.SolarizedDark));
-            themeList.Add(new ListPickerItem<Theme>("Ocean", Theme.Ocean));
-            ThemeListPicker.ItemsSource = themeList;
-            ThemeListPicker.SelectedIndex = (int)ThemeHelper.Theme;
+            ListPickerItem<Theme> selectedThemeItem = null;
+            foreach (Theme theme in Themes.GetThemes())
+            {
+                ListPickerItem<Theme> item = new ListPickerItem<Theme>(theme.Name, theme);
+                themeList.Add(item);
 
-            List<ColorListPickerItem> themeColorList = new List<ColorListPickerItem>();
-            themeColorList.Add(new ColorListPickerItem("Yellow", Color.FromArgb(255, 181, 137, 0)));
-            themeColorList.Add(new ColorListPickerItem("Orange", Color.FromArgb(255, 203, 75, 22)));
-            themeColorList.Add(new ColorListPickerItem("Red", Color.FromArgb(255, 220, 50, 47)));
-            themeColorList.Add(new ColorListPickerItem("Magenta", Color.FromArgb(255, 211, 54, 130)));
-            themeColorList.Add(new ColorListPickerItem("Violet", Color.FromArgb(255, 108, 113, 196)));
-            themeColorList.Add(new ColorListPickerItem("Blue", Color.FromArgb(255, 38, 139, 210)));
-            themeColorList.Add(new ColorListPickerItem("Cyan", Color.FromArgb(255, 42, 161, 152)));
-            themeColorList.Add(new ColorListPickerItem("Green", Color.FromArgb(255, 133, 153, 0)));
-            ThemeColorListPicker.ItemsSource = themeColorList;
-            int themeColorIndex = themeColorList.FindIndex(item => item.Color == ThemeHelper.ThemeColor);
-            ThemeColorListPicker.SelectedIndex = (themeColorIndex == -1 ? 1 : themeColorIndex);
+                if (theme == ThemeHelper.CurrentTheme)
+                {
+                    selectedThemeItem = item;
+                }
+            }
+            ThemeListPicker.ItemsSource = themeList;
+            ThemeListPicker.SelectedItem = selectedThemeItem;
 
             _isSetThemeListPicker = true;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            ThemeColorPicker.IsChecked = false;
+        }
+
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+
+            if (ThemeColorPicker.IsChecked)
+            {
+                ThemeColorPicker.IsChecked = false;
+                e.Cancel = true;
+            }
         }
 
         #region Default Date
@@ -245,33 +254,57 @@ namespace SimpleTasks.Views
         #region Theme
         private bool _isSetThemeListPicker = false;
 
+        private void SetThemeColor(Color color)
+        {
+            ThemeHelper.ThemeColor = color;
+            ThemeColorButton.Background = new SolidColorBrush(color);
+        }
+
         private void ThemeListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
             if (item != null)
             {
-                ThemeColorPanel.Visibility = (item.Value.IsSolarized() ? Visibility.Visible : Visibility.Collapsed);
                 if (_isSetThemeListPicker)
                 {
-                    ThemeHelper.Theme = item.Value;
+                    ThemeHelper.ThemeFileName = item.Value.FileName;
+
+                    if (ThemeHelper.CurrentTheme != item.Value)
+                    {
+                        ThemeHelper.CurrentTheme = item.Value;
+                        SetThemeColor(ThemeHelper.CurrentTheme.DefaultColor);
+                    }
                 }
-            }
-            else
-            {
-                ThemeColorPanel.Visibility = Visibility.Collapsed;
+                else
+                {
+                    SetThemeColor(ThemeHelper.ThemeColor);
+                }
             }
         }
 
-        private void ThemeColorListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ThemeColorButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_isSetThemeListPicker)
+            ThemeColorPickerPanel.Children.Clear();
+            foreach (Color color in ThemeHelper.CurrentTheme.Colors)
             {
-                ColorListPickerItem item = ThemeColorListPicker.SelectedItem as ColorListPickerItem;
-                if (item != null)
+                Button button = new Button
                 {
-                    ThemeHelper.ThemeColor = item.Color;
-                }
+                    Background = new SolidColorBrush(color),
+                    Style = (Style)Resources["ThemeColorButtonStyle"]
+                };
+                button.Click += ThemeColor_Click;
+
+                ThemeColorPickerPanel.Children.Add(button);
             }
+
+            ThemeColorPicker.IsChecked = true;
+        }
+
+        private void ThemeColor_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeColorPicker.IsChecked = false;
+            Button button = (Button)sender;
+            SetThemeColor(((SolidColorBrush)button.Background).Color);
         }
         #endregion // end of Theme
 
@@ -329,5 +362,10 @@ namespace SimpleTasks.Views
             }
         }
         #endregion // end of Gestures
+
+        private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ThemeColorPicker.IsChecked = false;
+        }
     }
 }

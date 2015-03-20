@@ -90,9 +90,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -162,6 +159,7 @@
     <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskGroupCollection.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
+    <Compile Include="Models\Themes.cs" />
     <Compile Include="Models\ValueToString.cs" />
     <Compile Include="MyUriMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,7 +177,7 @@
     <Compile Include="SampleData\SubtasksDataSource\SubtasksDataSource.xaml.cs">
       <DependentUpon>SubtasksDataSource.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Theme.cs" />
+    <Compile Include="Models\Theme.cs" />
     <Compile Include="ViewModels\TasksViewModel.cs" />
     <Compile Include="Views\AboutBAPage.xaml.cs">
       <DependentUpon>AboutBAPage.xaml</DependentUpon>
@@ -281,31 +279,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.cs-CZ.xlf</DependentUpon>
       <SubType>Designer</SubType>
-      <culture>cs-CZ</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.de-DE.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.de-DE.xlf</DependentUpon>
-      <culture>de-DE</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.es-ES.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.es-ES.xlf</DependentUpon>
-      <culture>es-ES</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.it-IT.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.it-IT.xlf</DependentUpon>
-      <culture>it-IT</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.qps-ploc.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.qps-ploc.xlf</DependentUpon>
-      <culture>qps-ploc</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -316,19 +309,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.ru-RU.xlf</DependentUpon>
-      <culture>ru-RU</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.sk-SK.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.sk-SK.xlf</DependentUpon>
-      <culture>sk-SK</culture>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources.uk-UA.resx">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.uk-UA.xlf</DependentUpon>
-      <culture>uk-UA</culture>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -527,8 +517,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" />
-  <Target Name="BeforeBuild"></Target>
+  <Target Name="BeforeBuild">
+  </Target>
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)\$(AssemblyName).dll">
       <Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />

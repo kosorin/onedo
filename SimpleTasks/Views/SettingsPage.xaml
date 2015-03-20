@@ -11,10 +11,30 @@
                    Style="{StaticResource BasePageStyle}"
                    mc:Ignorable="d">
 
+    <controls:BasePage.Resources>
+        <Style x:Key="ThemeColorButtonStyle"
+               TargetType="Button">
+            <Setter Property="Width"
+                    Value="93" />
+            <Setter Property="Margin"
+                    Value="0,0,20,20" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Width}"
+                                Background="{TemplateBinding Background}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </controls:BasePage.Resources>
+
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
         <phone:Pivot x:Name="MainPivot"
-                     Title="{Binding LocalizedResources.SettingsTitle, Source={StaticResource LocalizedStrings}}">
+                     Title="{Binding LocalizedResources.SettingsTitle, Source={StaticResource LocalizedStrings}}"
+                     SelectionChanged="MainPivot_SelectionChanged">
 
             <!--Tasks-->
             <phone:PivotItem Header="{Binding LocalizedResources.TasksText, Source={StaticResource LocalizedStrings}}">
@@ -96,37 +116,106 @@
             <!--Theme-->
             <phone:PivotItem x:Name="ThemePivotItem"
                              Header="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}}">
-                <ScrollViewer>
-                    <StackPanel Margin="24,0,24,96">
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel Margin="24,0,24,96">
 
-
-                        <StackPanel x:Name="ThemePanel">
                             <!--Theme-->
-                            <TextBlock Style="{StaticResource LabelTextStyle}"
-                                       Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
-                            <controls:ListPicker x:Name="ThemeListPicker"
-                                                 SelectionChanged="ThemeListPicker_SelectionChanged" />
-                        </StackPanel>
+                            <StackPanel x:Name="ThemePanel">
+                                <TextBlock Style="{StaticResource LabelTextStyle}"
+                                           Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+                                <controls:ListPicker x:Name="ThemeListPicker"
+                                                     SelectionChanged="ThemeListPicker_SelectionChanged" />
+                            </StackPanel>
 
-                        <!--Theme Color-->
-                        <StackPanel x:Name="ThemeColorPanel"
-                                    Grid.Column="2">
-                            <TextBlock Style="{StaticResource LabelTextStyle}"
-                                       Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}}" />
-                            <controls:ListPicker x:Name="ThemeColorListPicker"
-                                                 Foreground="{StaticResource ButtonDarkForegroundBrush}"
-                                                 SelectionChanged="ThemeColorListPicker_SelectionChanged" />
-                        </StackPanel>
+                            <!--Theme Color-->
+                            <StackPanel x:Name="ThemeColorPanel">
+                                <TextBlock Style="{StaticResource LabelTextStyle}"
+                                           Text="{Binding LocalizedResources.SettingsThemeColor, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
+                                <Button x:Name="ThemeColorButton"
+                                        Click="ThemeColorButton_Click"
+                                        Margin="0">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Height="50"
+                                                    Background="{TemplateBinding Background}" />
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
 
-                        <TextBlock Style="{StaticResource HelpTextStyle}"
-                                   Margin="0,24,0,0">
+                            <TextBlock Style="{StaticResource HelpTextStyle}"
+                                       Margin="0,24,0,0">
                             <Run FontWeight="Bold"
                                  Text="{Binding LocalizedResources.ToastNotice, StringFormat='\{0}: ', Source={StaticResource LocalizedStrings}}" />
                             <Run Text="{Binding LocalizedResources.SettingsThemeNote, Source={StaticResource LocalizedStrings}}" />
-                        </TextBlock>
+                            </TextBlock>
 
-                    </StackPanel>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+
+
+                    <controls:ToggleControl x:Name="ThemeColorPicker"
+                                            IsChecked="False">
+                        <Border>
+                            <Border.Background>
+                                <SolidColorBrush Color="{StaticResource BackgroundColor}"
+                                                 Opacity="0.8" />
+                            </Border.Background>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CheckedStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition To="Checked"
+                                                          GeneratedDuration="0:0:0.3">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                        <VisualTransition To="Unchecked"
+                                                          GeneratedDuration="0:0:0.3">
+                                            <VisualTransition.GeneratedEasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </VisualTransition.GeneratedEasingFunction>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Checked" />
+                                    <VisualState x:Name="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThemeColorPicker"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                        Value="0" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThemeColorPicker"
+                                                                           Storyboard.TargetProperty="IsHitTestVisible">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="False" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <ScrollViewer>
+                                <toolkit:WrapPanel x:Name="ThemeColorPickerPanel"
+                                                   Margin="24,24,0,0">
+                                    <Button Background="Red"
+                                            Style="{StaticResource ThemeColorButtonStyle}" />
+                                    <Button Background="Red"
+                                            Style="{StaticResource ThemeColorButtonStyle}" />
+                                    <Button Background="Red"
+                                            Style="{StaticResource ThemeColorButtonStyle}" />
+                                    <Button Background="Red"
+                                            Style="{StaticResource ThemeColorButtonStyle}" />
+                                    <Button Background="Red"
+                                            Style="{StaticResource ThemeColorButtonStyle}" />
+                                </toolkit:WrapPanel>
+                            </ScrollViewer>
+
+                        </Border>
+                    </controls:ToggleControl>
+
+                </Grid>
             </phone:PivotItem>
 
             <!--Live Tile-->
@@ -186,7 +275,7 @@
                         <ToggleButton Style="{StaticResource CheckBoxStyle}"
                                       IsChecked="{Binding Vibrate, Mode=TwoWay}"
                                       Content="{Binding LocalizedResources.SettingsVibrate, Source={StaticResource LocalizedStrings}}" />
-                        
+
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>

@@ -550,7 +550,7 @@
         </trans-unit>
         <trans-unit id="Resx/SettingsCompleteSubtasksDetail" translate="yes" xml:space="preserve">
           <source>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</source>
-          <target state="translated">Когда вы завершаете задачу, которая содержит подзадачи, то они тоже автоматически отмечаются как завешенные.</target>
+          <target state="signed-off">Если все подзадачи выполнены, помечать задачу как выполненную.</target>
         </trans-unit>
         <trans-unit id="Resx/SettingsVibrate" translate="yes" xml:space="preserve">
           <source>Vibrate</source>
@@ -768,7 +768,7 @@ It's still in beta.</source>
           <source>look</source>
           <target state="signed-off">вид</target>
           <note from="MultilingualBuild" annotates="source" priority="2">or appearance; section in settings</note>
-        </trans-unit>
+          </trans-unit>
         <trans-unit id="Resx/SettingsTaskTile" translate="yes" xml:space="preserve">
           <source>Task tile settings</source>
           <target state="signed-off">Настройки плитки задач</target>
@@ -856,11 +856,11 @@ It's still in beta.</source>
         </trans-unit>
         <trans-unit id="Resx/RepeatsOn" translate="yes" xml:space="preserve">
           <source>repeats on</source>
-          <target state="signed-off">повторяется</target>
+          <target state="signed-off">повторять</target>
         </trans-unit>
         <trans-unit id="Resx/Repeats" translate="yes" xml:space="preserve">
           <source>repeats</source>
-          <target state="signed-off">повторяется</target>
+          <target state="signed-off">повторы</target>
         </trans-unit>
         <trans-unit id="Resx/RepeatsDaily" translate="yes" xml:space="preserve">
           <source>daily</source>

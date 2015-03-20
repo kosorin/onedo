@@ -1,5 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SimpleTasks.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ namespace SimpleTasks.Helpers
 {
     public static class ThemeHelper
     {
+        #region Public Methods
         public static float Lerp(this float start, float end, float amount)
         {
             float difference = end - start;
@@ -38,94 +40,12 @@ namespace SimpleTasks.Helpers
             // return the new colour
             return Color.FromArgb(colour.A, r, g, b);
         }
+        #endregion // end of Public Methods
 
+        #region Resources
         private static ResourceDictionary Resources
         {
             get { return ((App)App.Current).Resources; }
-        }
-
-        private const string _themeKey = "Theme";
-        public static Theme Theme
-        {
-            get
-            {
-                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                Theme theme;
-                if (settings.Contains(_themeKey))
-                {
-                    theme = (Theme)settings[_themeKey];
-                }
-                else
-                {
-                    theme = Theme.System;
-                }
-                return theme;
-            }
-            set
-            {
-                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                if (settings.Contains(_themeKey))
-                {
-                    if (!settings[_themeKey].Equals(value))
-                    {
-                        settings[_themeKey] = value;
-                    }
-                }
-                else
-                {
-                    settings.Add(_themeKey, value);
-                }
-                settings.Save();
-            }
-        }
-
-        private static Theme _currentTheme = Theme.Dark;
-        public static Theme CurrentTheme
-        {
-            get { return _currentTheme; }
-            private set { _currentTheme = value; }
-        }
-
-        private static Theme _systemTheme = Theme.Dark;
-        public static Theme SystemTheme
-        {
-            get { return _systemTheme; }
-            private set { _systemTheme = value; }
-        }
-
-        private const string _themeColorKey = "ThemeColor";
-        public static Color ThemeColor
-        {
-            get
-            {
-                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                Color color;
-                if (settings.Contains(_themeColorKey))
-                {
-                    color = (Color)settings[_themeColorKey];
-                }
-                else
-                {
-                    color = Colors.Transparent;
-                }
-                return color;
-            }
-            set
-            {
-                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                if (settings.Contains(_themeColorKey))
-                {
-                    if (!settings[_themeColorKey].Equals(value))
-                    {
-                        settings[_themeColorKey] = value;
-                    }
-                }
-                else
-                {
-                    settings.Add(_themeColorKey, value);
-                }
-                settings.Save();
-            }
         }
 
         private static void ReplaceDouble(ResourceDictionary rd, string key, double newValue)
@@ -152,6 +72,91 @@ namespace SimpleTasks.Helpers
             ReplaceColor(rd, "AccentColor", color);
             ReplaceBrush(rd, "AccentBrush", new SolidColorBrush(color));
         }
+        #endregion // end of Resources
+
+        private const string _themeFileNameKey = "ThemeFileName";
+        public static string ThemeFileName
+        {
+            get
+            {
+                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+                string theme;
+                if (settings.Contains(_themeFileNameKey))
+                {
+                    theme = (string)settings[_themeFileNameKey];
+                }
+                else
+                {
+                    theme = Theme.EmptyFileName;
+                }
+                return theme;
+            }
+            set
+            {
+                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+                if (settings.Contains(_themeFileNameKey))
+                {
+                    if (!settings[_themeFileNameKey].Equals(value))
+                    {
+                        settings[_themeFileNameKey] = value;
+                    }
+                }
+                else
+                {
+                    settings.Add(_themeFileNameKey, value);
+                }
+                settings.Save();
+            }
+        }
+
+        private const string _themeColorKey = "ThemeColor";
+        public static Color ThemeColor
+        {
+            get
+            {
+                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+                Color color;
+                if (settings.Contains(_themeColorKey))
+                {
+                    color = (Color)settings[_themeColorKey];
+                }
+                else
+                {
+                    color = Theme.EmptyColor;
+                }
+                return color;
+            }
+            set
+            {
+                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+                if (settings.Contains(_themeColorKey))
+                {
+                    if (!settings[_themeColorKey].Equals(value))
+                    {
+                        settings[_themeColorKey] = value;
+                    }
+                }
+                else
+                {
+                    settings.Add(_themeColorKey, value);
+                }
+                settings.Save();
+            }
+        }
+
+        private static Theme _currentTheme = Themes.Default;
+        public static Theme CurrentTheme
+        {
+            get { return _currentTheme; }
+            set { _currentTheme = value; }
+        }
+
+        private static Theme _systemTheme = Themes.Default;
+        public static Theme SystemTheme
+        {
+            get { return _systemTheme; }
+            private set { _systemTheme = value; }
+        }
 
         public static void InitializeTheme()
         {
@@ -160,11 +165,13 @@ namespace SimpleTasks.Helpers
             sw.Start();
 #endif
 
-            SystemTheme = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible ? Theme.Dark : Theme.Light;
-            CurrentTheme = (Theme == Theme.System) ? SystemTheme : Theme;
+            SystemTheme = (Visibility)Resources["PhoneDarkThemeVisibility"] == Visibility.Visible
+                ? Themes.Dark
+                : Themes.Light;
+            CurrentTheme = Themes.GetTheme(ThemeFileName, SystemTheme);
 
             // ResourceDictionary
-            Uri sourceUri = new Uri(string.Format("/SimpleTasks;component/Themes/{0}.xaml", CurrentTheme.ToString()), UriKind.Relative);
+            Uri sourceUri = CurrentTheme.ResourcesPath;
             ResourceDictionary appTheme = Resources.MergedDictionaries[0];
             ResourceDictionary theme = new ResourceDictionary
             {
@@ -190,13 +197,13 @@ namespace SimpleTasks.Helpers
             }
 
             // Accent barva
-            if (CurrentTheme.IsSolarized())
+            if (ThemeColor != Theme.EmptyColor)
             {
                 SetAccentColor(appTheme, ThemeColor);
             }
-            else if ((bool)theme["UsePhoneAccentColor"])
+            else
             {
-                SetAccentColor(appTheme, (Color)Resources["PhoneAccentColor"]);
+                SetAccentColor(appTheme, CurrentTheme.DefaultColor);
             }
 
             // RootFrame
@@ -234,6 +241,7 @@ namespace SimpleTasks.Helpers
 #endif
         }
 
+        #region AppBar
         private static Color _appBarBackground;
 
         private static Color _appBarForeground;
@@ -246,5 +254,6 @@ namespace SimpleTasks.Helpers
             appBar.ForegroundColor = _appBarForeground;
             return appBar;
         }
+        #endregion // end of AppBar
     }
 }
