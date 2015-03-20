@@ -18,7 +18,7 @@ namespace SimpleTasks
         {
             if (uri.OriginalString == "/Views/EntryPage.xaml")
             {
-                uri = new Uri("/Views/SettingsPage.xaml", UriKind.Relative);
+                uri = new Uri("/Views/MainPage.xaml", UriKind.Relative);
             }
             return uri;
         } 

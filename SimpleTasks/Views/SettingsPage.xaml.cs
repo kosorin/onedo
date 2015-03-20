@@ -277,7 +277,16 @@ namespace SimpleTasks.Views
                 }
                 else
                 {
-                    SetThemeColor(ThemeHelper.ThemeColor);
+                    Color color;
+                    if (ThemeHelper.ThemeColor != Theme.EmptyColor)
+                    {
+                        color = ThemeHelper.ThemeColor;
+                    }
+                    else
+                    {
+                        color = ThemeHelper.CurrentTheme.DefaultColor;
+                    }
+                    SetThemeColor(color);
                 }
             }
         }
