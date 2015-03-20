@@ -104,7 +104,6 @@ namespace SimpleTasks.Views
             base.OnNavigatedTo(e);
 
             SystemTray.BackgroundColor = (Color)App.Current.Resources["AccentColor"];
-            SystemTray.ForegroundColor = (Color)App.Current.Resources["ButtonDarkForegroundColor"];
             SystemTray.Opacity = 1;
 
             NavigationService.RemoveBackEntry();
