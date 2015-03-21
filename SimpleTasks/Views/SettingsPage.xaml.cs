@@ -376,5 +376,10 @@ namespace SimpleTasks.Views
         {
             ThemeColorPicker.IsChecked = false;
         }
+
+        private void ThemeColorPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ThemeColorPicker.IsChecked = false;
+        }
     }
 }

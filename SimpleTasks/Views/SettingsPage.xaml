@@ -15,9 +15,9 @@
         <Style x:Key="ThemeColorButtonStyle"
                TargetType="Button">
             <Setter Property="Width"
-                    Value="93" />
+                    Value="99" />
             <Setter Property="Margin"
-                    Value="0,0,20,20" />
+                    Value="0,0,12,12" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -154,9 +154,9 @@
                         </StackPanel>
                     </ScrollViewer>
 
-
                     <controls:ToggleControl x:Name="ThemeColorPicker"
-                                            IsChecked="False">
+                                            IsChecked="False"
+                                            Tap="ThemeColorPicker_Tap">
                         <Border>
                             <Border.Background>
                                 <SolidColorBrush Color="{StaticResource BackgroundColor}"
