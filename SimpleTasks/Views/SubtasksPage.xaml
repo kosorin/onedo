@@ -16,6 +16,323 @@
     <controls:BasePage.Resources>
         <SampleData:SubtasksDataSource x:Key="SubtasksDataSource"
                                        d:IsDataSource="True" />
+
+        <Style TargetType="rlb:ReorderListBoxItem">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Top" />
+            <Setter Property="DragHandleTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Width="50"
+                                Height="50"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.CacheMode>
+                                <BitmapCache RenderAtScale="1" />
+                            </Border.CacheMode>
+                            <Border.Background>
+                                <SolidColorBrush Color="{StaticResource AccentColor}"
+                                                 Opacity="0.7" />
+                            </Border.Background>
+
+                            <ContentControl Style="{StaticResource ReorderIconStyle}"
+                                            Foreground="{StaticResource NormalBrush}"
+                                            Opacity="0.9"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Margin="5,5,0,0">
+                                <ContentControl.RenderTransform>
+                                    <CompositeTransform ScaleX="0.8"
+                                                        ScaleY="0.8" />
+                                </ContentControl.RenderTransform>
+                                <ContentControl.CacheMode>
+                                    <BitmapCache RenderAtScale="0.8" />
+                                </ContentControl.CacheMode>
+                            </ContentControl>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="rlb:ReorderListBoxItem">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="DropBeforeSpace"
+                                  Grid.Row="0"
+                                  Height="0">
+                            </Grid>
+                            <Grid x:Name="DropAfterSpace"
+                                  Grid.Row="2"
+                                  Height="0">
+                            </Grid>
+                            <Border x:Name="LayoutRoot"
+                                    Grid.Row="1"
+                                    Background="{TemplateBinding Background}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Height="55">
+                                <Grid Background="Transparent"
+                                      VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--Checkbox-->
+                                    <ToggleButton x:Name="Checkbox"
+                                                  IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                                                  Style="{StaticResource TaskCheckBoxStyle}"
+                                                  HorizontalAlignment="Left" />
+
+                                    <!--Text-->
+                                    <TextBox x:Name="SubtaskTextBox"
+                                             Grid.Column="1"
+                                             InputScope="Text"
+                                             Text="{Binding Text, Mode=TwoWay}"
+                                             GotFocus="SubtaskTextBox_GotFocus"
+                                             LostFocus="SubtaskTextBox_LostFocus"
+                                             KeyDown="SubtaskTextBox_KeyDown"
+                                             Loaded="SubtaskTextBox_Loaded">
+                                        <TextBox.CaretBrush>
+                                            <SolidColorBrush Color="{StaticResource AccentColor}" />
+                                        </TextBox.CaretBrush>
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Grid Height="50"
+                                                      Margin="0,0,5,0">
+                                                    <Grid.Background>
+                                                        <SolidColorBrush x:Name="Background"
+                                                                         Color="Transparent"
+                                                                         Opacity="0.32" />
+                                                    </Grid.Background>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="FocusStates">
+                                                            <VisualState x:Name="Focused">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Storyboard.TargetProperty="Color"
+                                                                                    Storyboard.TargetName="Background"
+                                                                                    To="{StaticResource SubtleColor}"
+                                                                                    Duration="0:0:0.18">
+                                                                    </ColorAnimation>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Unfocused">
+                                                                <Storyboard>
+                                                                    <ColorAnimation Storyboard.TargetProperty="Color"
+                                                                                    Storyboard.TargetName="Background"
+                                                                                    To="Transparent"
+                                                                                    Duration="0:0:0.18">
+                                                                    </ColorAnimation>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border BorderThickness="0"
+                                                            Background="Transparent"
+                                                            VerticalAlignment="Center"
+                                                            Padding="5,0,0,0"
+                                                            Margin="0">
+                                                        <ContentControl x:Name="ContentElement"
+                                                                        BorderThickness="0"
+                                                                        Foreground="{StaticResource NormalBrush}"
+                                                                        FontFamily="{StaticResource DefaultFontFamily}"
+                                                                        FontSize="24"
+                                                                        HorizontalContentAlignment="Stretch"
+                                                                        VerticalContentAlignment="Stretch" />
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+
+                                    <!--Smazání-->
+                                    <Button Tap="SubtaskListBox_Delete_Tap"
+                                            Grid.Column="2">
+                                        <Button.Template>
+                                            <ControlTemplate />
+                                        </Button.Template>
+
+                                        <ContentControl Style="{StaticResource DeleteIconStyle}"
+                                                        Foreground="{StaticResource SlightBrush}"
+                                                        Opacity="0.9">
+                                            <ContentControl.Background>
+                                                <SolidColorBrush Color="{StaticResource SubtleColor}"
+                                                                 Opacity="0.35" />
+                                            </ContentControl.Background>
+                                        </ContentControl>
+                                    </Button>
+
+                                    <!--Drag Handle-->
+                                    <Grid x:Name="HandleContainer"
+                                          Grid.Column="3">
+                                        <ContentPresenter x:Name="DragHandle"
+                                                          ContentTemplate="{TemplateBinding DragHandleTemplate}"
+                                                          Margin="5,0,0,0" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ReorderEnabledStates">
+                                    <VisualState x:Name="ReorderDisabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DragHandle"
+                                                                           Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Collapsed" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="ReorderEnabled" />
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DraggingStates">
+                                    <VisualState x:Name="NotDragging" />
+                                    <VisualState x:Name="Dragging">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0"
+                                                                        Value="0.7" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition To="NotDragging"
+                                                          GeneratedDuration="0:0:0.2" />
+                                        <VisualTransition To="Dragging"
+                                                          GeneratedDuration="0:0:0.2" />
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DropIndicatorStates">
+                                    <VisualState x:Name="NoDropIndicator">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                             Storyboard.TargetProperty="Height"
+                                                             To="0"
+                                                             Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                             Storyboard.TargetProperty="Height"
+                                                             To="0"
+                                                             Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="DropBeforeIndicator">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                             Storyboard.TargetProperty="Height"
+                                                             To="1"
+                                                             Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                             Storyboard.TargetProperty="Height"
+                                                             To="0"
+                                                             Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="DropAfterIndicator">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                             Storyboard.TargetProperty="Height"
+                                                             To="0"
+                                                             Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                             Storyboard.TargetProperty="Height"
+                                                             To="1"
+                                                             Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="NoDropIndicator"
+                                                          To="DropBeforeIndicator">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="NoDropIndicator"
+                                                          To="DropAfterIndicator">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="DropBeforeIndicator"
+                                                          To="NoDropIndicator">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="DropAfterIndicator"
+                                                          To="NoDropIndicator">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="DropBeforeIndicator"
+                                                          To="DropAfterIndicator">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="DropAfterIndicator"
+                                                          To="DropBeforeIndicator">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="DropBeforeSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="DropAfterSpace"
+                                                                 Storyboard.TargetProperty="Height"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </controls:BasePage.Resources>
 
     <Grid Background="{StaticResource BackgroundBrush}">
@@ -62,7 +379,7 @@
                                     Grid.Column="1"
                                     Margin="{TemplateBinding Padding}"
                                     VerticalAlignment="Stretch"
-                                    Width="52">
+                                    Width="50">
                                 <Image x:Name="DragIndicator"
                                        Visibility="Collapsed">
                                     <Image.RenderTransform>
@@ -78,150 +395,6 @@
                         </Grid>
                     </ControlTemplate>
                 </rlb:ReorderListBox.Template>
-                <rlb:ReorderListBox.ItemContainerStyle>
-                    <Style TargetType="rlb:ReorderListBoxItem">
-                        <Setter Property="DragHandleTemplate">
-                            <Setter.Value>
-                                <DataTemplate>
-                                    <Canvas Width="52"
-                                            Height="55"
-                                            Background="Transparent">
-                                        <Canvas.CacheMode>
-                                            <BitmapCache RenderAtScale="1" />
-                                        </Canvas.CacheMode>
-                                        <Border Width="50"
-                                                Height="50"
-                                                Canvas.Top="3"
-                                                RenderTransformOrigin="0.5,0.5">
-                                            <Border.Background>
-                                                <SolidColorBrush Color="{StaticResource AccentColor}"
-                                                                 Opacity="0.7" />
-                                            </Border.Background>
-
-                                            <ContentControl Style="{StaticResource ReorderIconStyle}"
-                                                            Foreground="{StaticResource NormalBrush}"
-                                                            Opacity="0.9"
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center"
-                                                            Margin="5,5,0,0">
-                                                <ContentControl.RenderTransform>
-                                                    <CompositeTransform ScaleX="0.8"
-                                                                        ScaleY="0.8" />
-                                                </ContentControl.RenderTransform>
-                                                <ContentControl.CacheMode>
-                                                    <BitmapCache RenderAtScale="0.8" />
-                                                </ContentControl.CacheMode>
-                                            </ContentControl>
-                                        </Border>
-                                    </Canvas>
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </rlb:ReorderListBox.ItemContainerStyle>
-                <rlb:ReorderListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Background="{x:Null}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <!--Checkbox & Text-->
-                            <Grid Height="55">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <!--Checkbox-->
-                                <ToggleButton x:Name="Checkbox"
-                                              IsChecked="{Binding IsCompleted, Mode=TwoWay}"
-                                              Style="{StaticResource TaskCheckBoxStyle}"
-                                              HorizontalAlignment="Left" />
-
-                                <!--Text-->
-                                <TextBox x:Name="SubtaskTextBox"
-                                         Grid.Column="1"
-                                         InputScope="Text"
-                                         Text="{Binding Text, Mode=TwoWay}"
-                                         GotFocus="SubtaskTextBox_GotFocus"
-                                         LostFocus="SubtaskTextBox_LostFocus"
-                                         KeyDown="SubtaskTextBox_KeyDown"
-                                         Loaded="SubtaskTextBox_Loaded">
-                                    <TextBox.CaretBrush>
-                                        <SolidColorBrush Color="{StaticResource AccentColor}" />
-                                    </TextBox.CaretBrush>
-                                    <TextBox.Template>
-                                        <ControlTemplate TargetType="TextBox">
-                                            <Grid Height="50"
-                                                  Margin="0,0,5,0">
-                                                <Grid.Background>
-                                                    <SolidColorBrush x:Name="Background"
-                                                                     Color="Transparent"
-                                                                     Opacity="0.32" />
-                                                </Grid.Background>
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroup x:Name="FocusStates">
-                                                        <VisualState x:Name="Focused">
-                                                            <Storyboard>
-                                                                <ColorAnimation Storyboard.TargetProperty="Color"
-                                                                                Storyboard.TargetName="Background"
-                                                                                To="{StaticResource SubtleColor}"
-                                                                                Duration="0:0:0.18">
-                                                                </ColorAnimation>
-                                                            </Storyboard>
-                                                        </VisualState>
-                                                        <VisualState x:Name="Unfocused">
-                                                            <Storyboard>
-                                                                <ColorAnimation Storyboard.TargetProperty="Color"
-                                                                                Storyboard.TargetName="Background"
-                                                                                To="Transparent"
-                                                                                Duration="0:0:0.18">
-                                                                </ColorAnimation>
-                                                            </Storyboard>
-                                                        </VisualState>
-                                                    </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
-                                                <Border BorderThickness="0"
-                                                        Background="Transparent"
-                                                        VerticalAlignment="Center"
-                                                        Padding="5,0,0,0"
-                                                        Margin="0">
-                                                    <ContentControl x:Name="ContentElement"
-                                                                    BorderThickness="0"
-                                                                    Foreground="{StaticResource NormalBrush}"
-                                                                    FontFamily="{StaticResource DefaultFontFamily}"
-                                                                    FontSize="24"
-                                                                    HorizontalContentAlignment="Stretch"
-                                                                    VerticalContentAlignment="Stretch" />
-                                                </Border>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </TextBox.Template>
-                                </TextBox>
-                            </Grid>
-
-                            <!--Smazání-->
-                            <Button Tap="SubtaskListBox_Delete_Tap"
-                                    Grid.Column="1"
-                                    Margin="0,0,5,0">
-                                <Button.Template>
-                                    <ControlTemplate />
-                                </Button.Template>
-
-                                <ContentControl Style="{StaticResource DeleteIconStyle}"
-                                                Foreground="{StaticResource SlightBrush}"
-                                                Opacity="0.9">
-                                    <ContentControl.Background>
-                                        <SolidColorBrush Color="{StaticResource SubtleColor}"
-                                                         Opacity="0.35" />
-                                    </ContentControl.Background>
-                                </ContentControl>
-                            </Button>
-                        </Grid>
-                    </DataTemplate>
-                </rlb:ReorderListBox.ItemTemplate>
             </rlb:ReorderListBox>
 
             <!--Žádné podúkoly-->
