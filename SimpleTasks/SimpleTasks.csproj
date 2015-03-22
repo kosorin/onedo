@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>cs-CZ%3bde-DE%3bes-ES%3bit-IT%3bru-RU%3bsk-SK%3buk-UA</SupportedCultures>
+    <SupportedCultures>cs-CZ%3bde-DE%3bes-ES%3bit-IT%3bru-RU%3bsk-SK%3buk-UA%3bzh-CN</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SimpleTasks_$(Configuration)_$(Platform).xap</XapFilename>
@@ -274,77 +274,19 @@
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.cs-CZ.xlf</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.de-DE.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.de-DE.xlf</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.es-ES.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.es-ES.xlf</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.it-IT.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.it-IT.xlf</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.cs-CZ.resx" />
+    <EmbeddedResource Include="Resources\AppResources.de-DE.resx" />
+    <EmbeddedResource Include="Resources\AppResources.es-ES.resx" />
+    <EmbeddedResource Include="Resources\AppResources.it-IT.resx" />
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.ru-RU.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.ru-RU.xlf</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.sk-SK.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.sk-SK.xlf</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources.uk-UA.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppResources.uk-UA.xlf</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="Resources\AppResources.cs-CZ.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.cs-CZ.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.de-DE.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.de-DE.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.es-ES.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.es-ES.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.it-IT.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.it-IT.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.ru-RU.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.ru-RU.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.sk-SK.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.sk-SK.resx</LastGenOutput>
-    </XliffResource>
-    <XliffResource Include="Resources\AppResources.uk-UA.xlf">
-      <Generator>XliffResxGenerator</Generator>
-      <LastGenOutput>AppResources.uk-UA.resx</LastGenOutput>
-    </XliffResource>
+    <EmbeddedResource Include="Resources\AppResources.ru-RU.resx" />
+    <EmbeddedResource Include="Resources\AppResources.sk-SK.resx" />
+    <EmbeddedResource Include="Resources\AppResources.uk-UA.resx" />
+    <EmbeddedResource Include="Resources\AppResources.zh-CN.resx" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\RoundTimePicker.xaml">
