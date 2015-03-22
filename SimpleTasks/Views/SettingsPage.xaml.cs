@@ -60,20 +60,32 @@ namespace SimpleTasks.Views
             // Theme
             _isSetThemeListPicker = false;
 
-            List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
-            ListPickerItem<Theme> selectedThemeItem = null;
-            foreach (Theme theme in Themes.GetThemes())
+            Color color;
+            if (ThemeHelper.ThemeColor != Theme.EmptyColor)
             {
-                ListPickerItem<Theme> item = new ListPickerItem<Theme>(theme.Name, theme);
-                themeList.Add(item);
-
-                if (theme == ThemeHelper.CurrentTheme)
-                {
-                    selectedThemeItem = item;
-                }
+                color = ThemeHelper.ThemeColor;
             }
-            ThemeListPicker.ItemsSource = themeList;
-            ThemeListPicker.SelectedItem = selectedThemeItem;
+            else
+            {
+                color = ThemeHelper.CurrentTheme.DefaultColor;
+            }
+            SetTheme(ThemeHelper.CurrentTheme);
+            SetThemeColor(color);
+
+            //List<ListPickerItem<Theme>> themeList = new List<ListPickerItem<Theme>>();
+            //ListPickerItem<Theme> selectedThemeItem = null;
+            //foreach (Theme theme in Themes.GetThemes())
+            //{
+            //    ListPickerItem<Theme> item = new ListPickerItem<Theme>(theme.Name, theme);
+            //    themeList.Add(item);
+
+            //    if (theme == ThemeHelper.CurrentTheme)
+            //    {
+            //        selectedThemeItem = item;
+            //    }
+            //}
+            //ThemeListPicker.ItemsSource = themeList;
+            //ThemeListPicker.SelectedItem = selectedThemeItem;
 
             _isSetThemeListPicker = true;
         }
@@ -81,16 +93,16 @@ namespace SimpleTasks.Views
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            ThemeColorPicker.IsChecked = false;
+            ThemePicker.IsChecked = false;
         }
 
         protected override void OnBackKeyPress(CancelEventArgs e)
         {
             base.OnBackKeyPress(e);
 
-            if (ThemeColorPicker.IsChecked)
+            if (ThemePicker.IsChecked)
             {
-                ThemeColorPicker.IsChecked = false;
+                ThemePicker.IsChecked = false;
                 e.Cancel = true;
             }
         }
@@ -254,46 +266,82 @@ namespace SimpleTasks.Views
         #region Theme
         private bool _isSetThemeListPicker = false;
 
+        private void SetTheme(Theme theme)
+        {
+            ThemeHelper.ThemeFileName = theme.FileName;
+            ThemeHelper.CurrentTheme = theme;
+            ThemeButton.DataContext = theme;
+        }
+
         private void SetThemeColor(Color color)
         {
             ThemeHelper.ThemeColor = color;
             ThemeColorButton.Background = new SolidColorBrush(color);
         }
 
+        private void ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ThemePickerPanel.Children.Clear();
+            foreach (Theme theme in Themes.GetThemes())
+            {
+                Button button = new Button
+                {
+                    DataContext = theme,
+                    Style = (Style)Resources["ThemeButtonStyle"]
+                };
+                button.Click += Theme_Click;
+
+                ThemePickerPanel.Children.Add(button);
+            }
+
+            ThemePicker.IsChecked = true;
+        }
+
+        private void Theme_Click(object sender, RoutedEventArgs e)
+        {
+            ThemePicker.IsChecked = false;
+            Theme theme = ((Button)sender).DataContext as Theme;
+            if (theme != null)
+            {
+                SetTheme(theme);
+                SetThemeColor(theme.DefaultColor);
+            }
+        }
+
         private void ThemeListPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
-            if (item != null)
-            {
-                if (_isSetThemeListPicker)
-                {
-                    ThemeHelper.ThemeFileName = item.Value.FileName;
+            //ListPickerItem<Theme> item = ThemeListPicker.SelectedItem as ListPickerItem<Theme>;
+            //if (item != null)
+            //{
+            //    if (_isSetThemeListPicker)
+            //    {
+            //        ThemeHelper.ThemeFileName = item.Value.FileName;
 
-                    if (ThemeHelper.CurrentTheme != item.Value)
-                    {
-                        ThemeHelper.CurrentTheme = item.Value;
-                        SetThemeColor(ThemeHelper.CurrentTheme.DefaultColor);
-                    }
-                }
-                else
-                {
-                    Color color;
-                    if (ThemeHelper.ThemeColor != Theme.EmptyColor)
-                    {
-                        color = ThemeHelper.ThemeColor;
-                    }
-                    else
-                    {
-                        color = ThemeHelper.CurrentTheme.DefaultColor;
-                    }
-                    SetThemeColor(color);
-                }
-            }
+            //        if (ThemeHelper.CurrentTheme != item.Value)
+            //        {
+            //            ThemeHelper.CurrentTheme = item.Value;
+            //            SetThemeColor(ThemeHelper.CurrentTheme.DefaultColor);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Color color;
+            //        if (ThemeHelper.ThemeColor != Theme.EmptyColor)
+            //        {
+            //            color = ThemeHelper.ThemeColor;
+            //        }
+            //        else
+            //        {
+            //            color = ThemeHelper.CurrentTheme.DefaultColor;
+            //        }
+            //        SetThemeColor(color);
+            //    }
+            //}
         }
 
         private void ThemeColorButton_Click(object sender, RoutedEventArgs e)
         {
-            ThemeColorPickerPanel.Children.Clear();
+            ThemePickerPanel.Children.Clear();
             foreach (Color color in ThemeHelper.CurrentTheme.Colors)
             {
                 Button button = new Button
@@ -303,15 +351,15 @@ namespace SimpleTasks.Views
                 };
                 button.Click += ThemeColor_Click;
 
-                ThemeColorPickerPanel.Children.Add(button);
+                ThemePickerPanel.Children.Add(button);
             }
 
-            ThemeColorPicker.IsChecked = true;
+            ThemePicker.IsChecked = true;
         }
 
         private void ThemeColor_Click(object sender, RoutedEventArgs e)
         {
-            ThemeColorPicker.IsChecked = false;
+            ThemePicker.IsChecked = false;
             Button button = (Button)sender;
             SetThemeColor(((SolidColorBrush)button.Background).Color);
         }
@@ -374,12 +422,13 @@ namespace SimpleTasks.Views
 
         private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ThemeColorPicker.IsChecked = false;
+            ThemePicker.IsChecked = false;
         }
 
         private void ThemeColorPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            ThemeColorPicker.IsChecked = false;
+            ThemePicker.IsChecked = false;
         }
+
     }
 }

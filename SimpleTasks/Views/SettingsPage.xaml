@@ -28,6 +28,71 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ThemeButtonStyle"
+               TargetType="Button">
+            <Setter Property="Width"
+                    Value="208" />
+            <Setter Property="Margin"
+                    Value="0,0,16,16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Width}"
+                                Background="{Binding Preview.BackgroundBrush}"
+                                BorderBrush="{Binding Preview.SubtleBrush}"
+                                BorderThickness="1"
+                                Padding="10">
+                            <StackPanel IsHitTestVisible="False">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           Foreground="{Binding Preview.NormalBrush}" />
+                                <TextBlock Text="Preview..."
+                                           FontSize="20"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           Foreground="{Binding Preview.SubtleBrush}" />
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,10,0,0">
+                                    <ToggleButton Style="{StaticResource TaskCheckBoxStyle}"
+                                                  Foreground="{Binding Preview.CheckBoxForegroundBrush}"
+                                                  BorderBrush="{Binding Preview.CheckBoxBorderBrush}"
+                                                  Margin="0">
+                                        <ToggleButton.Background>
+                                            <SolidColorBrush Color="{Binding DefaultColor}" />
+                                        </ToggleButton.Background>
+                                    </ToggleButton>
+                                    <controls:ToggleControl Content="call mom"
+                                                            Style="{StaticResource TaskCheckBoxTextStyle}"
+                                                            Foreground="{Binding Preview.NormalBrush}"
+                                                            BorderBrush="{Binding Preview.SubtleBrush}"
+                                                            Margin="10,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,10,0,0">
+                                    <ToggleButton Style="{StaticResource TaskCheckBoxStyle}"
+                                                  IsChecked="True"
+                                                  Foreground="{Binding Preview.CheckBoxForegroundBrush}"
+                                                  BorderBrush="{Binding Preview.CheckBoxBorderBrush}"
+                                                  Margin="0">
+                                        <ToggleButton.Background>
+                                            <SolidColorBrush Color="{Binding DefaultColor}" />
+                                        </ToggleButton.Background>
+                                    </ToggleButton>
+                                    <controls:ToggleControl Content="buy a milk"
+                                                            IsChecked="True"
+                                                            Style="{StaticResource TaskCheckBoxTextStyle}"
+                                                            Foreground="{Binding Preview.NormalBrush}"
+                                                            BorderBrush="{Binding Preview.SubtleBrush}"
+                                                            Margin="10,0,0,0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </controls:BasePage.Resources>
 
     <Grid x:Name="LayoutRoot"
@@ -124,8 +189,17 @@
                             <StackPanel x:Name="ThemePanel">
                                 <TextBlock Style="{StaticResource LabelTextStyle}"
                                            Text="{Binding LocalizedResources.SettingsThemeTitle, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='FirstUpper'}" />
-                                <controls:ListPicker x:Name="ThemeListPicker"
-                                                     SelectionChanged="ThemeListPicker_SelectionChanged" />
+                                <Button x:Name="ThemeButton"
+                                        Style="{StaticResource ButtonStyle}"
+                                        Click="ThemeButton_Click"
+                                        Content="{Binding Name}"
+                                        Background="{Binding Preview.BackgroundBrush}"
+                                        BorderBrush="{Binding Preview.NormalBrush}"
+                                        Foreground="{Binding Preview.NormalBrush}"
+                                        BorderThickness="1"
+                                        HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" 
+                                        Padding="16,0"/>
                             </StackPanel>
 
                             <!--Theme Color-->
@@ -154,7 +228,7 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <controls:ToggleControl x:Name="ThemeColorPicker"
+                    <controls:ToggleControl x:Name="ThemePicker"
                                             IsChecked="False"
                                             Tap="ThemeColorPicker_Tap">
                         <Border>
@@ -181,12 +255,12 @@
                                     <VisualState x:Name="Checked" />
                                     <VisualState x:Name="Unchecked">
                                         <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThemeColorPicker"
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThemePicker"
                                                                            Storyboard.TargetProperty="Opacity">
                                                 <DiscreteDoubleKeyFrame KeyTime="0"
                                                                         Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThemeColorPicker"
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThemePicker"
                                                                            Storyboard.TargetProperty="IsHitTestVisible">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                         Value="False" />
@@ -197,19 +271,8 @@
                             </VisualStateManager.VisualStateGroups>
 
                             <ScrollViewer>
-                                <toolkit:WrapPanel x:Name="ThemeColorPickerPanel"
-                                                   Margin="24,24,0,0">
-                                    <Button Background="Red"
-                                            Style="{StaticResource ThemeColorButtonStyle}" />
-                                    <Button Background="Red"
-                                            Style="{StaticResource ThemeColorButtonStyle}" />
-                                    <Button Background="Red"
-                                            Style="{StaticResource ThemeColorButtonStyle}" />
-                                    <Button Background="Red"
-                                            Style="{StaticResource ThemeColorButtonStyle}" />
-                                    <Button Background="Red"
-                                            Style="{StaticResource ThemeColorButtonStyle}" />
-                                </toolkit:WrapPanel>
+                                <toolkit:WrapPanel x:Name="ThemePickerPanel"
+                                                   Margin="24,24,0,0" />
                             </ScrollViewer>
 
                         </Border>

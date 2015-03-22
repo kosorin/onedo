@@ -47,5 +47,7 @@ namespace SimpleTasks.Models
         public Color DefaultColor { get; set; }
 
         public List<Color> Colors { get; set; }
+
+        public ThemePreview Preview { get; set; }
     }
 }

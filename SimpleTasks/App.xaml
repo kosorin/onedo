@@ -881,8 +881,16 @@
                         Value="32,0" />
                 <Setter Property="HorizontalAlignment"
                         Value="Left" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Center" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource ButtonForegroundBrush}" />
                 <Setter Property="Background"
                         Value="{StaticResource ButtonBackgroundBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource ButtonBackgroundBrush}" />
+                <Setter Property="BorderThickness"
+                        Value="0" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ButtonBase">
@@ -890,7 +898,9 @@
                                     Height="{TemplateBinding Height}"
                                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                     Background="{TemplateBinding Background}"
-                                    Padding="{TemplateBinding Padding}">
+                                    Padding="{TemplateBinding Padding}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal" />
@@ -923,7 +933,8 @@
                                 <TextBlock x:Name="Text"
                                            Text="{TemplateBinding Content}"
                                            Style="{StaticResource ButtonTextStyle}"
-                                           HorizontalAlignment="Center" />
+                                           Foreground="{TemplateBinding Foreground}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -938,8 +949,12 @@
                         Value="40" />
                 <Setter Property="Height"
                         Value="40" />
-                <Setter Property="BorderBrush"
+                <Setter Property="Foreground"
+                        Value="{StaticResource ButtonDarkForegroundBrush}" />
+                <Setter Property="Background"
                         Value="{StaticResource AccentBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource CheckBoxBorderBrush}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
@@ -977,14 +992,14 @@
                                         Height="{TemplateBinding Height}"
                                         Background="Transparent"
                                         BorderThickness="2"
-                                        BorderBrush="{StaticResource CheckBoxBorderBrush}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
                                         HorizontalAlignment="Left">
                                     <Border x:Name="CompleteButtonRectangle"
                                             Margin="-2"
-                                            Background="{StaticResource AccentBrush}">
+                                            Background="{TemplateBinding Background}">
                                         <ContentControl x:Name="CheckIcon"
                                                         Style="{StaticResource CheckIconStyle}"
-                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}"
+                                                        Foreground="{TemplateBinding Foreground}"
                                                         MaxWidth="0"
                                                         MaxHeight="0">
                                             <ContentControl.RenderTransform>
@@ -1010,6 +1025,10 @@
                         Value="24" />
                 <Setter Property="FontWeight"
                         Value="Light" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource NormalBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource SubtleBrush}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="controls:ToggleControl">
@@ -1059,13 +1078,14 @@
                                     <TextBlock x:Name="Text"
                                                Text="{TemplateBinding Content}"
                                                Style="{StaticResource NormalTextStyle}"
+                                               Foreground="{TemplateBinding Foreground}"
                                                FontSize="{TemplateBinding FontSize}"
                                                FontWeight="{TemplateBinding FontWeight}"
                                                TextWrapping="NoWrap"
                                                TextTrimming="WordEllipsis" />
 
                                     <!--Přeskrtnutí-->
-                                    <Border BorderBrush="{StaticResource SubtleBrush}"
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
                                             Opacity="0.7"
                                             BorderThickness="0,0,0,2"
                                             VerticalAlignment="Center">
@@ -1375,7 +1395,7 @@
                                              Height="32"
                                              StrokeThickness="2"
                                              Stroke="{StaticResource CheckBoxBorderBrush}" />
-                                    
+
                                     <Grid x:Name="CheckBoxBorder">
                                         <Ellipse Width="32"
                                                  Height="32"

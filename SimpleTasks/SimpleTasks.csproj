@@ -159,6 +159,7 @@
     <Compile Include="Models\TaskGroup.cs" />
     <Compile Include="Models\TaskGroupCollection.cs" />
     <Compile Include="Models\TaskWrapper.cs" />
+    <Compile Include="Models\ThemePreview.cs" />
     <Compile Include="Models\Themes.cs" />
     <Compile Include="Models\ValueToString.cs" />
     <Compile Include="MyUriMapper.cs" />
