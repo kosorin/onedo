@@ -126,6 +126,7 @@ namespace SimpleTasks.Views
 
         private void SubtaskTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
+            SubtaskListBox.IsReorderEnabled = false;
             _currentTextBox = sender as TextBox;
         }
 
@@ -144,6 +145,7 @@ namespace SimpleTasks.Views
                     }
                 }
             }
+            SubtaskListBox.IsReorderEnabled = true;
         }
 
         private void SubtaskTextBox_KeyDown(object sender, KeyEventArgs e)
