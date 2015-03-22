@@ -32,17 +32,15 @@
         <Style x:Key="ThemeButtonStyle"
                TargetType="Button">
             <Setter Property="Width"
-                    Value="208" />
+                    Value="211" />
             <Setter Property="Margin"
-                    Value="0,0,16,16" />
+                    Value="0,0,10,10" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Width="{TemplateBinding Width}"
                                 Height="{TemplateBinding Width}"
                                 Background="{Binding Preview.BackgroundBrush}"
-                                BorderBrush="{Binding Preview.SubtleBrush}"
-                                BorderThickness="1"
                                 Padding="10">
                             <StackPanel IsHitTestVisible="False">
                                 <TextBlock Text="{Binding Name}"
@@ -193,13 +191,9 @@
                                         Style="{StaticResource ButtonStyle}"
                                         Click="ThemeButton_Click"
                                         Content="{Binding Name}"
-                                        Background="{Binding Preview.BackgroundBrush}"
-                                        BorderBrush="{Binding Preview.NormalBrush}"
-                                        Foreground="{Binding Preview.NormalBrush}"
-                                        BorderThickness="1"
                                         HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left" 
-                                        Padding="16,0"/>
+                                        Padding="10,0"/>
                             </StackPanel>
 
                             <!--Theme Color-->
