@@ -27,7 +27,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        public static string ForceDebugCulture = "ru-RU";
+        public static string ForceDebugCulture = "zh-CN";
 
         #region Properties
         public static readonly string BackgroundAgentName = "PeriodicBackgroundAgent";
@@ -309,10 +309,7 @@ namespace SimpleTasks
                 // Force CurrentUICulture to locale defined by appForceCulture.
                 // An empty string allows the user's Phone Language setting to
                 // determine the locale.
-
-
-
-                if (String.IsNullOrWhiteSpace(ForceDebugCulture) == false && Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Emulator)
+                if (!String.IsNullOrWhiteSpace(ForceDebugCulture) && Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Emulator)
                 {
                     Thread.CurrentThread.CurrentCulture =
                         new CultureInfo(ForceDebugCulture);
