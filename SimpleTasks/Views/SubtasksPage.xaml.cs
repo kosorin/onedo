@@ -31,7 +31,7 @@ namespace SimpleTasks.Views
             set { SetProperty(ref _subtasks, value); }
         }
 
-        private TaskModel _task = null;
+        private readonly TaskModel _task = null;
 
         public SubtasksPage()
         {
