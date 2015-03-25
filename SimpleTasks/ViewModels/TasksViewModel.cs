@@ -139,5 +139,30 @@ namespace SimpleTasks.ViewModels
             // Odstranění "zapomenutých" připoměnutí
             ReminderHelper.RemoveAll();
         }
+
+        public void Complete(TaskModel task)
+        {
+            task.Completed = DateTime.Now;
+            task.ModifiedSinceStart = true;
+            if (Settings.Current.CompleteSubtasks && task.HasSubtasks)
+            {
+                foreach (Subtask subtask in task.Subtasks)
+                {
+                    subtask.IsCompleted = true;
+                }
+            }
+            if (Settings.Current.UnpinCompleted && !task.HasRepeats)
+            {
+                LiveTile.Unpin(task);
+            }
+
+            App.Tasks.Update(task);
+        }
+
+        public void Activate(TaskModel task)
+        {
+            task.Completed = null;
+            App.Tasks.Update(task);
+        }
     }
 }

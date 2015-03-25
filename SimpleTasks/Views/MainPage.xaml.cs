@@ -410,27 +410,12 @@ namespace SimpleTasks.Views
 
             if (task.IsActive)
             {
-                // DOKONČENÍ
-                task.Completed = DateTime.Now;
-                task.ModifiedSinceStart = true;
-                if (Settings.Current.CompleteSubtasks && task.HasSubtasks)
-                {
-                    foreach (Subtask subtask in task.Subtasks)
-                    {
-                        subtask.IsCompleted = true;
-                    }
-                }
-                if (Settings.Current.UnpinCompleted && !task.HasRepeats)
-                {
-                    LiveTile.Unpin(task);
-                }
+                App.Tasks.Complete(task);
             }
             else
             {
-                // AKTIVOVÁNÍ
-                task.Completed = null;
+                App.Tasks.Activate(task);
             }
-            App.Tasks.Update(task);
         }
 
         private void ToggleComplete(TaskModel task, Subtask subtask)

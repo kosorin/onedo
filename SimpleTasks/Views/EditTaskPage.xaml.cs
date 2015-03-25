@@ -348,24 +348,12 @@ namespace SimpleTasks.Views
 
         public void Activate()
         {
-            Task.Completed = null;
+            App.Tasks.Activate(Task);
         }
 
         public void Complete()
         {
-            Task.Completed = DateTime.Now;
-
-            if (Settings.Current.CompleteSubtasks)
-            {
-                foreach (Subtask subtask in Task.Subtasks)
-                {
-                    subtask.IsCompleted = true;
-                }
-            }
-            if (Settings.Current.UnpinCompleted && Repeats == Core.Models.Repeats.None)
-            {
-                Unpin();
-            }
+            App.Tasks.Complete(Task);
         }
 
         public void Delete()

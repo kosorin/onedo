@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Windows.Media.Animation;
 using SimpleTasks.Core.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 using SubtaskCollection = System.Collections.ObjectModel.ObservableCollection<SimpleTasks.Core.Models.Subtask>;
 using SimpleTasks.Helpers;
 
@@ -70,6 +71,11 @@ namespace SimpleTasks.Views
         {
             TiltEffect.TiltableItems.Add(typeof(ListBoxItem));
             base.OnNavigatedFrom(e);
+
+            if (Subtasks.All(s => s.IsCompleted))
+            {
+                App.Tasks.Complete(_task);
+            }
         }
 
         #region Subtasks
