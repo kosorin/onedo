@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -128,6 +128,10 @@
   <data name="AppBarNew" xml:space="preserve">
     <value>nuovo</value>
     <comment>new task</comment>
+  </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>informazioni su</value>
+    <comment>AppBar item</comment>
   </data>
   <data name="AppBarSave" xml:space="preserve">
     <value>salva</value>
@@ -189,7 +193,6 @@
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>cancella gli impegni completati</value>
-    <comment></comment>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
     <value>cancella</value>
@@ -270,6 +273,14 @@
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>Gli impegni sono automaticamente cancellati quando l'app si avvia.</value>
   </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Feedback for {0} {1}</value>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Versione</value>
+    <comment>AboutPage;</comment>
+  </data>
   <data name="DueDate" xml:space="preserve">
     <value>data impegno</value>
   </data>
@@ -321,6 +332,12 @@
   <data name="Title" xml:space="preserve">
     <value>Titolo</value>
   </data>
+  <data name="AppBarPin" xml:space="preserve">
+    <value>pin</value>
+  </data>
+  <data name="AppBarUnpin" xml:space="preserve">
+    <value>togli pin</value>
+  </data>
   <data name="AppBarDone" xml:space="preserve">
     <value>fatto</value>
   </data>
@@ -336,6 +353,9 @@
   </data>
   <data name="BulletText" xml:space="preserve">
     <value>spunta</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>changelog</value>
   </data>
   <data name="ChooseTime" xml:space="preserve">
     <value>SCEGLI L'ORA</value>
@@ -424,162 +444,6 @@
   <data name="TimeZero" xml:space="preserve">
     <value>esatta ora impegno</value>
   </data>
-  <data name="WhatsNew" xml:space="preserve">
-    <value>Novità</value>
-  </data>
-  <data name="AppBarAddSubtask" xml:space="preserve">
-    <value>aggiungi</value>
-    <comment>AppBar button add subtask</comment>
-  </data>
-  <data name="SubtaskAdd" xml:space="preserve">
-    <value>Aggiungi sub- impegno</value>
-  </data>
-  <data name="SubtasksText" xml:space="preserve">
-    <value>sub - impegni</value>
-  </data>
-  <data name="SubtaskText" xml:space="preserve">
-    <value>sub - impegno</value>
-  </data>
-  <data name="TaskText" xml:space="preserve">
-    <value>impegno</value>
-  </data>
-  <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
-    <value>completa tutti</value>
-  </data>
-  <data name="NoSubtasks" xml:space="preserve">
-    <value>Nessun sub - impegno</value>
-  </data>
-  <data name="TasksText" xml:space="preserve">
-    <value>impegni</value>
-  </data>
-  <data name="SettingsCompleteSubtasks" xml:space="preserve">
-    <value>autocompleta i sub-impegni</value>
-  </data>
-  <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
-    <value>Quando completi un impegno che ne contiene dei sottostanti, questi saranno segnati come "completati".</value>
-  </data>
-  <data name="SettingsVibrate" xml:space="preserve">
-    <value>Vibra</value>
-  </data>
-  <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
-    <value>cancella tutto</value>
-  </data>
-  <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>mostra gli impegni completati</value>
-    <comment></comment>
-  </data>
-  <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
-    <value>opacità dello sfondo della tile</value>
-  </data>
-  <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>dimensione font</value>
-    <comment></comment>
-  </data>
-  <data name="TileSettingsPreview" xml:space="preserve">
-    <value>anteprima</value>
-    <comment></comment>
-  </data>
-  <data name="AppBarTileSettings" xml:space="preserve">
-    <value>crea tile</value>
-  </data>
-  <data name="TitleUntitled" xml:space="preserve">
-    <value>Senza titolo</value>
-  </data>
-  <data name="SettingsFeedbackHelp" xml:space="preserve">
-    <value>Invia statistiche anonime sull'utilizzo, per migliorare il programma.</value>
-  </data>
-  <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
-    <value>Impostazioni di default per la tile impegni</value>
-  </data>
-  <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
-    <value>Nascondi caselle di spunta dall'impegno.</value>
-  </data>
-  <data name="BackupAndRestoreTitle" xml:space="preserve">
-    <value>backup &amp; ripristino</value>
-  </data>
-  <data name="RestoreText" xml:space="preserve">
-    <value>Ripristina</value>
-  </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>Effettua Log-in</value>
-  </data>
-  <data name="SignOut" xml:space="preserve">
-    <value>Esci</value>
-  </data>
-  <data name="SigningIn" xml:space="preserve">
-    <value>Log-in</value>
-  </data>
-  <data name="BackingUp" xml:space="preserve">
-    <value>Backup in corso</value>
-  </data>
-  <data name="Restoring" xml:space="preserve">
-    <value>Ripristina</value>
-  </data>
-  <data name="SelectBackup" xml:space="preserve">
-    <value>seleziona il backup da ripristinare</value>
-  </data>
-  <data name="BackupDownloadingList" xml:space="preserve">
-    <value>Scarica lista dei backup</value>
-  </data>
-  <data name="NoBackups" xml:space="preserve">
-    <value>Nessun backup</value>
-  </data>
-  <data name="UnknownError" xml:space="preserve">
-    <value>Errore sconosciuto.</value>
-  </data>
-  <data name="SignedInNo" xml:space="preserve">
-    <value>Non sei loggato.</value>
-  </data>
-  <data name="BackupLatest" xml:space="preserve">
-    <value>recenti</value>
-  </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>seleziona elementi da ripristinare</value>
-  </data>
-  <data name="RestoreOk" xml:space="preserve">
-    <value>Backup ripristinato con successo.</value>
-  </data>
-  <data name="BackupOk" xml:space="preserve">
-    <value>Backup effettuato con successo.</value>
-  </data>
-  <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>mostra numero di impegni</value>
-    <comment></comment>
-  </data>
-  <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>aggiungi box impegno rapido</value>
-    <comment></comment>
-  </data>
-  <data name="TileForQuickAddPinButton" xml:space="preserve">
-    <value>Pin sulla home screen</value>
-  </data>
-  <data name="QuickAddTileTitle" xml:space="preserve">
-    <value>Nuovo impegno</value>
-  </data>
-  <data name="SettingsShowTaskCountHelp" xml:space="preserve">
-    <value>Se non selezionato, mostra una lista degli impegni in una live tile più piccola al posto del numero degli impegni.</value>
-  </data>
-  <data name="AppBarAbout" xml:space="preserve">
-    <value>informazioni su</value>
-    <comment>AppBar item</comment>
-  </data>
-  <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback for {0} {1}</value>
-    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
-  </data>
-  <data name="AboutVersion" xml:space="preserve">
-    <value>Versione</value>
-    <comment>AboutPage;</comment>
-  </data>
-  <data name="AppBarPin" xml:space="preserve">
-    <value>pin</value>
-  </data>
-  <data name="AppBarUnpin" xml:space="preserve">
-    <value>togli pin</value>
-  </data>
-  <data name="Changelog" xml:space="preserve">
-    <value>changelog</value>
-  </data>
   <data name="Days1" xml:space="preserve">
     <value>{0} giorno</value>
     <comment>1 day</comment>
@@ -624,6 +488,9 @@
     <value>{0} settimane</value>
     <comment>2-4 weeks</comment>
   </data>
+  <data name="WhatsNew" xml:space="preserve">
+    <value>Novità</value>
+  </data>
   <data name="Months1" xml:space="preserve">
     <value>{0} mese</value>
     <comment>1 month</comment>
@@ -631,6 +498,25 @@
   <data name="Months2To4" xml:space="preserve">
     <value>{0} mesi</value>
     <comment>2-4 months</comment>
+  </data>
+  <data name="AppBarAddSubtask" xml:space="preserve">
+    <value>aggiungi</value>
+    <comment>AppBar button add subtask</comment>
+  </data>
+  <data name="SubtaskAdd" xml:space="preserve">
+    <value>Aggiungi sub- impegno</value>
+  </data>
+  <data name="SubtasksText" xml:space="preserve">
+    <value>sub - impegni</value>
+  </data>
+  <data name="SubtaskText" xml:space="preserve">
+    <value>sub - impegno</value>
+  </data>
+  <data name="TaskText" xml:space="preserve">
+    <value>impegno</value>
+  </data>
+  <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
+    <value>completa tutti</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
     <value>o inserisci il testo per aggiungere un impegno.</value>
@@ -640,34 +526,157 @@
     <value>Fai un tap</value>
     <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
+  <data name="NoSubtasks" xml:space="preserve">
+    <value>Nessun sub - impegno</value>
+  </data>
+  <data name="TasksText" xml:space="preserve">
+    <value>impegni</value>
+  </data>
+  <data name="SettingsCompleteSubtasks" xml:space="preserve">
+    <value>autocompleta i sub-impegni</value>
+  </data>
+  <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
+    <value>Quando completi un impegno che ne contiene dei sottostanti, questi saranno segnati come "completati".</value>
+  </data>
+  <data name="SettingsVibrate" xml:space="preserve">
+    <value>Vibra</value>
+  </data>
+  <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
+    <value>cancella tutto</value>
+  </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Show due date</value>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Show title</value>
+  </data>
+  <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
+    <value>mostra gli impegni completati</value>
+  </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>titolo su una sola linea</value>
-    <comment></comment>
+  </data>
+  <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
+    <value>opacità dello sfondo della tile</value>
+  </data>
+  <data name="TileSettingsLineHeight" xml:space="preserve">
+    <value>dimensione font</value>
+  </data>
+  <data name="TileSettingsPreview" xml:space="preserve">
+    <value>anteprima</value>
+  </data>
+  <data name="AppBarTileSettings" xml:space="preserve">
+    <value>crea tile</value>
+  </data>
+  <data name="TitleUntitled" xml:space="preserve">
+    <value>Senza titolo</value>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
     <value>feedback</value>
-    <comment></comment>
+  </data>
+  <data name="SettingsFeedbackHelp" xml:space="preserve">
+    <value>Invia statistiche anonime sull'utilizzo, per migliorare il programma.</value>
   </data>
   <data name="EditText" xml:space="preserve">
     <value>Imposta</value>
   </data>
+  <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
+    <value>Impostazioni di default per la tile impegni</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Show task check box</value>
+  </data>
+  <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
+    <value>Nascondi caselle di spunta dall'impegno.</value>
+  </data>
+  <data name="BackupAndRestoreTitle" xml:space="preserve">
+    <value>backup &amp; ripristino</value>
+  </data>
   <data name="BackupText" xml:space="preserve">
     <value>Backup</value>
+  </data>
+  <data name="RestoreText" xml:space="preserve">
+    <value>Ripristina</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Effettua Log-in</value>
+  </data>
+  <data name="SignOut" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="SigningIn" xml:space="preserve">
+    <value>Log-in</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Backup in corso</value>
+  </data>
+  <data name="Restoring" xml:space="preserve">
+    <value>Ripristina</value>
+  </data>
+  <data name="SelectBackup" xml:space="preserve">
+    <value>seleziona il backup da ripristinare</value>
+  </data>
+  <data name="BackupDownloadingList" xml:space="preserve">
+    <value>Scarica lista dei backup</value>
+  </data>
+  <data name="NoBackups" xml:space="preserve">
+    <value>Nessun backup</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>Errore sconosciuto.</value>
+  </data>
+  <data name="SignedInNo" xml:space="preserve">
+    <value>Non sei loggato.</value>
   </data>
   <data name="SignedInYes" xml:space="preserve">
     <value>Sei loggato come {0}.</value>
     <comment>{0} is user name</comment>
   </data>
+  <data name="BackupLatest" xml:space="preserve">
+    <value>recenti</value>
+  </data>
+  <data name="RestoreWhatText" xml:space="preserve">
+    <value>seleziona elementi da ripristinare</value>
+  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Il backup creerà una nuova cartella "{0}". Nota bene: può esssere spostata altrove, ma non rinominatela e non rinominate i file in essa contenuti. 
 E' ancora una funzione beta.</value>
   </data>
+  <data name="RestoreOk" xml:space="preserve">
+    <value>Backup ripristinato con successo.</value>
+  </data>
+  <data name="BackupOk" xml:space="preserve">
+    <value>Backup effettuato con successo.</value>
+  </data>
+  <data name="SettingsShowTaskCount" xml:space="preserve">
+    <value>mostra numero di impegni</value>
+  </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>inverti titolo e data nella tile grande</value>
-    <comment></comment>
+  </data>
+  <data name="TileForQuickAddLabel" xml:space="preserve">
+    <value>aggiungi box impegno rapido</value>
+  </data>
+  <data name="TileForQuickAddPinButton" xml:space="preserve">
+    <value>Pin sulla home screen</value>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>Non pinnare</value>
+  </data>
+  <data name="QuickAddTileTitle" xml:space="preserve">
+    <value>Nuovo impegno</value>
+  </data>
+  <data name="SettingsShowTaskCountHelp" xml:space="preserve">
+    <value>Se non selezionato, mostra una lista degli impegni in una live tile più piccola al posto del numero degli impegni.</value>
+  </data>
+  <data name="SettingsThemeDark" xml:space="preserve">
+    <value>scuro</value>
+  </data>
+  <data name="SettingsThemeLight" xml:space="preserve">
+    <value>chiaro</value>
+  </data>
+  <data name="SettingsThemeNote" xml:space="preserve">
+    <value>Bisogna riavviare l'app affinchè queste modifiche abbiano effetto.</value>
   </data>
   <data name="SettingsThemeSystem" xml:space="preserve">
     <value>sistema ({0})</value>
@@ -675,22 +684,6 @@ E' ancora una funzione beta.</value>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>tema</value>
-  </data>
-  <data name="SettingsThemeNote" xml:space="preserve">
-    <value>Bisogna riavviare l'app affinchè queste modifiche abbiano effetto.</value>
-  </data>
-  <data name="SettingsThemeLight" xml:space="preserve">
-    <value>chiaro</value>
-  </data>
-  <data name="SettingsThemeDark" xml:space="preserve">
-    <value>scuro</value>
-  </data>
-  <data name="VersionFormat" xml:space="preserve">
-    <value>Versione {0}</value>
-    <comment>Version {VersionNumber}</comment>
-  </data>
-  <data name="ChangelogShow" xml:space="preserve">
-    <value>Mostra changelog</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Autore</value>
@@ -700,23 +693,45 @@ E' ancora una funzione beta.</value>
     <value>Traduzione</value>
     <comment>AboutPage;</comment>
   </data>
+  <data name="VersionFormat" xml:space="preserve">
+    <value>Versione {0}</value>
+    <comment>Version {VersionNumber}</comment>
+  </data>
+  <data name="ChangelogShow" xml:space="preserve">
+    <value>Mostra changelog</value>
+  </data>
+  <data name="GestureActionComplete" xml:space="preserve">
+    <value>impegno completato</value>
+  </data>
+  <data name="GestureActionDelete" xml:space="preserve">
+    <value>cancella impegno</value>
+  </data>
+  <data name="GestureActionDueToday" xml:space="preserve">
+    <value>imposta impegno: oggi</value>
+  </data>
+  <data name="GestureActionDueTomorrow" xml:space="preserve">
+    <value>imposta impegno: domani</value>
+  </data>
+  <data name="GestureActionNone" xml:space="preserve">
+    <value>nessun'azione</value>
+  </data>
+  <data name="GestureActionReminder" xml:space="preserve">
+    <value>imposta reminder</value>
+  </data>
+  <data name="SettingsSwipeLeft" xml:space="preserve">
+    <value>Azioni Swipe sinistra</value>
+  </data>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Azioni swipe destra</value>
-  </data>
-  <data name="GestureActionPostponeWeek" xml:space="preserve">
-    <value>postponi: 1 settimana</value>
   </data>
   <data name="GestureActionPostponeDay" xml:space="preserve">
     <value>postponi: 1 giorno</value>
   </data>
-  <data name="ToastTaskDeleted" xml:space="preserve">
-    <value>Impegno cancellato.</value>
+  <data name="GestureActionPostponeWeek" xml:space="preserve">
+    <value>postponi: 1 settimana</value>
   </data>
-  <data name="ToastWarning" xml:space="preserve">
-    <value>Attenzione</value>
-  </data>
-  <data name="ToastNotice" xml:space="preserve">
-    <value>Avviso</value>
+  <data name="ToastAllTasksDeleted" xml:space="preserve">
+    <value>Tutti gli impegni sono stati cancellati.</value>
   </data>
   <data name="ToastCompletedTasksDeleted" xml:space="preserve">
     <value>I task completati sono stati cancellati.</value>
@@ -731,28 +746,104 @@ E' ancora una funzione beta.</value>
   <data name="ToastSubtaskDeleted" xml:space="preserve">
     <value>Sub-impegno cancellato.</value>
   </data>
-  <data name="ToastAllTasksDeleted" xml:space="preserve">
-    <value>Tutti gli impegni sono stati cancellati.</value>
+  <data name="ToastTaskDeleted" xml:space="preserve">
+    <value>Impegno cancellato.</value>
   </data>
-  <data name="SettingsSwipeLeft" xml:space="preserve">
-    <value>Azioni Swipe sinistra</value>
+  <data name="ToastWarning" xml:space="preserve">
+    <value>Attenzione</value>
   </data>
-  <data name="GestureActionReminder" xml:space="preserve">
-    <value>imposta reminder</value>
+  <data name="ToastNotice" xml:space="preserve">
+    <value>Avviso</value>
   </data>
-  <data name="GestureActionNone" xml:space="preserve">
-    <value>nessun'azione</value>
+  <data name="SettingsThemeColor" xml:space="preserve">
+    <value>Accent color</value>
   </data>
-  <data name="GestureActionDueTomorrow" xml:space="preserve">
-    <value>imposta impegno: domani</value>
+  <data name="Repeats" xml:space="preserve">
+    <value>repeats</value>
   </data>
-  <data name="GestureActionDueToday" xml:space="preserve">
-    <value>imposta impegno: oggi</value>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>daily</value>
   </data>
-  <data name="GestureActionDelete" xml:space="preserve">
-    <value>cancella impegno</value>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>repeats on</value>
   </data>
-  <data name="GestureActionComplete" xml:space="preserve">
-    <value>impegno completato</value>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>only once</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>weekdays</value>
+  </data>
+  <data name="RepeatsWeekends" xml:space="preserve">
+    <value>weekends</value>
+  </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>days of week</value>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>monthly</value>
+  </data>
+  <data name="RepeatsWeekly" xml:space="preserve">
+    <value>weekly</value>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} subtask</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} subtasks</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} subtasks</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} task</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} tasks</value>
+    <comment>2 to 4 tasks</comment>
+  </data>
+  <data name="Tasks5AndMore" xml:space="preserve">
+    <value>{0} tasks</value>
+    <comment>5+ tasks</comment>
+  </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>look</value>
+    <comment>or appearance; section in settings</comment>
+  </data>
+  <data name="SettingsTaskTile" xml:space="preserve">
+    <value>Task tile settings</value>
+  </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Be aware</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
+    <value>restore</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Automatically complete task</value>
+  </data>
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
+    <value>When you complete all subtasks, mark task as completed.</value>
+  </data>
+  <data name="DeleteTaskConfirm" xml:space="preserve">
+    <value>Tap again to confirm.</value>
+  </data>
+  <data name="SubtasksXCompleted" xml:space="preserve">
+    <value>{0} of {1} completed</value>
+  </data>
+  <data name="GestureCantWithRepeats" xml:space="preserve">
+    <value>You cannot use this action on tasks with repeats.</value>
+  </data>
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
+    <value>Setting will be applied for new tasks.</value>
   </data>
 </root>

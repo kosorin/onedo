@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -124,10 +124,6 @@
   <data name="ResourceLanguage" xml:space="preserve">
     <value>uk-UA</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ChangelogFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Changelog.txt;System.String, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e;windows-1250</value>
   </data>
   <data name="AppBarNew" xml:space="preserve">
     <value>створити</value>
@@ -276,6 +272,10 @@
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>Задачі завжди автоматично видаляються під час запуску додатку.</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Feedback for {0} {1}</value>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Версія</value>
@@ -809,6 +809,10 @@
     <value>{0} задач</value>
     <comment>5+ tasks</comment>
   </data>
+  <data name="SettingsLook" xml:space="preserve">
+    <value>вигляд</value>
+    <comment>or appearance; section in settings</comment>
+  </data>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Настройки плитки задач</value>
   </data>
@@ -824,13 +828,8 @@
   <data name="BackupVersionMismatchYes" xml:space="preserve">
     <value>відновити</value>
   </data>
-  <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback for {0} {1}</value>
-    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
-  </data>
-  <data name="SettingsLook" xml:space="preserve">
-    <value>вигляд</value>
-    <comment>or appearance; section in settings</comment>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Автоматично завершувати завдання</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
     <value>Після завершення всі підзавдань, позначити завдання як завершене.</value>
@@ -846,8 +845,5 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Настройки будуть використовуватись для нових завдань.</value>
-  </data>
-  <data name="SettingsCompleteTask" xml:space="preserve">
-    <value>Автоматично завершувати завдання</value>
   </data>
 </root>

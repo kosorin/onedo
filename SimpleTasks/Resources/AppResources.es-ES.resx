@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -156,7 +156,7 @@
     <value>sin fecha exacta</value>
   </data>
   <data name="DateOverdue" xml:space="preserve">
-    <value>atrasada</value>
+    <value>atrasada/s</value>
   </data>
   <data name="DateThisMonth" xml:space="preserve">
     <value>este mes</value>
@@ -257,6 +257,10 @@
   <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
     <value>elige el primer día de la semana</value>
   </data>
+  <data name="SettingsGeneral" xml:space="preserve">
+    <value>general</value>
+    <comment>general pivot in settings</comment>
+  </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>AJUSTES</value>
   </data>
@@ -268,6 +272,10 @@
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>Las tareas se eliminan automáticamente cuando se inicia la aplicación</value>
+  </data>
+  <data name="AboutEmailSubject" xml:space="preserve">
+    <value>Feedback for {0} {1}</value>
+    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
     <value>Versión</value>
@@ -284,6 +292,9 @@
   </data>
   <data name="SettingsDefaultTime" xml:space="preserve">
     <value>Hora por defecto</value>
+  </data>
+  <data name="AppBarOk" xml:space="preserve">
+    <value>ok</value>
   </data>
   <data name="AppBarDeleteAll" xml:space="preserve">
     <value>eliminar todas las tareas</value>
@@ -305,6 +316,9 @@
   </data>
   <data name="SettingsEnableTile" xml:space="preserve">
     <value>Habilitar tile</value>
+  </data>
+  <data name="SettingsTile" xml:space="preserve">
+    <value>tiles</value>
   </data>
   <data name="SettingsDeleteNever" xml:space="preserve">
     <value>nunca</value>
@@ -390,6 +404,18 @@
   </data>
   <data name="DateYesterday" xml:space="preserve">
     <value>ayer</value>
+  </data>
+  <data name="DateTimeDaysAbbr" xml:space="preserve">
+    <value>d</value>
+    <comment>1 letter abbreviation for days</comment>
+  </data>
+  <data name="DateTimeHoursAbbr" xml:space="preserve">
+    <value>h</value>
+    <comment>1 letter abbreviation for hours</comment>
+  </data>
+  <data name="DateTimeMinutesAbbr" xml:space="preserve">
+    <value>m</value>
+    <comment>1 letter abbreviation for minutes</comment>
   </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>antes de la hora fijada</value>
@@ -544,6 +570,9 @@
   </data>
   <data name="TitleUntitled" xml:space="preserve">
     <value>Sin título</value>
+  </data>
+  <data name="SettingsFeedback" xml:space="preserve">
+    <value>Feedback</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>Envía datos de uso anónimos para mejorar esta aplicación. Las estadísticas ayudan al desarrollador a conocer y a centrarse en las funciones más usadas. No se recogerán datos personales.</value>
@@ -815,34 +844,5 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Este ajuste se aplicará a las nuevas tareas.</value>
-  </data>
-  <data name="SettingsGeneral" xml:space="preserve">
-    <value>general</value>
-    <comment>general pivot in settings</comment>
-  </data>
-  <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback for {0} {1}</value>
-    <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
-  </data>
-  <data name="AppBarOk" xml:space="preserve">
-    <value>ok</value>
-  </data>
-  <data name="SettingsTile" xml:space="preserve">
-    <value>tiles</value>
-  </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>d</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
-  <data name="SettingsFeedback" xml:space="preserve">
-    <value>Feedback</value>
   </data>
 </root>

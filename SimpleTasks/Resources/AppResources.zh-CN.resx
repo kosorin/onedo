@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -125,728 +125,724 @@
     <value>zh-CN</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ChangelogFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Changelog.txt;System.String, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e;windows-1250</value>
-  </data>
-  <data name="AppBarNew">
+  <data name="AppBarNew" xml:space="preserve">
     <value>新建</value>
     <comment>new task</comment>
   </data>
-  <data name="AppBarAbout">
+  <data name="AppBarAbout" xml:space="preserve">
     <value>关于</value>
     <comment>AppBar item</comment>
   </data>
-  <data name="AppBarSave">
+  <data name="AppBarSave" xml:space="preserve">
     <value>保存</value>
     <comment>save task</comment>
   </data>
-  <data name="ChooseDate">
+  <data name="ChooseDate" xml:space="preserve">
     <value>选择日期</value>
   </data>
-  <data name="DateCustomDue">
+  <data name="DateCustomDue" xml:space="preserve">
     <value>自定义截止日期</value>
   </data>
-  <data name="DateLater">
+  <data name="DateLater" xml:space="preserve">
     <value>稍晚</value>
   </data>
-  <data name="DateNextMonth">
+  <data name="DateNextMonth" xml:space="preserve">
     <value>下月</value>
   </data>
-  <data name="DateNextWeek">
+  <data name="DateNextWeek" xml:space="preserve">
     <value>下周</value>
   </data>
-  <data name="DateNoDue">
+  <data name="DateNoDue" xml:space="preserve">
     <value>无截止日期</value>
   </data>
-  <data name="DateOverdue">
+  <data name="DateOverdue" xml:space="preserve">
     <value>过期</value>
   </data>
-  <data name="DateThisMonth">
+  <data name="DateThisMonth" xml:space="preserve">
     <value>本月</value>
   </data>
-  <data name="DateThisWeek">
+  <data name="DateThisWeek" xml:space="preserve">
     <value>本周</value>
   </data>
-  <data name="DateToday">
+  <data name="DateToday" xml:space="preserve">
     <value>今天</value>
   </data>
-  <data name="DateTomorrow">
+  <data name="DateTomorrow" xml:space="preserve">
     <value>明天</value>
   </data>
-  <data name="NoTasks">
+  <data name="NoTasks" xml:space="preserve">
     <value>无任务</value>
   </data>
-  <data name="PriorityHigh">
+  <data name="PriorityHigh" xml:space="preserve">
     <value>高优先级</value>
   </data>
-  <data name="PriorityNormal">
+  <data name="PriorityNormal" xml:space="preserve">
     <value>普通优先级</value>
   </data>
-  <data name="AppBarComplete">
+  <data name="AppBarComplete" xml:space="preserve">
     <value>完成</value>
     <comment>complete task</comment>
   </data>
-  <data name="PeriodicTaskDescription">
+  <data name="PeriodicTaskDescription" xml:space="preserve">
     <value>更新翻转磁贴。</value>
     <comment>Info about background task agent</comment>
   </data>
-  <data name="AppBarActivate">
+  <data name="AppBarActivate" xml:space="preserve">
     <value>激活</value>
     <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
-  <data name="AppBarDeleteCompleted">
+  <data name="AppBarDeleteCompleted" xml:space="preserve">
     <value>删除成功</value>
   </data>
-  <data name="AppBarDelete">
+  <data name="AppBarDelete" xml:space="preserve">
     <value>删除</value>
     <comment>delete task</comment>
   </data>
-  <data name="AppBarSettings">
+  <data name="AppBarSettings" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="DateCompleted">
+  <data name="DateCompleted" xml:space="preserve">
     <value>完成</value>
     <comment>completed tasks</comment>
   </data>
-  <data name="DeleteTaskCaption">
+  <data name="DeleteTaskCaption" xml:space="preserve">
     <value>删除任务</value>
   </data>
-  <data name="DeleteTask">
+  <data name="DeleteTask" xml:space="preserve">
     <value>你铁定要删除这条任务么？</value>
   </data>
-  <data name="DeleteTaskYes">
+  <data name="DeleteTaskYes" xml:space="preserve">
     <value>删了罢</value>
     <comment>delete confirmation</comment>
   </data>
-  <data name="DeleteTaskNo">
+  <data name="DeleteTaskNo" xml:space="preserve">
     <value>哦不</value>
     <comment>cancel delete confirmation</comment>
   </data>
-  <data name="AboutContactUs">
+  <data name="AboutContactUs" xml:space="preserve">
     <value>联系我们</value>
     <comment>AboutPage; AppBar button</comment>
   </data>
-  <data name="AboutRateReview">
+  <data name="AboutRateReview" xml:space="preserve">
     <value>打分并评价</value>
     <comment>AboutPage; AppBar button</comment>
   </data>
-  <data name="SettingsDefaultDate">
+  <data name="SettingsDefaultDate" xml:space="preserve">
     <value>默认日期</value>
   </data>
-  <data name="SettingsDeleteAfterOneDay">
+  <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
     <value>一天之后</value>
   </data>
-  <data name="SettingsDeleteAfterOneWeek">
+  <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
     <value>一周以后</value>
   </data>
-  <data name="SettingsDeleteAfterThreeDays">
+  <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
     <value>三天之后</value>
   </data>
-  <data name="SettingsDeleteAfterTwoDays">
+  <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
     <value>两天之后</value>
   </data>
-  <data name="SettingsDeleteAfterTwoWeeks">
+  <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
     <value>两周以后</value>
   </data>
-  <data name="SettingsDeleteCompletedTasks">
+  <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
     <value>删除已完成任务</value>
   </data>
-  <data name="SettingsDeleteCompletedTasksDays">
+  <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="SettingsFirstDayOfWeek">
+  <data name="SettingsFirstDayOfWeek" xml:space="preserve">
     <value>周的第一天</value>
   </data>
-  <data name="SettingsFirstDayOfWeekPickerHeader">
+  <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
     <value>选择周的第一天</value>
   </data>
-  <data name="SettingsGeneral">
+  <data name="SettingsGeneral" xml:space="preserve">
     <value>常规</value>
     <comment>general pivot in settings</comment>
   </data>
-  <data name="SettingsTitle">
+  <data name="SettingsTitle" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="AppBarPinTile">
+  <data name="AppBarPinTile" xml:space="preserve">
     <value>固定磁贴</value>
   </data>
-  <data name="AppBarUnpinTile">
+  <data name="AppBarUnpinTile" xml:space="preserve">
     <value>取消固定磁贴</value>
   </data>
-  <data name="SettingsDeleteCompletedTasksInfo">
+  <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
     <value>当应用启动时，任务总会自动删除。</value>
   </data>
-  <data name="AboutEmailSubject">
+  <data name="AboutEmailSubject" xml:space="preserve">
     <value>反馈{0} {1}</value>
     <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
-  <data name="AboutVersion">
+  <data name="AboutVersion" xml:space="preserve">
     <value>版本</value>
     <comment>AboutPage;</comment>
   </data>
-  <data name="DueDate">
+  <data name="DueDate" xml:space="preserve">
     <value>截止日期</value>
   </data>
-  <data name="PriorityLow">
+  <data name="PriorityLow" xml:space="preserve">
     <value>低优先级</value>
   </data>
-  <data name="Reminder">
+  <data name="Reminder" xml:space="preserve">
     <value>提醒</value>
   </data>
-  <data name="SettingsDefaultTime">
+  <data name="SettingsDefaultTime" xml:space="preserve">
     <value>默认时间</value>
   </data>
-  <data name="AppBarOk">
+  <data name="AppBarOk" xml:space="preserve">
     <value>好的</value>
   </data>
-  <data name="AppBarDeleteAll">
+  <data name="AppBarDeleteAll" xml:space="preserve">
     <value>删除所有任务</value>
   </data>
-  <data name="DeleteAllTasks">
+  <data name="DeleteAllTasks" xml:space="preserve">
     <value>你铁定要删除所有任务？</value>
   </data>
-  <data name="DeleteAllTasksCaption">
+  <data name="DeleteAllTasksCaption" xml:space="preserve">
     <value>删除所有任务</value>
   </data>
-  <data name="DateSomeday">
+  <data name="DateSomeday" xml:space="preserve">
     <value>某日</value>
   </data>
-  <data name="DateUpcoming">
+  <data name="DateUpcoming" xml:space="preserve">
     <value>快到了</value>
   </data>
-  <data name="AppBarCancel">
+  <data name="AppBarCancel" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="SettingsEnableTile">
+  <data name="SettingsEnableTile" xml:space="preserve">
     <value>启用磁贴</value>
   </data>
-  <data name="SettingsTile">
+  <data name="SettingsTile" xml:space="preserve">
     <value>磁贴</value>
   </data>
-  <data name="SettingsDeleteNever">
+  <data name="SettingsDeleteNever" xml:space="preserve">
     <value>从不</value>
   </data>
-  <data name="SettingsDeleteWhenStarts">
+  <data name="SettingsDeleteWhenStarts" xml:space="preserve">
     <value>当应用关闭时</value>
   </data>
-  <data name="Detail">
+  <data name="Detail" xml:space="preserve">
     <value>详情</value>
   </data>
-  <data name="Title">
+  <data name="Title" xml:space="preserve">
     <value>磁贴</value>
   </data>
-  <data name="AppBarPin">
+  <data name="AppBarPin" xml:space="preserve">
     <value>固定</value>
   </data>
-  <data name="AppBarUnpin">
+  <data name="AppBarUnpin" xml:space="preserve">
     <value>取消固定</value>
   </data>
-  <data name="AppBarDone">
+  <data name="AppBarDone" xml:space="preserve">
     <value>搞定了</value>
   </data>
-  <data name="ChooseReminderTime">
+  <data name="ChooseReminderTime" xml:space="preserve">
     <value>选择提醒</value>
   </data>
-  <data name="SettingsUnpinCompleted">
+  <data name="SettingsUnpinCompleted" xml:space="preserve">
     <value>任务完成后取消固定磁贴</value>
   </data>
-  <data name="AppBarAddBullet">
+  <data name="AppBarAddBullet" xml:space="preserve">
     <value>添加符号</value>
     <comment>EditTaskPage; AppBar button</comment>
   </data>
-  <data name="BulletText">
+  <data name="BulletText" xml:space="preserve">
     <value>符号</value>
   </data>
-  <data name="Changelog">
+  <data name="Changelog" xml:space="preserve">
     <value>更新日志</value>
   </data>
-  <data name="ChooseTime">
+  <data name="ChooseTime" xml:space="preserve">
     <value>选择时间</value>
   </data>
-  <data name="TimeAfternoon">
+  <data name="TimeAfternoon" xml:space="preserve">
     <value>下午</value>
-    <comment>3 PM (15:00)下午三点（15时）</comment>
+    <comment>3 PM (15:00)</comment>
   </data>
-  <data name="TimeEvening">
+  <data name="TimeEvening" xml:space="preserve">
     <value>晚上</value>
-    <comment>7 PM (19:00)晚上七点（17时）</comment>
+    <comment>7 PM (19:00)</comment>
   </data>
-  <data name="TimeLateMorning">
+  <data name="TimeLateMorning" xml:space="preserve">
     <value>早上稍微晚点的时候</value>
-    <comment>10 AM (10:00)上午10点（10时）</comment>
+    <comment>10 AM (10:00)</comment>
   </data>
-  <data name="TimeMorning">
+  <data name="TimeMorning" xml:space="preserve">
     <value>早上</value>
-    <comment>7 AM (7:00)上午七点（七时）</comment>
+    <comment>7 AM (7:00)</comment>
   </data>
-  <data name="TimeNight">
+  <data name="TimeNight" xml:space="preserve">
     <value>晚上</value>
-    <comment>10 PM (22:00)晚上10点（22时）</comment>
+    <comment>10 PM (22:00)</comment>
   </data>
-  <data name="TimeNoon">
+  <data name="TimeNoon" xml:space="preserve">
     <value>中午</value>
-    <comment>12 PM (12:00)中午12点（12时）</comment>
+    <comment>12 PM (12:00)</comment>
   </data>
-  <data name="NoReminder">
+  <data name="NoReminder" xml:space="preserve">
     <value>无提醒</value>
   </data>
-  <data name="DaysLabel">
+  <data name="DaysLabel" xml:space="preserve">
     <value>日</value>
   </data>
-  <data name="HoursLabel">
+  <data name="HoursLabel" xml:space="preserve">
     <value>小时</value>
   </data>
-  <data name="MinutesLabel">
+  <data name="MinutesLabel" xml:space="preserve">
     <value>分钟</value>
   </data>
-  <data name="DateLastMonth">
+  <data name="DateLastMonth" xml:space="preserve">
     <value>上月</value>
   </data>
-  <data name="DateLastWeek">
+  <data name="DateLastWeek" xml:space="preserve">
     <value>上周</value>
   </data>
-  <data name="DateYesterday">
+  <data name="DateYesterday" xml:space="preserve">
     <value>昨天</value>
   </data>
-  <data name="DateTimeDaysAbbr">
+  <data name="DateTimeDaysAbbr" xml:space="preserve">
     <value>天</value>
     <comment>1 letter abbreviation for days</comment>
   </data>
-  <data name="DateTimeHoursAbbr">
+  <data name="DateTimeHoursAbbr" xml:space="preserve">
     <value>时</value>
     <comment>1 letter abbreviation for hours</comment>
   </data>
-  <data name="DateTimeMinutesAbbr">
+  <data name="DateTimeMinutesAbbr" xml:space="preserve">
     <value>分</value>
     <comment>1 letter abbreviation for minutes</comment>
   </data>
-  <data name="ReminderBeforeDueDateText">
+  <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>截止日期之前</value>
   </data>
-  <data name="Time15mins">
+  <data name="Time15mins" xml:space="preserve">
     <value>15分钟</value>
   </data>
-  <data name="Time18hours">
+  <data name="Time18hours" xml:space="preserve">
     <value>18小时</value>
   </data>
-  <data name="Time1day">
+  <data name="Time1day" xml:space="preserve">
     <value>一天</value>
   </data>
-  <data name="Time1hour">
+  <data name="Time1hour" xml:space="preserve">
     <value>一小时</value>
   </data>
-  <data name="Time1week">
+  <data name="Time1week" xml:space="preserve">
     <value>一周</value>
   </data>
-  <data name="Time30mins">
+  <data name="Time30mins" xml:space="preserve">
     <value>30分钟</value>
   </data>
-  <data name="Time5mins">
+  <data name="Time5mins" xml:space="preserve">
     <value>5分钟</value>
   </data>
-  <data name="TimeZero">
+  <data name="TimeZero" xml:space="preserve">
     <value>在到期时</value>
   </data>
-  <data name="Days1">
+  <data name="Days1" xml:space="preserve">
     <value>{0} 天</value>
     <comment>1 day</comment>
   </data>
-  <data name="Days2To4">
+  <data name="Days2To4" xml:space="preserve">
     <value>{0} 天</value>
     <comment>2-4 days</comment>
   </data>
-  <data name="Days5AndMore">
+  <data name="Days5AndMore" xml:space="preserve">
     <value>{0} 天</value>
     <comment>5+ days</comment>
   </data>
-  <data name="Hours1">
+  <data name="Hours1" xml:space="preserve">
     <value>{0} 小时</value>
     <comment>1 hour</comment>
   </data>
-  <data name="Hours2To4">
+  <data name="Hours2To4" xml:space="preserve">
     <value>{0} 小时</value>
     <comment>2-4 hours</comment>
   </data>
-  <data name="Hours5AndMore">
+  <data name="Hours5AndMore" xml:space="preserve">
     <value>{0} 小时</value>
     <comment>5+ hours</comment>
   </data>
-  <data name="Minutes1">
+  <data name="Minutes1" xml:space="preserve">
     <value>{0} 分钟</value>
     <comment>1 minute</comment>
   </data>
-  <data name="Minutes2To4">
+  <data name="Minutes2To4" xml:space="preserve">
     <value>{0} 分钟</value>
     <comment>2-4 minutes</comment>
   </data>
-  <data name="Minutes5AndMore">
+  <data name="Minutes5AndMore" xml:space="preserve">
     <value>{0} 分钟</value>
     <comment>5+ minutes</comment>
   </data>
-  <data name="Weeks1">
+  <data name="Weeks1" xml:space="preserve">
     <value>{0} 周</value>
     <comment>1 week</comment>
   </data>
-  <data name="Weeks2To4">
+  <data name="Weeks2To4" xml:space="preserve">
     <value>{0} 周</value>
     <comment>2-4 weeks</comment>
   </data>
-  <data name="WhatsNew">
+  <data name="WhatsNew" xml:space="preserve">
     <value>最新消息</value>
   </data>
-  <data name="Months1">
+  <data name="Months1" xml:space="preserve">
     <value>{0} 月</value>
     <comment>1 month</comment>
   </data>
-  <data name="Months2To4">
+  <data name="Months2To4" xml:space="preserve">
     <value>{0} 月</value>
     <comment>2-4 months</comment>
   </data>
-  <data name="AppBarAddSubtask">
+  <data name="AppBarAddSubtask" xml:space="preserve">
     <value>添加</value>
     <comment>AppBar button add subtask</comment>
   </data>
-  <data name="SubtaskAdd">
+  <data name="SubtaskAdd" xml:space="preserve">
     <value>添加一个子任务</value>
   </data>
-  <data name="SubtasksText">
+  <data name="SubtasksText" xml:space="preserve">
     <value>子任务</value>
   </data>
-  <data name="SubtaskText">
+  <data name="SubtaskText" xml:space="preserve">
     <value>子任务</value>
   </data>
-  <data name="TaskText">
+  <data name="TaskText" xml:space="preserve">
     <value>任务</value>
   </data>
-  <data name="AppBarCompleteAllSubtasks">
+  <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
     <value>完成所有</value>
   </data>
-  <data name="NoTasksHelpEnd">
+  <data name="NoTasksHelpEnd" xml:space="preserve">
     <value>添加一个任务。</value>
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
-  <data name="NoTasksHelpStart">
+  <data name="NoTasksHelpStart" xml:space="preserve">
     <value>点击</value>
     <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
-  <data name="NoSubtasks">
+  <data name="NoSubtasks" xml:space="preserve">
     <value>无子任务</value>
   </data>
-  <data name="TasksText">
+  <data name="TasksText" xml:space="preserve">
     <value>任务</value>
   </data>
-  <data name="SettingsCompleteSubtasks">
+  <data name="SettingsCompleteSubtasks" xml:space="preserve">
     <value>自动完成子任务</value>
   </data>
-  <data name="SettingsCompleteSubtasksDetail">
+  <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
     <value>当你完成一个包含子任务的任务时，其子任务会自动标记为已完成。</value>
   </data>
-  <data name="SettingsVibrate">
+  <data name="SettingsVibrate" xml:space="preserve">
     <value>振动</value>
   </data>
-  <data name="AppBarDeleteAllSubtasks">
+  <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>删除所有</value>
   </data>
-  <data name="TileSettingsShowDate">
+  <data name="TileSettingsShowDate" xml:space="preserve">
     <value>显示截止日期</value>
   </data>
-  <data name="TileSettingsShowTitle">
+  <data name="TileSettingsShowTitle" xml:space="preserve">
     <value>显示磁贴</value>
   </data>
-  <data name="TileSettingsShowCompletedSubtasks">
+  <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>显示已完成子任务</value>
   </data>
-  <data name="TileSettingsTitleOnOneLine">
+  <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>第一行的标题</value>
   </data>
-  <data name="TileSettingsBackgroundOpacity">
+  <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
     <value>背景透明度</value>
   </data>
-  <data name="TileSettingsLineHeight">
+  <data name="TileSettingsLineHeight" xml:space="preserve">
     <value>字体大小</value>
   </data>
-  <data name="TileSettingsPreview">
+  <data name="TileSettingsPreview" xml:space="preserve">
     <value>预览</value>
   </data>
-  <data name="AppBarTileSettings">
+  <data name="AppBarTileSettings" xml:space="preserve">
     <value>磁贴设置</value>
   </data>
-  <data name="TitleUntitled">
+  <data name="TitleUntitled" xml:space="preserve">
     <value>无标题</value>
   </data>
-  <data name="SettingsFeedback">
+  <data name="SettingsFeedback" xml:space="preserve">
     <value>反馈</value>
   </data>
-  <data name="SettingsFeedbackHelp">
+  <data name="SettingsFeedbackHelp" xml:space="preserve">
     <value>发送匿名使用数据来改善此应用。统计数据能帮助开发者确认和专注于用户最常用到的功能。不会收集个人数据。</value>
   </data>
-  <data name="EditText">
+  <data name="EditText" xml:space="preserve">
     <value>编辑</value>
   </data>
-  <data name="SettingsDefaultTaskTileSettings">
+  <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>任务磁贴的默认设置</value>
   </data>
-  <data name="SettingsShowTaskCheckBox">
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
     <value>显示任务复选框</value>
   </data>
-  <data name="SettingsHideTaskCheckBoxHelp">
+  <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>你可以使用从右向左的滑动手势来表示完成任务。</value>
   </data>
-  <data name="BackupAndRestoreTitle">
+  <data name="BackupAndRestoreTitle" xml:space="preserve">
     <value>备份与恢复</value>
   </data>
-  <data name="BackupText">
+  <data name="BackupText" xml:space="preserve">
     <value>备份</value>
   </data>
-  <data name="RestoreText">
+  <data name="RestoreText" xml:space="preserve">
     <value>恢复</value>
   </data>
-  <data name="SignIn">
+  <data name="SignIn" xml:space="preserve">
     <value>登入</value>
   </data>
-  <data name="SignOut">
+  <data name="SignOut" xml:space="preserve">
     <value>登出</value>
   </data>
-  <data name="SigningIn">
+  <data name="SigningIn" xml:space="preserve">
     <value>登入中</value>
   </data>
-  <data name="BackingUp">
+  <data name="BackingUp" xml:space="preserve">
     <value>备份中</value>
   </data>
-  <data name="Restoring">
+  <data name="Restoring" xml:space="preserve">
     <value>恢复中</value>
   </data>
-  <data name="SelectBackup">
+  <data name="SelectBackup" xml:space="preserve">
     <value>选取备份来恢复</value>
   </data>
-  <data name="BackupDownloadingList">
+  <data name="BackupDownloadingList" xml:space="preserve">
     <value>正在下载备份列表</value>
   </data>
-  <data name="NoBackups">
+  <data name="NoBackups" xml:space="preserve">
     <value>无备份</value>
   </data>
-  <data name="UnknownError">
+  <data name="UnknownError" xml:space="preserve">
     <value>未知错误。</value>
   </data>
-  <data name="SignedInNo">
+  <data name="SignedInNo" xml:space="preserve">
     <value>你还没登入呢。</value>
   </data>
-  <data name="SignedInYes">
+  <data name="SignedInYes" xml:space="preserve">
     <value>你登入的是： {0}</value>
     <comment>{0} is user name</comment>
   </data>
-  <data name="BackupLatest">
+  <data name="BackupLatest" xml:space="preserve">
     <value>最新</value>
   </data>
-  <data name="RestoreWhatText">
+  <data name="RestoreWhatText" xml:space="preserve">
     <value>选取项目来恢复</value>
   </data>
-  <data name="BackupAndRestoreHelpText">
+  <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>备份会创建一个新文件夹：“{0}”。你可以从本地文件中移除此文件夹，但是请，不要重命名它。也不要修改里面的文件。它还只是BETA版本。</value>
   </data>
-  <data name="RestoreOk">
+  <data name="RestoreOk" xml:space="preserve">
     <value>恢复成功。</value>
   </data>
-  <data name="BackupOk">
+  <data name="BackupOk" xml:space="preserve">
     <value>备份成功。</value>
   </data>
-  <data name="SettingsShowTaskCount">
+  <data name="SettingsShowTaskCount" xml:space="preserve">
     <value>显示任务数量</value>
   </data>
-  <data name="SettingsSwapDateAndTitle">
+  <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>在大磁帖中互换名称与日期。</value>
   </data>
-  <data name="TileForQuickAddLabel">
+  <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>快速固定磁贴</value>
   </data>
-  <data name="TileForQuickAddPinButton">
+  <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>固定到“开始”屏幕</value>
   </data>
-  <data name="TileForQuickAddUnpinButton">
+  <data name="TileForQuickAddUnpinButton" xml:space="preserve">
     <value>取消固定</value>
   </data>
-  <data name="QuickAddTileTitle">
+  <data name="QuickAddTileTitle" xml:space="preserve">
     <value>新建任务</value>
   </data>
-  <data name="SettingsShowTaskCountHelp">
+  <data name="SettingsShowTaskCountHelp" xml:space="preserve">
     <value>若取消选中，则在小磁贴上显示任务列表而不是任务数量。</value>
   </data>
-  <data name="SettingsThemeDark">
+  <data name="SettingsThemeDark" xml:space="preserve">
     <value>黑</value>
   </data>
-  <data name="SettingsThemeLight">
+  <data name="SettingsThemeLight" xml:space="preserve">
     <value>白</value>
   </data>
-  <data name="SettingsThemeNote">
+  <data name="SettingsThemeNote" xml:space="preserve">
     <value>应用需重启以使该设置生效。</value>
   </data>
-  <data name="SettingsThemeSystem">
+  <data name="SettingsThemeSystem" xml:space="preserve">
     <value>系统 ({0})</value>
     <comment>{0} will be replaced with dark or light</comment>
   </data>
-  <data name="SettingsThemeTitle">
+  <data name="SettingsThemeTitle" xml:space="preserve">
     <value>主题</value>
   </data>
-  <data name="AboutAuthor">
+  <data name="AboutAuthor" xml:space="preserve">
     <value>作者</value>
     <comment>AboutPage;</comment>
   </data>
-  <data name="AboutTranslation">
+  <data name="AboutTranslation" xml:space="preserve">
     <value>翻译</value>
     <comment>AboutPage;</comment>
   </data>
-  <data name="VersionFormat">
+  <data name="VersionFormat" xml:space="preserve">
     <value>版本 {0}</value>
     <comment>Version {VersionNumber}</comment>
   </data>
-  <data name="ChangelogShow">
+  <data name="ChangelogShow" xml:space="preserve">
     <value>显示更新日志</value>
   </data>
-  <data name="GestureActionComplete">
+  <data name="GestureActionComplete" xml:space="preserve">
     <value>完成任务/子任务</value>
   </data>
-  <data name="GestureActionDelete">
+  <data name="GestureActionDelete" xml:space="preserve">
     <value>删除任务/子任务</value>
   </data>
-  <data name="GestureActionDueToday">
+  <data name="GestureActionDueToday" xml:space="preserve">
     <value>设置到期之时：今天</value>
   </data>
-  <data name="GestureActionDueTomorrow">
+  <data name="GestureActionDueTomorrow" xml:space="preserve">
     <value>设置到期之时：明天</value>
   </data>
-  <data name="GestureActionNone">
+  <data name="GestureActionNone" xml:space="preserve">
     <value>无操作</value>
   </data>
-  <data name="GestureActionReminder">
+  <data name="GestureActionReminder" xml:space="preserve">
     <value>设置提醒</value>
   </data>
-  <data name="SettingsSwipeLeft">
+  <data name="SettingsSwipeLeft" xml:space="preserve">
     <value>向左滑动操作</value>
   </data>
-  <data name="SettingsSwipeRight">
+  <data name="SettingsSwipeRight" xml:space="preserve">
     <value>向右滑动操作</value>
   </data>
-  <data name="GestureActionPostponeDay">
+  <data name="GestureActionPostponeDay" xml:space="preserve">
     <value>延迟：一天</value>
   </data>
-  <data name="GestureActionPostponeWeek">
+  <data name="GestureActionPostponeWeek" xml:space="preserve">
     <value>延迟：一周</value>
   </data>
-  <data name="ToastAllTasksDeleted">
+  <data name="ToastAllTasksDeleted" xml:space="preserve">
     <value>所有任务已删除。</value>
   </data>
-  <data name="ToastCompletedTasksDeleted">
+  <data name="ToastCompletedTasksDeleted" xml:space="preserve">
     <value>完成任务已删除。</value>
   </data>
-  <data name="ToastPostponedUntil">
+  <data name="ToastPostponedUntil" xml:space="preserve">
     <value>延迟直到{0:ddd}, {0:d}</value>
     <comment>{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</comment>
   </data>
-  <data name="ToastReminderOff">
+  <data name="ToastReminderOff" xml:space="preserve">
     <value>提醒已关闭！</value>
   </data>
-  <data name="ToastSubtaskDeleted">
+  <data name="ToastSubtaskDeleted" xml:space="preserve">
     <value>子任务已删除。</value>
   </data>
-  <data name="ToastTaskDeleted">
+  <data name="ToastTaskDeleted" xml:space="preserve">
     <value>任务已删除。</value>
   </data>
-  <data name="ToastWarning">
+  <data name="ToastWarning" xml:space="preserve">
     <value>警告</value>
   </data>
-  <data name="ToastNotice">
+  <data name="ToastNotice" xml:space="preserve">
     <value>注意</value>
   </data>
-  <data name="SettingsThemeColor">
+  <data name="SettingsThemeColor" xml:space="preserve">
     <value>强调色</value>
   </data>
-  <data name="Repeats">
+  <data name="Repeats" xml:space="preserve">
     <value>重复</value>
   </data>
-  <data name="RepeatsDaily">
+  <data name="RepeatsDaily" xml:space="preserve">
     <value>每天</value>
   </data>
-  <data name="RepeatsOn">
+  <data name="RepeatsOn" xml:space="preserve">
     <value>重复按</value>
   </data>
-  <data name="RepeatsOnce">
+  <data name="RepeatsOnce" xml:space="preserve">
     <value>只一次</value>
   </data>
-  <data name="RepeatsWeekdays">
+  <data name="RepeatsWeekdays" xml:space="preserve">
     <value>周天</value>
   </data>
-  <data name="RepeatsWeekends">
+  <data name="RepeatsWeekends" xml:space="preserve">
     <value>周末</value>
   </data>
-  <data name="RepeatsDaysOfWeek">
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
     <value>每周的固定某天</value>
   </data>
-  <data name="RepeatsMonthly">
+  <data name="RepeatsMonthly" xml:space="preserve">
     <value>每月</value>
   </data>
-  <data name="RepeatsWeekly">
+  <data name="RepeatsWeekly" xml:space="preserve">
     <value>每周</value>
   </data>
-  <data name="Subtasks1">
+  <data name="Subtasks1" xml:space="preserve">
     <value>{0} 子任务</value>
     <comment>1 subtask</comment>
   </data>
-  <data name="Subtasks2To4">
+  <data name="Subtasks2To4" xml:space="preserve">
     <value>{0}子任务</value>
     <comment>2 to 4 subtasks</comment>
   </data>
-  <data name="Subtasks5AndMore">
+  <data name="Subtasks5AndMore" xml:space="preserve">
     <value>{0} 子任务</value>
     <comment>5+ subtasks</comment>
   </data>
-  <data name="Tasks1">
+  <data name="Tasks1" xml:space="preserve">
     <value>{0} 任务</value>
     <comment>1 task</comment>
   </data>
-  <data name="Tasks2To4">
+  <data name="Tasks2To4" xml:space="preserve">
     <value>{0} 任务</value>
     <comment>2 to 4 tasks</comment>
   </data>
-  <data name="Tasks5AndMore">
+  <data name="Tasks5AndMore" xml:space="preserve">
     <value>{0} 任务</value>
     <comment>5+ tasks</comment>
   </data>
-  <data name="SettingsLook">
+  <data name="SettingsLook" xml:space="preserve">
     <value>界面</value>
     <comment>or appearance; section in settings</comment>
   </data>
-  <data name="SettingsTaskTile">
+  <data name="SettingsTaskTile" xml:space="preserve">
     <value>任务磁贴设置</value>
   </data>
-  <data name="BackupVersionMismatchCaption">
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
     <value>了解</value>
   </data>
-  <data name="BackupVersionMismatchContent">
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
     <value>给定备份的版本不适用于当前应用的版本。部分信息在备份中已丢失</value>
   </data>
-  <data name="BackupVersionMismatchNo">
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="BackupVersionMismatchYes">
+  <data name="BackupVersionMismatchYes" xml:space="preserve">
     <value>恢复</value>
   </data>
-  <data name="SettingsCompleteTask">
+  <data name="SettingsCompleteTask" xml:space="preserve">
     <value>自动删除任务</value>
   </data>
-  <data name="SettingsCompleteTaskDetail">
+  <data name="SettingsCompleteTaskDetail" xml:space="preserve">
     <value>当完成所有子任务时，标记该任务为完成。</value>
   </data>
-  <data name="DeleteTaskConfirm">
+  <data name="DeleteTaskConfirm" xml:space="preserve">
     <value>再次点击以确认。</value>
   </data>
-  <data name="SubtasksXCompleted">
+  <data name="SubtasksXCompleted" xml:space="preserve">
     <value>{1}个中的{0}个已删除</value>
   </data>
-  <data name="GestureCantWithRepeats">
+  <data name="GestureCantWithRepeats" xml:space="preserve">
     <value>重复的任务不能使用此操作。</value>
   </data>
-  <data name="SettingsDefaultTaskTileHelp">
+  <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>设置会应用于新任务。</value>
   </data>
 </root>

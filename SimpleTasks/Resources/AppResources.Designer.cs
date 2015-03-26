@@ -422,35 +422,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///    &quot;4.9.0&quot;: {
-        ///        &quot;date&quot;: &quot;2015-03-19&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;Solarized theme&quot;,
-        ///            &quot;collapse/expad subtasks&quot;,
-        ///            &quot;design... again :D&quot;
-        ///        ]
-        ///    },
-        ///    &quot;4.8.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-12-20&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;more actions for gestures on main page&quot;
-        ///        ]
-        ///    },
-        ///    &quot;4.7.0&quot;: {
-        ///        &quot;date&quot;: &quot;2014-10-08&quot;,
-        ///        &quot;items&quot;: [
-        ///            &quot;russian language&quot;,
-        ///            &quot;fix Italian translation&quot;,
-        ///            &quot;bug fix: color of select [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string ChangelogFile {
-            get {
-                return ResourceManager.GetString("ChangelogFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show changelog.
         /// </summary>
         public static string ChangelogShow {

@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -544,6 +544,12 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>alle löschen</value>
   </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Zeige Verfallsdatum</value>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Zeige Titel</value>
+  </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>Erledigte Unteraufgaben zeigen</value>
   </data>
@@ -577,6 +583,9 @@ Es werden keine persönlichen Daten gesammelt.</value>
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Standardeinstellungen für Livetile</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Zeige Checkboxen</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Wischbewegung von rechts nach links zum Erledigen verwenden.</value>
@@ -661,12 +670,21 @@ Diese Funktion ist noch im Betastadium.</value>
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
     <value>Wenn nicht aktiviert, Aufgabenliste statt Anzahl auf kleinem Livetile zeigen.</value>
   </data>
-  <data name="VersionFormat" xml:space="preserve">
-    <value>Version {0}</value>
-    <comment>Version {VersionNumber}</comment>
+  <data name="SettingsThemeDark" xml:space="preserve">
+    <value>dunkel</value>
   </data>
-  <data name="ChangelogShow" xml:space="preserve">
-    <value>Zeigen Änderungshistorie</value>
+  <data name="SettingsThemeLight" xml:space="preserve">
+    <value>hell</value>
+  </data>
+  <data name="SettingsThemeNote" xml:space="preserve">
+    <value>Ein Neustart der App ist nötig um diese Einstellung zu übernehmen.</value>
+  </data>
+  <data name="SettingsThemeSystem" xml:space="preserve">
+    <value>System ({0})</value>
+    <comment>{0} will be replaced with dark or light</comment>
+  </data>
+  <data name="SettingsThemeTitle" xml:space="preserve">
+    <value>Thema</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
     <value>Autor</value>
@@ -676,39 +694,45 @@ Diese Funktion ist noch im Betastadium.</value>
     <value>Übersetzung</value>
     <comment>AboutPage;</comment>
   </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>System ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
+  <data name="VersionFormat" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>Version {VersionNumber}</comment>
   </data>
-  <data name="SettingsThemeTitle" xml:space="preserve">
-    <value>Thema</value>
+  <data name="ChangelogShow" xml:space="preserve">
+    <value>Zeigen Änderungshistorie</value>
   </data>
-  <data name="SettingsThemeNote" xml:space="preserve">
-    <value>Ein Neustart der App ist nötig um diese Einstellung zu übernehmen.</value>
+  <data name="GestureActionComplete" xml:space="preserve">
+    <value>Aufgabe/Teilaufgabe erledigt</value>
   </data>
-  <data name="SettingsThemeLight" xml:space="preserve">
-    <value>hell</value>
+  <data name="GestureActionDelete" xml:space="preserve">
+    <value>lösche Aufgabe/Teilaufgabe</value>
   </data>
-  <data name="SettingsThemeDark" xml:space="preserve">
-    <value>dunkel</value>
+  <data name="GestureActionDueToday" xml:space="preserve">
+    <value>Fälligkeit: heute</value>
+  </data>
+  <data name="GestureActionDueTomorrow" xml:space="preserve">
+    <value>Fälligkeit: morgen</value>
+  </data>
+  <data name="GestureActionNone" xml:space="preserve">
+    <value>keine Aktion</value>
+  </data>
+  <data name="GestureActionReminder" xml:space="preserve">
+    <value>Erinnerung einstellen</value>
+  </data>
+  <data name="SettingsSwipeLeft" xml:space="preserve">
+    <value>Aktion für Wischen nach links</value>
   </data>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Aktion für Wischen nach rechts</value>
   </data>
-  <data name="GestureActionPostponeWeek" xml:space="preserve">
-    <value>Verschieben: 1 Woche</value>
-  </data>
   <data name="GestureActionPostponeDay" xml:space="preserve">
     <value>Verschieben: 1 Tag</value>
   </data>
-  <data name="ToastTaskDeleted" xml:space="preserve">
-    <value>Aufgabe wurde gelöscht.</value>
+  <data name="GestureActionPostponeWeek" xml:space="preserve">
+    <value>Verschieben: 1 Woche</value>
   </data>
-  <data name="ToastWarning" xml:space="preserve">
-    <value>Warnung</value>
-  </data>
-  <data name="ToastNotice" xml:space="preserve">
-    <value>Hinweis</value>
+  <data name="ToastAllTasksDeleted" xml:space="preserve">
+    <value>Alle Aufgaben gelöscht.</value>
   </data>
   <data name="ToastCompletedTasksDeleted" xml:space="preserve">
     <value>Erledigte Aufgaben gelöscht.</value>
@@ -723,47 +747,64 @@ Diese Funktion ist noch im Betastadium.</value>
   <data name="ToastSubtaskDeleted" xml:space="preserve">
     <value>Teilaufgabe gelöscht.</value>
   </data>
-  <data name="ToastAllTasksDeleted" xml:space="preserve">
-    <value>Alle Aufgaben gelöscht.</value>
+  <data name="ToastTaskDeleted" xml:space="preserve">
+    <value>Aufgabe wurde gelöscht.</value>
   </data>
-  <data name="SettingsSwipeLeft" xml:space="preserve">
-    <value>Aktion für Wischen nach links</value>
+  <data name="ToastWarning" xml:space="preserve">
+    <value>Warnung</value>
   </data>
-  <data name="GestureActionReminder" xml:space="preserve">
-    <value>Erinnerung einstellen</value>
-  </data>
-  <data name="GestureActionNone" xml:space="preserve">
-    <value>keine Aktion</value>
-  </data>
-  <data name="GestureActionDueTomorrow" xml:space="preserve">
-    <value>Fälligkeit: morgen</value>
-  </data>
-  <data name="GestureActionDueToday" xml:space="preserve">
-    <value>Fälligkeit: heute</value>
-  </data>
-  <data name="GestureActionDelete" xml:space="preserve">
-    <value>lösche Aufgabe/Teilaufgabe</value>
-  </data>
-  <data name="GestureActionComplete" xml:space="preserve">
-    <value>Aufgabe/Teilaufgabe erledigt</value>
-  </data>
-  <data name="TileSettingsShowTitle" xml:space="preserve">
-    <value>Zeige Titel</value>
-  </data>
-  <data name="TileSettingsShowDate" xml:space="preserve">
-    <value>Zeige Verfallsdatum</value>
-  </data>
-  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
-    <value>Zeige Checkboxen</value>
+  <data name="ToastNotice" xml:space="preserve">
+    <value>Hinweis</value>
   </data>
   <data name="SettingsThemeColor" xml:space="preserve">
     <value>Akzentfarbe</value>
   </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>wiederholend</value>
+  </data>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>täglich</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>Wiederholung</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>nur einmal</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>wochentags</value>
+  </data>
   <data name="RepeatsWeekends" xml:space="preserve">
     <value>am Wochenende</value>
   </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>Wochentage</value>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>monatlich</value>
+  </data>
   <data name="RepeatsWeekly" xml:space="preserve">
     <value>wöchentlich</value>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} Unteraufgabe</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} Unteraufgaben</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} Unteraufgaben</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} Aufgabe</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} Aufgaben</value>
+    <comment>2 to 4 tasks</comment>
   </data>
   <data name="Tasks5AndMore" xml:space="preserve">
     <value>{0} Aufgaben</value>
@@ -776,8 +817,20 @@ Diese Funktion ist noch im Betastadium.</value>
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Aufgaben-Livetile Einstellungen</value>
   </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Beachte</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Version des Backups stimmt nicht mit der aktuellen Version der App überein. Einige Daten können im Backup fehlen.</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
   <data name="BackupVersionMismatchYes" xml:space="preserve">
     <value>wiederherstellen</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Aufgaben automatisch erledigen.</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
     <value>Nach Erledigung aller Unteraufgaben die Aufgabe abhaken.</value>
@@ -793,58 +846,5 @@ Diese Funktion ist noch im Betastadium.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Einstellung wird bei neuen Aufgaben angewendet.</value>
-  </data>
-  <data name="SettingsCompleteTask" xml:space="preserve">
-    <value>Aufgaben automatisch erledigen.</value>
-  </data>
-  <data name="BackupVersionMismatchNo" xml:space="preserve">
-    <value>abbrechen</value>
-  </data>
-  <data name="BackupVersionMismatchContent" xml:space="preserve">
-    <value>Version des Backups stimmt nicht mit der aktuellen Version der App überein. Einige Daten können im Backup fehlen.</value>
-  </data>
-  <data name="BackupVersionMismatchCaption" xml:space="preserve">
-    <value>Beachte</value>
-  </data>
-  <data name="Tasks2To4" xml:space="preserve">
-    <value>{0} Aufgaben</value>
-    <comment>2 to 4 tasks</comment>
-  </data>
-  <data name="Tasks1" xml:space="preserve">
-    <value>{0} Aufgabe</value>
-    <comment>1 task</comment>
-  </data>
-  <data name="Subtasks5AndMore" xml:space="preserve">
-    <value>{0} Unteraufgaben</value>
-    <comment>5+ subtasks</comment>
-  </data>
-  <data name="Subtasks2To4" xml:space="preserve">
-    <value>{0} Unteraufgaben</value>
-    <comment>2 to 4 subtasks</comment>
-  </data>
-  <data name="Subtasks1" xml:space="preserve">
-    <value>{0} Unteraufgabe</value>
-    <comment>1 subtask</comment>
-  </data>
-  <data name="RepeatsMonthly" xml:space="preserve">
-    <value>monatlich</value>
-  </data>
-  <data name="RepeatsDaysOfWeek" xml:space="preserve">
-    <value>Wochentage</value>
-  </data>
-  <data name="RepeatsWeekdays" xml:space="preserve">
-    <value>wochentags</value>
-  </data>
-  <data name="RepeatsOnce" xml:space="preserve">
-    <value>nur einmal</value>
-  </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>Wiederholung</value>
-  </data>
-  <data name="Repeats" xml:space="preserve">
-    <value>wiederholend</value>
-  </data>
-  <data name="RepeatsDaily" xml:space="preserve">
-    <value>täglich</value>
   </data>
 </root>

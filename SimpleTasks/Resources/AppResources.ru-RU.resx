@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -124,10 +124,6 @@
   <data name="ResourceLanguage" xml:space="preserve">
     <value>ru-RU</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ChangelogFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Changelog.txt;System.String, mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e;windows-1250</value>
   </data>
   <data name="AppBarNew" xml:space="preserve">
     <value>новая задача</value>
@@ -548,6 +544,12 @@
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
     <value>удалить все</value>
   </data>
+  <data name="TileSettingsShowDate" xml:space="preserve">
+    <value>Показывать дату</value>
+  </data>
+  <data name="TileSettingsShowTitle" xml:space="preserve">
+    <value>Показывать заголовок</value>
+  </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
     <value>Показать выполненные подзадачи</value>
   </data>
@@ -580,6 +582,9 @@
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
     <value>Настройки по умолчанию для тайла задач</value>
+  </data>
+  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
+    <value>Показывать чек-бокс задачи</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
     <value>Вы можете вместо этого использовать свайп влево на задаче,чтобы ее завершить.</value>
@@ -663,54 +668,69 @@
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
     <value>Если не включено, показывать список задач на маленьком тайле вместо количества задач.</value>
   </data>
-  <data name="ChangelogShow" xml:space="preserve">
-    <value>Показать список изменений</value>
+  <data name="SettingsThemeDark" xml:space="preserve">
+    <value>тёмная</value>
   </data>
-  <data name="VersionFormat" xml:space="preserve">
-    <value>Версия {0}</value>
-    <comment>Version {VersionNumber}</comment>
+  <data name="SettingsThemeLight" xml:space="preserve">
+    <value>светлая</value>
   </data>
-  <data name="AboutTranslation" xml:space="preserve">
-    <value>Перевод</value>
-    <comment>AboutPage;</comment>
-  </data>
-  <data name="AboutAuthor" xml:space="preserve">
-    <value>Автор</value>
-    <comment>AboutPage;</comment>
-  </data>
-  <data name="SettingsThemeTitle" xml:space="preserve">
-    <value>тема</value>
+  <data name="SettingsThemeNote" xml:space="preserve">
+    <value>Требуется перезапуск приложения, чтобы эта настройка вступила в силу.</value>
   </data>
   <data name="SettingsThemeSystem" xml:space="preserve">
     <value>системная ({0})</value>
     <comment>{0} will be replaced with dark or light</comment>
   </data>
-  <data name="SettingsThemeNote" xml:space="preserve">
-    <value>Требуется перезапуск приложения, чтобы эта настройка вступила в силу.</value>
+  <data name="SettingsThemeTitle" xml:space="preserve">
+    <value>тема</value>
   </data>
-  <data name="SettingsThemeLight" xml:space="preserve">
-    <value>светлая</value>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Автор</value>
+    <comment>AboutPage;</comment>
   </data>
-  <data name="SettingsThemeDark" xml:space="preserve">
-    <value>тёмная</value>
+  <data name="AboutTranslation" xml:space="preserve">
+    <value>Перевод</value>
+    <comment>AboutPage;</comment>
+  </data>
+  <data name="VersionFormat" xml:space="preserve">
+    <value>Версия {0}</value>
+    <comment>Version {VersionNumber}</comment>
+  </data>
+  <data name="ChangelogShow" xml:space="preserve">
+    <value>Показать список изменений</value>
+  </data>
+  <data name="GestureActionComplete" xml:space="preserve">
+    <value>завершить задачу/подзадачу</value>
+  </data>
+  <data name="GestureActionDelete" xml:space="preserve">
+    <value>удалить задачу/подзадачу</value>
+  </data>
+  <data name="GestureActionDueToday" xml:space="preserve">
+    <value>установить на: Сегодня</value>
+  </data>
+  <data name="GestureActionDueTomorrow" xml:space="preserve">
+    <value>установить на: Завтра</value>
+  </data>
+  <data name="GestureActionNone" xml:space="preserve">
+    <value>нет действия</value>
+  </data>
+  <data name="GestureActionReminder" xml:space="preserve">
+    <value>установить напоминание</value>
+  </data>
+  <data name="SettingsSwipeLeft" xml:space="preserve">
+    <value>Действие свайпом влево</value>
   </data>
   <data name="SettingsSwipeRight" xml:space="preserve">
     <value>Действие свайпом вправо</value>
   </data>
-  <data name="GestureActionPostponeWeek" xml:space="preserve">
-    <value>отложить на: 1 неделю</value>
-  </data>
   <data name="GestureActionPostponeDay" xml:space="preserve">
     <value>отложить на: 1 день</value>
   </data>
-  <data name="ToastTaskDeleted" xml:space="preserve">
-    <value>Задача удалена.</value>
+  <data name="GestureActionPostponeWeek" xml:space="preserve">
+    <value>отложить на: 1 неделю</value>
   </data>
-  <data name="ToastWarning" xml:space="preserve">
-    <value>Предупреждение</value>
-  </data>
-  <data name="ToastNotice" xml:space="preserve">
-    <value>Уведомление</value>
+  <data name="ToastAllTasksDeleted" xml:space="preserve">
+    <value>Все задачи удалены.</value>
   </data>
   <data name="ToastCompletedTasksDeleted" xml:space="preserve">
     <value>Выполенные задачи удалены.</value>
@@ -725,47 +745,64 @@
   <data name="ToastSubtaskDeleted" xml:space="preserve">
     <value>Подзадача удалена.</value>
   </data>
-  <data name="ToastAllTasksDeleted" xml:space="preserve">
-    <value>Все задачи удалены.</value>
+  <data name="ToastTaskDeleted" xml:space="preserve">
+    <value>Задача удалена.</value>
   </data>
-  <data name="SettingsSwipeLeft" xml:space="preserve">
-    <value>Действие свайпом влево</value>
+  <data name="ToastWarning" xml:space="preserve">
+    <value>Предупреждение</value>
   </data>
-  <data name="GestureActionReminder" xml:space="preserve">
-    <value>установить напоминание</value>
-  </data>
-  <data name="GestureActionNone" xml:space="preserve">
-    <value>нет действия</value>
-  </data>
-  <data name="GestureActionDueTomorrow" xml:space="preserve">
-    <value>установить на: Завтра</value>
-  </data>
-  <data name="GestureActionDueToday" xml:space="preserve">
-    <value>установить на: Сегодня</value>
-  </data>
-  <data name="GestureActionDelete" xml:space="preserve">
-    <value>удалить задачу/подзадачу</value>
-  </data>
-  <data name="GestureActionComplete" xml:space="preserve">
-    <value>завершить задачу/подзадачу</value>
-  </data>
-  <data name="TileSettingsShowTitle" xml:space="preserve">
-    <value>Показывать заголовок</value>
-  </data>
-  <data name="TileSettingsShowDate" xml:space="preserve">
-    <value>Показывать дату</value>
-  </data>
-  <data name="SettingsShowTaskCheckBox" xml:space="preserve">
-    <value>Показывать чек-бокс задачи</value>
+  <data name="ToastNotice" xml:space="preserve">
+    <value>Уведомление</value>
   </data>
   <data name="SettingsThemeColor" xml:space="preserve">
     <value>Акцентный цвет</value>
   </data>
+  <data name="Repeats" xml:space="preserve">
+    <value>повторы</value>
+  </data>
+  <data name="RepeatsDaily" xml:space="preserve">
+    <value>ежедневно</value>
+  </data>
+  <data name="RepeatsOn" xml:space="preserve">
+    <value>повторять</value>
+  </data>
+  <data name="RepeatsOnce" xml:space="preserve">
+    <value>однократно</value>
+  </data>
+  <data name="RepeatsWeekdays" xml:space="preserve">
+    <value>будни</value>
+  </data>
   <data name="RepeatsWeekends" xml:space="preserve">
     <value>выходные</value>
   </data>
+  <data name="RepeatsDaysOfWeek" xml:space="preserve">
+    <value>дни недели</value>
+  </data>
+  <data name="RepeatsMonthly" xml:space="preserve">
+    <value>ежемесячно</value>
+  </data>
   <data name="RepeatsWeekly" xml:space="preserve">
     <value>еженедельно</value>
+  </data>
+  <data name="Subtasks1" xml:space="preserve">
+    <value>{0} подзадача</value>
+    <comment>1 subtask</comment>
+  </data>
+  <data name="Subtasks2To4" xml:space="preserve">
+    <value>{0} подзадачи</value>
+    <comment>2 to 4 subtasks</comment>
+  </data>
+  <data name="Subtasks5AndMore" xml:space="preserve">
+    <value>{0} подзадач</value>
+    <comment>5+ subtasks</comment>
+  </data>
+  <data name="Tasks1" xml:space="preserve">
+    <value>{0} задача</value>
+    <comment>1 task</comment>
+  </data>
+  <data name="Tasks2To4" xml:space="preserve">
+    <value>{0} задачи</value>
+    <comment>2 to 4 tasks</comment>
   </data>
   <data name="Tasks5AndMore" xml:space="preserve">
     <value>{0} задач</value>
@@ -778,8 +815,20 @@
   <data name="SettingsTaskTile" xml:space="preserve">
     <value>Настройки плитки задач</value>
   </data>
+  <data name="BackupVersionMismatchCaption" xml:space="preserve">
+    <value>Обратите внимание</value>
+  </data>
+  <data name="BackupVersionMismatchContent" xml:space="preserve">
+    <value>Версия вашего бэкапа не совпадает с текущей версией приложения. Часть информации могла быть утеряна при бэкапе.</value>
+  </data>
+  <data name="BackupVersionMismatchNo" xml:space="preserve">
+    <value>отмена</value>
+  </data>
   <data name="BackupVersionMismatchYes" xml:space="preserve">
     <value>восстановить</value>
+  </data>
+  <data name="SettingsCompleteTask" xml:space="preserve">
+    <value>Автоматическое завершение задачи</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
     <value>Если все подзадачи выполнены, помечать задачу как выполненную.</value>
@@ -795,58 +844,5 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Настройка будет применена для новых задач.</value>
-  </data>
-  <data name="SettingsCompleteTask" xml:space="preserve">
-    <value>Автоматическое завершение задачи</value>
-  </data>
-  <data name="BackupVersionMismatchNo" xml:space="preserve">
-    <value>отмена</value>
-  </data>
-  <data name="BackupVersionMismatchContent" xml:space="preserve">
-    <value>Версия вашего бэкапа не совпадает с текущей версией приложения. Часть информации могла быть утеряна при бэкапе.</value>
-  </data>
-  <data name="BackupVersionMismatchCaption" xml:space="preserve">
-    <value>Обратите внимание</value>
-  </data>
-  <data name="Tasks2To4" xml:space="preserve">
-    <value>{0} задачи</value>
-    <comment>2 to 4 tasks</comment>
-  </data>
-  <data name="Tasks1" xml:space="preserve">
-    <value>{0} задача</value>
-    <comment>1 task</comment>
-  </data>
-  <data name="Subtasks5AndMore" xml:space="preserve">
-    <value>{0} подзадач</value>
-    <comment>5+ subtasks</comment>
-  </data>
-  <data name="Subtasks2To4" xml:space="preserve">
-    <value>{0} подзадачи</value>
-    <comment>2 to 4 subtasks</comment>
-  </data>
-  <data name="Subtasks1" xml:space="preserve">
-    <value>{0} подзадача</value>
-    <comment>1 subtask</comment>
-  </data>
-  <data name="RepeatsMonthly" xml:space="preserve">
-    <value>ежемесячно</value>
-  </data>
-  <data name="RepeatsDaysOfWeek" xml:space="preserve">
-    <value>дни недели</value>
-  </data>
-  <data name="RepeatsWeekdays" xml:space="preserve">
-    <value>будни</value>
-  </data>
-  <data name="RepeatsOnce" xml:space="preserve">
-    <value>единожды</value>
-  </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>повторять</value>
-  </data>
-  <data name="Repeats" xml:space="preserve">
-    <value>повторы</value>
-  </data>
-  <data name="RepeatsDaily" xml:space="preserve">
-    <value>ежедневно</value>
   </data>
 </root>

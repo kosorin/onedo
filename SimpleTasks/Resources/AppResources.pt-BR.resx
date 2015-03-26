@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -122,288 +122,288 @@
     <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
   </data>
   <data name="ResourceLanguage" xml:space="preserve">
-    <value>en-US</value>
+    <value>pt-BR</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AppBarNew" xml:space="preserve">
-    <value>new</value>
+    <value>nova tarefa</value>
     <comment>new task</comment>
   </data>
   <data name="AppBarAbout" xml:space="preserve">
-    <value>about</value>
+    <value>sobre</value>
     <comment>AppBar item</comment>
   </data>
   <data name="AppBarSave" xml:space="preserve">
-    <value>save</value>
+    <value>salvar tarefa</value>
     <comment>save task</comment>
   </data>
   <data name="ChooseDate" xml:space="preserve">
-    <value>CHOOSE DATE</value>
+    <value>ESCOLHER DATA</value>
   </data>
   <data name="DateCustomDue" xml:space="preserve">
-    <value>custom due date</value>
+    <value>personalizar data de conclusão</value>
   </data>
   <data name="DateLater" xml:space="preserve">
-    <value>later</value>
+    <value>mais tarde</value>
   </data>
   <data name="DateNextMonth" xml:space="preserve">
-    <value>next month</value>
+    <value>próximo mês</value>
   </data>
   <data name="DateNextWeek" xml:space="preserve">
-    <value>next week</value>
+    <value>próxima semana</value>
   </data>
   <data name="DateNoDue" xml:space="preserve">
-    <value>no due date</value>
+    <value>sem data de conclusão</value>
   </data>
   <data name="DateOverdue" xml:space="preserve">
-    <value>overdue</value>
+    <value>em atraso</value>
   </data>
   <data name="DateThisMonth" xml:space="preserve">
-    <value>this month</value>
+    <value>este mês</value>
   </data>
   <data name="DateThisWeek" xml:space="preserve">
-    <value>this week</value>
+    <value>esta semana</value>
   </data>
   <data name="DateToday" xml:space="preserve">
-    <value>today</value>
+    <value>hoje</value>
   </data>
   <data name="DateTomorrow" xml:space="preserve">
-    <value>tomorrow</value>
+    <value>amanhã</value>
   </data>
   <data name="NoTasks" xml:space="preserve">
-    <value>No Tasks</value>
+    <value>sem tarefas</value>
   </data>
   <data name="PriorityHigh" xml:space="preserve">
-    <value>high priority</value>
+    <value>alta prioridade</value>
   </data>
   <data name="PriorityNormal" xml:space="preserve">
-    <value>normal priority</value>
+    <value>prioridade normal</value>
   </data>
   <data name="AppBarComplete" xml:space="preserve">
-    <value>complete</value>
+    <value>concluir</value>
     <comment>complete task</comment>
   </data>
   <data name="PeriodicTaskDescription" xml:space="preserve">
-    <value>Updates live tile.</value>
+    <value>Atualiza live tiles.</value>
     <comment>Info about background task agent</comment>
   </data>
   <data name="AppBarActivate" xml:space="preserve">
-    <value>activate</value>
+    <value>Reativar</value>
     <comment>EditTaskPage; AppBar button activate task</comment>
   </data>
   <data name="AppBarDeleteCompleted" xml:space="preserve">
-    <value>delete completed</value>
+    <value>excluir tarefas concluídas</value>
   </data>
   <data name="AppBarDelete" xml:space="preserve">
-    <value>delete</value>
+    <value>excluir tarefa</value>
     <comment>delete task</comment>
   </data>
   <data name="AppBarSettings" xml:space="preserve">
-    <value>settings</value>
+    <value>configurações</value>
   </data>
   <data name="DateCompleted" xml:space="preserve">
-    <value>completed</value>
+    <value>tarefas concluídas</value>
     <comment>completed tasks</comment>
   </data>
   <data name="DeleteTaskCaption" xml:space="preserve">
-    <value>Delete task</value>
+    <value>excluir tarefa</value>
   </data>
   <data name="DeleteTask" xml:space="preserve">
-    <value>Are you sure you want to delete this task?</value>
+    <value>Tem certeza que deseja excluir esta tarefa?</value>
   </data>
   <data name="DeleteTaskYes" xml:space="preserve">
-    <value>delete</value>
+    <value>excluir</value>
     <comment>delete confirmation</comment>
   </data>
   <data name="DeleteTaskNo" xml:space="preserve">
-    <value>cancel</value>
+    <value>cancelar</value>
     <comment>cancel delete confirmation</comment>
   </data>
   <data name="AboutContactUs" xml:space="preserve">
-    <value>contact us</value>
+    <value>contate-nos</value>
     <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="AboutRateReview" xml:space="preserve">
-    <value>rate and review</value>
+    <value>avalie e comente</value>
     <comment>AboutPage; AppBar button</comment>
   </data>
   <data name="SettingsDefaultDate" xml:space="preserve">
-    <value>Default date</value>
+    <value>Data padrão</value>
   </data>
   <data name="SettingsDeleteAfterOneDay" xml:space="preserve">
-    <value>after 1 day</value>
+    <value>após 1 dia</value>
   </data>
   <data name="SettingsDeleteAfterOneWeek" xml:space="preserve">
-    <value>after 1 week</value>
+    <value>após 1 semana</value>
   </data>
   <data name="SettingsDeleteAfterThreeDays" xml:space="preserve">
-    <value>after 3 days</value>
+    <value>após 3 dias</value>
   </data>
   <data name="SettingsDeleteAfterTwoDays" xml:space="preserve">
-    <value>after 2 days</value>
+    <value>após 2 dias</value>
   </data>
   <data name="SettingsDeleteAfterTwoWeeks" xml:space="preserve">
-    <value>after 2 weeks</value>
+    <value>após 2 semanas</value>
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
-    <value>Delete completed tasks</value>
+    <value>Excluir tarefas concluídas</value>
   </data>
   <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
-    <value>Delete in</value>
+    <value>Excluir em</value>
   </data>
   <data name="SettingsFirstDayOfWeek" xml:space="preserve">
-    <value>First day of week</value>
+    <value>Primeiro dia da semana</value>
   </data>
   <data name="SettingsFirstDayOfWeekPickerHeader" xml:space="preserve">
-    <value>choose first day of week</value>
+    <value>escolha o primeiro dia da semana</value>
   </data>
   <data name="SettingsGeneral" xml:space="preserve">
-    <value>general</value>
+    <value>geral</value>
     <comment>general pivot in settings</comment>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>CONFIGURAÇÕES</value>
   </data>
   <data name="AppBarPinTile" xml:space="preserve">
-    <value>pin tile</value>
+    <value>fixar tile</value>
   </data>
   <data name="AppBarUnpinTile" xml:space="preserve">
-    <value>unpin tile</value>
+    <value>desafixar tile</value>
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
-    <value>Tasks are always automatically deleted when the application starts.</value>
+    <value>As tarefas serão sempre automaticamente excluídas quando o aplicativo for iniciado.</value>
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
-    <value>Feedback for {0} {1}</value>
+    <value>Comentários sobre {0} {1}</value>
     <comment>AboutPage; Email subject: Feedback for {AppliactionName} {Version}</comment>
   </data>
   <data name="AboutVersion" xml:space="preserve">
-    <value>Version</value>
+    <value>Versão</value>
     <comment>AboutPage;</comment>
   </data>
   <data name="DueDate" xml:space="preserve">
-    <value>due date</value>
+    <value>data de conclusão</value>
   </data>
   <data name="PriorityLow" xml:space="preserve">
-    <value>low priority</value>
+    <value>baixa prioridade</value>
   </data>
   <data name="Reminder" xml:space="preserve">
-    <value>reminder</value>
+    <value>lembrete</value>
   </data>
   <data name="SettingsDefaultTime" xml:space="preserve">
-    <value>Default time</value>
+    <value>Hora padrão</value>
   </data>
   <data name="AppBarOk" xml:space="preserve">
     <value>ok</value>
   </data>
   <data name="AppBarDeleteAll" xml:space="preserve">
-    <value>delete all tasks</value>
+    <value>excluir todas as tarefas</value>
   </data>
   <data name="DeleteAllTasks" xml:space="preserve">
-    <value>Are you sure you want to delete all tasks?</value>
+    <value>Tem certeza que deseja excluir todas as tarefas?</value>
   </data>
   <data name="DeleteAllTasksCaption" xml:space="preserve">
-    <value>Delete all tasks</value>
+    <value>Excluir todas as tarefas</value>
   </data>
   <data name="DateSomeday" xml:space="preserve">
-    <value>someday</value>
+    <value>algum dia</value>
   </data>
   <data name="DateUpcoming" xml:space="preserve">
-    <value>upcoming</value>
+    <value>próximos</value>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
-    <value>cancel</value>
+    <value>cancelar</value>
   </data>
   <data name="SettingsEnableTile" xml:space="preserve">
-    <value>Enable tile</value>
+    <value>Permitir tile</value>
   </data>
   <data name="SettingsTile" xml:space="preserve">
     <value>tiles</value>
   </data>
   <data name="SettingsDeleteNever" xml:space="preserve">
-    <value>never</value>
+    <value>nunca</value>
   </data>
   <data name="SettingsDeleteWhenStarts" xml:space="preserve">
-    <value>when application closes</value>
+    <value>quando fechar o aplicativo</value>
   </data>
   <data name="Detail" xml:space="preserve">
-    <value>Detail</value>
+    <value>Detalhes</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Title</value>
+    <value>Título</value>
   </data>
   <data name="AppBarPin" xml:space="preserve">
-    <value>pin</value>
+    <value>fixar</value>
   </data>
   <data name="AppBarUnpin" xml:space="preserve">
-    <value>unpin</value>
+    <value>desafixar</value>
   </data>
   <data name="AppBarDone" xml:space="preserve">
-    <value>done</value>
+    <value>feito</value>
   </data>
   <data name="ChooseReminderTime" xml:space="preserve">
-    <value>CHOOSE REMINDER</value>
+    <value>ESCOLHER LEMBRETE</value>
   </data>
   <data name="SettingsUnpinCompleted" xml:space="preserve">
-    <value>Unpin tile upon completion of task</value>
+    <value>Desafixar tile após a conclusão da tarefa</value>
   </data>
   <data name="AppBarAddBullet" xml:space="preserve">
-    <value>add bullet</value>
+    <value>adicionar marcador</value>
     <comment>EditTaskPage; AppBar button</comment>
   </data>
   <data name="BulletText" xml:space="preserve">
-    <value>bullet</value>
+    <value>marcador</value>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>changelog</value>
+    <value>registro de alterações</value>
   </data>
   <data name="ChooseTime" xml:space="preserve">
-    <value>CHOOSE TIME</value>
+    <value>ESCOLHER HORA</value>
   </data>
   <data name="TimeAfternoon" xml:space="preserve">
-    <value>afternoon</value>
+    <value>à tarde</value>
     <comment>3 PM (15:00)</comment>
   </data>
   <data name="TimeEvening" xml:space="preserve">
-    <value>evening</value>
+    <value>ao anoitecer</value>
     <comment>7 PM (19:00)</comment>
   </data>
   <data name="TimeLateMorning" xml:space="preserve">
-    <value>late morning</value>
+    <value>fim da manhã</value>
     <comment>10 AM (10:00)</comment>
   </data>
   <data name="TimeMorning" xml:space="preserve">
-    <value>morning</value>
+    <value>de manhã</value>
     <comment>7 AM (7:00)</comment>
   </data>
   <data name="TimeNight" xml:space="preserve">
-    <value>night</value>
+    <value>à noite</value>
     <comment>10 PM (22:00)</comment>
   </data>
   <data name="TimeNoon" xml:space="preserve">
-    <value>noon</value>
+    <value>ao meio-dia</value>
     <comment>12 PM (12:00)</comment>
   </data>
   <data name="NoReminder" xml:space="preserve">
-    <value>no reminder</value>
+    <value>sem lembrete</value>
   </data>
   <data name="DaysLabel" xml:space="preserve">
-    <value>days</value>
+    <value>dias</value>
   </data>
   <data name="HoursLabel" xml:space="preserve">
-    <value>hours</value>
+    <value>horas</value>
   </data>
   <data name="MinutesLabel" xml:space="preserve">
-    <value>minutes</value>
+    <value>minutos</value>
   </data>
   <data name="DateLastMonth" xml:space="preserve">
-    <value>last month</value>
+    <value>último mês</value>
   </data>
   <data name="DateLastWeek" xml:space="preserve">
-    <value>last week</value>
+    <value>última semana</value>
   </data>
   <data name="DateYesterday" xml:space="preserve">
-    <value>yesterday</value>
+    <value>ontem</value>
   </data>
   <data name="DateTimeDaysAbbr" xml:space="preserve">
     <value>d</value>
@@ -418,433 +418,433 @@
     <comment>1 letter abbreviation for minutes</comment>
   </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
-    <value>before due date</value>
+    <value>antes da data de conclusão</value>
   </data>
   <data name="Time15mins" xml:space="preserve">
-    <value>15 minutes</value>
+    <value>15 minutos</value>
   </data>
   <data name="Time18hours" xml:space="preserve">
-    <value>18 hours</value>
+    <value>18 horas</value>
   </data>
   <data name="Time1day" xml:space="preserve">
-    <value>1 day</value>
+    <value>1 dia</value>
   </data>
   <data name="Time1hour" xml:space="preserve">
-    <value>1 hour</value>
+    <value>1 hora</value>
   </data>
   <data name="Time1week" xml:space="preserve">
-    <value>1 week</value>
+    <value>1 semana</value>
   </data>
   <data name="Time30mins" xml:space="preserve">
-    <value>30 minutes</value>
+    <value>30 minutos</value>
   </data>
   <data name="Time5mins" xml:space="preserve">
-    <value>5 minutes</value>
+    <value>5 minutos</value>
   </data>
   <data name="TimeZero" xml:space="preserve">
-    <value>in due time</value>
+    <value>na hora da conclusão</value>
   </data>
   <data name="Days1" xml:space="preserve">
-    <value>{0} day</value>
+    <value>{0} dia</value>
     <comment>1 day</comment>
   </data>
   <data name="Days2To4" xml:space="preserve">
-    <value>{0} days</value>
+    <value>{0} dias</value>
     <comment>2-4 days</comment>
   </data>
   <data name="Days5AndMore" xml:space="preserve">
-    <value>{0} days</value>
+    <value>{0} dias</value>
     <comment>5+ days</comment>
   </data>
   <data name="Hours1" xml:space="preserve">
-    <value>{0} hour</value>
+    <value>{0} hora</value>
     <comment>1 hour</comment>
   </data>
   <data name="Hours2To4" xml:space="preserve">
-    <value>{0} hours</value>
+    <value>{0} horas</value>
     <comment>2-4 hours</comment>
   </data>
   <data name="Hours5AndMore" xml:space="preserve">
-    <value>{0} hours</value>
+    <value>{0} horas</value>
     <comment>5+ hours</comment>
   </data>
   <data name="Minutes1" xml:space="preserve">
-    <value>{0} minute</value>
+    <value>{0} minuto</value>
     <comment>1 minute</comment>
   </data>
   <data name="Minutes2To4" xml:space="preserve">
-    <value>{0} minutes</value>
+    <value>{0} minutos</value>
     <comment>2-4 minutes</comment>
   </data>
   <data name="Minutes5AndMore" xml:space="preserve">
-    <value>{0} minutes</value>
+    <value>{0} minutos</value>
     <comment>5+ minutes</comment>
   </data>
   <data name="Weeks1" xml:space="preserve">
-    <value>{0} week</value>
+    <value>{0} semana</value>
     <comment>1 week</comment>
   </data>
   <data name="Weeks2To4" xml:space="preserve">
-    <value>{0} weeks</value>
+    <value>{0} semanas</value>
     <comment>2-4 weeks</comment>
   </data>
   <data name="WhatsNew" xml:space="preserve">
-    <value>What's new</value>
+    <value>O que há de novo</value>
   </data>
   <data name="Months1" xml:space="preserve">
-    <value>{0} month</value>
+    <value>{0} mês</value>
     <comment>1 month</comment>
   </data>
   <data name="Months2To4" xml:space="preserve">
-    <value>{0} months</value>
+    <value>{0} meses</value>
     <comment>2-4 months</comment>
   </data>
   <data name="AppBarAddSubtask" xml:space="preserve">
-    <value>add</value>
+    <value>adicionar</value>
     <comment>AppBar button add subtask</comment>
   </data>
   <data name="SubtaskAdd" xml:space="preserve">
-    <value>Add a subtask</value>
+    <value>Adicionar uma subtarefa</value>
   </data>
   <data name="SubtasksText" xml:space="preserve">
-    <value>subtasks</value>
+    <value>subtarefas</value>
   </data>
   <data name="SubtaskText" xml:space="preserve">
-    <value>subtask</value>
+    <value>subtarefa</value>
   </data>
   <data name="TaskText" xml:space="preserve">
-    <value>task</value>
+    <value>tarefa</value>
   </data>
   <data name="AppBarCompleteAllSubtasks" xml:space="preserve">
-    <value>complete all</value>
+    <value>concluir todas</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>to add a task.</value>
+    <value>ou escreva na caixa de texto abaixo para adicionar uma tarefa.</value>
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
-    <value>Tap</value>
+    <value>Toque</value>
     <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
-    <value>No Subtasks</value>
+    <value>Sem Subtarefas</value>
   </data>
   <data name="TasksText" xml:space="preserve">
-    <value>tasks</value>
+    <value>tarefas</value>
   </data>
   <data name="SettingsCompleteSubtasks" xml:space="preserve">
-    <value>Automatically complete subtasks</value>
+    <value>Concluir subtarefas automaticamente</value>
   </data>
   <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
-    <value>When you complete a task that contains subtasks, those subtasks will be automatically marked as completed.</value>
+    <value>Quando você concluir uma tarefa que contém subtarefas, essas subtarefas serão automaticamente marcadas como concluídas.</value>
   </data>
   <data name="SettingsVibrate" xml:space="preserve">
-    <value>Vibrate</value>
+    <value>Vibrar</value>
   </data>
   <data name="AppBarDeleteAllSubtasks" xml:space="preserve">
-    <value>delete all</value>
+    <value>excluir todas</value>
   </data>
   <data name="TileSettingsShowDate" xml:space="preserve">
-    <value>Show due date</value>
+    <value>Exibir data de conclusão</value>
   </data>
   <data name="TileSettingsShowTitle" xml:space="preserve">
-    <value>Show title</value>
+    <value>Exibir título</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>Show completed subtasks</value>
+    <value>Exibir subtarefas concluídas</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
-    <value>Title on one line</value>
+    <value>Título em uma linha</value>
   </data>
   <data name="TileSettingsBackgroundOpacity" xml:space="preserve">
-    <value>background opacity</value>
+    <value>opacidade do fundo</value>
   </data>
   <data name="TileSettingsLineHeight" xml:space="preserve">
-    <value>Font size</value>
+    <value>Tamanho da fonte</value>
   </data>
   <data name="TileSettingsPreview" xml:space="preserve">
-    <value>Preview</value>
+    <value>Previsualização</value>
   </data>
   <data name="AppBarTileSettings" xml:space="preserve">
-    <value>tile settings</value>
+    <value>configurações da tile</value>
   </data>
   <data name="TitleUntitled" xml:space="preserve">
-    <value>Untitled</value>
+    <value>Sem título</value>
   </data>
   <data name="SettingsFeedback" xml:space="preserve">
-    <value>Feedback</value>
+    <value>Enviar dados anônimos</value>
   </data>
   <data name="SettingsFeedbackHelp" xml:space="preserve">
-    <value>Send anonymous usage data to improve this app. Statistics help developer to identify and focus on most frequently used features.
-No personal data is being collected.</value>
+    <value>Enviar dados de uso anônimos para melhorar este app. Estatísticas ajudam o desenvolvedor a identificar e focar nos recursos mais frequentemente usados.
+Nenhuma informação pessoal será coletada.</value>
   </data>
   <data name="EditText" xml:space="preserve">
-    <value>Edit</value>
+    <value>Editar</value>
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
-    <value>Default settings for task tile</value>
+    <value>Configurações padrão para tile de tarefa</value>
   </data>
   <data name="SettingsShowTaskCheckBox" xml:space="preserve">
-    <value>Show task check box</value>
+    <value>Exibir caixa de marcação de tarefa</value>
   </data>
   <data name="SettingsHideTaskCheckBoxHelp" xml:space="preserve">
-    <value>You can use right to left swipe gesture instead to complete task.</value>
+    <value>Em vez disso você pode deslizar o dedo da direita para a esquerda para concluir a tarefa.</value>
   </data>
   <data name="BackupAndRestoreTitle" xml:space="preserve">
-    <value>backup &amp; restore</value>
+    <value>backup e restauração</value>
   </data>
   <data name="BackupText" xml:space="preserve">
     <value>Backup</value>
   </data>
   <data name="RestoreText" xml:space="preserve">
-    <value>Restore</value>
+    <value>Restaurar</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Sign in</value>
+    <value>Entrar</value>
   </data>
   <data name="SignOut" xml:space="preserve">
-    <value>Sign out</value>
+    <value>Sair</value>
   </data>
   <data name="SigningIn" xml:space="preserve">
-    <value>Signing in</value>
+    <value>Entrando</value>
   </data>
   <data name="BackingUp" xml:space="preserve">
-    <value>Backing up</value>
+    <value>Salvando</value>
   </data>
   <data name="Restoring" xml:space="preserve">
-    <value>Restoring</value>
+    <value>Restaurando</value>
   </data>
   <data name="SelectBackup" xml:space="preserve">
-    <value>select backup to restore</value>
+    <value>selecione um backup para restaurar</value>
   </data>
   <data name="BackupDownloadingList" xml:space="preserve">
-    <value>Downloading list of backups</value>
+    <value>Baixando lista de backups</value>
   </data>
   <data name="NoBackups" xml:space="preserve">
-    <value>No backups</value>
+    <value>Sem backups</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
-    <value>Unknown error.</value>
+    <value>Erro desconhecido.</value>
   </data>
   <data name="SignedInNo" xml:space="preserve">
-    <value>You're not signed in.</value>
+    <value>Você não está conectado.</value>
   </data>
   <data name="SignedInYes" xml:space="preserve">
-    <value>You're signed in as {0}.</value>
+    <value>Você está conectado como {0}.</value>
     <comment>{0} is user name</comment>
   </data>
   <data name="BackupLatest" xml:space="preserve">
-    <value>latest</value>
+    <value>último</value>
   </data>
   <data name="RestoreWhatText" xml:space="preserve">
-    <value>select items to restore</value>
+    <value>selecione os itens à restaurar</value>
   </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
-    <value>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
-It's still in beta.</value>
+    <value>O backup irá criar uma nova pasta "{0}". Você pode mover esta pasta para seu local, mas por favor, não a renomeie. Também não modifique os arquivos dentro da mesma.
+Esta função ainda está em beta.</value>
   </data>
   <data name="RestoreOk" xml:space="preserve">
-    <value>Successful restore.</value>
+    <value>Restauração bem-sucedida.</value>
   </data>
   <data name="BackupOk" xml:space="preserve">
-    <value>Successful backup.</value>
+    <value>Backup bem-sucedido.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>Show task count</value>
+    <value>Exibir contador de tarefas</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>Swap title and date on wide tile</value>
+    <value>Alternar título e data na tile larga</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>Quick add tile</value>
+    <value>Tile para adicionar tarefa rápida</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
-    <value>Pin to start</value>
+    <value>Fixar para começar</value>
   </data>
   <data name="TileForQuickAddUnpinButton" xml:space="preserve">
-    <value>Unpin</value>
+    <value>Desafixar</value>
   </data>
   <data name="QuickAddTileTitle" xml:space="preserve">
-    <value>New task</value>
+    <value>Nova tarefa</value>
   </data>
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
-    <value>If unchecked, show task list on small tile instead of number of tasks.</value>
+    <value>Se estiver desmarcada, exibe lista de tarefas na tile pequena em vez do número de tarefas.</value>
   </data>
   <data name="SettingsThemeDark" xml:space="preserve">
-    <value>dark</value>
+    <value>escuro</value>
   </data>
   <data name="SettingsThemeLight" xml:space="preserve">
-    <value>light</value>
+    <value>claro</value>
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
-    <value>Application restart is required for this setting to take effect.</value>
+    <value>É necessário reiniciar o aplicativo para que esta configuração tenha efeito.</value>
   </data>
   <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>system ({0})</value>
+    <value>sistema ({0})</value>
     <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
-    <value>theme</value>
+    <value>tema</value>
   </data>
   <data name="AboutAuthor" xml:space="preserve">
-    <value>Author</value>
+    <value>Autor</value>
     <comment>AboutPage;</comment>
   </data>
   <data name="AboutTranslation" xml:space="preserve">
-    <value>Translation</value>
+    <value>Tradução</value>
     <comment>AboutPage;</comment>
   </data>
   <data name="VersionFormat" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versão {0}</value>
     <comment>Version {VersionNumber}</comment>
   </data>
   <data name="ChangelogShow" xml:space="preserve">
-    <value>Show changelog</value>
+    <value>Exibir registro de alterações</value>
   </data>
   <data name="GestureActionComplete" xml:space="preserve">
-    <value>complete task/subtask</value>
+    <value>concluir tarefa/subtarefa</value>
   </data>
   <data name="GestureActionDelete" xml:space="preserve">
-    <value>delete task/subtask</value>
+    <value>excluir tarefa/subtarefa</value>
   </data>
   <data name="GestureActionDueToday" xml:space="preserve">
-    <value>set due: Today</value>
+    <value>configurar conclusão: Hoje</value>
   </data>
   <data name="GestureActionDueTomorrow" xml:space="preserve">
-    <value>set due: Tomorrow</value>
+    <value>configurar conclusão: Amanhã</value>
   </data>
   <data name="GestureActionNone" xml:space="preserve">
-    <value>no action</value>
+    <value>sem ação</value>
   </data>
   <data name="GestureActionReminder" xml:space="preserve">
-    <value>set reminder</value>
+    <value>configurar lembrete</value>
   </data>
   <data name="SettingsSwipeLeft" xml:space="preserve">
-    <value>Swipe left gesture action</value>
+    <value>Ação ao deslizar para a esquerda</value>
   </data>
   <data name="SettingsSwipeRight" xml:space="preserve">
-    <value>Swipe right gesture action</value>
+    <value>Ação ao deslizar para a direita</value>
   </data>
   <data name="GestureActionPostponeDay" xml:space="preserve">
-    <value>postpone: 1 Day</value>
+    <value>adiar: 1 dia</value>
   </data>
   <data name="GestureActionPostponeWeek" xml:space="preserve">
-    <value>postpone: 1 Week</value>
+    <value>adiar: 1 semana</value>
   </data>
   <data name="ToastAllTasksDeleted" xml:space="preserve">
-    <value>All tasks were deleted.</value>
+    <value>Todas as tarefas serão excluídas.</value>
   </data>
   <data name="ToastCompletedTasksDeleted" xml:space="preserve">
-    <value>Completed tasks were deleted.</value>
+    <value>As tarefas concluídas serão excluídas.</value>
   </data>
   <data name="ToastPostponedUntil" xml:space="preserve">
-    <value>Postponed until {0:ddd}, {0:d}</value>
+    <value>Adiar para {0:ddd}, {0:d}</value>
     <comment>{0:ddd} is day of week (Mon, Tue, Wed, ...); {0:d} is date (12/16/2014)</comment>
   </data>
   <data name="ToastReminderOff" xml:space="preserve">
-    <value>Reminder was turned off!</value>
+    <value>O lembrete foi desligado!</value>
   </data>
   <data name="ToastSubtaskDeleted" xml:space="preserve">
-    <value>Subtask was deleted.</value>
+    <value>A subtarefa foi excluída.</value>
   </data>
   <data name="ToastTaskDeleted" xml:space="preserve">
-    <value>Task was deleted.</value>
+    <value>A tarefa foi excluída.</value>
   </data>
   <data name="ToastWarning" xml:space="preserve">
-    <value>Warning</value>
+    <value>Atenção</value>
   </data>
   <data name="ToastNotice" xml:space="preserve">
-    <value>Notice</value>
+    <value>Aviso</value>
   </data>
   <data name="SettingsThemeColor" xml:space="preserve">
-    <value>Accent color</value>
+    <value>Cor de ênfase</value>
   </data>
   <data name="Repeats" xml:space="preserve">
-    <value>repeats</value>
+    <value>se repete</value>
   </data>
   <data name="RepeatsDaily" xml:space="preserve">
-    <value>daily</value>
+    <value>diariamente</value>
   </data>
   <data name="RepeatsOn" xml:space="preserve">
-    <value>repeats on</value>
+    <value>se repete</value>
   </data>
   <data name="RepeatsOnce" xml:space="preserve">
-    <value>only once</value>
+    <value>apenas uma vez</value>
   </data>
   <data name="RepeatsWeekdays" xml:space="preserve">
-    <value>weekdays</value>
+    <value>dias úteis</value>
   </data>
   <data name="RepeatsWeekends" xml:space="preserve">
-    <value>weekends</value>
+    <value>finais de semana</value>
   </data>
   <data name="RepeatsDaysOfWeek" xml:space="preserve">
-    <value>days of week</value>
+    <value>dias da semana</value>
   </data>
   <data name="RepeatsMonthly" xml:space="preserve">
-    <value>monthly</value>
+    <value>mensalmente</value>
   </data>
   <data name="RepeatsWeekly" xml:space="preserve">
-    <value>weekly</value>
+    <value>semanalmente</value>
   </data>
   <data name="Subtasks1" xml:space="preserve">
-    <value>{0} subtask</value>
+    <value>{0} subtarefa</value>
     <comment>1 subtask</comment>
   </data>
   <data name="Subtasks2To4" xml:space="preserve">
-    <value>{0} subtasks</value>
+    <value>{0} subtarefas</value>
     <comment>2 to 4 subtasks</comment>
   </data>
   <data name="Subtasks5AndMore" xml:space="preserve">
-    <value>{0} subtasks</value>
+    <value>{0} subtarefas</value>
     <comment>5+ subtasks</comment>
   </data>
   <data name="Tasks1" xml:space="preserve">
-    <value>{0} task</value>
+    <value>{0} tarefa</value>
     <comment>1 task</comment>
   </data>
   <data name="Tasks2To4" xml:space="preserve">
-    <value>{0} tasks</value>
+    <value>{0} tarefas</value>
     <comment>2 to 4 tasks</comment>
   </data>
   <data name="Tasks5AndMore" xml:space="preserve">
-    <value>{0} tasks</value>
+    <value>{0} tarefas</value>
     <comment>5+ tasks</comment>
   </data>
   <data name="SettingsLook" xml:space="preserve">
-    <value>look</value>
+    <value>ações</value>
     <comment>or appearance; section in settings</comment>
   </data>
   <data name="SettingsTaskTile" xml:space="preserve">
-    <value>Task tile settings</value>
+    <value>Configurações da tile de tarefa</value>
   </data>
   <data name="BackupVersionMismatchCaption" xml:space="preserve">
-    <value>Be aware</value>
+    <value>Esteja ciente</value>
   </data>
   <data name="BackupVersionMismatchContent" xml:space="preserve">
-    <value>Version of given backup doesn't match the current version of the application. Some information may be missing in the backup.</value>
+    <value>A versão do backup informado não combina com a versão atual do aplicativo. Algumas informações podem estar em falta no backup.</value>
   </data>
   <data name="BackupVersionMismatchNo" xml:space="preserve">
-    <value>cancel</value>
+    <value>cancelar</value>
   </data>
   <data name="BackupVersionMismatchYes" xml:space="preserve">
-    <value>restore</value>
+    <value>restaurar</value>
   </data>
   <data name="SettingsCompleteTask" xml:space="preserve">
-    <value>Automatically complete task</value>
+    <value>Concluir tarefa automaticamente</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
-    <value>When you complete all subtasks, mark task as completed.</value>
+    <value>Quando concluir todas as subtarefas, marcar tarefa como concluída.</value>
   </data>
   <data name="DeleteTaskConfirm" xml:space="preserve">
-    <value>Tap again to confirm.</value>
+    <value>Toque novamente para confirmar.</value>
   </data>
   <data name="SubtasksXCompleted" xml:space="preserve">
-    <value>{0} of {1} completed</value>
+    <value>{0} de {1} concluída(s)</value>
   </data>
   <data name="GestureCantWithRepeats" xml:space="preserve">
-    <value>You cannot use this action on tasks with repeats.</value>
+    <value>Você não pode usar esta ação em tarefas com repetições.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
-    <value>Setting will be applied for new tasks.</value>
+    <value>Esta configuração será aplicada para novas tarefas.</value>
   </data>
 </root>
