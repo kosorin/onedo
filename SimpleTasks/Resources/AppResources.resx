@@ -140,9 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>CHOOSE DATE</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>custom due date</value>
-  </data>
   <data name="DateLater" xml:space="preserve">
     <value>later</value>
   </data>
@@ -764,9 +761,6 @@ It's still in beta.</value>
   </data>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>daily</value>
-  </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>repeats on</value>
   </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>only once</value>

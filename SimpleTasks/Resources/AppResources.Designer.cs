@@ -467,15 +467,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to custom due date.
-        /// </summary>
-        public static string DateCustomDue {
-            get {
-                return ResourceManager.GetString("DateCustomDue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to last month.
         /// </summary>
         public static string DateLastMonth {
@@ -1075,15 +1066,6 @@ namespace SimpleTasks.Resources {
         public static string RepeatsMonthly {
             get {
                 return ResourceManager.GetString("RepeatsMonthly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to repeats on.
-        /// </summary>
-        public static string RepeatsOn {
-            get {
-                return ResourceManager.GetString("RepeatsOn", resourceCulture);
             }
         }
         
