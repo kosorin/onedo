@@ -125,6 +125,8 @@
                                                  Foreground="{StaticResource SlightBrush}" /><LineBreak />
                         <Run>Spanish</Run><Run Text=" - Javier Sans Besada"
                                                Foreground="{StaticResource SlightBrush}" /><LineBreak />
+                        <Run>Brazilian Portuguese</Run><Run Text=" - Eduardo Guedes"
+                                               Foreground="{StaticResource SlightBrush}" /><LineBreak />
                         <Run>Chinese</Run><Run Text=" - Shang Michael"
                                                Foreground="{StaticResource SlightBrush}" />
                 </TextBlock>
