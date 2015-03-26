@@ -159,6 +159,27 @@ namespace SimpleTasks.ViewModels
             App.Tasks.Update(task);
         }
 
+        public void Complete(TaskModel task, Subtask subtask)
+        {
+            if (task != null)
+            {
+                task.ModifiedSinceStart = true;
+
+                if (subtask != null)
+                {
+                    subtask.IsCompleted = !subtask.IsCompleted;
+
+                    if (Settings.Current.CompleteTask && !task.IsCompleted && subtask.IsCompleted)
+                    {
+                        if (task.Subtasks.All(s => s.IsCompleted))
+                        {
+                            Complete(task);
+                        }
+                    }
+                }
+            }
+        }
+
         public void Activate(TaskModel task)
         {
             task.Completed = null;

@@ -420,23 +420,7 @@ namespace SimpleTasks.Views
 
         private void ToggleComplete(TaskModel task, Subtask subtask)
         {
-            if (task != null)
-            {
-                task.ModifiedSinceStart = true;
-            }
-
-            if (subtask != null)
-            {
-                subtask.IsCompleted = !subtask.IsCompleted;
-
-                if (Settings.Current.CompleteTask && !task.IsCompleted && subtask.IsCompleted)
-                {
-                    if (task.Subtasks.All(s => s.IsCompleted))
-                    {
-                        ToggleComplete(task);
-                    }
-                }
-            }
+            App.Tasks.Complete(task, subtask);
         }
 
         private void SetDueDate(TaskModel task, DateTime? due, GestureAction action)
