@@ -66,10 +66,9 @@ namespace SimpleTasks.Views
 
             default: // DaysOfWeek
                 DaysOfWeekRadioButton.IsChecked = true;
+                UpdateButtons(repeats);
                 break;
             }
-
-            UpdateButtons(repeats);
         }
 
         private bool IsSetDayOfWeek(DayOfWeek dayOfWeek)

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleTasks.Core.Models
 {
+    [Flags]
     public enum Repeats
     {
         None = 0,
