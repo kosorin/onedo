@@ -1352,15 +1352,7 @@
                                                                  To="0.38" />
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualState x:Name="Pressed">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PressedEllipse"
-                                                                               Storyboard.TargetProperty="Visibility">
-                                                    <DiscreteObjectKeyFrame KeyTime="0"
-                                                                            Value="Visible" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
+                                        <VisualState x:Name="Pressed"/>
                                     </VisualStateGroup>
                                     <VisualStateGroup x:Name="CheckStates">
                                         <VisualStateGroup.Transitions>
