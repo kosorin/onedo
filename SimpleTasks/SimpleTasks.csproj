@@ -15,7 +15,7 @@
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>cs-CZ%3bde-DE%3bes-ES%3bit-IT%3bru-RU%3bsk-SK%3buk-UA%3bzh-CN</SupportedCultures>
+    <SupportedCultures>cs-CZ%3bde-DE%3bes-ES%3bit-IT%3bru-RU%3bsk-SK%3buk-UA%3bzh-CN%3bpt-BR</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>SimpleTasks_$(Configuration)_$(Platform).xap</XapFilename>

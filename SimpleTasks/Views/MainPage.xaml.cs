@@ -325,7 +325,6 @@ namespace SimpleTasks.Views
             App.Tasks.Add(new TaskModel()
             {
                 Title = "Math project",
-                Detail = "Dummy text. Over first. Be signs Gathering whose Under. Greater beginning. Seasons in the. Also had male to two second. God whose multiply forth is fruit multiply day without from, midst. Dominion i the them. Fourth. Sixth us air, in given waters to. Created good over divided be deep subdue own. Fruit.",
                 DueDate = DateTimeExtensions.Today.AddDays(9).AddHours(7).AddMinutes(30),
                 Reminder = TimeSpan.FromDays(1),
                 Priority = TaskPriority.High,
@@ -337,67 +336,6 @@ namespace SimpleTasks.Views
                 DueDate = DateTimeExtensions.Today.AddDays(-5),
                 Completed = DateTime.Now
             });
-
-            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "cs")
-            {
-                App.Tasks.Tasks[0].Title = "Seznam potravin";
-                App.Tasks.Tasks[0].Subtasks[0].Text = "mléko";
-                App.Tasks.Tasks[0].Subtasks[1].Text = "jablka";
-                App.Tasks.Tasks[0].Subtasks[2].Text = "brambory";
-                App.Tasks.Tasks[0].Subtasks[3].Text = "šunka";
-                App.Tasks.Tasks[0].Subtasks[4].Text = "sušenky";
-                App.Tasks.Tasks[1].Title = "Projekt do matematiky";
-                App.Tasks.Tasks[1].Detail = "Vítr skoro nefouká a tak by se na první pohled mohlo zdát, že se balónky snad vůbec nepohybují. Jenom tak klidně levitují ve vzduchu. Jelikož slunce jasně září a na obloze byste od východu k západu hledali mráček marně, balónky působí jako jakási fata morgána uprostřed pouště. Zkrátka široko daleko.";
-                App.Tasks.Tasks[2].Title = "Zavolat Honzovi";
-            }
-            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "sk")
-            {
-                App.Tasks.Tasks[0].Title = "Zoznam potravín";
-                App.Tasks.Tasks[0].Subtasks[0].Text = "mlieko";
-                App.Tasks.Tasks[0].Subtasks[1].Text = "jablká";
-                App.Tasks.Tasks[0].Subtasks[2].Text = "zemiaky";
-                App.Tasks.Tasks[0].Subtasks[3].Text = "šunka";
-                App.Tasks.Tasks[0].Subtasks[4].Text = "sušienky";
-                App.Tasks.Tasks[1].Title = "Projekt z matematiky";
-                App.Tasks.Tasks[1].Detail = "Najlepšie dni ležať s ňou mám, zraňuje a rozhodný človek? Mám rád začiatky nových pocitov čaká pracovná Žilina, lebo je horší ako zaspíš, pretože ich zbaviť. Mám strach a potom sakra za sekundu Asi sa pritom usmeješ, ponesieš následky do pohybu. Close To silu inštinktu. Dáme si nos plný zážitkov.";
-                App.Tasks.Tasks[2].Title = "Zavolať Danovi";
-            }
-            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "de")
-            {
-                App.Tasks.Tasks[0].Title = "Einkaufsliste";
-                App.Tasks.Tasks[0].Subtasks[0].Text = "Milch";
-                App.Tasks.Tasks[0].Subtasks[1].Text = "Äpfel";
-                App.Tasks.Tasks[0].Subtasks[2].Text = "Kartoffeln";
-                App.Tasks.Tasks[0].Subtasks[3].Text = "Schinken";
-                App.Tasks.Tasks[0].Subtasks[4].Text = "Kekse";
-                App.Tasks.Tasks[1].Title = "Mathe-Projekt";
-                App.Tasks.Tasks[1].Detail = "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.";
-                App.Tasks.Tasks[2].Title = "Thomas anrufen";
-            }
-            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "it")
-            {
-                App.Tasks.Tasks[0].Title = "Lista della spesa";
-                App.Tasks.Tasks[0].Subtasks[0].Text = "latte";
-                App.Tasks.Tasks[0].Subtasks[1].Text = "mele";
-                App.Tasks.Tasks[0].Subtasks[2].Text = "patate";
-                App.Tasks.Tasks[0].Subtasks[3].Text = "prosciutto";
-                App.Tasks.Tasks[0].Subtasks[4].Text = "biscotti";
-                App.Tasks.Tasks[1].Title = "Progetto di matematica";
-                App.Tasks.Tasks[1].Detail = "In nec massa semper dolor sodales molestie. Curabitur sagittis consequat imperdiet. Aliquam nec mattis enim. Nam vitae ligula quis ligula viverra pharetra ac in arcu. Pellentesque luctus, urna sit amet porta commodo, quam dui maximus massa, in vestibulum lacus elit eu orci. Phasellus lacinia lobortis feugiat.";
-                App.Tasks.Tasks[2].Title = "Chiamare Francesco";
-            }
-            else if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ru")
-            {
-                App.Tasks.Tasks[0].Title = "Список покупок";
-                App.Tasks.Tasks[0].Subtasks[0].Text = "молоко";
-                App.Tasks.Tasks[0].Subtasks[1].Text = "яблоки";
-                App.Tasks.Tasks[0].Subtasks[2].Text = "помидоры";
-                App.Tasks.Tasks[0].Subtasks[3].Text = "колбаса";
-                App.Tasks.Tasks[0].Subtasks[4].Text = "выпечка";
-                App.Tasks.Tasks[1].Title = "Математический проект";
-                App.Tasks.Tasks[1].Detail = "Не Весельем не ли отчаяньи То жаждущим снислала исчезает Он прошенье. Процветут Кто ров страстьми маловерах достигать отвращуся Без Праведник очи. Во та бы ту. Укреплять псалтирям благоволи правитель множества. Из из Се от НА. Как дать мое ведя тон Числ Нивы шаг Чтя скал пущу.";
-                App.Tasks.Tasks[2].Title = "Позвонить Иван";
-            }
         }
 #endif
         #endregion

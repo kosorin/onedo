@@ -1,9 +1,9 @@
 {
-    "4.9.0": {
-        "date": "2015-03-19",
+    "5.0.0": {
+        "date": "2015-03-26",
         "items": [
             "new themes (Solarized, Ocean)",
-            "collapse/expad subtasks",
+            "collapse/expand subtasks",
             "design... again :D",
             "Chinese, Spanish, Ukrainian, Brazilian Portuguese"
         ]
