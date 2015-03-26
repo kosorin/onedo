@@ -41,7 +41,7 @@
     <Grid x:Name="LayoutRoot"
           Background="{StaticResource BackgroundBrush}">
         <ScrollViewer>
-            <StackPanel Margin="24,0,24,0">
+            <StackPanel Margin="24,0,24,48">
 
                 <!--Logo-->
                 <Grid Margin="0,48,0,48"
