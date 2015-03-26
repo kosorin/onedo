@@ -523,7 +523,7 @@
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
-    <value>Pre pridanie úlohy ťuknite na</value>
+    <value>Ťuknite na</value>
     <comment>This is first part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoSubtasks" xml:space="preserve">
