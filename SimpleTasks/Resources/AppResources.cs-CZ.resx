@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>ZVOLTE DATUM</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>vlastní termín</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>později</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>příští měsíc</value>
   </data>
@@ -405,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>včera</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>d</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>před termínem</value>
   </data>
@@ -636,9 +618,6 @@ Nejsou shromažďovány žádné osobní údaje.</value>
   <data name="BackupLatest" xml:space="preserve">
     <value>nejnovější</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>vyberte položky k obnovení</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Během zálohování se vytvoří složka "{0}". Tuto složku můžete přesouvat, ale nepřejmenovávejte ji. Soubory uvnitř složky taky nijak neupravujte.
 Tato funkce je pořád v beta verzi.</value>
@@ -678,10 +657,6 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Aby se projevila změna tohoto nastavení, je nutné restartovat aplikaci.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>systémový ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>motiv</value>
@@ -765,9 +740,6 @@ Tato funkce je pořád v beta verzi.</value>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>denně</value>
   </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>opakovat v</value>
-  </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>pouze jednou</value>
   </data>
@@ -846,5 +818,11 @@ Tato funkce je pořád v beta verzi.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Toto nastavení bude použito pro nově přidané úkoly.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>zálohovat</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>obnovit</value>
   </data>
 </root>

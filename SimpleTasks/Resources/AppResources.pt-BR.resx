@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>ESCOLHER DATA</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>personalizar data de conclusão</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>mais tarde</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>próximo mês</value>
   </data>
@@ -405,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>ontem</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>d</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>antes da data de conclusão</value>
   </data>
@@ -636,9 +618,6 @@ Nenhuma informação pessoal será coletada.</value>
   <data name="BackupLatest" xml:space="preserve">
     <value>último</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>selecione os itens à restaurar</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>O backup irá criar uma nova pasta "{0}". Você pode mover esta pasta para seu local, mas por favor, não a renomeie. Também não modifique os arquivos dentro da mesma.
 Esta função ainda está em beta.</value>
@@ -678,10 +657,6 @@ Esta função ainda está em beta.</value>
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>É necessário reiniciar o aplicativo para que esta configuração tenha efeito.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>sistema ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>tema</value>
@@ -765,9 +740,6 @@ Esta função ainda está em beta.</value>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>diariamente</value>
   </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>se repete</value>
-  </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>apenas uma vez</value>
   </data>
@@ -846,5 +818,11 @@ Esta função ainda está em beta.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Esta configuração será aplicada para novas tarefas.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>backup</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>restauração</value>
   </data>
 </root>

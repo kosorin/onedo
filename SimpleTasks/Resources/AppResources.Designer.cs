@@ -359,6 +359,24 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to backup.
+        /// </summary>
+        public static string BackupPivotBackup {
+            get {
+                return ResourceManager.GetString("BackupPivotBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to restore.
+        /// </summary>
+        public static string BackupPivotRestore {
+            get {
+                return ResourceManager.GetString("BackupPivotRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
         public static string BackupText {
@@ -485,15 +503,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to later.
-        /// </summary>
-        public static string DateLater {
-            get {
-                return ResourceManager.GetString("DateLater", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to next month.
         /// </summary>
         public static string DateNextMonth {
@@ -553,33 +562,6 @@ namespace SimpleTasks.Resources {
         public static string DateThisWeek {
             get {
                 return ResourceManager.GetString("DateThisWeek", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to d.
-        /// </summary>
-        public static string DateTimeDaysAbbr {
-            get {
-                return ResourceManager.GetString("DateTimeDaysAbbr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to h.
-        /// </summary>
-        public static string DateTimeHoursAbbr {
-            get {
-                return ResourceManager.GetString("DateTimeHoursAbbr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to m.
-        /// </summary>
-        public static string DateTimeMinutesAbbr {
-            get {
-                return ResourceManager.GetString("DateTimeMinutesAbbr", resourceCulture);
             }
         }
         
@@ -1142,15 +1124,6 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select items to restore.
-        /// </summary>
-        public static string RestoreWhatText {
-            get {
-                return ResourceManager.GetString("RestoreWhatText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Restoring.
         /// </summary>
         public static string Restoring {
@@ -1160,7 +1133,7 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select backup to restore.
+        ///   Looks up a localized string similar to Select backup to restore.
         /// </summary>
         public static string SelectBackup {
             get {
@@ -1499,15 +1472,6 @@ namespace SimpleTasks.Resources {
         public static string SettingsThemeNote {
             get {
                 return ResourceManager.GetString("SettingsThemeNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to system ({0}).
-        /// </summary>
-        public static string SettingsThemeSystem {
-            get {
-                return ResourceManager.GetString("SettingsThemeSystem", resourceCulture);
             }
         }
         

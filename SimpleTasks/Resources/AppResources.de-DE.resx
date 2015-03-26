@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>DATUM EINSTELLEN</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>Fälligkeitsdatum</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>später</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>nächsten Monat</value>
   </data>
@@ -405,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>gestern</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>d</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>vor Fälligkeitsdatum</value>
   </data>
@@ -636,9 +618,6 @@ Es werden keine persönlichen Daten gesammelt.</value>
   <data name="BackupLatest" xml:space="preserve">
     <value>aktuell</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>Datensätze zum wiederherstellen auswählen</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Für die Sicherung wird ein neuer Ordner "{0}" erstellt. Dieser kann beliebig verschoben werden. Bitte nicht umbenennen oder die enthaltenen Dateien modifizieren. 
 Diese Funktion ist noch im Betastadium.</value>
@@ -678,10 +657,6 @@ Diese Funktion ist noch im Betastadium.</value>
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Ein Neustart der App ist nötig um diese Einstellung zu übernehmen.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>System ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>Thema</value>
@@ -765,9 +740,6 @@ Diese Funktion ist noch im Betastadium.</value>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>täglich</value>
   </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>Wiederholung</value>
-  </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>nur einmal</value>
   </data>
@@ -846,5 +818,11 @@ Diese Funktion ist noch im Betastadium.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Einstellung wird bei neuen Aufgaben angewendet.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>Sichern</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>Wiederherstellen</value>
   </data>
 </root>

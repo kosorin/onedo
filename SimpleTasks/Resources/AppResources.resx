@@ -140,9 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>CHOOSE DATE</value>
   </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>later</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>next month</value>
   </data>
@@ -402,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>yesterday</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>d</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>before due date</value>
   </data>
@@ -612,7 +597,7 @@ No personal data is being collected.</value>
     <value>Restoring</value>
   </data>
   <data name="SelectBackup" xml:space="preserve">
-    <value>select backup to restore</value>
+    <value>Select backup to restore</value>
   </data>
   <data name="BackupDownloadingList" xml:space="preserve">
     <value>Downloading list of backups</value>
@@ -632,9 +617,6 @@ No personal data is being collected.</value>
   </data>
   <data name="BackupLatest" xml:space="preserve">
     <value>latest</value>
-  </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>select items to restore</value>
   </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Backup will create new folder "{0}". You can move this folder to your location, but please, do not rename it. Also don't modify files inside.
@@ -675,10 +657,6 @@ It's still in beta.</value>
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Application restart is required for this setting to take effect.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>system ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>theme</value>
@@ -840,5 +818,11 @@ It's still in beta.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Setting will be applied for new tasks.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>backup</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>restore</value>
   </data>
 </root>

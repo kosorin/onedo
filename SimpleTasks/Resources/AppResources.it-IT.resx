@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>SCEGLI LA DATA</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>data di default</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>più tardi</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>prossimo mese</value>
   </data>
@@ -405,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>ieri</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>g</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>prima della data dell'impegno</value>
   </data>
@@ -635,9 +617,6 @@
   <data name="BackupLatest" xml:space="preserve">
     <value>recenti</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>seleziona elementi da ripristinare</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Il backup creerà una nuova cartella "{0}". Nota bene: può esssere spostata altrove, ma non rinominatela e non rinominate i file in essa contenuti. 
 E' ancora una funzione beta.</value>
@@ -677,10 +656,6 @@ E' ancora una funzione beta.</value>
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Bisogna riavviare l'app affinchè queste modifiche abbiano effetto.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>sistema ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>tema</value>
@@ -764,9 +739,6 @@ E' ancora una funzione beta.</value>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>daily</value>
   </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>repeats on</value>
-  </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>only once</value>
   </data>
@@ -845,5 +817,11 @@ E' ancora una funzione beta.</value>
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Setting will be applied for new tasks.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>backup</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>restore</value>
   </data>
 </root>

@@ -138,13 +138,7 @@
     <comment>save task</comment>
   </data>
   <data name="ChooseDate" xml:space="preserve">
-    <value>ВЫБЕРИТЕ ДАТУ</value>
-  </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>дата по умолчанию</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>позднее</value>
+    <value>УСТАНОВИТЕ ДАТУ</value>
   </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>следующий месяц</value>
@@ -156,7 +150,7 @@
     <value>нет даты</value>
   </data>
   <data name="DateOverdue" xml:space="preserve">
-    <value>прошедшие</value>
+    <value>в прошлом</value>
   </data>
   <data name="DateThisMonth" xml:space="preserve">
     <value>этот месяц</value>
@@ -246,7 +240,7 @@
     <value>через 2 недели</value>
   </data>
   <data name="SettingsDeleteCompletedTasks" xml:space="preserve">
-    <value>удалить выполненные задачи</value>
+    <value>удалять выполненные задачи</value>
   </data>
   <data name="SettingsDeleteCompletedTasksDays" xml:space="preserve">
     <value>Удалить в</value>
@@ -268,10 +262,10 @@
     <value>закрепить тайл</value>
   </data>
   <data name="AppBarUnpinTile" xml:space="preserve">
-    <value>открепить тайл</value>
+    <value>открепить плитку</value>
   </data>
   <data name="SettingsDeleteCompletedTasksInfo" xml:space="preserve">
-    <value>Задачи всегда автоматически удаляются, когда приложение открывается.</value>
+    <value>Задачи всегда автоматически удаляются, когда приложение запускается.</value>
   </data>
   <data name="AboutEmailSubject" xml:space="preserve">
     <value>Обратная связь для {0} {1}</value>
@@ -315,7 +309,7 @@
     <value>отменить</value>
   </data>
   <data name="SettingsEnableTile" xml:space="preserve">
-    <value>Включить тайл</value>
+    <value>Включить живую плитку</value>
   </data>
   <data name="SettingsTile" xml:space="preserve">
     <value>тайлы</value>
@@ -342,10 +336,10 @@
     <value>готово</value>
   </data>
   <data name="ChooseReminderTime" xml:space="preserve">
-    <value>ВЫБЕРИТЕ НАПОМИНАНИЕ</value>
+    <value>УСТАНОВИТЕ НАПОМИНАНИЕ</value>
   </data>
   <data name="SettingsUnpinCompleted" xml:space="preserve">
-    <value>Открепить тайл после завершения задачи</value>
+    <value>Удалять плитку при выполнении задачи</value>
   </data>
   <data name="AppBarAddBullet" xml:space="preserve">
     <value>добавить подпункт</value>
@@ -358,7 +352,7 @@
     <value>список изменений</value>
   </data>
   <data name="ChooseTime" xml:space="preserve">
-    <value>ВЫБЕРИТЕ ВРЕМЯ</value>
+    <value>УСТАНОВИТЕ ВРЕМЯ</value>
   </data>
   <data name="TimeAfternoon" xml:space="preserve">
     <value>день</value>
@@ -404,18 +398,6 @@
   </data>
   <data name="DateYesterday" xml:space="preserve">
     <value>вчера</value>
-  </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>д</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>ч</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>м</value>
-    <comment>1 letter abbreviation for minutes</comment>
   </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>до события</value>
@@ -536,7 +518,7 @@
     <value>Автоматически завершать подзадачи</value>
   </data>
   <data name="SettingsCompleteSubtasksDetail" xml:space="preserve">
-    <value>Если все подзадачи выполнены, помечать задачу как выполненную.</value>
+    <value>Если задача выполнена, ее подзадачи будут помечены как выполненные.</value>
   </data>
   <data name="SettingsVibrate" xml:space="preserve">
     <value>Вибрация</value>
@@ -551,7 +533,7 @@
     <value>Показывать заголовок</value>
   </data>
   <data name="TileSettingsShowCompletedSubtasks" xml:space="preserve">
-    <value>Показать выполненные подзадачи</value>
+    <value>Показывать выполненные подзадачи</value>
   </data>
   <data name="TileSettingsTitleOnOneLine" xml:space="preserve">
     <value>Заголовок в одну строку</value>
@@ -581,7 +563,7 @@
     <value>Изменить</value>
   </data>
   <data name="SettingsDefaultTaskTileSettings" xml:space="preserve">
-    <value>Настройки по умолчанию для тайла задач</value>
+    <value>Настройки по умолчанию для плитки задачи</value>
   </data>
   <data name="SettingsShowTaskCheckBox" xml:space="preserve">
     <value>Показывать чек-бокс задачи</value>
@@ -593,7 +575,7 @@
     <value>копия &amp; восстановление</value>
   </data>
   <data name="BackupText" xml:space="preserve">
-    <value>Копия</value>
+    <value>Создать копию</value>
   </data>
   <data name="RestoreText" xml:space="preserve">
     <value>Восстановление</value>
@@ -614,7 +596,7 @@
     <value>Восстановление</value>
   </data>
   <data name="SelectBackup" xml:space="preserve">
-    <value>выберите копию для восстановления</value>
+    <value>Выберите копию для восстановления</value>
   </data>
   <data name="BackupDownloadingList" xml:space="preserve">
     <value>Загрузка списка резервных копий</value>
@@ -635,11 +617,8 @@
   <data name="BackupLatest" xml:space="preserve">
     <value>последняя</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>выберите объекты для восстановления</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
-    <value>Резервное копирование создаст новую папку "{0}". Вы можете перемещать папку, но, пожалуйста, не переименовывайте её. Также не стоит трогать файлы внутри этой папки. Это всё ещё BETA-версия функции.</value>
+    <value>Резервное копирование создаст новую папку "{0}". Вы можете перемещать папку, но, пожалуйста, не переименовывайте её. Также не стоит трогать файлы внутри этой папки. Это всё ещё BETA-версия.</value>
   </data>
   <data name="RestoreOk" xml:space="preserve">
     <value>Успешное восстановление.</value>
@@ -648,13 +627,13 @@
     <value>Успешное резервное копирование.</value>
   </data>
   <data name="SettingsShowTaskCount" xml:space="preserve">
-    <value>Показать счётчик задач</value>
+    <value>Показывать счётчик задач</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
     <value>Название и дата на большом тайле рядом </value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
-    <value>Тайл быстрого добавления задачи</value>
+    <value>Плита быстрого добавления задачи</value>
   </data>
   <data name="TileForQuickAddPinButton" xml:space="preserve">
     <value>закрепить на рабочем столе</value>
@@ -666,7 +645,7 @@
     <value>Новая задача</value>
   </data>
   <data name="SettingsShowTaskCountHelp" xml:space="preserve">
-    <value>Если не включено, показывать список задач на маленьком тайле вместо количества задач.</value>
+    <value>Если отключено, то на маленьком тайле будет отображен список задач вместо счётчика задач.</value>
   </data>
   <data name="SettingsThemeDark" xml:space="preserve">
     <value>тёмная</value>
@@ -676,10 +655,6 @@
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Требуется перезапуск приложения, чтобы эта настройка вступила в силу.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>системная ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>тема</value>
@@ -758,13 +733,10 @@
     <value>Акцентный цвет</value>
   </data>
   <data name="Repeats" xml:space="preserve">
-    <value>повторы</value>
+    <value>повторять</value>
   </data>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>ежедневно</value>
-  </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>повторять</value>
   </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>однократно</value>
@@ -776,7 +748,7 @@
     <value>выходные</value>
   </data>
   <data name="RepeatsDaysOfWeek" xml:space="preserve">
-    <value>дни недели</value>
+    <value>выбрать дни недели</value>
   </data>
   <data name="RepeatsMonthly" xml:space="preserve">
     <value>ежемесячно</value>
@@ -813,7 +785,7 @@
     <comment>or appearance; section in settings</comment>
   </data>
   <data name="SettingsTaskTile" xml:space="preserve">
-    <value>Настройки плитки задач</value>
+    <value>Настройки плитки задачи</value>
   </data>
   <data name="BackupVersionMismatchCaption" xml:space="preserve">
     <value>Обратите внимание</value>
@@ -828,10 +800,10 @@
     <value>восстановить</value>
   </data>
   <data name="SettingsCompleteTask" xml:space="preserve">
-    <value>Автоматическое завершение задачи</value>
+    <value>Автоматически завершать задачи</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
-    <value>Если все подзадачи выполнены, помечать задачу как выполненную.</value>
+    <value>Если все подзадачи выполнены,  задача будет помечена как выполненная.</value>
   </data>
   <data name="DeleteTaskConfirm" xml:space="preserve">
     <value>Нажмите ещё раз для подтверждения.</value>
@@ -844,5 +816,11 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Настройка будет применена для новых задач.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>копия</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>восстановление</value>
   </data>
 </root>

@@ -118,7 +118,7 @@
                      Title="{Binding LocalizedResources.BackupAndRestoreTitle, ConverterParameter=ToUpper, Converter={StaticResource StringFunctionConverter}, Source={StaticResource LocalizedStrings}}"
                      Style="{StaticResource BackupPivotStyle}"
                      SelectionChanged="Pivot_SelectionChanged">
-            <phone:PivotItem Header="backup">
+            <phone:PivotItem Header="{Binding LocalizedResources.BackupPivotBackup, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
                     <StackPanel x:Name="BackupPanel"
                                 Margin="24,16,24,40">
@@ -173,7 +173,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
-            <phone:PivotItem Header="restore">
+            <phone:PivotItem Header="{Binding LocalizedResources.BackupPivotRestore, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer>
                     <StackPanel x:Name="RestorePanel"
                                 Margin="24,16,24,40">

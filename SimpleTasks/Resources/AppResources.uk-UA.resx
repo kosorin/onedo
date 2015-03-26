@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>ОБЕРІТЬ ДАТУ</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>власна дата</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>пізніше</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>наступний місяць</value>
   </data>
@@ -216,7 +210,7 @@
     <comment>delete confirmation</comment>
   </data>
   <data name="DeleteTaskNo" xml:space="preserve">
-    <value>відміна</value>
+    <value>скасувати</value>
     <comment>cancel delete confirmation</comment>
   </data>
   <data name="AboutContactUs" xml:space="preserve">
@@ -312,7 +306,7 @@
     <value>майбутні</value>
   </data>
   <data name="AppBarCancel" xml:space="preserve">
-    <value>відміна</value>
+    <value>скасувати</value>
   </data>
   <data name="SettingsEnableTile" xml:space="preserve">
     <value>Увімкнути плитку</value>
@@ -404,18 +398,6 @@
   </data>
   <data name="DateYesterday" xml:space="preserve">
     <value>вчора</value>
-  </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>д</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>г</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>х</value>
-    <comment>1 letter abbreviation for minutes</comment>
   </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>до дати</value>
@@ -519,7 +501,7 @@
     <value>завершити всі</value>
   </data>
   <data name="NoTasksHelpEnd" xml:space="preserve">
-    <value>щоб додати завдання.</value>
+    <value>щоб додати задачу.</value>
     <comment>This is second part of: Tap {plus_icon} to add a task.</comment>
   </data>
   <data name="NoTasksHelpStart" xml:space="preserve">
@@ -636,9 +618,6 @@
   <data name="BackupLatest" xml:space="preserve">
     <value>остання</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>що відновити</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Резервне копіювання створить нову папку "{0}". Ви можете перемістити цю папку на нове місце, але ви не повинні перейменовувати її або змінювати в ній файли.</value>
   </data>
@@ -652,7 +631,7 @@
     <value>Показувати кількість задач</value>
   </data>
   <data name="SettingsSwapDateAndTitle" xml:space="preserve">
-    <value>Переставити назву і дату на широкій плитці</value>
+    <value>Поміняти назву і дату на широкій плитці</value>
   </data>
   <data name="TileForQuickAddLabel" xml:space="preserve">
     <value>Плитка швидкого додавання</value>
@@ -677,10 +656,6 @@
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Потрібне перезавантаження додатку, щоб зміни вступили в силу.</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>системна ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>тема</value>
@@ -734,7 +709,7 @@
     <value>Усі завдання видалено.</value>
   </data>
   <data name="ToastCompletedTasksDeleted" xml:space="preserve">
-    <value>Завершені завдання видалено.</value>
+    <value>Завершені задачі видалено.</value>
   </data>
   <data name="ToastPostponedUntil" xml:space="preserve">
     <value>Відкласти до {0:ddd}. {0:d}</value>
@@ -763,9 +738,6 @@
   </data>
   <data name="RepeatsDaily" xml:space="preserve">
     <value>щоденно</value>
-  </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>повтори</value>
   </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>лише раз</value>
@@ -823,7 +795,7 @@
     <value>Версія даної резервної копії не відповідає поточній версії додатку. Деяка інформація може бути відсутньою в резервної копії.</value>
   </data>
   <data name="BackupVersionMismatchNo" xml:space="preserve">
-    <value>відміна</value>
+    <value>скасувати</value>
   </data>
   <data name="BackupVersionMismatchYes" xml:space="preserve">
     <value>відновити</value>
@@ -832,7 +804,7 @@
     <value>Автоматично завершувати завдання</value>
   </data>
   <data name="SettingsCompleteTaskDetail" xml:space="preserve">
-    <value>Після завершення всі підзавдань, позначити завдання як завершене.</value>
+    <value>Після завершення всіх підзадач, відмітити задачу як завершену.</value>
   </data>
   <data name="DeleteTaskConfirm" xml:space="preserve">
     <value>Натисніть ще раз для підтвердження.</value>
@@ -845,5 +817,11 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Настройки будуть використовуватись для нових завдань.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>копіювання</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>відновлення</value>
   </data>
 </root>

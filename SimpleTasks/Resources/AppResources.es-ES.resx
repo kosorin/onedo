@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>ELIGE FECHA</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>fijar fecha personalizada</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>más tarde</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>próximo mes</value>
   </data>
@@ -405,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>ayer</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>d</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>h</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>m</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>antes de la hora fijada</value>
   </data>
@@ -635,9 +617,6 @@
   <data name="BackupLatest" xml:space="preserve">
     <value>última</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>elige qué quieres restaurar</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>Esta opción creará una carpeta llamada "{0}". Puedes moverla a otro sitio, pero por favor, no la renombres. Tampoco modifiques los archivos que hay dentro. Aún está en fase beta.</value>
   </data>
@@ -676,10 +655,6 @@
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>Es necesario reiniciar la aplicación para que este ajuste tenga efecto</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>sistema ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>tema</value>
@@ -763,9 +738,6 @@
   <data name="RepeatsDaily" xml:space="preserve">
     <value>Diaria</value>
   </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>repetición activada</value>
-  </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>sólo una vez</value>
   </data>
@@ -844,5 +816,11 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>Este ajuste se aplicará a las nuevas tareas.</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>copia de seguridad</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>restaurar</value>
   </data>
 </root>

@@ -140,12 +140,6 @@
   <data name="ChooseDate" xml:space="preserve">
     <value>选择日期</value>
   </data>
-  <data name="DateCustomDue" xml:space="preserve">
-    <value>自定义截止日期</value>
-  </data>
-  <data name="DateLater" xml:space="preserve">
-    <value>稍晚</value>
-  </data>
   <data name="DateNextMonth" xml:space="preserve">
     <value>下月</value>
   </data>
@@ -405,18 +399,6 @@
   <data name="DateYesterday" xml:space="preserve">
     <value>昨天</value>
   </data>
-  <data name="DateTimeDaysAbbr" xml:space="preserve">
-    <value>天</value>
-    <comment>1 letter abbreviation for days</comment>
-  </data>
-  <data name="DateTimeHoursAbbr" xml:space="preserve">
-    <value>时</value>
-    <comment>1 letter abbreviation for hours</comment>
-  </data>
-  <data name="DateTimeMinutesAbbr" xml:space="preserve">
-    <value>分</value>
-    <comment>1 letter abbreviation for minutes</comment>
-  </data>
   <data name="ReminderBeforeDueDateText" xml:space="preserve">
     <value>截止日期之前</value>
   </data>
@@ -635,9 +617,6 @@
   <data name="BackupLatest" xml:space="preserve">
     <value>最新</value>
   </data>
-  <data name="RestoreWhatText" xml:space="preserve">
-    <value>选取项目来恢复</value>
-  </data>
   <data name="BackupAndRestoreHelpText" xml:space="preserve">
     <value>备份会创建一个新文件夹：“{0}”。你可以从本地文件中移除此文件夹，但是请，不要重命名它。也不要修改里面的文件。它还只是BETA版本。</value>
   </data>
@@ -676,10 +655,6 @@
   </data>
   <data name="SettingsThemeNote" xml:space="preserve">
     <value>应用需重启以使该设置生效。</value>
-  </data>
-  <data name="SettingsThemeSystem" xml:space="preserve">
-    <value>系统 ({0})</value>
-    <comment>{0} will be replaced with dark or light</comment>
   </data>
   <data name="SettingsThemeTitle" xml:space="preserve">
     <value>主题</value>
@@ -763,9 +738,6 @@
   <data name="RepeatsDaily" xml:space="preserve">
     <value>每天</value>
   </data>
-  <data name="RepeatsOn" xml:space="preserve">
-    <value>重复按</value>
-  </data>
   <data name="RepeatsOnce" xml:space="preserve">
     <value>只一次</value>
   </data>
@@ -844,5 +816,11 @@
   </data>
   <data name="SettingsDefaultTaskTileHelp" xml:space="preserve">
     <value>设置会应用于新任务。</value>
+  </data>
+  <data name="BackupPivotBackup" xml:space="preserve">
+    <value>备份</value>
+  </data>
+  <data name="BackupPivotRestore" xml:space="preserve">
+    <value>恢复</value>
   </data>
 </root>
