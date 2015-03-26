@@ -27,7 +27,7 @@ namespace SimpleTasks
 {
     public partial class App : Application
     {
-        public static string ForceDebugCulture = "en-US";
+        public static string ForceDebugCulture = "ru-RU";
 
         #region Properties
         public static readonly string BackgroundAgentName = "PeriodicBackgroundAgent";
@@ -161,16 +161,40 @@ namespace SimpleTasks
         {
             ChangelogList changelog = new ChangelogList();
 
-            foreach (var version in JObject.Parse(AppResources.ChangelogFile))
+            try
             {
-                JObject categoryData = (JObject)version.Value;
-
-                ChangelogCategory category = new ChangelogCategory(version.Key, Convert.ToDateTime(categoryData["date"].ToString()));
-                foreach (JToken item in (JArray)categoryData["items"])
+                string path;
+                if (AppResources.ResourceLanguage == "cs-CZ" || AppResources.ResourceLanguage == "sk-SK")
                 {
-                    category.AddItem(item.ToString());
+                    path = @"Resources\Changelog\Changelog.cs.json";
                 }
-                changelog.AddCategory(category);
+                else
+                {
+                    path = @"Resources\Changelog\Changelog.json";
+                }
+                string jsonText = ResourcesHelper.ReadTextFile(path);
+                if (jsonText != null)
+                {
+                    foreach (var version in JObject.Parse(jsonText))
+                    {
+                        JObject categoryData = (JObject)version.Value;
+
+                        ChangelogCategory category = new ChangelogCategory(version.Key,
+                            Convert.ToDateTime(categoryData["date"].ToString()));
+                        foreach (JToken item in (JArray)categoryData["items"])
+                        {
+                            category.AddItem(item.ToString());
+                        }
+                        changelog.AddCategory(category);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debug.WriteLine(ex.StackTrace);
+#endif
             }
 
             return changelog;

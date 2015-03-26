@@ -266,12 +266,12 @@
     <Content Include="Assets\Tiles\NewTaskSmallTile.png" />
     <Content Include="Assets\Tiles\SmallTile.png" />
     <Content Include="Assets\Tiles\WideTile.png" />
-    <Content Include="Resources\Changelog\Changelog.cs-CZ.txt">
+    <None Include="Resources\Changelog\Changelog.cs.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Changelog\Changelog.txt">
+    </None>
+    <None Include="Resources\Changelog\Changelog.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
