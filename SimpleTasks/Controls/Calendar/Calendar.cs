@@ -163,7 +163,7 @@ namespace SimpleTasks.Controls.Calendar
         /// Minimum Date that calendar navigation supports
         /// </summary>
         public static readonly DependencyProperty MinimumDateProperty =
-            DependencyProperty.Register("MinimumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(1753, 1, 1)));
+            DependencyProperty.Register("MinimumDate", typeof(DateTime), typeof(Calendar), new PropertyMetadata(new DateTime(1992, 5, 7)));
 
         /// <summary>
         /// Maximum Date that calendar navigation supports
