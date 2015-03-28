@@ -15,6 +15,29 @@ namespace SimpleTasks.Core.Helpers
             return new DateTime(date.Year, date.Month, date.Day, dt.Hour, dt.Minute, dt.Second);
         }
 
+        public static DateTime SetYear(this DateTime currentDate, DateTime newDate)
+        {
+            if (newDate.Year != currentDate.Year)
+            {
+                return new DateTime(newDate.Year, currentDate.Month, Math.Min(currentDate.Day, DateTime.DaysInMonth(newDate.Year, currentDate.Month)));
+            }
+            return currentDate;
+        }
+
+        public static DateTime SetMonth(this DateTime currentDate, DateTime newDate)
+        {
+            if (newDate.Month != currentDate.Month)
+            {
+                return new DateTime(currentDate.Year, newDate.Month, Math.Min(currentDate.Day, DateTime.DaysInMonth(currentDate.Year, newDate.Month)));
+            }
+            return currentDate;
+        }
+
+        public static DateTime SetYearMonth(this DateTime currentDate, DateTime newDate)
+        {
+            return currentDate.SetYear(newDate).SetMonth(newDate);
+        }
+
         public static long ToUnixTimestamp(this DateTime dateTime)
         {
             DateTime unixEpoch = new DateTime(1970, 1, 1);

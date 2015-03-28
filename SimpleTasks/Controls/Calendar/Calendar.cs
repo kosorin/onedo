@@ -259,6 +259,8 @@ namespace SimpleTasks.Controls.Calendar
                     calendar.BuildMonthItems();
                 }
 
+                calendar.SelectedDate = calendar.SelectedDate.SetYearMonth(displayDate);
+
                 calendar.OnDisplayDateChanged(displayDate);
             }
         }
