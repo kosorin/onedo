@@ -789,6 +789,13 @@
                                 </VisualState>
                                 <VisualState x:Name="DaysMode">
                                     <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="DayItemsGridTransform"
+                                                         Storyboard.TargetProperty="ScaleX"
+                                                         To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="DayItemsGridTransform"
+                                                         Storyboard.TargetProperty="ScaleY"
+                                                         To="1" />
+
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MonthItemsGrid"
                                                                        Storyboard.TargetProperty="IsHitTestVisible">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -806,7 +813,6 @@
                         </VisualStateManager.VisualStateGroups>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
@@ -892,26 +898,38 @@
                             </Canvas>
                         </Button>
 
-                        <!--Calendar DayOfWeek Items-->
-                        <Grid Grid.Row="1"
+                        <!--Day Items-->
+                        <Grid x:Name="DayItemsGrid"
+                              Grid.Row="1"
                               Grid.Column="0"
                               Grid.ColumnSpan="3"
-                              x:Name="DayOfWeekItemsGrid" />
+                              RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <CompositeTransform x:Name="DayItemsGridTransform"
+                                                    ScaleX="0.3"
+                                                    ScaleY="0.3" />
+                            </Grid.RenderTransform>
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <!--Calendar Items-->
-                        <Grid Grid.Row="2"
-                              Grid.Column="0"
-                              Grid.ColumnSpan="3"
-                              x:Name="ItemsGrid" />
+                            <!--Calendar DayOfWeek Items-->
+                            <Grid  x:Name="DayOfWeekItemsGrid" />
+
+                            <!--Calendar Items-->
+                            <Grid Grid.Row="1"
+                                  x:Name="ItemsGrid" />
+                        </Grid>
 
                         <!--Month Items-->
-                        <Grid Grid.Row="1"
-                              Grid.RowSpan="2"
+                        <Grid x:Name="MonthItemsGrid"
+                              Grid.Row="1"
                               Grid.Column="0"
                               Grid.ColumnSpan="3"
                               Opacity="0"
                               IsHitTestVisible="False"
-                              x:Name="MonthItemsGrid"
                               Background="{StaticResource CalendarMonthBackgroundBrush}"
                               RenderTransformOrigin="0.5,0.5">
                             <Grid.RenderTransform>

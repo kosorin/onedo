@@ -23,6 +23,7 @@ namespace SimpleTasks.Controls.Calendar
     [TemplatePart(Name = NextMonthName, Type = typeof(Button))]
     [TemplatePart(Name = DayOfWeekItemsGridName, Type = typeof(Grid))]
     [TemplatePart(Name = ItemsGridName, Type = typeof(Grid))]
+    [TemplatePart(Name = DayItemsGridName, Type = typeof(Grid))]
     [TemplatePart(Name = MonthItemsGridName, Type = typeof(Grid))]
     [TemplateVisualState(Name = DaysModeState, GroupName = DisplayStates)]
     [TemplateVisualState(Name = MonthsModeState, GroupName = DisplayStates)]
@@ -51,6 +52,7 @@ namespace SimpleTasks.Controls.Calendar
         #region Fields
         private Grid _dayOfWeekItemsGrid = null;
         private Grid _itemsGrid = null;
+        private Grid _dayItemsGrid = null;
         private Grid _monthItemsGrid = null;
         private DateTime _oldDisplayDate = DateTime.MinValue;
 
@@ -276,11 +278,17 @@ namespace SimpleTasks.Controls.Calendar
             var calendar = sender as Calendar;
             if (calendar != null)
             {
+                Point origin = new Point
+                {
+                    X = (((calendar.DisplayDate.Month - 1) % _monthColumnCount) / (double)(_monthColumnCount - 1)),
+                    Y = ((calendar.DisplayDate.Month - 1) / _monthColumnCount) / (double)(_monthRowCount - 1)
+                };
+                if (calendar._dayItemsGrid != null)
+                {
+                    calendar._dayItemsGrid.RenderTransformOrigin = origin;
+                }
                 if (calendar._monthItemsGrid != null)
                 {
-                    Point origin = new Point();
-                    origin.X = (((calendar.DisplayDate.Month - 1) % _monthColumnCount) / (double)(_monthColumnCount - 1));
-                    origin.Y = ((calendar.DisplayDate.Month - 1) / _monthColumnCount) / (double)(_monthRowCount - 1);
                     calendar._monthItemsGrid.RenderTransformOrigin = origin;
                 }
 
@@ -532,6 +540,7 @@ namespace SimpleTasks.Controls.Calendar
         private const string NextMonthName = "NextButton";
         private const string DayOfWeekItemsGridName = "DayOfWeekItemsGrid";
         private const string ItemsGridName = "ItemsGrid";
+        private const string DayItemsGridName = "DayItemsGrid";
         private const string MonthItemsGridName = "MonthItemsGrid";
 
         public override void OnApplyTemplate()
@@ -560,11 +569,12 @@ namespace SimpleTasks.Controls.Calendar
             // Items Grid 
             _dayOfWeekItemsGrid = GetTemplateChild(DayOfWeekItemsGridName) as Grid;
             _itemsGrid = GetTemplateChild(ItemsGridName) as Grid;
+            _dayItemsGrid = GetTemplateChild(DayItemsGridName) as Grid;
             _monthItemsGrid = GetTemplateChild(MonthItemsGridName) as Grid;
-            if (_itemsGrid != null)
+            if (_dayItemsGrid != null)
             {
-                _itemsGrid.ManipulationCompleted -= ItemsManipulationCompleted;
-                _itemsGrid.ManipulationCompleted += ItemsManipulationCompleted;
+                _dayItemsGrid.ManipulationCompleted -= DayItemsManipulationCompleted;
+                _dayItemsGrid.ManipulationCompleted += DayItemsManipulationCompleted;
             }
             if (_monthItemsGrid != null)
             {
@@ -662,31 +672,29 @@ namespace SimpleTasks.Controls.Calendar
             }
         }
 
-        private void ItemsManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        private void DayItemsManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            GestureType type = GetGestureType(e);
-
-            if (type == GestureType.FlickRightToLeft)
+            switch (GetGestureType(e))
             {
+            case GestureType.FlickRightToLeft:
                 IncrementMonth();
-            }
-            else if (type == GestureType.FlickLeftToRight)
-            {
+                break;
+            case GestureType.FlickLeftToRight:
                 DecrementMonth();
+                break;
             }
         }
 
         private void MonthItemsManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            GestureType type = GetGestureType(e);
-
-            if (type == GestureType.FlickRightToLeft)
+            switch (GetGestureType(e))
             {
+            case GestureType.FlickRightToLeft:
                 IncrementYear();
-            }
-            else if (type == GestureType.FlickLeftToRight)
-            {
+                break;
+            case GestureType.FlickLeftToRight:
                 DecrementYear();
+                break;
             }
         }
         #endregion
