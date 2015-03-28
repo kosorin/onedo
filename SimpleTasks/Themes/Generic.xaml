@@ -1124,6 +1124,9 @@
                                         <ColorAnimation Storyboard.TargetName="DayNumberBlock"
                                                         Storyboard.TargetProperty="(Grid.Foreground).(SolidColorBrush.Color)"
                                                         To="{StaticResource CalendarSelectedItemColor}" />
+                                        <ColorAnimation Storyboard.TargetName="MonthTextBlock"
+                                                        Storyboard.TargetProperty="(Grid.Foreground).(SolidColorBrush.Color)"
+                                                        To="{StaticResource CalendarSelectedItemColor}" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unselected" />
