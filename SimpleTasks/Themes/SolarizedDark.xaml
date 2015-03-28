@@ -95,10 +95,7 @@
 
     <!--Region Calendar-->
     <Color x:Key="CalendarDisabledColor">#55fdf6e3</Color>
-    <Color x:Key="CalendarBorderColor">#657b83</Color>
     <Color x:Key="CalendarSelectedItemColor">#fdf6e3</Color>
-    <SolidColorBrush x:Key="CalendarBorderBrush"
-                     Color="{StaticResource CalendarBorderColor}" />
     <SolidColorBrush x:Key="CalendarItemBackgroundBrush"
                      Color="#33fdf6e3" />
     <SolidColorBrush x:Key="CalendarItemBrush"

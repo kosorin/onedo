@@ -18,8 +18,7 @@
 
             <!--Kalendář-->
             <calendar:Calendar x:Name="Calendar"
-                               VerticalAlignment="Top"
-                               Margin="-1,96" />
+                               VerticalAlignment="Center" />
 
             <!--Rychlý výběr-->
             <Grid VerticalAlignment="Bottom"

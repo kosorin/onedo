@@ -721,16 +721,6 @@
     <!--EndRegion-->
 
     <!--Region Calendar-->
-    <Style x:Key="CalendarBorderStyle"
-           TargetType="Border">
-        <Setter Property="BorderThickness"
-                Value="1" />
-        <Setter Property="BorderBrush"
-                Value="{StaticResource CalendarBorderBrush}" />
-        <Setter Property="Margin"
-                Value="-1,-1,0,0" />
-    </Style>
-
     <Style TargetType="calendar:Calendar">
         <Setter Property="Template">
             <Setter.Value>
@@ -909,7 +899,7 @@
                                                     ScaleX="0.3"
                                                     ScaleY="0.3" />
                             </Grid.RenderTransform>
-                            
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -948,8 +938,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:CalendarItem">
-                    <Grid>
-
+                    <Border x:Name="OuterBorder">
+                        <Border.Background>
+                            <LinearGradientBrush x:Name="DisabledBrush"
+                                                 EndPoint="0,0"
+                                                 StartPoint="5,5"
+                                                 SpreadMethod="Repeat"
+                                                 MappingMode="Absolute"
+                                                 Opacity="0.0">
+                                <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                              Offset="0" />
+                                <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                              Offset="0.2" />
+                                <GradientStop Color="Transparent"
+                                              Offset="0.2" />
+                                <GradientStop Color="Transparent"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <VisualStateManager.VisualStateGroups>
 
                             <!--Selection States-->
@@ -1036,45 +1042,24 @@
 
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="OuterBorder"
-                                Style="{StaticResource CalendarBorderStyle}"
-                                BorderThickness="1">
-                            <Border.Background>
-                                <LinearGradientBrush x:Name="DisabledBrush"
-                                                     EndPoint="0,0"
-                                                     StartPoint="5,5"
-                                                     SpreadMethod="Repeat"
-                                                     MappingMode="Absolute"
-                                                     Opacity="0.0">
-                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
-                                                  Offset="0" />
-                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
-                                                  Offset="0.2" />
-                                    <GradientStop Color="Transparent"
-                                                  Offset="0.2" />
-                                    <GradientStop Color="Transparent"
-                                                  Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Grid x:Name="OuterGrid"
-                                  Background="Transparent">
-                                <Border x:Name="TodayBorder"
-                                        Opacity="0"
-                                        BorderThickness="3"
-                                        BorderBrush="{StaticResource AccentBrush}" />
-                                <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
-                                           Opacity="0.45" />
-                                <TextBlock x:Name="DayNumberBlock"
-                                           Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}"
-                                           Style="{StaticResource NormalTextStyle}"
-                                           FontSize="28"
-                                           Foreground="{StaticResource CalendarItemBrush}"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Margin="0,8" />
-                            </Grid>
-                        </Border>
-                    </Grid>
+                        <Grid x:Name="OuterGrid"
+                              Background="Transparent">
+                            <Border x:Name="TodayBorder"
+                                    Opacity="0"
+                                    BorderThickness="3"
+                                    BorderBrush="{StaticResource AccentBrush}" />
+                            <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
+                                       Opacity="0.45" />
+                            <TextBlock x:Name="DayNumberBlock"
+                                       Text="{Binding Path=DayNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Style="{StaticResource NormalTextStyle}"
+                                       FontSize="28"
+                                       Foreground="{StaticResource CalendarItemBrush}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,8" />
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1084,8 +1069,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:CalendarDayOfWeekItem">
-                    <Border Style="{StaticResource CalendarBorderStyle}"
-                            Background="{StaticResource CalendarWeekdayBackgroundBrush}">
+                    <Border Background="{StaticResource CalendarWeekdayBackgroundBrush}">
                         <TextBlock Text="{TemplateBinding Text}"
                                    Style="{StaticResource NormalTextStyle}"
                                    Foreground="{StaticResource CalendarWeekdayBrush}"
@@ -1103,8 +1087,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="calendar:CalendarMonthItem">
-                    <Grid>
-
+                    <Border x:Name="OuterBorder">
+                        <Border.Background>
+                            <LinearGradientBrush x:Name="DisabledBrush"
+                                                 EndPoint="0,0"
+                                                 StartPoint="5,5"
+                                                 SpreadMethod="Repeat"
+                                                 MappingMode="Absolute"
+                                                 Opacity="0.0">
+                                <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                              Offset="0" />
+                                <GradientStop Color="{StaticResource CalendarDisabledColor}"
+                                              Offset="0.2" />
+                                <GradientStop Color="Transparent"
+                                              Offset="0.2" />
+                                <GradientStop Color="Transparent"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <VisualStateManager.VisualStateGroups>
 
                             <!--Selection States-->
@@ -1172,53 +1172,32 @@
 
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="OuterBorder"
-                                Style="{StaticResource CalendarBorderStyle}"
-                                BorderThickness="1">
-                            <Border.Background>
-                                <LinearGradientBrush x:Name="DisabledBrush"
-                                                     EndPoint="0,0"
-                                                     StartPoint="5,5"
-                                                     SpreadMethod="Repeat"
-                                                     MappingMode="Absolute"
-                                                     Opacity="0.0">
-                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
-                                                  Offset="0" />
-                                    <GradientStop Color="{StaticResource CalendarDisabledColor}"
-                                                  Offset="0.2" />
-                                    <GradientStop Color="Transparent"
-                                                  Offset="0.2" />
-                                    <GradientStop Color="Transparent"
-                                                  Offset="1" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Grid x:Name="OuterGrid"
-                                  Background="Transparent">
-                                <Border x:Name="TodayBorder"
-                                        Opacity="0"
-                                        BorderThickness="3"
-                                        BorderBrush="{StaticResource AccentBrush}" />
-                                <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
-                                           Opacity="0.45" />
-                                <StackPanel VerticalAlignment="Center">
-                                    <TextBlock x:Name="DayNumberBlock"
-                                               Text="{Binding Path=MonthNumber, RelativeSource={RelativeSource TemplatedParent}}"
-                                               Style="{StaticResource NormalTextStyle}"
-                                               FontSize="42"
-                                               Foreground="{StaticResource CalendarItemBrush}"
-                                               HorizontalAlignment="Center"
-                                               Margin="0,-4,0,-8" />
-                                    <TextBlock x:Name="MonthTextBlock"
-                                               Text="{Binding Path=MonthText, RelativeSource={RelativeSource TemplatedParent}}"
-                                               Style="{StaticResource NormalTextStyle}"
-                                               FontSize="20"
-                                               Foreground="{StaticResource CalendarItemBrush}"
-                                               Opacity="0.8"
-                                               HorizontalAlignment="Center" />
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </Grid>
+                        <Grid x:Name="OuterGrid"
+                              Background="Transparent">
+                            <Border x:Name="TodayBorder"
+                                    Opacity="0"
+                                    BorderThickness="3"
+                                    BorderBrush="{StaticResource AccentBrush}" />
+                            <Rectangle Fill="{StaticResource CalendarItemBackgroundBrush}"
+                                       Opacity="0.45" />
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock x:Name="DayNumberBlock"
+                                           Text="{Binding Path=MonthNumber, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           FontSize="42"
+                                           Foreground="{StaticResource CalendarItemBrush}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,-4,0,-8" />
+                                <TextBlock x:Name="MonthTextBlock"
+                                           Text="{Binding Path=MonthText, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Style="{StaticResource NormalTextStyle}"
+                                           FontSize="20"
+                                           Foreground="{StaticResource CalendarItemBrush}"
+                                           Opacity="0.8"
+                                           HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
