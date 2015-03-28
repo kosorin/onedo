@@ -14,19 +14,14 @@
         <TextBlock Style="{StaticResource BasePickerPageHeaderStyle}"
                    Text="{Binding LocalizedResources.ChooseDate, Source={StaticResource LocalizedStrings}}" />
 
-        <Grid Margin="0,0,0,20">
+        <Grid>
 
             <!--Kalendář-->
             <calendar:Calendar x:Name="Calendar"
                                VerticalAlignment="Center" />
 
             <!--Rychlý výběr-->
-            <Grid VerticalAlignment="Bottom"
-                  Margin="15,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ItemsControl Style="{StaticResource BasePickerQuickPanelStyle}">
                 <StackPanel>
                     <Button Content="{Binding LocalizedResources.DateToday, Source={StaticResource LocalizedStrings}}"
                             Style="{StaticResource BasePickerQuickButtonStyle}"
@@ -43,7 +38,7 @@
                             Style="{StaticResource BasePickerQuickButtonStyle}"
                             Click="NextWeek_Click" />
                 </StackPanel>
-            </Grid>
+            </ItemsControl>
         </Grid>
     </Grid>
 

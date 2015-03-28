@@ -13,19 +13,13 @@
         <TextBlock Text="{Binding LocalizedResources.ChooseTime, Source={StaticResource LocalizedStrings}, Converter={StaticResource StringFunctionConverter}, ConverterParameter='ToUpper'}"
                    Style="{StaticResource BasePickerPageHeaderStyle}" />
 
-        <StackPanel VerticalAlignment="Bottom"
-                    Margin="0,0,0,20">
+        <StackPanel VerticalAlignment="Bottom">
 
             <controls:RoundTimePicker x:Name="TimePicker"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center" />
 
-            <Grid VerticalAlignment="Bottom"
-                  Margin="12,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ItemsControl Style="{StaticResource BasePickerQuickPanelStyle}">
                 <StackPanel>
                     <Button Content="{Binding LocalizedResources.TimeMorning, Source={StaticResource LocalizedStrings}}"
                             Style="{StaticResource BasePickerQuickButtonStyle}"
@@ -48,7 +42,7 @@
                             Style="{StaticResource BasePickerQuickButtonStyle}"
                             Click="Night_Click" />
                 </StackPanel>
-            </Grid>
+            </ItemsControl>
         </StackPanel>
     </Grid>
 

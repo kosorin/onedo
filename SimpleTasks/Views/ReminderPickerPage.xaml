@@ -37,12 +37,7 @@
                    Text="{Binding LocalizedResources.ChooseReminderTime, Source={StaticResource LocalizedStrings}}" />
 
         <!--Rychlý výběr-->
-        <Grid VerticalAlignment="Bottom"
-              Margin="15,20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <ItemsControl Style="{StaticResource BasePickerQuickPanelStyle}">
             <StackPanel>
                 <Button Content="{Binding LocalizedResources.TimeZero, Source={StaticResource LocalizedStrings}}"
                         Tag="0.00:00"
@@ -79,9 +74,9 @@
                         Style="{StaticResource BasePickerQuickButtonStyle}"
                         Click="QuickButton_Click" />
             </StackPanel>
-        </Grid>
+        </ItemsControl>
 
-        <StackPanel Margin="30,200,30,0">
+        <StackPanel Margin="24,200,24,0">
 
             <!--Info-->
             <StackPanel Orientation="Horizontal">

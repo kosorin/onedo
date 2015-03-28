@@ -865,8 +865,6 @@
                    BasedOn="{StaticResource NormalTextStyle}">
                 <Setter Property="Foreground"
                         Value="{StaticResource ButtonForegroundBrush}" />
-                <Setter Property="FontSize"
-                        Value="24" />
                 <Setter Property="TextWrapping"
                         Value="NoWrap" />
                 <Setter Property="VerticalAlignment"
@@ -891,6 +889,8 @@
                         Value="{StaticResource ButtonBackgroundBrush}" />
                 <Setter Property="BorderThickness"
                         Value="0" />
+                <Setter Property="FontSize"
+                        Value="24" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ButtonBase">
@@ -933,6 +933,7 @@
                                 <TextBlock x:Name="Text"
                                            Text="{TemplateBinding Content}"
                                            Style="{StaticResource ButtonTextStyle}"
+                                           FontSize="{TemplateBinding FontSize}"
                                            Foreground="{TemplateBinding Foreground}"
                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
                             </Border>
@@ -1352,7 +1353,7 @@
                                                                  To="0.38" />
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualState x:Name="Pressed"/>
+                                        <VisualState x:Name="Pressed" />
                                     </VisualStateGroup>
                                     <VisualStateGroup x:Name="CheckStates">
                                         <VisualStateGroup.Transitions>
@@ -1484,75 +1485,37 @@
                         Value="{StaticResource BasePickerPageForegroundBrush}" />
             </Style>
 
-            <Style x:Key="BasePickerQuickButtonStyle"
-                   TargetType="Button">
-                <Setter Property="BorderBrush"
-                        Value="{StaticResource ButtonBackgroundBrush}" />
-                <Setter Property="Foreground"
-                        Value="{StaticResource ButtonForegroundBrush}" />
+            <Style x:Key="BasePickerQuickPanelStyle"
+                   TargetType="ItemsControl">
                 <Setter Property="Margin"
-                        Value="0,-5" />
-                <Setter Property="Padding"
-                        Value="0" />
-                <Setter Property="Height"
-                        Value="60" />
-                <Setter Property="Template">
+                        Value="24,0,12,12" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="ItemsPanel">
                     <Setter.Value>
-                        <ControlTemplate TargetType="ButtonBase">
-                            <Grid Background="Transparent">
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="CommonStates">
-                                        <VisualState x:Name="Normal" />
-                                        <VisualState x:Name="MouseOver" />
-                                        <VisualState x:Name="Pressed">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentContainer"
-                                                                               Storyboard.TargetProperty="Foreground">
-                                                    <DiscreteObjectKeyFrame KeyTime="0"
-                                                                            Value="{StaticResource ButtonDarkForegroundBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
-                                                                               Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0"
-                                                                            Value="{StaticResource AccentBrush}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Disabled">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
-                                                                               Storyboard.TargetProperty="Opacity">
-                                                    <DiscreteObjectKeyFrame KeyTime="0"
-                                                                            Value="0.3" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBackground"
-                                                                               Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0"
-                                                                            Value="Transparent" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <Border x:Name="ButtonBackground"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="0"
-                                        Background="{TemplateBinding Background}"
-                                        Margin="{StaticResource PhoneTouchTargetOverhang}">
-                                    <TextBlock x:Name="ContentContainer"
-                                               Style="{StaticResource ButtonTextStyle}"
-                                               FontSize="20"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                               Padding="{TemplateBinding Padding}"
-                                               Text="{TemplateBinding Content}" />
-                                </Border>
+                        <ItemsPanelTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
                             </Grid>
-                        </ControlTemplate>
+                        </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style x:Key="BasePickerQuickButtonStyle"
+                   TargetType="Button"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="Margin"
+                        Value="0,0,12,12" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+                <Setter Property="FontSize"
+                        Value="20" />
             </Style>
             <!--EndRegion-->
 
