@@ -217,6 +217,11 @@ namespace SimpleTasks.Core.Models
             }
         }
 
+        public static TimeSpan ReminderInDueTime
+        {
+            get { return TimeSpan.Zero; }
+        }
+
         public DateTime ReminderDate
         {
             get

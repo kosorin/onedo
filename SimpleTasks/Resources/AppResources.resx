@@ -825,4 +825,7 @@ It's still in beta.</value>
   <data name="BackupPivotRestore" xml:space="preserve">
     <value>restore</value>
   </data>
+  <data name="SettingsTurnOnReminder" xml:space="preserve">
+    <value>Automatically turn on reminder</value>
+  </data>
 </root>

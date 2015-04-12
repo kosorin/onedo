@@ -127,6 +127,11 @@
                             </Border>
                         </Button>
 
+                        <!--Automatically complete task-->
+                        <ToggleButton Style="{StaticResource CheckBoxStyle}"
+                                      IsChecked="{Binding TurnOnReminder, Mode=TwoWay}"
+                                      Content="{Binding LocalizedResources.SettingsTurnOnReminder, Source={StaticResource LocalizedStrings}}" />
+
                         <!--Automatically delete completed tasks-->
                         <TextBlock Text="{Binding LocalizedResources.SettingsDeleteCompletedTasks, Source={StaticResource LocalizedStrings}}"
                                    Style="{StaticResource LabelTextStyle}" />

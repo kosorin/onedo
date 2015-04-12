@@ -116,6 +116,16 @@ namespace SimpleTasks.Core.Models
         }
         #endregion
 
+        #region TurnOnReminder
+        private bool _turnOnReminder = false;
+        [DataMember(Name = "TurnOnReminder")]
+        public bool TurnOnReminder
+        {
+            get { return _turnOnReminder; }
+            set { SetProperty(ref _turnOnReminder, value); }
+        }
+        #endregion
+
         #region DeleteCompleted
         private int _DeleteCompleted = 3;
         [DataMember(Name = "DeleteCompleted")]

@@ -1503,6 +1503,15 @@ namespace SimpleTasks.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically turn on reminder.
+        /// </summary>
+        public static string SettingsTurnOnReminder {
+            get {
+                return ResourceManager.GetString("SettingsTurnOnReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unpin tile upon completion of task.
         /// </summary>
         public static string SettingsUnpinCompleted {

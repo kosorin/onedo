@@ -291,6 +291,14 @@ namespace SimpleTasks.Views
             {
                 Reminder = Task.Reminder.Value;
             }
+            else if (IsNew)
+            {
+                IsSetReminder = Settings.Current.TurnOnReminder;
+                if (IsSetReminder)
+                {
+                    Reminder = TaskModel.ReminderInDueTime;
+                }
+            }
 
             // Opakování
             IsSetRepeats = Task.Repeats != Core.Models.Repeats.None;
