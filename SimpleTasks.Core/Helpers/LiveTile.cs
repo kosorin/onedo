@@ -96,10 +96,16 @@ namespace SimpleTasks.Core.Helpers
                         string smallFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, SmallTileFileName);
                         string mediumFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, MediumTileFileName);
                         string wideFileName = string.Format("{0}{1}_{2}", TileImageDirectory, task.Uid, WideTileFileName);
-                        IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
-                        storage.DeleteFile(smallFileName);
-                        storage.DeleteFile(mediumFileName);
-                        storage.DeleteFile(wideFileName);
+                        try
+                        {
+                            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
+                            storage.DeleteFile(smallFileName);
+                            storage.DeleteFile(mediumFileName);
+                            storage.DeleteFile(wideFileName);
+                        }
+                        catch (IsolatedStorageException)
+                        {
+                        }
                     }
                     catch (Exception e)
                     {

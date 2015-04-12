@@ -43,10 +43,16 @@ namespace SimpleTasks.Core.Tiles
 
         public void SaveToPng(string fileName)
         {
-            using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(fileName, System.IO.FileMode.Create))
+            try
             {
-                Refresh();
-                RenderToStream(stream);
+                using (IsolatedStorageFileStream stream = IsolatedStorageFile.GetUserStoreForApplication().OpenFile(fileName, System.IO.FileMode.Create))
+                {
+                    Refresh();
+                    RenderToStream(stream);
+                }
+            }
+            catch (IsolatedStorageException)
+            {
             }
         }
     }

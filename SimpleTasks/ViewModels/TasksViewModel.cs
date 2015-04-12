@@ -142,6 +142,9 @@ namespace SimpleTasks.ViewModels
 
         public void Complete(TaskModel task)
         {
+            if (task == null)
+                return;
+
             task.Completed = DateTime.Now;
             task.ModifiedSinceStart = true;
             if (Settings.Current.CompleteSubtasks && task.HasSubtasks)
