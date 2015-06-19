@@ -23,6 +23,8 @@ namespace SimpleTasks.Views
         public const string BackupFolderName = "OneDo Data";
 
         public const string BackupFileExtension = ".onedo.backup";
+
+        public const string AutoBackupFileName = "auto";
         #endregion
 
         #region Private Fields
@@ -217,6 +219,19 @@ namespace SimpleTasks.Views
             {
                 BackupList.Clear();
                 BackupList.Add(new RestoreListPickerItem(AppResources.NoBackups, null, DateTime.MinValue));
+            }
+        }
+
+        public static async Task SilentBackup(string fileName = null)
+        {
+            Debug.WriteLine("SilentBackup: start");
+            if (await LiveConnectHelper.SilentLoginAsync())
+            {
+                Debug.WriteLine("SilentBackup: backup success: {0}", await Backup(fileName));
+            }
+            else
+            {
+                Debug.WriteLine("SilentBackup: Not signed in");
             }
         }
 

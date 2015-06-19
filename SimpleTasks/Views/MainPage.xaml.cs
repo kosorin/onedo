@@ -248,7 +248,7 @@ namespace SimpleTasks.Views
                 if (await LiveConnectHelper.SilentLoginAsync())
                 {
                     string message;
-                    if (await BackupPage.Backup("auto"))
+                    if (await BackupPage.Backup(BackupPage.AutoBackupFileName))
                     {
                         message = AppResources.BackupOk;
                     }
