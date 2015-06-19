@@ -26,6 +26,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SimpleTasks.Views
 {
@@ -190,29 +191,6 @@ namespace SimpleTasks.Views
             #endregion
         }
 
-        private async void BackupMenuItem_Click(object sender, EventArgs eventArgs)
-        {
-            SyncIndicator.IsVisible = true;
-            try
-            {
-                if (await LiveConnectHelper.SilentLoginAsync())
-                {
-                    if (!await BackupPage.Backup())
-                    {
-                        MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Nejste přihlášení. Běžte na stránku 'backup & restore' a přihlaste se.");
-                }
-            }
-            finally
-            {
-                SyncIndicator.IsVisible = false;
-            }
-        }
-
         private void BuildTasksdAppBar()
         {
             ApplicationBar = ThemeHelper.CreateApplicationBar();
@@ -262,7 +240,34 @@ namespace SimpleTasks.Views
             messageBox.Show();
         }
 
-
+        private async void BackupMenuItem_Click(object sender, EventArgs eventArgs)
+        {
+            try
+            {
+                SyncIndicator.IsVisible = true;
+                if (await LiveConnectHelper.SilentLoginAsync())
+                {
+                    string message;
+                    if (await BackupPage.Backup("auto"))
+                    {
+                        message = AppResources.BackupOk;
+                    }
+                    else
+                    {
+                        message = AppResources.UnknownError;
+                    }
+                    Toast.Show(message, App.IconStyle("CloudUpload"));
+                }
+                else
+                {
+                    Toast.Show(AppResources.SignedInNo, App.IconStyle("CloudUpload"));
+                }
+            }
+            finally
+            {
+                SyncIndicator.IsVisible = false;
+            }
+        }
 
 #if DEBUG
         private void RemindersMenuItem_Click(object sender, EventArgs e)
