@@ -220,7 +220,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private async Task<bool> Backup()
+        public static async Task<bool> Backup()
         {
             // Získání id složky
             string folderId = await LiveConnectHelper.SearchFolderIdAsync(BackupFolderName);

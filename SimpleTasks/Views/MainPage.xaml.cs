@@ -143,6 +143,12 @@ namespace SimpleTasks.Views
             appBarDeleteCompletedButton.Text = AppResources.AppBarDeleteCompleted;
             appBarDeleteCompletedButton.Click += DeleteCompletedMenuItem_Click;
             appBarButtons.Add(appBarDeleteCompletedButton);
+
+            // Sync
+            ApplicationBarIconButton appBarBackupButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.cloud.upload.png", UriKind.Relative));
+            appBarBackupButton.Text = AppResources.BackupText;
+            appBarBackupButton.Click += BackupMenuItem_Click;
+            appBarButtons.Add(appBarBackupButton);
             #endregion
 
             #region Menu
@@ -182,6 +188,29 @@ namespace SimpleTasks.Views
             appBarMenuItems.Add(appBarRemindersMenuItem);
 #endif
             #endregion
+        }
+
+        private async void BackupMenuItem_Click(object sender, EventArgs eventArgs)
+        {
+            SyncIndicator.IsVisible = true;
+            try
+            {
+                if (await LiveConnectHelper.SilentLoginAsync())
+                {
+                    if (!await BackupPage.Backup())
+                    {
+                        MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nejste přihlášení. Běžte na stránku 'backup & restore' a přihlaste se.");
+                }
+            }
+            finally
+            {
+                SyncIndicator.IsVisible = false;
+            }
         }
 
         private void BuildTasksdAppBar()
@@ -232,6 +261,8 @@ namespace SimpleTasks.Views
 
             messageBox.Show();
         }
+
+
 
 #if DEBUG
         private void RemindersMenuItem_Click(object sender, EventArgs e)

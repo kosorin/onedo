@@ -116,6 +116,15 @@
         </ControlTemplate>
     </controls:BasePage.Resources>
 
+    <shell:SystemTray.ProgressIndicator>
+
+        <shell:ProgressIndicator x:Name="SyncIndicator"
+                                 IsIndeterminate="True"
+                                 Text="{Binding LocalizedResources.BackingUp, Source={StaticResource LocalizedStrings}}"
+                                 IsVisible="False" />
+
+    </shell:SystemTray.ProgressIndicator>
+
     <Grid x:Name="TasksRoot"
           Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
