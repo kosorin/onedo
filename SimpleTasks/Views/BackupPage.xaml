@@ -260,8 +260,7 @@
         </phone:Pivot>
 
         <!--Action Progress Ring-->
-        <Grid Grid.RowSpan="3"
-              Visibility="{Binding PerformingAction, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+        <Grid Visibility="{Binding PerformingAction, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
             <Grid.Background>
                 <SolidColorBrush Color="{StaticResource BackgroundColor}"
                                  Opacity="0.8" />
@@ -291,6 +290,9 @@
                            VerticalAlignment="Center" />
             </Grid>
         </Grid>
+
+        <controls:ToastPrompt x:Name="Toast"
+                              Background="#7F000000" />
 
     </Grid>
 

@@ -162,7 +162,7 @@ namespace SimpleTasks.Views
                 App.Tasks.Restore(backupData.Tasks);
             }
 
-            MessageBox.Show(AppResources.RestoreOk, AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+            Toast.Show(AppResources.RestoreOk, App.IconStyle("CloudUpload"));
         }
 
         private async Task RefreshBackupList()
@@ -317,7 +317,7 @@ namespace SimpleTasks.Views
                 }
                 else
                 {
-                    MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.SigningIn, MessageBoxButton.OK);
+                    Toast.Show(AppResources.UnknownError, App.IconStyle("CloudUpload"));
                 }
 
                 PerformingAction = false;
@@ -332,11 +332,11 @@ namespace SimpleTasks.Views
             if (await Backup())
             {
                 await RefreshBackupList();
-                MessageBox.Show(string.Format(AppResources.BackupOk), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+                Toast.Show(AppResources.BackupOk, App.IconStyle("CloudUpload"));
             }
             else
             {
-                MessageBox.Show(string.Format(AppResources.UnknownError), AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+                Toast.Show(AppResources.UnknownError, App.IconStyle("CloudUpload"));
             }
 
             PerformingAction = false;
@@ -383,7 +383,7 @@ namespace SimpleTasks.Views
             }
             else
             {
-                MessageBox.Show(AppResources.UnknownError, AppResources.BackupAndRestoreTitle.FirstUpper(), MessageBoxButton.OK);
+                Toast.Show(AppResources.UnknownError, App.IconStyle("CloudUpload"));
             }
 
             PerformingAction = false;
