@@ -706,16 +706,16 @@ namespace SimpleTasks.Views
         #region Opakování
         private void ShowRepeats()
         {
-            //RepeatsPicker.ApplyStates();
-            //HideRepeatsStoryboard.Pause();
-            //ShowRepeatsStoryboard.Begin();
+            RepeatsPicker.ApplyStates();
+            HideRepeatsStoryboard.Pause();
+            ShowRepeatsStoryboard.Begin();
         }
 
         private void HideRepeats()
         {
-            //RepeatsPicker.ApplyStates();
-            //ShowRepeatsStoryboard.Pause();
-            //HideRepeatsStoryboard.Begin();
+            RepeatsPicker.ApplyStates();
+            ShowRepeatsStoryboard.Pause();
+            HideRepeatsStoryboard.Begin();
         }
 
         private void RepeatsPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
