@@ -23,7 +23,7 @@ namespace SimpleTasks.Controls
 {
     public abstract class BasePage : PhoneApplicationPage, INotifyPropertyChanged
     {
-        public BasePage()
+        protected BasePage()
         {
             Debug.WriteLine("CTOR {0}", this);
 

@@ -40,6 +40,15 @@ namespace SimpleTasks.Core.Helpers
             return "";
         }
 
+        public static string FirstLower(this string s)
+        {
+            if (s.Length > 0)
+            {
+                return s.Substring(0, 1).ToLower() + s.Substring(1);
+            }
+            return "";
+        }
+
         public static int LineNumberAtPosition(this string s, int lastPosition)
         {
             int count = 0;

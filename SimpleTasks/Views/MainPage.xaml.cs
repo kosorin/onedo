@@ -26,6 +26,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SimpleTasks.Views
 {
@@ -143,6 +144,12 @@ namespace SimpleTasks.Views
             appBarDeleteCompletedButton.Text = AppResources.AppBarDeleteCompleted;
             appBarDeleteCompletedButton.Click += DeleteCompletedMenuItem_Click;
             appBarButtons.Add(appBarDeleteCompletedButton);
+
+            // Sync
+            ApplicationBarIconButton appBarBackupButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.cloud.upload.png", UriKind.Relative));
+            appBarBackupButton.Text = AppResources.BackupText;
+            appBarBackupButton.Click += BackupMenuItem_Click;
+            appBarButtons.Add(appBarBackupButton);
             #endregion
 
             #region Menu
@@ -231,6 +238,35 @@ namespace SimpleTasks.Views
             };
 
             messageBox.Show();
+        }
+
+        private async void BackupMenuItem_Click(object sender, EventArgs eventArgs)
+        {
+            try
+            {
+                SyncIndicator.IsVisible = true;
+                if (await LiveConnectHelper.SilentLoginAsync())
+                {
+                    string message;
+                    if (await BackupPage.Backup(BackupPage.AutoBackupFileName))
+                    {
+                        message = AppResources.BackupOk;
+                    }
+                    else
+                    {
+                        message = AppResources.UnknownError;
+                    }
+                    Toast.Show(message, App.IconStyle("CloudUpload"));
+                }
+                else
+                {
+                    Toast.Show(AppResources.SignedInNo, App.IconStyle("CloudUpload"));
+                }
+            }
+            finally
+            {
+                SyncIndicator.IsVisible = false;
+            }
         }
 
 #if DEBUG

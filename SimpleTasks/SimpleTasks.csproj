@@ -247,6 +247,7 @@
     <Content Include="Assets\AppBar\appbar.checkmark.pencil.top.png" />
     <Content Include="Assets\AppBar\appbar.clean.png" />
     <Content Include="Assets\AppBar\appbar.close.png" />
+    <Content Include="Assets\AppBar\appbar.cloud.upload.png" />
     <Content Include="Assets\AppBar\appbar.delete.all.png" />
     <Content Include="Assets\AppBar\appbar.delete.png" />
     <Content Include="Assets\AppBar\appbar.email.hardedge.png" />

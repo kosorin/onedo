@@ -23,6 +23,8 @@ namespace SimpleTasks.Views
         public const string BackupFolderName = "OneDo Data";
 
         public const string BackupFileExtension = ".onedo.backup";
+
+        public const string AutoBackupFileName = "auto";
         #endregion
 
         #region Private Fields
@@ -220,7 +222,20 @@ namespace SimpleTasks.Views
             }
         }
 
-        private async Task<bool> Backup()
+        public static async Task SilentBackup(string fileName = null)
+        {
+            Debug.WriteLine("SilentBackup: start");
+            if (await LiveConnectHelper.SilentLoginAsync())
+            {
+                Debug.WriteLine("SilentBackup: backup success: {0}", await Backup(fileName));
+            }
+            else
+            {
+                Debug.WriteLine("SilentBackup: Not signed in");
+            }
+        }
+
+        public static async Task<bool> Backup(string fileName = null)
         {
             // Získání id složky
             string folderId = await LiveConnectHelper.SearchFolderIdAsync(BackupFolderName);
@@ -247,7 +262,7 @@ namespace SimpleTasks.Views
                 string json = JsonConvert.SerializeObject(backupData, formatting);
 
                 // Nahrání
-                string fileName = string.Format("{0}{1}", DateTime.Now.ToFileName(), BackupFileExtension);
+                fileName = string.Format("{0}{1}", fileName ?? DateTime.Now.ToFileName(), BackupFileExtension);
                 fileId = await LiveConnectHelper.UploadAsync(folderId, fileName, json);
             }
 
