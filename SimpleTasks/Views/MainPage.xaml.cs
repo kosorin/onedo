@@ -145,11 +145,11 @@ namespace SimpleTasks.Views
             appBarDeleteCompletedButton.Click += DeleteCompletedMenuItem_Click;
             appBarButtons.Add(appBarDeleteCompletedButton);
 
-            // Sync
-            ApplicationBarIconButton appBarBackupButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.cloud.upload.png", UriKind.Relative));
-            appBarBackupButton.Text = AppResources.BackupText;
-            appBarBackupButton.Click += BackupMenuItem_Click;
-            appBarButtons.Add(appBarBackupButton);
+            // Záloha
+            //ApplicationBarIconButton appBarBackupButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.cloud.upload.png", UriKind.Relative));
+            //appBarBackupButton.Text = AppResources.BackupText;
+            //appBarBackupButton.Click += BackupMenuItem_Click;
+            //appBarButtons.Add(appBarBackupButton);
             #endregion
 
             #region Menu
@@ -248,7 +248,7 @@ namespace SimpleTasks.Views
                 if (await LiveConnectHelper.SilentLoginAsync())
                 {
                     string message;
-                    if (await BackupPage.Backup(BackupPage.AutoBackupFileName))
+                    if (await BackupPage.Backup())
                     {
                         message = AppResources.BackupOk;
                     }
