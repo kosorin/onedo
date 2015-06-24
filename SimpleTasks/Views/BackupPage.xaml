@@ -34,14 +34,14 @@
                                                        FontFamily="Segoe WP Semibold"
                                                        FontWeight="SemiBold"
                                                        Margin="24,0,24,8" />
-                                            <TextBlock Style="{StaticResource NormalTextStyle}"
+                                            <!--<TextBlock Style="{StaticResource NormalTextStyle}"
                                                        Text="BETA"
                                                        Foreground="{StaticResource ButtonDarkForegroundBrush}"
                                                        HorizontalAlignment="Right"
                                                        FontFamily="Segoe WP Black"
                                                        FontWeight="Bold"
                                                        Opacity="0.6"
-                                                       Margin="0,0,24,0" />
+                                                       Margin="0,0,24,0" />-->
                                         </Grid>
 
                                         <Primitives:PivotHeadersControl x:Name="HeadersListElement"
