@@ -273,15 +273,15 @@ namespace SimpleTasks.Views
         private void RemindersMenuItem_Click(object sender, EventArgs e)
         {
             string s = string.Format("> Reminders ({0})", DateTime.Now.ToString(CultureInfo.CurrentCulture));
-            foreach (var r in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
+            foreach (var reminder in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>().OrderBy(r => r.BeginTime))
             {
-                string name = r.Name;
+                string name = reminder.Name;
                 if (name.Length > 12)
                 {
                     name = string.Format("{0}...{1}", name.Substring(0, 3), name.Substring(name.Length - 3, 3));
                 }
                 string interval = "";
-                switch (r.RecurrenceType)
+                switch (reminder.RecurrenceType)
                 {
                 case RecurrenceInterval.Daily:
                     interval = " [d]";
@@ -295,7 +295,7 @@ namespace SimpleTasks.Views
                 default:
                     break;
                 }
-                s += string.Format("\n{0}: {1} - {2:g}{3}", name, r.IsScheduled, r.BeginTime, interval);
+                s += string.Format("\n{0}: {1} - {2:g}{3}", name, reminder.IsScheduled, reminder.BeginTime, interval);
             }
             MessageBox.Show(s);
         }
