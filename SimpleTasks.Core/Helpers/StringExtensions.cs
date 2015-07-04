@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 
 namespace SimpleTasks.Core.Helpers
 {

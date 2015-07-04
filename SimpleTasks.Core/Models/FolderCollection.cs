@@ -1,15 +1,7 @@
-﻿using Newtonsoft.Json;
-using SimpleTasks.Core.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Core.Models
 {

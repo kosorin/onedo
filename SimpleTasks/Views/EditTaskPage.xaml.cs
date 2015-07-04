@@ -1,26 +1,20 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Helpers;
 using SimpleTasks.Resources;
-using SimpleTasks.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Navigation;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace SimpleTasks.Views
 {
@@ -84,7 +78,7 @@ namespace SimpleTasks.Views
                 if (IsSetNavigationParameter("RepeatsPicker"))
                 {
                     Repeats = NavigationParameter<Repeats>("RepeatsPicker");
-                    IsSetRepeats = (Repeats != Core.Models.Repeats.None);
+                    IsSetRepeats = (Repeats != Repeats.None);
                 }
             }
 
@@ -133,7 +127,7 @@ namespace SimpleTasks.Views
             DeleteConfirm = false;
         }
 
-        private void PhoneApplicationPage_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
         {
             if (DeleteConfirm)
             {
@@ -301,7 +295,7 @@ namespace SimpleTasks.Views
             }
 
             // Opakování
-            IsSetRepeats = Task.Repeats != Core.Models.Repeats.None;
+            IsSetRepeats = Task.Repeats != Repeats.None;
             Repeats = Task.Repeats;
         }
 
@@ -342,7 +336,7 @@ namespace SimpleTasks.Views
             if (IsSetRepeats)
                 Task.Repeats = Repeats;
             else
-                Task.Repeats = Core.Models.Repeats.None;
+                Task.Repeats = Repeats.None;
 
             // Nastavení dlaždice
             if (Task.TileSettings == null)
@@ -576,7 +570,7 @@ namespace SimpleTasks.Views
             TitleTextBox.Opacity = 1;
         }
 
-        private void TitleTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void TitleTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -643,14 +637,14 @@ namespace SimpleTasks.Views
             HideDueStoryboard.Begin();
         }
 
-        private void DueDateCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DueDateCloseButton_Tap(object sender, GestureEventArgs e)
         {
             IsSetDueDate = false;
         }
         #endregion
 
         #region Datum
-        private void DueDatePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DueDatePicker_Tap(object sender, GestureEventArgs e)
         {
             if (IsSetDueDate)
             {
@@ -664,7 +658,7 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Čas
-        private void DueTimePicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DueTimePicker_Tap(object sender, GestureEventArgs e)
         {
             Navigate(typeof(TimePickerPage), DueDate, "TimePicker");
         }
@@ -685,7 +679,7 @@ namespace SimpleTasks.Views
             HideReminderStoryboard.Begin();
         }
 
-        private void ReminderPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void ReminderPicker_Tap(object sender, GestureEventArgs e)
         {
             if (IsSetReminder)
             {
@@ -697,7 +691,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void ReminderCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void ReminderCloseButton_Tap(object sender, GestureEventArgs e)
         {
             IsSetReminder = false;
         }
@@ -718,19 +712,19 @@ namespace SimpleTasks.Views
             HideRepeatsStoryboard.Begin();
         }
 
-        private void RepeatsPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void RepeatsPicker_Tap(object sender, GestureEventArgs e)
         {
             Navigate(typeof(RepeatsPickerPage), Repeats, "RepeatsPicker");
         }
 
-        private void RepeatsCloseButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void RepeatsCloseButton_Tap(object sender, GestureEventArgs e)
         {
             IsSetRepeats = false;
         }
         #endregion // end of Opakování
 
         #region Podúkoly
-        private void EditSubtasks_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void EditSubtasks_Tap(object sender, GestureEventArgs e)
         {
             Navigate(typeof(SubtasksPage), Task);
         }

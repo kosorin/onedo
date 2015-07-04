@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using SimpleTasks.Core.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
-using System.Windows.Media;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Animation;
+using SimpleTasks.Core.Models;
 using SimpleTasks.Helpers;
-using SimpleTasks.Models;
 
 namespace SimpleTasks.Controls
 {
@@ -315,12 +306,12 @@ namespace SimpleTasks.Controls
             SwipeRightGestureIcon.Opacity = RootTransform.X > 0 ? opacity : 0;
         }
 
-        private void Checkbox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void Checkbox_Tap(object sender, GestureEventArgs e)
         {
             OnCheck();
         }
 
-        private void Task_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void Task_Tap(object sender, GestureEventArgs e)
         {
             OnClick();
         }

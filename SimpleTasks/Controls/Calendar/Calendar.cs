@@ -1,20 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Windows.Data;
-using System.ComponentModel;
 using System.Windows.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 using SimpleTasks.Core.Helpers;
-using System.Diagnostics;
-using SimpleTasks.Helpers;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Controls.Calendar
 {

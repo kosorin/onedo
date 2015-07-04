@@ -1,25 +1,17 @@
 ﻿using System;
-using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Controls.LocalizedResources;
-using SimpleTasks.ViewModels;
 using Microsoft.Phone.Shell;
-using SimpleTasks.Resources;
 using SimpleTasks.Controls;
-using System.Diagnostics;
-using SimpleTasks.Models;
-using System.Collections.Generic;
-using System.Windows.Media.Animation;
 using SimpleTasks.Core.Models;
-using System.Collections.ObjectModel;
-using System.Linq;
-using SubtaskCollection = System.Collections.ObjectModel.ObservableCollection<SimpleTasks.Core.Models.Subtask>;
 using SimpleTasks.Helpers;
+using SimpleTasks.Resources;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
+using SubtaskCollection = System.Collections.ObjectModel.ObservableCollection<SimpleTasks.Core.Models.Subtask>;
 
 namespace SimpleTasks.Views
 {
@@ -121,7 +113,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void SubtaskListBox_Delete_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void SubtaskListBox_Delete_Tap(object sender, GestureEventArgs e)
         {
             ContentControl cc = sender as ContentControl;
             if (cc != null)

@@ -1,14 +1,9 @@
-﻿using Microsoft.Live;
-using SimpleTasks.Core.Helpers;
-using SimpleTasks.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Live;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Helpers
 {

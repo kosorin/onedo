@@ -11,13 +11,7 @@
  * Version 1.0 - Released Feburary 22, 2012
 */
 
-using System;
-using System.Globalization;
 using System.IO;
-using System.IO.IsolatedStorage;
-using System.Windows.Shapes;
-using System.Windows.Media;
-using ToolStackCRCLib;
 using ToolStackPNGWriterLib;
 
 namespace System.Windows.Media.Imaging
@@ -32,7 +26,7 @@ namespace System.Windows.Media.Imaging
         /// </summary>
         /// <param name="image">The WriteableBitmap to work on.</param>
         /// <param name="stream">The destination file stream.</param>
-        public static void WritePNG(this WriteableBitmap image, System.IO.Stream stream)
+        public static void WritePNG(this WriteableBitmap image, Stream stream)
         {
             WritePNG(image, stream, -1);
         }
@@ -43,7 +37,7 @@ namespace System.Windows.Media.Imaging
         /// <param name="image">The WriteableBitmap to work on.</param>
         /// <param name="stream">The destination file stream.</param>
         /// <param name="compression">Level of compression to use (-1=auto, 0=none, 1-100 is percentage).</param>
-        public static void WritePNG(this WriteableBitmap image, System.IO.Stream stream, int compression)
+        public static void WritePNG(this WriteableBitmap image, Stream stream, int compression)
         {
             PNGWriter.DetectWBByteOrder();
             PNGWriter.WritePNG(image, stream, compression);

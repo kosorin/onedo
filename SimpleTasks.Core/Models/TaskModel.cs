@@ -1,10 +1,10 @@
-﻿using SimpleTasks.Core.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Collections.Specialized;
 using System.Runtime.Serialization;
 using System.Windows.Media;
+using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Core.Models
 {
@@ -105,7 +105,7 @@ namespace SimpleTasks.Core.Models
             get { return Subtasks.Count > 0; }
         }
 
-        private void Subtasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Subtasks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Modified = DateTime.Now;
             OnPropertyChanged("HasSubtasks");
@@ -277,7 +277,7 @@ namespace SimpleTasks.Core.Models
 
         public bool HasRepeats
         {
-            get { return Repeats != Models.Repeats.None; }
+            get { return Repeats != Repeats.None; }
         }
         #endregion // end of Repeats 12
 

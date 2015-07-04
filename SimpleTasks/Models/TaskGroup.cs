@@ -1,10 +1,6 @@
-﻿using SimpleTasks.Core.Helpers;
-using SimpleTasks.Core.Models;
-using SimpleTasks.Resources;
-using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Models
 {

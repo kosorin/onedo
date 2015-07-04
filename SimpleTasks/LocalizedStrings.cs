@@ -1,5 +1,5 @@
-﻿using SimpleTasks.Resources;
-using Microsoft.Phone.Controls.LocalizedResources;
+﻿using Microsoft.Phone.Controls.LocalizedResources;
+using SimpleTasks.Resources;
 
 namespace SimpleTasks
 {

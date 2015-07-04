@@ -1,32 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using SimpleTasks.ViewModels;
-using SimpleTasks.Resources;
-using System.Windows;
-using SimpleTasks.Models;
-using SimpleTasks.Core.Helpers;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
-using System.Diagnostics;
-using SimpleTasks.Core.Models;
-using Microsoft.Phone.Scheduler;
-using SimpleTasks.Helpers;
-using System.Collections.Generic;
-using System.Windows.Media.Animation;
-using System.Windows.Input;
-using System.Threading;
-using Microsoft.Devices;
 using SimpleTasks.Controls;
-using Microsoft.Phone.Tasks;
-using System.Globalization;
-using System.Linq;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Text;
-using System.Threading.Tasks;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Helpers;
+using SimpleTasks.Models;
+using SimpleTasks.Resources;
 
 namespace SimpleTasks.Views
 {
@@ -69,7 +56,7 @@ namespace SimpleTasks.Views
 #if DEBUG
             TestButton.Click += RemindersMenuItem_Click;
 #else
-            TestButton.Visibility = System.Windows.Visibility.Collapsed;
+            TestButton.Visibility = Visibility.Collapsed;
 #endif
         }
 
@@ -471,12 +458,12 @@ namespace SimpleTasks.Views
             get { return App.Tasks.Tasks; }
         }
 
-        private void TaskItem_Check(object sender, Controls.TaskEventArgs e)
+        private void TaskItem_Check(object sender, TaskEventArgs e)
         {
             ToggleComplete(e.Task);
         }
 
-        private void TaskItem_Click(object sender, Controls.TaskEventArgs e)
+        private void TaskItem_Click(object sender, TaskEventArgs e)
         {
             if (e.Task == null)
                 return;
@@ -542,12 +529,12 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Gestures
-        private void TaskItem_SwipeLeft(object sender, Controls.TaskEventArgs e)
+        private void TaskItem_SwipeLeft(object sender, TaskEventArgs e)
         {
             ExecuteGesture(Settings.Current.SwipeLeftAction, e);
         }
 
-        private void TaskItem_SwipeRight(object sender, Controls.TaskEventArgs e)
+        private void TaskItem_SwipeRight(object sender, TaskEventArgs e)
         {
             ExecuteGesture(Settings.Current.SwipeRightAction, e);
         }
@@ -562,7 +549,7 @@ namespace SimpleTasks.Views
             ExecuteGesture(Settings.Current.SwipeRightAction, e);
         }
 
-        private void ExecuteGesture(GestureAction action, Controls.TaskEventArgs e)
+        private void ExecuteGesture(GestureAction action, TaskEventArgs e)
         {
             if (e.Task == null)
             {

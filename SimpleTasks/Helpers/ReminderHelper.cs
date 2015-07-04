@@ -1,13 +1,9 @@
-﻿using Microsoft.Phone.Shell;
-using Microsoft.Phone.Scheduler;
-using SimpleTasks.Core.Models;
-using SimpleTasks.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Phone.Scheduler;
+using SimpleTasks.Resources;
 
 namespace SimpleTasks.Helpers
 {

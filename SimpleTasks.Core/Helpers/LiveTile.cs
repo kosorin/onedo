@@ -1,15 +1,11 @@
-﻿using Microsoft.Phone.Shell;
-using SimpleTasks.Core.Models;
-using SimpleTasks.Core.Tiles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media.Imaging;
+using Microsoft.Phone.Shell;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Core.Tiles;
 
 namespace SimpleTasks.Core.Helpers
 {
@@ -48,9 +44,9 @@ namespace SimpleTasks.Core.Helpers
 
             // Vytvoření obrázků dlaždic
             var sw = Stopwatch.StartNew();
-            new SimpleTasks.Core.Tiles.SmallTaskTile(task).SaveToPng(smallFileName);
-            new SimpleTasks.Core.Tiles.MediumTaskTile(task).SaveToPng(mediumFileName);
-            new SimpleTasks.Core.Tiles.WideTaskTile(task).SaveToPng(wideFileName);
+            new SmallTaskTile(task).SaveToPng(smallFileName);
+            new MediumTaskTile(task).SaveToPng(mediumFileName);
+            new WideTaskTile(task).SaveToPng(wideFileName);
             sw.Stop();
             Debug.WriteLine("> CREATED TILE FOR '{0}' (in {1:0.000} seconds)", task.Title, sw.ElapsedMilliseconds / 1000.0);
 

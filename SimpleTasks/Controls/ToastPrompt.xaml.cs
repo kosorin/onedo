@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.ComponentModel;
-using System.Diagnostics;
 
 namespace SimpleTasks.Controls
 {
@@ -84,7 +77,7 @@ namespace SimpleTasks.Controls
         }
 
         public static readonly DependencyProperty TextHAlignmentProperty =
-            DependencyProperty.Register("TextHAlignment", typeof(HorizontalAlignment), typeof(ToastPrompt), new PropertyMetadata(System.Windows.HorizontalAlignment.Stretch));
+            DependencyProperty.Register("TextHAlignment", typeof(HorizontalAlignment), typeof(ToastPrompt), new PropertyMetadata(HorizontalAlignment.Stretch));
         #endregion
 
         #region Message
@@ -245,7 +238,7 @@ namespace SimpleTasks.Controls
             this.Message = String.Empty;
         }
 
-        private void ToastRoot_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void ToastRoot_Tap(object sender, GestureEventArgs e)
         {
             Hide();
         }

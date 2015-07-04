@@ -1,18 +1,19 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 using Newtonsoft.Json;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Helpers;
-using SimpleTasks.Models;
 using SimpleTasks.Resources;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Navigation;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 using RestoreListPickerItem = SimpleTasks.Controls.ListPickerItem<SimpleTasks.Core.Models.OneDriveFileInfo, System.DateTime>;
 
 namespace SimpleTasks.Views
@@ -107,7 +108,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        void BackupList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        void BackupList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged("IsEnabledRestoreButton");
         }
@@ -296,7 +297,7 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Event Handlers
-        private async void SignButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void SignButton_Tap(object sender, GestureEventArgs e)
         {
             if (IsLoggedIn)
             {
@@ -324,7 +325,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private async void BackupButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void BackupButton_Tap(object sender, GestureEventArgs e)
         {
             PerformingAction = true;
 
@@ -342,7 +343,7 @@ namespace SimpleTasks.Views
             PerformingAction = false;
         }
 
-        private async void RestoreButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void RestoreButton_Tap(object sender, GestureEventArgs e)
         {
             PerformingAction = true;
 
@@ -389,7 +390,7 @@ namespace SimpleTasks.Views
             PerformingAction = false;
         }
 
-        private async void RefreshListButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private async void RefreshListButton_Tap(object sender, GestureEventArgs e)
         {
             PerformingAction = true;
 
@@ -399,7 +400,7 @@ namespace SimpleTasks.Views
             PerformingAction = false;
         }
 
-        private void Pivot_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BackupPanel.Children[0] == LoginPanel)
             {

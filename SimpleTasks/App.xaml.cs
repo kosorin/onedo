@@ -1,6 +1,12 @@
-﻿using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+﻿using System;
+using System.Diagnostics;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Markup;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Scheduler;
+using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Newtonsoft.Json.Linq;
 using SimpleTasks.Core.Helpers;
@@ -9,19 +15,6 @@ using SimpleTasks.Helpers;
 using SimpleTasks.Models;
 using SimpleTasks.Resources;
 using SimpleTasks.ViewModels;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Windows;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Navigation;
 
 namespace SimpleTasks
 {
@@ -205,14 +198,14 @@ namespace SimpleTasks
             EmailComposeTask task = new EmailComposeTask
             {
                 To = AppInfo.Email,
-                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, App.VersionString)
+                Subject = string.Format(AppResources.AboutEmailSubject, AppInfo.Name, VersionString)
             };
             task.Show();
         }
 
         public static Style IconStyle(string name)
         {
-            return App.Current.Resources[name + "IconStyle"] as Style;
+            return Current.Resources[name + "IconStyle"] as Style;
         }
 
         #region Phone application initialization

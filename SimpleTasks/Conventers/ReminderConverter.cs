@@ -1,10 +1,8 @@
-﻿using SimpleTasks.Resources;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Globalization;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Data;
+using SimpleTasks.Resources;
+
 namespace SimpleTasks.Conventers
 {
     public class ReminderConverter : IValueConverter

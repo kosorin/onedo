@@ -19,12 +19,10 @@
  */
 
 using System;
-using System.Globalization;
 using System.IO;
-using System.IO.IsolatedStorage;
-using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using ToolStackCRCLib;
 
 namespace ToolStackPNGWriterLib
@@ -246,7 +244,7 @@ namespace ToolStackPNGWriterLib
         /// </summary>
         /// <param name="image">The WriteableBitmap to work on.</param>
         /// <param name="stream">The destination file stream.</param>
-        public static void WritePNG(WriteableBitmap image, System.IO.Stream stream)
+        public static void WritePNG(WriteableBitmap image, Stream stream)
         {
             WritePNG(image, stream, -1);
         }
@@ -257,7 +255,7 @@ namespace ToolStackPNGWriterLib
         /// <param name="image">The WriteableBitmap to work on.</param>
         /// <param name="stream">The destination file stream.</param>
         /// <param name="compression">Level of compression to use (-1=auto, 0=none, 1-100 is percentage).</param>
-        public static void WritePNG(WriteableBitmap image, System.IO.Stream stream, int compression)
+        public static void WritePNG(WriteableBitmap image, Stream stream, int compression)
         {
             // Set the global class variables for the image and stream.
             _image = image;

@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
+using Newtonsoft.Json;
 
 namespace SimpleTasks.Core.Helpers
 {

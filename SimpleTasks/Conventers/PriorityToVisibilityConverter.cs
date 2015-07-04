@@ -1,8 +1,8 @@
-﻿using SimpleTasks.Core.Models;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Conventers
 {

@@ -1,16 +1,10 @@
-﻿using Microsoft.Phone.Shell;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
+using Microsoft.Phone.Shell;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
-using SimpleTasks.Core.Tiles;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace SimpleTasks.Helpers
 {
@@ -24,7 +18,7 @@ namespace SimpleTasks.Helpers
 
         public static void Pin(TaskModel task)
         {
-            Pin(task, SimpleTasks.Core.Helpers.LiveTile.CreateTile(task));
+            Pin(task, LiveTile.CreateTile(task));
         }
 
         public static void Pin(TaskModel task, StandardTileData tileData)

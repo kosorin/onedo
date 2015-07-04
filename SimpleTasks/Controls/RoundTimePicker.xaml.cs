@@ -1,14 +1,15 @@
-﻿using SimpleTasks.Core.Models;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using SimpleTasks.Core.Models;
 
 namespace SimpleTasks.Controls
 {
@@ -67,7 +68,7 @@ namespace SimpleTasks.Controls
 
         #region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void SetProperty<T>(ref T storage, T value, [System.Runtime.CompilerServices.CallerMemberName] String propertyName = null)
+        protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
             if (!Equals(storage, value))
             {
@@ -76,7 +77,7 @@ namespace SimpleTasks.Controls
                     PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        protected void RaisePropertyChanged([System.Runtime.CompilerServices.CallerMemberName] String propertyName = null)
+        protected void RaisePropertyChanged([CallerMemberName] String propertyName = null)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));

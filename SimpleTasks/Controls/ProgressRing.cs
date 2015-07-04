@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -30,14 +26,14 @@ namespace SimpleTasks.Controls
             if (hasAppliedTemplate)
             {
                 string state = isActive ? "Active" : "Inactive";
-                System.Windows.VisualStateManager.GoToState(this, state, true);
+                VisualStateManager.GoToState(this, state, true);
             }
         }
 
-        protected override System.Windows.Size MeasureOverride(System.Windows.Size availableSize)
+        protected override Size MeasureOverride(Size availableSize)
         {
             var width = 100D;
-            if (!System.ComponentModel.DesignerProperties.IsInDesignTool)
+            if (!DesignerProperties.IsInDesignTool)
                 width = this.Width != double.NaN ? this.Width : availableSize.Width;
             TemplateSettings = new TemplateSettingValues(width);
             return base.MeasureOverride(availableSize);
@@ -65,13 +61,13 @@ namespace SimpleTasks.Controls
         public static readonly DependencyProperty TemplateSettingsProperty =
             DependencyProperty.Register("TemplateSettings", typeof(TemplateSettingValues), typeof(ProgressRing), new PropertyMetadata(new TemplateSettingValues(100)));
 
-        public class TemplateSettingValues : System.Windows.DependencyObject
+        public class TemplateSettingValues : DependencyObject
         {
             public TemplateSettingValues(double width)
             {
                 MaxSideLength = 400;
                 EllipseDiameter = width / 10D;
-                EllipseOffset = new System.Windows.Thickness(EllipseDiameter);
+                EllipseOffset = new Thickness(EllipseDiameter);
             }
 
             public double MaxSideLength

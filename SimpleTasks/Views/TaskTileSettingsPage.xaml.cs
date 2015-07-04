@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Models;
-using System.Diagnostics;
 
 namespace SimpleTasks.Views
 {
@@ -82,7 +76,7 @@ namespace SimpleTasks.Views
             }
         }
 
-        private void SettingChanged(object sender, System.Windows.Input.GestureEventArgs e)
+        private void SettingChanged(object sender, GestureEventArgs e)
         {
             Refresh();
         }
@@ -105,7 +99,7 @@ namespace SimpleTasks.Views
             Refresh();
         }
 
-        private void ChangeSizeButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void ChangeSizeButton_Tap(object sender, GestureEventArgs e)
         {
             ChangeTileSize();
         }

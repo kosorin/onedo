@@ -1,12 +1,10 @@
-﻿using SimpleTasks.Core.Models;
-using SimpleTasks.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Data;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Resources;
+
 namespace SimpleTasks.Conventers
 {
     public class RepeatsConverter : IValueConverter

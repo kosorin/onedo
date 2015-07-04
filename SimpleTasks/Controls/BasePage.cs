@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using SimpleTasks.ViewModels;
 using Microsoft.Phone.Shell;
-using SimpleTasks.Resources;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
 using SimpleTasks.Controls.Transitions;
-using SimpleTasks.Views;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
-using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Controls
 {

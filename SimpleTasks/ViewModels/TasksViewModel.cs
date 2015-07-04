@@ -1,15 +1,10 @@
-﻿using Microsoft.Phone.Scheduler;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;
 using SimpleTasks.Helpers;
 using SimpleTasks.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 
 namespace SimpleTasks.ViewModels
 {

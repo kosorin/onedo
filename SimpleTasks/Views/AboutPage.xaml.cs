@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
-using SimpleTasks.Resources;
-using SimpleTasks.Models;
-using System.Reflection;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Media;
 using SimpleTasks.Controls;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Helpers;
+using SimpleTasks.Resources;
 
 namespace SimpleTasks.Views
 {
@@ -91,7 +81,7 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Changelog
-        private void Changelog_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void Changelog_Tap(object sender, GestureEventArgs e)
         {
             Navigate(typeof(ChangelogPage));
         }

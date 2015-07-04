@@ -3,10 +3,6 @@ using System.Globalization;
 using System.Windows.Data;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Resources;
-using System.Windows;
-using SimpleTasks.Core.Models;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace SimpleTasks.Conventers
 {

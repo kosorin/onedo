@@ -1,15 +1,8 @@
-﻿using SimpleTasks.Core.Helpers;
-using SimpleTasks.Helpers;
-using SimpleTasks.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Phone.Scheduler;
-using System.Windows.Media;
-using System.Windows;
-using System.Diagnostics;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Helpers;
 
 namespace SimpleTasks.Models
 {

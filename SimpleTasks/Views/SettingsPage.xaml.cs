@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using SimpleTasks.Controls;
-using SimpleTasks.Core.Models;
-using DefaultDateTypes = SimpleTasks.Core.Models.Settings.DefaultDateTypes;
-using SimpleTasks.Resources;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
-using SimpleTasks.Core.Helpers;
-using SimpleTasks.Helpers;
-using System.Collections.ObjectModel;
-using System.Globalization;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
+using SimpleTasks.Controls;
+using SimpleTasks.Core.Helpers;
+using SimpleTasks.Core.Models;
+using SimpleTasks.Helpers;
 using SimpleTasks.Models;
+using SimpleTasks.Resources;
 
 namespace SimpleTasks.Views
 {
@@ -112,12 +106,12 @@ namespace SimpleTasks.Views
 
         private void InitDefaultDate()
         {
-            List<ListPickerItem<DefaultDateTypes>> defaultDateList = new List<ListPickerItem<DefaultDateTypes>>();
-            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateNoDue, DefaultDateTypes.NoDueDate));
-            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateToday, DefaultDateTypes.Today));
-            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateTomorrow, DefaultDateTypes.Tomorrow));
-            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateThisWeek, DefaultDateTypes.ThisWeek));
-            defaultDateList.Add(new ListPickerItem<DefaultDateTypes>(AppResources.DateNextWeek, DefaultDateTypes.NextWeek));
+            List<ListPickerItem<Settings.DefaultDateTypes>> defaultDateList = new List<ListPickerItem<Settings.DefaultDateTypes>>();
+            defaultDateList.Add(new ListPickerItem<Settings.DefaultDateTypes>(AppResources.DateNoDue, Settings.DefaultDateTypes.NoDueDate));
+            defaultDateList.Add(new ListPickerItem<Settings.DefaultDateTypes>(AppResources.DateToday, Settings.DefaultDateTypes.Today));
+            defaultDateList.Add(new ListPickerItem<Settings.DefaultDateTypes>(AppResources.DateTomorrow, Settings.DefaultDateTypes.Tomorrow));
+            defaultDateList.Add(new ListPickerItem<Settings.DefaultDateTypes>(AppResources.DateThisWeek, Settings.DefaultDateTypes.ThisWeek));
+            defaultDateList.Add(new ListPickerItem<Settings.DefaultDateTypes>(AppResources.DateNextWeek, Settings.DefaultDateTypes.NextWeek));
             DatePicker.ItemsSource = defaultDateList;
 
             int index = 0;
@@ -136,15 +130,15 @@ namespace SimpleTasks.Views
 
         private void DatePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_defaultDateInit && DatePicker.SelectedItem is ListPickerItem<DefaultDateTypes>)
+            if (_defaultDateInit && DatePicker.SelectedItem is ListPickerItem<Settings.DefaultDateTypes>)
             {
-                Settings.Current.DefaultDateType = ((ListPickerItem<DefaultDateTypes>)DatePicker.SelectedItem).Value;
+                Settings.Current.DefaultDateType = ((ListPickerItem<Settings.DefaultDateTypes>)DatePicker.SelectedItem).Value;
             }
         }
         #endregion // end of Default Date
 
         #region Default Time
-        private void DefaultTime_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DefaultTime_Tap(object sender, GestureEventArgs e)
         {
             Navigate(typeof(TimePickerPage), Settings.Current.DefaultTime, "TimePicker");
         }
@@ -189,7 +183,7 @@ namespace SimpleTasks.Views
         #endregion
 
         #region Default Task Tile Settings
-        private void DefaultTaskTileSettingsButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void DefaultTaskTileSettingsButton_Tap(object sender, GestureEventArgs e)
         {
             TaskModel task = new TaskModel()
             {
@@ -247,7 +241,7 @@ namespace SimpleTasks.Views
         #region Quick Add Tile
         private bool _isPinnedQuickAdd = false;
 
-        private void QuickAddTileButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void QuickAddTileButton_Tap(object sender, GestureEventArgs e)
         {
             if (_isPinnedQuickAdd)
             {
@@ -381,7 +375,7 @@ namespace SimpleTasks.Views
             return gestureList;
         }
 
-        private void InitGesturesPicker(SimpleTasks.Controls.ListPicker picker, GestureAction action)
+        private void InitGesturesPicker(ListPicker picker, GestureAction action)
         {
             picker.ItemsSource = CreateGestureList();
             picker.SelectedIndex = 0;
@@ -425,7 +419,7 @@ namespace SimpleTasks.Views
             ThemePicker.IsChecked = false;
         }
 
-        private void ThemeColorPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void ThemeColorPicker_Tap(object sender, GestureEventArgs e)
         {
             ThemePicker.IsChecked = false;
         }
