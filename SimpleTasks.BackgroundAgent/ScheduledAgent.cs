@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using Microsoft.Phone.Info;
 using Microsoft.Phone.Scheduler;
 using SimpleTasks.Core.Helpers;
 using SimpleTasks.Core.Models;

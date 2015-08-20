@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using SimpleTasks.Core.Helpers;
 
 namespace SimpleTasks.Core.Models
